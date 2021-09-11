@@ -1,0 +1,62 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet tmp "description" A
+    {
+        name: "$1",
+        vale: $2,
+    },
+	$3
+endsnippet
+
+# snippet trigger_word "description" A
+# function ${1}(${2}) {
+# 	return ${2}
+# }
+endsnippet
+
+snippet rfc "React functional component" A
+function ${1:Component}(${2:props}) {
+	const {${3}} = props
+	return (
+		<div className="${1}_wrap">
+			${4}
+		</div>
+	)
+}
+endsnippet
+
+snippet import_react "Import React" A
+import React${1:, \{$2\}} from 'react'
+endsnippet
+
+snippet import_default "Import" A
+import $1 from '$2'
+endsnippet
+
+snippet setState "setState" A
+const {$1, $2} = setState(${3:defaultValue})
+endsnippet

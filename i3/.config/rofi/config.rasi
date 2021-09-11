@@ -18,6 +18,7 @@ configuration {
 
 	kb-mode-next               :  "Super+l,Control+l,Shift+Right,Control+Tab";
 	kb-mode-previous           :  "Super+h,Control+h,Shift+Left,Control+ISO_Left_Tab";
+	kb-mode-complete           :  "";
 	kb-row-left                :  "";
 	kb-row-right               :  "";
 	kb-row-up                  :  "Super+k,Up,Control+k,ISO_Left_Tab";

@@ -1,0 +1,14 @@
+node_modules/
+*/.config/coc/extensions/
+Session.vim
+*.swa
+*.swo
+*.swp
+
+*.log
+npm-debug.log*
+
+
+*.iml
+.npm
+.env

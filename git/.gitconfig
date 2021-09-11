@@ -1,0 +1,45 @@
+[include]
+    path = ~/.gituser
+; @example
+; [user]
+;     name = "User Name"
+;     email = "User.Name@gmail.com"
+; [credential "https://github.com"]
+;     username = githubUser 
+; [credential "http://localhost:8080"]
+;     username = localUser
+
+[alias]
+    ck = checkout
+    br = branch
+    cm = commit
+    st = status
+    d = difftool
+    l = log --decorate --oneline --graph
+    m = merge --no-ff
+    ff = merge --ff-only
+    pull = pull --prune
+    p = pull
+    pr = pull --rebase
+    rp = checkout HEAD -- package-lock.json   
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+    trustExitCode = true
+
+[core]
+    pager = less -iXFRE
+    filemode = false
+    commentChar = "#"
+
+[mergetool]
+    trustExitCode = true
+[rebase]
+	abbreviateCommands = true
+[pull]
+	ff = only
+[init]
+	defaultBranch = master

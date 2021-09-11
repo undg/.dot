@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# This script move the selected window to the top left of the screen.
+windowfocus=$(xdotool getwindowfocus)
+windowwidth=$(xdotool getwindowgeometry "$windowfocus" | grep Geometry | grep -o " [0-9]*")
+screenwidth=$(xdotool getdisplaygeometry | awk '{print $1}')
+
+top=0
+right=$((screenwidth - windowwidth))
+
+xdotool windowmove $windowfocus $right $top
