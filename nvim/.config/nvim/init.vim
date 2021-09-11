@@ -1,0 +1,1 @@
+/home/undg/.vim/init.vim
