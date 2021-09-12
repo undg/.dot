@@ -1,0 +1,88 @@
+# vim: ts=2 sw=2 ft=sh
+
+if hash exa 2>/dev/null; then 
+    alias ls='exa --git'
+else
+    echo "exa is missing,\r\ninstall it from repository."
+fi
+
+alias ll="ls -lahg"
+alias la="ls -a"
+alias lt="ls --sort newest"
+alias llt="ll --sort newest"
+alias ltr="ls --sort oldest"
+alias lltr="ll --sort oldest"
+
+alias fr="find . -regex "
+
+if hash nvim 2>/dev/null; then
+    alias vim="nvim"
+fi
+
+if hash fping 2>/dev/null; then
+    alias wping="fping wp.pl -l | cut -d , -f 3-4"
+fi
+
+alias egrep="egrep --color=auto"
+alias grep="grep --color=auto"
+alias egr="egrep -iHnr"
+alias gr="grep -iHnr"
+alias cegr="egrep -iHnr --color=always"
+alias cgr="egrep -iHnr --color=always"
+
+if hash ranger 2>/dev/null; then
+    alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
+    alias ra="ranger"
+fi
+
+if hash trash 2>/dev/null; then
+    alias rmm="trash"
+fi
+
+if hash watch 2>/dev/null; then
+    alias watch="watch --color --interval 0.5"
+fi
+
+# cd to git root
+if hash git 2>/dev/null; then
+    alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
+    alias git-delete-merged='git branch --merged | grep -Ev \(develop\|master\) | xargs git br -d'
+else
+    echo "git is missing,\r\nInstall it now!!!"
+fi
+
+# screensaver
+if hash cmatrix 2>/dev/null; then
+    alias s='cmatrix -absCcyan'
+fi
+
+# translation with http://git.io/trans
+if hash trans 2>/dev/null; then 
+    alias t='trans en:pl'
+    alias ts='trans en:pl -speak'
+    alias tp='trans pl:en'
+else
+    echo "translate-shell is missing,\r\nget it from http://git.io/trans"
+fi
+
+
+if hash ag 2>/dev/null; then 
+    alias ag='ag --smart-case'
+else
+    echo "ag is missing,\r\ninstall it from repository."
+fi
+
+if hash yarn 2>/dev/null; then 
+    alias y='yarn'
+else
+    echo "yarn is missing,\r\ninstall it from repository."
+fi
+
+alias vimwiki='nvim -c VimwikiIndex'
+
+if hash xclip 2>/dev/null; then 
+    alias xclip='xclip -sel c'
+else
+    echo "xclip is missing,\r\ninstall it from repository."
+fi
+

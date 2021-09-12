@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+killall droidcam-cli &&
+droidcam-cli -l 4747 &>/dev/null               # listener
+droidcam-cli -v 192.168.1.233 4747 &>/dev/null # manual
+
+notify-send "droidcam toogle"

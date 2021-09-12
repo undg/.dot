@@ -1,0 +1,7 @@
+*.zwc
+*.zwc.old
+delete/
+modules/*/cache.zsh
+.customrc
+Session.vim
+
