@@ -1,3 +1,4 @@
+docthis.documentThis
 workspace.renameCurrentFile
 sh.version
 eslint.showOutputChannel
@@ -10,7 +11,6 @@ sumneko-lua.install
 editor.action.pickColor
 workspace.showOutput
 editor.action.organizeImport
-docthis.documentThis
 prettier.formatFile
 document.echoFiletype
 snippets.openSnippetFiles
