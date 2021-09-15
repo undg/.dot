@@ -1,5 +1,5 @@
-docthis.documentThis
 workspace.renameCurrentFile
+docthis.documentThis
 sh.version
 eslint.showOutputChannel
 eslint.resetLibraryExecution
