@@ -1,3 +1,5 @@
+switch
+case
 it
 try
 rfc
@@ -43,7 +45,6 @@ uuid
 ifelse
 state_hook
 useState_hook
-switch
 new
 foreach
 throw
