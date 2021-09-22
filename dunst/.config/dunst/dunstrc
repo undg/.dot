@@ -76,7 +76,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"
-    foreground = "#928374"
+    foreground = "#ebdbb2"
     frame_color = "#928374"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
@@ -84,7 +84,7 @@
 
 [urgency_normal]
     background = "#282828"
-    foreground = "#928374"
+    foreground = "#ebdbb2"
     frame_color = "#928374"
     timeout = 10
 
