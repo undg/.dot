@@ -4,3 +4,6 @@
 [submodule "vim/.vim"]
 	path = vim/.vim
 	url = https://github.com/und3rdg/dot_vim.git
+[submodule "_init"]
+	path = _init
+	url = https://github.com/undg/_init
