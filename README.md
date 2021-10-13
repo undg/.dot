@@ -1,3 +1,5 @@
+
+## clone
 Don't forget about submodules.
 ```
 git clone -j8 --recursive URL git://github.com/foo/example.git
@@ -23,4 +25,10 @@ done
 
 ```
 git submodule foreach git pull
+```
+
+## system setup
+ansible
+```
+cd _init
 ```
