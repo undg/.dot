@@ -3,16 +3,19 @@
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
 function stow_patch() {
-    stow $@ 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir .dot and path"
+    stow $@ 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir"
 }
 
 for folder in */
 do
-    echo "--------------------------"
-    stow_patch -D $folder
-    echo "Remove $folder"
-    stow_patch $folder
-    echo "Add $folder"
+    if [ $folder != '_init/' ]
+    then
+        echo "--------------------------"
+        stow_patch -D $folder
+        echo "Remove $folder"
+        stow_patch $folder
+        echo "Add $folder"
+    fi
 done
 
 echo "--------------------------"
