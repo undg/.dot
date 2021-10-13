@@ -8,9 +8,3 @@ npm-debug.log*
 .npm
 .env
 
-
-*/.config/coc/extensions/
-# some auto generated crap
-nvim/.config/coc/commands
-nvim/.config/coc/snippets-mru
-
