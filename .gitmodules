@@ -1,3 +1,6 @@
 [submodule "zsh/.fzf"]
 	path = zsh/.fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "vim/.vim"]
+	path = vim/.vim
+	url = git@github.com:und3rdg/dot_vim.git
