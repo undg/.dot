@@ -13,8 +13,6 @@ alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
 alias lltr="ll --sort oldest"
 
-alias fr="find . -regex "
-
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
 fi
@@ -29,6 +27,10 @@ alias egr="egrep -iHnr"
 alias gr="grep -iHnr"
 alias cegr="egrep -iHnr --color=always"
 alias cgr="egrep -iHnr --color=always"
+
+# Avoid breaking fingers with date
+alias today="date +%Y-%M-%d"
+alias now="date +%Y-%M-%d_%H-%m_%S"
 
 if hash ranger 2>/dev/null; then
     alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
