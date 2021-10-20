@@ -19,13 +19,14 @@
     m = merge --no-ff
     ff = merge --ff-only
     pull = pull --prune
+    clone = clone --recurse-submodules
     p = pull
     pr = pull --rebase
     rp = checkout HEAD -- package-lock.json   
 
 [diff]
     tool = vimdiff
-	submodule = log
+    submodule = log
 
 [difftool]
     prompt = false
@@ -39,8 +40,8 @@
 [mergetool]
     trustExitCode = true
 [rebase]
-	abbreviateCommands = true
+    abbreviateCommands = true
 [pull]
-	ff = only
+    ff = only
 [init]
-	defaultBranch = master
+    defaultBranch = master
