@@ -1,47 +1,50 @@
 [include]
-    path = ~/.gituser
-; @example
+  path = ~/.gituser
+; @example for file .gituser
 ; [user]
-;     name = "User Name"
-;     email = "User.Name@gmail.com"
+;   name = "User Name"
+;   email = "User.Name@gmail.com"
 ; [credential "https://github.com"]
-;     username = githubUser 
+;   username = githubUser 
 ; [credential "http://localhost:8080"]
-;     username = localUser
+;   username = localUser
 
 [alias]
-    ck = checkout
-    br = branch
-    cm = commit
-    st = status
-    d = difftool
-    l = log --decorate --oneline --graph
-    m = merge --no-ff
-    ff = merge --ff-only
-    pull = pull --prune
-    clone = clone --recurse-submodules
-    p = pull
-    pr = pull --rebase
-    rp = checkout HEAD -- package-lock.json   
+  ck = checkout
+  br = branch
+  cm = commit
+  st = status
+  d = difftool
+  ; l = log --decorate --oneline --graph
+  l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
+  m = merge --no-ff
+  ff = merge --ff-only
+  pull = pull --prune
+  c = clone --recursive
+  p = pull
+  pr = pull --rebase
+  rp = checkout HEAD -- package-lock.json   
 
 [diff]
-    tool = vimdiff
-    submodule = log
+  tool = vimdiff
+  submodule = log
 
 [difftool]
-    prompt = false
-    trustExitCode = true
+  prompt = false
+  trustExitCode = true
 
 [core]
-    pager = less -iXFRE
-    filemode = false
-    commentChar = "#"
+  pager = less -iXFRE
+  filemode = false
+  commentChar = "#"
 
 [mergetool]
-    trustExitCode = true
+  trustExitCode = true
 [rebase]
-    abbreviateCommands = true
+  abbreviateCommands = true
 [pull]
-    ff = only
+  ff = only
 [init]
-    defaultBranch = master
+  defaultBranch = master
+[submodule]
+  recurse = true
