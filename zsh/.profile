@@ -47,7 +47,7 @@ elif [[ -f ~/.bashrc ]]; then
 fi
 
 # Start graphical server if i3 not already running.
-# [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 
 # Switch escape and caps and use wal colors if tty:
 # sudo -n loadkeys ~/.config/i3/scripts/ttymaps.kmap 2>/dev/null
