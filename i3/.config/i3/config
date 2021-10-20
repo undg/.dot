@@ -156,6 +156,7 @@ set $WINDOW_spotify     [class="Spotify"]
 set $WINDOW_kodi        [class="Kodi"]
 set $WINDOW_plex        [class="plexmediaplayer"]
 set $WINDOW_teams       [title="Microsoft Teams Notification"]
+set $WINDOW_pavucontrol [class="Pavucontrol"]
 
 # #---Dropdown Windows---# #
 # @TODO fix it
@@ -185,6 +186,10 @@ for_window $WINDOW_xenotrade move workspace $ws3
 for_window $WINDOW_kodi move workspace $ws5
 for_window $WINDOW_spotify move workspace $ws5
 
+for_window $WINDOW_pavucontrol floating enable
+for_window $WINDOW_pavucontrol sticky enable
+for_window $WINDOW_pavucontrol resize set 1200 950
+for_window $WINDOW_pavucontrol move to output primary
 
 for_window [class="Pinentry"] sticky enable
 for_window [class="sent"] border pixel 0px
