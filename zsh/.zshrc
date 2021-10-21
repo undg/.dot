@@ -64,17 +64,17 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-precmd() { RPROMPT="" }
-function zle-line-init zle-keymap-select {
-  VIM_PROMPT="[% NORMAL]%"
-  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-  zle reset-prompt
-}
+# # TODO: after switching prompt to `pure` this is not needed. Delete it if prompt will stay. I'm not 100% sure about precmd() and keytimeout. <21-10-21> #
+# precmd() { RPROMPT="" }
+# function zle-keymap-select {
+#   VIM_PROMPT="[% NORMAL]%"
+#   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+#   zle reset-prompt
+# }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+# zle -N zle-keymap-select
 
-export KEYTIMEOUT=1
+# export KEYTIMEOUT=1
 
 
 
