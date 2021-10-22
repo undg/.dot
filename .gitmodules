@@ -18,7 +18,7 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh/.zprezto/modules/completion/external"]
 	path = zsh/.zprezto/modules/completion/external
-	url = git@github.com:undg/zsh-completions.git
+	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "zsh/.zprezto/modules/prompt/external/powerline"]
 	path = zsh/.zprezto/modules/prompt/external/powerline
 	url = https://github.com/davidjrice/prezto_powerline.git
