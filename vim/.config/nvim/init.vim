@@ -1,1 +1,1 @@
-/home/undg/.vim/init.vim
+../../.vim/init.vim
