@@ -24,18 +24,40 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet tmp "description" A
-    {
-        name: "$1",
-        vale: $2,
-    },
-	$3
-endsnippet
-
 # snippet trigger_word "description" A
 # function ${1}(${2}) {
 # 	return ${2}
 # }
+
+snippet ir "import react" b
+import React from 'react'
+endsnippet
+
+snippet fn "function" b
+export function ${1:`!p snip.rv = snip.basename`}(${3:args}) {
+	${4}
+}
+endsnippet
+
+snippet fc "functional component" b
+export function ${1:`!p snip.rv = snip.basename`Component}(${3:props}) {
+	const {${3}} = props
+	return (
+		<div className="${1}_wrap">
+			${4}
+		</div>
+	)
+}
+endsnippet
+
+snippet rfc "functional react component" b
+export const ${1:`!p snip.rv = snip.basename`Component} = ${3:props} => {
+	return (
+		<>
+			<p>${1}</p>
+		</>
+	)
+}
 endsnippet
 
 snippet rfc "React functional component" A
@@ -49,14 +71,15 @@ function ${1:Component}(${2:props}) {
 }
 endsnippet
 
+snippet useState "useState hook" b
+const [$1, set${1/\w+/\u$0/g}] = useState("$2")
+endsnippet
+
 snippet import_react "Import React" A
 import React${1:, \{$2\}} from 'react'
 endsnippet
 
-snippet import_default "Import" A
-import $1 from '$2'
+snippet setState "setState" A
+const [$1, $2] = setState(${3:defaultValue})
 endsnippet
 
-snippet setState "setState" A
-const {$1, $2} = setState(${3:defaultValue})
-endsnippet
