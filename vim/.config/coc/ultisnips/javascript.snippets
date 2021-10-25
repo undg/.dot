@@ -50,7 +50,7 @@ export function ${1:`!p snip.rv = snip.basename`Component}(${3:props}) {
 }
 endsnippet
 
-snippet rfc "functional react component" b
+snippet rfc-cont "functional react component" b
 export const ${1:`!p snip.rv = snip.basename`Component} = ${3:props} => {
 	return (
 		<>
@@ -61,7 +61,7 @@ export const ${1:`!p snip.rv = snip.basename`Component} = ${3:props} => {
 endsnippet
 
 snippet rfc "React functional component" A
-function ${1:Component}(${2:props}) {
+function ${1:`!p snip.rv = snip.basename`Component}(${2:props}) {
 	const {${3}} = props
 	return (
 		<div className="${1}_wrap">
@@ -80,6 +80,6 @@ import React${1:, \{$2\}} from 'react'
 endsnippet
 
 snippet setState "setState" A
-const [$1, $2] = setState(${3:defaultValue})
+const {$1, $2} = setState(${3:defaultValue})
 endsnippet
 
