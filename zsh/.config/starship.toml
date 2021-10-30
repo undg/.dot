@@ -12,6 +12,26 @@ format = "[$user]($style)"
 disabled = false
 
 [hostname]
+
 ssh_only = false
 format =  "@[$hostname](bold #d79921) "
 disabled = false
+
+[git_branch]
+style = "#458588 bold"
+
+[git_status]
+style      = "bold white"
+format     = '([\($all_status\)$ahead_behind]($style) )'
+conflicted = "[=](red bold)"
+ahead      = "[⇡](#98971a bold)"
+behind     = "[⇣](red bold)"
+diverged   = "[⇕](red bold)"
+up_to_date = ""
+untracked  = "[?](red bold)"
+stashed    = "[$](#f65d0e bold)"
+modified   = "[!](red bold)"
+staged     = "[+](#98971a bold)"
+renamed    = "[»](red bold)"
+deleted    = "[✘](red bold)"
+disabled   = false
