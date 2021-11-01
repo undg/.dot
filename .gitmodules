@@ -1,12 +1,15 @@
 [submodule "vim/.vim"]
 	path = vim/.vim
-	url = https://github.com/und3rdg/dot_vim.git
+	url = https://github.com/undg/dot_vim.git
+	branch = master
 [submodule "_init"]
 	path = _init
 	url = https://github.com/undg/_init
+	branch = master
 [submodule "zsh/.fzf"]
 	path = zsh/.fzf
 	url = https://github.com/junegunn/fzf.git
+	branch = master
 [submodule "zsh/.zprezto/modules/autosuggestions/external"]
 	path = zsh/.zprezto/modules/autosuggestions/external
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
