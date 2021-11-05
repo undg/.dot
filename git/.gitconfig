@@ -48,3 +48,10 @@
   defaultBranch = master
 [submodule]
   recurse = true
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+[interactive]
+  diffFilter = delta --color-only
