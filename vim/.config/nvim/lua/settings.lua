@@ -1,4 +1,8 @@
 vim.opt.autoindent = true
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- @TODO rethink it. Take into account scenarios when motions keys are overlaping.
 vim.opt.timeout = true
