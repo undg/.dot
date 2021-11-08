@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
+  },
   nerdtree = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/nerdtree",
@@ -104,6 +109,21 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/nvim-fzf",
     url = "https://github.com/vijaymarupudi/nvim-fzf"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-lsputils"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/nvim-lsputils",
+    url = "https://github.com/RishabhRD/nvim-lsputils"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -118,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  popfix = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/popfix",
+    url = "https://github.com/RishabhRD/popfix"
   },
   ["vim-commentary"] = {
     loaded = true,

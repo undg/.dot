@@ -11,3 +11,6 @@ require('plugins/nerdtree')
 require('plugins/fzf-lua')
 require('plugins/nvim-web-devicons')
 require('plugins/QFEnter')
+
+require('plugins/lspsaga')
+require('plugins/lsp-installer')

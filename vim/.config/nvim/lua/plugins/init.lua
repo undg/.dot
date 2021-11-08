@@ -28,9 +28,17 @@ return require('packer').startup(function(use)
         }
     }
 
-
     -- quickfix window (cw) open in split/tab...
     use  'yssl/QFEnter'
+
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
+
+    use 'glepnir/lspsaga.nvim'
+
+    use 'RishabhRD/popfix'
+    use 'RishabhRD/nvim-lsputils'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

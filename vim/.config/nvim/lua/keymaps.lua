@@ -36,7 +36,7 @@ map.insert('<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map.insert('<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 
 -- repeat last macro
-map.normal('<CR>', '@@')
+-- map.normal('<CR>', '@@')
 
 -- Yanking/Pasting
 map.normal('<leader>p', '"+p')
@@ -58,4 +58,14 @@ map.insert(',', ',<C-g>u')
 map.insert('.', '.<C-g>u')
 map.insert('!', '!<C-g>u')
 map.insert('?', '?<C-g>u')
+
+-- LSP
+map.normal('<LEADER>.', ':FzfLua files<CR>')
+map.normal('<LEADER>m', ':FzfLua <CR>')
+map.normal('<LEADER>b', ':FzfLua buffers<CR>')
+
+map.normal('gd', ':FzfLua lsp_definitions<CR>')
+map.normal('gr', ':FzfLua lsp_references<CR>')
+map.normal('gi', ':FzfLua lsp_implementations<CR>')
+map.normal('ga', ':FzfLua lsp_code_actions<CR>')
 
