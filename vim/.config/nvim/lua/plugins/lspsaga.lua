@@ -4,28 +4,6 @@ local map = require('../utils/map')
 -- use default config
 -- saga.init_lsp_saga()
 
-map.normal('gh', ':Lspsaga lsp_finder<CR>', {silent = true})
-
-map.normal('<leader>ca', ':Lspsaga code_action<CR>', {silent = true})
-map.visual('<leader>ca', ':<C-U>Lspsaga range_code_action<CR>', {silent = true})
-
--- Hover Doc
-map.normal('K', ':Lspsaga hover_doc<CR>', {silent = true})
-map.normal('gs', ':Lspsaga signature_help<CR>', {silent = true})
--- map.normal('gd', ':Lspsaga preview_definition<CR>', {silent = true})
-
--- scroll up/down hover doc, signature help or scroll in definition preview
-map.normal('<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', {silent = true})
-map.normal('<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', {silent = true})
-
-map.normal('<leader>rn', ':Lspsaga rename<CR>', {silent = true})
--- close rename win use <C-c> in insert mode or `q` in noremal mode or `:q`
-
-map.normal('<leader>cd', ':Lspsaga show_line_diagnostics<CR>', {silent = true})
-map.normal('<leader>cc', ':Lspsaga show_cursor_diagnostics<CR>', {silent = true})
-map.normal('[e', ':Lspsaga diagnostic_jump_next<CR>', {silent = true})
-map.normal(']e', ':Lspsaga diagnostic_jump_prev<CR>', {silent = true})
-
 
 
 
