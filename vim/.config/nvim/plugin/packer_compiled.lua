@@ -104,10 +104,10 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
-  ["lspsaga.nvim"] = {
+  ["lightline.vim"] = {
     loaded = true,
-    path = "/home/undg/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/lightline.vim",
+    url = "https://github.com/itchyny/lightline.vim"
   },
   nerdtree = {
     loaded = true,
@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-commentary",
@@ -183,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-rhubarb"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
+    url = "https://github.com/tpope/vim-rhubarb"
   },
   ["vim-surround"] = {
     loaded = true,
