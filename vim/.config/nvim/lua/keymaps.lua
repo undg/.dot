@@ -46,9 +46,15 @@ map.normal('Y', 'y$')
 -- Only visual, keep same yank in register
 map.visual('<LEADER>p', '"_dP')
 
--- Keep in center
+-- Keep it in center
 map.normal('n', 'nzzzv')
 map.normal('N', 'Nzzzv')
+map.normal("''", "''zzzv")
+
+map.visual('n', 'nzzzv')
+map.visual('N', 'Nzzzv')
+map.visual("''", "''zzzv")
+
 map.normal('J', 'mzJ`z')
 map.normal('<C-n>', ':cnext<CR>zzzv')
 map.normal('<C-p>', ':cprev<CR>zzzv')
@@ -59,13 +65,27 @@ map.insert('.', '.<C-g>u')
 map.insert('!', '!<C-g>u')
 map.insert('?', '?<C-g>u')
 
--- LSP
 map.normal('<LEADER>.', ':FzfLua files<CR>')
 map.normal('<LEADER>m', ':FzfLua <CR>')
 map.normal('<LEADER>b', ':FzfLua buffers<CR>')
+
+-- LSP
+map.normal('K', ':lua vim.lsp.buf.hover()<CR>')
 
 map.normal('gd', ':FzfLua lsp_definitions<CR>')
 map.normal('gr', ':FzfLua lsp_references<CR>')
 map.normal('gi', ':FzfLua lsp_implementations<CR>')
 map.normal('ga', ':FzfLua lsp_code_actions<CR>')
 
+
+map.normal('gh', ':Lspsaga lsp_finder<CR>')
+map.normal('gs', ':Lspsaga signature_help<CR>')
+
+-- scroll up/down hover doc, signature help or scroll in definition preview
+map.normal('<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
+map.normal('<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+
+map.normal('<leader>rn', ':Lspsaga rename<CR>')
+
+map.normal('[e', ':Lspsaga diagnostic_jump_next<CR>')
+map.normal(']e', ':Lspsaga diagnostic_jump_prev<CR>')

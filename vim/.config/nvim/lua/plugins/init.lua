@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: undefined-global
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -6,7 +7,6 @@ end
 
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'nvim-treesitter/nvim-treesitter'
     use 'morhetz/gruvbox'
 
     use 'tpope/vim-repeat'
@@ -31,14 +31,20 @@ return require('packer').startup(function(use)
     -- quickfix window (cw) open in split/tab...
     use  'yssl/QFEnter'
 
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
 
     use 'glepnir/lspsaga.nvim'
 
-    use 'RishabhRD/popfix'
-    use 'RishabhRD/nvim-lsputils'
+    -- completion
+    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -46,4 +52,5 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+
 
