@@ -1,8 +1,13 @@
-vim.opt.autoread = true
 vim.opt.autoindent = true
-vim.opt.timeout = false
+
+-- @TODO rethink it. Take into account scenarios when motions keys are overlaping.
+vim.opt.timeout = true
+vim.opt.timeoutlen = 1000
 vim.opt.ttimeout = true
+-- vim.opt.ttimeoutlen = 1000
+
 vim.opt.mouse = 'n'
+
 vim.opt.history = 900
 
 -- do not wrap long lines, I'll wrap me myself or prettier will do it.
@@ -36,9 +41,10 @@ vim.opt.backup = false
 vim.opt.wb = false
 vim.opt.swapfile = false
 
--- vim.opt.to auto read when a file is changed from the outside
+-- auto read when a file is changed from the outside
 vim.opt.autoread = true
 
+-- show white spaces, but only on demand
 vim.opt.list = false
 vim.opt.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·'
 
@@ -47,3 +53,4 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:full,full'
 vim.opt.wildoptions = 'pum,tagfile'
 
+vim.opt.smartcase = true
