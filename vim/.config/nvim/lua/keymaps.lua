@@ -81,11 +81,7 @@ map.normal('ga', ':FzfLua lsp_code_actions<CR>')
 map.normal('gh', ':Lspsaga lsp_finder<CR>')
 map.normal('gs', ':Lspsaga signature_help<CR>')
 
--- scroll up/down hover doc, signature help or scroll in definition preview
-map.normal('<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
-map.normal('<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+map.normal('<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
 
-map.normal('<leader>rn', ':Lspsaga rename<CR>')
-
-map.normal('[e', ':Lspsaga diagnostic_jump_next<CR>')
-map.normal(']e', ':Lspsaga diagnostic_jump_prev<CR>')
+map.normal('[e', ':lua vim.lsp.diagnostics.goto_prev<CR>')
+map.normal(']e', ':lua vim.lsp.diagnostics.goto_next<CR>')
