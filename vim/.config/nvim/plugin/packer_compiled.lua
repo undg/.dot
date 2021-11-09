@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/tami5/lspsaga.nvim"
+  },
   nerdtree = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/nerdtree",

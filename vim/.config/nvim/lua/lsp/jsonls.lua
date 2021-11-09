@@ -1,4 +1,4 @@
-  local jsonls = {
+  return {
     filetypes = {"json", "jsonc"},
     settings = {
       json = {

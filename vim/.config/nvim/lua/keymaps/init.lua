@@ -17,8 +17,8 @@ map.normal('<LEADER><LEADER>', ':write<CR>')
 map.normal('<LEADER>q', ':q<CR>')
 
 -- duno... I'm using it a lot.
-map.normal('<LEADER>s', ':mksession!<CR>')
-map.normal('<LEADER>cd', ':lcd %:p:h<CR>', {silent = true})
+map.normal('<LEADER>s', ':mksession!<CR>', {silent = false})
+map.normal('<LEADER>cd', ':lcd %:p:h<CR>')
 
 -- remove white spaces on end line
 map.normal('<LEADER>sp', ':%s/\\s\\+$//ge<CR>:echomsg \"white space cleaing\"<cr>')
@@ -69,16 +69,6 @@ map.normal('<LEADER>.', ':FzfLua files<CR>')
 map.normal('<LEADER>m', ':FzfLua <CR>')
 map.normal('<LEADER>b', ':FzfLua buffers<CR>')
 
--- LSP
-map.normal('gd', ':FzfLua lsp_definitions<CR>')
-map.normal('gr', ':FzfLua lsp_references<CR>')
-map.normal('gi', ':FzfLua lsp_implementations<CR>')
-map.normal('ga', ':FzfLua lsp_code_actions<CR>')
-map.normal('K', ':lua vim.lsp.buf.hover()<CR>')
-map.normal('<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
-
-map.normal('[e', ':lua vim.lsp.diagnostics.goto_prev<CR>')
-map.normal(']e', ':lua vim.lsp.diagnostics.goto_next<CR>')
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
