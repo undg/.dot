@@ -70,18 +70,20 @@ map.normal('<LEADER>m', ':FzfLua <CR>')
 map.normal('<LEADER>b', ':FzfLua buffers<CR>')
 
 -- LSP
-map.normal('K', ':lua vim.lsp.buf.hover()<CR>')
-
 map.normal('gd', ':FzfLua lsp_definitions<CR>')
 map.normal('gr', ':FzfLua lsp_references<CR>')
 map.normal('gi', ':FzfLua lsp_implementations<CR>')
 map.normal('ga', ':FzfLua lsp_code_actions<CR>')
-
-
-map.normal('gh', ':Lspsaga lsp_finder<CR>')
-map.normal('gs', ':Lspsaga signature_help<CR>')
-
+map.normal('K', ':lua vim.lsp.buf.hover()<CR>')
 map.normal('<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
 
 map.normal('[e', ':lua vim.lsp.diagnostics.goto_prev<CR>')
 map.normal(']e', ':lua vim.lsp.diagnostics.goto_next<CR>')
+
+--Remap for dealing with word wrap
+vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+-- Y yank until the end of line  (note: this is now a default on master)
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+
