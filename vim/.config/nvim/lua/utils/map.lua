@@ -40,4 +40,11 @@ function M.visual(keybind, cmd, opt)
     keymap('v', keybind, cmd, opt)
 end
 
+---@param keybind string
+---@param cmd string
+---@param opt? {}
+function M.xisual(keybind, cmd, opt)
+    keymap('x', keybind, cmd, opt)
+end
+
 return M

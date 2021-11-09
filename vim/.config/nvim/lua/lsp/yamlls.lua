@@ -1,4 +1,4 @@
-local yamlls = {
+return {
     settings = {
       yaml = {
         -- Schemas https://www.schemastore.org
