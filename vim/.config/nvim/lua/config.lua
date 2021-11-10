@@ -81,7 +81,7 @@ vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.opt.clipboard='unnamed,unnamedplus'
+-- vim.opt.clipboard='unnamed,unnamedplus'
 
 -- Highlight on yank
 vim.api.nvim_exec(
@@ -94,4 +94,15 @@ vim.api.nvim_exec(
     false
 )
 
-vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+-- Areas of the screen where the window splits should occur
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.scrolloff = 3
+
+-- folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false
+vim.opt.foldlevel = 9
+

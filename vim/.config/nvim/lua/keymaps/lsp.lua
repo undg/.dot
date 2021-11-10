@@ -4,8 +4,8 @@ local map = require'../utils/map'
 -- Mix of everything WIP
 
 map.normal('gd', ':FzfLua lsp_definitions<CR>')
+map.normal('<leader>gt', ':FzfLua lsp_typedefs<CR>')
 map.normal('gD', ':FzfLua lsp_declaration<CR>')
-map.normal('gt', ':FzfLua lsp_typedefs<CR>')
 -- map.normal('gr', ':FzfLua lsp_references<CR>')
 map.normal('gi', ':FzfLua lsp_implementations<CR>')
 -- map.normal('ga', ':FzfLua lsp_code_actions<CR>')
