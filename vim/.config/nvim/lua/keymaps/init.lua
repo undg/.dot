@@ -70,10 +70,18 @@ map.normal('<LEADER>m', ':FzfLua <CR>')
 map.normal('<LEADER>b', ':FzfLua buffers<CR>')
 
 
---Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+-- Remap for dealing with word wrap
+map.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+map.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Y yank until the end of line  (note: this is now a default on master)
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+map.normal('Y', 'y$', { noremap = true })
+
+-- Zoom / Fullscreen
+map.normal('<C-w>z',     ':ZoomWinTabToggle<CR>')
+map.normal('<C-w><C-z>', ':ZoomWinTabToggle<CR>')
+
+map.normal('tt',         ':tabnew %<CR>')
+map.normal('<C-w>t',     ':tabnew %<CR>')
+map.normal('<C-w><C-t>', ':tabnew %<CR>')
 

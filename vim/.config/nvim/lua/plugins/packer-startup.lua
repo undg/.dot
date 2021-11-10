@@ -12,8 +12,10 @@ packer.startup(function()
     use 'tpope/vim-surround'
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-    use 'airblade/vim-gitgutter' -- Git status for every line
     use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
+    use 'tpope/vim-sleuth' -- Auto-detect intentation style
+
+    use 'airblade/vim-gitgutter' -- Git status for every line
 
     use 'scrooloose/nerdtree'
     use 'jistr/vim-nerdtree-tabs'
@@ -24,7 +26,8 @@ packer.startup(function()
         requires = {
             'vijaymarupudi/nvim-fzf',
             'kyazdani42/nvim-web-devicons'
-        }
+        },
+        config = function () require('plugins.fzf-lua') end
     }
 
     use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -32,26 +35,29 @@ packer.startup(function()
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'williamboman/nvim-lsp-installer' -- Instalation servers for LSP
     -- use 'glepnir/lspsaga.nvim' -- LSP utils with performant UI
-    use 'tami5/lspsaga.nvim' -- LSP utils with performant UI
+    use { 'tami5/lspsaga.nvim', config = function () require'plugins.lspsaga' end } -- LSP utils with performant UI
 
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
-
-    -- quickfix window (cw) open in split/tab...
-    use  'yssl/QFEnter'
-    -- use 'bfredl/nvim-miniyank'
+    use  'yssl/QFEnter' -- quickfix window (cw) open in split/tab...
+    -- use 'bfredl/nvim-miniyank' -- 🐛@TODO
     use 'itchyny/lightline.vim' -- Fancier statusline
 
     use 'jiangmiao/auto-pairs'
-    use 'simnalamburt/vim-mundo'
-
-    use 'vimwiki/vimwiki'
-    use 'rhysd/vim-grammarous'
-
-    use 'simeji/winresizer'
-
+    use { 'simnalamburt/vim-mundo', cmd = {'MundoShow', 'MundoToggle'} }
+    use { 'vimwiki/vimwiki', config = function() require'plugins.vimwiki' end }
+    use { 'rhysd/vim-grammarous', cmd = 'GrammarousCheck' }
+    use { 'simeji/winresizer', config = function() require'plugins.winresizer' end }
+    use { 'christoomey/vim-tmux-navigator', config = function() require'plugins.vim-tmux-navigator' end }
+    use { 'benmills/vimux', config = function() require'plugins.vimux' end }
+    use 'blueyed/vim-diminactive'
+    use { 'AndrewRadev/linediff.vim', cmd = 'Linediff'  }
+    use { 'und3rdg/Tabmerge', cmd = 'Tabmerge' }
+    use { 'lilydjwg/colorizer', config = function() require'plugins.colorizer' end, cmd = { 'ColorHighlight', 'ColorToggle'} }
+    use { 'blindFS/vim-colorpicker',  cmd = 'ColorPicker' }
+    use { 'troydm/zoomwintab.vim', }
 end)
 
