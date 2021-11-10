@@ -79,6 +79,19 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/QFEnter",
     url = "https://github.com/yssl/QFEnter"
   },
+  Tabmerge = {
+    commands = { "Tabmerge" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/Tabmerge",
+    url = "https://github.com/und3rdg/Tabmerge"
+  },
+  ["auto-pairs"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/auto-pairs",
+    url = "https://github.com/jiangmiao/auto-pairs"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -89,12 +102,22 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  colorizer = {
+    commands = { "ColorHighlight", "ColorToggle" },
+    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.colorizer\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/colorizer",
+    url = "https://github.com/lilydjwg/colorizer"
+  },
   fzf = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/fzf",
     url = "https://github.com/junegunn/fzf"
   },
   ["fzf-lua"] = {
+    config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.fzf-lua\frequire\0" },
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/fzf-lua",
     url = "https://github.com/ibhagwan/fzf-lua"
@@ -114,7 +137,16 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
   },
+  ["linediff.vim"] = {
+    commands = { "Linediff" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/linediff.vim",
+    url = "https://github.com/AndrewRadev/linediff.vim"
+  },
   ["lspsaga.nvim"] = {
+    config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.lspsaga\frequire\0" },
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
@@ -174,10 +206,23 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["vim-colorpicker"] = {
+    commands = { "ColorPicker" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/vim-colorpicker",
+    url = "https://github.com/blindFS/vim-colorpicker"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-diminactive"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-diminactive",
+    url = "https://github.com/blueyed/vim-diminactive"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -188,6 +233,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
+  },
+  ["vim-grammarous"] = {
+    commands = { "GrammarousCheck" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/vim-grammarous",
+    url = "https://github.com/rhysd/vim-grammarous"
+  },
+  ["vim-mundo"] = {
+    commands = { "MundoShow", "MundoToggle" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/opt/vim-mundo",
+    url = "https://github.com/simnalamburt/vim-mundo"
   },
   ["vim-nerdtree-tabs"] = {
     loaded = true,
@@ -204,14 +265,85 @@ _G.packer_plugins = {
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
     url = "https://github.com/tpope/vim-rhubarb"
   },
+  ["vim-sleuth"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    url = "https://github.com/tpope/vim-sleuth"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-tmux-navigator"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31plugins.vim-tmux-navigator\frequire\0" },
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  vimux = {
+    config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins.vimux\frequire\0" },
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vimux",
+    url = "https://github.com/benmills/vimux"
+  },
+  vimwiki = {
+    config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.vimwiki\frequire\0" },
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/vimwiki",
+    url = "https://github.com/vimwiki/vimwiki"
+  },
+  winresizer = {
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.winresizer\frequire\0" },
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/winresizer",
+    url = "https://github.com/simeji/winresizer"
+  },
+  ["zoomwintab.vim"] = {
+    loaded = true,
+    path = "/home/undg/.local/share/nvim/site/pack/packer/start/zoomwintab.vim",
+    url = "https://github.com/troydm/zoomwintab.vim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: fzf-lua
+time([[Config for fzf-lua]], true)
+try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.fzf-lua\frequire\0", "config", "fzf-lua")
+time([[Config for fzf-lua]], false)
+-- Config for: vimwiki
+time([[Config for vimwiki]], true)
+try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.vimwiki\frequire\0", "config", "vimwiki")
+time([[Config for vimwiki]], false)
+-- Config for: vim-tmux-navigator
+time([[Config for vim-tmux-navigator]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31plugins.vim-tmux-navigator\frequire\0", "config", "vim-tmux-navigator")
+time([[Config for vim-tmux-navigator]], false)
+-- Config for: winresizer
+time([[Config for winresizer]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.winresizer\frequire\0", "config", "winresizer")
+time([[Config for winresizer]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugins.lspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: vimux
+time([[Config for vimux]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins.vimux\frequire\0", "config", "vimux")
+time([[Config for vimux]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MundoShow lua require("packer.load")({'vim-mundo'}, { cmd = "MundoShow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MundoToggle lua require("packer.load")({'vim-mundo'}, { cmd = "MundoToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Linediff lua require("packer.load")({'linediff.vim'}, { cmd = "Linediff", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ColorHighlight lua require("packer.load")({'colorizer'}, { cmd = "ColorHighlight", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ColorToggle lua require("packer.load")({'colorizer'}, { cmd = "ColorToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file GrammarousCheck lua require("packer.load")({'vim-grammarous'}, { cmd = "GrammarousCheck", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ColorPicker lua require("packer.load")({'vim-colorpicker'}, { cmd = "ColorPicker", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Tabmerge lua require("packer.load")({'Tabmerge'}, { cmd = "Tabmerge", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 if should_profile then save_profiles() end
 
 end)

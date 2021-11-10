@@ -1,5 +1,3 @@
-local map = require('../utils/map')
-
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
     winopts = {
