@@ -47,10 +47,12 @@ if hash watch 2>/dev/null; then
     alias watch="watch --color --interval 0.5"
 fi
 
-# cd to git root
 if hash git 2>/dev/null; then
+    # cd to git root
     alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
     alias git-delete-merged='git branch --merged | grep -Ev \(develop\|master\) | xargs git br -d'
+    alias ga.='git add .'
+    alias ga='git add'
 else
     echo "git is missing,\r\nInstall it now!!!"
 fi
@@ -89,4 +91,5 @@ if hash xclip 2>/dev/null; then
 else
     echo "xclip is missing,\r\ninstall it from repository."
 fi
+
 
