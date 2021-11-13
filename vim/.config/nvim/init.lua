@@ -1,5 +1,4 @@
 require('utils.globals')
-local map = require('utils.map')
 
 require('config')
 require('theme')
