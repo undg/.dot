@@ -31,9 +31,12 @@ map.insert('<F8>', '<esc>:set list!<CR>i')
 -- get git branch go into insert mode.
 map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
 
--- highlight in visual stay
+-- indent, highlight in visual stay
 map.visual('>', '>gv')
 map.visual('<', '<gv')
+
+-- ts/sw 2<-->4 toggle indentation
+map.normal('<c-_>', ':ToggleIndent<cr>', {silent = false})
 
 -- Yanking/Pasting
 -- map.normal('<leader>p', '"+p')
