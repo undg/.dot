@@ -23,9 +23,6 @@ require('custom.statusline')
 require('custom.tabline')
 require('custom.search-selected')
 require('custom.auto-relative-numbers')
-
-require('custom.indent') -- @TODO 🚮 clean it 🚮
--- map.normal('<c-_>', ':lua R("custom.indent").toggle()<cr>', {silent = false})
-
+require('custom.indent')
 -- require('custom.auto-highlight-toggle') -- @TODO ♻ port ♻
 
