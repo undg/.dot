@@ -21,10 +21,12 @@ lsp_installer.on_server_ready(function(server)
     --     opts.root_dir = function() ... end
     -- end
 
-    for key, value in ipairs(lsp_opt)
+    for k, v in pairs(lsp_opt)
         do
-        if server.name == key then
-            opts = value
+        if server.name == k then
+            opts = v
+            print(k, '----------if')
+            -- P(opts)
         end
     end
 
@@ -34,4 +36,3 @@ lsp_installer.on_server_ready(function(server)
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
     server:setup(opts)
 end)
-
