@@ -25,8 +25,6 @@ lsp_installer.on_server_ready(function(server)
         do
         if server.name == k then
             opts = v
-            print(k, '----------if')
-            -- P(opts)
         end
     end
 
