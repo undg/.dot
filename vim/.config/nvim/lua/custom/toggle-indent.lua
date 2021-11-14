@@ -10,9 +10,6 @@ function M.togglf()
         vim.opt.shiftwidth = 4
         print("Switched to: Indent with 4 spaces.")
     end
-    -- call indent_guides#toggle()
-    -- call indent_guides#toggle()
 end
 
 return M
--- vim.api.nvim_set_keymap('n', '<leader>-', ':lua ToggleIndentStyle()<cr>', {silent = false, noremap = false})
