@@ -11,6 +11,7 @@ map.normal(']z', ']s')
 map.normal('z[', '[s')
 map.normal('[z', '[s')
 
+map.normal('z=', ':Telescope spell_suggest<cr>')
 --[[
 vim.cmd[[
 function! Getreg()

@@ -2,27 +2,35 @@ local packer = require('packer')
 local use = packer.use
 packer.startup(function()
     use 'wbthomason/packer.nvim'
-    use 'nvim-lua/plenary.nvim' -- All the lua functions I don't want to write twice.
+    use 'nvim-lua/plenary.nvim' -- All the lua functions you don't want to write twice.
 
     use 'tpope/vim-repeat' -- dot repeat for plugins like surround @TODO fix it
     use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
     use 'tpope/vim-sleuth' -- Auto-detect intentation style
-    use 'tpope/vim-surround'
+    use 'tpope/vim-surround' -- @TODO 🐛 fix it
+
+    -- Git
     use 'tpope/vim-fugitive' -- Git commands in nvim
     use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
     use 'airblade/vim-gitgutter' -- Git status for every line
 
     -- File managers
-    use 'scrooloose/nerdtree'
-    use 'jistr/vim-nerdtree-tabs'
-    use 'Xuyuanp/nerdtree-git-plugin'
-    use { 'junegunn/fzf', run = './install --bin', }
-    use { 'ibhagwan/fzf-lua',
+    use {
+        'scrooloose/nerdtree',
         requires = {
-            'vijaymarupudi/nvim-fzf',
-            'kyazdani42/nvim-web-devicons'
+            'jistr/vim-nerdtree-tabs',
+            'Xuyuanp/nerdtree-git-plugin',
         },
-        config = function () require('plugins.fzf-lua') end
+        config = function() require('plugins.nerdtree') end
+    }
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function () require('plugins.telescope') end
     }
 
     -- LSP
