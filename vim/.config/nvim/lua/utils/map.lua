@@ -15,9 +15,6 @@ local function keymap(mode, keybind, cmd, opt)
     if opt.noremap ~= false then
        opt.noremap = true
     end
-    if opt.silent ~= false then
-        opt.silent = true
-    end
 
     vim.api.nvim_set_keymap(mode, keybind, cmd, opt)
 end
