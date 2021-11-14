@@ -4,7 +4,6 @@ local M = {}
 ---@param cmd string
 ---@param opt? {}
 local function keymap(mode, keybind, cmd, opt)
-    -- assert(type(mode) == 'string', 'mode is not a string: ' + mode)
     if cmd then
         assert(type(keybind) == 'string', 'keybind is not a string: \n' .. cmd)
     end
@@ -13,8 +12,12 @@ local function keymap(mode, keybind, cmd, opt)
     end
 
     opt = opt or {}
-    opt.noremap = opt.noremap or true
-    opt.silent = opt.silent or true
+    if opt.noremap ~= false then
+       opt.noremap = true
+    end
+    if opt.silent ~= false then
+        opt.silent = true
+    end
 
     vim.api.nvim_set_keymap(mode, keybind, cmd, opt)
 end
