@@ -45,7 +45,8 @@ packer.startup(function()
 
     -- Utils
     use  'yssl/QFEnter' -- quickfix window (cw) open in split/tab...
-    -- use 'bfredl/nvim-miniyank' -- 🐛@TODO
+    -- use 'bfredl/nvim-miniyank' -- 🐛@TODO @WIP
+    use 'svermeulen/vim-yoink'
     use 'jiangmiao/auto-pairs'
     use { 'simnalamburt/vim-mundo', cmd = {'MundoShow', 'MundoToggle'} }
     use { 'vimwiki/vimwiki', config = function() require'plugins.vimwiki' end }
