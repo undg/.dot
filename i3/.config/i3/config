@@ -26,7 +26,8 @@ focus_follows_mouse no
 for_window [class="^.*"] border pixel 4
 
 set $term --no-startup-id $TERMINAL
-set $mod Mod4
+set $winKey Mod4
+set $altKey Mod1
 set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
@@ -109,29 +110,29 @@ set $ws9  "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1                   workspace $ws1
-bindsym $mod+2                   workspace $ws2
-bindsym $mod+3                   workspace $ws3
-bindsym $mod+4                   workspace $ws4
-bindsym $mod+5                   workspace $ws5
-bindsym $mod+6                   workspace $ws6
-bindsym $mod+7                   workspace $ws7
-bindsym $mod+8                   workspace $ws8
-bindsym $mod+9                   workspace $ws9
-bindsym $mod+0                   workspace $ws10
+bindsym $winKey+1                   workspace $ws1
+bindsym $winKey+2                   workspace $ws2
+bindsym $winKey+3                   workspace $ws3
+bindsym $winKey+4                   workspace $ws4
+bindsym $winKey+5                   workspace $ws5
+bindsym $winKey+6                   workspace $ws6
+bindsym $winKey+7                   workspace $ws7
+bindsym $winKey+8                   workspace $ws8
+bindsym $winKey+9                   workspace $ws9
+bindsym $winKey+0                   workspace $ws10
 
 
 # move focused container to workspace
-bindsym $mod+Shift+1            move container to workspace $ws1
-bindsym $mod+Shift+2            move container to workspace $ws2
-bindsym $mod+Shift+3            move container to workspace $ws3
-bindsym $mod+Shift+4            move container to workspace $ws4
-bindsym $mod+Shift+5            move container to workspace $ws5
-bindsym $mod+Shift+6            move container to workspace $ws6
-bindsym $mod+Shift+7            move container to workspace $ws7
-bindsym $mod+Shift+8            move container to workspace $ws8
-bindsym $mod+Shift+9            move container to workspace $ws9
-bindsym $mod+Shift+0            move container to workspace $ws10
+bindsym $winKey+Shift+1            move container to workspace $ws1
+bindsym $winKey+Shift+2            move container to workspace $ws2
+bindsym $winKey+Shift+3            move container to workspace $ws3
+bindsym $winKey+Shift+4            move container to workspace $ws4
+bindsym $winKey+Shift+5            move container to workspace $ws5
+bindsym $winKey+Shift+6            move container to workspace $ws6
+bindsym $winKey+Shift+7            move container to workspace $ws7
+bindsym $winKey+Shift+8            move container to workspace $ws8
+bindsym $winKey+Shift+9            move container to workspace $ws9
+bindsym $winKey+Shift+0            move container to workspace $ws10
 
 
 workspace 1 output             $DP_left
@@ -218,135 +219,135 @@ for_window [title="mpvfloat"] border   pixel 0
 no_focus   [title="mpvfloat"]
 
 # #---Basic Bindings---# #
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec --no-startup-id samedir
-bindsym $mod+Shift+space  floating toggle
-bindsym $mod+space  focus mode_toggle
-bindsym $mod+Escape    layout toggle
-bindsym $mod+Shift+Escape  exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
-#bindsym $mod+BackSpace
-bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
-bindsym $mod+grave  exec --no-startup-id rofimoji
-##bindsym $mod+asciitilde
+bindsym $winKey+Return exec $term
+bindsym $winKey+Shift+Return exec --no-startup-id samedir
+bindsym $winKey+Shift+space  floating toggle
+bindsym $winKey+space  focus mode_toggle
+bindsym $winKey+Escape    layout toggle
+bindsym $winKey+Shift+Escape  exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+#bindsym $winKey+BackSpace
+bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
+bindsym $winKey+grave  exec --no-startup-id rofimoji
+##bindsym $winKey+asciitilde
 # Show selection:
-bindsym $mod+Insert        exec --no-startup-id showclip
-bindsym $mod+Pause        exec --no-startup-id xcqr
+bindsym $winKey+Insert        exec --no-startup-id showclip
+bindsym $winKey+Pause        exec --no-startup-id xcqr
 
 
 # #---Letter Key Bindings---# #
 
-bindsym $mod+q               [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
-bindsym $mod+Shift+q         [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
-#bindsym $mod+w
-bindsym $mod+Shift+w         exec --no-startup-id $BROWSER
-bindsym $mod+Shift+f         exec --no-startup-id $FIREFOX
-#bindsym $mod+e
-#bindsym $mod+Shift+e
-bindsym $mod+r               exec nemo
-bindsym $mod+Shift+r         exec --no-startup-id winresize
-bindsym $mod+t               split toggle
-bindsym $mod+Shift+t         exec --no-startup-id topright
-#bindsym $mod+y
-#bindsym $mod+Shift+y
-#bindsym $mod+u
-#bindsym $mod+Shift+u
-#bindsym $mod+i
-#bindsym $mod+Shift+i
-bindsym $mod+o               sticky toggle
-#bindsym $mod+Shift+o
-#bindsym $mod+p
-#bindsym $mod+Shift+p
-bindsym $mod+a               exec --no-startup-is pavucontrol
-bindsym $mod+Shift+a         exec $term -e pulsemixer
-#bindsym $mod+s
-#bindsym $mod+Shift+s
-bindsym $mod+d               exec --no-startup-id  rofi -show drun
-#bindsym $mod+Shift+d
-bindsym $mod+f               fullscreen toggle
-bindsym $mod+g               workspace prev
-#bindsym $mod+Shift+g
-bindsym $mod+h               focus left
-bindsym $mod+Shift+h         move left 30
-bindsym $mod+Ctrl+h          exec --no-startup-id i3resize left
-bindsym $mod+Alt+h           exec --no-startup-id i3resize left
-bindsym $mod+j               focus down
-bindsym $mod+Shift+j         move down 30
-bindsym $mod+Ctrl+j          exec --no-startup-id i3resize down
-bindsym $mod+Alt+j           exec --no-startup-id i3resize down
-bindsym $mod+k               focus up
-bindsym $mod+Shift+k         move up 30
-bindsym $mod+Ctrl+k          exec --no-startup-id i3resize up
-bindsym $mod+Alt+k           exec --no-startup-id i3resize up
-bindsym $mod+l               focus right
-bindsym $mod+Shift+l         move right 30
-bindsym $mod+Ctrl+l          exec --no-startup-id i3resize right
-bindsym $mod+Alt+l           exec --no-startup-id i3resize right
-#bindsym $mod+z
-#bindsym $mod+Shift+z
-bindsym $mod+x               exec --no-startup-id lockscreen
-bindsym $mod+Shift+x         exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
-# bindsym $mod+c
-# bindsym $mod+Shift+c
-#bindsym $mod+v
-#bindsym $mod+Shift+v
-bindsym $mod+b               bar mode toggle
-# bindsym $mod+Shift+b
-#bindsym $mod+n
-# bindsym $mod+Shift+n
-#bindsym $mod+m
-#bindsym $mod+Shift+m
+bindsym $winKey+q               [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
+bindsym $winKey+Shift+q         [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
+#bindsym $winKey+w
+bindsym $winKey+Shift+w         exec --no-startup-id $BROWSER
+bindsym $winKey+Shift+f         exec --no-startup-id $FIREFOX
+#bindsym $winKey+e
+#bindsym $winKey+Shift+e
+bindsym $winKey+r               exec nemo
+bindsym $winKey+Shift+r         exec --no-startup-id winresize
+bindsym $winKey+t               split toggle
+bindsym $winKey+Shift+t         exec --no-startup-id topright
+#bindsym $winKey+y
+#bindsym $winKey+Shift+y
+#bindsym $winKey+u
+#bindsym $winKey+Shift+u
+#bindsym $winKey+i
+#bindsym $winKey+Shift+i
+bindsym $winKey+o               sticky toggle
+#bindsym $winKey+Shift+o
+#bindsym $winKey+p
+#bindsym $winKey+Shift+p
+bindsym $winKey+a               exec --no-startup-is pavucontrol
+bindsym $winKey+Shift+a         exec $term -e pulsemixer
+#bindsym $winKey+s
+#bindsym $winKey+Shift+s
+bindsym $winKey+d               exec --no-startup-id  rofi -show drun
+#bindsym $winKey+Shift+d
+bindsym $winKey+f               fullscreen toggle
+bindsym $winKey+g               workspace prev
+#bindsym $winKey+Shift+g
+bindsym $winKey+h               focus left
+bindsym $winKey+Shift+h         move left 30
+bindsym $winKey+Ctrl+h          exec --no-startup-id i3resize left
+bindsym $winKey+$altKey+h           exec --no-startup-id i3resize left
+bindsym $winKey+j               focus down
+bindsym $winKey+Shift+j         move down 30
+bindsym $winKey+Ctrl+j          exec --no-startup-id i3resize down
+bindsym $winKey+$altKey+j           exec --no-startup-id i3resize down
+bindsym $winKey+k               focus up
+bindsym $winKey+Shift+k         move up 30
+bindsym $winKey+Ctrl+k          exec --no-startup-id i3resize up
+bindsym $winKey+$altKey+k           exec --no-startup-id i3resize up
+bindsym $winKey+l               focus right
+bindsym $winKey+Shift+l         move right 30
+bindsym $winKey+Ctrl+l          exec --no-startup-id i3resize right
+bindsym $winKey+$altKey+l           exec --no-startup-id i3resize right
+#bindsym $winKey+z
+#bindsym $winKey+Shift+z
+bindsym $winKey+x               exec --no-startup-id lockscreen
+bindsym $winKey+Shift+x         exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
+# bindsym $winKey+c
+# bindsym $winKey+Shift+c
+#bindsym $winKey+v
+#bindsym $winKey+Shift+v
+bindsym $winKey+b               bar mode toggle
+# bindsym $winKey+Shift+b
+#bindsym $winKey+n
+# bindsym $winKey+Shift+n
+#bindsym $winKey+m
+#bindsym $winKey+Shift+m
 
 
 # #---Workspace Bindings---# #
-bindsym $mod+Home                  workspace $ws1
-bindsym $mod+Shift+Home            move container to workspace $ws1
-bindsym $mod+End                   workspace $ws10
-bindsym $mod+Shift+End             move container to workspace $ws10
-bindsym $mod+Prior                 workspace prev
-bindsym $mod+Shift+Prior           move container to workspace prev
-bindsym $mod+Next                  workspace next
-bindsym $mod+Shift+Next            move container to workspace next
-bindsym $mod+Tab                   workspace back_and_forth
-bindsym $mod+XF86Back              workspace prev
-bindsym $mod+Shift+XF86Back        move container to workspace prev
-bindsym $mod+XF86Forward           workspace next
-bindsym $mod+Shift+XF86Forward     move container to workspace next
-bindsym $mod+semicolon             workspace next
-bindsym $mod+backslash             split horizontal ;; exec $term
-bindsym $mod+minus                 split vertical ;; exec $term
-bindsym $mod+Shift+slash           kill
-bindsym $mod+slash                 workspace back_and_forth
+bindsym $winKey+Home                  workspace $ws1
+bindsym $winKey+Shift+Home            move container to workspace $ws1
+bindsym $winKey+End                   workspace $ws10
+bindsym $winKey+Shift+End             move container to workspace $ws10
+bindsym $winKey+Prior                 workspace prev
+bindsym $winKey+Shift+Prior           move container to workspace prev
+bindsym $winKey+Next                  workspace next
+bindsym $winKey+Shift+Next            move container to workspace next
+bindsym $winKey+Tab                   workspace back_and_forth
+bindsym $winKey+XF86Back              workspace prev
+bindsym $winKey+Shift+XF86Back        move container to workspace prev
+bindsym $winKey+XF86Forward           workspace next
+bindsym $winKey+Shift+XF86Forward     move container to workspace next
+bindsym $winKey+semicolon             workspace next
+bindsym $winKey+backslash             split horizontal ;; exec $term
+bindsym $winKey+minus                 split vertical ;; exec $term
+bindsym $winKey+Shift+slash           kill
+bindsym $winKey+slash                 workspace back_and_forth
 
 
 # #---Function Buttons---# #
-bindsym $mod+F1                exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf | zathura -
-bindsym $mod+F2                restart
-bindsym $mod+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
-bindsym $mod+F5                exec --no-startup-id $netrefresh
-bindsym $mod+F8                exec --no-startup-id ~/bin/droicam-lister
+bindsym $winKey+F1                exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf | zathura -
+bindsym $winKey+F2                restart
+bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
+bindsym $winKey+F5                exec --no-startup-id $netrefresh
+bindsym $winKey+F8                exec --no-startup-id ~/bin/droicam-lister
 
 
 # #---Media Keys---# #
-bindsym Shift+$mod+F9          exec --no-startup-id mypctl --max #lower/rise volume to 150%
-bindsym Control+$mod+F9        exec --no-startup-id mypctl --normal # 75%
-bindsym $mod+F9                exec --no-startup-id mypctl --down
-bindsym $mod+F10               exec --no-startup-id mypctl --up # up to infinity
+bindsym Shift+$winKey+F9          exec --no-startup-id mypctl --max #lower/rise volume to 150%
+bindsym Control+$winKey+F9        exec --no-startup-id mypctl --normal # 75%
+bindsym $winKey+F9                exec --no-startup-id mypctl --down
+bindsym $winKey+F10               exec --no-startup-id mypctl --up # up to infinity
 
 
 # For screenshots and recording
 bindsym Print                          exec --no-startup-id flameshot gui
-bindsym $mod+shift+grave               exec --no-startup-id flameshot gui
+bindsym $winKey+shift+grave               exec --no-startup-id flameshot gui
 
 
 # #---Arrow Keys---# #
-bindsym $mod+Left               focus left
-bindsym $mod+Down               focus down
-bindsym $mod+Up                 focus up
-bindsym $mod+Right              focus right
-bindsym $mod+Shift+Left         move left
-bindsym $mod+Shift+Down         move down
-bindsym $mod+Shift+Up           move up
-bindsym $mod+Shift+Right        move right
+bindsym $winKey+Left               focus left
+bindsym $winKey+Down               focus down
+bindsym $winKey+Up                 focus up
+bindsym $winKey+Right              focus right
+bindsym $winKey+Shift+Left         move left
+bindsym $winKey+Shift+Down         move down
+bindsym $winKey+Shift+Up           move up
+bindsym $winKey+Shift+Right        move right
 
 
 # #---Extra XF86 Keys---# #
@@ -367,13 +368,13 @@ bindsym XF86Display           exec --no-startup-id arandr
 bindsym XF86WLAN              exec $netrefresh
 
 # MOUSE CONTROLL
-# Press $mod, click into a window using your left mouse button, and drag it to the position you want.
+# Press $winKey, click into a window using your left mouse button, and drag it to the position you want.
 # When holding the floating modifier, you can resize a floating window by pressing the right mouse button
 # on it and moving around while holding it. If you hold the shift button as well, the aspect ratio will be preserved.
 # The middle button toggles floating
-floating_modifier $mod
-bindsym --whole-window $mod+button2 floating toggle
+floating_modifier $winKey
+bindsym --whole-window $winKey+button2 floating toggle
 
-bindsym --whole-window $mod+button4 exec --no-startup-id  rofi -show window
-bindsym --whole-window $mod+button5 exec --no-startup-id  rofi -show window
+bindsym --whole-window $winKey+button4 exec --no-startup-id  rofi -show window
+bindsym --whole-window $winKey+button5 exec --no-startup-id  rofi -show window
 
