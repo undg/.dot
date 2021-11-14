@@ -65,10 +65,6 @@ map.insert('.', '.<C-g>u')
 map.insert('!', '!<C-g>u')
 map.insert('?', '?<C-g>u')
 
-map.normal('<LEADER>.', ':FzfLua files<CR>')
-map.normal('<LEADER>m', ':FzfLua <CR>')
-map.normal('<LEADER>b', ':FzfLua buffers<CR>')
-
 
 -- Remap for dealing with word wrap
 map.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })

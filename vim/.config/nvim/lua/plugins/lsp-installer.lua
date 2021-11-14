@@ -1,8 +1,8 @@
 local lsp_installer = require('nvim-lsp-installer')
 local lsp_opt = {}
 
-lsp_opt.sumneko_lua = require('lsp/sumneko_lua')
 lsp_opt.tsserver = require('lsp/tsserver')
+lsp_opt.sumneko_lua = require('lsp/sumneko_lua')
 lsp_opt.yamlls = require('lsp/yamlls')
 lsp_opt.jsonls = require('lsp/jsonls')
 
