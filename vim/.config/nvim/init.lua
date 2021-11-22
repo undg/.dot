@@ -23,5 +23,6 @@ require('custom.tabline')
 require('custom.search-selected')
 require('custom.auto-relative-numbers')
 require('custom.indent')
+require('custom.json2ts')
 -- require('custom.auto-highlight-toggle') -- @TODO ♻ port ♻
 
