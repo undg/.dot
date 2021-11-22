@@ -12,6 +12,8 @@ local function keymap(mode, keybind, cmd, opt)
     end
 
     opt = opt or {}
+    -- Anything that `false` (empty nil, string, true...) should be `true`
+    -- It's twisted... I know... this way I'm sure to not override false value from `opt`.
     if opt.noremap ~= false then
        opt.noremap = true
     end

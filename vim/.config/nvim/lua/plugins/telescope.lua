@@ -48,5 +48,7 @@ map.normal('<leader>fb', ':Telescope buffers<cr>')
 map.normal('<leader>b', ':Telescope buffers<cr>')
 
 map.normal('<leader>fg', ':Telescope live_grep<cr>')
+map.normal('<leader>fs', ':Telescope git_status<cr>')
+map.normal('<leader>sf', ':Telescope git_status<cr>')
 -- map.normal('<leader>', ':Telescope<cr>')
 -- map.normal('<leader>', ':Telescope<cr>')
