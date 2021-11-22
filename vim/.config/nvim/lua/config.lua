@@ -101,8 +101,8 @@ vim.opt.splitright = true
 vim.opt.scrolloff = 3
 
 -- folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = false
+vim.opt.foldmethod = 'indent'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- @TODO debub it, I think it was working
+vim.opt.foldenable = true
 vim.opt.foldlevel = 9
 
