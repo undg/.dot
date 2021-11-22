@@ -1,5 +1,5 @@
 vim.cmd([[
-noremap <silent> * :<C-U>
+vnoremap <silent> * :<C-U>
            \let old_reg=getreg('"')<bar>
            \let old_regmode=getregtype('"')<cr>
            \gvy/<C-R><C-R>=substitute(
