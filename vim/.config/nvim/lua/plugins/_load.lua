@@ -51,6 +51,17 @@ packer.startup(function()
     use 'onsails/lspkind-nvim'
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
+    -- Formatting
+    use {
+        'MunifTanjim/prettier.nvim',
+        requires = {
+            'neovim/nvim-lspconfig',
+            'jose-elias-alvarez/null-ls.nvim',
+        },
+        -- config = function () require'plugins.prettier' end
+    }
+
+
     -- Utils
     use  'yssl/QFEnter' -- quickfix window (cw) open in split/tab...
     -- use 'bfredl/nvim-miniyank' -- 🐛@TODO @WIP

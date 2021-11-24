@@ -44,10 +44,11 @@ map.normal('<leader>.', ':Telescope find_files<cr>')
 map.normal('<leader>ft', ':Telescope<cr>')
 map.normal('<leader>m', ':Telescope<cr>')
 
-map.normal('<leader>fb', ':Telescope buffers<cr>')
 map.normal('<leader>b', ':Telescope buffers<cr>')
 
 map.normal('<leader>fg', ':Telescope live_grep<cr>')
+
+map.normal('<leader>fb', ':Telescope file_browser<cr>')
 
 map.normal('<leader>fs', ':Telescope git_status<cr>')
 map.normal('<leader>sf', ':Telescope git_status<cr>')
