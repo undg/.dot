@@ -1,5 +1,10 @@
 local map = require('utils.map')
 
+require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
+
+
 require('telescope').setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -9,8 +14,10 @@ require('telescope').setup {
                 -- map actions.which_key to <C-h> (default: <C-/>)
                 -- actions.which_key shows the mappings for your picker,
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                ["<C-h>"] = "which_key"
-            }
+                ["<C-h>"] = "which_key",
+                ["<c-p>"] = trouble.open_with_trouble ,
+            },
+            n = { ["<c-p>"] = trouble.open_with_trouble },
         }
     },
     pickers = {
@@ -38,20 +45,19 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 
-map.normal('<leader>ff', ':Telescope find_files<cr>')
+map.normal('ff', ':Telescope find_files<cr>')
 map.normal('<leader>.', ':Telescope find_files<cr>')
 
-map.normal('<leader>ft', ':Telescope<cr>')
+map.normal('ft', ':Telescope<cr>')
 map.normal('<leader>m', ':Telescope<cr>')
 
 map.normal('<leader>b', ':Telescope buffers<cr>')
 
-map.normal('<leader>fg', ':Telescope live_grep<cr>')
+map.normal('fg', ':Telescope live_grep<cr>')
 
-map.normal('<leader>fb', ':Telescope file_browser<cr>')
+map.normal('fb', ':Telescope file_browser<cr>')
 
-map.normal('<leader>fs', ':Telescope git_status<cr>')
-map.normal('<leader>sf', ':Telescope git_status<cr>')
+map.normal('fs', ':Telescope git_status<cr>')
 
 -- map.normal('<leader>', ':Telescope<cr>')
 -- map.normal('<leader>', ':Telescope<cr>')
