@@ -8,7 +8,6 @@
 configuration {
 	modi: "drun,window,combi,calc";
 	combi-modi: "window,drun,calc";
-	theme: "gruvbox-dark-soft";
 	font: "mononoki Nerd Font 13";
 	show-icons: true;
 	sidebar-mode: true;
@@ -161,3 +160,5 @@ configuration {
 	/* display-keys: ; */
 	/* display-file-browser: ; */
 }
+
+@theme "gruvbox-dark-soft"
