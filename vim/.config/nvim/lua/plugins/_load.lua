@@ -77,7 +77,7 @@ packer.startup(function()
         -- requires = {
         --     'neovim/nvim-lspconfig',
         -- },
-        config = function () require'plugins.prettier' end
+        -- config = function () require'plugins.prettier' end
     }
     use {
         "folke/trouble.nvim",
