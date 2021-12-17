@@ -2,12 +2,12 @@ local lsp_installer = require('nvim-lsp-installer')
 
 -- Table with individual language servers settings.
 local lsp_opt = {}
-lsp_opt.denols = require('lsp/denols')
-lsp_opt.tailwindcss = require('lsp/tailwindcss')
-lsp_opt.jsonls = require('lsp/jsonls')
+lsp_opt.denols = require('lsp.denols')
+lsp_opt.tailwindcss = require('lsp.tailwindcss')
+lsp_opt.jsonls = require('lsp.jsonls')
 
-lsp_opt.sumneko_lua = require('lsp/sumneko_lua')
-lsp_opt.yamlls = require('lsp/yamlls')
+lsp_opt.sumneko_lua = require('lsp.sumneko_lua')
+lsp_opt.yamlls = require('lsp.yamlls')
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
