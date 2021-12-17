@@ -51,34 +51,8 @@ packer.startup(function()
     use 'onsails/lspkind-nvim'
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
-    -- AutoFormatting
-    -- use {
-    --     'jose-elias-alvarez/null-ls.nvim',
-    --         config = function ()
-    --             vim.cmd("nnoremap <buffer> <Leader>fp :lua vim.lsp.buf.formatting()<CR>")
-    --             require'null_ls'.setup({
-    --             on_attach = function(client, bufnr)
-    --                 if client.resolved_capabilities.document_formatting then
-    --                     vim.cmd("nnoremap <buffer> <Leader>fp :lua vim.lsp.buf.formatting()<CR>")
-    --                     -- format on save
-    --                     -- vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
-    --                 end
+    use { 'mhartington/formatter.nvim', config = function () require('plugins.formatter') end }
 
-    --                 if client.resolved_capabilities.document_range_formatting then
-    --                     vim.cmd("xnoremap <buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
-    --                 end
-    --             end,
-    --         })
-
-    --     end
-    -- }
-    use {
-        'MunifTanjim/prettier.nvim',
-        -- requires = {
-        --     'neovim/nvim-lspconfig',
-        -- },
-        -- config = function () require'plugins.prettier' end
-    }
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
