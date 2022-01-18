@@ -89,6 +89,12 @@ else
     echo "yarn is missing,\r\ninstall it from repository."
 fi
 
+if hash npm 2>/dev/null; then 
+    alias n='npm run'
+else
+    echo "npm is missing,\r\ninstall it from repository."
+fi
+
 alias vimwiki='nvim -c VimwikiIndex'
 
 if hash xclip 2>/dev/null; then 
