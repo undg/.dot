@@ -28,7 +28,6 @@ for_window [class="^.*"] border pixel 4
 set $term --no-startup-id $TERMINAL
 set $winKey Mod4
 set $altKey Mod1
-set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
@@ -40,13 +39,13 @@ set $DP_top HDMI-A-0
 
 # #---Starting External Scripts---# #
 # Setting the background:
-exec --no-startup-id picom --config /dev/null                             # Composite manager:
-exec --no-startup-id d1;sleep 1; d3; i3-msg restart                       # xrandr with 3 displays
+exec --no-startup-id picom --config /dev/null                             # Composite manager
+exec --no-startup-id d1;sleep 1; d3; i3-msg restart                       # xrandr with 3 displays workaround
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
 exec --no-startup-id unclutter                                            # hide mouse after a brief period
 exec --no-startup-id echocancel                                           # pulse mixer echo cancelation
 exec --no-startup-id dunst                                                # notifications
-exec --no-startup-id barrier                                              # KVM software
+# exec --no-startup-id barrier                                              # KVM software
 exec --no-startup-id flameshot                                            # screenshots
 exec --no-startup-id lxsession                                            # FE for polkit
 
