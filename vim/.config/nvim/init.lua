@@ -8,7 +8,7 @@ require('keymaps.lsp')
 require('keymaps.spell')
 
 require('plugins')
-require('plugins._load')
+require('plugins._packages')
 require('plugins.treesitter')
 require('plugins.vim-gitgutter')
 require('plugins.nerdtree') -- @TODO ♻ port ♻
