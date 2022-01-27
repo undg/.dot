@@ -189,7 +189,8 @@ for_window $WINDOW_spotify move workspace $ws5
 for_window $WINDOW_pavucontrol floating enable
 for_window $WINDOW_pavucontrol sticky enable
 for_window $WINDOW_pavucontrol resize set 1200 950
-for_window $WINDOW_pavucontrol move to output primary
+# for_window $WINDOW_pavucontrol move to output secondary
+for_window $WINDOW_pavucontrol move position 3920 1105 # 2 screens right minus window width and bellow top screen + bar + border
 
 for_window [class="Pinentry"] sticky enable
 for_window [class="sent"] border pixel 0px
