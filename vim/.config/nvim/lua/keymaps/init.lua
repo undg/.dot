@@ -10,7 +10,6 @@ map.normal('Q', '<Nop>')
 
 -- no need for ESC
 map.insert('jk', '<ESC>')
-map.insert('kj', '<ESC>')
 
 -- ZZ like stuff
 map.normal('<LEADER><LEADER>', ':write<CR>')
