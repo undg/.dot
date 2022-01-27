@@ -30,6 +30,8 @@ let NERDTreeMapOpenSplit      = 's'
 let NERDTreeMapOpenVSplit     = 'v'
 let NERDTreeMapPreviewSplit   = 'ps'
 let NERDTreeMapPreviewVSplit  = 'pv'
+let NERDTreeMapActivateNode   = '<cr>'
+let NERDTreeMapPreview        = 'o'
 
 let NERDTreeWinSize = 44
 let NERDTreeShowHidden=0
