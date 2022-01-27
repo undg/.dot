@@ -3,6 +3,7 @@ window:
     x: 10
     y: 5
   decorations: none
+  opacity: .95
 
 scrolling:
   history: 90000
@@ -57,8 +58,6 @@ colors:
     magenta: '0xd3869b'
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
-
-background_opacity: .95
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
