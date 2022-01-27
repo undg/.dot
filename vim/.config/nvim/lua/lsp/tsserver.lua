@@ -1,4 +1,6 @@
-  return {
+local nvim_lsp = require("lspconfig")
+
+return {
   -- cmd = { "typescript-language-server", "--stdio" },
   -- filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   -- init_options = {
@@ -13,4 +15,7 @@
   --     ) or
   --     vim.fn.getcwd()
   -- end
+
+    -- Omitting some options
+    root_dir = nvim_lsp.util.root_pattern("package.json")
 }

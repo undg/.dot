@@ -2,7 +2,7 @@ local M = {}
 
 local T = {}
 function T.find() require('telescope.builtin').find_files({hidden = true}) end
-function T.browse() require('telescope.builtin').file_browser({hidden = true}) end
+function T.browse() require('telescope').extensions.file_browser.file_browser({hidden = true}) end
 function T.git() require('telescope.builtin').git_status({hidden = true}) end
 function T.grep() require('telescope.builtin').live_grep({hidden = true}) end
 

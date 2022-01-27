@@ -28,6 +28,7 @@ packer.startup(function()
         requires = {
             {'nvim-lua/plenary.nvim'},
             {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            { "nvim-telescope/telescope-file-browser.nvim" },
             {'kyazdani42/nvim-web-devicons'},
         },
         config = function () require('plugins.telescope') end

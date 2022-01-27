@@ -1,7 +1,7 @@
 local map = require('utils.map')
 
-require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+require('telescope.actions')
+local trouble = require('trouble.providers.telescope')
 
 
 
@@ -38,11 +38,22 @@ require('telescope').setup {
             override_file_sorter = true,     -- override the file sorter
             case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
-        }
+        },
+        file_browser = {
+            theme = "ivy",
+            mappings = {
+                ["i"] = {
+                    -- your custom insert mode mappings
+                },
+                ["n"] = {
+                    -- your custom normal mode mappings
+                },
+            },
+        },
     }
 }
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
+-- load_extension's, somewhere after setup function:
 require('telescope').load_extension('fzf')
+require('telescope').load_extension 'file_browser'
 
-require('plugins.telescope.gotoKeybindings')
+require('plugins.telescope.keybindings')
