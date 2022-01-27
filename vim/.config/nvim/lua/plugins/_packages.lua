@@ -41,6 +41,12 @@ packer.startup(function()
     use { 'tami5/lspsaga.nvim', config = function () require'plugins.lspsaga' end } -- LSP utils with performant UI
     use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code using a fast incremental parsing library
     use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
+    use { -- scala @TODO tmp? test it.
+        'scalameta/nvim-metals',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function () require'plugins.metals' end
+    }
+
 
     -- Autocompletion
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
