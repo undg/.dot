@@ -1,7 +1,17 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
-killall droidcam-cli &&
-droidcam-cli -l 4747 &>/dev/null               # listener
-droidcam-cli -v 192.168.1.233 4747 &>/dev/null # manual
+phone_ip="192.168.1.231"
+port="4747"
+pid=$(pidof droidcam-cli)
 
-notify-send "droidcam toogle"
+echo "http://$phone_ip:$port"
+
+if [ -z $pid ]; then
+  notify-send "start listener for 📸 droidcam-cli"
+  droidcam-cli -v $phone_ip $port &>/dev/null # manual
+  droidcam-cli -l $port &>/dev/null               # listener
+else
+  killall -9 droidcam-cli
+  notify-send "kill 📸💀  droidcam-cli"
+fi
+
