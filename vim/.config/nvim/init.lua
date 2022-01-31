@@ -3,10 +3,6 @@ require('utils.globals')
 require('config')
 require('theme')
 
-require('keymaps')
-require('keymaps.lsp')
-require('keymaps.spell')
-
 require('plugins')
 require('plugins._packages')
 require('plugins.treesitter')
@@ -24,5 +20,11 @@ require('custom.search-selected')
 require('custom.auto-relative-numbers')
 require('custom.indent')
 require('custom.json2ts')
+require('custom.reload-config')
 -- require('custom.auto-highlight-toggle') -- @TODO ♻ port ♻
+
+require('keymaps')
+require('keymaps.lsp')
+require('keymaps.spell')
+require('keymaps.edit-myvimrc')
 
