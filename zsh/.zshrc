@@ -27,7 +27,6 @@ if [[ -f ~/.customprofile ]]; then
     source "$HOME/.customprofile"
 fi
 
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -50,8 +49,9 @@ zle -N edit-command-line
 
 # Give some love to emacs
 bindkey -e
-bindkey '^H' backward-kill-word # ctrl + backspace
-bindkey '^L' kill-word
+bindkey '^H' backward-kill-word # instead ctrl + backspace
+bindkey '^L' undo
+# bindkey '^L' kill-word          # instead of ctrl + delete
 bindkey '^K' up-line-or-beginning-search
 bindkey '^J' down-line-or-beginning-search
 
@@ -65,7 +65,7 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[A" up-line-or-beginning-search   # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
 # # TODO: after switching prompt to `pure` this is not needed. Delete it if prompt will stay. I'm not 100% sure about precmd() and keytimeout. <21-10-21> #
@@ -80,8 +80,6 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 # export KEYTIMEOUT=1
 
-
-
 # (FIX) CURSOR DISAPPEARS WHEN MOVING BACK
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]=underline
@@ -91,7 +89,7 @@ ZSH_HIGHLIGHT_STYLES[cursor]=underline
 # Now nvm, node, yarn and npm are loaded on their first invocation, posing no start up time penalty for the shells that aren’t going to use them at all.
 load-nvm() {
     export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 }
 
 nvm() {
