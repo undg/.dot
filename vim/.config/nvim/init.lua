@@ -21,6 +21,7 @@ require('custom.auto-relative-numbers')
 require('custom.indent')
 require('custom.json2ts')
 require('custom.reload-config')
+require('custom.update')
 -- require('custom.auto-highlight-toggle') -- @TODO ♻ port ♻
 
 require('keymaps')
