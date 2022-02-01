@@ -1,0 +1,18 @@
+# doc: https://github.com/johnnymorganz/stylua
+
+
+column_width = 120
+
+# Unix (LF) or Windows (CRLF)
+line_endings = "Unix"
+
+# Tabs or Spaces
+indent_type = "Spaces"
+
+indent_width = 4
+
+# AutoPreferDouble, AutoPreferSingle, ForceDouble, ForceSingle
+quote_style = "AutoPreferDouble"
+
+# Always, NoSingleString, NoSingleTable, None
+call_parentheses = "Always"
