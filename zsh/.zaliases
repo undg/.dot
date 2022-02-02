@@ -5,7 +5,7 @@ alias :q='exit'
 if hash exa 2>/dev/null; then 
     alias ls='exa --git'
 else
-    echo "exa is missing,\r\ninstall it from repository."
+    echo "exa is not installed."
 fi
 
 alias ll="ls -lahg"
@@ -17,6 +17,7 @@ alias lltr="ll --sort oldest"
 
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
+    alias v="nvim"
 fi
 
 if hash fping 2>/dev/null; then
@@ -41,6 +42,8 @@ fi
 
 if hash trash 2>/dev/null; then
     alias rmm="trash"
+else
+    echo "trash is not installed."
 fi
 
 if hash watch 2>/dev/null; then
@@ -80,19 +83,19 @@ fi
 if hash ag 2>/dev/null; then 
     alias ag='ag --smart-case'
 else
-    echo "ag is missing,\r\ninstall it from repository."
+    echo "the_silver_searcher is not installed."
 fi
 
 if hash yarn 2>/dev/null; then 
     alias y='yarn'
 else
-    echo "yarn is missing,\r\ninstall it from repository."
+    echo "yarn is not installed."
 fi
 
 if hash npm 2>/dev/null; then 
     alias n='npm run'
 else
-    echo "npm is missing,\r\ninstall it from repository."
+    echo "npm is not installed."
 fi
 
 alias vimwiki='nvim -c VimwikiIndex'
@@ -100,7 +103,7 @@ alias vimwiki='nvim -c VimwikiIndex'
 if hash xclip 2>/dev/null; then 
     alias xclip='xclip -sel c'
 else
-    echo "xclip is missing,\r\ninstall it from repository."
+    echo "xclip is not installed."
 fi
 
 
