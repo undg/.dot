@@ -1,43 +1,65 @@
 -- https://github.com/mhartington/formatter.nvim/blob/master/CONFIG.md
+local map = require("../utils/map")
 
-local format = {}
+local F = {}
 
-function format.prettier()
+function F.prettier()
     return {
         exe = "prettier",
-        args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-        stdin = true
+        -- args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), "--single-quote" },
+        stdin = true,
     }
 end
-function format.lua()
-        return {
-          exe = "stylua",
-          args = {
-            "--config-path "
-              .. os.getenv("XDG_CONFIG_HOME")
-              .. "/stylua/stylua.toml",
-            "-",
-          },
-          stdin = true,
-        }
-      end
 
-require('formatter').setup {
-  logging = true,
-  filetype = {
-    typescript = { format.prettier },
-    typescriptreact = { format.prettier },
-    javascript = { format.prettier },
-    javascriptreact = { format.prettier },
-    css = { format.prettier },
-    scss = { format.prettier },
-    sass = { format.prettier },
-    less = { format.prettier },
-    json = { format.prettier },
-    markdown = { format.prettier },
-    md = { format.prettier },
-    vimwiki = { format.prettier },
-    yaml = { format.prettier },
-    lua = { format.lua }
-     }
-}
+function F.lua()
+    -- https://github.com/johnnymorganz/stylua
+    return {
+        exe = "stylua",
+        args = {
+            "--config-path ~/.config/stylua/stylua.toml",
+            "-",
+        },
+        stdin = true,
+    }
+end
+
+function F.shell()
+    return {
+        exe = "shfmt",
+        args = { "-i", 4 },
+        stdin = true,
+    }
+end
+
+function F.python()
+    return {
+        exe = "black", -- install python-black
+        args = { "-" },
+        stdin = true,
+    }
+end
+
+require("formatter").setup({
+    logging = true,
+    filetype = {
+        typescript = { F.prettier },
+        typescriptreact = { F.prettier },
+        javascript = { F.prettier },
+        javascriptreact = { F.prettier },
+        css = { F.prettier },
+        scss = { F.prettier },
+        sass = { F.prettier },
+        less = { F.prettier },
+        json = { F.prettier },
+        markdown = { F.prettier },
+        md = { F.prettier },
+        vimwiki = { F.prettier },
+        yaml = { F.prettier },
+        lua = { F.lua },
+        sh = { F.shell },
+        zsh = { F.shell },
+        python = { F.python },
+    },
+})
+
+map.normal("<space>f", ":Format<cr>")
