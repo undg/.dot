@@ -50,15 +50,15 @@ zle -N edit-command-line
 # Give some love to emacs
 bindkey -e
 bindkey '^H' backward-kill-word # instead ctrl + backspace
-bindkey '^L' undo
-# bindkey '^L' kill-word          # instead of ctrl + delete
+bindkey '^L' kill-word          # instead of ctrl + delete
+bindkey '^[[3;5~' undo          # this is ctrl+delete
 bindkey '^K' up-line-or-beginning-search
 bindkey '^J' down-line-or-beginning-search
 
 bindkey '^r' history-incremental-search-backward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-bindkey '^ ' edit-command-line
+bindkey '^ ' edit-command-line # ctrl+space: open command in vim
 
 # Better history with arrow up and down
 autoload -U up-line-or-beginning-search
