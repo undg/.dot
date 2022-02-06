@@ -15,15 +15,10 @@ if [[ -d "$HOME/.config/i3/scripts/" ]]; then
 fi
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-# export TERMINAL2="st"
 export BROWSER="brave"
 export BRAVE="brave"
 export CHROME="chromium"
-export BROWSER2="firefox-developer-edition"
-export FIREFOX="firefox-developer-edition"
 export READER="zathura"
-# export BIB="$HOME/Documents/LaTeX/uni.bib"
-# export REFER="$HOME/.referbib"
 # PIX is here I have LARBS keep icons. Subject to change, hence a variable.
 export PIX="$HOME/.config/i3/scripts/pix"
 export SUDO_ASKPASS="$HOME/.config/i3/scripts/tools/dmenupass"
