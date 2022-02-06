@@ -68,18 +68,6 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search   # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-# # TODO: after switching prompt to `pure` this is not needed. Delete it if prompt will stay. I'm not 100% sure about precmd() and keytimeout. <21-10-21> #
-# precmd() { RPROMPT="" }
-# function zle-keymap-select {
-#   VIM_PROMPT="[% NORMAL]%"
-#   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-#   zle reset-prompt
-# }
-
-# zle -N zle-keymap-select
-
-# export KEYTIMEOUT=1
-
 # (FIX) CURSOR DISAPPEARS WHEN MOVING BACK
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]=underline
@@ -114,6 +102,27 @@ yarn() {
     unset -f yarn
     load-nvm
     yarn "$@"
+}
+
+mkdirdate() {
+    local dateDirName=$(date "+%Y-%m-%d")
+    while getopts ':t' OPTION; do
+        case ${OPTION} in
+            t) dateDirName=$(date "+%Y-%m-%d_%H-%M") ;;
+            *) printf 1>&2 ' Unsupported option [ %s ].\n' "${OPTION}" ;;
+        esac
+    done
+
+
+    if [[ -d "$dateDirName" ]]; then
+        echo "$(tput setaf 3) $ cd $dateDirName"
+        cd $dateDirName
+    else
+        echo "$(tput setaf 2) $ mkdir $dateDirName"
+        mkdir $dateDirName
+        echo "$(tput setaf 3) $ cd $dateDirName"
+        cd $dateDirName
+    fi
 }
 
 source <(/usr/bin/starship init zsh --print-full-init)
