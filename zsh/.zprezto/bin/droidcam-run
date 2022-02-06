@@ -12,7 +12,25 @@ if [ -z $droidcam_pid ]; then
     droidcam-cli -v $phone_ip $port >/dev/null & # manual
 
     # DO ALL FLIP'S AND FUCK OFF.
-    ffmpeg -f v4l2 -i /dev/video1 -vf "crop=640:420,hflip,transpose=1,format=yuv420p" -f v4l2 /dev/video0 >/dev/null 2>&1 &
+    ffmpeg \
+        -i /dev/video1 \
+        -f v4l2 \
+        -pix_fmt yuv420p \
+        -filter:v "hflip,crop=400:400:0:0,transpose=1," \
+        -vf "hflip,crop=640:420:0:200,transpose=1,format=yuv420p" \
+        -f v4l2 \
+        -video_size 640x420 \
+        /dev/video0 \
+        >/dev/null 2>&1 &
+
+    # ffmpeg \
+    #     -f v4l2 \
+    #     -i /dev/video1 \
+    #     -vf "hflip,crop=640:420,transpose=1,format=yuv420p" \
+    #     -f v4l2 -video_size 640x420 /dev/video0 \
+    #     >/dev/null 2>&1 &
+
+    # ffmpeg -f v4l2 -i /dev/video1 -vf "crop=640:420,hflip,transpose=1,format=yuv420p" -f v4l2 /dev/video0 >/dev/null 2>&1 &
 
     # store PID to kill it and show icon in bar.
     ffmpeg_pid=$!
