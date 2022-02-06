@@ -2,16 +2,24 @@
 
 phone_ip="192.168.1.231"
 port="4747"
-pid=$(pidof droidcam-cli)
+droidcam_pid=$(pidof droidcam-cli)
+ffmpeg_pid_store="/tmp/droidcam-listener-ffmpeg.pid"
 
-echo "http://$phone_ip:$port"
+if [ -z $droidcam_pid ]; then
+    notify-send "start 📸 droidcam-cli"
 
-if [ -z $pid ]; then
-  notify-send "start listener for 📸 droidcam-cli"
-  droidcam-cli -v $phone_ip $port &>/dev/null # manual
-  droidcam-cli -l $port &>/dev/null               # listener
+    # CONNECT TO PHONE DIRECTLY
+    droidcam-cli -v $phone_ip $port >/dev/null & # manual
+
+    # DO ALL FLIP'S AND FUCK OFF.
+    ffmpeg -f v4l2 -i /dev/video1 -vf "crop=640:420,hflip,transpose=1,format=yuv420p" -f v4l2 /dev/video0 >/dev/null 2>&1 &
+
+    # store PID to kill it and show icon in bar.
+    ffmpeg_pid=$!
+    echo $ffmpeg_pid >$ffmpeg_pid_store
 else
-  killall -9 droidcam-cli
-  notify-send "kill 📸💀  droidcam-cli"
+    killall -9 droidcam-cli
+    kill $(cat $ffmpeg_pid_store)
+    rm -f $ffmpeg_pid_store
+    notify-send "kill 💀📸  droidcam-cli"
 fi
-
