@@ -105,3 +105,8 @@ else
     echo "xclip is not installed."
 fi
 
+if hash tig 2>/dev/null; then
+    alias tiga='tig --all'
+else
+    echo "tig is not installed."
+fi
