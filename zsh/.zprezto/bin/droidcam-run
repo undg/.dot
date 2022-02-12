@@ -23,15 +23,6 @@ if [ -z $droidcam_pid ]; then
         /dev/video0 \
         >/dev/null 2>&1 &
 
-    # ffmpeg \
-    #     -f v4l2 \
-    #     -i /dev/video1 \
-    #     -vf "hflip,crop=640:420,transpose=1,format=yuv420p" \
-    #     -f v4l2 -video_size 640x420 /dev/video0 \
-    #     >/dev/null 2>&1 &
-
-    # ffmpeg -f v4l2 -i /dev/video1 -vf "crop=640:420,hflip,transpose=1,format=yuv420p" -f v4l2 /dev/video0 >/dev/null 2>&1 &
-
     # store PID to kill it and show icon in bar.
     ffmpeg_pid=$!
     echo $ffmpeg_pid >$ffmpeg_pid_store
