@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) droidcam-run & ;;
+	# 2) pulsemixer --toggle-mute ;;
+	# 4) pulsemixer --change-volume +5 ;;
+	# 5) pulsemixer --change-volume -5 ;;
+	# 3) pgrep -x dunst >/dev/null && notify-send "📢 Volume module:
+# - Shows volume 🔊, 🔇 if muted.
+# - Middle click to mute.
+# - Scroll to change."
+esac
+
+ffmpeg_pid_store="/tmp/droidcam-listener-ffmpeg.pid"
+
+if [ -f "$ffmpeg_pid_store" ]; then
+	printf "📸\\n"
+else
+	printf "📵\\n"
+fi
+
