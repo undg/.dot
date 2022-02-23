@@ -57,18 +57,12 @@ packer.startup(function()
         end,
     }) -- LSP utils with performant UI
     use({"nvim-treesitter/nvim-treesitter",
+        run =  ':TSUpdate',
         config = function()
             require('plugins.treesitter')
         end
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
-    use({ -- scala @TODO tmp? test it.
-        "scalameta/nvim-metals",
-        requires = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("plugins.metals")
-        end,
-    })
 
     -- Autocompletion
     use({"hrsh7th/nvim-cmp",
