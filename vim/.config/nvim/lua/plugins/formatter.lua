@@ -6,7 +6,7 @@ local F = {}
 function F.prettier()
     return {
         exe = "prettier",
-        -- args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), "--single-quote" },
+        args = { "--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
         stdin = true,
     }
 end
@@ -42,6 +42,7 @@ end
 require("formatter").setup({
     logging = true,
     filetype = {
+
         typescript = { F.prettier },
         typescriptreact = { F.prettier },
         javascript = { F.prettier },
@@ -55,9 +56,12 @@ require("formatter").setup({
         md = { F.prettier },
         vimwiki = { F.prettier },
         yaml = { F.prettier },
+
         lua = { F.lua },
+
         sh = { F.shell },
         zsh = { F.shell },
+
         python = { F.python },
     },
 })
