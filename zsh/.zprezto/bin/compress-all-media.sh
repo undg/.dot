@@ -9,6 +9,8 @@ Y='\033[1;32m'   #'1;32' is Yellow's ANSI color code
 B='\033[0;34m'   #'0;34' is Blue's ANSI color code
 NC='\033[0m'     #'0'    is back no color
 
+path=$(pwd)
+
 for f in *
 do
     f_date=$(date -r "$f" +"%Y-%m-%d_%H-%M-%S")
@@ -16,7 +18,7 @@ do
     name="$f_date.$f_ext"
 
     echo ""
-    echo -e "${B}~~~~~~>${G} $f ${B}===>${G} $name ${NC}" 
+    echo -e "${B}~~~~~~>${G} $path/$f ${B}===>${G} $name ${NC}" 
     echo ""
     ffmpeg -i $f $name && trash $f
 done
