@@ -70,8 +70,8 @@ set $transparent                        #000000
 
 #                       BORDER        BACKGROUND   TEXT      INDICATOR     CHILD_BORDER
 client.focused          $red          $red         $white    $darkmagenta  $darkred
-client.unfocused        $transparent  $blue        $white    $darkblue     $darkblack
-client.focused_inactive $transparent  $darkgreen   $white    $darkblue     $darkblack
+client.unfocused        $transparent  $darkblue    $white    $darkblue     $darkblack
+client.focused_inactive $transparent  "#008A0B"    $white    $darkblue     $darkblack
 client.urgent           $darkred      $darkred     $black    $darkred      $darkgreen
 client.background       $black
 
