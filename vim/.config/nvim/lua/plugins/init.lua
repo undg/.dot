@@ -16,7 +16,7 @@ packer.startup(function()
 
     -- File managers
     use({
-            "scrooloose/nerdtree",
+        "scrooloose/nerdtree",
         requires = {
             "jistr/vim-nerdtree-tabs",
             "Xuyuanp/nerdtree-git-plugin",
@@ -31,10 +31,11 @@ packer.startup(function()
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "nvim-telescope/telescope-file-browser.nvim" },
-            { "kyazdani42/nvim-web-devicons",
+            {
+                "kyazdani42/nvim-web-devicons",
                 config = function()
-                    require('plugins.nvim-web-devicons')
-                end
+                    require("plugins.nvim-web-devicons")
+                end,
             },
         },
         config = function()
@@ -44,10 +45,11 @@ packer.startup(function()
 
     -- LSP
     use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-    use({ "williamboman/nvim-lsp-installer",
+    use({
+        "williamboman/nvim-lsp-installer",
         config = function()
-            require('plugins.lsp-installer')
-        end
+            require("plugins.lsp-installer")
+        end,
     }) -- Instalation servers for LSP
     -- use 'glepnir/lspsaga.nvim' -- LSP utils with performant UI
     use({
@@ -56,19 +58,21 @@ packer.startup(function()
             require("plugins.lspsaga")
         end,
     }) -- LSP utils with performant UI
-    use({"nvim-treesitter/nvim-treesitter",
-        run =  ':TSUpdate',
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
         config = function()
-            require('plugins.treesitter')
-        end
+            require("plugins.treesitter")
+        end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
 
     -- Autocompletion
-    use({"hrsh7th/nvim-cmp",
-    config = function()
-        require('plugins.nvim-cmp')
-    end
+    use({
+        "hrsh7th/nvim-cmp",
+        config = function()
+            require("plugins.nvim-cmp")
+        end,
     }) -- Autocompletion plugin
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-buffer")
@@ -139,6 +143,13 @@ packer.startup(function()
         cmd = { "Luapad", "LuaRun" },
         config = function()
             require("plugins.luapad")
+        end,
+    })
+    use({
+        "godlygeek/tabular",
+        cmd = { "Tabularize" },
+        config = function()
+            require("plugins.tabular")
         end,
     })
 
