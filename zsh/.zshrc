@@ -5,6 +5,7 @@
 
 # export TERM="screen-256color"
 # export TERM="xterm-256color"
+export GPG_TTY=$(tty)
 export VISUAL=nvim
 export VEDITOR="$VISUAL"
 export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
