@@ -82,7 +82,7 @@ fi
 if hash ag 2>/dev/null; then
     alias ag='ag --smart-case'
 else
-    echo "the_silver_searcher is not installed."
+    echo "the_silver_searcher or silversearcher-ag or silver-searcher is not installed."
 fi
 
 if hash yarn 2>/dev/null; then
