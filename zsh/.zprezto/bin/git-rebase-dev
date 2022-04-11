@@ -1,0 +1,8 @@
+#!/bin/bash
+
+git checkout dev
+git pull
+git checkout -
+git branch -f _back
+git rebase dev
+
