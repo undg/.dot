@@ -22,7 +22,7 @@ function! ToogleFocusCloseNerdTree()
 endfunction
 
 " F2 to open/close sidebar with folders/files
-map <silent> <F2> :call ToogleFocusCloseNerdTree()<cr>
+nmap <silent> <F2> :call ToogleFocusCloseNerdTree()<cr>
 map <silent> <leader><F2> :NERDTreeTabsClose<cr>
 map <silent> <F3> :NERDTreeTabsFind<cr>
 
