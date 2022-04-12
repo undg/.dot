@@ -13,6 +13,7 @@ map.insert('jk', '<ESC>')
 
 -- ZZ like stuff
 map.normal('<LEADER><LEADER>', ':write<CR>')
+map.normal(',,', ':write<CR>')
 map.normal('<LEADER>q', ':q<CR>')
 
 -- duno... I'm using it a lot.

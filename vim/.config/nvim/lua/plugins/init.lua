@@ -66,6 +66,7 @@ packer.startup(function()
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
+    use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
     -- Autocompletion
     use({
