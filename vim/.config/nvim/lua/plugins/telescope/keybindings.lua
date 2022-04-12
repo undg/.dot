@@ -1,6 +1,6 @@
 local map = require('utils.map')
 -- Core
-map.normal('<leader>.', ':Telescope find_files hidden=true<cr>')
+map.normal(',.', ':Telescope find_files hidden=true<cr>')
 map.normal('<leader>m', ':Telescope<cr>')
 map.normal('ft', ':Telescope<cr>')
 map.normal('<leader>b', ':Telescope buffers<cr>')

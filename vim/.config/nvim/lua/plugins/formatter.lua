@@ -66,4 +66,4 @@ require("formatter").setup({
     },
 })
 
-map.normal("<space>f", ":Format<cr>")
+map.normal("<leader>p", ":Format<cr>")

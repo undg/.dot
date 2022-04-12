@@ -1,7 +1,7 @@
 local map = require('utils.map')
 
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Stop that stupid window from popping up!
 map.normal('q:', ':q')
