@@ -8,6 +8,7 @@ lsp_opt.jsonls = require('lsp.jsonls')
 
 lsp_opt.sumneko_lua = require('lsp.sumneko_lua')
 lsp_opt.yamlls = require('lsp.yamlls')
+lsp_opt.tsserver = require('lsp.tsserver')
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
