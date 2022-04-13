@@ -72,6 +72,9 @@ map.insert('?', '?<C-g>u')
 map.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 map.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
+-- Annihilate semicolons!!! 💀
+map.normal('<leader>;', ":%s/;$//g<cr>''")
+
 -- Disable highlight till next search
 map.normal('/<esc>', ':noh<cr>')
 
