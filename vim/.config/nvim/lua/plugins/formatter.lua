@@ -11,6 +11,14 @@ function F.prettier()
     }
 end
 
+function F.prettierNoSemi()
+    return {
+        exe = "prettierNoSemi",
+        args = { "--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
+        stdin = true,
+    }
+end
+
 function F.lua()
     -- https://github.com/johnnymorganz/stylua
     return {
@@ -43,10 +51,11 @@ require("formatter").setup({
     logging = true,
     filetype = {
 
-        typescript = { F.prettier },
-        typescriptreact = { F.prettier },
-        javascript = { F.prettier },
-        javascriptreact = { F.prettier },
+        typescript = { F.prettier, F.prettierNoSemi },
+        typescriptreact = { F.prettier, F.prettierNoSemi },
+        javascript = { F.prettier, F.prettierNoSemi },
+        javascriptreact = { F.prettier, F.prettierNoSemi },
+
         css = { F.prettier },
         scss = { F.prettier },
         sass = { F.prettier },
@@ -67,3 +76,4 @@ require("formatter").setup({
 })
 
 map.normal("<leader>p", ":Format<cr>")
+map.normal("<leader>;;", ":Format prettier<cr>")
