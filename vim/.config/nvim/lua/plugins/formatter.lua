@@ -51,10 +51,10 @@ require("formatter").setup({
     logging = true,
     filetype = {
 
-        typescript = { F.prettier, F.prettierNoSemi },
-        typescriptreact = { F.prettier, F.prettierNoSemi },
-        javascript = { F.prettier, F.prettierNoSemi },
-        javascriptreact = { F.prettier, F.prettierNoSemi },
+        typescript = { F.prettier },
+        typescriptreact = { F.prettier },
+        javascript = { F.prettier },
+        javascriptreact = { F.prettier },
 
         css = { F.prettier },
         scss = { F.prettier },
