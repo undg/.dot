@@ -32,8 +32,8 @@ alias cegr="egrep -iHnr --color=always"
 alias cgr="egrep -iHnr --color=always"
 
 # Avoid breaking fingers with date
-alias today="date +%Y-%M-%d"
-alias now="date +%Y-%M-%d_%H-%m_%S"
+alias today="date +%Y-%m-%d"
+alias now="date +%Y-%m-%d_%H-%m_%S"
 
 if hash ranger 2>/dev/null; then
     alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
