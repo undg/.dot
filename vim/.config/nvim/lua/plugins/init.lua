@@ -69,9 +69,20 @@ packer.startup(function()
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
     use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
+    -- snippets are integrated with autocompletion
+    use("SirVer/ultisnips")
+    use("honza/vim-snippets")
+
     -- Autocompletion
     use({
         "hrsh7th/nvim-cmp",
+        requires = {
+            "quangnguyen30192/cmp-nvim-ultisnips",
+            config = function()
+                -- optional call to setup (see customization section)
+                require("cmp_nvim_ultisnips").setup({})
+            end,
+        },
         config = function()
             require("plugins.nvim-cmp")
         end,
@@ -80,10 +91,10 @@ packer.startup(function()
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-nvim-lsp")
-    use("saadparwaiz1/cmp_luasnip")
-    use("onsails/lspkind-nvim")
-    use("L3MON4D3/LuaSnip") -- Snippets plugin
 
+    use("onsails/lspkind-nvim") -- icons
+
+    -- prettier
     use({
         "mhartington/formatter.nvim",
         config = function()
@@ -162,7 +173,6 @@ packer.startup(function()
             require("theme")
         end,
     })
-    -- use 'itchyny/lightline.vim' -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
     use("blueyed/vim-diminactive")
 end)
