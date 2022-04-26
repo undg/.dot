@@ -71,7 +71,7 @@ packer.startup(function()
 
     -- snippets are integrated with autocompletion
     use("SirVer/ultisnips")
-    use("honza/vim-snippets")
+    -- use("honza/vim-snippets")
 
     -- Autocompletion
     use({
