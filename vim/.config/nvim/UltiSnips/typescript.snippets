@@ -16,3 +16,19 @@ function ${1:function_name} (${2:argument}: ${3:argument_type}) {
 	${VISUAL}$0
 }
 endsnippet
+
+snippet describe "describe('should ', ()=>{})" b
+describe('${1:description}', () => {
+	${2}
+})
+endsnippet
+
+snippet it "is('should ', ()=>{})" b
+it('should ${1:description}', () => {
+	${2}
+})
+endsnippet
+
+snippet expect "expect(${1})${2}" b
+expect(${1})${2}
+endsnippet
