@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-phone_ip="192.168.1.200"
+phone_ip="192.168.1.135"
 port="4747"
 droidcam_pid=$(pidof droidcam-cli)
 ffmpeg_pid_store="/tmp/droidcam-listener-ffmpeg.pid"
@@ -12,18 +12,18 @@ if [ -z $droidcam_pid ]; then
     droidcam-cli -v $phone_ip $port >/dev/null & # manual
 
     # DO ALL FLIP'S AND FUCK OFF.
-    ffmpeg \
-        -i /dev/video1 \
-        -f v4l2 \
-        -pix_fmt yuv420p \
-        -filter:v "hflip,crop=400:400:0:0,transpose=1," \
-        -vf "hflip,crop=640:420:0:200,transpose=1,format=yuv420p" \
-        -f v4l2 \
-        -video_size 640x420 \
-        /dev/video0 \
-        >/dev/null 2>&1 &
+    # ffmpeg \
+    #     -i /dev/video1 \
+    #     -f v4l2 \
+    #     -pix_fmt yuv420p \
+    #     -filter:v "hflip,crop=400:400:0:0,transpose=1," \
+    #     -vf "hflip,crop=640:420:0:200,transpose=1,format=yuv420p" \
+    #     -f v4l2 \
+    #     -video_size 640x420 \
+    #     /dev/video0 \
+    #     >/dev/null 2>&1 &
 
-    # store PID to kill it and show icon in bar.
+    # # store PID to kill it and show icon in bar.
     ffmpeg_pid=$!
     echo $ffmpeg_pid >$ffmpeg_pid_store
 else
