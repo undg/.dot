@@ -1,7 +1,6 @@
-local map = require("utils.map")
-
-require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local actions = require("telescope.actions")
+local fb_actions = require("telescope").extensions.file_browser.actions
+-- local trouble = require("trouble.providers.telescope")
 
 require("telescope").setup({
     defaults = {
@@ -9,13 +8,41 @@ require("telescope").setup({
         -- config_key = value,
         mappings = {
             i = {
-                -- map actions.which_key to <C-h> (default: <C-/>)
-                -- actions.which_key shows the mappings for your picker,
-                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                ["<C-h>"] = "which_key",
-                ["<c-p>"] = trouble.open_with_trouble,
+                ["<C-n>"] = actions.move_selection_next,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<Down>"] = actions.move_selection_next,
+                ["<C-p>"] = actions.move_selection_previous,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<Up>"] = actions.move_selection_previous,
+
+                ["<CR>"] = actions.select_default,
+                ["<C-l>"] = actions.select_default,
+
+                ["<C-x>"] = actions.select_horizontal,
+                ["<C-v>"] = actions.select_vertical,
+                ["<C-t>"] = actions.select_tab,
+
+                ["<C-u>"] = nil,
+                ["<PageUp>"] = actions.results_scrolling_up,
+                ["<C-d>"] = nil,
+                ["<PageDown>"] = actions.results_scrolling_down,
+
+                ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+                ["<C-Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+                ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+                ["<C-S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+                ["<C- >"] = actions.toggle_selection,
+
+                ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                -- ["<C-l>"] = actions.complete_tag,
+                ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+                ["<C-w>"] = { "<c-s-w>", type = "command" },
+
+                ["<esc>"] = actions.close,
+                ["<C-c>"] = actions.close,
+                ["<C-m>"] = nil,
             },
-            n = { ["<c-p>"] = trouble.open_with_trouble },
         },
     },
     pickers = {
@@ -40,11 +67,13 @@ require("telescope").setup({
         file_browser = {
             theme = "ivy",
             mappings = {
-                ["i"] = {
-                    -- your custom insert mode mappings
-                },
-                ["n"] = {
-                    -- your custom normal mode mappings
+                i = {
+                    ["<C-i>"] = fb_actions.toggle_hidden,
+                    ["<C-h>"] = fb_actions.goto_parent_dir,
+                    ["<C-c>"] = fb_actions.create,
+                    ["<C-n>"] = fb_actions.rename,
+                    ["<C-d>"] = fb_actions.remove,
+                    ["<C-a>"] = fb_actions.select_all,
                 },
             },
         },
