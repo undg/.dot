@@ -32,6 +32,7 @@ packer.startup(function()
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "nvim-telescope/telescope-file-browser.nvim" },
+            { "nvim-telescope/telescope-ui-select.nvim" },
             {
                 "kyazdani42/nvim-web-devicons",
                 config = function()
@@ -67,7 +68,8 @@ packer.startup(function()
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
-    use("jose-elias-alvarez/nvim-lsp-ts-utils")
+    -- use("jose-elias-alvarez/nvim-lsp-ts-utils")
+    use("jose-elias-alvarez/typescript.nvim")
 
     -- snippets are integrated with autocompletion
     use("SirVer/ultisnips")

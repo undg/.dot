@@ -1,11 +1,11 @@
 local map = require('utils.map')
 -- Core
 map.normal(',.', ':Telescope find_files hidden=true<cr>')
+map.normal('.,', ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h"})<cr>')
 map.normal('<leader>m', ':Telescope<cr>')
 map.normal('ft', ':Telescope<cr>')
-map.normal('<leader>b', ':Telescope buffers<cr>')
+map.normal('fb', ':Telescope buffers<cr>')
 map.normal('fg', ':Telescope live_grep<cr>')
-map.normal('fb', ':lua require("telescope").extensions.file_browser.file_browser({hidden = true})<cr>')
 map.normal('fs', ':Telescope git_status<cr>')
 
 -- map.normal('<leader>', ':Telescope<cr>')
