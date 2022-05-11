@@ -5,7 +5,6 @@ function UpdatePacker()
     vim.api.nvim_command('TSUpdate')
     -- vim.cmd [[ :!npm install -g json-ts<cr> ]]
 end
--- vim.cmd [[ command! UpdatePacker :PackerSync&TSUpdate ]]
-vim.cmd [[command! UpdatePacker :lua UpdatePacker()]]
+vim.api.nvim_create_user_command('UpdatePacker', 'lua UpdatePacker()', {})
 
 return M

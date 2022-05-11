@@ -14,8 +14,8 @@ function _G.ReloadConfig()
     end
 end
 
-map.normal('<Leader>vw', '<Cmd>lua ReloadConfig()<CR>'..'<CMD>source ' .. vim.env.MYVIMRC .. '<cr>:echom "Source MYVIMRC"<CR>')
-vim.cmd('command! ReloadConfig lua ReloadConfig()')
+map.normal('<leader>vw', '<Cmd>lua ReloadConfig()<CR>'..'<CMD>source ' .. vim.env.MYVIMRC .. '<cr>:echom "Source MYVIMRC"<CR>')
+vim.api.nvim_create_user_command('ReloadConfig', "lua ReloadConfig()", {})
 
 -- @TODO this magic is not working as expected.
 -- main part of whole config edit utility is in ../keymaps/edit-myvimrc.lua

@@ -1,3 +1,4 @@
 -- @TODO auto install dependencies (`npm i -g json-ts`)
-vim.cmd [[command! Json2ts :r!xclip -o | json-ts --stdin<cr>]]
+-- @TODO polite error handler, current is rude
+vim.api.nvim_create_user_command('Json2ts', "r!xclip -o | json-ts --stdin", {})
 
