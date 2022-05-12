@@ -106,3 +106,6 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- @TODO debub it, I think it wa
 vim.opt.foldenable = true
 vim.opt.foldlevel = 9
 
+-- don't report in checkhealth
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
