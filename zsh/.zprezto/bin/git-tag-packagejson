@@ -26,7 +26,9 @@ echo "git tag $TAG"
 askYesNo "Continue?" true
 
 if [ "$ANSWER" = true ]; then
-    git tag $TAG
+    git checkout dev
+    git pull
+    git tag v$TAG
 else
     echo 'Abort'
 fi
