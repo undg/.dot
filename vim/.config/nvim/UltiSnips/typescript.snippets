@@ -1,3 +1,17 @@
+# snippet trigger_word [ "description" [ options ] ]
+# The options currently supported are: >
+#    b   Beginning of line
+#    i   In-word expansion
+#    w   Word boundary
+#    r   Regular expression
+#    t   Do not expand tabs
+#    s   Remove whitespace
+#    m   Trim all whitespaces
+#    e   Custom context snippet
+#    A   Snippet will be triggered automatically
+# ...
+#endsnippet
+
 priority -50
 
 extends javascript
@@ -31,4 +45,8 @@ endsnippet
 
 snippet exp "expect(${1})${2}" b
 expect(${1})${2}
+endsnippet
+
+snippet cl "console.log('value:', value)" b
+console.log('$1:', ${1})
 endsnippet
