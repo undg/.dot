@@ -4,7 +4,7 @@ local map = require'../utils/map'
 
 map.normal('gd', ':Telescope lsp_definitions<CR>')
 map.normal('<leader>gt', ':Telescope lsp_typedefs<CR>')
-map.normal('gD', ':Telescope lsp_declaration<CR>')
+map.normal('gD', ':Telescope lsp_type_definitions<CR>')
 map.normal('gr', ':Telescope lsp_references<CR>')
 map.normal('gi', ':Telescope lsp_implementations<CR>')
 map.normal('ga', ':lua vim.lsp.buf.code_action()<CR>')
