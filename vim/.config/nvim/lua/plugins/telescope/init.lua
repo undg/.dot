@@ -1,11 +1,13 @@
 local actions = require("telescope.actions")
 local fb_actions = require("telescope").extensions.file_browser.actions
 -- local trouble = require("trouble.providers.telescope")
-
+g:neovide_window_floating_opacity = 0
 require("telescope").setup({
     defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,
+        layout_strategy = "vertical",
+        layout_config = { height = 0.9, width = 0.9 },
         mappings = {
             i = {
                 ["<C-n>"] = actions.move_selection_next,
@@ -65,7 +67,9 @@ require("telescope").setup({
             -- the default case_mode is "smart_case"
         },
         file_browser = {
-            theme = "ivy",
+            -- theme = "ivy",
+            layout_strategy = "vertical",
+            layout_config = { height = 0.9, width = 0.9 },
             mappings = {
                 i = {
                     ["<C-i>"] = fb_actions.toggle_hidden,
