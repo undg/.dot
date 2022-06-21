@@ -32,13 +32,13 @@ function ${1:function_name} (${2:argument}: ${3:argument_type}) {
 endsnippet
 
 snippet des "describe('should ', ()=>{})" b
-describe('${1:description}', () => {
+describe(`${1:description}`, () => {
 	${2}
 })
 endsnippet
 
 snippet it "is('should ', ()=>{})" b
-it('should ${1:description}', () => {
+it(`should ${1:description}`, () => {
 	${2}
 })
 endsnippet
@@ -48,5 +48,5 @@ expect(${1})${2}
 endsnippet
 
 snippet cl "console.log('value:', value)" b
-console.log('$1:', ${1})
+console.log(`$1:\n`, ${1})
 endsnippet
