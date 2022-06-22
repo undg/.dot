@@ -1,7 +1,7 @@
 local actions = require("telescope.actions")
 local fb_actions = require("telescope").extensions.file_browser.actions
 -- local trouble = require("trouble.providers.telescope")
-g:neovide_window_floating_opacity = 0
+
 require("telescope").setup({
     defaults = {
         -- Default configuration for telescope goes here:
