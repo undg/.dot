@@ -110,3 +110,11 @@ if hash tig 2>/dev/null; then
 else
     echo "tig is not installed."
 fi
+
+if hash tmux 2>/dev/null; then
+    alias ta='tmux attach -t'
+    alias tn='tmux new -t'
+    alias tl='tmux ls'
+else
+    echo "tmux is not installed."
+fi
