@@ -3,18 +3,19 @@ local map = require('utils.map')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Stop that stupid window from popping up!
-map.normal('q:', ':q')
 -- No fcking way! Nope, I don't want ex mode!
 map.normal('Q', '<Nop>')
+-- Stop that stupid window from popping up!
+map.normal('q:', ':q')
 
 -- no need for ESC
 map.insert('jk', '<ESC>')
 
--- ZZ like stuff
+-- align extra maps with ZZ, that is default keybinding for write and quit
+-- write only
 map.normal('<LEADER><LEADER>', ':write<CR>')
 map.normal(',,', ':write<CR>')
-map.normal('<LEADER>q', ':q<CR>')
+-- quit only
 map.normal('QQ', ':q<CR>')
 
 -- duno... I'm using it a lot.
