@@ -15,6 +15,7 @@ map.insert('jk', '<ESC>')
 map.normal('<LEADER><LEADER>', ':write<CR>')
 map.normal(',,', ':write<CR>')
 map.normal('<LEADER>q', ':q<CR>')
+map.normal('QQ', ':q<CR>')
 
 -- duno... I'm using it a lot.
 map.normal('<LEADER>s', ':mksession!<CR>', {silent = false})
