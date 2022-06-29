@@ -13,7 +13,7 @@ return {
             enable_import_on_completion = false,
 
             -- import all
-            import_all_timeout = 1000, -- ms
+            import_all_timeout = 500, -- ms
             -- lower numbers = higher priority
             import_all_priorities = {
                 same_file = 1, -- add to existing import statement

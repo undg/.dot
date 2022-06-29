@@ -4,10 +4,6 @@ require('theme')
 
 require('plugins')
 require('config')
-require('plugins.vim-gitgutter')
-require('plugins.nerdtree')
-require('plugins.QFEnter')
-require('plugins.vim-yoink')
 
 require('custom.statusline')
 require('custom.tabline')
