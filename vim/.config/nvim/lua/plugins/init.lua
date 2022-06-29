@@ -129,14 +129,6 @@ packer.startup(function()
             require("plugins/QFEnter")
         end,
     })
-    -- 🐛@TODO @WIP
-    -- use 'bfredl/nvim-miniyank'
-    -- use({
-    --     "svermeulen/vim-yoink",
-    --     config = function()
-    --         require("plugins/vim-yoink")
-    --     end,
-    -- })
 
     use("jiangmiao/auto-pairs")
     use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })

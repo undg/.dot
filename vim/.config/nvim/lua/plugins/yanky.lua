@@ -9,19 +9,28 @@ require("yanky").setup({
         storage = "shada",
         sync_with_numbered_registers = true,
     },
+    picker = {
+        select = {
+            -- action = nil, -- nil to use default put action
+        },
+        telescope = {
+            -- mappings = nil, -- nil to use default mappings
+        },
+    },
     system_clipboard = {
         sync_with_ring = true,
     },
-    -- picker = {
-    --     select = {
-    --         -- action = nil, -- nil to use default put action
-    --     },
-    --     telescope = {
-    --         -- mappings = nil, -- nil to use default mappings
-    --     },
-    -- },
+    highlight = {
+        on_put = true,
+        on_yank = true,
+        timer = 500,
+    },
+    preserve_cursor_position = {
+        enabled = true,
+    }
 })
 
+-- override default keybindings with wrappers around them.
 map.normal("p", "<Plug>(YankyPutAfter)")
 map.normal("P", "<Plug>(YankyPutBefore)")
 map.xisual("p", "<Plug>(YankyPutAfter)")
@@ -31,6 +40,10 @@ map.normal("gP", "<Plug>(YankyGPutBefore)")
 map.xisual("gp", "<Plug>(YankyGPutAfter)")
 map.xisual("gP", "<Plug>(YankyGPutBefore)")
 
+-- key maps
 map.normal("<leader>n", "<Plug>(YankyCycleForward)", {noremap = false})
 map.normal("<leader>N", "<Plug>(YankyCycleBackward)", {noremap = false})
+map.normal("<leader>h", "<cmd>Telescope yank_history<cr>", {noremap = false})
 
+-- telescope integration
+require("telescope").load_extension("yank_history")
