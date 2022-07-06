@@ -22,7 +22,7 @@ function askYesNo {
 
 TAG=$(awk -F\" '/"version":/ {print $4}' package.json)
 
-echo "git tag $TAG"
+echo "git tag v$TAG"
 askYesNo "Continue?" true
 
 if [ "$ANSWER" = true ]; then
