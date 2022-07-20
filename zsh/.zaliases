@@ -56,6 +56,12 @@ if hash git 2>/dev/null; then
     alias git-delete-merged='git branch --merged | grep -Ev \(develop\|master\) | xargs git br -d'
     alias ga.='git add .'
     alias ga='git add'
+
+    if hash gh 2>/dev/null; then
+        alias pullRequest='gh pr create -w -t $(git branch --show-current)'
+    else
+        echo "gh is missing,\r\nInstall it now!!!"
+    fi
 else
     echo "git is missing,\r\nInstall it now!!!"
 fi
