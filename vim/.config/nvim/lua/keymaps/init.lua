@@ -31,7 +31,8 @@ map.normal('<F8>', ':set list!<CR>')
 map.insert('<F8>', '<esc>:set list!<CR>i')
 
 -- get git branch go into insert mode.
-map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
+-- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
+map.normal('<leader>gb', ':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A')
 
 -- indent, highlight in visual stay
 map.visual('>', '>gv')
