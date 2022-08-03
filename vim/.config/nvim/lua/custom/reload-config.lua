@@ -14,7 +14,7 @@ function _G.ReloadConfig()
     end
 end
 
-map.normal('<leader>vw', '<Cmd>lua ReloadConfig()<CR>'..'<CMD>source ' .. vim.env.MYVIMRC .. '<cr>:echom "Source MYVIMRC"<CR>')
+map.normal('<leader>vw', ':lua ReloadConfig()<CR>'..':source ' .. vim.env.MYVIMRC .. '<cr>:echom "Source MYVIMRC"<CR>')
 vim.api.nvim_create_user_command('ReloadConfig', "lua ReloadConfig()", {})
 
 -- @TODO this magic is not working as expected.
