@@ -15,7 +15,7 @@ require('custom.reload-config')
 require('custom.update')
 
 require('keymaps')
-require('keymaps.lsp')
-require('keymaps.spell')
-require('keymaps.edit-myvimrc')
+-- require('keymaps.lsp')
+-- require('keymaps.spell')
+-- require('keymaps.edit-myvimrc')
 

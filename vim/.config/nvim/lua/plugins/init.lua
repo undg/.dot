@@ -160,7 +160,7 @@ packer.startup(function()
     use({
         "benmills/vimux",
         config = function()
-            require("plugins/vimux")
+            require("keymaps/vimux")
         end,
     })
     use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })

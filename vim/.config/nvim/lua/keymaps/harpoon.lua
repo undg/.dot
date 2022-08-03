@@ -1,0 +1,10 @@
+local map = require("utils/map")
+
+map.normal("<leader>tt", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
+map.normal("<leader>tr", ":Telescope harpoon marks<cr>")
+map.normal("<leader>ta", ":lua require('harpoon.mark').add_file()<cr>")
+map.normal("<leader>tj", ":lua require('harpoon.ui').nav_next()<cr>")
+map.normal("<leader>tk", ":lua require('harpoon.ui').nav_prev()<cr>")
+
+
+

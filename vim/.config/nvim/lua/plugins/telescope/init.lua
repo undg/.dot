@@ -89,4 +89,4 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("harpoon")
 
-require("plugins.telescope.keybindings")
+require("plugins.telescope.goto_commands")
