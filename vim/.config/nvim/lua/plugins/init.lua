@@ -50,6 +50,12 @@ packer.startup(function()
                     require("plugins/nvim-web-devicons")
                 end,
             },
+            {
+                "ThePrimeagen/harpoon",
+                config = function()
+                    require("plugins/harpoon")
+                end,
+            },
         },
         config = function()
             require("plugins/telescope")
