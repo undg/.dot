@@ -85,7 +85,7 @@ packer.startup(function()
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
-    -- use("jose-elias-alvarez/nvim-lsp-ts-utils")
+    use("p00f/nvim-ts-rainbow") -- parentesis rainbow, treesitter version
     use("jose-elias-alvarez/typescript.nvim")
 
     -- snippets are integrated with autocompletion
@@ -145,6 +145,8 @@ packer.startup(function()
         end,
     })
     use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
+
+    use({ "troydm/zoomwintab.vim" })
     use({
         "simeji/winresizer",
         config = function()
@@ -160,15 +162,8 @@ packer.startup(function()
     use({ "benmills/vimux" })
     use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
     use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
-    use({
-        "lilydjwg/colorizer",
-        config = function()
-            require("plugins/colorizer")
-        end,
-        cmd = { "ColorHighlight", "ColorToggle" },
-    })
-    use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
-    use({ "troydm/zoomwintab.vim" })
+
+
     use({
         "rafcamlet/nvim-luapad",
         cmd = { "Luapad", "LuaRun" },
@@ -183,6 +178,7 @@ packer.startup(function()
             require("plugins/tabular")
         end,
     })
+    use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
 
     -- Theme
     use({
@@ -192,5 +188,17 @@ packer.startup(function()
         end,
     })
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("blueyed/vim-diminactive")
+    use({
+        "blueyed/vim-diminactive",
+        config = function()
+            require("plugins/vim-diminactive")
+        end,
+    })
+    use({
+        "lilydjwg/colorizer",
+        config = function()
+            require("plugins/colorizer")
+        end,
+        cmd = { "ColorHighlight", "ColorToggle" },
+    })
 end)

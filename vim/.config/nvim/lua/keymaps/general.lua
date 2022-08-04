@@ -81,7 +81,7 @@ map.normal("j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, sile
 map.normal("<leader>;", ":%s/;$//g<cr>''")
 
 -- Disable highlight till next search
-map.normal("/<esc>", ":noh<cr>")
+map.normal("<leader>/", ":noh<cr>")
 
 -- This way v replaces viw, vaw, vi", va", vi(, va(, vi[, va[, vi{, va{, vip, vap,        +++ vit, vat, ... You get the idea.
 map.visual("v", "<Plug>(expand_region_expand)")
