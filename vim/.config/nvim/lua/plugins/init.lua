@@ -157,12 +157,7 @@ packer.startup(function()
             require("plugins/vim-tmux-navigator")
         end,
     })
-    use({
-        "benmills/vimux",
-        config = function()
-            require("keymaps/vimux")
-        end,
-    })
+    use({ "benmills/vimux" })
     use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
     use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
     use({
