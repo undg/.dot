@@ -9,4 +9,5 @@ require('keymaps.telescope')
 require('keymaps.trouble')
 require('keymaps.vim-yoink')
 require('keymaps.vimux')
+require('keymaps.windows-and-tabs')
 
