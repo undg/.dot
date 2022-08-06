@@ -11,7 +11,7 @@ vim.g.winresizer_vert_resize="10"
 vim.g.winresizer_horiz_resize="4"
 
 -- The key used to start winresizer
-vim.g.winresizer_start_key="<leader>r"
+vim.g.winresizer_start_key="<leader>e"
 -- nnoremap <leader>e :WinResizerStartResize<cr>
 
 -- The key used to start winresizer in the GUI
