@@ -105,7 +105,7 @@ configuration {
 	window-match-fields: "all";
 	drun-match-fields: "name,generic,exec,categories,keywords";
 	drun-show-actions: false;
-	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({exec})</i></span>]";
 	drun-url-launcher: "xdg-open";
 	disable-history: false;
 	ignored-prefixes: "";
