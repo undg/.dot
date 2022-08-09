@@ -129,13 +129,6 @@ packer.startup(function()
     })
 
     -- Utils
-    use({
-        "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
-        config = function()
-            require("plugins/QFEnter")
-        end,
-    })
-
     use("jiangmiao/auto-pairs")
     use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })
     use({
@@ -145,7 +138,29 @@ packer.startup(function()
         end,
     })
     use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
+    use({
+        "rafcamlet/nvim-luapad",
+        cmd = { "Luapad", "LuaRun" },
+        config = function()
+            require("plugins/luapad")
+        end,
+    })
+    use({
+        "godlygeek/tabular",
+        cmd = { "Tabularize" },
+        config = function()
+            require("plugins/tabular")
+        end,
+    })
+    use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
 
+    -- UI
+    use({
+        "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
+        config = function()
+            require("plugins/QFEnter")
+        end,
+    })
     use({ "troydm/zoomwintab.vim" })
     use({
         "simeji/winresizer",
@@ -163,22 +178,55 @@ packer.startup(function()
     use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
     use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
 
+    -- use({
+    --     "ojroques/nvim-scrollbar",
+    --     config = function()
+    --         require("scrollbar").setup({})
+    --     end,
+    -- })
+    --
+    
+    -- use({
+    --     "petertriho/nvim-scrollbar",
+    --     config = function()
+    --         require("scrollbar").setup()
+    --     end,
+    -- })
 
     use({
-        "rafcamlet/nvim-luapad",
-        cmd = { "Luapad", "LuaRun" },
+        "petertriho/nvim-scrollbar",
         config = function()
-            require("plugins/luapad")
+            require("scrollbar").setup()
         end,
+        requires = {
+            {
+                "kevinhwang91/nvim-hlslens",
+                config = function()
+                    local kopts = { noremap = true, silent = true }
+                    vim.api.nvim_set_keymap(
+                        "n",
+                        "n",
+                        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                        kopts
+                    )
+                    vim.api.nvim_set_keymap(
+                        "n",
+                        "N",
+                        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                        kopts
+                    )
+                    vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+                    vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+                    vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+                    vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+                    vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
+
+                    require("scrollbar.handlers.search").setup()
+                end,
+            },
+        },
     })
-    use({
-        "godlygeek/tabular",
-        cmd = { "Tabularize" },
-        config = function()
-            require("plugins/tabular")
-        end,
-    })
-    use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
+
 
     -- Theme
     use({
