@@ -15,14 +15,13 @@ configuration {
 	lines: 24;
 	columns: 1;
 
-	kb-mode-next               :  "Super+l,Control+l,Shift+Right,Control+Tab";
-	kb-mode-previous           :  "Super+h,Control+h,Shift+Left,Control+ISO_Left_Tab";
+	kb-mode-next               :  "Super+l,Control+l,Shift+Right";
+	kb-mode-previous           :  "Super+h,Control+h,Shift+Left";
 	kb-mode-complete           :  "";
 	kb-row-left                :  "";
 	kb-row-right               :  "";
-	kb-row-up                  :  "Super+k,Up,Control+k,ISO_Left_Tab";
-	kb-row-down                :  "Super+j,Down,Control+j";
-	kb-row-tab                 :  "Tab";
+	kb-row-up                  :  "Super+k,Control+k,Up";
+	kb-row-down                :  "Super+j,Control+j,Down";
 	kb-primary-paste           :  "Control+V,Shift+Insert";
 	kb-secondary-paste         :  "Control+v,Insert";
 	kb-clear-line              :  "Control+w";
