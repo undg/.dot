@@ -83,7 +83,6 @@ map.normal("<leader>;", ":%s/;$//g<cr>''")
 -- Disable highlight till next search
 map.normal("<leader>/", ":noh<cr>")
 
--- This way v replaces viw, vaw, vi", va", vi(, va(, vi[, va[, vi{, va{, vip, vap,        +++ vit, vat, ... You get the idea.
-map.visual("v", "<Plug>(expand_region_expand)")
-map.visual("<C-v>", "<Plug>(expand_region_shrink)")
-
+-- Don't jump to next/prev. Wait for me! At least jump back.
+map.normal("*", "*N")
+map.normal("#", "#N")
