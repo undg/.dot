@@ -95,13 +95,13 @@ packer.startup(function()
     -- Autocompletion
     use({
         "hrsh7th/nvim-cmp",
-        requires = {
-            "quangnguyen30192/cmp-nvim-ultisnips",
-            config = function()
-                -- optional call to setup (see customization section)
-                require("cmp_nvim_ultisnips").setup({})
-            end,
-        },
+        -- requires = {
+        --     "quangnguyen30192/cmp-nvim-ultisnips",
+        --     config = function()
+        --         -- optional call to setup (see customization section)
+        --         require("cmp_nvim_ultisnips").setup({})
+        --     end,
+        -- },
         config = function()
             require("plugins/nvim-cmp")
         end,
