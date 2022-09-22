@@ -20,31 +20,45 @@ function askYesNo {
     fi
 }
 
+LAST_TAG=$(git describe --tags)
+
 TAG=$(awk -F\" '/"version":/ {print $4}' package.json)
 
-echo "git tag v$TAG"
+if [[ "$LAST_TAG" == "v$TAG" ]]; then
+    echo "WARNING: tag v$TAG already exit"
+    echo "ABORT"
+    exit 0
+else
+    echo "git tag v$TAG"
+fi
+
 
 echo ''
 askYesNo "Pull dev branch?" true
 if [ "$ANSWER" = true ]; then
     git checkout dev
     git pull
+    git log --oneline -1
 else
-    echo 'Abort'
+    echo "INFO: Don't pull"
+    git log --oneline -1
 fi
 
 echo ''
 askYesNo "Use this version tag (v$TAG)?" true
 if [ "$ANSWER" = true ]; then
     git tag v$TAG
+    git log --oneline -1
 else
-    echo 'Abort'
+    echo "INFO: Don't tag"
+    git log --oneline -1
 fi
 
 echo ''
 askYesNo "Push tags to repository?" true
 if [ "$ANSWER" = true ]; then
     git push --tags --no-verify
+    echo "DONE"
 else
-    echo 'Abort'
+    echo "INFO: Don't push"
 fi
