@@ -23,12 +23,28 @@ function askYesNo {
 TAG=$(awk -F\" '/"version":/ {print $4}' package.json)
 
 echo "git tag v$TAG"
-askYesNo "Continue?" true
 
+echo ''
+askYesNo "Pull dev branch?" true
 if [ "$ANSWER" = true ]; then
-    # git checkout dev
-    # git pull
+    git checkout dev
+    git pull
+else
+    echo 'Abort'
+fi
+
+echo ''
+askYesNo "Use this version tag (v$TAG)?" true
+if [ "$ANSWER" = true ]; then
     git tag v$TAG
+else
+    echo 'Abort'
+fi
+
+echo ''
+askYesNo "Push tags to repository?" true
+if [ "$ANSWER" = true ]; then
+    git push --tags --no-verify
 else
     echo 'Abort'
 fi
