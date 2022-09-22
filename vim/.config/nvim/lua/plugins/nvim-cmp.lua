@@ -1,6 +1,6 @@
 local cmp = require("cmp") -- completion
 local lspkind = require("lspkind") -- icons
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings") -- UltiSnips
+-- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings") -- UltiSnips
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -21,14 +21,14 @@ cmp.setup({
             if cmp.visible() then
                 cmp.select_next_item()
             else
-                cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+                -- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
             end
         end),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             else
-                cmp_ultisnips_mappings.jump_backwards(fallback)
+                -- cmp_ultisnips_mappings.jump_backwards(fallback)
             end
         end),
     },
@@ -39,11 +39,11 @@ cmp.setup({
         { name = "ultisnips" },
         { name = "buffer", keyword_length = 4 },
     },
-    snippet = {
-        expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-        end,
-    },
+    -- snippet = {
+    --     expand = function(args)
+    --         vim.fn["UltiSnips#Anon"](args.body)
+    --     end,
+    -- },
     formatting = {
         format = lspkind.cmp_format({
             with_text = true,
@@ -53,7 +53,7 @@ cmp.setup({
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[lua]",
                 path = "[📂]",
-                ultisnips = "[✂]",
+                -- ultisnips = "[✂]",
             },
         }),
     },
