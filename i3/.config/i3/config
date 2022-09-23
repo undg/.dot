@@ -31,8 +31,9 @@ exec --no-startup-id picom --config /dev/null                             # Comp
 exec --no-startup-id d1;sleep 1; d3; i3-msg restart                       # xrandr with 3 displays workaround
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
 exec --no-startup-id unclutter                                            # hide mouse after a brief period
-exec --no-startup-id echocancel                                           # pulse mixer echo cancelation
+exec --no-startup-id echocancel                                           # pulse mixer echo cancellation
 exec --no-startup-id dunst                                                # notifications
+exec --no-startup-id pa-notify                                            # notify pulse audio vol changes
 # exec --no-startup-id barrier                                            # KVM software
 exec --no-startup-id flameshot                                            # screenshots
 exec --no-startup-id lxsession                                            # FE for polkit
