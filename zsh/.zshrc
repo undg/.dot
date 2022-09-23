@@ -128,5 +128,3 @@ mkdirdate() {
 
 source <(/usr/bin/starship init zsh --print-full-init)
 
-# bun completions
-[ -s "/home/undg/.dot/zsh/.zprezto/modules/completion/external/src/_bun" ] && source "/home/undg/.dot/zsh/.zprezto/modules/completion/external/src/_bun"
