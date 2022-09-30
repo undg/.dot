@@ -1,23 +1,15 @@
 vim.o.background = 'dark'
 
--- vim.cmd([[
---     syntax enable
---     colorscheme gruvbox
---     hi Normal               ctermbg=0 guibg=#131313
---     hi ColorColumn          ctermbg=0 guibg=#303030
---     hi LineNr               ctermbg=0 guibg=#3C3836
-
---     set t_ut=
--- ]])
-
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[colorscheme tokyonight-night]]
 
 -- Set statusbar (lightline)
 vim.g.lightline = {
     colorscheme = 'gruvbox',
+    -- colorscheme = 'tokyonight',
     active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
     component_function = { gitbranch = 'fugitive#head' },
 }

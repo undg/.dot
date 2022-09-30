@@ -195,6 +195,7 @@ packer.startup(function()
     -- Theme
     use({
         "morhetz/gruvbox",
+        "folke/tokyonight.nvim",
         config = function()
             require("theme")
         end,
