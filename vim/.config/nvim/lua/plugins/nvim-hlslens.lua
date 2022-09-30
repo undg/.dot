@@ -8,7 +8,7 @@ map.normal("*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 map.normal("#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 map.normal("g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 map.normal("g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-map.normal("<Leader>l", ":noh<CR>", kopts)
+-- map.normal("<Leader>l", ":noh<CR>", kopts)
 
 -- doc: https://github.com/kevinhwang91/nvim-hlslens
 require("hlslens").setup({
@@ -19,7 +19,7 @@ require("hlslens").setup({
     enable_incsearch = {
         description = [[When `incsearch` option is on and enable_incsearch is true, add lens
             for the current matched instance]],
-        default = false,
+        default = true,
     },
     calm_down = {
         description = [[When the cursor is out of the position range of the matched instance
