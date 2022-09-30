@@ -185,6 +185,7 @@ packer.startup(function()
         requires = {
             {
                 "kevinhwang91/nvim-hlslens",
+                tag = 'v0.2.0',
                 config = function()
                     require("plugins.nvim-hlslens")
                 end,

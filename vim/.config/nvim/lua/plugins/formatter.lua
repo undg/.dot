@@ -76,5 +76,3 @@ require("formatter").setup({
 })
 
 map.normal("<leader>p", ":Format<cr>")
-map.normal("<leader>P", ":TypesctiptAddMissingImports<cr>:TypescriptOrganizeImports<cr>")
-map.normal("<leader>;;", ":Format prettier<cr>")
