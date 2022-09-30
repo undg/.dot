@@ -55,9 +55,9 @@ map.normal("Y", "y$")
 map.visual("<LEADER>p", '"_dP')
 
 -- Keep it in center
-map.normal("n", "nzzzv")
-map.normal("N", "Nzzzv")
-map.normal("''", "''zzzv")
+map.normal("n", "nzz")
+map.normal("N", "Nzz")
+map.normal("''", "''zz")
 
 map.visual("n", "nzzzv")
 map.visual("N", "Nzzzv")
@@ -84,5 +84,6 @@ map.normal("j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, sile
 map.normal("<leader>/", ":noh<cr>")
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
-map.normal("*", "*N")
-map.normal("#", "#N")
+-- this is overriden in nvim-hlslens
+-- map.normal("*", "*N")
+-- map.normal("#", "#N")
