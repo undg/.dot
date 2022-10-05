@@ -1,3 +1,5 @@
+vim.opt.mouse = 'n'
+
 -- default indentation
 vim.opt.autoindent = true
 vim.opt.softtabstop = 4
@@ -5,16 +7,12 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
--- @TODO rethink it. Take into account scenarios when motions keys are overlaping.
 vim.opt.timeout = false
 vim.opt.ttimeout = true
--- vim.opt.timeoutlen = 1000
--- vim.opt.ttimeoutlen = 1000
-
-vim.opt.mouse = 'n'
 
 vim.opt.history = 900
 
+vim.opt.formatoptions = 'jcrql'
 -- do not wrap long lines, I'll wrap me myself or prettier will do it.
 vim.opt.textwidth = 0
 vim.opt.linebreak = true
