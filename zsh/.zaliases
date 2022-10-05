@@ -66,7 +66,10 @@ else
     echo "git is missing,\r\nInstall it now!!!"
 fi
 
-# screensaver
+if hash lazygit 2>/dev/null; then
+    alias lg='lazygit'
+fi
+
 if hash cmatrix 2>/dev/null; then
     alias s='cmatrix -absCcyan'
 fi
