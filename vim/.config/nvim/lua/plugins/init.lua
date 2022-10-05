@@ -5,8 +5,12 @@ packer.startup(function()
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
 
     use("tpope/vim-repeat") -- dot repeat for plugins like surround @TODO fix it
-    use("JoosepAlviste/nvim-ts-context-commentstring") -- improve vim-commentary, based on cursor context
-    use("tpope/vim-commentary") -- "gc" to comment visual regions/lines
+    use({
+        "numToStr/Comment.nvim",
+        config = function()
+            require("plugins/Comment")
+        end,
+    })
     use("tpope/vim-sleuth") -- Auto-detect intentation style
     use("tpope/vim-surround") -- @TODO 🐛 fix it... fucking stupid comment! fix what?
 
@@ -185,7 +189,7 @@ packer.startup(function()
         requires = {
             {
                 "kevinhwang91/nvim-hlslens",
-                tag = 'v0.2.0',
+                tag = "v0.2.0",
                 config = function()
                     require("plugins.nvim-hlslens")
                 end,
