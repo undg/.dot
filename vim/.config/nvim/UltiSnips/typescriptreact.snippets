@@ -3,10 +3,17 @@ extends javascript_react
 extends typescript
 
 priority -49
-snippet rfc "react functional component"
+snippet rfcc "react functional component"
 import React, { FC } from "react"
 
 interface ${1:function_name}Props {${4:props_types}}
 
 export const ${1:function_name}: FC<${1:function_name}Props> = (${2:props}) => ${3:function_body}
+endsnippet
+
+snippet rfc "react functional component"
+export const ${1:function_name}: FC<${1:function_name}Props> = (${2:props}) => ${3:function_body}
+	return (
+		<p>$1:function_name</p>
+	)
 endsnippet
