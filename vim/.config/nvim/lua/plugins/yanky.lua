@@ -5,7 +5,7 @@ require("yanky").setup({
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     ring = {
-        history_length = 10,
+        history_length = 16,
         storage = "shada",
         sync_with_numbered_registers = true,
     },
@@ -23,7 +23,7 @@ require("yanky").setup({
     highlight = {
         on_put = true,
         on_yank = true,
-        timer = 500,
+        timer = 100,
     },
     preserve_cursor_position = {
         enabled = true,
