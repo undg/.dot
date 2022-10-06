@@ -1,6 +1,6 @@
 local cmp = require("cmp") -- completion
 local lspkind = require("lspkind") -- icons
--- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings") -- UltiSnips
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings") -- UltiSnips
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -21,14 +21,14 @@ cmp.setup({
             if cmp.visible() then
                 cmp.select_next_item()
             else
-                -- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+                cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
             end
         end),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             else
-                -- cmp_ultisnips_mappings.jump_backwards(fallback)
+                cmp_ultisnips_mappings.jump_backwards(fallback)
             end
         end),
     },
@@ -39,11 +39,15 @@ cmp.setup({
         { name = "ultisnips" },
         { name = "buffer", keyword_length = 4 },
     },
-    -- snippet = {
-    --     expand = function(args)
-    --         vim.fn["UltiSnips#Anon"](args.body)
-    --     end,
-    -- },
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        end,
+    },
     formatting = {
         format = lspkind.cmp_format({
             with_text = true,
@@ -53,11 +57,11 @@ cmp.setup({
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[lua]",
                 path = "[📂]",
-                -- ultisnips = "[✂]",
+                ultisnips = "[✂]",
             },
         }),
     },
-    experimental = {
-        native_menu = false,
-    },
+    -- experimental = {
+    --     native_menu = false,
+    -- },
 })

@@ -19,7 +19,7 @@ require("hlslens").setup({
     enable_incsearch = {
         description = [[When `incsearch` option is on and enable_incsearch is true, add lens
             for the current matched instance]],
-        default = true,
+        default = false,
     },
     calm_down = {
         description = [[When the cursor is out of the position range of the matched instance
