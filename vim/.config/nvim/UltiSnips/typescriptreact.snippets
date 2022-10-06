@@ -17,3 +17,16 @@ export const ${1:function_name}: FC<${1:function_name}Props> = (${2:props}) => $
 		<p>$1:function_name</p>
 	)
 endsnippet
+
+snippet useS "useState" b
+const [$1, set${1/\w+/\u$0/g}] = useState<$2>($3)
+endsnippet
+
+snippet useAA "useAtom" b
+const $1Atom = atom($2)
+const [$1, set${1/\w+/\u$0/g}] = useAtom($1Atom)
+endsnippet
+
+snippet useA "useAtom" b
+const [$1, set${1/\w+/\u$0/g}] = useAtom($2)
+endsnippet
