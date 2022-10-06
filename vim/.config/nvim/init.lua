@@ -15,4 +15,4 @@ require('custom.reload-config')
 require('custom.update')
 
 require('keymaps')
-
+require('autocmd')
