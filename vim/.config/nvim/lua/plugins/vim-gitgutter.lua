@@ -5,7 +5,10 @@ vim.g.gitgutter_map_keys = 0
 
 -- To change the hunk-jumping maps (defaults shown):
 map.normal('[{', ':GitGutterPrevHunk<CR>zz')
+map.normal('[}', ':GitGutterPrevHunk<CR>zz')
+
 map.normal(']}', ':GitGutterNextHunk<CR>zz')
+map.normal(']{', ':GitGutterNextHunk<CR>zz')
 
 map.normal('g(', ':GitGutterPrevHunk<CR>zz')
 map.normal('g)', ':GitGutterNextHunk<CR>zz')
