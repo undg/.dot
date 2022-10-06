@@ -92,24 +92,17 @@ packer.startup(function()
     use("p00f/nvim-ts-rainbow") -- parentesis rainbow, treesitter version
     use("jose-elias-alvarez/typescript.nvim")
 
-    -- snippets are integrated with autocompletion
+    -- snippets are integrated with autocompletion nvim-cmp
     use("SirVer/ultisnips")
-    -- use("honza/vim-snippets")
+    use("quangnguyen30192/cmp-nvim-ultisnips")
 
     -- Autocompletion
     use({
         "hrsh7th/nvim-cmp",
-        -- requires = {
-        --     "quangnguyen30192/cmp-nvim-ultisnips",
-        --     config = function()
-        --         -- optional call to setup (see customization section)
-        --         require("cmp_nvim_ultisnips").setup({})
-        --     end,
-        -- },
         config = function()
             require("plugins/nvim-cmp")
         end,
-    }) -- Autocompletion plugin
+    })
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lua")
@@ -142,13 +135,13 @@ packer.startup(function()
         end,
     })
     use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
-    use({
-        "rafcamlet/nvim-luapad",
-        cmd = { "Luapad", "LuaRun" },
-        config = function()
-            require("plugins/luapad")
-        end,
-    })
+    -- use({
+    --     "rafcamlet/nvim-luapad",
+    --     cmd = { "Luapad", "LuaRun" },
+    --     config = function()
+    --         require("plugins/luapad")
+    --     end,
+    -- })
     use({
         "godlygeek/tabular",
         cmd = { "Tabularize" },
@@ -165,7 +158,7 @@ packer.startup(function()
             require("plugins/QFEnter")
         end,
     })
-    use({ "troydm/zoomwintab.vim" })
+    -- use({ "troydm/zoomwintab.vim" })
     use({
         "simeji/winresizer",
         config = function()
@@ -179,23 +172,23 @@ packer.startup(function()
         end,
     })
     use({ "benmills/vimux" })
-    use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
-    use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
-    use({
-        "petertriho/nvim-scrollbar",
-        config = function()
-            require("plugins.nvim-scrollbar")
-        end,
-        requires = {
-            {
-                "kevinhwang91/nvim-hlslens",
-                tag = "v0.2.0",
-                config = function()
-                    require("plugins.nvim-hlslens")
-                end,
-            },
-        },
-    })
+    -- use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
+    -- use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
+    -- use({
+    --     "petertriho/nvim-scrollbar",
+    --     config = function()
+    --         require("plugins.nvim-scrollbar")
+    --     end,
+    --     requires = {
+    --         -- {
+    --         --     "kevinhwang91/nvim-hlslens",
+    --         --     tag = "v0.2.0",
+    --         --     config = function()
+    --         --         require("plugins.nvim-hlslens")
+    --         --     end,
+    --         -- },
+    --     },
+    -- })
 
     -- Theme
     use({
