@@ -158,7 +158,6 @@ packer.startup(function()
             require("plugins/QFEnter")
         end,
     })
-    -- use({ "troydm/zoomwintab.vim" })
     use({
         "simeji/winresizer",
         config = function()
@@ -172,28 +171,10 @@ packer.startup(function()
         end,
     })
     use({ "benmills/vimux" })
-    -- use({ "AndrewRadev/linediff.vim", cmd = "Linediff" })
-    -- use({ "und3rdg/Tabmerge", cmd = "Tabmerge" })
-    -- use({
-    --     "petertriho/nvim-scrollbar",
-    --     config = function()
-    --         require("plugins.nvim-scrollbar")
-    --     end,
-    --     requires = {
-    --         -- {
-    --         --     "kevinhwang91/nvim-hlslens",
-    --         --     tag = "v0.2.0",
-    --         --     config = function()
-    --         --         require("plugins.nvim-hlslens")
-    --         --     end,
-    --         -- },
-    --     },
-    -- })
 
     -- Theme
     use({
         "morhetz/gruvbox",
-        "folke/tokyonight.nvim",
         config = function()
             require("theme")
         end,
