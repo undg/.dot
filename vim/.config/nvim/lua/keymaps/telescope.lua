@@ -49,14 +49,7 @@ local keymap = vim.keymap.set
 local tb = require('telescope.builtin')
 local opts = { noremap = true, silent = true }
 
-keymap('n', '<space>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
-keymap('v', '<space>g', function()
-	local text = vim.getVisualSelection()
-	tb.current_buffer_fuzzy_find({ default_text = text })
-end, opts)
-
-keymap('n', '<leader>g', ':Telescope live_grep<cr>', opts)
-keymap('v', '<leader>g', function()
+keymap('v', '<leader>fg', function()
 	local text = vim.getVisualSelection()
 	tb.live_grep({ default_text = text })
 end, opts)

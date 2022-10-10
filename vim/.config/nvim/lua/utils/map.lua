@@ -19,6 +19,7 @@ local function keymap(mode, keybind, cmd, opt)
     end
 
     vim.api.nvim_set_keymap(mode, keybind, cmd, opt)
+    -- vim.keymap.set(mode,keybind, cmd, opt)
 end
 
 ---@param keybind string
