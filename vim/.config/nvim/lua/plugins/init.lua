@@ -18,9 +18,9 @@ packer.startup(function()
     use("tpope/vim-fugitive") -- Git commands in nvim
     use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
     use({
-        "airblade/vim-gitgutter", -- Git status for every line
+        "lewis6991/gitsigns.nvim", -- Git status for every line
         config = function()
-            require("plugins/vim-gitgutter")
+            require("plugins/gitsigns")
         end,
     })
 

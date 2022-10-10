@@ -1,3 +1,4 @@
+-- obsolete, plugin replaced with gitsigns
 local map = require('../utils/map')
 
 -- disable default mappings h:gitgutter-mappings
