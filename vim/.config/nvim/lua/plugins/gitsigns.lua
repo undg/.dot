@@ -25,7 +25,20 @@ require("gitsigns").setup({
     current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     sign_priority = 6,
     update_debounce = 100,
-    status_formatter = nil, -- Use default
+    status_formatter = function(status)
+        local added, changed, removed = status.added, status.changed, status.removed
+        local status_txt = {}
+        if added and added > 0 then
+            table.insert(status_txt, "+" .. added)
+        end
+        if changed and changed > 0 then
+            table.insert(status_txt, "~" .. changed)
+        end
+        if removed and removed > 0 then
+            table.insert(status_txt, "-" .. removed)
+        end
+        return table.concat(status_txt, " ")
+    end,
     max_file_length = 40000, -- Disable if file is longer than this (in lines)
     preview_config = {
         -- Options passed to nvim_open_win
