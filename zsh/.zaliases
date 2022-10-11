@@ -68,6 +68,7 @@ fi
 
 if hash lazygit 2>/dev/null; then
     alias lg='lazygit'
+    alias gg='lazygit'
 fi
 
 if hash cmatrix 2>/dev/null; then
