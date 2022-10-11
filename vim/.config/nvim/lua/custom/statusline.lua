@@ -11,7 +11,9 @@ vim.cmd[[
     set statusline+=\ %l:%c
     set statusline+=\ %=
     set statusline+=\ %1*\ %.35{getcwd()}\ %*
-    set statusline+=\ %3*\ [%{get(b:,'gitsigns_status','')}]\ %*
+    set statusline+=\ %3*\ [%{get(b:,'gitsigns_head','')}]\ %*
     set statusline+=\ %1*\ %f%m\ %*
+    set statusline+=\ %3*\ [%{get(b:,'gitsigns_status','')}]\ %*
+    set statusline+=\ %3*\ [%{get(b:,'gitsigns_status','')}]\ %*
 ]]
 
