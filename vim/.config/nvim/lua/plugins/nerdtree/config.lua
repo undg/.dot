@@ -13,18 +13,39 @@ function! ToogleFocusCloseNerdTree()
         endif
     else
         " IF NERD TREE IS CLOSED
-            " silent NERDTreeTabsOpen " can by annoying when you have many tabs open
         silent NERDTree
-            " bug: NERDTreeTabsFind need to by fixed in this scenario
-        " silent NERDTreeFocus
-        " silent NERDTreeTabsFind
+        call TabsFindNerdTree()
     endif
 endfunction
 
-" F2 to open/close sidebar with folders/files
+function! TabsFindNerdTree()
+    if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+        " IF NERD TREE IS OPEN
+        if bufname("") == (t:NERDTreeBufName)
+            " IF CURSOR IS IN NERD TREE WINDOW
+            call feedkeys("\<c-w>\<c-p>:NERDTreeTabsFind\<CR>")
+        else
+            " IF CURSOR IS IN WIDOW
+            silent NERDTreeTabsFind
+            call feedkeys("\<c-w>\<c-p>")
+        endif
+    else
+        " IF NERD TREE IS CLOSED
+        call ToogleFocusCloseNerdTree()
+    endif
+endfunction
+
+" F2 open/focus
 nmap <silent> <F2> :call ToogleFocusCloseNerdTree()<cr>
-map <silent> <F4> :NERDTreeTabsClose<cr>
-map <silent> <F3> :NERDTreeTabsFind<cr>
+nmap <silent> <leader>2 :call ToogleFocusCloseNerdTree()<cr>
+
+" F3 focus current file
+nmap <silent> <F3> :call TabsFindNerdTree()<cr>
+nmap <silent> <leader>3 :call TabsFindNerdTree()<cr>
+
+" F4 close
+nmap <silent> <F4> :NERDTreeTabsClose<cr>
+nmap <silent> <leader>4 :NERDTreeTabsClose<cr>
 
 let NERDTreeMapOpenSplit      = 's'
 let NERDTreeMapOpenVSplit     = 'v'
