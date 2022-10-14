@@ -58,7 +58,9 @@ if hash git 2>/dev/null; then
     alias ga='git add'
 
     if hash gh 2>/dev/null; then
-        alias pullRequest='gh pr create -w -t $(git branch --show-current)'
+        alias prCreate='gh pr create -w -t $(git branch --show-current)'
+        alias prComplete='gh pr merge --auto --delete-branch --squash'
+
     else
         echo "gh is missing,\r\nInstall it now!!!"
     fi
