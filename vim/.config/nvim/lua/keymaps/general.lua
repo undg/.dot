@@ -19,7 +19,7 @@ map.normal(",,", ":write<CR>")
 map.normal("QQ", ":q<CR>")
 
 -- redo last macro
-map.normal("<CR>", "qq")
+map.normal("<CR>", "@@")
 
 -- duno... I'm using it a lot.
 map.normal("<LEADER>s", ":mksession!<CR>", { silent = false })
