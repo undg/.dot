@@ -47,8 +47,8 @@ map.normal("<c-_>", ":ToggleIndent<cr>", { silent = false })
 -- Yanking/Pasting
 -- map.normal('<leader>p', '"+p')
 map.visual("<C-C>", '"+y')
-map.insert("<C-v>", '<c-o>"+p')
-map.visual("<C-v>", 'd"+p')
+map.insert("<C-v>", '<c-o>"+P')
+map.visual("<C-v>", 'd"+P')
 -- Y yank until the end of line  (note: this is now a default on master)
 map.normal("Y", "y$")
 -- Only visual, keep same yank in register
