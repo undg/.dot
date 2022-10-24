@@ -85,5 +85,5 @@ map.normal("<leader>/", ":noh<cr>")
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
 -- this is overriden in nvim-hlslens
--- map.normal("*", "*N")
--- map.normal("#", "#N")
+map.normal("*", "*N")
+map.normal("#", "#N")
