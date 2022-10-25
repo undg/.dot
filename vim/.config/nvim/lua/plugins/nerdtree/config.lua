@@ -57,6 +57,7 @@ let NERDTreeMapPreview        = 'o'
 let NERDTreeWinSize = 44
 let NERDTreeShowHidden=0
 let NERDTreeMinimalUI=1
+let g:NERDTreeMinimalMenu=1
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoDeleteBuffer=1
 let g:nerdtree_tabs_open_on_gui_startup = 0 " Open NERDTree on gvim/macvim startup (1)
