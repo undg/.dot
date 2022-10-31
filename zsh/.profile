@@ -33,16 +33,16 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-# [ ! -f ~/.shortcuts ] && shortcuts >/dev/null 2>&1
-
 if [[ -f ~/.zshrc ]]; then
     source "$HOME/.zshrc"
 elif [[ -f ~/.bashrc ]]; then
     source "$HOME/.bashrc"
 fi
 
+if [[ -f ~/Code/Arahi/arahi-tools-poc/.env.sh ]]; then
+    source "$HOME/Code/Arahi/arahi-tools-poc/.env.sh"
+fi
+
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 
-# Switch escape and caps and use wal colors if tty:
-# sudo -n loadkeys ~/.config/i3/scripts/ttymaps.kmap 2>/dev/null

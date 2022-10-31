@@ -3,5 +3,5 @@
 vim.api.nvim_create_user_command("JsonPrettier", ":%!jq", {})
 vim.api.nvim_create_user_command("JsonMinimise", ":%!jq -c", {})
 
-vim.api.nvim_create_user_command("JsonPrettier", ":%!jh", {})
-vim.api.nvim_create_user_command("JsonMinimise", ":%!jh -c", {})
+vim.api.nvim_create_user_command("HtmlPrettier", ":%!jh", {})
+vim.api.nvim_create_user_command("HtmlMinimise", ":%!jh -c", {})
