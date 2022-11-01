@@ -39,10 +39,6 @@ elif [[ -f ~/.bashrc ]]; then
     source "$HOME/.bashrc"
 fi
 
-if [[ -f ~/Code/Arahi/arahi-tools-poc/.env.sh ]]; then
-    source "$HOME/Code/Arahi/arahi-tools-poc/.env.sh"
-fi
-
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 
