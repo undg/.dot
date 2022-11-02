@@ -128,3 +128,6 @@ mkdirdate() {
 
 source <(/usr/bin/starship init zsh --print-full-init)
 
+if [[ -f $HOME/Code/Arahi/arahi-tools-poc/.env.mp3 ]]; then
+    source $HOME/Code/Arahi/arahi-tools-poc/.env.mp3
+fi
