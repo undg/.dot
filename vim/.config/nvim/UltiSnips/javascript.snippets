@@ -77,6 +77,26 @@ function`!p snip.rv = space_before_function_paren(snip)`($1) {
 endsnippet
 priority -50
 
+snippet des "describe('should ', ()=>{})" b
+describe(\`${1:description}\`, () => {
+	${2}
+})
+endsnippet
+
+snippet it "is('should ', ()=>{})" b
+it(\`should ${1:description}\`, () => {
+	${2}
+})
+endsnippet
+
+snippet exp "expect(${1})${2}" b
+expect(${1})${2}
+endsnippet
+
+snippet cl "console.log('value:', value)" b
+console.log(\`$1:\n\`, ${1})
+endsnippet
+
 snippet anf "function (anonymous)" i
 function`!p snip.rv = space_before_function_paren(snip)`($1) {
 	${VISUAL}$0
