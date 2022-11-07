@@ -1,9 +1,7 @@
 local nvim_lsp = require("lspconfig")
 
 return {
-    -- Omitting some options
-    root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
-
+    root_dir = nvim_lsp.util.root_pattern("package.json"),
 
     on_attach = function()
         local ts_utils = require("typescript")

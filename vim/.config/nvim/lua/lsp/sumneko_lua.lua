@@ -1,3 +1,5 @@
+-- this is some bullshit.
+-- @TODO (undg) 2022-11-07: check if anything from here is needed and DELETE IT 
 local os_name
 if vim.fn.has("mac") == 1 then
     os_name = "macOS"
