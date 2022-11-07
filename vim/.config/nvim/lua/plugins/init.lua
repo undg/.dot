@@ -71,7 +71,7 @@ packer.startup(function()
     use({
         "williamboman/nvim-lsp-installer",
         config = function()
-            require("plugins/lsp-installer")
+            require("plugis.lsp-installer")
         end,
     }) -- Instalation servers for LSP
     -- use 'glepnir/lspsaga.nvim' -- LSP utils with performant UI
