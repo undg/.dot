@@ -3,8 +3,8 @@ local map = require("../utils/map")
 -- Telescope, Lspsaga and native nvim.lsp
 
 -- map.normal("gD", ":Telescope lsp_definitions<CR>")
-map.normal("gD", ":lua require('telescope.builtin').lsp_definitions({fname_width=0.5, trim_text=true})<CR>")
-map.normal("gd", ":lua require('telescope.builtin').lsp_type_definitions({fname_width=0.5, trim_text=true})<CR>")
+map.normal("gd", ":lua require('telescope.builtin').lsp_definitions({fname_width=0.5, trim_text=true})<CR>")
+map.normal("gD", ":lua require('telescope.builtin').lsp_type_definitions({fname_width=0.5, trim_text=true})<CR>")
 map.normal("gr", ":lua require('telescope.builtin').lsp_references({fname_width=0.5, trim_text=true})<CR>")
 map.normal("gi", ":lua require('telescope.builtin').lsp_implementations({fname_width=0.5, trim_text=true})<CR>")
 map.normal("ga", ":lua vim.lsp.buf.code_action()<CR>")

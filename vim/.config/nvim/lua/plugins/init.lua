@@ -68,19 +68,16 @@ packer.startup(function()
 
     -- LSP
     use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-    use({
-        "williamboman/nvim-lsp-installer",
-        config = function()
-            require("plugis.lsp-installer")
-        end,
-    }) -- Instalation servers for LSP
-    -- use 'glepnir/lspsaga.nvim' -- LSP utils with performant UI
+    use({ "williamboman/nvim-lsp-installer" }) -- Instalation servers for LSP
     use({
         "tami5/lspsaga.nvim",
         config = function()
             require("plugins/lspsaga")
         end,
     }) -- LSP utils with performant UI
+    use("jose-elias-alvarez/typescript.nvim") -- few extra commands for ts. Uses LSP
+
+    -- Syntax
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -90,7 +87,6 @@ packer.startup(function()
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
     use("p00f/nvim-ts-rainbow") -- parentesis rainbow, treesitter version
-    use("jose-elias-alvarez/typescript.nvim")
 
     -- snippets are integrated with autocompletion nvim-cmp
     use("SirVer/ultisnips")
