@@ -14,7 +14,7 @@ map.insert("jk", "<ESC>")
 -- align extra maps with ZZ, that is default keybinding for write and quit
 -- write only
 map.normal("<LEADER><LEADER>", ":write<CR>")
-map.normal(",,", ":write<CR>")
+-- map.normal(",,", ":write<CR>")
 -- quit only
 map.normal("QQ", ":q<CR>")
 
