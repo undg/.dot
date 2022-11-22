@@ -37,7 +37,7 @@ exec --no-startup-id dunst                                                # noti
 exec --no-startup-id flameshot                                            # screenshots
 exec --no-startup-id lxsession                                            # FE for polkit
 exec --no-startup-id iriunwebcam                                          # android webcam
-exec --no-startup-id volctl                                               # notify and systray for pulse audio
+exec --no-startup-id volctl &                                             # notify and systray for pulse audio
 
 # Set ~/.xresources colors:
 set_from_resource $darkblack    color0  #000000
