@@ -4,6 +4,10 @@ local map = require("../utils/map")
 local F = {}
 
 function F.prettier()
+    -- @TODO (undg) 2022-11-08: make it async, runn them all in one go 
+    -- require("typescript").actions.addMissingImports({ sync = true })
+    -- require("typescript").actions.organizeImports({ sync = true })
+    -- require("typescript").actions.removeUnused({ sync = true })
     return {
         exe = "prettier",
         args = { "--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
