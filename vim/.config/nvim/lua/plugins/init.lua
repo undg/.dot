@@ -68,7 +68,9 @@ packer.startup(function()
 
     -- LSP
     use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-    use({ "williamboman/nvim-lsp-installer" }) -- Instalation servers for LSP
+    -- use({ "williamboman/nvim-lsp-installer" }) -- Instalation servers for LSP
+    use({ "williamboman/mason.nvim" })
+    use({ "williamboman/mason-lspconfig.nvim" })
     use({
         "tami5/lspsaga.nvim",
         config = function()
