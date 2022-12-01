@@ -3,6 +3,7 @@ local servers_with_config_files = {
     "jsonls",
     "tsserver",
     "yamlls",
+    "sumneko_lua",
     -- "tailwindcss",
 }
 
@@ -11,7 +12,6 @@ local servers_with_no_configs = {
     "grammarly", -- testing: replacement for Gramarous
     "html",
     "prosemd_lsp", -- md
-    "sumneko_lua",
     -- "graphql",
 }
 
