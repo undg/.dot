@@ -150,6 +150,12 @@ packer.startup(function()
         end,
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
+    use({
+        "benmills/vimux",
+        config = function()
+            require("plugins.vimux")
+        end,
+    })
 
     -- UI
     use({
@@ -170,7 +176,6 @@ packer.startup(function()
             require("plugins.vim-tmux-navigator")
         end,
     })
-    use({ "benmills/vimux" })
 
     -- Theme
     use({
