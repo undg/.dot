@@ -9,7 +9,7 @@ packer.startup(function()
     use({
         "numToStr/Comment.nvim",
         config = function()
-            require("plugins/Comment")
+            require("plugins.Comment")
         end,
     })
     use("tpope/vim-sleuth") -- Auto-detect intentation style
@@ -18,11 +18,12 @@ packer.startup(function()
     use("jiangmiao/auto-pairs")
 
     -- Git
-    use { 'kdheepak/lazygit.nvim',
-        config = function ()
-            require('plugins.lazygit')
-        end
-    }
+    use({
+        "kdheepak/lazygit.nvim",
+        config = function()
+            require("plugins.lazygit")
+        end,
+    })
     use("tpope/vim-fugitive") -- Git commands in nvim
     use({ "tpope/vim-rhubarb" }) -- Fugitive-companion to interact with github
     use({
@@ -149,14 +150,6 @@ packer.startup(function()
         end,
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
-    -- use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
-    -- use({
-    --     "rafcamlet/nvim-luapad",
-    --     cmd = { "Luapad", "LuaRun" },
-    --     config = function()
-    --         require("plugins.luapad")
-    --     end,
-    -- })
 
     -- UI
     use({

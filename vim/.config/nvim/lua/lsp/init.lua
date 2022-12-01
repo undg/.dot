@@ -9,7 +9,7 @@ local servers_with_config_files = {
 
 local servers_with_no_configs = {
     "cssls",
-    "grammarly", -- testing: replacement for Gramarous
+    -- "grammarly", -- testing: replacement for Gramarous
     "html",
     "prosemd_lsp", -- md
     -- "graphql",
