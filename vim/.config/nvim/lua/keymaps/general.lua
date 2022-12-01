@@ -87,3 +87,9 @@ map.normal("<leader>/", ":noh<cr>")
 -- this is overriden in nvim-hlslens
 map.normal("*", "*N")
 map.normal("#", "#N")
+
+-- 3 way diffsplit (merge conflicts)
+map.normal("gh", ":diffget //2<cr>")
+map.normal("gl", ":diffget //3<cr>")
+map.normal("gp", ":diffput //1<cr>")
+
