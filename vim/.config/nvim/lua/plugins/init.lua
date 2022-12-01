@@ -1,10 +1,11 @@
 local packer = require("packer")
 local use = packer.use
 packer.startup(function()
+    -- Core
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
 
-    use("tpope/vim-repeat") -- dot repeat for plugins like surround @TODO fix it
+    -- Productivity
     use({
         "numToStr/Comment.nvim",
         config = function()
@@ -12,15 +13,22 @@ packer.startup(function()
         end,
     })
     use("tpope/vim-sleuth") -- Auto-detect intentation style
-    use("tpope/vim-surround") -- @TODO 🐛 fix it... fucking stupid comment! fix what?
+    use("tpope/vim-repeat") -- dot repeat for plugins like surround
+    use("tpope/vim-surround") -- motions to change brackets
+    use("jiangmiao/auto-pairs")
 
     -- Git
+    use { 'kdheepak/lazygit.nvim',
+        config = function ()
+            require('plugins.lazygit')
+        end
+    }
     use("tpope/vim-fugitive") -- Git commands in nvim
-    use("tpope/vim-rhubarb") -- Fugitive-companion to interact with github
+    use({ "tpope/vim-rhubarb" }) -- Fugitive-companion to interact with github
     use({
         "lewis6991/gitsigns.nvim", -- Git status for every line
         config = function()
-            require("plugins/gitsigns")
+            require("plugins.gitsigns")
         end,
     })
 
@@ -32,13 +40,7 @@ packer.startup(function()
             "Xuyuanp/nerdtree-git-plugin",
         },
         config = function()
-            require("plugins/nerdtree")
-        end,
-    })
-    use({
-        "gbprod/yanky.nvim",
-        config = function()
-            require("plugins/yanky")
+            require("plugins.nerdtree")
         end,
     })
     use({
@@ -51,18 +53,18 @@ packer.startup(function()
             {
                 "kyazdani42/nvim-web-devicons",
                 config = function()
-                    require("plugins/nvim-web-devicons")
+                    require("plugins.nvim-web-devicons")
                 end,
             },
             {
                 "ThePrimeagen/harpoon",
                 config = function()
-                    require("plugins/harpoon")
+                    require("plugins.harpoon")
                 end,
             },
         },
         config = function()
-            require("plugins/telescope")
+            require("plugins.telescope")
         end,
     })
 
@@ -74,7 +76,7 @@ packer.startup(function()
     use({
         "tami5/lspsaga.nvim",
         config = function()
-            require("plugins/lspsaga")
+            require("plugins.lspsaga")
         end,
     }) -- LSP utils with performant UI
     use("jose-elias-alvarez/typescript.nvim") -- few extra commands for ts. Uses LSP
@@ -84,7 +86,7 @@ packer.startup(function()
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
-            require("plugins/treesitter")
+            require("plugins.treesitter")
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
@@ -98,7 +100,7 @@ packer.startup(function()
     use({
         "hrsh7th/nvim-cmp",
         config = function()
-            require("plugins/nvim-cmp")
+            require("plugins.nvim-cmp")
         end,
     })
     use("hrsh7th/cmp-path")
@@ -112,60 +114,67 @@ packer.startup(function()
     use({
         "mhartington/formatter.nvim",
         config = function()
-            require("plugins/formatter")
+            require("plugins.formatter")
         end,
     })
 
     use({
         "folke/trouble.nvim",
         config = function()
-            require("plugins/trouble")
+            require("plugins.trouble")
+        end,
+    })
+
+    -- Registers
+    use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })
+    use({
+        "gbprod/yanky.nvim",
+        config = function()
+            require("plugins.yanky")
         end,
     })
 
     -- Utils
-    use("jiangmiao/auto-pairs")
-    use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })
     use({
         "vimwiki/vimwiki",
         config = function()
-            require("plugins/vimwiki")
+            require("plugins.vimwiki")
         end,
     })
-    use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
-    -- use({
-    --     "rafcamlet/nvim-luapad",
-    --     cmd = { "Luapad", "LuaRun" },
-    --     config = function()
-    --         require("plugins/luapad")
-    --     end,
-    -- })
     use({
         "godlygeek/tabular",
         cmd = { "Tabularize" },
         config = function()
-            require("plugins/tabular")
+            require("plugins.tabular")
         end,
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
+    -- use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
+    -- use({
+    --     "rafcamlet/nvim-luapad",
+    --     cmd = { "Luapad", "LuaRun" },
+    --     config = function()
+    --         require("plugins.luapad")
+    --     end,
+    -- })
 
     -- UI
     use({
         "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
         config = function()
-            require("plugins/QFEnter")
+            require("plugins.QFEnter")
         end,
     })
     use({
         "simeji/winresizer",
         config = function()
-            require("plugins/winresizer")
+            require("plugins.winresizer")
         end,
     })
     use({
         "christoomey/vim-tmux-navigator",
         config = function()
-            require("plugins/vim-tmux-navigator")
+            require("plugins.vim-tmux-navigator")
         end,
     })
     use({ "benmills/vimux" })
@@ -181,13 +190,13 @@ packer.startup(function()
     use({
         "blueyed/vim-diminactive",
         config = function()
-            require("plugins/vim-diminactive")
+            require("plugins.vim-diminactive")
         end,
     })
     use({
         "lilydjwg/colorizer",
         config = function()
-            require("plugins/colorizer")
+            require("plugins.colorizer")
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })
