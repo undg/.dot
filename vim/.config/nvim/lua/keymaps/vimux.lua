@@ -4,7 +4,7 @@ local map = require'../utils/map'
 map.normal('<Leader>vv', ':call VimuxRunCommand("./" . bufname("%"))<CR>')
 map.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
 map.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
-map.normal('<Leader>vd', ':call VimuxRunCommand("deno run " . bufname("%"))<CR>')
+map.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
 
 -- Prompt for a command to run
 map.normal('<Leader>vp', ':VimuxPromptCommand<CR>')
