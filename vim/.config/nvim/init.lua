@@ -1,8 +1,6 @@
 require('utils.globals')
-require('theme')
-
-
 require('plugins')
+require('theme')
 require('lsp')
 require('config')
 
