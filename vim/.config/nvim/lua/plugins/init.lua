@@ -5,6 +5,9 @@ packer.startup(function()
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
 
+    -- Dependencies
+    use("onsails/lspkind-nvim") -- icons
+
     -- Productivity
     use({
         "numToStr/Comment.nvim",
@@ -16,6 +19,12 @@ packer.startup(function()
     use("tpope/vim-repeat") -- dot repeat for plugins like surround
     use("tpope/vim-surround") -- motions to change brackets
     use("jiangmiao/auto-pairs")
+    use({
+        "folke/trouble.nvim",
+        config = function()
+            require("plugins.trouble")
+        end,
+    })
 
     -- Git
     use({
@@ -92,6 +101,13 @@ packer.startup(function()
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
     use("p00f/nvim-ts-rainbow") -- parentesis rainbow, treesitter version
+    use({
+        "mhartington/formatter.nvim", -- prettier
+        config = function()
+            require("plugins.formatter")
+        end,
+    })
+
 
     -- snippets are integrated with autocompletion nvim-cmp
     use("SirVer/ultisnips")
@@ -108,23 +124,6 @@ packer.startup(function()
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-nvim-lsp")
-
-    use("onsails/lspkind-nvim") -- icons
-
-    -- prettier
-    use({
-        "mhartington/formatter.nvim",
-        config = function()
-            require("plugins.formatter")
-        end,
-    })
-
-    use({
-        "folke/trouble.nvim",
-        config = function()
-            require("plugins.trouble")
-        end,
-    })
 
     -- Registers
     use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })
