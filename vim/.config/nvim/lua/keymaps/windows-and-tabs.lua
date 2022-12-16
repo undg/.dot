@@ -13,7 +13,7 @@ map.normal("<A-L>", "<C-w>L")
 map.normal("<C-w>z", ":ZoomWinTabToggle<CR>")
 map.normal("<C-w><C-z>", ":ZoomWinTabToggle<CR>")
 
-map.normal("tt", ":tabnew %<CR>")
+map.normal("tt", ":tab split<CR>")
 map.normal("<C-w>t", ":tabnew %<CR>")
 map.normal("<C-w><C-t>", ":tabnew %<CR>")
 
