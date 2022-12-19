@@ -2,6 +2,7 @@
 -- Parsers must be installed manually via :TSInstall
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
+        "help",
         "html",
         "css",
         "scss",
@@ -17,6 +18,8 @@ require("nvim-treesitter.configs").setup({
         "vim",
         "yaml",
     },
+    sync_install = false,
+    auto_install = true,
     highlight = {
         enable = true, -- false will disable the whole extension
         use_languagetree = true,
