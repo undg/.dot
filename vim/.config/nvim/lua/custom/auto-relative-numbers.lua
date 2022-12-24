@@ -1,14 +1,20 @@
-
--- " Set relativenumber
 -- " Automatic toggling between line number modes
--- " Normal/Visual mode produce hybrid line numbers,
--- " Insert relative line numbers
+-- " [Normal/Visual] hybrid. Relative line numbers and absolute line number on cursor position.
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+    callback = function()
+        if vim.bo.filetype == "AlphaReady" then
+            return
+        end
+            vim.opt.relativenumber = true
+    end,
+})
+-- " [Insert] absolute line numbers
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+    callback = function()
+        if vim.bo.filetype == "AlphaReady" then
+            return
+        end
+            vim.opt.relativenumber = false
+    end,
+})
 
-vim.cmd([[
-    augroup autoRelativeNumber
-        set number relativenumber
-        autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    augroup END
-]])
