@@ -16,7 +16,7 @@ packer.startup(function()
     use({
         "numToStr/Comment.nvim",
         config = function()
-            require("plugins.Comment")
+            require("plugins/Comment")
         end,
     })
     use("tpope/vim-sleuth") -- Auto-detect intentation style
@@ -26,7 +26,13 @@ packer.startup(function()
     use({
         "folke/trouble.nvim",
         config = function()
-            require("plugins.trouble")
+            require("plugins/trouble")
+        end,
+    })
+    use({
+        "goolord/alpha-nvim",
+        config = function()
+            require("plugins/alpha")
         end,
     })
 
@@ -34,7 +40,7 @@ packer.startup(function()
     use({
         "kdheepak/lazygit.nvim",
         config = function()
-            require("plugins.lazygit")
+            require("plugins/lazygit")
         end,
     })
     use("tpope/vim-fugitive") -- Git commands in nvim
@@ -42,7 +48,7 @@ packer.startup(function()
     use({
         "lewis6991/gitsigns.nvim", -- Git status for every line
         config = function()
-            require("plugins.gitsigns")
+            require("plugins/gitsigns")
         end,
     })
 
@@ -54,7 +60,7 @@ packer.startup(function()
             "Xuyuanp/nerdtree-git-plugin",
         },
         config = function()
-            require("plugins.nerdtree")
+            require("plugins/nerdtree")
         end,
     })
     use({
@@ -67,18 +73,18 @@ packer.startup(function()
             {
                 "kyazdani42/nvim-web-devicons",
                 config = function()
-                    require("plugins.nvim-web-devicons")
+                    require("plugins/nvim-web-devicons")
                 end,
             },
             {
                 "ThePrimeagen/harpoon",
                 config = function()
-                    require("plugins.harpoon")
+                    require("plugins/harpoon")
                 end,
             },
         },
         config = function()
-            require("plugins.telescope")
+            require("plugins/telescope")
         end,
     })
 
@@ -90,7 +96,7 @@ packer.startup(function()
     use({
         "tami5/lspsaga.nvim",
         config = function()
-            require("plugins.lspsaga")
+            require("plugins/lspsaga")
         end,
     }) -- LSP utils with performant UI
     use("jose-elias-alvarez/typescript.nvim") -- few extra commands for ts. Uses LSP
@@ -100,7 +106,7 @@ packer.startup(function()
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
-            require("plugins.treesitter")
+            require("plugins/treesitter")
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
@@ -108,10 +114,9 @@ packer.startup(function()
     use({
         "mhartington/formatter.nvim", -- prettier
         config = function()
-            require("plugins.formatter")
+            require("plugins/formatter")
         end,
     })
-
 
     -- snippets are integrated with autocompletion nvim-cmp
     use("SirVer/ultisnips")
@@ -121,7 +126,7 @@ packer.startup(function()
     use({
         "hrsh7th/nvim-cmp",
         config = function()
-            require("plugins.nvim-cmp")
+            require("plugins/nvim-cmp")
         end,
     })
     use("hrsh7th/cmp-path")
@@ -134,7 +139,7 @@ packer.startup(function()
     use({
         "gbprod/yanky.nvim",
         config = function()
-            require("plugins.yanky")
+            require("plugins/yanky")
         end,
     })
 
@@ -142,21 +147,21 @@ packer.startup(function()
     use({
         "vimwiki/vimwiki",
         config = function()
-            require("plugins.vimwiki")
+            require("plugins/vimwiki")
         end,
     })
     use({
         "godlygeek/tabular",
         cmd = { "Tabularize" },
         config = function()
-            require("plugins.tabular")
+            require("plugins/tabular")
         end,
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
     use({
         "benmills/vimux",
         config = function()
-            require("plugins.vimux")
+            require("plugins/vimux")
         end,
     })
 
@@ -164,19 +169,19 @@ packer.startup(function()
     use({
         "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
         config = function()
-            require("plugins.QFEnter")
+            require("plugins/QFEnter")
         end,
     })
     use({
         "simeji/winresizer",
         config = function()
-            require("plugins.winresizer")
+            require("plugins/winresizer")
         end,
     })
     use({
         "christoomey/vim-tmux-navigator",
         config = function()
-            require("plugins.vim-tmux-navigator")
+            require("plugins/vim-tmux-navigator")
         end,
     })
 
@@ -191,13 +196,13 @@ packer.startup(function()
     use({
         "blueyed/vim-diminactive",
         config = function()
-            require("plugins.vim-diminactive")
+            require("plugins/vim-diminactive")
         end,
     })
     use({
         "lilydjwg/colorizer",
         config = function()
-            require("plugins.colorizer")
+            require("plugins/colorizer")
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })

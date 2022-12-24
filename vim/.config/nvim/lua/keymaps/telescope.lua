@@ -1,4 +1,4 @@
-local map = require("utils.map")
+local map = require("utils/map")
 
 -- Core
 map.normal("<leader>m", ":Telescope<cr>")
@@ -48,7 +48,7 @@ end
 
 
 local keymap = vim.keymap.set
-local tb = require('telescope.builtin')
+local tb = require('telescope/builtin')
 local opts = { noremap = true, silent = true }
 
 keymap('v', '<leader>fg', function()
