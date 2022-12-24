@@ -32,8 +32,9 @@ map.normal("<leader>fcb", ":GotoCodeBrowse<cr>")
 map.normal("<leader>fcs", ":GotoCodeGit<cr>")
 map.normal("<leader>fcg", ":GotoCodeGrep<cr>")
 
--- todo: extract it
-function vim.getVisualSelection()
+
+-- @TODO (undg) 2022-12-24: extract it
+local function getVisualSelection()
 	vim.cmd('noau normal! "vy"')
 	local text = vim.fn.getreg('v')
 	vim.fn.setreg('v', {})
@@ -46,12 +47,13 @@ function vim.getVisualSelection()
 	end
 end
 
+vim.getVisualSelection = getVisualSelection
 
-local keymap = vim.keymap.set
-local tb = require('telescope/builtin')
+local telescope_builtin = require('telescope/builtin')
 local opts = { noremap = true, silent = true }
 
-keymap('v', '<leader>fg', function()
+vim.keymap.set('v', '<leader>fg', function()
 	local text = vim.getVisualSelection()
-	tb.live_grep({ default_text = text })
+	telescope_builtin.live_grep({ default_text = text })
 end, opts)
+
