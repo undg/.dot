@@ -79,17 +79,6 @@ vim.o.smartcase = true
 
 -- vim.opt.clipboard='unnamed,unnamedplus'
 
--- Highlight on yank
-vim.api.nvim_exec(
-    [[
-    augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-    augroup end
-    ]],
-    false
-)
-
 -- Areas of the screen where the window splits should occur
 vim.opt.splitbelow = true
 vim.opt.splitright = true
