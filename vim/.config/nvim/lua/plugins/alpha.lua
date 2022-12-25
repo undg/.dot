@@ -14,8 +14,8 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-    dashboard.button( "r", "   >  Recent"     , ":Telescope oldfiles<CR>"),
-    dashboard.button( "c", "   >  Recent here", ":Telescope oldfiles cwd_only=true <CR>"),
+    dashboard.button( "r", "   >  Recent here", ":Telescope oldfiles cwd_only=true <CR>"),
+    dashboard.button( "c", "   >  Recent"     , ":Telescope oldfiles<CR>"),
     dashboard.button( "p", "⌨   >  Projects"   , ":Telescope project<CR>"),
     dashboard.button( "f", "   >  Find file"  , ":Telescope find_files<CR>"),
     dashboard.button( "s", "   >  Settings"   , ":e $MYVIMRC | lcd %:p:h | Telescope oldfiles cwd_only=true<CR>"),
