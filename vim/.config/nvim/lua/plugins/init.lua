@@ -1,8 +1,33 @@
---[[ 
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
---]]
+-- Automatically install packer
+-- `git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = vim.fn.system({
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    })
 
-local packer = require("packer")
+    -- Some mac issues, Ref: https://github.com/wbthomason/packer.nvim/issues/739#issuecomment-1019280631
+    vim.o.runtimepath = vim.fn.stdpath("data") .. "/site/pack/*/start/*," .. vim.o.runtimepath
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
 local use = packer.use
 packer.startup(function()
     -- Core
@@ -35,7 +60,7 @@ packer.startup(function()
             require("plugins/alpha")
         end,
     })
-    use { 'nvim-telescope/telescope-project.nvim' }
+    use({ "nvim-telescope/telescope-project.nvim" })
 
     -- Git
     use({
@@ -166,7 +191,7 @@ packer.startup(function()
         end,
     })
 
-    -- UI
+    -- Layout
     use({
         "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
         config = function()
@@ -207,4 +232,10 @@ packer.startup(function()
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })
+
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
 end)
