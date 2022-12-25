@@ -199,7 +199,13 @@ packer.startup(function(use)
         end,
     })
 
-    -- Layout
+    -- Look and feel
+    use({
+        "morhetz/gruvbox",
+        config = function()
+            require("theme")
+        end,
+    })
     use({
         "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
         config = function()
@@ -218,14 +224,6 @@ packer.startup(function(use)
             require("plugins/vim-tmux-navigator")
         end,
     })
-
-    -- Theme
-    use({
-        "morhetz/gruvbox",
-        config = function()
-            require("theme")
-        end,
-    })
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
     use({
         "blueyed/vim-diminactive",
@@ -240,6 +238,9 @@ packer.startup(function(use)
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })
+    use { 'RRethy/vim-illuminate', config = function ()
+        require('plugins/illuminate')
+    end }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
