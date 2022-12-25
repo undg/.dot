@@ -1,41 +1,11 @@
--- Automatically install packer
--- `git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = vim.fn.system({
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    })
-
-    -- Some mac issues, Ref: https://github.com/wbthomason/packer.nvim/issues/739#issuecomment-1019280631
-    vim.o.runtimepath = vim.fn.stdpath("data") .. "/site/pack/*/start/*," .. vim.o.runtimepath
-end
-
--- Auto command that reloads neovim whenever you save the plugins.lua
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]])
+-- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP`
+require('bootstrap')
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     print('pcall: packer fail')
     return
 end
-
-packer.init({
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border='rounded' }
-        end,
-    },
-})
 
 packer.startup(function(use)
     -- Core
