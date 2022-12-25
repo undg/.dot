@@ -3,6 +3,9 @@ local map = require("utils/map")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Don't go visual, stay normal. Disable mouse LeftDrag
+map.normal("<LeftDrag>", "<LeftMouse>")
+
 -- No fcking way! Nope, I don't want ex mode!
 map.normal("Q", "<Nop>")
 -- Stop that stupid window from popping up!
@@ -11,12 +14,11 @@ map.normal("q:", ":q")
 -- no need for ESC
 map.insert("jk", "<ESC>")
 
--- align extra maps with ZZ, that is default keybinding for write and quit
 -- write only
 map.normal("<LEADER><LEADER>", ":write<CR>")
--- map.normal(",,", ":write<CR>")
 -- quit only
-map.normal("QQ", ":q<CR>")
+map.normal("QQ", ":q<CR>") -- align with ZZ, that is default keybinding for write and quit
+map.normal("XX", ":q!<CR>") -- easier ZQ, quit don't save
 
 -- redo last macro
 map.normal("<CR>", "@@")
@@ -49,8 +51,6 @@ map.normal("<c-_>", ":ToggleIndent<cr>", { silent = false })
 map.visual("<C-C>", '"+y')
 map.insert("<C-v>", '<c-o>"+P')
 map.visual("<C-v>", 'd"+P')
--- Y yank until the end of line  (note: this is now a default on master)
-map.normal("Y", "y$")
 -- Only visual, keep same yank in register
 map.visual("<LEADER>p", '"_dP')
 

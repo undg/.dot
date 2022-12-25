@@ -1,7 +1,7 @@
 vim.opt.encoding = "utf8"                                                      -- set encoding
 vim.opt.ffs = "unix,dos,mac"                                                   -- Use Unix as the standard file type
 
-vim.opt.mouse = ""                                                             -- No mouse
+vim.opt.mouse = "n"                                                            -- mouse only in normal mode
 vim.o.updatetime = 250                                                         -- Decrease update time
 vim.opt.clipboard='unnamedplus'                                                -- give nvim access to system clipboard
 
