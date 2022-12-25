@@ -15,7 +15,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.o.runtimepath = vim.fn.stdpath("data") .. "/site/pack/*/start/*," .. vim.o.runtimepath
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua
+-- Auto command that reloads neovim whenever you save the plugins.lua
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -27,6 +27,8 @@ local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return
 end
+
+
 
 local use = packer.use
 packer.startup(function()
@@ -44,7 +46,7 @@ packer.startup(function()
             require("plugins/Comment")
         end,
     })
-    use("tpope/vim-sleuth") -- Auto-detect intentation style
+    use("tpope/vim-sleuth") -- Auto-detect indentation style
     use("tpope/vim-repeat") -- dot repeat for plugins like surround
     use("tpope/vim-surround") -- motions to change brackets
     use("jiangmiao/auto-pairs")
@@ -116,7 +118,7 @@ packer.startup(function()
 
     -- LSP
     use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
-    -- use({ "williamboman/nvim-lsp-installer" }) -- Instalation servers for LSP
+    -- use({ "williamboman/nvim-lsp-installer" }) -- Installation servers for LSP
     use({ "williamboman/mason.nvim" })
     use({ "williamboman/mason-lspconfig.nvim" })
     use({
@@ -135,8 +137,8 @@ packer.startup(function()
             require("plugins/treesitter")
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
-    use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional textobjects for treesitter
-    use("p00f/nvim-ts-rainbow") -- parentesis rainbow, treesitter version
+    use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional text objects for treesitter
+    use("p00f/nvim-ts-rainbow") -- parenthesis rainbow, treesitter version
     use({
         "mhartington/formatter.nvim", -- prettier
         config = function()
