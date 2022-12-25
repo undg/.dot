@@ -7,6 +7,14 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
+-- Neovim whenever you save the */plugins/init.lua
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost */plugins/init.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 -- Set wrap and spell in gitcommit and markdown
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "gitcommit", "markdown" },
