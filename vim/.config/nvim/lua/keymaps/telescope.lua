@@ -1,4 +1,8 @@
 local map = require("utils/map")
+local getVisualSelectionFn = require("custom/get-visual-selection")
+local tb = require("telescope/builtin")
+local opts = { noremap = true, silent = true }
+
 
 -- Core
 map.normal("<leader>m", ":Telescope<cr>")
@@ -14,6 +18,7 @@ map.normal("<leader>fr", ":Telescope resume<cr>")
 map.normal("<leader>fs", ":Telescope git_status<cr>")
 map.normal("<leader>fq", ":Telescope quickfixhistory<cr>")
 map.normal("<leader>fp", ":Telescope project<cr>")
+map.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>")
 
 -- Custom commands
 map.normal("<leader>fvf", ":GotoVimFind<cr>")
@@ -36,26 +41,6 @@ map.normal("<leader>fcb", ":GotoCodeBrowse<cr>")
 map.normal("<leader>fcs", ":GotoCodeGit<cr>")
 map.normal("<leader>fcg", ":GotoCodeGrep<cr>")
 
--- @TODO (undg) 2022-12-24: extract it
-local function getVisualSelection()
-    vim.cmd('noau normal! "vy"')
-    local text = vim.fn.getreg("v")
-    vim.fn.setreg("v", {})
-
-    text = string.gsub(text, "\n", "")
-    if #text > 0 then
-        return text
-    else
-        return ""
-    end
-end
-
-vim.getVisualSelection = getVisualSelection
-
-local telescope_builtin = require("telescope/builtin")
-local opts = { noremap = true, silent = true }
-
-vim.keymap.set("v", "<leader>fg", function()
-    local text = vim.getVisualSelection()
-    telescope_builtin.live_grep({ default_text = text })
+map.visual("<leader>fg", function()
+    tb.live_grep({ default_text = getVisualSelectionFn() })
 end, opts)
