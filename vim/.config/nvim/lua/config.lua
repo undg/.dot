@@ -1,96 +1,71 @@
-vim.opt.mouse = ""
+vim.opt.encoding = "utf8"                                                      -- set encoding
+vim.opt.ffs = "unix,dos,mac"                                                   -- Use Unix as the standard file type
 
--- default indentation
+vim.opt.mouse = ""                                                             -- No mouse
+vim.o.updatetime = 250                                                         -- Decrease update time
+vim.opt.clipboard='unnamedplus'                                                -- give nvim access to system clipboard
+
+vim.opt.timeout = false                                                        -- This option and 'timeoutlen' determine the behavior when part of a mapped key sequence has been received.
+vim.opt.timeoutlen = 500                                                       -- wait that long for motion sequence to end
+vim.opt.ttimeout = true                                                        -- This option and 'ttimeoutlen' determine the behavior when part of a key code sequence has been received by the |TUI|.
+
+vim.opt.backup = false                                                         -- Turn backup off
+vim.opt.writebackup = false                                                    -- Turn writebackup off
+vim.opt.swapfile = false                                                       -- Turn swapfile off
+vim.o.hidden = true                                                            -- Do not save when switching buffers
+vim.opt.autoread = true                                                        -- auto read when a file is changed from the outside
+vim.opt.undofile = true                                                        -- Save undo history
+
+                                                                               -- wildmenu (command-line)
+vim.opt.path = vim.opt.path + "**"                                             -- this will help with searching files and grepping (I'm using 3rd party for that anyway)
+vim.opt.wildmenu = true                                                        -- autocompletion on
+vim.opt.wildmode = "longest:full,full"                                         -- style
+vim.opt.wildoptions = "pum,tagfile"                                            -- options
+vim.o.inccommand = "nosplit"                                                   -- Incremental live completion
+vim.opt.history = 900                                                          -- The command-line history table size.
+
+                                                                               -- don't report in :checkhealth
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+
+                                                                               -- Searching
+vim.opt.magic = true                                                           -- For regular expressions turn magic on
+vim.o.hlsearch = true                                                          -- highlight
+vim.o.ignorecase = true                                                        -- Case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true                                                         -- Case insensitive searching UNLESS /C or capital in search
+
+                                                                               -- Look and feel
+vim.opt.splitbelow = true                                                      -- Areas of the screen where the window splits should occur
+vim.opt.splitright = true                                                      -- Areas of the screen where the window splits should occur
+vim.opt.scrolloff = 3                                                          -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.cursorline = true                                                      -- highlight current line
+vim.wo.signcolumn = "yes"                                                      -- always show area left from line numbers ,@TODO (undg) 2022-12-25: fit here more informations. gitsign, marks, dap...
+vim.wo.number = true                                                           -- Make line numbers default ,this is overridden in auto command with hybrid line number
+vim.opt.lazyredraw = true                                                      -- Don't redraw while executing macros (good performance config)
+vim.opt.errorbells = false                                                     -- No annoying sound on errors
+vim.opt.visualbell = false                                                     -- No annoying sound on errors
+
+                                                                               -- show white spaces, but only on demand
+vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.opt.list = false
+
+                                                                               -- default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.timeout = false
-vim.opt.ttimeout = true
+                                                                               -- folding
+vim.opt.foldmethod = "indent"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 9
 
-vim.opt.history = 900
-
--- do not wrap long lines, I'll wrap me myself or prettier will do it.
+                                                                               -- DON'T WRAP LONG LINES! I'll wrap them with formatter or by myself.
 vim.opt.textwidth = 0
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakindentopt = "min:60,shift:0,sbr"
-vim.opt.showbreak = "+++ "
--- @example ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.
-
--- Don't redraw while executing macros (good performance config)
-vim.opt.lazyredraw = true
-
--- For regular expressions turn magic on
-vim.opt.magic = true
-
--- No annoying sound on errors
-vim.opt.errorbells = false
-vim.opt.visualbell = false
--- vim.opt.t_vb = ''
-vim.opt.tm = 500
-
-vim.opt.encoding = "utf8"
-
--- Use Unix as the standard file type
-vim.opt.ffs = "unix,dos,mac"
-
--- Turn backup off
-vim.opt.backup = false
-vim.opt.wb = false
-vim.opt.swapfile = false
-
--- auto read when a file is changed from the outside
-vim.opt.autoread = true
-
---Save undo history
-vim.opt.undofile = true
-
--- show white spaces, but only on demand
-vim.opt.list = false
-vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
-
-vim.opt.path = vim.opt.path + "**"
-vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
-vim.opt.wildoptions = "pum,tagfile"
-
--- Incremental live completion (note: this is now a default on master)
-vim.o.inccommand = "nosplit"
-
--- Make line numbers default
-vim.wo.number = true
-
--- Do not save when switching buffers (note: this is now a default on master)
-vim.o.hidden = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = "yes"
-
--- Set highlight on search
-vim.o.hlsearch = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- vim.opt.clipboard='unnamed,unnamedplus'
-
--- Areas of the screen where the window splits should occur
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.scrolloff = 3
-
--- folding
-vim.opt.foldmethod = "indent"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- @TODO debub it, I think it was working
-vim.opt.foldenable = true
-vim.opt.foldlevel = 9
-
--- don't report in checkhealth
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
+vim.opt.showbreak = "+++ "                                                     -- show that sign on breaked lines.
+                                                                               -- @example ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.
