@@ -1,4 +1,4 @@
-vim.opt.mouse = "n"
+vim.opt.mouse = ""
 
 -- default indentation
 vim.opt.autoindent = true
