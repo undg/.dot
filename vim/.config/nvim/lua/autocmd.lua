@@ -23,14 +23,35 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- Simplify UI in Alpha plugin page
-vim.api.nvim_create_autocmd("User", {
-    pattern = { "AlphaReady" },
+-- Automatic toggling between line number modes
+-- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
     callback = function()
-        vim.cmd([[ 
-            set showtabline=0 | autocmd BufUnload <buffer> set showtabline=1
-            set laststatus=0  | autocmd BufUnload <buffer> set laststatus=2
-            set nofoldenable  | autocmd BufUnload <buffer> set foldenable
-        ]])
+        -- Simplify UI in Alpha plugin page
+        if vim.bo.filetype == "alpha" then
+            vim.opt.relativenumber = false
+            return
+        end
+        vim.opt.relativenumber = true
     end,
 })
+
+-- [Insert] absolute line numbers
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+    callback = function()
+        vim.opt.relativenumber = false
+    end,
+})
+
+-- Simplify UI in Alpha plugin page
+-- vim.api.nvim_create_autocmd("User", {
+--     pattern = { "AlphaReady" },
+--     callback = function()
+--         vim.opt.relativenumber = false
+--         vim.cmd([[ 
+--             set showtabline=0 | autocmd BufUnload <buffer> set showtabline=1
+--             set laststatus=0  | autocmd BufUnload <buffer> set laststatus=2
+--             set nofoldenable  | autocmd BufUnload <buffer> set foldenable
+--         ]])
+--     end,
+-- })
