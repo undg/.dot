@@ -35,6 +35,7 @@ packer.startup(function()
             require("plugins/alpha")
         end,
     })
+    use { 'nvim-telescope/telescope-project.nvim' }
 
     -- Git
     use({

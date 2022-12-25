@@ -58,7 +58,7 @@ require("telescope").setup({
     },
     extensions = {
         -- You dont need to set any of these options. These are the default ones. Only
-        -- the loading is important
+        -- the load is important
         fzf = {
             fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -81,12 +81,20 @@ require("telescope").setup({
                 },
             },
         },
+
+        project = {
+            hidden_files = true,
+            search_by = 'title',
+            sync_with_nvim_tree = true,
+        }
     },
 })
+
 -- load_extension's, somewhere after setup function:
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("harpoon")
+require("telescope").load_extension("project")
 
 require("plugins.telescope.goto_commands")

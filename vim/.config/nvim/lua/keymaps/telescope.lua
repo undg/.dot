@@ -4,12 +4,16 @@ local map = require("utils/map")
 map.normal("<leader>m", ":Telescope<cr>")
 map.normal(",.", ":Telescope find_files hidden=true<cr>")
 map.normal("<leader>,", ":Telescope find_files hidden=true<cr>")
-map.normal("<leader>.", ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>')
+map.normal(
+    "<leader>.",
+    ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>'
+)
 map.normal("<leader>fb", ":Telescope buffers<cr>")
 map.normal("<leader>fg", ":Telescope live_grep<cr>")
 map.normal("<leader>fr", ":Telescope resume<cr>")
 map.normal("<leader>fs", ":Telescope git_status<cr>")
 map.normal("<leader>fq", ":Telescope quickfixhistory<cr>")
+map.normal("<leader>fp", ":Telescope project<cr>")
 
 -- Custom commands
 map.normal("<leader>fvf", ":GotoVimFind<cr>")
@@ -32,28 +36,26 @@ map.normal("<leader>fcb", ":GotoCodeBrowse<cr>")
 map.normal("<leader>fcs", ":GotoCodeGit<cr>")
 map.normal("<leader>fcg", ":GotoCodeGrep<cr>")
 
-
 -- @TODO (undg) 2022-12-24: extract it
 local function getVisualSelection()
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg('v')
-	vim.fn.setreg('v', {})
+    vim.cmd('noau normal! "vy"')
+    local text = vim.fn.getreg("v")
+    vim.fn.setreg("v", {})
 
-	text = string.gsub(text, "\n", "")
-	if #text > 0 then
-		return text
-	else
-		return ''
-	end
+    text = string.gsub(text, "\n", "")
+    if #text > 0 then
+        return text
+    else
+        return ""
+    end
 end
 
 vim.getVisualSelection = getVisualSelection
 
-local telescope_builtin = require('telescope/builtin')
+local telescope_builtin = require("telescope/builtin")
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set('v', '<leader>fg', function()
-	local text = vim.getVisualSelection()
-	telescope_builtin.live_grep({ default_text = text })
+vim.keymap.set("v", "<leader>fg", function()
+    local text = vim.getVisualSelection()
+    telescope_builtin.live_grep({ default_text = text })
 end, opts)
-
