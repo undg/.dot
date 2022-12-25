@@ -25,13 +25,19 @@ vim.cmd([[
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+    print('pcall: packer fail')
     return
 end
 
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border='rounded' }
+        end,
+    },
+})
 
-
-local use = packer.use
-packer.startup(function()
+packer.startup(function(use)
     -- Core
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
