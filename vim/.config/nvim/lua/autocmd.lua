@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
--- Neovim whenever you save the */plugins/init.lua
+-- Reload Neovim whenever you save the */plugins/init.lua
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -36,7 +36,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
     callback = function()
         -- Simplify UI in Alpha plugin page
-        if vim.bo.filetype == "alpha" then
+        if
+            vim.bo.filetype == "alpha" --
+            or vim.bo.filetype == "help"
+            or vim.bo.filetype == "NvimTree"
+        then
             vim.opt.relativenumber = false
             return
         end
@@ -56,7 +60,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 --     pattern = { "AlphaReady" },
 --     callback = function()
 --         vim.opt.relativenumber = false
---         vim.cmd([[ 
+--         vim.cmd([[
 --             set showtabline=0 | autocmd BufUnload <buffer> set showtabline=1
 --             set laststatus=0  | autocmd BufUnload <buffer> set laststatus=2
 --             set nofoldenable  | autocmd BufUnload <buffer> set foldenable
