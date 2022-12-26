@@ -3,6 +3,7 @@ local map = require("utils/map")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- @TODO (undg) 2022-12-26: investigate how to preserve window resize functionality by mouse/touch
 -- Don't go visual, stay normal. Disable mouse LeftDrag
 map.normal("<LeftDrag>", "<LeftMouse>")
 
