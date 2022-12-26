@@ -1,9 +1,9 @@
 -- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP`
-require('bootstrap')
+require("bootstrap")
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-    print('pcall: packer fail')
+    print("pcall: packer fail")
     return
 end
 
@@ -11,6 +11,12 @@ packer.startup(function(use)
     -- Core
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
+    use({
+        "lewis6991/impatient.nvim",
+        config = function()
+            require("impatient")
+        end,
+    }) -- Cache for plugins
 
     -- Dependencies
     use("onsails/lspkind-nvim") -- icons
@@ -208,9 +214,12 @@ packer.startup(function(use)
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })
-    use { 'RRethy/vim-illuminate', config = function ()
-        require('plugins/illuminate')
-    end }
+    use({
+        "RRethy/vim-illuminate",
+        config = function()
+            require("plugins/illuminate")
+        end,
+    })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
