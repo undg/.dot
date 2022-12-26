@@ -71,14 +71,12 @@ packer.startup(function(use)
 
     -- File managers
     use({
-        "scrooloose/nerdtree",
-        requires = {
-            "jistr/vim-nerdtree-tabs",
-            "Xuyuanp/nerdtree-git-plugin",
-        },
+        "nvim-tree/nvim-tree.lua",
+        -- requires "nvim-web-devicons", -- installed separately in top of this file
         config = function()
-            require("plugins/nerdtree")
+            require("plugins/nvim-tree")
         end,
+        tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
     use({
         "nvim-telescope/telescope.nvim",

@@ -1,6 +1,7 @@
 vim.opt.encoding = "utf8"                                                      -- set encoding
 vim.opt.ffs = "unix,dos,mac"                                                   -- Use Unix as the standard file type
 
+
 vim.opt.mouse = "n"                                                            -- mouse only in normal mode
 vim.o.updatetime = 250                                                         -- Decrease update time
 
@@ -8,20 +9,20 @@ vim.opt.timeout = false                                                        -
 vim.opt.timeoutlen = 500                                                       -- wait that long for motion sequence to end
 vim.opt.ttimeout = true                                                        -- This option and 'ttimeoutlen' determine the behavior when part of a key code sequence has been received by the |TUI|.
 
-vim.opt.backup = false                                                         -- Turn backup off
-vim.opt.writebackup = false                                                    -- Turn writebackup off
-vim.opt.swapfile = false                                                       -- Turn swapfile off
+vim.opt.backup = false                                                         -- Turn off backup
+vim.opt.writebackup = false                                                    -- Turn off writebackup
+vim.opt.swapfile = false                                                       -- Turn off swapfile
 vim.o.hidden = true                                                            -- Do not save when switching buffers
-vim.opt.autoread = true                                                        -- auto read when a file is changed from the outside
+vim.opt.autoread = true                                                        -- Auto reload file when changed from the outside
 vim.opt.undofile = true                                                        -- Save undo history
 
                                                                                -- wildmenu (command-line)
-vim.opt.path = vim.opt.path + "**"                                             -- this will help with searching files and grepping (I'm using 3rd party for that anyway)
 vim.opt.wildmenu = true                                                        -- autocompletion on
 vim.opt.wildmode = "longest:full,full"                                         -- style
 vim.opt.wildoptions = "pum,tagfile"                                            -- options
 vim.o.inccommand = "nosplit"                                                   -- Incremental live completion
 vim.opt.history = 900                                                          -- The command-line history table size.
+vim.opt.path = vim.opt.path + "**"                                             -- Help with searching via :find and :grep (I'm using 3rd party for that anyway)
 
                                                                                -- don't report in :checkhealth
 vim.g.loaded_ruby_provider = 0
@@ -43,6 +44,7 @@ vim.wo.number = true                                                           -
 vim.opt.lazyredraw = true                                                      -- Don't redraw while executing macros (good performance config)
 vim.opt.errorbells = false                                                     -- No annoying sound on errors
 vim.opt.visualbell = false                                                     -- No annoying sound on errors
+vim.opt.termguicolors = true                                                   -- enable highlight groups
 
                                                                                -- show white spaces, but only on demand
 vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
