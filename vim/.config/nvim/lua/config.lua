@@ -3,7 +3,6 @@ vim.opt.ffs = "unix,dos,mac"                                                   -
 
 vim.opt.mouse = "n"                                                            -- mouse only in normal mode
 vim.o.updatetime = 250                                                         -- Decrease update time
-vim.opt.clipboard='unnamedplus'                                                -- give nvim access to system clipboard
 
 vim.opt.timeout = false                                                        -- This option and 'timeoutlen' determine the behavior when part of a mapped key sequence has been received.
 vim.opt.timeoutlen = 500                                                       -- wait that long for motion sequence to end
