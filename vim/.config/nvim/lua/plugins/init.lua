@@ -9,7 +9,7 @@ end
 
 packer.startup(function(use)
     -- Core
-    use("wbthomason/packer.nvim")
+    use("wbthomason/packer.nvim") -- This plugin manager
     use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
     use({
         "lewis6991/impatient.nvim",
@@ -20,6 +20,13 @@ packer.startup(function(use)
 
     -- Dependencies
     use("onsails/lspkind-nvim") -- icons
+    use({
+        "nvim-tree/nvim-web-devicons", -- fork from nvim-tree
+        -- "kyazdani42/nvim-web-devicons", -- fork from telescope
+        config = function()
+            require("plugins/nvim-web-devicons")
+        end,
+    }) -- icons
 
     -- Productivity
     use({
@@ -80,12 +87,7 @@ packer.startup(function(use)
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
             { "nvim-telescope/telescope-file-browser.nvim" },
             { "nvim-telescope/telescope-ui-select.nvim" },
-            {
-                "kyazdani42/nvim-web-devicons",
-                config = function()
-                    require("plugins/nvim-web-devicons")
-                end,
-            },
+            -- "nvim-web-devicons", -- installed separately in top of this file
             {
                 "ThePrimeagen/harpoon",
                 config = function()
