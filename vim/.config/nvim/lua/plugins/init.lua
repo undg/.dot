@@ -24,7 +24,7 @@ packer.startup(function(use)
         "nvim-tree/nvim-web-devicons", -- fork from nvim-tree
         -- "kyazdani42/nvim-web-devicons", -- fork from telescope
         config = function()
-            require("plugins/nvim-web-devicons")
+            require("plugins.nvim-web-devicons")
         end,
     }) -- icons
 
@@ -51,7 +51,13 @@ packer.startup(function(use)
             require("plugins/alpha")
         end,
     })
-    use({ "nvim-telescope/telescope-project.nvim" })
+    use({ "nvim-telescope/telescope-project.nvim" }) -- quick access to saved projects paths.
+    use({
+        "Shatur/neovim-session-manager",
+        config = function()
+            require("plugins.neovim-session-manager")
+        end,
+    })
 
     -- Git
     use({
@@ -227,7 +233,7 @@ packer.startup(function(use)
             require("plugins.bufferline")
         end,
     })
-    use { 'moll/vim-bbye' }
+    use({ "moll/vim-bbye" })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
