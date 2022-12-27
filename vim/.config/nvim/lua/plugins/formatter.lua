@@ -1,24 +1,24 @@
 -- https://github.com/mhartington/formatter.nvim/blob/master/CONFIG.md
-local map = require("utils.map")
+local map = require('utils.map')
 
 local F = {}
 
 function F.prettier()
-    -- @TODO (undg) 2022-11-08: make it async, runn them all in one go 
+    -- @TODO (undg) 2022-11-08: make it async, runn them all in one go
     -- require("typescript").actions.addMissingImports({ sync = true })
     -- require("typescript").actions.organizeImports({ sync = true })
     -- require("typescript").actions.removeUnused({ sync = true })
     return {
-        exe = "prettier",
-        args = { "--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
+        exe = 'prettier',
+        args = { '--stdin-filepath', vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
         stdin = true,
     }
 end
 
 function F.prettierNoSemi()
     return {
-        exe = "prettierNoSemi",
-        args = { "--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
+        exe = 'prettierNoSemi',
+        args = { '--stdin-filepath', vim.fn.shellescape(vim.api.nvim_buf_get_name(0)) },
         stdin = true,
     }
 end
@@ -26,10 +26,10 @@ end
 function F.lua()
     -- https://github.com/johnnymorganz/stylua
     return {
-        exe = "stylua",
+        exe = 'stylua',
         args = {
-            "--config-path ~/.config/stylua/stylua.toml",
-            "-",
+            '--config-path ~/.config/stylua/stylua.toml',
+            '-',
         },
         stdin = true,
     }
@@ -37,21 +37,21 @@ end
 
 function F.shell()
     return {
-        exe = "shfmt",
-        args = { "-i", 4 },
+        exe = 'shfmt',
+        args = { '-i', 4 },
         stdin = true,
     }
 end
 
 function F.python()
     return {
-        exe = "black", -- install python-black
-        args = { "-" },
+        exe = 'black', -- install python-black
+        args = { '-' },
         stdin = true,
     }
 end
 
-require("formatter").setup({
+require('formatter').setup({
     logging = true,
     filetype = {
 
@@ -79,4 +79,4 @@ require("formatter").setup({
     },
 })
 
-map.normal("<leader>p", ":Format<cr>")
+map.normal('<leader>p', ':Format<cr>')
