@@ -22,11 +22,3 @@ map.normal("<Down>", ":resize -5<cr>")
 
 map.normal("<Left>", ":vertical resize -5<cr>")
 map.normal("<Right>", ":vertical resize +5<cr>")
-
--- -- tab change
--- -- gt <--
--- map.normal("<A-h>", "gT")
--- map.normal("<A-j>", "gT")
--- -- gT -->
---map.normal("<A-k>", "gt")
--- map.normal("<A-l>", "gt")
