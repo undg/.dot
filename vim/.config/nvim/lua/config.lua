@@ -1,6 +1,7 @@
 vim.opt.encoding = "utf8"                                                      -- set encoding
 vim.opt.ffs = "unix,dos,mac"                                                   -- Use Unix as the standard file type
 
+vim.opt.sessionoptions = vim.opt.sessionoptions + 'globals'                    -- Track global variables between session. Helps with persistent order in bufferline plugin.
 
 vim.opt.mouse = "n"                                                            -- mouse only in normal mode
 vim.o.updatetime = 250                                                         -- Decrease update time
