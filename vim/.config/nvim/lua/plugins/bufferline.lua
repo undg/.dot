@@ -5,9 +5,10 @@ require("bufferline").setup({
             return opts.lower(opts.ordinal)
         end, -- "both", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
         close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-        right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+        -- right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+        right_mouse_command = "vertical sbuffer %d", -- can be a string | function, see "Mouse actions"
+        middle_mouse_command = "horizontal sbuffer %d", -- can be a string | function, see "Mouse actions"
         left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-        middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
         indicator = {
             icon = "▎", -- this should be omitted if indicator style is not 'icon'
             style = "icon", -- 'icon' | 'underline' | 'none',
@@ -36,12 +37,6 @@ require("bufferline").setup({
         diagnostics_update_in_insert = true,
         -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
         diagnostics_indicator = function(count, level) --, diagnostics_dict, context
-            -- local s = " "
-            -- for e, n in pairs(diagnostics_dict) do
-            --     local sym = e == "error" and " " or (e == "warning" and " " or "")
-            --     s = n .. sym
-            -- end
-            -- return s
             local icon = " ℹ"
             if level == "error" then
                 icon = " "
@@ -53,25 +48,26 @@ require("bufferline").setup({
             return count .. icon
         end,
         -- NOTE: this will be called a lot so don't do any heavy processing here
-        custom_filter = function(buf_number, buf_numbers)
-            -- filter out filetypes you don't want to see
-            if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-                return true
-            end
-            -- filter out by buffer name
-            if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-                return true
-            end
-            -- filter out based on arbitrary rules
-            -- e.g. filter out vim wiki buffer from tabline in your work repo
-            if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-                return true
-            end
-            -- filter out by it's index number in list (don't show first buffer)
-            if buf_numbers[1] ~= buf_number then
-                return true
-            end
-        end,
+        custom_filter = nil,
+        -- custom_filter = function(buf_number, buf_numbers)
+        --     -- filter out filetypes you don't want to see
+        --     if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
+        --         return true
+        --     end
+        --     -- filter out by buffer name
+        --     if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
+        --         return true
+        --     end
+        --     -- filter out based on arbitrary rules
+        --     -- e.g. filter out vim wiki buffer from tabline in your work repo
+        --     if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "vimwiki" then
+        --         return true
+        --     end
+        --     -- filter out by it's index number in list (don't show first buffer)
+        --     if buf_numbers[1] ~= buf_number then
+        --         return true
+        --     end
+        -- end,
         offsets = {
             {
                 filetype = "NvimTree",
@@ -85,19 +81,6 @@ require("bufferline").setup({
                 -- text = "♚ ♛ ♜ ♝ ♞ ♟ ♔ ♕ ♖ ♗ ♘ ♙",
                 -- text = "<-|-'_'-|->",
                 -- text = "..\\ō͡≡o˞̶ ...\\ō͡≡o˞̶   ....\\ō͡≡o˞̶",
-                -- text = function()
-                --     local tbl = {
-                --         "┌∩┐(⋟﹏⋞)┌∩┐",
-                --         "'(◣_◢)'",
-                --         "┏(-_-)┛ ┗(-_-)┓ ┗(-_-)┛ ┏(-_-)┓",
-                --         "┗(-_-)┛  ┌∩┐(⋟﹏⋞)┌∩┐  ┗(-_-)┛",
-                --         "／人 ⌒ ‿‿ ⌒ 人＼",
-                --         "Yᵒᵘ Oᶰˡʸ Lᶤᵛᵉ Oᶰᶜᵉ",
-                --         "♚ ♛ ♜ ♝ ♞ ♟ ♔ ♕ ♖ ♗ ♘ ♙", "<-|-'_'-|->",
-                --         "..\\ō͡≡o˞̶ ...\\ō͡≡o˞̶   ....\\ō͡≡o˞̶",
-                --     }
-                --     return tbl[math.random(#tbl)]
-                -- end,
                 text_align = "center", -- "left" -- | "center" | "right"
                 separator = true,
             },
