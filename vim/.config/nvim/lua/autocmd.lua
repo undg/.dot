@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
+-- @TODO (undg) 2022-12-27: Is it needed? plugins/init.lua is sourced by :Update wrapper
 -- Reload Neovim whenever you save the */plugins/init.lua
 vim.cmd([[
   augroup packer_user_config
