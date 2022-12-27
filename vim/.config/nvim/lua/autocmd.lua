@@ -1,15 +1,16 @@
--- Fix auto comment
-vim.api.nvim_create_autocmd("BufWinEnter", {
+-- Fix auto comment.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
     callback = function()
-        -- vim.opt.formatoptions:remove("c")
-        -- vim.opt.formatoptions:remove("r")
-        vim.opt.formatoptions:remove("o")
+        -- vim.opt.formatoptions:remove("c") -- Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
+        -- vim.opt.formatoptions:remove("r") -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+        vim.opt.formatoptions:remove("o") -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+        -- read more... :help fo-table
     end,
 })
 
 -- @TODO (undg) 2022-12-27: Is it needed? plugins/init.lua is sourced by :Update wrapper
--- Reload Neovim whenever you save the */plugins/init.lua
-
+-- Reload Neovim whenever you save the .../plugins/init.lua
 vim.cmd([[
   augroup packer_user_config
     autocmd!
