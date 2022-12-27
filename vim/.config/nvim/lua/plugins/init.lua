@@ -220,6 +220,14 @@ packer.startup(function(use)
             require("plugins/illuminate")
         end,
     })
+    use({
+        "akinsho/bufferline.nvim",
+        tag = "v3.*",
+        config = function()
+            require("plugins.bufferline")
+        end,
+    })
+    use { 'moll/vim-bbye' }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
