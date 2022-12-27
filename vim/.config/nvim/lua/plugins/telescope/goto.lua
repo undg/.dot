@@ -1,10 +1,14 @@
 local M = {}
 
 local T = {}
-function T.find() require('telescope.builtin').find_files({hidden = true}) end
-function T.browse() require('telescope').extensions.file_browser.file_browser({hidden = true}) end
-function T.git() require('telescope.builtin').git_status({hidden = true}) end
-function T.grep() require('telescope.builtin').live_grep({hidden = true}) end
+
+local tb = require('telescope.builtin')
+local t = require('telescope')
+
+function T.find() tb.find_files({hidden = true}) end
+function T.browse() t.extensions.file_browser.file_browser({hidden = true}) end
+function T.git() tb.git_status({hidden = true}) end
+function T.grep() tb.live_grep({hidden = true}) end
 
 function M.vim()
     vim.cmd [[ :cd  ~/.dot/vim/.config/nvim/ ]]
