@@ -39,8 +39,8 @@ elif [[ -f ~/.bashrc ]]; then
     source "$HOME/.bashrc"
 fi
 
-# Speedy keys
-xset r rate 190 30
+# Speedy keys delay/repeatSpeed
+xset r rate 222 40
 
 # Volume applet in sys tray
 # volctl &
