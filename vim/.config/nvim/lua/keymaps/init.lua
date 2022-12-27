@@ -1,4 +1,4 @@
-require("keymaps.general")
+require("keymaps.general") -- always first
 
 require("keymaps.edit-myvimrc")
 require("keymaps.harpoon")
@@ -14,3 +14,4 @@ require("keymaps.lazygit")
 require("keymaps.nvim-tree")
 require("keymaps.bufferline")
 require("keymaps.vim-bbye")
+require("keymaps.tabular")
