@@ -1,240 +1,248 @@
 -- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP`
-require("bootstrap")
+require('bootstrap')
 
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
-    print("pcall: packer fail")
+    print('pcall: packer fail')
     return
 end
 
 packer.startup(function(use)
     -- Core
-    use("wbthomason/packer.nvim") -- This plugin manager
-    use("nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
+    use('wbthomason/packer.nvim') -- This plugin manager
+    use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
     use({
-        "lewis6991/impatient.nvim",
+        'lewis6991/impatient.nvim',
         config = function()
-            require("impatient")
+            require('impatient')
         end,
     }) -- Cache for plugins
 
     -- Dependencies
-    use("onsails/lspkind-nvim") -- icons
+    use('onsails/lspkind-nvim') -- icons
     use({
-        "nvim-tree/nvim-web-devicons", -- fork from nvim-tree
+        'nvim-tree/nvim-web-devicons', -- fork from nvim-tree
         -- "kyazdani42/nvim-web-devicons", -- fork from telescope
         config = function()
-            require("plugins.nvim-web-devicons")
+            require('plugins.nvim-web-devicons')
         end,
     }) -- icons
 
     -- Productivity
     use({
-        "numToStr/Comment.nvim",
+        'numToStr/Comment.nvim',
         config = function()
-            require("plugins.Comment")
+            require('plugins.Comment')
         end,
     })
-    use("tpope/vim-sleuth") -- Auto-detect indentation style
-    use("tpope/vim-repeat") -- dot repeat for plugins like surround
-    use("tpope/vim-surround") -- motions to change brackets
-    use("jiangmiao/auto-pairs")
+    use('tpope/vim-sleuth') -- Auto-detect indentation style
+    use('tpope/vim-repeat') -- dot repeat for plugins like surround
+    use('tpope/vim-surround') -- motions to change brackets
+    -- use { 'machakann/vim-sandwich' }
+    use('jiangmiao/auto-pairs')
     use({
-        "folke/trouble.nvim",
+        'folke/trouble.nvim',
         config = function()
-            require("plugins.trouble")
+            require('plugins.trouble')
         end,
     })
     use({
-        "goolord/alpha-nvim",
+        'goolord/alpha-nvim',
         config = function()
-            require("plugins.alpha")
+            require('plugins.alpha')
         end,
     })
-    use({ "nvim-telescope/telescope-project.nvim" }) -- quick access to saved projects paths.
+    use({ 'nvim-telescope/telescope-project.nvim' }) -- quick access to saved projects paths.
     use({
-        "Shatur/neovim-session-manager",
+        'Shatur/neovim-session-manager',
         config = function()
-            require("plugins.neovim-session-manager")
+            require('plugins.neovim-session-manager')
         end,
     })
 
     -- Git
     use({
-        "kdheepak/lazygit.nvim",
+        'kdheepak/lazygit.nvim',
         config = function()
-            require("plugins.lazygit")
+            require('plugins.lazygit')
         end,
     })
-    use("tpope/vim-fugitive") -- Git commands in nvim
-    use({ "tpope/vim-rhubarb" }) -- Fugitive-companion to interact with github
+    use('tpope/vim-fugitive') -- Git commands in nvim
+    use({ 'tpope/vim-rhubarb' }) -- Fugitive-companion to interact with github
     use({
-        "lewis6991/gitsigns.nvim", -- Git status for every line
+        'lewis6991/gitsigns.nvim', -- Git status for every line
         config = function()
-            require("plugins.gitsigns")
+            require('plugins.gitsigns')
         end,
     })
 
     -- File managers
     use({
-        "nvim-tree/nvim-tree.lua",
+        'nvim-tree/nvim-tree.lua',
         -- requires "nvim-web-devicons", -- installed separately in top of this file
         config = function()
-            require("plugins.nvim-tree")
+            require('plugins.nvim-tree')
         end,
-        tag = "nightly", -- optional, updated every week. (see issue #1193)
+        tag = 'nightly', -- optional, updated every week. (see issue #1193)
     })
     use({
-        "nvim-telescope/telescope.nvim",
+        'nvim-telescope/telescope.nvim',
         requires = {
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-            { "nvim-telescope/telescope-file-browser.nvim" },
-            { "nvim-telescope/telescope-ui-select.nvim" },
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            { 'nvim-telescope/telescope-file-browser.nvim' },
+            { 'nvim-telescope/telescope-ui-select.nvim' },
             -- "nvim-web-devicons", -- installed separately in top of this file
             {
-                "ThePrimeagen/harpoon",
+                'ThePrimeagen/harpoon',
                 config = function()
-                    require("plugins.harpoon")
+                    require('plugins.harpoon')
                 end,
             },
         },
         config = function()
-            require("plugins.telescope")
+            require('plugins.telescope')
         end,
     })
 
     -- LSP
-    use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
+    use('neovim/nvim-lspconfig') -- Collection of configurations for built-in LSP client
     -- use({ "williamboman/nvim-lsp-installer" }) -- Installation servers for LSP
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
+    use({ 'williamboman/mason.nvim' })
+    use({ 'williamboman/mason-lspconfig.nvim' })
     use({
-        "tami5/lspsaga.nvim",
+        'tami5/lspsaga.nvim',
         config = function()
-            require("plugins.lspsaga")
+            require('plugins.lspsaga')
         end,
     }) -- LSP utils with performant UI
-    use("jose-elias-alvarez/typescript.nvim") -- few extra commands for ts. Uses LSP
+    use('jose-elias-alvarez/typescript.nvim') -- few extra commands for ts. Uses LSP
 
     -- Syntax
     use({
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
         config = function()
-            require("plugins.treesitter")
+            require('plugins.treesitter')
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
-    use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional text objects for treesitter
-    use("p00f/nvim-ts-rainbow") -- parenthesis rainbow, treesitter version
+    use('nvim-treesitter/nvim-treesitter-textobjects') -- Additional text objects for treesitter
+    use('p00f/nvim-ts-rainbow') -- parenthesis rainbow, treesitter version
     use({
-        "mhartington/formatter.nvim", -- prettier
+        'mhartington/formatter.nvim', -- prettier
         config = function()
-            require("plugins.formatter")
+            require('plugins.formatter')
         end,
     })
-
-    -- snippets are integrated with autocompletion nvim-cmp
-    use("SirVer/ultisnips")
-    use("quangnguyen30192/cmp-nvim-ultisnips")
 
     -- Autocompletion
     use({
-        "hrsh7th/nvim-cmp",
+        'hrsh7th/nvim-cmp',
         config = function()
-            require("plugins.nvim-cmp")
+            require('plugins.nvim-cmp')
         end,
     })
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-nvim-lsp")
+    use('hrsh7th/cmp-path')
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-nvim-lua')
+    use('hrsh7th/cmp-nvim-lsp')
+    -- snippets are integrated with autocompletion nvim-cmp
+    use('SirVer/ultisnips')
+    use('quangnguyen30192/cmp-nvim-ultisnips')
 
     -- Registers
-    use({ "simnalamburt/vim-mundo", cmd = { "MundoShow", "MundoToggle" } })
+    use({ 'simnalamburt/vim-mundo', cmd = { 'MundoShow', 'MundoToggle' } })
     use({
-        "gbprod/yanky.nvim",
+        'gbprod/yanky.nvim',
         config = function()
-            require("plugins.yanky")
+            require('plugins.yanky')
         end,
     })
 
     -- Utils
     use({
-        "vimwiki/vimwiki",
+        'vimwiki/vimwiki',
         config = function()
-            require("plugins.vimwiki")
+            require('plugins.vimwiki')
         end,
     })
     use({
-        "godlygeek/tabular",
-        cmd = { "Tabularize", "Tab" },
+        'godlygeek/tabular',
+        cmd = { 'Tabularize', 'Tab' },
     })
-    use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
+    use({ 'blindFS/vim-colorpicker', cmd = 'ColorPicker' })
     use({
-        "benmills/vimux",
+        'benmills/vimux', -- run comand(test) in split tmux pane
         config = function()
-            require("plugins.vimux")
+            require('plugins.vimux')
+        end,
+    })
+    use({
+        'yssl/QFEnter', -- quickfix window (cw) open in split/tab...
+        config = function()
+            require('plugins.QFEnter')
+        end,
+    })
+    use({
+        'simeji/winresizer',
+        config = function()
+            require('plugins.winresizer')
+        end,
+    })
+    use({
+        'christoomey/vim-tmux-navigator',
+        config = function()
+            require('plugins.vim-tmux-navigator')
+        end,
+    })
+    use({
+        'akinsho/bufferline.nvim',
+        tag = 'v3.*',
+        config = function()
+            require('plugins.bufferline') -- "tabline" for buffers.
+        end,
+        requires = {
+            { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
+        },
+    })
+    use({
+        'folke/which-key.nvim',
+        config = function()
+            require('plugins.which-key')
         end,
     })
 
     -- Look and feel
     use({
-        "morhetz/gruvbox",
+        'morhetz/gruvbox',
         config = function()
-            require("theme")
+            require('theme')
+        end,
+    })
+    use('lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
+    use({
+        'blueyed/vim-diminactive',
+        config = function()
+            require('plugins.vim-diminactive')
         end,
     })
     use({
-        "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
+        'lilydjwg/colorizer',
         config = function()
-            require("plugins.QFEnter")
+            require('plugins.colorizer')
         end,
+        cmd = { 'ColorHighlight', 'ColorToggle' },
     })
     use({
-        "simeji/winresizer",
+        'RRethy/vim-illuminate',
         config = function()
-            require("plugins.winresizer")
+            require('plugins.illuminate')
         end,
     })
-    use({
-        "christoomey/vim-tmux-navigator",
-        config = function()
-            require("plugins.vim-tmux-navigator")
-        end,
-    })
-    use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use({
-        "blueyed/vim-diminactive",
-        config = function()
-            require("plugins.vim-diminactive")
-        end,
-    })
-    use({
-        "lilydjwg/colorizer",
-        config = function()
-            require("plugins.colorizer")
-        end,
-        cmd = { "ColorHighlight", "ColorToggle" },
-    })
-    use({
-        "RRethy/vim-illuminate",
-        config = function()
-            require("plugins.illuminate")
-        end,
-    })
-    use({
-        "akinsho/bufferline.nvim",
-        tag = "v3.*",
-        config = function()
-            require("plugins.bufferline")
-        end,
-    })
-    use({ "moll/vim-bbye" })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
-        require("packer").sync()
+        require('packer').sync()
     end
 end)
