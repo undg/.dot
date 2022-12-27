@@ -1,9 +1,13 @@
 -- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP`
-require('bootstrap')
+local bootstrap_ok, _ = pcall(require, 'bootstrap')
+if not bootstrap_ok then
+    print('lua/plugins/init.lua: bootstrap fail')
+    return
+end
 
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
-    print('pcall: packer fail')
+local packer_ok, packer = pcall(require, 'packer')
+if not packer_ok then
+    print('nvim/lua/plugins/init.lua: packer fail')
     return
 end
 
@@ -22,7 +26,6 @@ packer.startup(function(use)
     use('onsails/lspkind-nvim') -- icons
     use({
         'nvim-tree/nvim-web-devicons', -- fork from nvim-tree
-        -- "kyazdani42/nvim-web-devicons", -- fork from telescope
         config = function()
             require('plugins.nvim-web-devicons')
         end,
@@ -36,9 +39,13 @@ packer.startup(function(use)
         end,
     })
     use('tpope/vim-sleuth') -- Auto-detect indentation style
-    use('tpope/vim-repeat') -- dot repeat for plugins like surround
-    use('tpope/vim-surround') -- motions to change brackets
-    -- use { 'machakann/vim-sandwich' }
+    use({
+        'kylechui/nvim-surround',
+        tag = '*', -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require('plugins.nvim-surround')
+        end,
+    })
     use('jiangmiao/auto-pairs')
     use({
         'folke/trouble.nvim',
