@@ -1,5 +1,5 @@
 -- obsolete, plugin replaced with gitsigns
-local map = require('../utils/map')
+local map = require('utils.map')
 
 -- disable default mappings h:gitgutter-mappings
 vim.g.gitgutter_map_keys = 0

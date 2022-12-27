@@ -1,4 +1,4 @@
-local map = require("utils/map")
+local map = require("utils.map")
 local getVisualSelectionFn = require("custom/get-visual-selection")
 local tb = require("telescope.builtin")
 local opts = { noremap = true, silent = true }
