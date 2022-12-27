@@ -32,7 +32,7 @@ packer.startup(function(use)
     use({
         "numToStr/Comment.nvim",
         config = function()
-            require("plugins/Comment")
+            require("plugins.Comment")
         end,
     })
     use("tpope/vim-sleuth") -- Auto-detect indentation style
@@ -42,13 +42,13 @@ packer.startup(function(use)
     use({
         "folke/trouble.nvim",
         config = function()
-            require("plugins/trouble")
+            require("plugins.trouble")
         end,
     })
     use({
         "goolord/alpha-nvim",
         config = function()
-            require("plugins/alpha")
+            require("plugins.alpha")
         end,
     })
     use({ "nvim-telescope/telescope-project.nvim" }) -- quick access to saved projects paths.
@@ -63,7 +63,7 @@ packer.startup(function(use)
     use({
         "kdheepak/lazygit.nvim",
         config = function()
-            require("plugins/lazygit")
+            require("plugins.lazygit")
         end,
     })
     use("tpope/vim-fugitive") -- Git commands in nvim
@@ -71,7 +71,7 @@ packer.startup(function(use)
     use({
         "lewis6991/gitsigns.nvim", -- Git status for every line
         config = function()
-            require("plugins/gitsigns")
+            require("plugins.gitsigns")
         end,
     })
 
@@ -80,7 +80,7 @@ packer.startup(function(use)
         "nvim-tree/nvim-tree.lua",
         -- requires "nvim-web-devicons", -- installed separately in top of this file
         config = function()
-            require("plugins/nvim-tree")
+            require("plugins.nvim-tree")
         end,
         tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
@@ -95,12 +95,12 @@ packer.startup(function(use)
             {
                 "ThePrimeagen/harpoon",
                 config = function()
-                    require("plugins/harpoon")
+                    require("plugins.harpoon")
                 end,
             },
         },
         config = function()
-            require("plugins/telescope")
+            require("plugins.telescope")
         end,
     })
 
@@ -112,7 +112,7 @@ packer.startup(function(use)
     use({
         "tami5/lspsaga.nvim",
         config = function()
-            require("plugins/lspsaga")
+            require("plugins.lspsaga")
         end,
     }) -- LSP utils with performant UI
     use("jose-elias-alvarez/typescript.nvim") -- few extra commands for ts. Uses LSP
@@ -122,7 +122,7 @@ packer.startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
-            require("plugins/treesitter")
+            require("plugins.treesitter")
         end,
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use("nvim-treesitter/nvim-treesitter-textobjects") -- Additional text objects for treesitter
@@ -130,7 +130,7 @@ packer.startup(function(use)
     use({
         "mhartington/formatter.nvim", -- prettier
         config = function()
-            require("plugins/formatter")
+            require("plugins.formatter")
         end,
     })
 
@@ -142,7 +142,7 @@ packer.startup(function(use)
     use({
         "hrsh7th/nvim-cmp",
         config = function()
-            require("plugins/nvim-cmp")
+            require("plugins.nvim-cmp")
         end,
     })
     use("hrsh7th/cmp-path")
@@ -155,7 +155,7 @@ packer.startup(function(use)
     use({
         "gbprod/yanky.nvim",
         config = function()
-            require("plugins/yanky")
+            require("plugins.yanky")
         end,
     })
 
@@ -163,21 +163,21 @@ packer.startup(function(use)
     use({
         "vimwiki/vimwiki",
         config = function()
-            require("plugins/vimwiki")
+            require("plugins.vimwiki")
         end,
     })
     use({
         "godlygeek/tabular",
         cmd = { "Tabularize" },
         config = function()
-            require("plugins/tabular")
+            require("plugins.tabular")
         end,
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
     use({
         "benmills/vimux",
         config = function()
-            require("plugins/vimux")
+            require("plugins.vimux")
         end,
     })
 
@@ -191,39 +191,39 @@ packer.startup(function(use)
     use({
         "yssl/QFEnter", -- quickfix window (cw) open in split/tab...
         config = function()
-            require("plugins/QFEnter")
+            require("plugins.QFEnter")
         end,
     })
     use({
         "simeji/winresizer",
         config = function()
-            require("plugins/winresizer")
+            require("plugins.winresizer")
         end,
     })
     use({
         "christoomey/vim-tmux-navigator",
         config = function()
-            require("plugins/vim-tmux-navigator")
+            require("plugins.vim-tmux-navigator")
         end,
     })
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
     use({
         "blueyed/vim-diminactive",
         config = function()
-            require("plugins/vim-diminactive")
+            require("plugins.vim-diminactive")
         end,
     })
     use({
         "lilydjwg/colorizer",
         config = function()
-            require("plugins/colorizer")
+            require("plugins.colorizer")
         end,
         cmd = { "ColorHighlight", "ColorToggle" },
     })
     use({
         "RRethy/vim-illuminate",
         config = function()
-            require("plugins/illuminate")
+            require("plugins.illuminate")
         end,
     })
     use({
