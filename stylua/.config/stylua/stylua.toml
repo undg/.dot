@@ -1,6 +1,5 @@
 # doc: https://github.com/johnnymorganz/stylua
 
-
 column_width = 120
 
 # Unix (LF) or Windows (CRLF)
@@ -12,7 +11,7 @@ indent_type = "Spaces"
 indent_width = 4
 
 # AutoPreferDouble, AutoPreferSingle, ForceDouble, ForceSingle
-quote_style = "AutoPreferDouble"
+quote_style = "AutoPreferSingle"
 
 # Always, NoSingleString, NoSingleTable, None
 call_parentheses = "Always"
