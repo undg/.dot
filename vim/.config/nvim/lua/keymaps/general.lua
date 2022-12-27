@@ -24,8 +24,6 @@ map.normal("XX", ":q!<CR>") -- easier ZQ, quit don't save
 -- redo last macro
 map.normal("<CR>", "@@")
 
--- duno... I'm using it a lot.
-map.normal("<LEADER>s", ":mksession!<CR>", { silent = false })
 -- cd to current file path
 map.normal("<LEADER>cd", ":lcd %:p:h<CR>")
 
