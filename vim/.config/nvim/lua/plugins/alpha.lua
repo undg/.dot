@@ -10,7 +10,7 @@ if not dashboard_ok then
     return
 end
 
-local version = 'version: ' .. vim.version().major .. '.' .. vim.version().minor .. '.' .. vim.version().patch
+local version = 'v' .. vim.version().major .. '.' .. vim.version().minor .. '.' .. vim.version().patch
 
 -- Set header
 dashboard.section.header.val = {
@@ -22,7 +22,6 @@ dashboard.section.header.val = {
     '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
     '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
     '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
-    '                                                     ',
     '  ' .. version,
 }
 
@@ -34,17 +33,12 @@ dashboard.section.buttons.val = {
     dashboard.button('fp', '⌨   >  Projects', ':Telescope project<CR>'),
     dashboard.button(',.', '   >  Find file', ':Telescope find_files<CR>'),
     dashboard.button('v', '   >  Nvim Settings', ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'),
-    dashboard.button(
-        'd',
-        '   >  Dot',
-        ':e $HOME/.dot/README.md | Telescope find_files hidden=true no_ignore=true<CR>'
-    ),
+    dashboard.button('d', '   >  Dot', ':e $HOME/.dot/ | Telescope find_files hidden=true no_ignore=true<CR>'),
     dashboard.button('e', '   >  New file', ':enew <BAR> startinsert <CR>'),
     dashboard.button('q', '   >  Quit NVIM', ':qa<CR>'),
     dashboard.button('<C-c>', '', ':qa<CR>'),
 }
 
-P(version)
 -- Send config to alpha
 alpha.setup(dashboard.opts)
 
