@@ -1,4 +1,4 @@
--- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP`
+-- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP` that is used at the end of this file.
 local bootstrap_ok, _ = pcall(require, 'bootstrap')
 if not bootstrap_ok then
     print('lua/plugins/init.lua: bootstrap fail')
@@ -216,6 +216,15 @@ packer.startup(function(use)
         'folke/which-key.nvim',
         config = function()
             require('plugins.which-key')
+        end,
+    })
+    use('stevearc/dressing.nvim')
+    use({
+        'ziontee113/icon-picker.nvim',
+        config = function()
+            require('icon-picker').setup({
+                disable_legacy_commands = true,
+            })
         end,
     })
 
