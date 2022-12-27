@@ -168,10 +168,7 @@ packer.startup(function(use)
     })
     use({
         "godlygeek/tabular",
-        cmd = { "Tabularize" },
-        config = function()
-            require("plugins.tabular")
-        end,
+        cmd = { "Tabularize", "Tab" },
     })
     use({ "blindFS/vim-colorpicker", cmd = "ColorPicker" })
     use({
