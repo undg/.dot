@@ -1,4 +1,4 @@
-local map = require("utils/map")
+local map = require("utils.map")
 
 require("yanky").setup({
     -- your configuration comes here

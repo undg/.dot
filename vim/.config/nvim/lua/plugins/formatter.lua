@@ -1,5 +1,5 @@
 -- https://github.com/mhartington/formatter.nvim/blob/master/CONFIG.md
-local map = require("../utils/map")
+local map = require("utils.map")
 
 local F = {}
 

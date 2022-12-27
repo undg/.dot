@@ -1,5 +1,5 @@
 require('custom.statusline')
-require('custom.tabline')
+-- require('custom.tabline')
 require('custom.search-selected')
 require('custom.indent')
 require('custom.json2ts')

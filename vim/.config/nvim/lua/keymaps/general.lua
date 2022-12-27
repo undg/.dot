@@ -1,4 +1,4 @@
-local map = require("utils/map")
+local map = require("utils.map")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -93,4 +93,3 @@ map.normal("#", "#N")
 map.normal("gh", ":diffget //2<cr>")
 map.normal("gl", ":diffget //3<cr>")
 map.normal("gp", ":diffput //1<cr>")
-

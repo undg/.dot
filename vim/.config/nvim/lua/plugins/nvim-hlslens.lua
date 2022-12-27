@@ -1,4 +1,4 @@
-local map = require("../utils/map")
+local map = require("utils.map")
 
 -- Remap default keymaps with plugin wrapper
 local kopts = { noremap = true, silent = true }

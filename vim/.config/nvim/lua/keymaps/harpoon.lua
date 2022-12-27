@@ -1,4 +1,4 @@
-local map = require("utils/map")
+local map = require("utils.map")
 
 map.normal("<leader>tt", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
 map.normal("<leader>tr", ":Telescope harpoon marks<cr>")
