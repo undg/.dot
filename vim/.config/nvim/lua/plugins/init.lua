@@ -213,6 +213,12 @@ packer.startup(function(use)
         },
     })
     use({
+        'nvim-lualine/lualine.nvim',
+        config = function()
+            require('plugins.lualine') -- "tabline" for buffers.
+        end,
+    })
+    use({
         'folke/which-key.nvim',
         config = function()
             require('plugins.which-key')
