@@ -6,7 +6,7 @@ rm -f /tmp/base.png
 # If `imagemagick` is not installed, use a blank screen.
 [ -f /usr/bin/convert ] &&
 scrot -m -z /tmp/base.png &&
-# pgrep -x dunst && notify-send "Locking computer..." &&
+pgrep -x dunst && notify-send "Locking computer..." &&
 convert /tmp/base.png -blur 0x8 /tmp/locked.png
 
 # Pause music (mocp, mpd and send the pause key to all mpv videos):
