@@ -66,6 +66,11 @@ packer.startup(function(use)
             require('plugins.neovim-session-manager')
         end,
     })
+    use { 'phaazon/hop.nvim',
+        config = function ()
+            require('plugins.hop')
+        end
+    }
 
     -- Git
     use({
