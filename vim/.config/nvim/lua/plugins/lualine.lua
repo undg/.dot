@@ -73,6 +73,7 @@ local relative_path = {
             else
                 line = 'lualine_a_visual'
             end
+            ---@diagnostic disable-next-line: undefined-field
             bg = line.bg
         end
 
