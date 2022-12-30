@@ -26,8 +26,7 @@ local insert_mode = vim.fn.mode() == 'i'
 local normal_mode = vim.fn.mode() == 'n'
 local color2 = { bg = '#504945', fg = '#191919' }
 local color3 = { bg = '#A8A8A8', fg = '#222222' }
-local sudo = false -- suda plugin required
-local bg
+local sudo -- suda plugin required
 
 local cwd = {
     'filename',
@@ -45,22 +44,8 @@ local relative_path = {
     newfile_status = true, -- Display new file status (new file means no write after created)
     path = path_type.relative,
     color = function()
-        if vim.bo.modified then
-            return { fg = '#89d957', bg }
-        else
-            return { fg = '#fe8019', bg }
-        end
-    end,
-    fmt = function(str)
-        local function starts(String, Start)
-            return string.sub(String, 1, string.len(Start)) == Start
-        end
-
-        if starts(str, 'suda:///') then
-            sudo = true
-        else
-            sudo = false
-        end
+        local bg
+        local fg
 
         if sudo then
             bg = '#551100'
@@ -77,6 +62,25 @@ local relative_path = {
             bg = line.bg
         end
 
+        if vim.bo.modified then
+            fg = '#89d957'
+        else
+            fg = '#fe8019'
+        end
+
+        return { fg = fg, bg = bg }
+    end,
+    fmt = function(str)
+        local function starts(String, Start)
+            return string.sub(String, 1, string.len(Start)) == Start
+        end
+
+        if starts(str, 'suda:///') then
+            sudo = true
+        else
+            sudo = false
+        end
+
         return str
     end,
 
@@ -90,18 +94,30 @@ local relative_path = {
     },
 }
 
+local is_git_repo
 local branch = {
     'branch',
-    color = color3,
+    color = function ()
+        return color3
+    end,
     icons_enabled = true,
     separator = { left = '', right = '' },
     fmt = function(str)
         if str == '' then
+            is_git_repo = false
             return 'noop'
         else
+            is_git_repo = true
             return str
         end
     end,
+}
+
+local fileformat = {
+    'fileformat',
+    color = color3,
+    icons_enabled = true,
+    separator = { left = '', right = '' },
 }
 
 local filetype = {
@@ -117,12 +133,6 @@ local filetype = {
             return str
         end
     end,
-}
-local fileformat = {
-    'fileformat',
-    color = color3,
-    icons_enabled = true,
-    separator = { left = '', right = '' },
 }
 
 -- @TODO (undg) 2022-12-30: merge it, create custom one
