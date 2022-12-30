@@ -21,48 +21,34 @@ local path_type = {
     absolute = 2,
     absolute_home = 3,
 }
-
 local shorting_target = 30
+local insert_mode = vim.fn.mode() == 'i'
+local normal_mode = vim.fn.mode() == 'n'
+local color2 = { bg = '#504945', fg = '#191919' }
+local color3 = { bg = '#A8A8A8', fg = '#222222' }
+local sudo = false -- suda plugin required
+local bg
 
 local cwd = {
     'filename',
     file_status = false,
     newfile_status = false,
-    -- color = 'USER1',
     fmt = function()
         local estimated_space_available = my_window.width() - shorting_target
         return my_path.shorten(my_path.from_home(), '/', estimated_space_available)
     end,
 }
 
--- suda plugin required
-
-local sudo = false
 local relative_path = {
     'filename',
     file_status = true, -- Displays file status (readonly status, modified status)
     newfile_status = true, -- Display new file status (new file means no write after created)
     path = path_type.relative,
-    color = function(section)
-        local bg
-        if sudo then
-            bg = '#551100'
-        else
-            local line
-            if vim.fn.mode() == 'i' then
-                line = 'lualine_a_insert'
-            elseif vim.fn.mode() == 'n' then
-                line = 'lualine_a_normal'
-            else
-                line = 'lualine_a_visual'
-            end
-                bg = line.bg
-        end
-
+    color = function()
         if vim.bo.modified then
-            return { fg = '#89d957', bg = bg }
+            return { fg = '#89d957', bg }
         else
-            return { fg = '#fe8019', bg = bg }
+            return { fg = '#fe8019', bg }
         end
     end,
     fmt = function(str)
@@ -75,6 +61,21 @@ local relative_path = {
         else
             sudo = false
         end
+
+        if sudo then
+            bg = '#551100'
+        else
+            local line
+            if insert_mode then
+                line = 'lualine_a_insert'
+            elseif normal_mode then
+                line = 'lualine_a_normal'
+            else
+                line = 'lualine_a_visual'
+            end
+            bg = line.bg
+        end
+
         return str
     end,
 
@@ -90,7 +91,7 @@ local relative_path = {
 
 local branch = {
     'branch',
-    color = 'USER3',
+    color = color3,
     icons_enabled = true,
     separator = { left = '', right = '' },
     fmt = function(str)
@@ -118,7 +119,7 @@ local filetype = {
 }
 local fileformat = {
     'fileformat',
-    color = 'USER3',
+    color = color3,
     icons_enabled = true,
     separator = { left = '', right = '' },
 }
@@ -126,11 +127,11 @@ local fileformat = {
 -- @TODO (undg) 2022-12-30: merge it, create custom one
 local progress = {
     'progress',
-    color = 'USER2',
+    color = color2,
 }
 local location = {
     'location',
-    color = 'USER2',
+    color = color2,
 }
 
 local sections = {
