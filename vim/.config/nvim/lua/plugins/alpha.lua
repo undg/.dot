@@ -32,10 +32,10 @@ dashboard.section.buttons.val = {
     dashboard.button('fo', '   >  Recent', ':Telescope oldfiles<CR>'),
     dashboard.button('fp', '⌨   >  Projects', ':Telescope project<CR>'),
     dashboard.button(',.', '   >  Find file', ':Telescope find_files<CR>'),
-    dashboard.button('v', '   >  Nvim Settings', ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'),
-    dashboard.button('d', '   >  Dot', ':e $HOME/.dot/ | Telescope find_files hidden=true no_ignore=true<CR>'),
-    dashboard.button('e', '   >  New file', ':enew <BAR> startinsert <CR>'),
-    dashboard.button('q', '   >  Quit NVIM', ':qa<CR>'),
+    dashboard.button( 'v', '   >  Nvim Settings', ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'),
+    dashboard.button( 'd', '   >  Dot', ':cd ~/.dot/ |  Telescope oldfiles cwd_only=true<CR>'),
+    dashboard.button( 'e', '   >  New file', ':enew <BAR> startinsert <CR>'),
+    dashboard.button( 'q', '   >  Quit NVIM', ':qa<CR>'),
     dashboard.button('<C-c>', '', ':qa<CR>'),
 }
 
