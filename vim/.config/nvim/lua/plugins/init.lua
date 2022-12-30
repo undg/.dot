@@ -66,11 +66,18 @@ packer.startup(function(use)
             require('plugins.neovim-session-manager')
         end,
     })
-    use { 'phaazon/hop.nvim',
-        config = function ()
+    use({
+        'phaazon/hop.nvim',
+        config = function()
             require('plugins.hop')
-        end
-    }
+        end,
+    })
+    use({
+        'lambdalisue/suda.vim',
+        config = function()
+            require('plugins.suda')
+        end,
+    })
 
     -- Git
     use({
