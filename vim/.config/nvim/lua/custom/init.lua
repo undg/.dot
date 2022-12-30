@@ -1,4 +1,4 @@
-require('custom.statusline')
+-- require('custom.statusline')
 require('custom.search-selected')
 require('custom.indent')
 require('custom.json2ts')

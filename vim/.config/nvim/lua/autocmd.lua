@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
     callback = function()
-        -- Simplify UI in Alpha plugin page
+        -- Simplify UI for certaind filetypes
         if
             vim.bo.filetype == "alpha" --
             or vim.bo.filetype == "help"
@@ -58,15 +58,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
     end,
 })
 
--- Simplify UI in Alpha plugin page
--- vim.api.nvim_create_autocmd("User", {
---     pattern = { "AlphaReady" },
---     callback = function()
---         vim.opt.relativenumber = false
---         vim.cmd([[
---             set showtabline=0 | autocmd BufUnload <buffer> set showtabline=1
---             set laststatus=0  | autocmd BufUnload <buffer> set laststatus=2
---             set nofoldenable  | autocmd BufUnload <buffer> set foldenable
---         ]])
---     end,
--- })
