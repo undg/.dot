@@ -8,12 +8,12 @@ map.normal("<leader>bp", ":BufferLineCyclePrev<cr>")
 map.normal("L", ":BufferLineCycleNext<cr>")
 map.normal("<leader>bn", ":BufferLineCycleNext<cr>")
 
-map.normal("<leader>bj", ":BufferLineGoToBuffer 1<cr>")
-map.normal("<leader>bk", ":BufferLineGoToBuffer 2<cr>")
-map.normal("<leader>bl", ":BufferLineGoToBuffer 3<cr>")
-map.normal("<leader>b;", ":BufferLineGoToBuffer 4<cr>")
-map.normal("<leader>b'", ":BufferLineGoToBuffer 5<cr>")
-map.normal("<leader>b$", ":BufferLineGoToBuffer -1<cr>")
+map.normal("<leader>j", ":BufferLineGoToBuffer 1<cr>")
+map.normal("<leader>k", ":BufferLineGoToBuffer 2<cr>")
+map.normal("<leader>l", ":BufferLineGoToBuffer 3<cr>")
+map.normal("<leader>;", ":BufferLineGoToBuffer 4<cr>")
+map.normal("<leader>'", ":BufferLineGoToBuffer 5<cr>")
+map.normal("<leader>$", ":BufferLineGoToBuffer -1<cr>")
 
 
 -- Pin
