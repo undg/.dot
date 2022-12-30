@@ -1,7 +1,7 @@
 !! The default colors are "Gruvbox":
+!! They where used in i3 wm, but not any more.
 *.color0: #1d2021
 *.color1: #cc241d
-*.color2: #98971a
 *.color2: #98971a
 *.color3: #d79921
 *.color4: #458588
