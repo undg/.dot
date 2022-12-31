@@ -35,3 +35,6 @@ staged     = "[+](#98971a bold)"
 renamed    = "[»](#cc241d bold)"
 deleted    = "[✘](#cc241d bold)"
 disabled   = false
+
+[character]
+vicmd_symbol = '[❮](bold #f65d0e) '
