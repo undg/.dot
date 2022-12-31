@@ -27,17 +27,19 @@ set $DP_top HDMI-A-0
 
 # #---Starting External Scripts---# #
 # Setting the background:
-exec --no-startup-id picom --config /dev/null                             # Composite manager
-exec --no-startup-id d1;sleep 1; d3; i3-msg restart                       # xrandr with 3 displays workaround
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
-exec --no-startup-id unclutter                                            # hide mouse after a brief period
-exec --no-startup-id echocancel                                           # pulse mixer echo cancelation
-exec --no-startup-id dunst                                                # notifications
-# exec --no-startup-id barrier                                            # KVM software
-# exec --no-startup-id flameshot                                            # screenshots
-exec --no-startup-id lxsession                                            # FE for polkit
-exec --no-startup-id iriunwebcam                                          # android webcam
-exec_always --no-startup-id i3-autolayout autolayout                       # https://github.com/chmln/i3-auto-layout
+# exec --no-startup-id d1;sleep 1; d3; i3-msg restart # xrandr with 3 displays workaround
+exec --no-startup-id picom --config /dev/null                                        # Composite manager
+exec --no-startup-id unclutter                                                       # hide mouse after a brief period
+exec --no-startup-id echocancel                                                      # pulse mixer echo cancelation
+exec --no-startup-id dunst                                                           # notifications
+exec --no-startup-id flameshot                                                       # screenshots
+exec --no-startup-id lxsession                                                       # FE for polkit
+exec --no-startup-id iriunwebcam                                                     # android webcam
+exec --no-startup-id sleep 5 && volctl                                               # Volume applet in system tray
+exec --no-startup-id sleep 5 && barrier                                              # KVM software
+exec --no-startup-id sleep 2 && d3                                                   # 3 displays xrandr script
+exec_always --no-startup-id sleep 2 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
+exec_always --no-startup-id i3-autolayout autolayout                                 # https://github.com/chmln/i3-auto-layout
 
 set $transparent #000000
 set $darkblack #1d2021
