@@ -31,10 +31,6 @@ alias gr="grep -iHnr"
 alias cegr="egrep -iHnr --color=always"
 alias cgr="egrep -iHnr --color=always"
 
-# Avoid breaking fingers with date
-alias today="date +%Y-%m-%d"
-alias now="date +%Y-%m-%d_%H-%m_%S"
-
 if hash ranger 2>/dev/null; then
     alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
     alias ra="ranger"
@@ -51,11 +47,10 @@ if hash watch 2>/dev/null; then
 fi
 
 if hash git 2>/dev/null; then
+    alias g=git
     # cd to git root
     alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
     alias git-delete-merged='git branch --merged | grep -Ev \(develop\|master\) | xargs git br -d'
-    alias ga.='git add .'
-    alias ga='git add'
 
     if hash gh 2>/dev/null; then
         alias prCreate='gh pr create -w -t $(git branch --show-current)'
@@ -130,3 +125,29 @@ if hash tmux 2>/dev/null; then
 else
     echo "tmux is not installed."
 fi
+
+mkdirdate() {
+    local dateDirName=$(date "+%Y-%m-%d")
+    while getopts ':t' OPTION; do
+        case ${OPTION} in
+        t) dateDirName=$(date "+%Y-%m-%d_%H-%M") ;;
+        *) printf 1>&2 ' Unsupported option [ %s ].\n' "${OPTION}" ;;
+        esac
+    done
+
+    if [[ -d "$dateDirName" ]]; then
+        echo "$(tput setaf 3) $ cd $dateDirName"
+        cd $dateDirName
+    else
+        echo "$(tput setaf 2) $ mkdir $dateDirName"
+        mkdir $dateDirName
+        echo "$(tput setaf 3) $ cd $dateDirName"
+        cd $dateDirName
+    fi
+}
+
+# Avoid breaking fingers with date
+alias dateclip='date --iso-8601 | xclip'
+alias today="date +%Y-%m-%d"
+alias now="date +%Y-%m-%d_%H-%m_%S"
+
