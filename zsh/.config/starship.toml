@@ -31,9 +31,9 @@ up_to_date = ""
 untracked  = "[?](#cc241d bold)"
 stashed    = "[$](#f65d0e bold)"
 modified   = "[!](#cc241d bold)"
-staged     = "[+](#98971a bold)"
 renamed    = "[»](#cc241d bold)"
 deleted    = "[✘](#cc241d bold)"
+staged     = "[+](#98971a bold)"
 disabled   = false
 
 [character]
