@@ -34,10 +34,9 @@ exec --no-startup-id unclutter                                            # hide
 exec --no-startup-id echocancel                                           # pulse mixer echo cancelation
 exec --no-startup-id dunst                                                # notifications
 # exec --no-startup-id barrier                                            # KVM software
-exec --no-startup-id flameshot                                            # screenshots
+# exec --no-startup-id flameshot                                            # screenshots
 exec --no-startup-id lxsession                                            # FE for polkit
 exec --no-startup-id iriunwebcam                                          # android webcam
-exec --no-startup-id spotify                                              # music
 exec_always --no-startup-id i3-autolayout autolayout                       # https://github.com/chmln/i3-auto-layout
 
 set $transparent #000000

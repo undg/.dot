@@ -3,9 +3,10 @@
 alias :q='exit'
 
 if command -v exa &>/dev/null; then
+    alias l='exa'
     alias ls='exa --group-directories-first --icons --git'
     alias ll='ls -lah --git'
-    alias la='ll -a'
+    alias la='exa -a'
     alias tree='ll --tree --level=2'
 else
     echo "exa is not installed."

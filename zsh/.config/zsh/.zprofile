@@ -1,11 +1,35 @@
 #!/bin/bash
 # Profile file. Runs on login.
 
+
+#################
+# Start: old zsh artefacts
+export GPG_TTY=$(tty)
+export VISUAL=nvim
+export VEDITOR="$VISUAL"
+export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
+
+# export NPM_PACKAGES="${HOME}/npm-packages"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath`
+# command
+# unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+# export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# export PATH=$HOME/bin:$PATH
+# export PATH="$NPM_PACKAGES/bin:$PATH"
+if [[ -d "$HOME/.local/bin/" ]]; then
+    export PATH="$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':')$PATH"
+fi
+if [[ -d "$HOME/.deno/bin/" ]]; then
+    export PATH="$HOME/.deno/bin:$PATH"
+fi
+# End: old zsh artefacts
+#################
+
 # Set the list of directories that Zsh searches for programs.
 path=(
     /usr/local/{bin,sbin}
     ~/bin
-    ~/.zprezto/bin
     $path
 )
 export PATH=$(/usr/bin/printenv PATH | /usr/bin/perl -ne 'print join(":", grep { !/\/mnt\/[a-z]/ } split(/:/));')
@@ -33,12 +57,8 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-if [[ -f ~/.zshrc ]]; then
-    source "$HOME/.zshrc"
-fi
-
 # Speedy keys delay/repeatSpeed
-xset r rate 222 40
+# xset r rate 222 40
 
 # Volume applet in sys tray
 # volctl &
