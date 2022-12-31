@@ -8,7 +8,6 @@ npm-debug.log*
 .npm
 .env
 
-#/zsh/.config/zsh
-.zcompdump*
+.zcompdump.*
 .zsh_history
 secret.zsh
