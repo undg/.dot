@@ -1,2 +1,0 @@
-#!/bin/sh
-prettier --no-semi "$@"
