@@ -4,7 +4,7 @@ alias :q='exit'
 
 if command -v exa &>/dev/null; then
     alias ls='exa --group-directories-first --icons --git'
-    alias ll='ls -lh --git'
+    alias ll='ls -lah --git'
     alias la='ll -a'
     alias tree='ll --tree --level=2'
 else
