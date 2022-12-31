@@ -57,12 +57,9 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-# Speedy keys delay/repeatSpeed
-# xset r rate 222 40
-
-# Volume applet in sys tray
-# volctl &
-
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+
+# Speedy keys delay/repeatSpeed
+xset r rate 222 40
 
