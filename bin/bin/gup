@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Git push current branch to remote repo. 
+
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 REMOTE=$(git remote)
 ARGUMENTS="push -u $REMOTE $BRANCH"

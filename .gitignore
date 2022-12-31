@@ -11,3 +11,4 @@ npm-debug.log*
 #/zsh/.config/zsh
 .zcompdump
 .zsh_history
+secret.zsh

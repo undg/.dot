@@ -26,10 +26,18 @@ local path_type = {
 local shorting_target = 60
 local insert_mode = vim.fn.mode() == 'i'
 local normal_mode = vim.fn.mode() == 'n'
-local color2 = { bg = '#504945', fg = '#191919' }
 local sudo -- suda plugin required
 local is_git
-local branch_color = is_git and { bg = '#A8A8A8', fg = '#222222' } or { bg = '#A8A8A8', fg = '#706965' }
+-- @TODO (undg) 2022-12-31: fix it,
+-- logic is temporary flipped around.
+local branch_color = function(is_git_arg)
+    if is_git_arg then
+        return { bg = '#A8A8A8', fg = '#706965' }
+    else
+        return { bg = '#A8A8A8', fg = '#222222' }
+    end
+end
+local section_a_color = { bg = '#504945', fg = '#191919' }
 
 M.cwd = {
     'filename',
@@ -74,7 +82,7 @@ M.relative_path = {
         return { fg = fg, bg = bg }
     end,
     fmt = function(str)
-        if s.starts_with(str, 'suda:///') or s.starts_with(str, 's///')  then
+        if s.starts_with(str, 'suda:///') or s.starts_with(str, 's///') then
             sudo = true
         else
             sudo = false
@@ -95,7 +103,7 @@ M.relative_path = {
 
 M.branch = {
     'branch',
-    color = branch_color,
+    color = branch_color(is_git),
     icons_enabled = true,
     separator = { left = '', right = '' },
     fmt = function(str)
@@ -110,7 +118,7 @@ M.branch = {
 }
 M.fileformat = {
     'fileformat',
-    color = branch_color,
+    color = branch_color(is_git),
     icons_enabled = true,
     separator = { left = '', right = '' },
 }
@@ -133,12 +141,12 @@ M.filetype = {
 -- @TODO (undg) 2022-12-30: merge it, create custom one
 M.progress = {
     'progress',
-    color = color2,
+    color = section_a_color,
 }
 
 M.location = {
     'location',
-    color = color2,
+    color = section_a_color,
 }
 
 return M
