@@ -2,14 +2,17 @@
 
 alias :q='exit'
 
-if hash exa 2>/dev/null; then
-    alias ls='exa --git'
+if command -v exa &>/dev/null; then
+    alias ls='exa --group-directories-first --icons --git'
+    alias ll='ls -lh --git'
+    alias la='ll -a'
+    alias tree='ll --tree --level=2'
 else
     echo "exa is not installed."
 fi
 
-alias ll="ls -lahg"
-alias la="ls -a"
+# alias ll="ls -lahg"
+# alias la="ls -a"
 alias lt="ls --sort newest"
 alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
@@ -150,4 +153,3 @@ mkdirdate() {
 alias dateclip='date --iso-8601 | xclip'
 alias today="date +%Y-%m-%d"
 alias now="date +%Y-%m-%d_%H-%m_%S"
-

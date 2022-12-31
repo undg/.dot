@@ -8,9 +8,8 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-history-substring-search"
 plug "zap-zsh/supercharge"
-plug "zap-zsh/exa"
+plug "hlissner/zsh-autopair"
 
-[ -f "$ZDOTDIR/zaliases.zsh" ] && source "$ZDOTDIR/zaliases.zsh" || echo 'file zaliases not found'
 
 # Case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -84,3 +83,6 @@ zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
 # End:  edit command in vim
 #################################
+
+[ -f "$ZDOTDIR/zaliases.zsh" ] && source "$ZDOTDIR/zaliases.zsh" || echo 'file zaliases not found'
+[ -f "$ZDOTDIR/secret.zsh" ] && source "$ZDOTDIR/secret.zsh"
