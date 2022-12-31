@@ -8,3 +8,5 @@ npm-debug.log*
 .npm
 .env
 
+.zcompdump
+.zsh_history
