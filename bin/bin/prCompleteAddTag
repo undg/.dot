@@ -1,0 +1,13 @@
+#!/bin/sh
+
+git pull --tags
+TAG=$(awk -F\" '/"version":/ {print $4}' package.json)
+
+if git rev-parse v$TAG >/dev/null 2>&1
+then
+  echo 'Tag already exist'
+  echo 'Bump version and add changeset'
+else
+  prComplete
+  git-tag-packagejson
+fi
