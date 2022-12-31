@@ -19,6 +19,7 @@ map.normal("<leader>fs", ":Telescope git_status<cr>")
 map.normal("<leader>fq", ":Telescope quickfixhistory<cr>")
 map.normal("<leader>fp", ":Telescope project<cr>")
 map.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>")
+map.normal("<leader>fh", ":Telescope help_tags<cr>")
 
 -- Custom commands
 map.normal("<leader>fvf", ":GotoVimFind<cr>")

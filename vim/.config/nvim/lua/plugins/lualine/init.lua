@@ -23,8 +23,8 @@ local sections = {
 lualine.setup({
     options = {
         icons_enabled = true,
-        -- component_separators = { left = '', right = '' },
-        -- section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
             -- statusline = { 'alpha' },
             -- winbar = { 'alpha' },
