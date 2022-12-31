@@ -1,0 +1,10 @@
+#!/bin/bash
+
+picom &              # Composition manager
+unclutter &          # Hide mouse after brief period of time
+echocancel &         # Remove echo from mic
+dunst &              # notification
+xset r rate 222 40 & # Speedy keys (delay: 222 / speed: 40)
+volctl &             # Volume applet in system tray
+barrier &            # KVM software
+flameshot &          # Screenshots
