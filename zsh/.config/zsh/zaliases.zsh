@@ -1,4 +1,4 @@
-# vim: ts=2 sw=2 ft=sh
+#!/usr/bin/env zsh
 
 alias :q='exit'
 

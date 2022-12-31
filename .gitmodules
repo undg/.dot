@@ -1,48 +1,4 @@
-[submodule "vim/.vim"]
-	path = vim/.vim
-	url = https://github.com/undg/dot_vim.git
-	branch = master
 [submodule "_init"]
 	path = _init
 	url = https://github.com/undg/_init
 	branch = master
-[submodule "zsh/.fzf"]
-	path = zsh/.fzf
-	url = https://github.com/junegunn/fzf.git
-	branch = master
-[submodule "zsh/.zprezto/modules/autosuggestions/external"]
-	path = zsh/.zprezto/modules/autosuggestions/external
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "zsh/.zprezto/modules/history-substring-search/external"]
-	path = zsh/.zprezto/modules/history-substring-search/external
-	url = https://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "zsh/.zprezto/modules/syntax-highlighting/external"]
-	path = zsh/.zprezto/modules/syntax-highlighting/external
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "zsh/.zprezto/modules/completion/external"]
-	path = zsh/.zprezto/modules/completion/external
-	url = https://github.com/zsh-users/zsh-completions.git
-[submodule "zsh/.zprezto/modules/prompt/external/powerline"]
-	path = zsh/.zprezto/modules/prompt/external/powerline
-	url = https://github.com/davidjrice/prezto_powerline.git
-[submodule "zsh/.zprezto/modules/prompt/external/agnoster"]
-	path = zsh/.zprezto/modules/prompt/external/agnoster
-	url = https://github.com/agnoster/agnoster-zsh-theme.git
-[submodule "zsh/.zprezto/modules/prompt/functions/pure"]
-	path = zsh/.zprezto/modules/prompt/external/pure
-	url = https://github.com/sindresorhus/pure.git
-[submodule "zsh/.zprezto/modules/fasd/external"]
-	path = zsh/.zprezto/modules/fasd/external
-	url = https://github.com/clvv/fasd.git
-[submodule "zsh/.zprezto/modules/prompt/external/async"]
-	path = zsh/.zprezto/modules/prompt/external/async
-	url = https://github.com/mafredri/zsh-async.git
-[submodule "zsh/.zprezto/modules/prompt/external/powerlevel9k"]
-	path = zsh/.zprezto/modules/prompt/external/powerlevel9k
-	url = https://github.com/bhilburn/powerlevel9k.git
-[submodule "zsh/.zprezto/modules/prompt/external/pure"]
-	path = zsh/.zprezto/modules/prompt/external/pure
-	url = https://github.com/sindresorhus/pure.git
-[submodule "zsh/.zprezto/contrib/fzf-tab"]
-	path = zsh/.zprezto/contrib/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab
