@@ -49,7 +49,7 @@ set $red #fb4934
 set $darkred #cc241d
 set $darkmagenta #b16286
 set $magenta #d3869b
-set $stronggreen1 #008A0B
+set $stronggreen #008A0B
 set $darkgreen #98971a
 set $green #b8bb26
 set $darkyellow #d79921
@@ -63,9 +63,9 @@ set $blue #83a598
 
 
 #                       BORDER        BACKGROUND   TEXT      INDICATOR     CHILD_BORDER
-client.focused          $red          $red         $white    $darkmagenta  $darkred
-client.unfocused        $transparent  $darkblue    $white    $darkblue     $darkblack
-client.focused_inactive $transparent  "#008A0B"    $white    $darkblue     $darkblack
+client.focused          $red          $red         $white    $stronggreen  $darkred
+client.unfocused        $transparent  $darkblue    $white    $stronggreen  $darkblack
+client.focused_inactive $transparent  $stronggreen $white    $stronggreen  $darkblack
 client.urgent           $darkred      $darkred     $black    $darkred      $darkgreen
 client.background       $black
 
