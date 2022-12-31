@@ -35,8 +35,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 if [[ -f ~/.zshrc ]]; then
     source "$HOME/.zshrc"
-elif [[ -f ~/.bashrc ]]; then
-    source "$HOME/.bashrc"
 fi
 
 # Speedy keys delay/repeatSpeed
