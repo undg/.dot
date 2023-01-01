@@ -1,29 +1,29 @@
 #!/bin/bash
 
-# Git push current branch to remote repo. 
+# Git push current branch to remote repo.
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 REMOTE=$(git remote)
 ARGUMENTS="push -u $REMOTE $BRANCH"
 
 function askYesNo {
-        QUESTION=$1
-        DEFAULT=$2
-        if [ "$DEFAULT" = true ]; then
-                OPTIONS="[Y/n]"
-                DEFAULT="y"
-            else
-                OPTIONS="[y/N]"
-                DEFAULT="n"
-        fi
-        read -p "$QUESTION $OPTIONS " -n 1 -s -r INPUT
-        INPUT=${INPUT:-${DEFAULT}}
-        echo ${INPUT}
-        if [[ "$INPUT" =~ ^[yY]$ ]]; then
-            ANSWER=true
-        else
-            ANSWER=false
-        fi
+    QUESTION=$1
+    DEFAULT=$2
+    if [ "$DEFAULT" = true ]; then
+        OPTIONS="[Y/n]"
+        DEFAULT="y"
+    else
+        OPTIONS="[y/N]"
+        DEFAULT="n"
+    fi
+    read -p "$QUESTION $OPTIONS " -n 1 -s -r INPUT
+    INPUT=${INPUT:-${DEFAULT}}
+    echo ${INPUT}
+    if [[ "$INPUT" =~ ^[yY]$ ]]; then
+        ANSWER=true
+    else
+        ANSWER=false
+    fi
 }
 
 git br --remotes | grep $(git rev-parse --abbrev-ref HEAD)
@@ -31,7 +31,7 @@ echo "git $ARGUMENTS"
 askYesNo "Continue?" true
 
 if [ "$ANSWER" = true ]; then
-        git $ARGUMENTS
-    else
-        echo 'Abort'
+    git $ARGUMENTS
+else
+    echo 'Abort'
 fi
