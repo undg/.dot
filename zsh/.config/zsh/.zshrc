@@ -12,6 +12,7 @@ plug "chrissicool/zsh-256color"
 plug "undg/zsh-nvm-lazy-load"
 plug "undg/zsh-supercharge"
 plug "undg/zsh-auto-notify"
+plug "undg/zsh-autodotenv"
 
 [ -f "$ZDOTDIR/zaliases.zsh" ] && source "$ZDOTDIR/zaliases.zsh" || echo 'file zaliases not found'
 
