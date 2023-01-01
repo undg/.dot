@@ -17,35 +17,28 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 
 # export PATH=$HOME/bin:$PATH
 # export PATH="$NPM_PACKAGES/bin:$PATH"
-if [[ -d "$HOME/.local/bin/" ]]; then
-    export PATH="$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':')$PATH"
-fi
-if [[ -d "$HOME/.deno/bin/" ]]; then
-    export PATH="$HOME/.deno/bin:$PATH"
-fi
+    # export PATH="$HOME/.deno/bin:$PATH"
 # End: old zsh artefacts
 #################
 
 # Set the list of directories that Zsh searches for programs.
-path=(
-    /usr/local/{bin,sbin}
-    ~/bin
-    $path
-)
+# path=(
+#     /usr/local/{bin,sbin}
+#     $path
+# )
+
+# @TODO (undg) 2023-01-01: check that nonsens
 export PATH=$(/usr/bin/printenv PATH | /usr/bin/perl -ne 'print join(":", grep { !/\/mnt\/[a-z]/ } split(/:/));')
 # Adds `~/.config/i3/scripts` and all subdirectories to $PATH
 if [[ -d "$HOME/.config/i3/scripts/" ]]; then
     export PATH="$(du "$HOME/.config/i3/scripts/" | cut -f2 | tr '\n' ':')$PATH"
 fi
+
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
-export BRAVE="brave"
 export CHROME="chromium"
-export READER="zathura"
-# PIX is here I have LARBS keep icons. Subject to change, hence a variable.
-export PIX="$HOME/.config/i3/scripts/pix"
-export SUDO_ASKPASS="$HOME/.config/i3/scripts/tools/dmenupass"
+export READER="xreader"
 
 # less/man colors
 export LESS=-R
