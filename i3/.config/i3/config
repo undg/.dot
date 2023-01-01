@@ -44,24 +44,24 @@ exec_always --no-startup-id xset r rate 250 80                                  
 
 
 set $transparent #000000
-set $darkblack #1d2021
-set $black #928374
-set $darkwhite #a89984
-set $white #ebdbb2
-set $red #fb4934
-set $darkred #cc241d
+set $darkblack   #1d2021
+set $black       #928374
+set $darkwhite   #a89984
+set $white       #ebdbb2
+set $red         #fb4934
+set $darkred     #cc241d
 set $darkmagenta #b16286
-set $magenta #d3869b
+set $magenta     #d3869b
 set $stronggreen #008A0B
-set $darkgreen #98971a
-set $green #b8bb26
-set $darkyellow #d79921
-set $yellow #fabd2f
-set $darkcyan #689d6a
-set $cyan #8ec07c
-set $strongblue #359598
-set $darkblue #458588
-set $blue #83a598
+set $darkgreen   #98971a
+set $green       #b8bb26
+set $darkyellow  #d79921
+set $yellow      #fabd2f
+set $darkcyan    #689d6a
+set $cyan        #8ec07c
+set $strongblue  #359598
+set $darkblue    #458588
+set $blue        #83a598
 
 
 
