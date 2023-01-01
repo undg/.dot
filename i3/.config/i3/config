@@ -40,6 +40,8 @@ exec --no-startup-id sleep 5 && barrier                                         
 exec --no-startup-id sleep 2 && d3                                                   # 3 displays xrandr script
 exec_always --no-startup-id sleep 2 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
 exec_always --no-startup-id i3-autolayout autolayout                                 # https://github.com/chmln/i3-auto-layout
+exec_always --no-startup-id xset r rate 250 80                                       # Speedy keys delay/repeatSpeed
+
 
 set $transparent #000000
 set $darkblack #1d2021
