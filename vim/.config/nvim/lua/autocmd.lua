@@ -1,10 +1,10 @@
 -- Fix auto comment.
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = '*',
     callback = function()
         -- vim.opt.formatoptions:remove("c") -- Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
         -- vim.opt.formatoptions:remove("r") -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
-        vim.opt.formatoptions:remove("o") -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+        vim.opt.formatoptions:remove('o') -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
         -- read more... :help fo-table
     end,
 })
@@ -19,8 +19,8 @@ vim.cmd([[
 ]])
 
 -- Set wrap and spell in gitcommit and markdown
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "gitcommit", "markdown" },
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'gitcommit', 'markdown' },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
@@ -28,21 +28,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Highligh on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+        vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
     end,
 })
 
 -- Automatic toggling between line number modes
 -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
     callback = function()
         -- Simplify UI for certaind filetypes
         if
-            vim.bo.filetype == "alpha" --
-            or vim.bo.filetype == "help"
-            or vim.bo.filetype == "NvimTree"
+            vim.bo.filetype == 'alpha' --
+            or vim.bo.filetype == 'help'
+            or vim.bo.filetype == 'NvimTree'
         then
             vim.opt.relativenumber = false
             return
@@ -52,9 +52,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
 })
 
 -- [Insert] absolute line numbers
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
     callback = function()
         vim.opt.relativenumber = false
     end,
 })
-
