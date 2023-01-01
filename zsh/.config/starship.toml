@@ -1,10 +1,3 @@
-[directory]
-truncate_to_repo          = false
-truncation_length         = 3
-fish_style_pwd_dir_length = 1
-truncation_symbol         = "…/"
-style                     = "#8ec07c bold"
-
 [username]
 show_always = true 
 style_user  = "#b16286 bold"
@@ -13,9 +6,17 @@ format      = "[$user]($style)"
 disabled    = false
 
 [hostname]
-ssh_only = false
-format   =  "@[$hostname](bold #f65d0e) "
-disabled = false
+ssh_only   = false
+format     = "@[$hostname](bold #f65d0e) "
+ssh_symbol = '🌐 '
+disabled   = false
+
+[directory]
+truncate_to_repo          = false
+truncation_length         = 3
+fish_style_pwd_dir_length = 1
+truncation_symbol         = "…/"
+style                     = "#8ec07c bold"
 
 [git_branch]
 style = "#458588 bold"
