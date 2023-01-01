@@ -7,8 +7,11 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-history-substring-search"
 plug "hlissner/zsh-autopair"
+plug "chrissicool/zsh-256color"
+
 plug "undg/zsh-nvm-lazy-load"
 plug "undg/zsh-supercharge"
+plug "undg/zsh-auto-notify"
 
 [ -f "$ZDOTDIR/zaliases.zsh" ] && source "$ZDOTDIR/zaliases.zsh" || echo 'file zaliases not found'
 
