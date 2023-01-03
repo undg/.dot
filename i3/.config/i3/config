@@ -73,7 +73,7 @@ client.urgent           $darkred      $darkred     $black    $darkred      $dark
 client.background       $black
 
 bar {
-    tray_output $DP_right
+    tray_output primary
     separator_symbol "|"
     status_command i3blocks -c ~/.config/i3/i3blocks.cfg
     position top
