@@ -1,11 +1,9 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "350x5-0+24"
     indicate_hidden = yes
     shrink = no
     transparency = 10
-    notification_height = 0
     separator_height = 2
     padding = 9
     horizontal_padding = 12
@@ -63,23 +61,17 @@
 
     title = Dunst
     class = Dunst
-    startup_notification = false
+    # startup_notification = false
     force_xinerama = false
 [experimental]
     per_monitor_dpi = false
-
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"
     foreground = "#ebdbb2"
-    frame_color = "#928374"
+    frame_color = "#DC7929"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
@@ -87,8 +79,8 @@
 [urgency_normal]
     background = "#282828"
     foreground = "#ebdbb2"
-    frame_color = "#928374"
-    timeout = 10
+    frame_color = "#DC7929"
+    timeout = 20
 
 [urgency_critical]
     background = "#cc2421"
