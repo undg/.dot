@@ -220,19 +220,17 @@ for_window $WINDOW_teams       floating     enable
 # no_focus   [title="mpvfloat"]
 
 # #---Basic Bindings---# #
-bindsym $winKey+Return exec $term
-bindsym $winKey+Shift+Return exec --no-startup-id samedir
-bindsym $winKey+Shift+space  floating toggle
-bindsym $winKey+space  focus mode_toggle
-bindsym $winKey+Escape    layout toggle
-bindsym $winKey+Shift+Escape  exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+bindsym $winKey+Return          exec $term
+bindsym $winKey+Shift+Return    exec --no-startup-id samedir
+bindsym $winKey+Shift+space     floating toggle
+bindsym $winKey+space           focus mode_toggle
+bindsym $winKey+Escape          exec --no-startup-id dunstctl close
+bindsym $winKey+Shift+Escape    exec --no-startup-id dunstctl history-pop
 #bindsym $winKey+BackSpace
 bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
-bindsym $winKey+grave  exec --no-startup-id rofimoji
-##bindsym $winKey+asciitilde
-# Show selection:
-bindsym $winKey+Insert        exec --no-startup-id showclip
-bindsym $winKey+Pause        exec --no-startup-id xcqr
+bindsym $winKey+grave           exec --no-startup-id rofimoji --skin-tone neutral --action clipboard copy
+bindsym $winKey+Insert          exec --no-startup-id showclip
+bindsym $winKey+Pause           exec --no-startup-id xcqr
 
 
 # #---Letter Key Bindings---# #
@@ -245,9 +243,9 @@ bindsym $winKey+Shift+w         exec --no-startup-id $BROWSER
 #bindsym $winKey+e
 #bindsym $winKey+Shift+e
 bindsym $winKey+r               exec nemo
-bindsym $winKey+Shift+r         exec --no-startup-id winresize
+# bindsym $winKey+Shift+r         exec --no-startup-id winresize
 bindsym $winKey+t               split toggle
-bindsym $winKey+Shift+t         exec --no-startup-id topright
+bindsym $winKey+Shift+t         layout toggle
 #bindsym $winKey+y
 #bindsym $winKey+Shift+y
 #bindsym $winKey+u
@@ -262,7 +260,7 @@ bindsym $winKey+a               exec --no-startup-id pavu
 bindsym $winKey+Shift+a         exec $term -e pulsemixer
 #bindsym $winKey+s
 #bindsym $winKey+Shift+s
-bindsym $winKey+d               exec --no-startup-id  rofi -show drun
+bindsym $winKey+d               exec --no-startup-id  rofi -show combi
 #bindsym $winKey+Shift+d
 bindsym $winKey+f               fullscreen toggle
 # bindsym $winKey+g               workspace prev
@@ -278,15 +276,16 @@ bindsym $winKey+$altKey+j       exec --no-startup-id i3resize down
 bindsym $winKey+k               focus up
 bindsym $winKey+Shift+k         move up 30
 bindsym $winKey+Ctrl+k          exec --no-startup-id i3resize up
-bindsym $winKey+$altKey+k           exec --no-startup-id i3resize up
+bindsym $winKey+$altKey+k       exec --no-startup-id i3resize up
 bindsym $winKey+l               focus right
 bindsym $winKey+Shift+l         move right 30
 bindsym $winKey+Ctrl+l          exec --no-startup-id i3resize right
-bindsym $winKey+$altKey+l           exec --no-startup-id i3resize right
+bindsym $winKey+$altKey+l       exec --no-startup-id i3resize right
 #bindsym $winKey+z
 #bindsym $winKey+Shift+z
 bindsym $winKey+x               exec --no-startup-id lockscreen
-bindsym $winKey+Shift+x         exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
+bindsym $winKey+Shift+x         exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+# bindsym $winKey+Shift+x         exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 # bindsym $winKey+c
 # bindsym $winKey+Shift+c
 #bindsym $winKey+v
@@ -321,7 +320,7 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 
 
 # #---Function Buttons---# #
-bindsym $winKey+F1                exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf | zathura -
+bindsym $winKey+F1                exec --no-startup-id $BROWSER
 bindsym $winKey+F2                restart
 bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 bindsym $winKey+F5                exec --no-startup-id $netrefresh
