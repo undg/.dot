@@ -34,7 +34,7 @@ exec --no-startup-id echocancel                                                 
 exec --no-startup-id dunst                                                           # notifications
 exec --no-startup-id flameshot                                                       # screenshots
 exec --no-startup-id lxsession                                                       # FE for polkit
-exec --no-startup-id iriunwebcam                                                     # android webcam
+# exec --no-startup-id iriunwebcam                                                     # android webcam
 exec --no-startup-id sleep 5 && volctl                                               # Volume applet in system tray
 exec --no-startup-id sleep 5 && barrier                                              # KVM software
 exec --no-startup-id sleep 2 && d3                                                   # 3 displays xrandr script
