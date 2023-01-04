@@ -1,7 +1,6 @@
 #!/bin/bash
 # Profile file. Runs on login.
 
-
 #################
 # Start: old zsh artefacts
 export GPG_TTY=$(tty)
@@ -17,15 +16,17 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 
 # export PATH=$HOME/bin:$PATH
 # export PATH="$NPM_PACKAGES/bin:$PATH"
-    # export PATH="$HOME/.deno/bin:$PATH"
+# export PATH="$HOME/.deno/bin:$PATH"
 # End: old zsh artefacts
 #################
 
 # Set the list of directories that Zsh searches for programs.
-# path=(
-#     /usr/local/{bin,sbin}
-#     $path
-# )
+path=(
+    /usr/local/{bin,sbin}
+    $HOME/.config/i3/scripts/
+    $HOME/bin/
+    $path
+)
 
 # @TODO (undg) 2023-01-01: check that nonsens
 export PATH=$(/usr/bin/printenv PATH | /usr/bin/perl -ne 'print join(":", grep { !/\/mnt\/[a-z]/ } split(/:/));')
@@ -52,4 +53,3 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
-
