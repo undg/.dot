@@ -1,18 +1,12 @@
 # vim: filetype=config syn=sh
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
-# You can set these variables in ~/.profile or ~/.bash_profile if you have it as below:
-#
-# export BROWSER="firefox"
-# export TERMINAL="st"
-
+# You can set these variables in ~/.zprofile
 
 # #---i3 Settings---# #
 focus_follows_mouse no
-
-
-# #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 4
 
+# #---Basic Definitions---# #
 set $term --no-startup-id $TERMINAL
 set $winKey Mod4
 set $altKey Mod1
@@ -25,22 +19,28 @@ set $DP_left DisplayPort-1
 set $DP_right DisplayPort-0
 set $DP_top HDMI-A-0
 
+set $iriunwebcam_only_on_cm [[ "$(hostname)" == "cm" ]] && iriunwebcam
+set $kodi_only_on_cm [[ "$(hostname)" == "cm" ]] && kodi
+# set $iriunwebcam_only_on_cm iriunwebcam
+set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
+
+
 # #---Starting External Scripts---# #
 # Setting the background:
-# exec --no-startup-id d1;sleep 1; d3; i3-msg restart # xrandr with 3 displays workaround
-exec --no-startup-id picom --config /dev/null                                        # Composite manager
-exec --no-startup-id unclutter                                                       # hide mouse after a brief period
-exec --no-startup-id echocancel                                                      # pulse mixer echo cancelation
-exec --no-startup-id dunst                                                           # notifications
-exec --no-startup-id flameshot                                                       # screenshots
-exec --no-startup-id lxsession                                                       # FE for polkit
-# exec --no-startup-id iriunwebcam                                                     # android webcam
-exec --no-startup-id sleep 5 && volctl                                               # Volume applet in system tray
-exec --no-startup-id sleep 5 && barrier                                              # KVM software
-exec --no-startup-id sleep 2 && d3                                                   # 3 displays xrandr script
-exec_always --no-startup-id sleep 2 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg # wallpaper
-exec_always --no-startup-id i3-autolayout autolayout                                 # https://github.com/chmln/i3-auto-layout
-exec_always --no-startup-id xset r rate 250 80                                       # Speedy keys delay/repeatSpeed
+exec --no-startup-id picom --config /dev/null                    # Composite manager
+exec --no-startup-id unclutter                                   # Hide mouse after a brief period
+exec --no-startup-id echocancel                                  # Pulse mixer echo cancelation
+exec --no-startup-id dunst                                       # Notifications
+exec --no-startup-id flameshot                                   # Screenshots
+exec --no-startup-id lxsession                                   # FE for polkit
+exec --no-startup-id sleep 5 && barrier                          # KVM software
+exec --no-startup-id sleep 2 && d3                               # 3 displays xrandr script
+exec --no-startup-id $iriunwebcam_only_on_cm                     # Android webcam
+exec --no-startup-id sleep 10 && $kodi_only_on_cm                # Media center
+exec_always --no-startup-id sleep 2 && $wallpaper                # Wallpaper
+exec_always --no-startup-id volctl_once                          # Volume applet in system tray
+exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
+exec_always --no-startup-id xset r rate 250 80                   # Speedy keys delay/repeatSpeed
 
 
 set $transparent #000000
@@ -156,26 +156,6 @@ set $WINDOW_plex        [class="plexmediaplayer"]
 set $WINDOW_teams       [title="Microsoft Teams Notification"]
 set $WINDOW_pavucontrol [class="Pavucontrol"]
 
-# #---Dropdown Windows---# #
-# @TODO fix it
-# First I have a tmux window used for background scripts.
-# I'll later bind this to mod+u.
-for_window [instance="tmuxdd"] floating enable
-for_window [instance="tmuxdd"] resize set 630 475
-for_window [instance="tmuxdd"] move scratchpad
-for_window [instance="tmuxdd"] border pixel 3
-for_window [instance="tmuxdd"] sticky enable
-
-# Then I have a window running R I use for basic arithmetic
-# I'll later bind this to mod+a.
-for_window [instance="dropdowncalc"] floating enable
-for_window [instance="dropdowncalc"] resize set 800 300
-for_window [instance="dropdowncalc"] move scratchpad
-for_window [instance="dropdowncalc"] border pixel 2
-for_window [instance="dropdowncalc"] sticky enable
-
-
-for_window $WINDOW_steam move workspace $ws3
 for_window $WINDOW_poe move workspace $ws3
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
@@ -213,15 +193,10 @@ for_window $WINDOW_awakened    border       pixel 1px
 for_window $WINDOW_kodi        border       pixel 1px
 for_window $WINDOW_teams       floating     enable
 
-# # Bindings to make the webcam float and stick.
-# for_window [title="mpvfloat"] floating enable
-# for_window [title="mpvfloat"] sticky   enable
-# for_window [title="mpvfloat"] border   pixel 0
-# no_focus   [title="mpvfloat"]
 
 # #---Basic Bindings---# #
 bindsym $winKey+Return          exec $term
-bindsym $winKey+Shift+Return    exec --no-startup-id samedir
+# bindsym $winKey+Shift+Return    exec --no-startup-id samedir
 bindsym $winKey+Shift+space     floating toggle
 bindsym $winKey+space           focus mode_toggle
 bindsym $winKey+Escape          exec --no-startup-id dunstctl close
@@ -234,7 +209,6 @@ bindsym $winKey+Pause           exec --no-startup-id xcqr
 
 
 # #---Letter Key Bindings---# #
-
 bindsym $winKey+q               [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 bindsym $winKey+Shift+q         [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 #bindsym $winKey+w
