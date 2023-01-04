@@ -21,7 +21,6 @@ set $DP_top HDMI-A-0
 
 set $iriunwebcam_only_on_cm [[ "$(hostname)" == "cm" ]] && iriunwebcam
 set $kodi_only_on_cm [[ "$(hostname)" == "cm" ]] && kodi
-# set $iriunwebcam_only_on_cm iriunwebcam
 set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
 
 
@@ -33,11 +32,11 @@ exec --no-startup-id echocancel                                  # Pulse mixer e
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec --no-startup-id lxsession                                   # FE for polkit
-exec --no-startup-id sleep 5 && barrier                          # KVM software
 exec --no-startup-id sleep 2 && d3                               # 3 displays xrandr script
 exec --no-startup-id $iriunwebcam_only_on_cm                     # Android webcam
-exec --no-startup-id sleep 10 && $kodi_only_on_cm                # Media center
-exec_always --no-startup-id sleep 2 && $wallpaper                # Wallpaper
+exec --no-startup-id sleep 5 && barrier                          # KVM software
+exec --no-startup-id sleep 6 && $kodi_only_on_cm                 # Media center
+exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
 exec_always --no-startup-id volctl_once                          # Volume applet in system tray
 exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
 exec_always --no-startup-id xset r rate 250 80                   # Speedy keys delay/repeatSpeed
@@ -234,7 +233,7 @@ bindsym $winKey+a               exec --no-startup-id pavu
 bindsym $winKey+Shift+a         exec $term -e pulsemixer
 #bindsym $winKey+s
 #bindsym $winKey+Shift+s
-bindsym $winKey+d               exec --no-startup-id  rofi -show combi
+bindsym $winKey+d               exec --no-startup-id  rofi -show drun
 #bindsym $winKey+Shift+d
 bindsym $winKey+f               fullscreen toggle
 # bindsym $winKey+g               workspace prev
