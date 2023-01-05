@@ -19,6 +19,7 @@ alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
 alias lltr="ll --sort oldest"
 
+
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
     alias v="nvim"
@@ -46,8 +47,9 @@ else
     echo "trash is not installed."
 fi
 
+# A trailing space in VALUE causes the next word to be checked for alias substitution when the alias is expanded.
 if hash watch 2>/dev/null; then
-    alias watch="watch --color --interval 0.5"
+    alias watch="watch --color --interval 0.5 "
 fi
 
 if hash git 2>/dev/null; then
