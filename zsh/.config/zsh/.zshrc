@@ -1,25 +1,30 @@
 #!/usr/bin/env zsh
 #################################
 # Start: Helpers
-src() {
-    [ -f "$1" ] && source "$1" || echo "$1 not exist. Abort sourcing"
+function src() {
+    file=$1
+    [ -f "$file" ] && source "$file" || echo "$file not exist. Abort sourcing"
 }
+
 # End
 #################################
 
+src "$ZDOTDIR/zconfig.zsh" 
+
 #################################
 # Start: Plugins
-src "$HOME/.local/share/zap/zap.zsh" # zap plugin manager
+# src "$HOME/.local/share/zap/zap.zsh" # zap plugin manager
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh" || echo "$HOME/.local/share/zap/zap.zsh not exist. Abort sourcing"
 
+# plug "marlonrichert/zsh-autocomplete"
 plug "zsh-users/zsh-completions"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-history-substring-search"
 plug "hlissner/zsh-autopair"
-plug "chrissicool/zsh-256color"
-# plug "undg/zsh-nvm-lazy-load"
-plug "undg/zsh-supercharge"
+# plug "chrissicool/zsh-256color"
+plug "undg/zsh-nvm-lazy-load"
 plug "undg/zsh-auto-notify"
 plug "undg/zsh-autodotenv"
 plug "undg/zsh-z"
@@ -28,7 +33,7 @@ plug "undg/zsh-z"
 
 #################################
 # Start: Sources
-src "/opt/asdf-vm/asdf.sh" 
+# src "/opt/asdf-vm/asdf.sh" 
 src "$ZDOTDIR/zaliases.zsh" 
 src "$ZDOTDIR/secret.zsh" 
 # End
