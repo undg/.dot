@@ -13,6 +13,7 @@ local servers_with_no_configs = {
     "html",
     "prosemd_lsp", -- md
     -- "graphql",
+    -- "clangd", -- c, cpp, objc, objcpp, cuda, proto
 }
 
 local ensure_installed = TableConcat(servers_with_config_files, servers_with_no_configs)
