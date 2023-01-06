@@ -24,3 +24,12 @@ map.normal("<leader>bb", ":BufferLineTogglePin<cr>")
 map.normal("<A-h>", ":BufferLineMovePrev<cr>")
 map.normal("<A-l>", ":BufferLineMoveNext<cr>")
 
+
+-- Close
+local CMD_CLOSE = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>:echom "buffer deleted"<cr>'
+map.normal('<C-Q><C-L>', ':BufferLineCloseRight<cr>:echom "buffer deleted"<cr>')
+map.normal('<C-Q><C-H>', ':BufferLineCloseLeft<CR>:echom "buffer deleted"<cr>')
+map.normal('<C-Q><C-J>', CMD_CLOSE)
+
+map.normal('<leader>q', CMD_CLOSE)
+map.normal('<C-Q><C-Q>', CMD_CLOSE)
