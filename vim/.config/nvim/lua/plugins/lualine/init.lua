@@ -15,7 +15,7 @@ local sections = {
     lualine_b = { s.branch, s.fileformat },
     lualine_c = { s.cwd, '' },
 
-    lualine_x = { s.relative_path, 'diagnostics', 'diff' },
+    lualine_x = { s.location, s.relative_path, 'diagnostics', 'diff' },
     lualine_y = { s.filetype },
     lualine_z = { 'hostname' },
 }
@@ -24,6 +24,7 @@ lualine.setup({
     options = {
         icons_enabled = true,
         component_separators = { left = '', right = '' },
+
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
             -- statusline = { 'alpha' },
