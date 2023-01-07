@@ -4,14 +4,14 @@ if not ok then
     return
 end
 
-local ok, Path = pcall(require, "plenary.path")
-if not ok then
+local path_ok, path = pcall(require, "plenary.path")
+if not path_ok then
     print('lua/plugins/neovim-session-manager.lua: missing plenary.path')
     return
 end
 
-local ok, config = pcall(require, "session_manager.config")
-if not ok then
+local config_ok, config = pcall(require, "session_manager.config")
+if not config_ok then
     print('lua/plugins/neovim-session-manager.lua: missing session_manager.config')
     return
 end
@@ -22,7 +22,7 @@ function AutoloadModeName(mode)
 end
 
 session_manager.setup({
-    sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
+    sessions_dir = path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
     path_replacer = "__",                                        -- The character to which the path separator will be replaced for session files.
     colon_replacer = "++",                                       -- The character to which the colon symbol will be replaced for session files.
     autoload_mode = AutoloadModeName("Disabled"),                -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
