@@ -71,7 +71,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#282828"
     foreground = "#ebdbb2"
-    frame_color = "#DC7929"
+    frame_color = "#DC9C67"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
@@ -80,7 +80,7 @@
     background = "#282828"
     foreground = "#ebdbb2"
     frame_color = "#DC7929"
-    timeout = 20
+    timeout = 10
 
 [urgency_critical]
     background = "#cc2421"
