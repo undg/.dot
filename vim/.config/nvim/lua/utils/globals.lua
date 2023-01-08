@@ -23,3 +23,11 @@ function TableConcat(t1, t2)
 
     return tOut
 end
+
+local bootstrap_ok, ensure_packer = pcall(require, 'bootstrap')
+if not bootstrap_ok then
+    print('lua/utils/global.lua: bootstrap fail')
+    return
+end
+
+PACKER_BOOTSTRAP = ensure_packer()

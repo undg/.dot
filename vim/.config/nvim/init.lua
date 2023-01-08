@@ -1,10 +1,14 @@
 require('utils.globals')
 require('plugins')
-require('theme')
-require('lsp')
-require('config')
 
 require('custom')
+local packer_bootstrap = PACKER_BOOTSTRAP
 
-require('keymaps')
-require('autocmd')
+if packer_bootstrap then
+    require('theme')
+    require('lsp')
+    require('config')
+
+    require('keymaps')
+    require('autocmd')
+end
