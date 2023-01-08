@@ -17,7 +17,7 @@ local ensure_packer = function()
   return false
 end
 
-local PACKER_BOOTSTRAP = ensure_packer()
+local packer_bootstrap = ensure_packer()
 
 
 
@@ -297,7 +297,7 @@ packer.startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
+    if packer_bootstrap then
         require('packer').sync()
     end
 end)
