@@ -1,4 +1,10 @@
-require("bufferline").setup({
+local  ok, bufferline = pcall(require, 'bufferline')
+if not ok then
+print('plugins/bufferline.lua: missing bufferline')
+    return
+end
+
+bufferline.setup({
     options = {
         mode = "buffers", -- set to "tabs" to only show tabpages instead
         numbers = function(opts)

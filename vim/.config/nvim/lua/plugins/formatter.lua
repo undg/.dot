@@ -1,7 +1,12 @@
--- https://github.com/mhartington/formatter.nvim/blob/master/CONFIG.md
+local F = {}
 local map = require('utils.map')
 
-local F = {}
+local  ok, formatter = pcall(require, 'formatter')
+if not ok then
+print('plugins/formatter.lua: missing formatter')
+    return
+end
+
 
 function F.prettier()
     -- @TODO (undg) 2022-11-08: make it async, runn them all in one go
@@ -51,7 +56,7 @@ function F.python()
     }
 end
 
-require('formatter').setup({
+formatter.setup({
     logging = true,
     filetype = {
 

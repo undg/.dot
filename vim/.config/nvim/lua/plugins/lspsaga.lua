@@ -1,4 +1,8 @@
-local lspsaga = require 'lspsaga'
+local  ok, lspsaga = pcall(require, 'lspsaga')
+if not ok then
+print('plugins/lspsaga.lua: missing lspsaga')
+    return
+end
 
 lspsaga.setup { -- defaults ...
     debug = false,

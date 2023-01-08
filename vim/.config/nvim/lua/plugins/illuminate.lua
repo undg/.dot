@@ -1,5 +1,10 @@
--- default configuration
-require('illuminate').configure({
+local  ok, illuminate = pcall(require, 'illuminate')
+if not ok then
+print('plugins/illuminate.lua: missing illuminate')
+    return
+end
+
+illuminate.configure({
     -- providers: provider used to get references in the buffer, ordered by priority
     providers = {
         'lsp',

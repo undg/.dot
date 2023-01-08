@@ -1,7 +1,17 @@
-require'hop'.setup()
--- place this in one of your configuration file(s)
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
+local  ok_hint, hint = pcall(require, 'hop.hint')
+if not ok_hint then
+print('plugins/hop: missing hop.hint')
+    return
+end
+
+local  ok, hop = pcall(require, 'hop')
+if not ok then
+print('plugins/hop: missing hop')
+    return
+end
+
+hop.setup()
+local directions = hint.HintDirection
 vim.keymap.set('', 'f', function()
   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
 end, {remap=true})

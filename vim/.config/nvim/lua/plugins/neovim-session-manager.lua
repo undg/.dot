@@ -10,7 +10,7 @@ if not path_ok then
     return
 end
 
-local config_ok, config = pcall(require, "session_manager.config")
+local config_ok, _ = pcall(require, "session_manager.config")
 if not config_ok then
     print('lua/plugins/neovim-session-manager.lua: missing session_manager.config')
     return

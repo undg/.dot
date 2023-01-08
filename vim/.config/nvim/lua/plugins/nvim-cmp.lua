@@ -1,6 +1,22 @@
-local cmp = require("cmp") -- completion
-local lspkind = require("lspkind") -- icons
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings") -- UltiSnips
+local  ok_cmp, cmp = pcall(require, 'cmp')
+if not ok_cmp then
+print('plugins/nvim-cmp.lua: missing cmp')
+    return
+end
+
+
+local  ok_lspkind, lspkind = pcall(require, 'lspkind')
+if not ok_lspkind then
+print('plugins/nvim-cmp.lua: missing lspkind')
+    return
+end
+
+local  ok_cmp_ultisnips_mappings, cmp_ultisnips_mappings = pcall(require, 'cmp_nvim_ultisnips.mappings')
+if not ok_cmp_ultisnips_mappings then
+print('plugins/nvim-cmp.lua: missing cmp_ultisnips_mappings')
+    return
+end
+
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -42,9 +58,6 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
             vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end,
     },
