@@ -81,6 +81,11 @@ packer.startup(function(use)
             require('plugins.suda')
         end,
     })
+    use { 'rafcamlet/nvim-luapad',
+        config = function ()
+            require('plugins.luapad')
+        end
+    }
 
     -- Git
     use({
