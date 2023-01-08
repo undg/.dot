@@ -3,6 +3,10 @@
 Don't forget about submodules.
 ```
 git clone -j8 --recursive https://github.com/undg/.dot
+cd .dot
+git submodule foreach git pull
+sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)   # Install zap.
+./install
 ```
 > -j8 is an optional performance optimization available in version 2.8. It fetches up to 8 submodules in parallel.
 
@@ -23,9 +27,7 @@ git submodule update
 done
 
 
-```
-git submodule foreach git pull
-```
+
 
 ## full system setup
 run ansible playbook
@@ -37,5 +39,6 @@ cd _init
 
 ```
 ./install
+./clean-env
 ```
 
