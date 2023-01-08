@@ -27,15 +27,18 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
     dashboard.button('sl', '   >  Last session', ':SessionManager load_last_session<CR>'),
+    dashboard.button('oo', '   >  Old files', ':Telescope oldfiles<CR>'),
+    dashboard.button('oo', '   >  Old files', ':Telescope oldfiles cwd_only=true<CR>'),
     dashboard.button('ss', '   >  Sessions list', ':SessionManager load_session<CR>'),
     dashboard.button('sc', '鬒  >  Session (current dir)', ':SessionManager load_current_dir_session<CR>'),
-    dashboard.button('fo', '   >  Recent', ':Telescope oldfiles<CR>'),
     dashboard.button('fp', '⌨   >  Projects', ':Telescope project<CR>'),
-    dashboard.button(',.', '   >  Find file', ':Telescope find_files<CR>'),
-    dashboard.button( 'v', '   >  Nvim Settings', ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'),
-    dashboard.button( 'd', '   >  Dot', ':cd ~/.dot/ |  Telescope oldfiles cwd_only=true<CR>'),
+    dashboard.button('ff', '   >  Find files', ':Telescope find_files<CR>'),
+    dashboard.button('fv', '   >  Nvim find files', ':cd ~/.config/nvim/ | Telescope find_files cwd_only=true<CR>'),
+    dashboard.button('ov', '   >  Nvim old files', ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'),
+    dashboard.button('fd', '   >  Dot find files', ':cd ~/.dot/ |  Telescope find_files cwd_only=true<CR>'),
+    dashboard.button('od', '   >  Dot old files', ':cd ~/.dot/ |  Telescope oldfiles cwd_only=true<CR>'),
     dashboard.button( 'e', '   >  New file', ':enew <BAR> startinsert <CR>'),
-    dashboard.button( 'q', '   >  Quit NVIM', ':qa<CR>'),
+    dashboard.button( 'q', '   >  Quit', ':qa<CR>'),
     dashboard.button('<C-c>', '', ':qa<CR>'),
 }
 
