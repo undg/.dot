@@ -1,6 +1,6 @@
 [global]
     monitor = 0
-    follow = keyboard
+    follow = none
     indicate_hidden = yes
     shrink = no
     transparency = 10
@@ -23,6 +23,8 @@
     # Sort messages by urgency.
     sort = yes
 
+    notification_limit = 10
+    progress_bar = true
     idle_threshold = 120
     font = mononoki Nerd Font 14
     line_height = 0
