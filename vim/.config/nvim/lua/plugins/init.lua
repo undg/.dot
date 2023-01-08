@@ -1,30 +1,22 @@
 -- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP` that is used at the end of this file.
--- local bootstrap_ok, _ = pcall(require, 'bootstrap')
--- if not bootstrap_ok then
---     print('lua/plugins/init.lua: bootstrap fail')
---     return
--- end
-
-
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local bootstrap_ok, ensure_packer = pcall(require, 'bootstrap')
+if not bootstrap_ok then
+    print('lua/plugins/init.lua: bootstrap fail')
+    return
 end
 
+-- local ensure_packer = function()
+--     local fn = vim.fn
+--     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+--     if fn.empty(fn.glob(install_path)) > 0 then
+--         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+--         vim.cmd([[packadd packer.nvim]])
+--         return true
+--     end
+--     return false
+-- end
+
 local packer_bootstrap = ensure_packer()
-
-
-
-
-
-
-
 
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
