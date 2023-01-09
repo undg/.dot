@@ -1,6 +1,6 @@
 local  ok_wkey, wkey = pcall(require, 'which-key')
 if not ok_wkey then
-print('plugins/which-key.lua: missing which-key')
+    print('plugins/which-key.lua: missing requirements')
     return
 end
 

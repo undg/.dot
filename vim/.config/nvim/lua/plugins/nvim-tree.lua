@@ -1,6 +1,6 @@
 local  ok_nvim_tree, nvim_tree = pcall(require, 'nvim-tree')
 if not ok_nvim_tree then
-print('plugins/nvim-tree.lua: missing nvim-tree')
+    print('plugins/nvim-tree.lua: missing requirements')
     return
 end
 

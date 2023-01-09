@@ -1,6 +1,6 @@
 local  ok_comment, comment = pcall(require, 'Comment')
 if not ok_comment then
-    print('plugins/Comment: missing requirements')
+    print('plugins/Comment: failed to load requirements')
     return
 end
 

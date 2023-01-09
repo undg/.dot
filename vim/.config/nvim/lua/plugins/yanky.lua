@@ -1,6 +1,6 @@
 local  ok_yanky, yanky = pcall(require, 'yanky')
 if not ok_yanky then
-print('plugins/yanky.lua: missing yanky')
+    print('plugins/yanky.lua: missing requirements')
     return
 end
 

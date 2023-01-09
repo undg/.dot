@@ -1,12 +1,4 @@
--- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP` that is used at the end of this file.
--- local bootstrap_ok, ensure_packer = pcall(require, 'bootstrap')
--- if not bootstrap_ok then
---     print('lua/plugins/init.lua: bootstrap fail')
---     return
--- end
---
--- local packer_bootstrap = ensure_packer()
-local bootstraping = PACKER_BOOTSTRAPING
+local bootstraping = PACKER_BOOTSTRAPING -- globals.lua
 
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then

@@ -1,6 +1,6 @@
 local  ok_devicons, devicons = pcall(require, 'nvim-web-devicons')
 if not ok_devicons then
-print('plugins/nvim-web-devicons.lua: missing nvim-web-devicons')
+    print('plugins/nvim-web-devicons.lua: missing requirements')
     return
 end
 

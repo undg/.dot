@@ -1,6 +1,6 @@
 local  ok_trouble, trouble = pcall(require, 'trouble')
 if not ok_trouble then
-print('plugins/trouble.lua: missing trouble')
+    print('plugins/trouble.lua: missing requirements')
     return
 end
 

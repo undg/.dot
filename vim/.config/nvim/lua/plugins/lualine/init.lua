@@ -2,7 +2,7 @@ local ok_lualine, lualine = pcall(require, 'lualine')
 local ok_s, s = pcall(require, 'plugins.lualine.sections')
 
 if not ok_s or not ok_lualine then
-    print('lua/plugins/lualine.lua: fail to requirements')
+    print('lua/plugins/lualine.lua: fail to load requirements')
     return
 end
 

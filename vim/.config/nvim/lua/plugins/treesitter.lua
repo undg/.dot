@@ -1,6 +1,6 @@
 local  ok_ts_configs, ts_configs = pcall(require, 'nvim-treesitter.configs')
 if not ok_ts_configs then
-print('plugins/treesitter.configs.lua: missing nvim-treesitter.configs')
+    print('plugins/treesitter.configs.lua: missing requirements')
     return
 end
 

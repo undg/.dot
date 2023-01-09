@@ -1,6 +1,6 @@
 local  ok_prettier, prettier = pcall(require, 'prettier')
 if not ok_prettier then
-print('plugins/prettier.lua: missing prettier')
+    print('plugins/prettier.lua: missing requirements')
     return
 end
 
