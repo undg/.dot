@@ -1,12 +1,8 @@
-local  ok_actions, actions = pcall(require, 'telescope.actions')
-if not ok_actions then
-    print('plugins/telescope/goto: missing telescope.actions')
-    return
-end
+local ok_telescope, telescope = pcall(require, 'telescope')
+local ok_actions, actions = pcall(require, 'telescope.actions')
 
-local telescope_ok, telescope = pcall(require, 'telescope')
-if not telescope_ok then
-    print('plugins/telescope/init: missing telescope')
+if not ok_telescope or not ok_actions then
+    print('plugins/telescope/goto: missing requirements')
     return
 end
 
@@ -102,10 +98,11 @@ telescope.setup({
 })
 
 -- load_extension's, somewhere after setup function:
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('file_browser')
-require('telescope').load_extension('ui-select')
-require('telescope').load_extension('harpoon')
-require('telescope').load_extension('project')
+telescope.load_extension('fzf')
+telescope.load_extension('file_browser')
+telescope.load_extension('ui-select')
+telescope.load_extension('harpoon')
+telescope.load_extension('project')
 
+-- wrapper with got commands
 require('plugins.telescope.goto_commands')

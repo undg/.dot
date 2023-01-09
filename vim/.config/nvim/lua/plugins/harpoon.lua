@@ -1,6 +1,6 @@
-local harpoon_ok, harpoon = pcall(require, 'harpoon')
-if not harpoon_ok then
-print('plugins/harpoon.lua: missing harpoon')
+local ok_harpoon, harpoon = pcall(require, 'harpoon')
+if not ok_harpoon then
+    print('plugins/harpoon.lua: missing requirement')
     return
 end
 

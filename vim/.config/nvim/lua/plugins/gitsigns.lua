@@ -1,6 +1,6 @@
-local  ok, gitsigns = pcall(require, 'gitsigns')
-if not ok then
-print('plugins/gitsigns.lua: missing gitsigns')
+local  ok_gitsigns, gitsigns = pcall(require, 'gitsigns')
+if not ok_gitsigns then
+print('plugins/gitsigns.lua: missing requirement')
     return
 end
 

@@ -1,17 +1,20 @@
 require('utils.globals')
 
+local ok_packer, _ = pcall(require, 'packer')
 
-local packer_bootstrap = PACKER_BOOTSTRAP
-require('plugins')
-
-if not packer_bootstrap then
-    require('custom')
-
-    require('theme')
-    require('lsp')
-    require('config')
-
-
-    require('keymaps')
-    require('autocmd')
+if ok_packer then
+    require('plugins')
 end
+
+if PACKER_BOOTSTRAPING then
+    return
+end
+
+require('custom')
+
+require('theme')
+require('lsp')
+require('config')
+
+require('keymaps')
+require('autocmd')

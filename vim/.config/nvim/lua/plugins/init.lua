@@ -6,11 +6,11 @@
 -- end
 --
 -- local packer_bootstrap = ensure_packer()
-local packer_bootstrap = PACKER_BOOTSTRAP
+-- local bootstraping = PACKER_BOOTSTRAPINGING
 
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
-    print('nvim/lua/plugins/init.lua: packer fail')
+    print('plugins/init.lua: missing requirements')
     return
 end
 
@@ -245,14 +245,14 @@ packer.startup(function(use)
         end,
     })
     use('stevearc/dressing.nvim')
-    use({
-        'ziontee113/icon-picker.nvim',
-        config = function()
-            require('icon-picker').setup({
-                disable_legacy_commands = true,
-            })
-        end,
-    })
+    -- use({
+    --     'ziontee113/icon-picker.nvim',
+    --     config = function()
+    --         require('icon-picker').setup({
+    --             disable_legacy_commands = true,
+    --         })
+    --     end,
+    -- })
 
     -- Look and feel
     use({
@@ -284,7 +284,7 @@ packer.startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAPINGING then
         require('packer').sync()
     end
 end)

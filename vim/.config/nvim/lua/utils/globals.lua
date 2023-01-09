@@ -26,8 +26,8 @@ end
 
 local bootstrap_ok, ensure_packer = pcall(require, 'bootstrap')
 if not bootstrap_ok then
-    print('lua/utils/global.lua: bootstrap fail')
+    print('utils/global.lua: bootstrap fail')
     return
 end
 
-PACKER_BOOTSTRAP = ensure_packer()
+PACKER_BOOTSTRAPING = ensure_packer()

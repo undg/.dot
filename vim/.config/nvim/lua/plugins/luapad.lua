@@ -1,6 +1,6 @@
-local  ok, luapad = pcall(require, 'luapad')
-if not ok then
-print('plugins/luapad.lua: missing luapad')
+local  ok_luapad, luapad = pcall(require, 'luapad')
+if not ok_luapad then
+print('plugins/luapad.lua: missing requirements')
     return
 end
 

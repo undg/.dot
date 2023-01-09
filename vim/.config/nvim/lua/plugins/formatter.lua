@@ -1,9 +1,9 @@
 local F = {}
 local map = require('utils.map')
 
-local  ok, formatter = pcall(require, 'formatter')
-if not ok then
-print('plugins/formatter.lua: missing formatter')
+local  ok_formatter, formatter = pcall(require, 'formatter')
+if not ok_formatter then
+    print('plugins/formatter.lua: missing requirements')
     return
 end
 

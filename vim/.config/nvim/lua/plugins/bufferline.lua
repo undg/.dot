@@ -1,6 +1,6 @@
-local  ok, bufferline = pcall(require, 'bufferline')
-if not ok then
-print('plugins/bufferline.lua: missing bufferline')
+local  ok_bufferline, bufferline = pcall(require, 'bufferline')
+if not ok_bufferline then
+    print('plugins/bufferline.lua: missing requirements')
     return
 end
 

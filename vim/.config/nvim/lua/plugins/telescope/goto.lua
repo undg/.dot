@@ -1,12 +1,8 @@
+local  ok_telescope, telescope = pcall(require, 'telescope')
 local  ok_tb, tb = pcall(require, 'telescope.builtin')
-if not ok_tb then
-    print('plugins/telescope/goto: missing require')
-    return
-end
 
-local  telescope_ok, telescope = pcall(require, 'telescope')
-if not telescope_ok then
-    print('plugins/telescope/goto: missing require')
+if not ok_telescope or not ok_tb then
+    print('plugins/telescope/goto: missing requirements')
     return
 end
 

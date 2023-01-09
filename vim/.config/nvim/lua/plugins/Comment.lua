@@ -1,6 +1,6 @@
-local  ok, comment = pcall(require, 'Comment')
-if not ok then
-    print('plugins/Comment: missing Comment')
+local  ok_comment, comment = pcall(require, 'Comment')
+if not ok_comment then
+    print('plugins/Comment: missing requirements')
     return
 end
 

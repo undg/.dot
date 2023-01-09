@@ -1,6 +1,6 @@
-local  ok, illuminate = pcall(require, 'illuminate')
-if not ok then
-print('plugins/illuminate.lua: missing illuminate')
+local ok_illuminate, illuminate = pcall(require, 'illuminate')
+if not ok_illuminate then
+    print('plugins/illuminate.lua: missing requirements')
     return
 end
 
@@ -50,4 +50,3 @@ illuminate.configure({
     -- min_count_to_highlight: minimum number of matches required to perform highlighting
     min_count_to_highlight = 1,
 })
-
