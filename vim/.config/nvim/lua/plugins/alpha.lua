@@ -1,12 +1,8 @@
-local alpha_ok, alpha = pcall(require, 'alpha')
-if not alpha_ok then
-    print('lua/plugins/alpha.lua: alpha fail to load')
-    return
-end
+local ok_alpha, alpha = pcall(require, 'alpha')
+local ok_dashboard, dashboard = pcall(require, 'alpha.themes.dashboard')
 
-local dashboard_ok, dashboard = pcall(require, 'alpha.themes.dashboard')
-if not dashboard_ok then
-    print('lua/plugins/alpha.lua: alpha.themes.dashboard fail to load')
+if not ok_alpha or not ok_dashboard then
+    print('lua/plugins/alpha.lua: missing requirements')
     return
 end
 

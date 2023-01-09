@@ -1,5 +1,10 @@
-local wk = require('which-key')
-wk.setup({
+local  ok_wkey, wkey = pcall(require, 'which-key')
+if not ok_wkey then
+    print('plugins/which-key.lua: missing requirements')
+    return
+end
+
+wkey.setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

@@ -1,4 +1,10 @@
-require("harpoon").setup({
+local ok_harpoon, harpoon = pcall(require, 'harpoon')
+if not ok_harpoon then
+    print('plugins/harpoon.lua: missing requirement')
+    return
+end
+
+harpoon.setup({
     -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
     save_on_toggle = true,
 
@@ -12,7 +18,7 @@ require("harpoon").setup({
     tmux_autoclose_windows = false,
 
     -- filetypes that you want to prevent from adding to the harpoon list menu.
-    excluded_filetypes = { "harpoon" },
+    excluded_filetypes = { 'harpoon' },
 
     -- set marks specific to each git branch inside git repository
     mark_branch = false,
@@ -20,4 +26,3 @@ require("harpoon").setup({
         width = vim.api.nvim_win_get_width(0) - 20,
     },
 })
-
