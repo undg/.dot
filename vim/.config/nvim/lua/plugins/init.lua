@@ -6,7 +6,7 @@
 -- end
 --
 -- local packer_bootstrap = ensure_packer()
--- local bootstraping = PACKER_BOOTSTRAPINGING
+local bootstraping = PACKER_BOOTSTRAPING
 
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
@@ -81,11 +81,12 @@ packer.startup(function(use)
             require('plugins.suda')
         end,
     })
-    use { 'rafcamlet/nvim-luapad',
-        config = function ()
+    use({
+        'rafcamlet/nvim-luapad',
+        config = function()
             require('plugins.luapad')
-        end
-    }
+        end,
+    })
 
     -- Git
     use({
@@ -245,14 +246,15 @@ packer.startup(function(use)
         end,
     })
     use('stevearc/dressing.nvim')
-    -- use({
-    --     'ziontee113/icon-picker.nvim',
-    --     config = function()
-    --         require('icon-picker').setup({
-    --             disable_legacy_commands = true,
-    --         })
-    --     end,
-    -- })
+    use({
+        'ziontee113/icon-picker.nvim',
+        config = function()
+            require('icon-picker').setup({
+                disable_legacy_commands = true,
+            })
+        end,
+        cmd = { 'IconPickerYank', 'IconPickerInsert', 'IconPickerNormal' },
+    })
 
     -- Look and feel
     use({
@@ -284,7 +286,7 @@ packer.startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAPINGING then
+    if bootstraping then
         require('packer').sync()
     end
 end)

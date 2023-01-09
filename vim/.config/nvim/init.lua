@@ -1,12 +1,13 @@
 require('utils.globals')
 
 local ok_packer, _ = pcall(require, 'packer')
+local bootstraping = PACKER_BOOTSTRAPING
 
 if ok_packer then
     require('plugins')
 end
 
-if PACKER_BOOTSTRAPING then
+if bootstraping then
     return
 end
 
