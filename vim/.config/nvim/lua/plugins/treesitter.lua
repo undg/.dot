@@ -1,6 +1,12 @@
+local  ok_ts_configs, ts_configs = pcall(require, 'nvim-treesitter.configs')
+if not ok_ts_configs then
+    print('plugins/treesitter.configs.lua: missing requirements')
+    return
+end
+
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
-require("nvim-treesitter.configs").setup({
+ts_configs.setup({
     ensure_installed = {
         "help",
         "html",

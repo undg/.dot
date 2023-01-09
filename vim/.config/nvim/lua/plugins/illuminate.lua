@@ -1,5 +1,10 @@
--- default configuration
-require('illuminate').configure({
+local ok_illuminate, illuminate = pcall(require, 'illuminate')
+if not ok_illuminate then
+    print('plugins/illuminate.lua: missing requirements')
+    return
+end
+
+illuminate.configure({
     -- providers: provider used to get references in the buffer, ordered by priority
     providers = {
         'lsp',
@@ -45,4 +50,3 @@ require('illuminate').configure({
     -- min_count_to_highlight: minimum number of matches required to perform highlighting
     min_count_to_highlight = 1,
 })
-

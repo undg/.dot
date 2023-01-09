@@ -1,22 +1,13 @@
+local ok_path, my_path = pcall(require, 'utils.path')
+local ok_window, my_window = pcall(require, 'utils.window')
+local ok_s, s = pcall(require, 'utils.string')
+
+if not ok_path or not ok_window or not ok_s then
+    print('lua/plugins/lualine/sections: fail to load requirments')
+    return
+end
+
 local M = {}
-
-local path_ok, my_path = pcall(require, 'utils.path')
-if not path_ok then
-    print('lua/plugins/lualine.lua: fail to load utils.path')
-    return
-end
-
-local window_ok, my_window = pcall(require, 'utils.window')
-if not window_ok then
-    print('lua/plugins/lualine.lua: fail to load utils.window')
-    return
-end
-
-local s_ok, s = pcall(require, 'utils.string')
-if not s_ok then
-    print('lua/plugins/lualine.lua: fail to load utils.string')
-    return
-end
 
 local path_type = {
     relative = 1,

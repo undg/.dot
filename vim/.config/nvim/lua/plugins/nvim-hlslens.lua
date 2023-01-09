@@ -1,17 +1,23 @@
-local map = require("utils.map")
+local ok_hlslens, hlslens = pcall(require, 'hlslens')
+if not ok_hlslens then
+    print('plugins/nvim-hlslens.lua: missing hlslens')
+    return
+end
+
+local map = require('utils.map')
 
 -- Remap default keymaps with plugin wrapper
 local kopts = { noremap = true, silent = true }
-map.normal("n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-map.normal("N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-map.normal("*", [[*<Cmd>lua require('hlslens').start()<CR>N]], kopts)
-map.normal("#", [[#<Cmd>lua require('hlslens').start()<CR>N]], kopts)
-map.normal("g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-map.normal("g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+map.normal('n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+map.normal('N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+map.normal('*', [[*<Cmd>lua require('hlslens').start()<CR>N]], kopts)
+map.normal('#', [[#<Cmd>lua require('hlslens').start()<CR>N]], kopts)
+map.normal('g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+map.normal('g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 -- map.normal("<Leader>l", ":noh<CR>", kopts)
 
 -- doc: https://github.com/kevinhwang91/nvim-hlslens
-require("hlslens").setup({
+hlslens.setup({
     auto_enable = {
         description = [[Enable nvim-hlslens automatically]],
         default = true,
@@ -35,7 +41,7 @@ require("hlslens").setup({
             'auto': floating window will be opened if room isn't enough for virtual text;
             'always': always use floating window instead of virtual text;
             'never': never use floating window for the nearest lens]],
-        default = "auto",
+        default = 'auto',
     },
     float_shadow_blend = {
         description = [[Winblend of the nearest floating window. `:h winbl` for more details]],

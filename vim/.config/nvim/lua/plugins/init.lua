@@ -1,34 +1,8 @@
--- Automatically install packer and asigning global variable `PACKER_BOOTSTRAP` that is used at the end of this file.
--- local bootstrap_ok, _ = pcall(require, 'bootstrap')
--- if not bootstrap_ok then
---     print('lua/plugins/init.lua: bootstrap fail')
---     return
--- end
-
-
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-local PACKER_BOOTSTRAP = ensure_packer()
-
-
-
-
-
-
-
+local bootstraping = PACKER_BOOTSTRAPING -- globals.lua
 
 local packer_ok, packer = pcall(require, 'packer')
 if not packer_ok then
-    print('nvim/lua/plugins/init.lua: packer fail')
+    print('plugins/init.lua: missing requirements')
     return
 end
 
@@ -97,6 +71,12 @@ packer.startup(function(use)
         'lambdalisue/suda.vim',
         config = function()
             require('plugins.suda')
+        end,
+    })
+    use({
+        'rafcamlet/nvim-luapad',
+        config = function()
+            require('plugins.luapad')
         end,
     })
 
@@ -265,6 +245,7 @@ packer.startup(function(use)
                 disable_legacy_commands = true,
             })
         end,
+        cmd = { 'IconPickerYank', 'IconPickerInsert', 'IconPickerNormal' },
     })
 
     -- Look and feel
@@ -297,7 +278,7 @@ packer.startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
+    if bootstraping then
         require('packer').sync()
     end
 end)
