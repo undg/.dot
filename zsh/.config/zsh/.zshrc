@@ -9,7 +9,11 @@ function src() {
 }
 
 # plug
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh" || sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh)
+if [[ -f "$HOME/.local/share/zap/zap.zsh" ]]; then
+    source "$HOME/.local/share/zap/zap.zsh"
+else
+    sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
+fi
 
 # git ignored but sourced
 touch -a "$ZDOTDIR/private.zsh"
@@ -19,11 +23,11 @@ touch -a "$ZDOTDIR/private.zsh"
 
 #################################
 # Start: Sources
-src "/opt/asdf-vm/asdf.sh"
 src "$ZDOTDIR/config.zsh"
 src "$ZDOTDIR/path.zsh"
 src "$ZDOTDIR/aliases.zsh"
 src "$ZDOTDIR/private.zsh"
+src "/opt/asdf-vm/asdf.sh"
 # End
 #################################
 
