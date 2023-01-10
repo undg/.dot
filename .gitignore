@@ -10,4 +10,4 @@ npm-debug.log*
 
 .zcompdump*
 .zsh_history
-secret.zsh
+private.zsh
