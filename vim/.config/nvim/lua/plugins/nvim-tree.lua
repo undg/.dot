@@ -111,7 +111,7 @@ nvim_tree.setup({
             },
         },
         special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
-        symlink_destination = true,
+        symlink_destination = false,
     },
     hijack_directories = {
         enable = true,
