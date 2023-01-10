@@ -16,8 +16,10 @@ map.normal('q:', ':q')
 map.insert('jk', '<ESC>')
 
 -- write only
-map.normal('<LEADER><LEADER>', ':write<CR><ESC>')
-map.normal('<LEADER><CR>', ':write<CR><ESC>')
+map.normal('<LEADER><LEADER>', ':write<CR>')
+map.normal('<LEADER><CR>', ':write<CR>')
+map.normal(';w', ':write<CR>')
+map.normal(';a', ':wall<CR>')
 -- quit only
 -- map.normal("QQ", ":q<CR>") -- align with ZZ, that is default keybinding for write and quit
 map.normal('XX', ':q!<CR>') -- easier ZQ, quit don't save

@@ -23,10 +23,11 @@ map.normal('<A-l>', ':BufferLineMoveNext<cr>')
 
 -- Close
 local CMD_CLOSE = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>:echom "buffer deleted"<cr>'
-map.normal('<C-Q><C-L>', ':BufferLineCloseRight<cr>:echom "buffer deleted"<cr>')
-map.normal('<C-Q><C-H>', ':BufferLineCloseLeft<CR>:echom "buffer deleted"<cr>')
-map.normal('<C-Q><C-J>', CMD_CLOSE)
-map.normal('<C-Q><C-K>', ':wqa<CR>')
+map.normal('<leader>qh', ':BufferLineCloseLeft<CR>:echom "buffer deleted"<cr>')
+map.normal('<leader>qj', CMD_CLOSE)
+map.normal('<leader>qk', CMD_CLOSE)
+map.normal('<leader>qq', CMD_CLOSE)
+map.normal('<leader>ql', ':BufferLineCloseRight<cr>:echom "buffer deleted"<cr>')
 
-map.normal('<leader>q', CMD_CLOSE)
+map.normal(';q', CMD_CLOSE)
 map.normal('<C-Q><C-Q>', CMD_CLOSE)
