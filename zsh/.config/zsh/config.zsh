@@ -1,39 +1,27 @@
+#!/usr/bin/env zsh
 autoload -Uz plug
 
-# completions
-# autoload -Uz compinit && compinit
 
-# zstyle ':completion:*' menu yes select
+autoload -Uz compinit
+# relaxed search: can start from middle, case insensitive
 
-# Completion case insensitive, but also search for the match in the whole string
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z} l:|=* r:|=*'
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z} l:|?=** r:|?=**'
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
-# Looks normal, I'm not sure about end of it.
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-
-
-
-# zstyle ':completion:*' completer _complete
-# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-# autoload -Uz compinit
-# compinit
-
-
-# zmodload zsh/complist
-# _comp_options+=(globdots)		# Include hidden files.
-# zle_highlight=('paste:none')
-# for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
-#   compinit
-# done
-# compinit -C
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
+zle_highlight=('paste:none')
+# cache
+for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
+  compinit
+done
+compinit -C
 
 unsetopt BEEP
-setopt AUTO_CD
+# setopt AUTO_CD
 setopt GLOB_DOTS
 setopt NOMATCH
-setopt MENU_COMPLETE
+unsetopt MENU_COMPLETE
+setopt AUTO_MENU
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY
@@ -57,9 +45,5 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # Colors
 autoload -Uz colors && colors
 
-# exports
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.deno/bin:$PATH"
 
 

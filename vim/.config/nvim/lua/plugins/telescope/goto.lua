@@ -28,7 +28,7 @@ function M.vim()
 end
 
 function M.zsh()
-    vim.cmd([[ :cd  ~/.dot/zsh/ ]])
+    vim.cmd([[ :cd  ~/.dot/zsh/.config/zsh ]])
     return T
 end
 
@@ -39,11 +39,6 @@ end
 
 function M.code()
     vim.cmd([[ :cd  ~/Code/ ]])
-    return T
-end
-
-function M.hmrc()
-    vim.cmd([[ :cd  ~/Code/Pega/hmrc-react/ ]])
     return T
 end
 

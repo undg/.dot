@@ -238,15 +238,6 @@ packer.startup(function(use)
         end,
     })
     use('stevearc/dressing.nvim')
-    use({
-        'ziontee113/icon-picker.nvim',
-        config = function()
-            require('icon-picker').setup({
-                disable_legacy_commands = true,
-            })
-        end,
-        cmd = { 'IconPickerYank', 'IconPickerInsert', 'IconPickerNormal' },
-    })
 
     -- Look and feel
     use({
