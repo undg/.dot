@@ -1,22 +1,29 @@
 #!/usr/bin/env zsh
 #################################
-# Start: Helpers
+# Start: Initialisation
+
+# src
 function src() {
     file=$1
-    [ -f "$file" ] && source "$file" || echo "$file not exist. Abort sourcing"
+    [ -f "$file" ] && source "$file" || echo "$file not exist."
 }
 
+# plug
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh" || sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh)
+
+# git ignored but sourced
+touch -a "$ZDOTDIR/private.zsh"
+
 # End
 #################################
 
 #################################
 # Start: Sources
 src "/opt/asdf-vm/asdf.sh"
-src "$ZDOTDIR/zconfig.zsh"
-src "$ZDOTDIR/zpath.zsh"
-src "$ZDOTDIR/zaliases.zsh"
-src "$ZDOTDIR/secret.zsh"
+src "$ZDOTDIR/config.zsh"
+src "$ZDOTDIR/path.zsh"
+src "$ZDOTDIR/aliases.zsh"
+src "$ZDOTDIR/private.zsh"
 # End
 #################################
 
