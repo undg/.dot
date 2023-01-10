@@ -6,9 +6,10 @@ vim.opt.sessionoptions = vim.opt.sessionoptions + 'globals'                    -
 vim.opt.mouse = "n"                                                            -- mouse only in normal mode
 vim.o.updatetime = 250                                                         -- Decrease update time
 
-vim.opt.timeout = false                                                        -- This option and 'timeoutlen' determine the behavior when part of a mapped key sequence has been received.
+vim.opt.timeout = true                                                         -- This option and 'timeoutlen' determine the behavior when part of a mapped key sequence has been received.
 vim.opt.timeoutlen = 500                                                       -- wait that long for motion sequence to end
 vim.opt.ttimeout = true                                                        -- This option and 'ttimeoutlen' determine the behavior when part of a key code sequence has been received by the |TUI|.
+vim.opt.ttimeoutlen = 50                                                       -- Time in milliseconds to wait for a key code sequence to complete.
 
 vim.opt.backup = false                                                         -- Turn off backup
 vim.opt.writebackup = false                                                    -- Turn off writebackup
