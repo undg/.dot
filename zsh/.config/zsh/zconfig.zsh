@@ -20,6 +20,8 @@ autoload -Uz plug
 # autoload -Uz compinit
 # compinit
 
+# relaxed search: can start from middle, case insensitive
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
 # zmodload zsh/complist
 # _comp_options+=(globdots)		# Include hidden files.
@@ -30,10 +32,11 @@ autoload -Uz plug
 # compinit -C
 
 unsetopt BEEP
-setopt AUTO_CD
+# setopt AUTO_CD
 setopt GLOB_DOTS
 setopt NOMATCH
-setopt MENU_COMPLETE
+unsetopt MENU_COMPLETE
+setopt AUTO_MENU
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY

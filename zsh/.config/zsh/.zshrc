@@ -45,8 +45,8 @@ src "$ZDOTDIR/secret.zsh"
 # zstyle ':completion:*' completer _complete
 # zstyle ':completion:*' completer _complete _list _expand _ignored _match _correct _approximate _prefix
 # zstyle ':completion:*' completer _list _expand _complete _ignored _match _correct _approximate _prefix
-# search from middle
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+# relaxed search: can start from middle, case insensitive
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
 autoload -Uz compinit
 
@@ -80,13 +80,15 @@ source <(/usr/bin/starship init zsh --print-full-init)
 # #################################
 #
 # #################################
-# # Start: Navigation in autocompletion AUTO_MENU
+# Start: Navigation in autocompletion AUTO_MENU
 # autoload -U up-line-or-beginning-search
 # autoload -U down-line-or-beginning-search
 # zle -N up-line-or-beginning-search
 # zle -N down-line-or-beginning-search
 # bindkey "^[[A" up-line-or-beginning-search
+# bindkey "^K" up-line-or-beginning-search
 # bindkey "^[[B" down-line-or-beginning-search
+# bindkey "^J" down-line-or-beginning-search
 # # End
 #################################
 
