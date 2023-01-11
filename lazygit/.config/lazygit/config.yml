@@ -1,4 +1,10 @@
 gui:
+  gui:
+  branchColors:
+    'vim': '#11AAFF'
+    'zsh': '#CF97FF'
+    'tmux': '#98FFD5'
+    'i3': '#FF9DD6'
   # stuff relating to the UI
   scrollHeight: 5 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
@@ -74,7 +80,7 @@ os:
   editCommandTemplate: ''
   openCommand: ''
 refresher:
-  refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
+  refreshInterval: 5 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
 update:
   method: never # can be: prompt | background | never
@@ -109,7 +115,7 @@ keybinding:
     jumpToBlock: ['1', '2', '3', '4', '5'] # goto the Nth block / panel
     nextMatch: 'n'
     prevMatch: 'N'
-    optionMenu: 'x' # show help menu
+    optionMenu: 'm' # show help menu
     optionMenu-alt1: '?' # show help menu
     select: '<space>'
     goInto: '<enter>'
@@ -127,7 +133,7 @@ keybinding:
     scrollUpMain-alt2: '<c-u>' # main panel scroll up
     scrollDownMain-alt2: '<c-d>' # main panel scroll down
     executeCustomCommand: ':'
-    createRebaseOptionsMenu: 'm'
+    createRebaseOptionsMenu: 'b'
     pushFiles: 'P'
     pullFiles: 'p'
     refresh: 'R'
@@ -138,9 +144,11 @@ keybinding:
     prevScreenMode: '-'
     undo: 'z'
     redo: '<c-z>'
-    filteringMenu: '<c-s>'
-    diffingMenu: 'W'
-    diffingMenu-alt: '<c-e>' # deprecated
+    filteringMenu: 'm'
+    diffingMenu: 'm'
+    # filteringMenu: '<c-s>'
+    # diffingMenu: 'W'
+    # diffingMenu-alt: '<c-e>' # deprecated
     copyToClipboard: '<c-o>'
     submitEditorText: '<enter>'
     appendNewline: '<a-enter>'
@@ -197,8 +205,8 @@ keybinding:
     checkoutCommit: '<space>'
     resetCherryPick: '<c-R>'
     copyCommitMessageToClipboard: '<c-y>'
-    openLogMenu: '<c-l>'
-    viewBisectOptions: 'b'
+    openLogMenu: 'm'
+    viewBisectOptions: '<c-l>'
   stash:
     popStash: 'g'
     renameStash: 'r'
@@ -212,4 +220,4 @@ keybinding:
   submodules:
     init: 'i'
     update: 'u'
-    bulkMenu: 'b'
+    bulkMenu: 'm'
