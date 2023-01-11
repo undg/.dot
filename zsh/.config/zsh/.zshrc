@@ -22,28 +22,29 @@ touch -a "$ZDOTDIR/private.zsh"
 #################################
 
 #################################
-# Start: Sources
+# Start: Sources and Plugins
 src "$ZDOTDIR/config.zsh"
 src "$ZDOTDIR/path.zsh"
 src "$ZDOTDIR/aliases.zsh"
-src "$ZDOTDIR/private.zsh"
-src "/opt/asdf-vm/asdf.sh"
-# End
-#################################
+src "$ZDOTDIR/private.zsh" # file in gitignore
+src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 
-#################################
-# Start: Plugins
-plug "marlonrichert/zsh-autocomplete"
-plug "zsh-users/zsh-completions"
-plug "zsh-users/zsh-autosuggestions"
+src "$ZDOTDIR/completion.zsh"
+src "/etc/profile.d/autojump.sh" # https://github.com/wting/autojump
+src "/usr/share/z/z.sh" # https://github.com/rupa/z
+autoload -U compinit && compinit
+
+plug "zsh-users/zsh-completions"     # hand written by community suggestion files for many packages
+plug "zsh-users/zsh-autosuggestions" # fish like suggestion
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 plug "zsh-users/zsh-syntax-highlighting"
-plug "zap-zsh/fzf"
+plug "zap-zsh/fzf" # famous fuzzy finder
 plug "zsh-users/zsh-history-substring-search"
-plug "hlissner/zsh-autopair"
+plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "chrissicool/zsh-256color"
-plug "undg/zsh-auto-notify"
-plug "undg/zsh-autodotenv"
+plug "undg/zsh-auto-notify" # system notification for long running processes
+plug "undg/zsh-autodotenv"  # auto source .env file in project folder.
 # End
 #################################
 

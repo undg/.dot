@@ -1,27 +1,9 @@
 #!/usr/bin/env zsh
 autoload -Uz plug
 
-
-autoload -Uz compinit
-# relaxed search: can start from middle, case insensitive
-
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-
-zmodload zsh/complist
-_comp_options+=(globdots)		# Include hidden files.
-zle_highlight=('paste:none')
-# cache
-for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
-  compinit
-done
-compinit -C
-
 unsetopt BEEP
-# setopt AUTO_CD
 setopt GLOB_DOTS
 setopt NOMATCH
-unsetopt MENU_COMPLETE
-setopt AUTO_MENU
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY
