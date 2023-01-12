@@ -1,0 +1,12 @@
+#!/bin/env bash
+
+PID=$(pidof iriunwebcam)
+connected=$(lsof -i4TCP -a -p $PID)
+
+if [ "$connected" ]; then
+	printf "<span foreground='red'>ﲬ</span>\\n"
+else
+	printf "<span foreground='grey'>ﲬ</span>\\n"
+fi
+
+
