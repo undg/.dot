@@ -34,8 +34,8 @@ map.normal('<LEADER>cd', ':lcd %:p:h<CR>')
 map.normal('<LEADER>sp', ':%s/\\s\\+$//ge<CR>:echomsg "white space cleaing"<cr>')
 
 -- Toggle list (display unprintable characters).
-map.normal('<F8>', ':set list!<CR>')
-map.insert('<F8>', '<esc>:set list!<CR>i')
+map.normal('<F10>', ':set list!<CR>')
+map.insert('<F10>', '<esc>:set list!<CR>i')
 
 -- get git branch go into insert mode.
 -- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
@@ -46,7 +46,7 @@ map.visual('>', '>gv')
 map.visual('<', '<gv')
 
 -- ts/sw 2<-->4 toggle indentation
-map.normal('<c-_>', ':ToggleIndent<cr>', { silent = false })
+map.normal('<leader>st', ':ToggleIndent<cr>', { silent = false })
 
 -- Yanking/Pasting
 -- map.normal('<leader>p', '"+p')
