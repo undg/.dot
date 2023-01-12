@@ -30,15 +30,11 @@ bindkey -M menuselect '^u' undo                           # Undo
 
 autoload -U compinit && compinit
 _comp_options+=(globdots) # With hidden files
-# # # cache
+# cache
 for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
   compinit
 done
 compinit -C
-
-# Only work with the Zsh function vman
-# See $DOTFILES/zsh/scripts.zsh
-# compdef vman="man"
 
 # +---------+
 # | Options |

@@ -30,9 +30,7 @@ src "$ZDOTDIR/private.zsh" # file in gitignore
 src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 
 src "$ZDOTDIR/completion.zsh"
-src "/etc/profile.d/autojump.sh" # https://github.com/wting/autojump
-src "/usr/share/z/z.sh" # https://github.com/rupa/z
-autoload -U compinit && compinit
+eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 
 plug "zsh-users/zsh-completions"     # hand written by community suggestion files for many packages
 plug "zsh-users/zsh-autosuggestions" # fish like suggestion
