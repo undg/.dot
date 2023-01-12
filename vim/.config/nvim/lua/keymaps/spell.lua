@@ -1,8 +1,8 @@
 local map = require('utils.map')
 
 -- Toggle spell check
-map.normal('<F7>', ':setlocal spell! spell?<CR>')
-map.insert('<F7>', '<ESC>:setlocal spell! spell?<CR>a')
+map.normal('<F9>', ':setlocal spell! spell?<CR>')
+map.insert('<F9>', '<ESC>:setlocal spell! spell?<CR>a')
 
 -- More consistent movement.
 map.normal('z]', ']s')
