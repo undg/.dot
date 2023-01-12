@@ -23,6 +23,13 @@ else
     install exa
 fi
 
+if command -v fasd &>/dev/null; then
+    alias j="fasd_cd -d -r"
+else
+    echo "exa is not installed."
+    install fasd
+fi
+
 alias lt="ls --sort newest"
 alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
@@ -37,7 +44,6 @@ alias cgr="egrep -iHnr --color=always"
 
 # A trailing space in VALUE causes the next word to be checked for alias substitution when the alias is expanded.
 alias watch="watch --color --interval 0.5 "
-
 
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
@@ -81,9 +87,9 @@ else
 fi
 
 if hash gh 2>/dev/null; then
-    alias prCreate='gh pr create -t $(git branch --show-current)'
-    alias prCreateWeb='gh pr create -w -t $(git branch --show-current)'
-    alias prComplete='gh pr merge --auto --delete-branch --squash'
+    alias gh-create='gh pr create -t $(git branch --show-current)'
+    alias gh-create-web='gh pr create -w -t $(git branch --show-current)'
+    alias gh-complete='gh pr merge --auto --delete-branch --squash'
 
 else
     echo "gh is missing"
