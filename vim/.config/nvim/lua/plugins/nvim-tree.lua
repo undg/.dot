@@ -120,7 +120,7 @@ nvim_tree.setup({
     update_focused_file = {
         enable = true,
         debounce_delay = 15,
-        update_root = false,
+        update_root = true,
         ignore_list = {},
     },
     ignore_ft_on_setup = {},
