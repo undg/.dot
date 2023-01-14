@@ -4,26 +4,33 @@ if not mason_ok or not mason_lspconfig_ok then
     print('lsp/init.lua: require failed')
 end
 
-
-local servers_with_config_files = {
-    'denols',
-    'jsonls',
-    'tsserver',
-    'yamlls',
-    'sumneko_lua',
-    -- "tailwindcss",
+-- Lsp server name is same as file name with config.
+-- [key: type] = {
+--      [key: lsp server name] = 'mason pkg name'
+-- }
+-- @module lsp2mason
+local lsp2mason = {
+    cfg_file = {
+        denols = 'deno',
+        jsonls = 'json-lsp',
+        tsserver = 'typescript-language-server',
+        yamlls = 'yaml-language-server',
+        sumenko_lua = 'lua-language-server',
+    },
+    cfg_no = {
+        cssls = 'cssls',
+        html = 'html',
+        prosemd_lsp = 'prosemd-lsp',
+        clangd = 'clangd',
+        pyright = 'pyright',
+    },
+    formatter = {
+        stylua = 'stylua'
+    },
 }
 
-local servers_with_no_configs = {
-    'cssls',
-    -- "grammarly", -- testing: replacement for Gramarous
-    'html',
-    'prosemd_lsp', -- md
-    -- "graphql",
-    "clangd", -- c, cpp, objc, objcpp, cuda, proto
-}
-
-local ensure_installed = TableConcat(servers_with_config_files, servers_with_no_configs)
+local tc = TableConcat
+local ensure_installed = tc(tc(lsp2mason.cfg_file, lsp2mason.cfg_no), lsp2mason.formatter)
 
 mason.setup({})
 mason_lspconfig.setup({
@@ -33,14 +40,14 @@ mason_lspconfig.setup({
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-for _, name in ipairs(servers_with_config_files) do
-    local config = require('lsp.' .. name)
+for key in ipairs(lsp2mason.cfg_file) do
+    local config = require('lsp.' .. key)
     config['capabilities'] = capabilities
-    lspconfig[name].setup(config)
+    lspconfig[key].setup(config)
 end
 
-for _, name in ipairs(servers_with_no_configs) do
+for key in ipairs(lsp2mason.cfg_no) do
     local config = {}
     config['capabilities'] = capabilities
-    lspconfig[name].setup(config)
+    lspconfig[key].setup(config)
 end
