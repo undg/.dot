@@ -1,0 +1,10 @@
+#!/bin/bash
+if [[ -z "$1" ]]; then
+    echo 'No branch supplied'
+fi
+
+git checkout $1 || {echo "git checkout $1 (failed); exit 1;"}
+git pull || {echo "git pull (failed); exit 1;"}
+git checkout - || {echo "git checkout - (failed); exit 1;"}
+git branch -f _back || {echo "git branch -f _back (failed); exit 1;"}
+git rebase $1 || {echo "git rebase $1 (failed); exit 1;"}
