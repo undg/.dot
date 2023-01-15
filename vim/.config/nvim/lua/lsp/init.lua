@@ -13,6 +13,7 @@ if not lspconfig_ok
     or not null_ls_ok
 then
     print('lsp/init.lua: require failed')
+    return
 end
 
 -- Lsp server name is same as file name with config.
