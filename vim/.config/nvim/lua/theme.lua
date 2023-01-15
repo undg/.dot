@@ -4,7 +4,7 @@ vim.o.background = 'dark'
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
 vim.cmd [[colorscheme gruvbox]]
-vim.cmd('highlight Cursorline guibg=#2b2b2b')
+vim.cmd('highlight Cursorline guibg=#2f2f2f')
 
 -- Set statusbar (lightline)
 vim.g.lightline = {
