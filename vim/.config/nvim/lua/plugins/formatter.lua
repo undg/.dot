@@ -1,7 +1,8 @@
+-- @TODO () 2023-01-14: delete, plugin is uninstalled and replaced with null-ls 
 local F = {}
 local map = require('utils.map')
 
-local  ok_formatter, formatter = pcall(require, 'formatter')
+local ok_formatter, formatter = pcall(require, 'formatter')
 if not ok_formatter then
     print('plugins/formatter.lua: missing requirements')
     return
@@ -84,4 +85,4 @@ formatter.setup({
     },
 })
 
-map.normal('<leader>p', ':Format<cr>')
+-- map.normal("<leader>p", ':Format<cr>')
