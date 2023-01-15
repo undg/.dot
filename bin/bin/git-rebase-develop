@@ -1,8 +1,0 @@
-#!/bin/bash
-
-git checkout develop
-git pull
-git checkout -
-git branch -f _back
-git rebase develop
-
