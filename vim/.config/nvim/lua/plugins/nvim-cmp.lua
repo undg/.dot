@@ -43,6 +43,7 @@ cmp.setup({
         { name = 'path' },
         { name = 'ultisnips' },
         { name = 'buffer', keyword_length = 4 },
+        { name = 'spell' },
     },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -60,10 +61,11 @@ cmp.setup({
                 nvim_lua = '[lua]',
                 path = '[📂]',
                 ultisnips = '[✂]',
+                spell = '[txt]'
             },
         }),
     },
-    -- experimental = {
+-- experimental = {
     --     native_menu = false,
     -- },
 })

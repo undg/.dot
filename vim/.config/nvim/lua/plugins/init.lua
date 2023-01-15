@@ -9,7 +9,6 @@ end
 packer.startup(function(use)
     -- Core
     use('wbthomason/packer.nvim') -- This plugin manager
-    use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
     use({
         'lewis6991/impatient.nvim',
         config = function()
@@ -18,6 +17,7 @@ packer.startup(function(use)
     }) -- Cache for plugins
 
     -- Dependencies
+    use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
     use('onsails/lspkind-nvim') -- icons
     use({
         'nvim-tree/nvim-web-devicons', -- fork from nvim-tree
@@ -127,9 +127,10 @@ packer.startup(function(use)
 
     -- LSP
     use('neovim/nvim-lspconfig') -- Collection of configurations for built-in LSP client
-    -- use({ "williamboman/nvim-lsp-installer" }) -- Installation servers for LSP
-    use({ 'williamboman/mason.nvim' })
-    use({ 'williamboman/mason-lspconfig.nvim' })
+    use({ 'williamboman/mason.nvim' }) -- LSP servers installer
+    use({ 'williamboman/mason-lspconfig.nvim' }) -- integration with lspconfig
+    use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
+    use { "jose-elias-alvarez/null-ls.nvim" } -- inject LSP diagnostics, code actions, and more
     use({
         'tami5/lspsaga.nvim',
         config = function()
@@ -148,12 +149,6 @@ packer.startup(function(use)
     }) -- Highlight, edit, and navigate code using a fast incremental parsing library
     use('nvim-treesitter/nvim-treesitter-textobjects') -- Additional text objects for treesitter
     use('p00f/nvim-ts-rainbow') -- parenthesis rainbow, treesitter version
-    use({
-        'mhartington/formatter.nvim', -- prettier
-        config = function()
-            require('plugins.formatter')
-        end,
-    })
 
     -- Autocompletion
     use({
