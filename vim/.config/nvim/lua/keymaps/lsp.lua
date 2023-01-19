@@ -13,7 +13,7 @@ local tb_opt = { fname_width = 0.5, trim_text = true }
 map.normal("<LEADER>p", vim.lsp.buf.format)
 map.normal("<LEADER>rn", vim.lsp.buf.rename, { silent = false, noremap = true })
 map.normal("K", vim.lsp.buf.hover, { silent = true, noremap = true })
-map.normal('<C-k>', vim.lsp.buf.signature_help, { silent = true, noremap = true })
+map.normal('KK', vim.lsp.buf.signature_help, { silent = true, noremap = true })
 map.normal("ga", vim.lsp.buf.code_action)
 map.visual("ga", vim.lsp.buf.code_action)
 

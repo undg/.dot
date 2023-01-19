@@ -48,13 +48,15 @@ map.visual('<', '<gv')
 -- ts/sw 2<-->4 toggle indentation
 map.normal('<leader>st', ':ToggleIndent<cr>', { silent = false })
 
--- Yanking/Pasting
+-- Yanking/Pasting/Copy
 -- map.normal('<leader>p', '"+p')
 map.visual('<C-C>', '"+y')
 map.insert('<C-v>', '<c-o>"+P')
 map.visual('<C-v>', 'd"+P')
 -- Only visual, keep same yank in register
 map.visual('<LEADER>p', '"_dP')
+-- Copy all
+map.normal('<LEADER>cc', 'ggVG"+y')
 
 -- Keep it in center
 map.normal('n', 'nzz')
