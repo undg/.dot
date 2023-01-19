@@ -4,15 +4,15 @@
 
 # src
 function src() {
-    file=$1
-    [ -f "$file" ] && source "$file" || echo "$file not exist."
+	file=$1
+	[ -f "$file" ] && source "$file" || echo "$file not exist."
 }
 
 # plug
 if [[ -f "$HOME/.local/share/zap/zap.zsh" ]]; then
-    source "$HOME/.local/share/zap/zap.zsh"
+	source "$HOME/.local/share/zap/zap.zsh"
 else
-    sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
+	sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
 fi
 
 # git ignored but sourced
@@ -31,18 +31,31 @@ src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 
 src "$ZDOTDIR/completion.zsh"
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
+autoload bashcompinit && bashcompinit
+complete -C 'aws_completer' aws
 
-plug "zsh-users/zsh-completions"     # hand written by community suggestion files for many packages
+
+plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
+
 plug "zsh-users/zsh-autosuggestions" # fish like suggestion
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
 plug "zsh-users/zsh-syntax-highlighting"
+
 plug "zap-zsh/fzf" # famous fuzzy finder
+
 plug "zsh-users/zsh-history-substring-search"
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
+
 plug "chrissicool/zsh-256color"
+
 plug "undg/zsh-auto-notify" # system notification for long running processes
-plug "undg/zsh-autodotenv"  # auto source .env file in project folder.
+
+plug "undg/zsh-autodotenv" # auto source .env file in project folder.
 # End
 #################################
 
@@ -56,9 +69,9 @@ source <(/usr/bin/starship init zsh --print-full-init)
 # Start: Give some love to emacs
 bindkey '^a' beginning-of-line  # ctrl+a go to start
 bindkey '^e' end-of-line        # ctrl+e go to  end
-bindkey '^H' backward-kill-word # instead ctrl+backspace
-bindkey '^L' undo               # instead of ctrl+delete
-bindkey '^K' redo               # instead of ctrl+delete
+bindkey '^U' backward-kill-word # instead ctrl+backspace
+bindkey '^O' undo               # instead of ctrl+delete
+bindkey '^Y' redo               # instead of ctrl+delete
 # End
 #################################
 
