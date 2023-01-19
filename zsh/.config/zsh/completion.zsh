@@ -36,6 +36,9 @@ for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
 done
 compinit -C
 
+autoload bashcompinit && bashcompinit
+complete -C 'aws_completer' aws
+
 # +---------+
 # | Options |
 # +---------+
