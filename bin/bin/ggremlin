@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo $NEPTUNE_CLUSTER_URL:$NEPTUNE_CLUSTER_PORT
+curl --get $NEPTUNE_CLUSTER_URL:$NEPTUNE_CLUSTER_PORT --data-urlencode "gremlin=$1" | json_pp | nvim -c ":set ft=json"
