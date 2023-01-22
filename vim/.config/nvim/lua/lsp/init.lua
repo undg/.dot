@@ -31,10 +31,12 @@ local lsp2mason = {
     cfg_no = {
         cssls = 'cssls',
         html = 'html',
-        prosemd_lsp = 'prosemd-lsp',
+        -- prosemd_lsp = 'prosemd-lsp',
         clangd = 'clangd',
         -- pyright = 'pyright',
         pylsp = 'python-lsp-server',
+        marksman = 'marksman',
+        bashls='bash-language-server'
     },
 }
 
@@ -53,9 +55,9 @@ null_ls.setup({
         null_ls.builtins.formatting.black,
 
         null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.diagnostics.actionlint,
-        null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.diagnostics.proselint,
+        -- null_ls.builtins.diagnostics.actionlint,
+        -- null_ls.builtins.diagnostics.markdownlint,
+        -- null_ls.builtins.diagnostics.proselint,
 
         -- null_ls.builtins.completion.spell,
         null_ls.builtins.completion.tags,
@@ -74,8 +76,8 @@ local mason_non_lsp = {
 
     'eslint_d', -- js diagnostic
     'actionlint', -- github action files diagnostic
-    'markdownlint', -- md diagnostic
-    'proselint',
+    -- 'markdownlint', -- md diagnostic
+    -- 'proselint',
 }
 
 -- Lsp server names that will be installed via Manson
