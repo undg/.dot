@@ -3,7 +3,6 @@ local getVisualSelectionFn = require("custom/get-visual-selection")
 local tb = require("telescope.builtin")
 local opts = { noremap = true, silent = true }
 
-
 -- Core
 map.normal("<leader>m", ":Telescope<cr>")
 map.normal(",.", ":Telescope find_files hidden=true<cr>")
@@ -23,6 +22,7 @@ map.normal("<leader>fh", ":Telescope help_tags<cr>")
 map.normal("<leader>fk", ":Telescope keymaps<cr>")
 
 -- Custom commands
+map.normal("<leader>ve", ":GotoVimFind<cr>")
 map.normal("<leader>fvf", ":GotoVimFind<cr>")
 map.normal("<leader>fvb", ":GotoVimBrowse<cr>")
 map.normal("<leader>fvs", ":GotoVimGit<cr>")
