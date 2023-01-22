@@ -1,0 +1,10 @@
+#!/bin/env sh
+
+PID=$(pgrep -x pavucontrol)
+echo "$PID"
+
+if [ "$PID" == "" ]; then
+	pavucontrol
+else
+	killall pavucontrol
+fi
