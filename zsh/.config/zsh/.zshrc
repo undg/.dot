@@ -31,7 +31,7 @@ src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 
 src "$ZDOTDIR/completion.zsh"
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
-autoload bashcompinit && bashcompinit
+# autoload bashcompinit && bashcompinit
 complete -C 'aws_completer' aws
 
 
