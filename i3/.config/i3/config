@@ -229,7 +229,7 @@ bindsym $winKey+o               sticky toggle
 #bindsym $winKey+Shift+o
 #bindsym $winKey+p
 #bindsym $winKey+Shift+p
-bindsym $winKey+a               exec --no-startup-id pavu
+bindsym $winKey+a               exec --no-startup-id pavucontrol-toggle
 bindsym $winKey+Shift+a         exec $term -e pulsemixer
 #bindsym $winKey+s
 #bindsym $winKey+Shift+s
