@@ -1,0 +1,57 @@
+#!/usr/bin/env sh
+
+
+SCREEN="eDP"
+TRANSFORMATION="Coordinate Transformation Matrix"
+
+input_devices=( 10 12 13 20 16 )
+
+function rotate_normal() {
+    xrandr --output $SCREEN --rotate normal
+    for i in "${input_devices[@]}"
+    do
+        xinput set-prop $i --type=float "$TRANSFORMATION" 1 0 0 0 1 0 0 0 1
+    done
+}
+
+function rotate_left() {
+    xrandr --output $SCREEN --rotate left
+    for i in "${input_devices[@]}"
+    do
+        xinput set-prop $i --type=float "$TRANSFORMATION" 0 -1 1 1 0 0 0 0 1 
+    done
+}
+
+function rotate_right() {
+    xrandr --output $SCREEN --rotate right
+    for i in "${input_devices[@]}"
+    do
+        xinput set-prop $i --type=float "$TRANSFORMATION" 0 1 0 -1 0 1 0 0 1
+    done
+}
+
+function rotate_inverted() {
+    xrandr --output $SCREEN --rotate inverted
+    for i in "${input_devices[@]}"
+    do
+        xinput set-prop $i --type=float "$TRANSFORMATION" -1 0 1 0 -1 1 0 0 1 
+    done
+}
+
+case $1 in
+    'normal' )
+        rotate_normal
+        ;;
+    'left' | 'l' )
+        rotate_left
+        ;;
+    'right' | 'r' )
+        rotate_right
+        ;;
+    'inverted' | 'inv' | 'i' )
+        rotate_inverted
+    ;;
+    *)
+        rotate_normal
+    ;;
+esac
