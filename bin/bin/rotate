@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
-DEBUG=true
+DEBUG=false
 function log() {
-    $DEBUG && echo $1
+    $DEBUG && echo $1 >> /tmp/xy
 }
 
-x=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_x_raw")
-y=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_y_raw")
-z=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_z_raw")
+read -r x</sys/bus/iio/devices/iio:device0/in_accel_x_raw
+read -r y</sys/bus/iio/devices/iio:device0/in_accel_y_raw
+read -r z</sys/bus/iio/devices/iio:device0/in_accel_z_raw
 
-log "x: $x" >> /tmp/xy
-log "y: $y" >> /tmp/xy
+log "x: $x"
+log "y: $y"
 
 
 SCREEN="eDP"
@@ -23,7 +23,7 @@ function rotate_normal() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 1 0 0 0 1 0 0 0 1
     done
-    log "normal" >> /tmp/xy
+    log "normal"
 }
 
 function rotate_left() {
@@ -32,7 +32,7 @@ function rotate_left() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 0 -1 1 1 0 0 0 0 1 
     done
-    log "left" >> /tmp/xy
+    log "left"
 }
 
 function rotate_right() {
@@ -41,7 +41,7 @@ function rotate_right() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 0 1 0 -1 0 1 0 0 1
     done
-    log "right" >> /tmp/xy
+    log "right"
 }
 
 function rotate_inverted() {
@@ -50,7 +50,7 @@ function rotate_inverted() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" -1 0 1 0 -1 1 0 0 1 
     done
-    log "inverted" >> /tmp/xy
+    log "inverted"
 }
 
 function rotate_auto() {
@@ -67,7 +67,8 @@ function rotate_auto() {
 
 function rotate_deamon() {
     while true; do
-       sh /home/undg/bin/rotate --auto
+        # @TODO (undg) 2023-01-25: this is bullshit
+       sh ~/bin/rotate --auto
        sleep 0.5
     done
 }
