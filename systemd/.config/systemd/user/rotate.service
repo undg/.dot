@@ -1,0 +1,12 @@
+[Unit]
+Description=Auto rotate screen touchpad and tpuchscreen
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash /home/undg/bin/rotate --deamon
+TimeoutStartSec=0
+
+[Install]
+WantedBy=shutdown.target
