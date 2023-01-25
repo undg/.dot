@@ -1,5 +1,24 @@
 #!/usr/bin/env sh
 
+x=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_x_raw")
+y=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_y_raw")
+z=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_z_raw")
+
+echo "x: $x"
+echo "y: $y"
+echo "z: $z"
+
+function rotate_auto() {
+    if [ $x = 0 ] && [ $y = -9 ]; then
+        rotate_normal   
+    elif [ $x = -9 ] && [ $y = 0 ]; then
+        rotate_right
+    elif [ $x = 9 ] && [ $y = 0 ]; then
+        rotate_left
+    elif [ $x = 0 ] && [ $y = 9 ]; then
+        rotate_inverted
+    fi
+}
 
 SCREEN="eDP"
 TRANSFORMATION="Coordinate Transformation Matrix"
@@ -51,7 +70,11 @@ case $1 in
     'inverted' | 'inv' | 'i' )
         rotate_inverted
     ;;
+    'auto' | 'a')
+        rotate_auto
+    ;;
     *)
+        # rotate_auto
         rotate_normal
     ;;
 esac
