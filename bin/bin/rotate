@@ -1,24 +1,16 @@
 #!/usr/bin/env sh
+DEBUG=true
+function log() {
+    $DEBUG && echo $1
+}
 
 x=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_x_raw")
 y=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_y_raw")
 z=$(cat "/sys/bus/iio/devices/iio:device0/in_accel_z_raw")
 
-echo "x: $x"
-echo "y: $y"
-echo "z: $z"
+log "x: $x" >> /tmp/xy
+log "y: $y" >> /tmp/xy
 
-function rotate_auto() {
-    if [ $x = 0 ] && [ $y = -9 ]; then
-        rotate_normal   
-    elif [ $x = -9 ] && [ $y = 0 ]; then
-        rotate_right
-    elif [ $x = 9 ] && [ $y = 0 ]; then
-        rotate_left
-    elif [ $x = 0 ] && [ $y = 9 ]; then
-        rotate_inverted
-    fi
-}
 
 SCREEN="eDP"
 TRANSFORMATION="Coordinate Transformation Matrix"
@@ -31,6 +23,7 @@ function rotate_normal() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 1 0 0 0 1 0 0 0 1
     done
+    log "normal" >> /tmp/xy
 }
 
 function rotate_left() {
@@ -39,6 +32,7 @@ function rotate_left() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 0 -1 1 1 0 0 0 0 1 
     done
+    log "left" >> /tmp/xy
 }
 
 function rotate_right() {
@@ -47,6 +41,7 @@ function rotate_right() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" 0 1 0 -1 0 1 0 0 1
     done
+    log "right" >> /tmp/xy
 }
 
 function rotate_inverted() {
@@ -55,26 +50,60 @@ function rotate_inverted() {
     do
         xinput set-prop $i --type=float "$TRANSFORMATION" -1 0 1 0 -1 1 0 0 1 
     done
+    log "inverted" >> /tmp/xy
+}
+
+function rotate_auto() {
+    if [ $x == 0 ] && [ $y == -9 ]; then
+        rotate_normal   
+    elif [ $x == -9 ] && [ $y == 0 ]; then
+        rotate_right
+    elif [ $x == 9 ] && [ $y == 0 ]; then
+        rotate_left
+    elif [ $x == 0 ] && [ $y == 9 ]; then
+        rotate_inverted
+    fi
+}
+
+function rotate_deamon() {
+    while true; do
+       sh /home/undg/bin/rotate --auto
+       sleep 0.5
+    done
 }
 
 case $1 in
-    'normal' )
+    '--normal' | '-n' )
         rotate_normal
         ;;
-    'left' | 'l' )
+    '--left' | '-l' )
         rotate_left
         ;;
-    'right' | 'r' )
+    '--right' | '-r' )
         rotate_right
         ;;
-    'inverted' | 'inv' | 'i' )
+    '--inverted' | '-i' )
         rotate_inverted
     ;;
-    'auto' | 'a')
+    '--auto' | '-a')
         rotate_auto
     ;;
+    '--deamon' | '-d')
+        rotate_deamon 
+    ;;
+    '-help' | '-h')
+    cat << EOF
+usage: rotate [OPTION...]
+--normal     -n  : landscape
+--left       -l  : rotate to left (portrait)
+--right      -r  : rotate to right (portrait inverted)
+--inverded   -i  : landscape inverted (upside down)
+--auto       -a  : auto detect orientation
+--deamon     -d  : auto detect orientation as a deamon
+--help       -n  : this help
+EOF
+    ;;
     *)
-        # rotate_auto
         rotate_normal
     ;;
 esac
