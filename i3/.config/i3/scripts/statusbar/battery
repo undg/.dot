@@ -1,11 +1,14 @@
 #!/bin/sh
 # Give a battery name (e.g. BAT0) as an argument.
 
+BAT="${BAT:-$1}"
+BAT="${BAT:-BAT0}"
+
 # get xresources colors
 for x in "$(xrdb -query | sed "s/.*\./export /g;s/:\s*/=\"/g;s/$/\"/g")"; do eval "$x"; done
 
 case $BLOCK_BUTTON in
-    3) pgrep -x dunst >/dev/null && notify-send "🔋 Battery module:
+3) pgrep -x dunst >/dev/null && notify-send "🔋 Battery module:
 🔋: discharging
 ♻: stagnant charge
 🔌: charging
@@ -14,22 +17,56 @@ case $BLOCK_BUTTON in
 - Text color reflects charge left" ;;
 esac
 
-capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
-status=$(cat /sys/class/power_supply/"$1"/status)
+capacity=$(cat /sys/class/power_supply/BAT0/capacity) || exit
+status=$(cat /sys/class/power_supply/BAT0/status)
+CHARGING="Charging"
+DISCHARGING="Discharging"
 
-if [ "$capacity" -ge 75 ]; then
-	color="$color10"
-elif [ "$capacity" -ge 50 ]; then
-	color="$color15"
-elif [ "$capacity" -ge 25 ]; then
-	color="$color11"
+icon='🔋'
+fg="#928374"
+
+if [ "$capacity" -ge 99 ]; then
+	fg="#928374"
+	if [ $status == $CHARGING ]; then
+		icon='󱊦 '
+	else
+		icon='󱊣'
+	fi
+elif [ "$capacity" -ge 90 ]; then
+	fg="#928374"
+	if [ $status == $CHARGING ]; then
+		icon='󱊦'
+	else
+		icon='󰂂'
+	fi
+elif [ "$capacity" -ge 65 ]; then
+	fg="#928374"
+	if [ $status == $CHARGING ]; then
+		icon='󱊥'
+	else
+		icon='󰁿'
+	fi
+elif [ "$capacity" -ge 40 ]; then
+	fg="#928374"
+	if [ $status == $CHARGING ]; then
+		icon='󰢝'
+	else
+		icon='󰁽'
+	fi
+elif [ "$capacity" -ge 15 ]; then
+	fg="#d79921"
+	if [ $status == $CHARGING ]; then
+		icon='󱊤'
+	else
+		icon='󰁻'
+	fi
 else
-	color="$color9"
-	warn="❗"
+	fg="#fb4934"
+	if [ $status == $CHARGING ]; then
+		icon='󰢟'
+	else
+		icon='󰁺'
+	fi
 fi
 
-[ -z $warn ] && warn=" "
-
-[ "$status" = "Charging" ] && color="$color15"
-
-printf "<span color='%s'>%s%s%s</span>" "$color" "$(echo "$status" | sed -e "s/,//g;s/Discharging/🔋/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")" "$warn" "$(echo "$capacity" | sed -e 's/$/%/')"
+echo "<span foreground='$fg'>$icon$capacity%</span>"
