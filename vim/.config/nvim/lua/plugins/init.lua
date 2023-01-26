@@ -9,12 +9,12 @@ end
 packer.startup(function(use)
     -- Core
     use('wbthomason/packer.nvim') -- This plugin manager
-    use({
-        'lewis6991/impatient.nvim',
-        config = function()
-            require('impatient')
-        end,
-    }) -- Cache for plugins
+    -- use({
+    --     'lewis6991/impatient.nvim',
+    --     config = function()
+    --         require('impatient')
+    --     end,
+    -- }) -- Cache for plugins
 
     -- Dependencies
     use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
