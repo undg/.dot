@@ -47,7 +47,7 @@
     word_wrap = yes
     ellipsize = middle
     ignore_newline = no
-    stack_duplicates = no
+    stack_duplicates = yes
     hide_duplicate_count = true
     show_indicators = yes
     icon_position = left
