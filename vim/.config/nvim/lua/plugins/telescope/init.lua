@@ -104,5 +104,5 @@ telescope.load_extension('ui-select')
 telescope.load_extension('harpoon')
 telescope.load_extension('project')
 
--- wrapper with got commands
-require('plugins.telescope.goto_commands')
+-- wrapper with goto commands
+require('plugins.telescope.goto')

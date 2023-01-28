@@ -5,10 +5,9 @@ local opts = { noremap = true, silent = true }
 
 -- Core
 map.normal("<leader>m", ":Telescope<cr>")
-map.normal(",.", ":Telescope find_files hidden=true<cr>")
+map.normal(",.",        ":Telescope find_files hidden=true<cr>")
 map.normal("<leader>,", ":Telescope find_files hidden=true<cr>")
-map.normal(
-    "<leader>.",
+map.normal( "<leader>.",
     ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>'
 )
 map.normal("<leader>fb", ":Telescope buffers<cr>")
@@ -21,7 +20,7 @@ map.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>")
 map.normal("<leader>fh", ":Telescope help_tags<cr>")
 map.normal("<leader>fk", ":Telescope keymaps<cr>")
 
--- Custom commands
+-- Custom goto commands
 map.normal("<leader>ve", ":GotoVimFind<cr>")
 map.normal("<leader>fvf", ":GotoVimFind<cr>")
 map.normal("<leader>fvb", ":GotoVimBrowse<cr>")
