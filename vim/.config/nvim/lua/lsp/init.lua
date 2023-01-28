@@ -36,7 +36,8 @@ local lsp2mason = {
         -- pyright = 'pyright',
         pylsp = 'python-lsp-server',
         marksman = 'marksman',
-        bashls='bash-language-server'
+        bashls='bash-language-server',
+        gopls='gopls',
     },
 }
 
@@ -53,6 +54,7 @@ null_ls.setup({
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.fixjson,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.goimports,
 
         null_ls.builtins.diagnostics.eslint_d,
         -- null_ls.builtins.diagnostics.actionlint,
@@ -78,6 +80,7 @@ local mason_non_lsp = {
     'actionlint', -- github action files diagnostic
     -- 'markdownlint', -- md diagnostic
     -- 'proselint',
+    'goimports-reviser',
 }
 
 -- Lsp server names that will be installed via Manson
