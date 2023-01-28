@@ -13,9 +13,11 @@ vim.o.completeopt = 'menuone,noselect'
 cmp.setup({
     mapping = {
         ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<Up>'] = cmp.mapping.select_prev_item(),
         ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<Down>'] = cmp.mapping.select_next_item(),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-u>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({
@@ -55,14 +57,14 @@ cmp.setup({
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 50,
-            menu = {
-                buffer = '[©]',
-                nvim_lsp = '[LSP]',
-                nvim_lua = '[lua]',
-                path = '[📂]',
-                ultisnips = '[✂]',
-                spell = '[txt]'
-            },
+            -- menu = {
+            --     buffer = '[©]',
+            --     nvim_lsp = '[LSP]',
+            --     nvim_lua = '[lua]',
+            --     path = '[📂]',
+            --     ultisnips = '[✂]',
+            --     spell = '[txt]'
+            -- },
         }),
     },
 -- experimental = {
