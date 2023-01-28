@@ -10,7 +10,7 @@
 # +---------+
 
 # Load more completions
-fpath=(~/.local/share/zap/plugins/zsh-completions/src $fpath)
+fpath=($ZAP_DIR/plugins/zsh-completions/src $ZDOTDIR/completion $fpath)
 
 # Should be called before compinit
 zmodload zsh/complist
@@ -37,7 +37,7 @@ done
 compinit -C
 
 autoload bashcompinit && bashcompinit
-complete -C 'aws_completer' aws
+# complete -C 'aws_completer' aws
 
 # +---------+
 # | Options |
