@@ -28,12 +28,10 @@ src "$ZDOTDIR/path.zsh"
 src "$ZDOTDIR/aliases.zsh"
 src "$ZDOTDIR/private.zsh" # file in gitignore
 src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
+eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
+source <(/usr/bin/starship init zsh --print-full-init) # strarship prompt
 
 src "$ZDOTDIR/completion.zsh"
-eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
-# autoload bashcompinit && bashcompinit
-complete -C 'aws_completer' aws
-
 
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
 
@@ -56,12 +54,6 @@ plug "chrissicool/zsh-256color"
 plug "undg/zsh-auto-notify" # system notification for long running processes
 
 plug "undg/zsh-autodotenv" # auto source .env file in project folder.
-# End
-#################################
-
-#################################
-# Start: Prompt
-source <(/usr/bin/starship init zsh --print-full-init)
 # End
 #################################
 
