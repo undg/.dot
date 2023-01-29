@@ -20,7 +20,8 @@ packer.startup(function(use)
     use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
     use('onsails/lspkind-nvim') -- icons
     use({
-        'nvim-tree/nvim-web-devicons', -- fork from nvim-tree
+        'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+        -- 'ryanoasis/vim-devicons', -- origin
         config = function()
             require('plugins.nvim-web-devicons')
         end,
@@ -98,21 +99,31 @@ packer.startup(function(use)
 
     -- File managers
     use({
-        'nvim-tree/nvim-tree.lua',
-        -- requires "nvim-web-devicons", -- installed separately in top of this file
+        'nvim-neo-tree/neo-tree.nvim',
+        branch = 'v2.x',
+        requires = {
+            'MunifTanjim/nui.nvim',
+        },
         config = function()
-            require('plugins.nvim-tree')
+            require('plugins.neo-tree')
         end,
-        tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    })
+    use({
+        'akinsho/bufferline.nvim',
+        tag = 'v3.*',
+        config = function()
+            require('plugins.bufferline') -- "tabline" for buffers.
+        end,
+        requires = {
+            { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
+        },
     })
     use({
         'nvim-telescope/telescope.nvim',
         requires = {
-            { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
             { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
-            -- "nvim-web-devicons", -- installed separately in top of this file
             {
                 'ThePrimeagen/harpoon',
                 config = function()
@@ -130,7 +141,7 @@ packer.startup(function(use)
     use({ 'williamboman/mason.nvim' }) -- LSP servers installer
     use({ 'williamboman/mason-lspconfig.nvim' }) -- integration with lspconfig
     use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
-    use { "jose-elias-alvarez/null-ls.nvim" } -- inject LSP diagnostics, code actions, and more
+    use({ 'jose-elias-alvarez/null-ls.nvim' }) -- inject LSP diagnostics, code actions, and more
     use({
         'tami5/lspsaga.nvim',
         config = function()
@@ -209,16 +220,6 @@ packer.startup(function(use)
         config = function()
             require('plugins.vim-tmux-navigator')
         end,
-    })
-    use({
-        'akinsho/bufferline.nvim',
-        tag = 'v3.*',
-        config = function()
-            require('plugins.bufferline') -- "tabline" for buffers.
-        end,
-        requires = {
-            { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
-        },
     })
     use({
         'nvim-lualine/lualine.nvim',

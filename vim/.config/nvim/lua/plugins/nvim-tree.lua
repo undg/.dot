@@ -1,3 +1,4 @@
+-- @TODO (undg) 2023-01-29: delete 
 local  ok_nvim_tree, nvim_tree = pcall(require, 'nvim-tree')
 if not ok_nvim_tree then
     print('plugins/nvim-tree.lua: missing requirements')
