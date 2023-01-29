@@ -36,12 +36,12 @@ map.normal('<leader>fs', ':TreeGitToggleFocus<cr>')
 map.normal('<F2>', ':TreeFileToggleFocus<CR>')
 map.normal('<leader>2', ':TreeFileToggleFocus<CR>')
 
-map.normal('<F3>', ':Neotree filesystem toggle<cr>')
-map.normal('<leader>3', ':Neotree filesystem toggle<cr>')
+map.normal('<F3>', ':Neotree filesystem toggle left<cr>')
+map.normal('<leader>3', ':Neotree filesystem toggle left<cr>')
 
 map.normal('<F4>', ':TreeBuffToggleFocus<cr>')
 map.normal('<leader>4', ':TreeBuffToggleFocus<cr>')
 
-map.normal('<F5>', ':Neotree buffers toggle<cr>')
-map.normal('<leader>5', ':Neotree buffers toggle<cr>')
+map.normal('<F5>', ':Neotree buffers toggle right<cr>')
+map.normal('<leader>5', ':Neotree buffers toggle right<cr>')
 
