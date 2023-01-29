@@ -31,6 +31,5 @@ map.normal('<leader>qk', CMD_CLOSE)
 map.normal('<leader>qq', CMD_CLOSE)
 map.normal('<leader>ql', ':BufferLineCloseRight<cr>')
 
-map.normal(';q', CMD_CLOSE)
 map.normal('<C-Q>', CMD_CLOSE)
-map.normal('QQ', CMD_CLOSE)
+map.normal(';q', ':q<cr>')
