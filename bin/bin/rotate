@@ -15,7 +15,7 @@ log "y: $y"
 SCREEN="eDP"
 TRANSFORMATION="Coordinate Transformation Matrix"
 
-input_devices=( 10 12 13 20 16 )
+input_devices=( 10 12 13 16 20 21 )
 
 function rotate_normal() {
     xrandr --output $SCREEN --rotate normal
