@@ -18,8 +18,10 @@ map.normal('<leader>$', ':BufferLineGoToBuffer -1<cr>')
 map.normal('<leader>bb', ':BufferLineTogglePin<cr>')
 
 -- Move
-map.normal('<A-h>', ':BufferLineMovePrev<cr>')
-map.normal('<A-l>', ':BufferLineMoveNext<cr>')
+map.normal('<C-j>', ':BufferLineMovePrev<cr>')
+map.normal('<C-k>', ':BufferLineMoveNext<cr>')
+map.normal('<C-h>', ':BufferLineCyclePrev<cr>')
+map.normal('<C-l>', ':BufferLineCycleNext<cr>')
 
 -- Close
 local CMD_CLOSE = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
@@ -30,5 +32,5 @@ map.normal('<leader>qq', CMD_CLOSE)
 map.normal('<leader>ql', ':BufferLineCloseRight<cr>')
 
 map.normal(';q', CMD_CLOSE)
-map.normal('<C-Q><C-Q>', CMD_CLOSE)
+map.normal('<C-Q>', CMD_CLOSE)
 map.normal('QQ', CMD_CLOSE)
