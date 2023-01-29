@@ -9,23 +9,16 @@ end
 packer.startup(function(use)
     -- Core
     use('wbthomason/packer.nvim') -- This plugin manager
-    -- use({
-    --     'lewis6991/impatient.nvim',
-    --     config = function()
-    --         require('impatient')
-    --     end,
-    -- }) -- Cache for plugins
 
     -- Dependencies
     use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
-    use('onsails/lspkind-nvim') -- icons
+    use('onsails/lspkind-nvim') -- icons for lsp
     use({
         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-        -- 'ryanoasis/vim-devicons', -- origin
         config = function()
             require('plugins.nvim-web-devicons')
         end,
-    }) -- icons
+    }) -- icons for telescope and Neotree and all sorts of plugins
 
     -- Productivity
     use({
@@ -73,13 +66,13 @@ packer.startup(function(use)
         config = function()
             require('plugins.suda')
         end,
-    })
+    }) -- ask for sudo password
     use({
         'rafcamlet/nvim-luapad',
         config = function()
             require('plugins.luapad')
         end,
-    })
+    }) -- lua scratch pad
 
     -- Git
     use({
@@ -137,7 +130,7 @@ packer.startup(function(use)
     })
 
     -- LSP
-    use('neovim/nvim-lspconfig') -- Collection of configurations for built-in LSP client
+    use({ 'neovim/nvim-lspconfig' }) -- Collection of configurations for built-in LSP client
     use({ 'williamboman/mason.nvim' }) -- LSP servers installer
     use({ 'williamboman/mason-lspconfig.nvim' }) -- integration with lspconfig
     use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
