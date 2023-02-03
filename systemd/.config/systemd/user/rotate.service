@@ -1,15 +1,5 @@
 [Unit]
-Description=Auto rotate screen touchpad and tpuchscreen
-DefaultDependencies=no
-Before=shutdown.target
+Description=Auto rotate screen in 2in1 laptop
 
 [Service]
-Type=simple
-# @TODO (undg) 2023-01-26: process can't be stoped by service and small issue with starting.
-# After manuallu starting this is hanging in stdout, but can me ctrl-c and will stay in background.
-ExecStart=/usr/bin/bash /home/undg/bin/rotate --deamon
-# @TODO (undg) 2023-01-26: ExecStop is a thing? if yes, killall rotate
-TimeoutStartSec=0
-
-[Install]
-WantedBy=shutdown.target
+ExecStart=/home/undg/bin/autorotate auto --daemon
