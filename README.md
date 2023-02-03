@@ -1,5 +1,7 @@
+# Dotfiles
 
-## clone
+## Clone
+
 Don't forget about submodules.
 ```
 git clone -j8 --recursive https://github.com/undg/.dot
@@ -38,6 +40,7 @@ done
 
 
 ## full system setup
+
 run ansible playbook
 ```
 cd _init
