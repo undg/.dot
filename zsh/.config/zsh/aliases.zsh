@@ -179,7 +179,10 @@ else
     install tmux
 fi
 
-mkdirdate() {
+alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
+alias yay-list='yay -Qu --aur'
+
+date-mkdir() {
     local dateDirName=$(date "+%Y-%m-%d")
     while getopts ':t' OPTION; do
         case ${OPTION} in
@@ -200,6 +203,6 @@ mkdirdate() {
 }
 
 # Avoid breaking fingers with date
-alias dateclip='date --iso-8601 | xclip'
-alias today="date +%Y-%m-%d"
-alias now="date +%Y-%m-%d_%H-%m_%S"
+alias date-clip='date --iso-8601 | xclip'
+alias date-today="date +%Y-%m-%d"
+alias date-now="date +%Y-%m-%d_%H-%m_%S"
