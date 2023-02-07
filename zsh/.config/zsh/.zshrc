@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #!/usr/bin/env zsh
 #################################
 # Start: Initialisation
@@ -29,7 +36,9 @@ src "$ZDOTDIR/aliases.zsh"
 src "$ZDOTDIR/private.zsh" # file in gitignore
 src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
-source <(/usr/bin/starship init zsh --print-full-init) # strarship prompt
+
+plug "romkatv/powerlevel10k" # powerlevel10k prompt
+# source <(/usr/bin/starship init zsh --print-full-init) # strarship prompt
 
 src "$ZDOTDIR/completion.zsh"
 
@@ -74,3 +83,6 @@ zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
 # End
 #################################
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
