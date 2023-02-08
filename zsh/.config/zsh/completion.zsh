@@ -16,17 +16,18 @@ fpath=($ZAP_DIR/plugins/zsh-completions/src $ZDOTDIR/completion $fpath)
 zmodload zsh/complist
 
 # Use hjlk in menu selection (during completion)
-# Doesn't work well with interactive mode
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '^h' vi-backward-char
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^j' vi-down-line-or-history
+bindkey -M menuselect '^l' vi-forward-char
 
 bindkey -M menuselect '^g' clear-screen
 bindkey -M menuselect '^i' vi-insert                      # Insert
 bindkey -M menuselect '^y' accept-and-hold                # Hold
 bindkey -M menuselect '^n' accept-and-infer-next-history  # Next
 bindkey -M menuselect '^u' undo                           # Undo
+
+bindkey -M menuselect '^[' send-break
 
 autoload -U compinit && compinit
 _comp_options+=(globdots) # With hidden files
@@ -36,7 +37,7 @@ for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
 done
 compinit -C
 
-autoload bashcompinit && bashcompinit
+# autoload bashcompinit && bashcompinit
 # complete -C 'aws_completer' aws
 
 # +---------+
