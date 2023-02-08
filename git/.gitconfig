@@ -1,58 +1,64 @@
+; vim: sw=8 ts=8 noexpandtab
+
 [include]
-  path = ~/.gituser
+	path = ~/.gituser
 ; @example for file .gituser
 ; [user]
-;   name = "User Name"
-;   email = "User.Name@gmail.com"
+; 	name = "User Name"
+; 	email = "user.name@gmail.com"
+; 	signingkey = 3F00K0FF3D7CB632
 ; [credential "https://github.com"]
-;   username = githubUser 
+; 	username = githubUser 
 ; [credential "http://localhost:8080"]
-;   username = localUser
+; 	username = localUser
 
 [alias]
-  ck = checkout
-  br = branch
-  cm = commit
-  st = status
-  d = difftool
+	ck = checkout
+	br = branch
+	cm = commit
+	st = status
+	d = difftool
   ; l = log --decorate --oneline --graph
-  l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
-  m = merge --no-ff
-  ff = merge --ff-only
-  pull = pull --prune
-  c = clone --recursive
-  p = pull
-  pr = pull --rebase
-  rp = checkout HEAD -- package-lock.json   
+	l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
+	m = merge --no-ff
+	ff = merge --ff-only
+	pull = pull --prune
+	c = clone --recursive
+	p = pull
+	pr = pull --rebase
+	rp = checkout HEAD -- package-lock.json   
 
 [diff]
-  tool = vimdiff
-  submodule = log
+	tool = vimdiff
+	submodule = log
 
 [difftool]
-  prompt = false
-  trustExitCode = true
+	prompt = false
+	trustExitCode = true
 
 [core]
-  pager = less -iXFRE
-  filemode = false
-  commentChar = "#"
-  excludesfile = ~/.gitignone_global
+	pager = less -iXFRE
+	filemode = false
+	commentChar = "#"
+	excludesfile = ~/.gitignone_global
 
 [mergetool]
-  trustExitCode = true
+	trustExitCode = true
 [rebase]
-  abbreviateCommands = true
+	abbreviateCommands = true
 [pull]
-  ff = only
+	ff = only
 [init]
-  defaultBranch = master
+	defaultBranch = master
 [submodule]
-  recurse = true
+	recurse = true
 [pager]
-  diff = delta
-  log = delta
-  reflog = delta
-  show = delta
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
 [interactive]
-  diffFilter = delta --color-only
+	fdiffFilter = delta --color-only
+[push]
+	followTags = true
+
