@@ -43,7 +43,7 @@ plug "undg/zsh-auto-notify" # system notification for long running processes
 plug "undg/zsh-autodotenv" # auto source .env file in project folder.
 
 plug "romkatv/powerlevel10k" # powerlevel10k prompt
-src ~/.config/zsh/.p10k.zsh
+src ~/.config/zsh/p10k.zsh
 
 src "$ZDOTDIR/completion.zsh"
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
