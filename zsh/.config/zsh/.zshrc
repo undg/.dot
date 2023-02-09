@@ -75,6 +75,9 @@ bindkey '^o' redo
 bindkey "\e[3~" delete-char # fix delete key
 bindkey "^?" backward-delete-char # fix backspace after normal mode
 
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey "^[q" exit_zsh
 
 #################################
 # Start: edit command in vim
