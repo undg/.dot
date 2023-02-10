@@ -32,7 +32,7 @@ exec --no-startup-id echocancel                                  # Pulse mixer e
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec --no-startup-id lxsession                                   # FE for polkit
-exec --no-startup-id sleep 2 && d3                               # 3 displays xrandr script
+exec --no-startup-id sleep 2 && ./bin/d3                         # 3 displays xrandr script
 exec --no-startup-id $iriunwebcam_only_on_cm                     # Android webcam
 exec --no-startup-id sleep 5 && barrier                          # KVM software
 exec --no-startup-id sleep 6 && $kodi_only_on_cm                 # Media center
