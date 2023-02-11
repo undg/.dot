@@ -148,6 +148,13 @@ else
     install yarn
 fi
 
+if hash pnpm 2>/dev/null; then
+    alias p='pnpm'
+else
+    echo "pnpm is not installed."
+    install pnpm
+fi
+
 if hash npm 2>/dev/null; then
     alias n='npm run'
 else
