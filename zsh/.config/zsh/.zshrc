@@ -17,6 +17,11 @@ else
 	sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
 fi
 
+# Suppress p10k warning about console output. Those guys should produce stdout's.
+# Run them before p10k.
+neofetch
+plug "undg/zsh-autodotenv" # auto source .env file in project folder.
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -40,7 +45,6 @@ eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "undg/zsh-auto-notify" # system notification for long running processes
-plug "undg/zsh-autodotenv" # auto source .env file in project folder.
 
 plug "romkatv/powerlevel10k" # powerlevel10k prompt
 src ~/.config/zsh/p10k.zsh
