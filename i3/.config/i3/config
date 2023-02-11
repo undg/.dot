@@ -296,7 +296,6 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 # #---Function Buttons---# #
 bindsym $winKey+F1                exec --no-startup-id $BROWSER
 bindsym $winKey+F2                restart
-bindsym $winKey+F3
 # bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 bindsym $winKey+F5                exec --no-startup-id $netrefresh
 # bindsym $winKey+F8                exec --no-startup-id droidcam-run
