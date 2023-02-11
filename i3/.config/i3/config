@@ -296,16 +296,17 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 # #---Function Buttons---# #
 bindsym $winKey+F1                exec --no-startup-id $BROWSER
 bindsym $winKey+F2                restart
-bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
+bindsym $winKey+F3
+# bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 bindsym $winKey+F5                exec --no-startup-id $netrefresh
 # bindsym $winKey+F8                exec --no-startup-id droidcam-run
 
 
 # #---Media Keys---# #
-bindsym Shift+$winKey+F9          exec --no-startup-id mypctl --max #lower/rise volume to 150%
-bindsym Control+$winKey+F9        exec --no-startup-id mypctl --normal # 75%
-bindsym $winKey+F9                exec --no-startup-id mypctl --down
-bindsym $winKey+F10               exec --no-startup-id mypctl --up # up to infinity
+bindsym Shift+$winKey+F9          exec --no-startup-id ./bin/mypctl --max #lower/rise volume to 150%
+bindsym Control+$winKey+F9        exec --no-startup-id ./bin/mypctl --normal # 75%
+bindsym $winKey+F9                exec --no-startup-id ./bin/mypctl --down
+bindsym $winKey+F10               exec --no-startup-id ./bin/mypctl --up
 
 
 # For screenshots and recording
@@ -326,11 +327,11 @@ bindsym $winKey+Shift+Right        move right
 
 # #---Extra XF86 Keys---# #
 # These are the extra media keys that some keyboards have.
-bindsym XF86AudioMute         exec --no-startup-id mypctl --mute
-bindsym Shift+XF86AudioMute   exec --no-startup-id mypctl --max
-bindsym Control+XF86AudioMute exec --no-startup-id mypctl --normal
-bindsym XF86AudioLowerVolume  exec --no-startup-id mypctl --down
-bindsym XF86AudioRaiseVolume  exec --no-startup-id mypctl --up
+bindsym XF86AudioMute         exec --no-startup-id ./bin/mypctl --mute
+bindsym Shift+XF86AudioMute   exec --no-startup-id ./bin/mypctl --max
+bindsym Control+XF86AudioMute exec --no-startup-id ./bin/mypctl --normal
+bindsym XF86AudioLowerVolume  exec --no-startup-id ./bin/mypctl --down
+bindsym XF86AudioRaiseVolume  exec --no-startup-id ./bin/mypctl --up
 bindsym XF86PowerOff          exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 bindsym XF86WWW               exec --no-startup-id $BROWSER
 bindsym XF86ScreenSaver       exec exec --no-startup-id lockscreen
