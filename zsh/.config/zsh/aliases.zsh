@@ -207,7 +207,7 @@ alias date-clip='date --iso-8601 | xclip'
 alias date-today="date +%Y-%m-%d"
 alias date-now="date +%Y-%m-%d_%H-%m_%S"
 
-show-colors() {
+colors() {
   for i in {0..255};
   do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'};
   done
