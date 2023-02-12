@@ -19,11 +19,13 @@ set $DP_left DisplayPort-1
 set $DP_right DisplayPort-0
 set $DP_top HDMI-A-0
 
-set $iriunwebcam_only_on_cm [[ "$(hostname)" == "cm" ]] && iriunwebcam
-set $kodi_only_on_cm [[ "$(hostname)" == "cm" ]] && kodi
+
+set $iriunwebcam_only_on_cm        [[ "$(hostname)" == "cm"      ]] && iriunwebcam
+set $kodi_only_on_cm               [[ "$(hostname)" == "cm"      ]] && kodi
+set $d3_only_on_cm                 [[ "$(hostname)" == "cm"      ]] && ~/bin/d3
+set $autorotate_only_on_di7415     [[ "$(hostname)" == "di-7415" ]] && ~/bin/autorotate --display eDP
+
 set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
-set $autorotate_only_on_di7415 [[ "$(hostname)" == "di-7415" ]] && ~/bin/autorotate --display eDP
-set $d3_only_on_cm [[ "$(hostname)" == "cm" ]] && ~/bin/d3
 
 
 # #---Starting External Scripts---# #
@@ -146,26 +148,20 @@ workspace 7 output             $DP_right
 workspace 8 output             $DP_right
 workspace 9 output             $DP_right
 
-set $WINDOW_poe         [class="steam_app_238960"]
-set $WINDOW_gta5        [class="steam_app_271590"]
-set $WINDOW_portal2     [class="portal2_linux"]
-set $WINDOW_xenotrade   [class="xenonTrade"]
-set $WINDOW_awakened    [class="awakened-poe-trade"]
-set $WINDOW_steam       [class="Steam"]
-set $WINDOW_spotify     [class="Spotify"]
-set $WINDOW_kodi        [class="Kodi"]
-set $WINDOW_iriunwebcam [class="iriunwebcam"]
-set $WINDOW_plex        [class="plexmediaplayer"]
-set $WINDOW_teams       [title="Microsoft Teams Notification"]
-set $WINDOW_pavucontrol [class="Pavucontrol"]
+set $WINDOW_gta5                      [class="steam_app_271590"]
+set $WINDOW_portal2                   [class="portal2_linux"]
+set $WINDOW_awakened                  [class="awakened-poe-trade"]
+set $WINDOW_steam                     [class="Steam"]
+set $WINDOW_kodi                      [class="Kodi"]
+set $WINDOW_iriunwebcam               [class="iriunwebcam"]
+set $WINDOW_teams                     [title="Microsoft Teams Notification"]
+set $WINDOW_pavucontrol               [class="Pavucontrol"]
+set $WINDOW_insta360_settings         [class="insta360 studio 2023.exe" title="User Preference"]
 
-for_window $WINDOW_poe move workspace $ws3
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
-for_window $WINDOW_xenotrade move workspace $ws3
 
 for_window $WINDOW_kodi move workspace $ws5
-for_window $WINDOW_spotify move workspace $ws5
 for_window $WINDOW_iriunwebcam move workspace $ws5
 
 for_window $WINDOW_pavucontrol floating enable
@@ -173,6 +169,9 @@ for_window $WINDOW_pavucontrol sticky enable
 for_window $WINDOW_pavucontrol resize set 1200 950
 # for_window $WINDOW_pavucontrol move to output secondary
 for_window $WINDOW_pavucontrol move position 3920 1105 # 2 screens right minus window width and bellow top screen + bar + border
+
+for_window $WINDOW_insta360_settings floating enable
+for_window $WINDOW_insta360_settings sticky enable
 
 for_window [class="Pinentry"] sticky enable
 for_window [class="sent"] border pixel 0px
@@ -184,14 +183,9 @@ for_window $WINDOW_portal2     floating     disable
 for_window $WINDOW_portal2     fullscreen
 for_window $WINDOW_steam       layout       tabbed
 for_window $WINDOW_kodi        layout       tabbed
-for_window $WINDOW_spotify     layout       tabbed
 for_window $WINDOW_iriunwebcam layout       tabbed
 for_window $WINDOW_iriunwebcam floating     disable
-for_window $WINDOW_poe         floating     disable
 for_window $WINDOW_gta5        floating     disable
-for_window $WINDOW_xenotrade   floating     enable
-for_window $WINDOW_xenotrade   sticky       enable
-for_window $WINDOW_xenotrade   border       pixel 2px
 for_window $WINDOW_awakened    border       pixel 1px
 for_window $WINDOW_kodi        border       pixel 1px
 for_window $WINDOW_teams       floating     enable
@@ -233,7 +227,7 @@ bindsym $winKey+o               sticky toggle
 #bindsym $winKey+Shift+o
 #bindsym $winKey+p
 #bindsym $winKey+Shift+p
-bindsym $winKey+a               exec --no-startup-id pavucontrol-toggle
+bindsym $winKey+a               exec --no-startup-id ~/bin/pavucontrol-toggle
 bindsym $winKey+Shift+a         exec $term -e pulsemixer
 #bindsym $winKey+s
 #bindsym $winKey+Shift+s
