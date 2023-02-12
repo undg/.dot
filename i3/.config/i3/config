@@ -22,22 +22,25 @@ set $DP_top HDMI-A-0
 set $iriunwebcam_only_on_cm [[ "$(hostname)" == "cm" ]] && iriunwebcam
 set $kodi_only_on_cm [[ "$(hostname)" == "cm" ]] && kodi
 set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
+set $autorotate_only_on_di7415 [[ "$(hostname)" == "di-7415" ]] && ~/bin/autorotate --display eDP
+set $d3_only_on_cm [[ "$(hostname)" == "cm" ]] && ~/bin/d3
 
 
 # #---Starting External Scripts---# #
 # Setting the background:
 exec --no-startup-id picom --config /dev/null                    # Composite manager
 exec --no-startup-id unclutter                                   # Hide mouse after a brief period
-exec --no-startup-id ./bin/echocancel                            # Pulse mixer echo cancelation
+exec --no-startup-id ~/bin/echocancel                            # Pulse mixer echo cancelation
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec --no-startup-id lxsession                                   # FE for polkit
-exec --no-startup-id sleep 2 && ./bin/d3                         # 3 displays xrandr script
+exec --no-startup-id sleep 2 && $d3_only_on_cm                   # 3 displays xrandr script
+exec --no-startup-id sleep 2 && $autorotate_only_on_di7415       # autorotate 2in1 screen
 exec --no-startup-id $iriunwebcam_only_on_cm                     # Android webcam
 exec --no-startup-id sleep 5 && barrier                          # KVM software
 exec --no-startup-id sleep 6 && $kodi_only_on_cm                 # Media center
 exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
-exec_always --no-startup-id ./bin/volctl_once                    # Volume applet in system tray
+exec_always --no-startup-id ~/bin/volctl_once                    # Volume applet in system tray
 exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
 exec_always --no-startup-id xset r rate 250 60                   # Speedy keys delay/repeatSpeed
 
@@ -302,10 +305,10 @@ bindsym $winKey+F5                exec --no-startup-id $netrefresh
 
 
 # #---Media Keys---# #
-bindsym Shift+$winKey+F9          exec --no-startup-id ./bin/mypctl --max #lower/rise volume to 150%
-bindsym Control+$winKey+F9        exec --no-startup-id ./bin/mypctl --normal # 75%
-bindsym $winKey+F9                exec --no-startup-id ./bin/mypctl --down
-bindsym $winKey+F10               exec --no-startup-id ./bin/mypctl --up
+bindsym Shift+$winKey+F9          exec --no-startup-id ~/bin/mypctl --max #lower/rise volume to 150%
+bindsym Control+$winKey+F9        exec --no-startup-id ~/bin/mypctl --normal # 75%
+bindsym $winKey+F9                exec --no-startup-id ~/bin/mypctl --down
+bindsym $winKey+F10               exec --no-startup-id ~/bin/mypctl --up
 
 
 # For screenshots and recording
@@ -326,11 +329,11 @@ bindsym $winKey+Shift+Right        move right
 
 # #---Extra XF86 Keys---# #
 # These are the extra media keys that some keyboards have.
-bindsym XF86AudioMute         exec --no-startup-id ./bin/mypctl --mute
-bindsym Shift+XF86AudioMute   exec --no-startup-id ./bin/mypctl --max
-bindsym Control+XF86AudioMute exec --no-startup-id ./bin/mypctl --normal
-bindsym XF86AudioLowerVolume  exec --no-startup-id ./bin/mypctl --down
-bindsym XF86AudioRaiseVolume  exec --no-startup-id ./bin/mypctl --up
+bindsym XF86AudioMute         exec --no-startup-id ~/bin/mypctl --mute
+bindsym Shift+XF86AudioMute   exec --no-startup-id ~/bin/mypctl --max
+bindsym Control+XF86AudioMute exec --no-startup-id ~/bin/mypctl --normal
+bindsym XF86AudioLowerVolume  exec --no-startup-id ~/bin/mypctl --down
+bindsym XF86AudioRaiseVolume  exec --no-startup-id ~/bin/mypctl --up
 bindsym XF86PowerOff          exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 bindsym XF86WWW               exec --no-startup-id $BROWSER
 bindsym XF86ScreenSaver       exec exec --no-startup-id lockscreen
