@@ -254,7 +254,7 @@ bindsym $winKey+Ctrl+l          exec --no-startup-id i3resize right
 bindsym $winKey+$altKey+l       exec --no-startup-id i3resize right
 #bindsym $winKey+z
 #bindsym $winKey+Shift+z
-bindsym $winKey+x               exec --no-startup-id lockscreen
+bindsym $winKey+x               exec --no-startup-id ~/bin/lockscreen
 bindsym $winKey+Shift+x         exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
 # bindsym $winKey+Shift+x         exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 # bindsym $winKey+c
