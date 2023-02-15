@@ -1,19 +1,18 @@
-#!/bin/env bash
+#!/bin/env sh
 
-local dateDirName=$(date "+%Y-%m-%d")
+dateDirName=$(date "+%Y-%m-%d")
+
 while getopts ':t' OPTION; do
 	case ${OPTION} in
 	t) dateDirName=$(date "+%Y-%m-%d_%H-%M") ;;
+	h) printf 1>&2 ' -t		precise timestamp name in format "+%Y-%m-%d_%H-%M".\n' "${OPTION}" ;;
 	*) printf 1>&2 ' Unsupported option [ %s ].\n' "${OPTION}" ;;
 	esac
 done
 
 if [[ -d "$dateDirName" ]]; then
-	echo "$(tput setaf 3) $ cd $dateDirName"
-	cd $dateDirName
+	echo 'Directory exist.'
 else
-	echo "$(tput setaf 2) $ mkdir $dateDirName"
-	mkdir $dateDirName
-	echo "$(tput setaf 3) $ cd $dateDirName"
-	cd $dateDirName
+	echo "$(tput setaf 2) mkdir $dateDirName"
+	mkdir "$dateDirName"
 fi
