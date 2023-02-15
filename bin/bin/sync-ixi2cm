@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CM_DCIM=/mnt/Storage-2/Camera
+IXI_DCIM=ixi:storage/shared/DCIM/Camera/*
+
+# CM_INSTA360=/mnt/Storage-2/Insta360/DCIM/Camera01/
+# SD_INSTA360=DCIM/Camera01/
+
+rsync -vaz --progress "$IXI_DCIM" "$CM_DCIM"
