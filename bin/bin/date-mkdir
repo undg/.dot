@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+local dateDirName=$(date "+%Y-%m-%d")
+while getopts ':t' OPTION; do
+	case ${OPTION} in
+	t) dateDirName=$(date "+%Y-%m-%d_%H-%M") ;;
+	*) printf 1>&2 ' Unsupported option [ %s ].\n' "${OPTION}" ;;
+	esac
+done
+
+if [[ -d "$dateDirName" ]]; then
+	echo "$(tput setaf 3) $ cd $dateDirName"
+	cd $dateDirName
+else
+	echo "$(tput setaf 2) $ mkdir $dateDirName"
+	mkdir $dateDirName
+	echo "$(tput setaf 3) $ cd $dateDirName"
+	cd $dateDirName
+fi
