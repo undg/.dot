@@ -190,26 +190,6 @@ fi
 alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
 alias yay-list='yay -Qu --aur'
 
-date-mkdir() {
-    local dateDirName=$(date "+%Y-%m-%d")
-    while getopts ':t' OPTION; do
-        case ${OPTION} in
-        t) dateDirName=$(date "+%Y-%m-%d_%H-%M") ;;
-        *) printf 1>&2 ' Unsupported option [ %s ].\n' "${OPTION}" ;;
-        esac
-    done
-
-    if [[ -d "$dateDirName" ]]; then
-        echo "$(tput setaf 3) $ cd $dateDirName"
-        cd $dateDirName
-    else
-        echo "$(tput setaf 2) $ mkdir $dateDirName"
-        mkdir $dateDirName
-        echo "$(tput setaf 3) $ cd $dateDirName"
-        cd $dateDirName
-    fi
-}
-
 # Avoid breaking fingers with date
 alias date-clip='date --iso-8601 | xclip'
 alias date-today="date +%Y-%m-%d"
