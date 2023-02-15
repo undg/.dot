@@ -57,17 +57,14 @@ cmp.setup({
         format = lspkind.cmp_format({
             with_text = true,
             maxwidth = 50,
-            -- menu = {
-            --     buffer = '[©]',
-            --     nvim_lsp = '[LSP]',
-            --     nvim_lua = '[lua]',
-            --     path = '[📂]',
-            --     ultisnips = '[✂]',
-            --     spell = '[txt]'
-            -- },
+            menu = {
+                nvim_lsp = '',
+                nvim_lua = '',
+                path = '',
+                ultisnips = '',
+                buffer = '',
+                spell = '',
+            },
         }),
     },
--- experimental = {
-    --     native_menu = false,
-    -- },
 })
