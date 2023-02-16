@@ -43,5 +43,10 @@ for f in $files; do
 	f_out="$OUT_DIR"/"$f_name".mov
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
-	ffmpeg -i "$f" -vcodec dnxhd -acodec pcm_s16le -s 1920x1080 -r 30000/1001 -b:v 36M -pix_fmt yuv422p -f mov "$f_out"
+	# ffmpeg -i "$f" -vcodec dnxhd -acodec pcm_s16le -s 1920x1080 -r 30000/1001 -b:v 36M -pix_fmt yuv422p -f mov "$f_out"
+	ffmpeg -i "$f" -c:v prores -profile:v 3 -c:a pcm_s24le "$f_out"
+
+	notify-send "transcoded: $f"
 done
+
+notify-send "transcoded-all: $files"
