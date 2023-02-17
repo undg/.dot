@@ -1,0 +1,10 @@
+#!/bin/env bash
+
+file="/tmp/qrcode_a16bd6b9b7dc.png"
+
+qrencode -o "$file" -s 5 \
+	"$(xclip -out -selection clipboard)" &&
+	dunstify -I "$file" $(date +%H:%m:%S) qrcode
+
+sleep 30
+rm "$file"
