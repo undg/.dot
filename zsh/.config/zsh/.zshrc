@@ -37,7 +37,8 @@ touch -a "$ZDOTDIR/private.zsh"
 # Start: Sources and Plugins
 #################################
 src "$ZDOTDIR/config.zsh"
-src "$ZDOTDIR/path.zsh"
+# @TODO (undg) 2023-02-19: moved to zprofile to run on login. Test and delete.
+# src "$ZDOTDIR/path.zsh"
 src "$ZDOTDIR/aliases.zsh"
 src "$ZDOTDIR/private.zsh" # file in gitignore
 src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
