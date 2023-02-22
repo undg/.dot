@@ -1,9 +1,22 @@
 #!/bin/sh
 
+# Destination
 CM_DCIM=/mnt/Storage-2/Camera
-IXI_DCIM=ixi:storage/shared/DCIM/Camera/*
+
+# Source
+IXI_CAMERA=ixi:storage/dcim/Camera/
+IXI_DONTBACKUP=ixi:storage/pictures/dontBackup/
+
+rsync -vazr --progress "$IXI_CAMERA" "$CM_DCIM"
+rsync -vazr --progress "$IXI_DONTBACKUP" "$CM_DCIM"
+
+# Destination
+CM_WHATSAPP=/mnt/Storage-2/Whatsapp
+
+# Source
+IXI_WHATSAPP=ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/
+
+rsync -vazr --progress "$IXI_WHATSAPP" "$CM_WHATSAPP"
 
 # CM_INSTA360=/mnt/Storage-2/Insta360/DCIM/Camera01/
 # SD_INSTA360=DCIM/Camera01/
-
-rsync -vaz --progress "$IXI_DCIM" "$CM_DCIM"
