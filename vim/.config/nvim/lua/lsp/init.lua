@@ -26,9 +26,9 @@ local lsp2mason = {
         jsonls = 'json-lsp',
         tsserver = 'typescript-language-server',
         yamlls = 'yaml-language-server',
-        sumneko_lua = 'lua-language-server',
+        lua_ls = 'lua-language-server',
     },
-    cfg_no = {
+    cfg_no_file = {
         cssls = 'cssls',
         html = 'html',
         -- prosemd_lsp = 'prosemd-lsp',
@@ -97,7 +97,7 @@ for key in pairs(lsp2mason.cfg_file) do
     lspconfig[key].setup(config)
 end
 
-for key in pairs(lsp2mason.cfg_no) do
+for key in pairs(lsp2mason.cfg_no_file) do
     mason_lsp[#mason_lsp + 1] = key
     local config = {}
     config['capabilities'] = capabilities
