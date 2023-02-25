@@ -1,22 +1,74 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+Black="\033[0;30m"
+Red="\033[0;31m"
+Green="\033[0;32m"
+Orange="\033[0;33m"
+Blue="\033[0;34m"
+Purple="\033[0;35m"
+Cyan="\033[0;36m"
+LightGray="\033[0;37m"
+DarkGray="\033[1;30m"
+LightRed="\033[1;31m"
+LightGreen="\033[1;32m"
+Yellow="\033[1;33m"
+LightBlue="\033[1;34m"
+LightPurple="\033[1;35m"
+LightCyan="\033[1;36m"
+White="\033[1;37m"
+NC="\033[0m"
+
+
+rsync_src_desc() {
+	local src=$1
+	local desc=$2
+
+	local src_ok=false
+	local desc_ok=false
+
+	if test -d "$src" && test -x "$src"; then
+		src_ok=true
+	else
+		src_ok=false
+		echo -e "${Orange}$src ${Red}not accessible.${NC}"
+	fi
+
+	if test -d "$desc" && test -x "$desc"; then
+		desc_ok=true
+	else
+		desc_ok=false
+		echo -e "${Orange}$desc ${Red}not accessible.${NC}"
+	fi
+
+	if test "$src_ok" = true && test "$desc_ok" = true ; then
+		rsync --dry-run -vazr --progress "$src" "$desc"
+	else
+		echo -e "${NC}Fuck off.${NC}"
+	fi
+}
+
+# # Destination
+# CM_DCIM=/mnt/Storage-2/Camera
+#
+# # Source
+# IXI_CAMERA=ixi:storage/dcim/Camera/
+# IXI_DONTBACKUP=ixi:storage/pictures/dontBackup/ # dont backup to cloud. For large files.
+#
+# rsync -vazr --progress "$IXI_CAMERA" "$CM_DCIM"
+# rsync -vazr --progress "$IXI_DONTBACKUP" "$CM_DCIM"
+#
+# # Destination
+# CM_WHATSAPP=/mnt/Storage-2/Whatsapp
+#
+# # Source
+# IXI_WHATSAPP=ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/
+#
+# rsync -vazr --progress "$IXI_WHATSAPP" "$CM_WHATSAPP"
 
 # Destination
-CM_DCIM=/mnt/Storage-2/Camera
+CM_INSTA360=/mnt/Storage-2/Insta360/RAWsdfsdf
 
 # Source
-IXI_CAMERA=ixi:storage/dcim/Camera/
-IXI_DONTBACKUP=ixi:storage/pictures/dontBackup/
+SD_INSTA360=/run/media/undg/disk/DCIM/Camera01/sdfadf/
 
-rsync -vazr --progress "$IXI_CAMERA" "$CM_DCIM"
-rsync -vazr --progress "$IXI_DONTBACKUP" "$CM_DCIM"
-
-# Destination
-CM_WHATSAPP=/mnt/Storage-2/Whatsapp
-
-# Source
-IXI_WHATSAPP=ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/
-
-rsync -vazr --progress "$IXI_WHATSAPP" "$CM_WHATSAPP"
-
-# CM_INSTA360=/mnt/Storage-2/Insta360/DCIM/Camera01/
-# SD_INSTA360=DCIM/Camera01/
+rsync_src_desc "$SD_INSTA360" "$CM_INSTA360"
