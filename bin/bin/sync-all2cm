@@ -22,6 +22,9 @@ NC="\033[0m"
 # Other way folder itself will be copied to destination
 # Standard rsync thing
 rsync_src_desc() {
+	# local DEBUG="--dry-run"
+	local DEBUG=""
+
 	local src=$1
 	local desc=$2
 
@@ -55,7 +58,7 @@ rsync_src_desc() {
 
 	if test "$src_ok" = true && test "$desc_ok" = true; then
 		echo -e "\n${Purple}$desc${NC} <- ${Blue}$src${NC}"
-		rsync --dry-run -vazr --progress "$src" "$desc"
+		rsync $DEBUG -vazr --progress "$src" "$desc"
 	else
 		echo -e "${NC}Fuck off.${NC}"
 	fi
