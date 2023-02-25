@@ -18,7 +18,9 @@ LightCyan="\033[1;36m"
 White="\033[1;37m"
 NC="\033[0m"
 
-
+# Keep slash at the end of the source to include only it's content.
+# Other way folder itself will be copied to destination
+# Standard rsync thing
 rsync_src_desc() {
 	local src=$1
 	local desc=$2
@@ -30,45 +32,33 @@ rsync_src_desc() {
 		src_ok=true
 	else
 		src_ok=false
-		echo -e "${Orange}$src ${Red}not accessible.${NC}"
+		echo -e "${Orange}$src ${Red}is not accessible.${NC}"
 	fi
 
 	if test -d "$desc" && test -x "$desc"; then
 		desc_ok=true
 	else
 		desc_ok=false
-		echo -e "${Orange}$desc ${Red}not accessible.${NC}"
+		echo -e "${Orange}$desc ${Red}is not accessible.${NC}"
 	fi
 
-	if test "$src_ok" = true && test "$desc_ok" = true ; then
+	if test "$src_ok" = true && test "$desc_ok" = true; then
 		rsync --dry-run -vazr --progress "$src" "$desc"
 	else
 		echo -e "${NC}Fuck off.${NC}"
 	fi
 }
 
-# # Destination
-# CM_DCIM=/mnt/Storage-2/Camera
-#
-# # Source
-# IXI_CAMERA=ixi:storage/dcim/Camera/
-# IXI_DONTBACKUP=ixi:storage/pictures/dontBackup/ # dont backup to cloud. For large files.
-#
-# rsync -vazr --progress "$IXI_CAMERA" "$CM_DCIM"
-# rsync -vazr --progress "$IXI_DONTBACKUP" "$CM_DCIM"
-#
-# # Destination
-# CM_WHATSAPP=/mnt/Storage-2/Whatsapp
-#
-# # Source
-# IXI_WHATSAPP=ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/
-#
-# rsync -vazr --progress "$IXI_WHATSAPP" "$CM_WHATSAPP"
+# Ixi
+rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/Storage-2/Camera"
+rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/Storage-2/Camera"
+rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/Storage-2/Whatsapp"
 
-# Destination
-CM_INSTA360=/mnt/Storage-2/Insta360/RAWsdfsdf
+# Insta360
+rsync_src_desc "/run/media/undg/disk/DCIM/Camera01/" "/mnt/Storage-2/Insta360/RAW"
 
-# Source
-SD_INSTA360=/run/media/undg/disk/DCIM/Camera01/sdfadf/
+# Backup of backup
+rsync_src_desc "/mnt/Storage-1/backups/" "/mnt/Storage-2/backups"
+rsync_src_desc "/mnt/Storage-2/backups/" "/mnt/Storage-1/backups"
 
-rsync_src_desc "$SD_INSTA360" "$CM_INSTA360"
+rsync_src_desc "/mnt/Storage-1/backups/" "/mnt/Storage-2/backups" # looks strange, but it have a sense if you'll think about it.
