@@ -25,10 +25,21 @@ rsync_src_desc() {
 	local src=$1
 	local desc=$2
 
+	# split by ':'
+	IFS=':' read -r -a src_arr <<< "$src"
+	local src_host=${src_arr[0]}
+	local src_path=${src_arr[1]}
+
+
 	local src_ok=false
 	local desc_ok=false
 
+
+
 	if test -d "$src" && test -x "$src"; then
+		src_ok=true
+
+	elif [[ `ssh $src_host test -d $src_path && echo exists` ]]; then
 		src_ok=true
 	else
 		src_ok=false
@@ -43,6 +54,7 @@ rsync_src_desc() {
 	fi
 
 	if test "$src_ok" = true && test "$desc_ok" = true; then
+		echo -e "\n${Purple}$desc${NC} <- ${Blue}$src${NC}"
 		rsync --dry-run -vazr --progress "$src" "$desc"
 	else
 		echo -e "${NC}Fuck off.${NC}"
