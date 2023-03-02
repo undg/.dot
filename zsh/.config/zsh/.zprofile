@@ -15,7 +15,8 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 
 
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+# export TERMINAL="alacritty"
+export TERMINAL="kitty"
 export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
