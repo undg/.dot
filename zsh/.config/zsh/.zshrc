@@ -17,10 +17,36 @@ else
 	sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
 fi
 
-# Suppress p10k warning about console output. Those guys should produce stdout's.
-# Run them before p10k.
-neofetch
-plug "undg/zsh-autodotenv" # auto source .env file in project folder.
+#################################
+# To suppress p10k warning about console output.
+# Run them before p10k. Those guys should produce stdout's.
+#################################
+
+# Print a static or dynamic, hopefully interesting, adage.
+# First "if installed" win [fortune(and cowsay), neofetch, archey3]
+
+if (( $+commands[fortune] )); then
+	if (( $+commands[cowsay] )); then
+		fortune definitions|cowsay
+		print
+	else
+		fortune -s
+		print
+	fi
+elif (( $+commands[neofetch] )); then
+	archey3 -c red
+	print
+elif (( $+commands[archey3] )); then
+	archey3 -c red
+	print
+fi
+
+# auto source .env file in project folder.
+plug "undg/zsh-autodotenv"
+
+#################################
+# Powerlevel10k
+#################################
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
