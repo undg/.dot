@@ -258,7 +258,7 @@ packer.startup(function(use)
         cmd = { 'ColorHighlight', 'ColorToggle' },
     })
     use({
-        'RRethy/vim-illuminate',
+        'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
         config = function()
             require('plugins.illuminate')
         end,
