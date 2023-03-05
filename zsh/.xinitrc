@@ -1,5 +1,6 @@
 #!/bin/sh
 # X11 init file. Runs on XORG server start.
+# Executed by startx (run your window manager from here)
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
