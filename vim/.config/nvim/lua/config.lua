@@ -49,7 +49,8 @@ vim.opt.visualbell = false                                                     -
 vim.opt.termguicolors = true                                                   -- enable highlight groups
 
                                                                                -- show white spaces, but only on demand
-vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+-- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.opt.listchars = "eol:¬,tab:!⇥,trail:·,extends:>,precedes:<,space:·"
 vim.opt.list = false
 
                                                                                -- default indentation (there is plugin that's trying to guess indentation style in opened file)
