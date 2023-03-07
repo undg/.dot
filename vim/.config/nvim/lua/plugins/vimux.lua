@@ -11,4 +11,4 @@ vim.g.VimuxTmuxCommand   = 'tmux'
 vim.g.VimuxUseNearest    = true
 vim.g.VimuxExpandCommand = false
 vim.g.VimuxCloseOnExit   = false
-vim.g.VimuxCommandShell  = true
+vim.g.VimuxCommandShell  = false -- enable shell completion (disable arrow up)
