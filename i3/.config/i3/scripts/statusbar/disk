@@ -43,7 +43,7 @@ END {
 		print "#FFA500"
 	}
 	if (100 - use < alert_low) {
-		print "#FF0000"
+		print "#cc3333"
 	}
 }
 '
