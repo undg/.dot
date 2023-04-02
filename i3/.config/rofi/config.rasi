@@ -1,19 +1,13 @@
 /*
-	vim: ft=sh
+	vim: ft=rasi
 
 	file location (copy or symlink):
 	~/.config/rofi/config.rasi
 */
 
 configuration {
-	modi: "drun,window,combi,calc";
-	combi-modi: "window,drun,calc";
-	font: "mononoki Nerd Font 13";
-	show-icons: true;
-	sidebar-mode: true;
-	width: 45;
-	lines: 24;
-	columns: 1;
+	modi       : "drun,window,combi,calc";
+	combi-modi : "window,drun,calc";
 
 	kb-mode-next               :  "Super+l,Control+l,Shift+Right";
 	kb-mode-previous           :  "Super+h,Control+h,Shift+Left";
@@ -87,77 +81,65 @@ configuration {
 	me-select-entry            :  "MousePrimary";
 	me-accept-entry            :  "MouseDPrimary";
 	me-accept-custom           :  "Control+MouseDPrimary";
-	click-to-exit              :  false;
 
-	bw: 1;
-	location: 0;
-	padding: 25;
-	yoffset: 0;
-	xoffset: 0;
-	fixed-num-lines: true;
-	terminal: "rofi-sensible-terminal";
-	ssh-client: "ssh";
-	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-	run-command: "{cmd}";
-	run-shell-command: "{terminal} -e {cmd}";
-	window-command: "wmctrl -i -R {window}";
-	window-match-fields: "all";
-	drun-match-fields: "name,generic,exec,categories,keywords";
-	drun-show-actions: false;
-	drun-display-format: "{name} [<span weight='light' size='small'><i>({exec})</i></span>]";
-	drun-url-launcher: "xdg-open";
-	disable-history: false;
-	ignored-prefixes: "";
-	sort: false;
-	sorting-method: "normal";
-	case-sensitive: false;
-	cycle: true;
-	eh: 1;
-	auto-select: false;
-	parse-hosts: false;
-	parse-known-hosts: true;
-	matching: "normal";
-	tokenize: true;
-	m: "-5";
-	line-margin: 0;
-	line-padding: 0;
-	separator-style: "dash";
-	hide-scrollbar: false;
-	fullscreen: false;
-	fake-transparency: false;
-	dpi: 1;
-	threads: 0;
-	scrollbar-width: 8;
-	scroll-method: 0;
-    fake-background: "screenshot"; 
-	window-format: "{w}    {c}   {t}";
-	show-match: true;
-	max-history-size: 25;
-	combi-hide-mode-prefix: false;
-	matching-negate-char: '-' /* unsupported */;
-    window-thumbnail: false; 
-	drun-use-desktop-cache: false;
-	drun-reload-desktop-cache: false;
-	normalize-match: false;
-	pid: "/run/user/1000/rofi.pid";
-
-	/* run-list-command: ""; */
-    /* icon-theme: ; */
-    /* drun-categories: ; */
-	/* filter: ; */
-	/* color-normal: ; */
-	/* color-urgent: ; */
-	/* color-active: ; */
-	/* color-window: ; */
-	/* cache-dir: ; */
-	/* display-window: ; */
-	/* display-windowcd: ; */
-	/* display-run: ; */
-	/* display-ssh: ; */
-	/* display-drun: ; */
-	/* display-combi: ; */
-	/* display-keys: ; */
-	/* display-file-browser: ; */
+	font                      : "mononoki Nerd Font 13";
+	show-icons                : true;
+	sidebar-mode              : true;
+	width                     : 45;
+	lines                     : 24;
+	columns                   : 1;
+	click-to-exit             : false;
+	bw                        : 1;
+	location                  : 0;
+	padding                   : 25;
+	yoffset                   : 0;
+	xoffset                   : 0;
+	fixed-num-lines           : true;
+	terminal                  : "rofi-sensible-terminal";
+	ssh-client                : "ssh";
+	ssh-command               : "{terminal} -e {ssh-client} {host} [-p {port}]";
+	run-command               : "{cmd}";
+	run-shell-command         : "{terminal} -e {cmd}";
+	window-command            : "wmctrl -i -R {window}";
+	window-match-fields       : "all";
+	drun-match-fields         : "name,generic,exec,categories,keywords";
+	drun-show-actions         : false;
+	drun-display-format       : "{name} [<span weight='light' size='small'><i>({exec})</i></span>]";
+	drun-url-launcher         : "xdg-open";
+	disable-history           : false;
+	ignored-prefixes          : "";
+	sort                      : false;
+	sorting-method            : "normal";
+	case-sensitive            : false;
+	cycle                     : true;
+	eh                        : 1;
+	auto-select               : false;
+	parse-hosts               : false;
+	parse-known-hosts         : true;
+	matching                  : "normal";
+	tokenize                  : true;
+	m                         : "-5";
+	line-margin               : 0;
+	line-padding              : 0;
+	separator-style           : "dash";
+	hide-scrollbar            : false;
+	fullscreen                : false;
+	fake-transparency         : false;
+	dpi                       : 1;
+	threads                   : 0;
+	scrollbar-width           : 8;
+	scroll-method             : 0;
+	fake-background           : "screenshot";
+	window-format             : "{w}    {c}   {t}";
+	show-match                : true;
+	max-history-size          : 25;
+	combi-hide-mode-prefix    : false;
+	matching-negate-char      : '-' /* unsupported */;
+	window-thumbnail          : false;
+	drun-use-desktop-cache    : false;
+	drun-reload-desktop-cache : false;
+	normalize-match           : false;
+	pid                       : "/run/user/1000/rofi.pid";
 }
 
 @theme "gruvbox-dark-soft"
