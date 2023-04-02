@@ -5,7 +5,8 @@ local mason_lspconfig_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
 local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
 
-if not lspconfig_ok
+if
+    not lspconfig_ok
     or not cmp_nvim_lsp_ok
     or not mason_ok
     or not mason_lspconfig_ok
@@ -36,8 +37,8 @@ local lsp2mason = {
         -- pyright = 'pyright',
         pylsp = 'python-lsp-server',
         marksman = 'marksman',
-        bashls='bash-language-server',
-        gopls='gopls',
+        bashls = 'bash-language-server',
+        gopls = 'gopls',
     },
 }
 
@@ -45,6 +46,9 @@ local fn = vim.fn
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.prettierd,
+        -- null_ls.builtins.formatting.prettier.with({
+        --      prefer_local= 'node_modules/.bin',
+        -- }),
         null_ls.builtins.formatting.stylua.with({
             extra_args = {
                 '--config-path',
@@ -72,14 +76,14 @@ null_ls.setup({
 local mason_non_lsp = {
     'stylua',
     'prettierd',
-    'shfmt', -- format sh
-    'fixjson', -- format json
-    'black', -- format python
+    'shfmt',      -- format sh
+    'fixjson',    -- format json
+    'black',      -- format python
 
-    'eslint_d', -- js diagnostic
+    'eslint_d',   -- js diagnostic
     'actionlint', -- github action files diagnostic
     -- 'markdownlint', -- md diagnostic
-    -- 'proselint',
+    -- 'proselint', -- grammarly like engine
     'goimports-reviser',
 }
 
@@ -90,18 +94,18 @@ mason.setup({})
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-for key in pairs(lsp2mason.cfg_file) do
-    mason_lsp[#mason_lsp + 1] = key
-    local config = require('lsp.' .. key)
+for name in pairs(lsp2mason.cfg_file) do
+    mason_lsp[#mason_lsp + 1] = name
+    local config = require('lsp.' .. name)
     config['capabilities'] = capabilities
-    lspconfig[key].setup(config)
+    lspconfig[name].setup(config)
 end
 
-for key in pairs(lsp2mason.cfg_no_file) do
-    mason_lsp[#mason_lsp + 1] = key
+for name in pairs(lsp2mason.cfg_no_file) do
+    mason_lsp[#mason_lsp + 1] = name
     local config = {}
     config['capabilities'] = capabilities
-    lspconfig[key].setup(config)
+    lspconfig[name].setup(config)
 end
 
 mason_lspconfig.setup({

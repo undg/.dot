@@ -1,40 +1,49 @@
-local nvim_lsp = require("lspconfig")
+local nvim_lsp = require('lspconfig')
 
+local ok_ts_utils, ts_utils = pcall(require, 'typescript')
+if not ok_ts_utils then
+    print('lua/lsp/tsserver.lua: typescript fail')
+    return
+end
+
+local ok_twoslash, twoslash = pcall(require, 'twoslash-queries')
+if not ok_twoslash then
+    print('lua/lsp/tsserver.lua: twoslash-queries fail')
+    return
+end
+
+print('lsp: tsserver')
 return {
-    root_dir = nvim_lsp.util.root_pattern("package.json"),
-
-    on_attach = function()
-        local ts_utils = require("typescript")
-
+    root_dir = nvim_lsp.util.root_pattern('package.json'),
+    on_attach = function(client, bufnr)
+        twoslash.attach(client, bufnr)
         ts_utils.setup({
             debug = false,
             disable_commands = false,
             enable_import_on_completion = false,
-
             -- import all
             import_all_timeout = 500, -- ms
             -- lower numbers = higher priority
             import_all_priorities = {
-                same_file = 1, -- add to existing import statement
-                local_files = 2, -- git files or files with relative path markers
+                same_file = 1,      -- add to existing import statement
+                local_files = 2,    -- git files or files with relative path markers
                 buffer_content = 3, -- loaded buffer content
-                buffers = 4, -- loaded buffer names
+                buffers = 4,        -- loaded buffer names
             },
             import_all_scan_buffers = 100,
             import_all_select_source = false,
             -- if false will avoid organizing imports
             always_organize_imports = true,
-
             -- filter diagnostics
             filter_out_diagnostics_by_severity = {},
             filter_out_diagnostics_by_code = {},
-
             -- inlay hints
             auto_inlay_hints = false,
-            inlay_hints_highlight = "Comment",
+            inlay_hints_highlight = 'Comment',
             inlay_hints_priority = 200, -- priority of the hint extmarks
             inlay_hints_throttle = 150, -- throttle the inlay hint request
-            inlay_hints_format = { -- format options for individual hint kind
+            inlay_hints_format = {
+                -- format options for individual hint kind
                 Type = {},
                 Parameter = {},
                 Enum = {},
@@ -46,12 +55,10 @@ return {
                 --     end,
                 -- },
             },
-
             -- update imports on file move
             update_imports_on_move = true,
             require_confirmation_on_move = false,
             watch_dir = nil,
         })
-
     end,
 }

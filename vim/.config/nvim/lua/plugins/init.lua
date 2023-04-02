@@ -11,8 +11,8 @@ packer.startup(function(use)
     use('wbthomason/packer.nvim') -- This plugin manager
 
     -- Dependencies
-    use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
-    use('onsails/lspkind-nvim') -- icons for lsp
+    use('nvim-lua/plenary.nvim')       -- All the lua functions you don't want to write twice.
+    use('onsails/lspkind-nvim')        -- icons for lsp
     use({
         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
         config = function()
@@ -89,8 +89,8 @@ packer.startup(function(use)
             require('plugins.lazygit')
         end,
     })
-    use('tpope/vim-fugitive') -- Git commands in nvim
-    use({ 'tpope/vim-rhubarb' }) -- Fugitive-companion to interact with github
+    use('tpope/vim-fugitive')      -- Git commands in nvim
+    use({ 'tpope/vim-rhubarb' })   -- Fugitive-companion to interact with github
     use({
         'lewis6991/gitsigns.nvim', -- Git status for every line
         config = function()
@@ -122,7 +122,7 @@ packer.startup(function(use)
     use({
         'nvim-telescope/telescope.nvim',
         requires = {
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+            { 'nvim-telescope/telescope-fzf-native.nvim',  run = 'make' },
             { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
             {
@@ -138,18 +138,28 @@ packer.startup(function(use)
     })
 
     -- LSP
-    use({ 'neovim/nvim-lspconfig' }) -- Collection of configurations for built-in LSP client
-    use({ 'williamboman/mason.nvim' }) -- LSP servers installer
-    use({ 'williamboman/mason-lspconfig.nvim' }) -- integration with lspconfig
+    use({ 'neovim/nvim-lspconfig' })                     -- Collection of configurations for built-in LSP client
+    use({ 'williamboman/mason.nvim' })                   -- LSP servers installer
+    use({ 'williamboman/mason-lspconfig.nvim' })         -- integration with lspconfig
     use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
-    use({ 'jose-elias-alvarez/null-ls.nvim' }) -- inject LSP diagnostics, code actions, and more
+    use({ 'jose-elias-alvarez/null-ls.nvim' })           -- inject LSP diagnostics, code actions, and more
     use({
         'tami5/lspsaga.nvim',
         config = function()
             require('plugins.lspsaga')
         end,
-    }) -- LSP utils with performant UI
+    })                                        -- LSP utils with performant UI
     use('jose-elias-alvarez/typescript.nvim') -- few extra commands for ts. Uses LSP
+    use({
+        'marilari88/twoslash-queries.nvim',
+        config = function()
+            require('twoslash-queries').setup({
+                multi_line = true,  -- to print types in multi line mode
+                is_enabled = true,  -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
+                highlight = 'Type', -- to set up a highlight group for the virtual text
+            })
+        end,
+    }) -- // live type checking with ?^
 
     -- Syntax
     use({
@@ -158,9 +168,9 @@ packer.startup(function(use)
         config = function()
             require('plugins.treesitter')
         end,
-    }) -- Highlight, edit, and navigate code using a fast incremental parsing library
+    })                                                 -- Highlight, edit, and navigate code using a fast incremental parsing library
     use('nvim-treesitter/nvim-treesitter-textobjects') -- Additional text objects for treesitter
-    use('p00f/nvim-ts-rainbow') -- parenthesis rainbow, treesitter version
+    use('p00f/nvim-ts-rainbow')                        -- parenthesis rainbow, treesitter version
 
     -- Autocompletion
     use({
