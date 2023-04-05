@@ -28,6 +28,7 @@ local lsp2mason = {
         tsserver = 'typescript-language-server',
         yamlls = 'yaml-language-server',
         lua_ls = 'lua-language-server',
+        eslint = 'eslint',
     },
     cfg_no_file = {
         cssls = 'cssls',
@@ -42,17 +43,16 @@ local lsp2mason = {
     },
 }
 
-local fn = vim.fn
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.prettierd,
-        -- null_ls.builtins.formatting.prettier.with({
-        --      prefer_local= 'node_modules/.bin',
-        -- }),
+        -- null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.formatting.prettier.with({
+             prefer_local= 'node_modules/.bin',
+        }),
         null_ls.builtins.formatting.stylua.with({
             extra_args = {
                 '--config-path',
-                fn.expand('~/.config/stylua/stylua.toml'),
+                vim.fn.expand('~/.config/stylua/stylua.toml'),
             },
         }),
         null_ls.builtins.formatting.shfmt,
@@ -60,27 +60,27 @@ null_ls.setup({
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.goimports,
 
-        null_ls.builtins.diagnostics.eslint_d,
         -- null_ls.builtins.diagnostics.actionlint,
         -- null_ls.builtins.diagnostics.markdownlint,
         -- null_ls.builtins.diagnostics.proselint,
+        -- null_ls.builtins.diagnostics.prettier,
 
         -- null_ls.builtins.completion.spell,
         null_ls.builtins.completion.tags,
 
         null_ls.builtins.hover.dictionary,
+        require('typescript.extensions.null-ls.code-actions'),
     },
 })
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
     'stylua',
-    'prettierd',
+    'prettier',
     'shfmt',      -- format sh
     'fixjson',    -- format json
     'black',      -- format python
 
-    'eslint_d',   -- js diagnostic
     'actionlint', -- github action files diagnostic
     -- 'markdownlint', -- md diagnostic
     -- 'proselint', -- grammarly like engine
@@ -88,7 +88,7 @@ local mason_non_lsp = {
 }
 
 -- Lsp server names that will be installed via Manson
-local mason_lsp = {}
+local mason_lsp = {} -- mutate
 
 mason.setup({})
 

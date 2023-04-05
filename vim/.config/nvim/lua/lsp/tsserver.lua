@@ -12,7 +12,6 @@ if not ok_twoslash then
     return
 end
 
-print('lsp: tsserver')
 return {
     root_dir = nvim_lsp.util.root_pattern('package.json'),
     on_attach = function(client, bufnr)
