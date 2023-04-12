@@ -157,9 +157,13 @@ set $WINDOW_iriunwebcam               [class="iriunwebcam"]
 set $WINDOW_teams                     [title="Microsoft Teams Notification"]
 set $WINDOW_pavucontrol               [class="Pavucontrol"]
 set $WINDOW_insta360_settings         [class="insta360 studio 2023.exe" title="User Preference"]
+set $WINDOW_battlenet                 [class="battle.net.exe"]
+set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
 
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
+for_window $WINDOW_battlenet move workspace $ws3
+for_window $WINDOW_starcraft_ii move workspace $ws3
 
 for_window $WINDOW_kodi move workspace $ws5
 for_window $WINDOW_iriunwebcam move workspace $ws5
