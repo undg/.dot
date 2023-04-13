@@ -204,6 +204,15 @@ packer.startup(function(use)
         end,
     })
     use({
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && npm install',
+        setup = function()
+            -- you need yarn or npm already installed in os
+            vim.g.mkdp_filetypes = { 'markdown' }
+        end,
+        ft = { 'markdown' },
+    })
+    use({
         'godlygeek/tabular',
         cmd = { 'Tabularize', 'Tab' },
     })
