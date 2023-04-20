@@ -27,6 +27,7 @@
 	p = pull
 	pr = pull --rebase
 	rp = checkout HEAD -- package-lock.json   
+	prune-origin = remote prune origin
 
 [diff]
 	tool = vimdiff
