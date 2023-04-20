@@ -87,7 +87,6 @@ if hash git 2>/dev/null; then
     # cd to git root
     alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
     alias git-delete-merged='git branch --merged | grep -Ev \(develop\|master\) | xargs git br -d'
-
 else
     echo "git is missing"
     install git
