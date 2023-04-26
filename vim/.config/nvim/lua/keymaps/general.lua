@@ -17,6 +17,7 @@ map.insert('jk', '<ESC>')
 
 -- write only
 map.normal('<LEADER><LEADER>', ':wa<CR>')
+map.normal('<c-space>', ':wa<CR>')
 map.normal('<LEADER><CR>', ':write<CR>')
 map.normal(';w', ':write<CR>')
 map.normal(';a', ':wall<CR>')
