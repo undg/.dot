@@ -14,7 +14,7 @@
 
 [alias]
 	ck = checkout
-	br = branch
+	br = branch -vv
 	cm = commit
 	st = status
 	d = difftool
