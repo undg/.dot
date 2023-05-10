@@ -10,6 +10,8 @@ map.normal("<leader>,", ":Telescope find_files hidden=true<cr>")
 map.normal( "<leader>.",
     ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>'
 )
+
+map.normal('<leader>fb', ':Telescope buffers<cr>')
 map.normal("<leader>fg", ":Telescope live_grep<cr>")
 map.normal("<leader>fr", ":Telescope resume<cr>")
 map.normal("<leader>fq", ":Telescope quickfixhistory<cr>")
