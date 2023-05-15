@@ -94,7 +94,7 @@ fi
 if hash gh 2>/dev/null; then
     alias gh-create='gh pr create -t $(git branch --show-current)'
     alias gh-create-web='gh pr create -w -t $(git branch --show-current)'
-    alias gh-complete='gh pr merge --auto --delete-branch --squash'
+    # alias gh-complete='gh pr merge --auto --delete-branch --squash'
     # alias gh-complete='gh pr merge --auto --delete-branch --squash -t $(git branch --show-current)'
 
 else
