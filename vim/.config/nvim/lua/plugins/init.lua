@@ -89,6 +89,12 @@ packer.startup(function(use)
             require('plugins.gitsigns')
         end,
     })
+    use({
+        'whiteinge/diffconflicts',
+        -- config = function()
+        -- require('plugins.diffconflicts')
+        -- end,
+    })
 
     -- File managers
     use({
