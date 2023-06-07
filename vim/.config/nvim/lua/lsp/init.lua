@@ -75,15 +75,13 @@ null_ls.setup({
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
-    'stylua',
-    'prettier',
+    'stylua',     -- format lua
+    'prettier',   -- format js/ts
     'shfmt',      -- format sh
     'fixjson',    -- format json
     'black',      -- format python
 
     'actionlint', -- github action files diagnostic
-    -- 'markdownlint', -- md diagnostic
-    -- 'proselint', -- grammarly like engine
     'goimports-reviser',
 }
 
@@ -111,6 +109,7 @@ end
 mason_lspconfig.setup({
     ensure_installed = mason_lsp,
 })
+
 mason_installer.setup({
     ensure_installed = mason_non_lsp,
 })
