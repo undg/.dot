@@ -1,10 +1,7 @@
 local map = require('utils.map')
 
 -- Select/Goto
-map.normal('H', ':BufferLineCyclePrev<cr>')
 map.normal('<leader>bp', ':BufferLineCyclePrev<cr>')
-
-map.normal('L', ':BufferLineCycleNext<cr>')
 map.normal('<leader>bn', ':BufferLineCycleNext<cr>')
 
 map.normal('<leader>j', ':BufferLineGoToBuffer 1<cr>')
@@ -25,11 +22,10 @@ map.normal('<C-l>', ':BufferLineCycleNext<cr>')
 
 -- Close
 local CMD_CLOSE = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
-map.normal('<leader>qh', ':BufferLineCloseLeft<CR>')
-map.normal('<leader>qj', CMD_CLOSE)
-map.normal('<leader>qk', CMD_CLOSE)
 map.normal('<leader>qq', CMD_CLOSE)
-map.normal('<leader>ql', ':BufferLineCloseRight<cr>')
+
+map.normal('<leader>bch', ':BufferLineCloseLeft<CR>')
+map.normal('<leader>bcl', ':BufferLineCloseRight<cr>')
 
 map.normal('<C-Q>', CMD_CLOSE)
 map.normal(';q', ':q<cr>')
