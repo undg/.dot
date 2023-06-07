@@ -168,7 +168,6 @@ packer.startup(function(use)
         end,
     })                                                 -- Highlight, edit, and navigate code using a fast incremental parsing library
     use('nvim-treesitter/nvim-treesitter-textobjects') -- Additional text objects for treesitter
-    -- use('p00f/nvim-ts-rainbow')                        -- parenthesis rainbow, treesitter version
 
     -- Autocompletion
     use({
