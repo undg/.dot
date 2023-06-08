@@ -1,6 +1,6 @@
 # vim: filetype=config syn=sh
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
-# You can set these variables in ~/.zprofile
+# You can set these variables in ~/.config/zsh/.zprofile
 
 # #---i3 Settings---# #
 focus_follows_mouse no
@@ -26,6 +26,9 @@ set $d3_only_on_cm                 [[ "$(hostname)" == "cm"      ]] && ~/bin/d3
 set $autorotate_only_on_di7415     [[ "$(hostname)" == "di-7415" ]] && ~/bin/autorotate --display eDP
 
 set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
+
+set $browser_brave brave --enable-blink-features=MiddleClickAutoscroll
+set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscroll
 
 
 # #---Starting External Scripts---# #
@@ -213,7 +216,8 @@ bindsym $winKey+Pause           exec --no-startup-id xcqr
 bindsym $winKey+q               [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 bindsym $winKey+Shift+q         [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 #bindsym $winKey+w
-bindsym $winKey+Shift+w         exec --no-startup-id $BROWSER
+bindsym $winKey+Shift+w         exec --no-startup-id $browser_brave
+bindsym $winKey+Shift+e         exec --no-startup-id $browser_ms
 # bindsym $winKey+Shift+f
 #bindsym $winKey+e
 #bindsym $winKey+Shift+e
@@ -295,7 +299,7 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 
 
 # #---Function Buttons---# #
-bindsym $winKey+F1                exec --no-startup-id $BROWSER
+bindsym $winKey+F1                exec --no-startup-id $browser
 bindsym $winKey+F2                restart
 # bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 bindsym $winKey+F5                exec --no-startup-id $netrefresh
