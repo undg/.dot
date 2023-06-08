@@ -21,11 +21,13 @@ map.normal('<C-h>', ':BufferLineCyclePrev<cr>')
 map.normal('<C-l>', ':BufferLineCycleNext<cr>')
 
 -- Close
-local CMD_CLOSE = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
-map.normal('<leader>qq', CMD_CLOSE)
+local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
+local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
+map.normal('<leader>qq', CMD_CLOSE_GO_NEXT)
 
+map.normal('<C-Q>', CMD_CLOSE_GO_PREV)
+map.normal('<leader>bcc', CMD_CLOSE_GO_PREV)
 map.normal('<leader>bch', ':BufferLineCloseLeft<CR>')
-map.normal('<leader>bcl', ':BufferLineCloseRight<cr>')
+map.normal('<leader>bcl', ':BufferLineCloseRight<CR>')
 
-map.normal('<C-Q>', CMD_CLOSE)
 map.normal(';q', ':q<cr>')
