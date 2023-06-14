@@ -87,6 +87,7 @@ map.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, sile
 
 -- Disable highlight till next search
 map.normal('<leader>/', ':noh<cr>')
+map.normal('S', ':%s/')
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
 -- this is overriden in nvim-hlslens
