@@ -4,6 +4,9 @@ local mason_ok, mason = pcall(require, 'mason')
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
 local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
+local cspell_ok, cspell = pcall(require, 'cspell')
+
+local typescript_code_action_ok, typescript_code_action = pcall(require, 'typescript.extensions.null-ls.code-actions')
 
 if
     not lspconfig_ok
@@ -12,10 +15,15 @@ if
     or not mason_lspconfig_ok
     or not mason_installer_ok
     or not null_ls_ok
+    or not cspell_ok
+    or not typescript_code_action_ok
 then
     print('lsp/init.lua: require failed')
     return
 end
+
+-- local sources = { cspell.diagnostics, cspell.code_actions }
+
 
 -- Lsp server name is same as file name with config.
 -- [key: type] = {
@@ -40,6 +48,7 @@ local lsp2mason = {
         marksman = 'marksman',
         bashls = 'bash-language-server',
         gopls = 'gopls',
+        cspell = 'cspell',
     },
 }
 
@@ -65,11 +74,14 @@ null_ls.setup({
         -- null_ls.builtins.diagnostics.proselint,
         -- null_ls.builtins.diagnostics.prettier,
 
-        -- null_ls.builtins.completion.spell,
         null_ls.builtins.completion.tags,
 
         null_ls.builtins.hover.dictionary,
-        require('typescript.extensions.null-ls.code-actions'),
+        -- require('typescript.extensions.null-ls.code-actions'),
+        typescript_code_action,
+
+        cspell.diagnostics,
+        cspell.code_actions,
     },
 })
 
