@@ -141,6 +141,7 @@ packer.startup(function(use)
     use({ 'williamboman/mason-lspconfig.nvim' })         -- integration with lspconfig
     use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
     use({ 'jose-elias-alvarez/null-ls.nvim' })           -- inject LSP diagnostics, code actions, and more
+    use({ 'davidmh/cspell.nvim' })                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     use({
         'tami5/lspsaga.nvim',
         config = function()
