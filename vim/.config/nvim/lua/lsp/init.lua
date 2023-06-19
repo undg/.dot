@@ -22,9 +22,6 @@ then
     return
 end
 
--- local sources = { cspell.diagnostics, cspell.code_actions }
-
-
 -- Lsp server name is same as file name with config.
 -- [key: type] = {
 --      [key: lsp server name] = 'mason pkg name'
@@ -48,7 +45,6 @@ local lsp2mason = {
         marksman = 'marksman',
         bashls = 'bash-language-server',
         gopls = 'gopls',
-        cspell = 'cspell',
     },
 }
 
