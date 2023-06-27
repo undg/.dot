@@ -1,0 +1,20 @@
+#!/bin/env sh
+# cSpell:disable -- do not spell check linux commands. @todo: install all missing dictionaries: https://cspell.org/docs/dictionaries/
+
+MSG_USAGE="Usage: mic-loopback [on|off]"
+
+if [[ $1 == "on" ]]; then
+	pactl load-module module-loopback latency_msec=1
+    echo "Mic feedback ON"
+elif [[ $1 == "off" ]]; then
+    pactl unload-module module-loopback
+    echo "Mic feedback OFF"
+elif [[ $1 == "help" ]]; then
+	echo "Description: On or Off microphone feedback loop."
+    echo ""
+	echo $MSG_USAGE
+else
+	echo "Invalid option"
+    echo ""
+	echo $MSG_USAGE
+fi
