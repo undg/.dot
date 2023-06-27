@@ -1,5 +1,4 @@
 #!/bin/env sh
-# cSpell:disable -- do not spell check linux commands. @todo: install all missing dictionaries: https://cspell.org/docs/dictionaries/
 
 MSG_USAGE="Usage: mic-loopback [on|off]"
 
