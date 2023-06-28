@@ -18,7 +18,7 @@ map.normal("<leader>fq", ":Telescope quickfixhistory<cr>")
 map.normal("<leader>fp", ":Telescope project<cr>")
 map.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>")
 map.normal("<leader>fh", ":Telescope help_tags<cr>")
-map.normal("<leader>fk", ":Telescope keymaps<cr>")
+map.normal("<leader>fm", ":Telescope keymaps<cr>")
 map.normal("<leader>fc", ":Telescope commands<cr>")
 
 -- Custom goto commands
