@@ -2,9 +2,9 @@ local map_ok, map = pcall(require, 'utils.map')
 local tb_ok, tb = pcall(require, 'telescope.builtin')
 local lspsaga_ok = pcall(require, 'lspsaga')
 local lspsaga_action_ok = pcall(require, 'lspsaga.action')
-local typescritp_ok = pcall(require, 'typescript')
+local typescript_ok = pcall(require, 'typescript')
 
-if not lspsaga_ok or not lspsaga_action_ok or not tb_ok or not map_ok or not typescritp_ok then
+if not lspsaga_ok or not lspsaga_action_ok or not tb_ok or not map_ok or not typescript_ok then
     print("keymaps/lsp.lua: requirement's fail")
     return
 end
