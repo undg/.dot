@@ -45,6 +45,7 @@ local lsp2mason = {
         marksman = 'marksman',
         bashls = 'bash-language-server',
         gopls = 'gopls',
+        tailwindcss = 'tailwindcss-language-server',
     },
 }
 
