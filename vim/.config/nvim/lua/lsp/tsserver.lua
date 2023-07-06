@@ -15,13 +15,13 @@ end
 return {
     root_dir = nvim_lsp.util.root_pattern('package.json'),
     on_attach = function(client, bufnr)
-        twoslash.attach(client, bufnr)
+        -- twoslash.attach(client, bufnr)
         ts_utils.setup({
             debug = false,
             disable_commands = false,
-            enable_import_on_completion = false,
+            enable_import_on_completion = true,
             -- import all
-            import_all_timeout = 500, -- ms
+            import_all_timeout = 200, -- ms
             -- lower numbers = higher priority
             import_all_priorities = {
                 same_file = 1,      -- add to existing import statement
@@ -56,8 +56,9 @@ return {
             },
             -- update imports on file move
             update_imports_on_move = true,
-            require_confirmation_on_move = false,
+            require_confirmation_on_move = true,
             watch_dir = nil,
+            maxTsServerMemory = 8192, -- increased memory limit for arahi-console
         })
     end,
 }
