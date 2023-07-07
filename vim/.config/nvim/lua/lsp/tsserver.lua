@@ -15,7 +15,6 @@ end
 return {
     root_dir = nvim_lsp.util.root_pattern('package.json'),
     on_attach = function(client, bufnr)
-        -- twoslash.attach(client, bufnr)
         ts_utils.setup({
             debug = false,
             disable_commands = false,
@@ -58,7 +57,12 @@ return {
             update_imports_on_move = true,
             require_confirmation_on_move = true,
             watch_dir = nil,
-            maxTsServerMemory = 8192, -- increased memory limit for arahi-console
+            -- maxTsServerMemory = 8192, -- increased memory limit for arahi-console
+            server = {
+                on_attach = function(client, bufnr)
+                    twoslash.attach(client, bufnr)
+                end,
+            },
         })
     end,
 }

@@ -77,7 +77,7 @@ null_ls.setup({
         -- require('typescript.extensions.null-ls.code-actions'),
         typescript_code_action,
 
-        cspell.diagnostics,
+        -- cspell.diagnostics,
         cspell.code_actions,
     },
 })
