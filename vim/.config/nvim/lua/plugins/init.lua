@@ -150,15 +150,13 @@ packer.startup(function(use)
     })                                        -- LSP utils with performant UI
     use('jose-elias-alvarez/typescript.nvim') -- few extra commands for ts. Uses LSP
     use({
-        'marilari88/twoslash-queries.nvim',
+        -- 'marilari88/twoslash-queries.nvim',
+        'undg/twoslash-queries.nvim',
+        branch = 'prefix-commands-with-plugin-name',
         config = function()
-            require('twoslash-queries').setup({
-                multi_line = true,  -- to print types in multi line mode
-                is_enabled = true,  -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
-                highlight = 'Type', -- to set up a highlight group for the virtual text
-            })
+            require('plugins.twoslash-queries')
         end,
-    }) -- // live type checking with ?^
+    }) -- // live type checking with //  ^?
 
     -- Syntax
     use({
