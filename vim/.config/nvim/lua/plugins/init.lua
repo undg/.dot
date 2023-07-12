@@ -150,9 +150,7 @@ packer.startup(function(use)
     })                                        -- LSP utils with performant UI
     use('jose-elias-alvarez/typescript.nvim') -- few extra commands for ts. Uses LSP
     use({
-        -- 'marilari88/twoslash-queries.nvim',
-        'undg/twoslash-queries.nvim',
-        branch = 'prefix-commands-with-plugin-name',
+        'marilari88/twoslash-queries.nvim',
         config = function()
             require('plugins.twoslash-queries')
         end,
