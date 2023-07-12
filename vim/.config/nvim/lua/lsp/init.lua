@@ -49,38 +49,48 @@ local lsp2mason = {
     },
 }
 
-null_ls.setup({
-    sources = {
-        -- null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.formatting.prettier.with({
-             prefer_local= 'node_modules/.bin',
-        }),
-        null_ls.builtins.formatting.stylua.with({
-            extra_args = {
-                '--config-path',
-                vim.fn.expand('~/.config/stylua/stylua.toml'),
-            },
-        }),
-        null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.formatting.fixjson,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.goimports,
+if string.match(vim.fn.getcwd(), '/Arahi/') then
+    null_ls.setup({
+        sources = {
+            null_ls.builtins.formatting.prettier.with({
+                prefer_local = 'node_modules/.bin',
+            }),
+            null_ls.builtins.formatting.shfmt,
+            null_ls.builtins.formatting.fixjson,
 
-        -- null_ls.builtins.diagnostics.actionlint,
-        -- null_ls.builtins.diagnostics.markdownlint,
-        -- null_ls.builtins.diagnostics.proselint,
-        -- null_ls.builtins.diagnostics.prettier,
+            null_ls.builtins.completion.tags,
 
-        null_ls.builtins.completion.tags,
+            null_ls.builtins.hover.dictionary,
+            typescript_code_action,
 
-        null_ls.builtins.hover.dictionary,
-        -- require('typescript.extensions.null-ls.code-actions'),
-        typescript_code_action,
+            cspell.diagnostics,
+            cspell.code_actions,
+        },
+    })
+    print('null_ls: setup for arahi only')
+else
+    null_ls.setup({
+        sources = {
+            null_ls.builtins.formatting.prettierd,
+            null_ls.builtins.formatting.stylua.with({
+                extra_args = {
+                    '--config-path',
+                    vim.fn.expand('~/.config/stylua/stylua.toml'),
+                },
+            }),
+            null_ls.builtins.formatting.shfmt,
+            null_ls.builtins.formatting.fixjson,
+            null_ls.builtins.formatting.black,
+            null_ls.builtins.formatting.goimports,
 
-        -- cspell.diagnostics,
-        cspell.code_actions,
-    },
-})
+            null_ls.builtins.completion.tags,
+
+            null_ls.builtins.hover.dictionary,
+            typescript_code_action,
+        },
+    })
+    print('null_ls: universal setup')
+end
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
