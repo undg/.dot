@@ -9,15 +9,6 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
--- @TODO (undg) 2022-12-27: Is it needed? plugins/init.lua is sourced by :Update wrapper
--- Reload Neovim whenever you save the .../plugins/init.lua
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost ~/.config/nvim/plugins/init.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 -- Set wrap and spell in gitcommit and markdown
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'gitcommit', 'markdown' },
