@@ -25,26 +25,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
--- Automatic toggling between line number modes
--- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
-    callback = function()
-        -- Simplify UI for certaind filetypes
-        if
-            vim.bo.filetype == 'alpha' --
-            or vim.bo.filetype == 'help'
-            or vim.bo.filetype == 'NvimTree'
-        then
-            vim.opt.relativenumber = false
-            return
-        end
-        vim.opt.relativenumber = true
-    end,
-})
-
--- [Insert] absolute line numbers
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
-    callback = function()
-        vim.opt.relativenumber = false
-    end,
-})
+-- -- Automatic toggling between line number modes
+-- -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
+-- vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+--     callback = function()
+--         -- Simplify UI for certaind filetypes
+--         if
+--             vim.bo.filetype == 'alpha' --
+--             or vim.bo.filetype == 'help'
+--             or vim.bo.filetype == 'NvimTree'
+--         then
+--             vim.opt.relativenumber = false
+--             return
+--         end
+--         vim.opt.relativenumber = true
+--     end,
+-- })
+--
+-- -- [Insert] absolute line numbers
+-- vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+--     callback = function()
+--         vim.opt.relativenumber = false
+--     end,
+-- })
