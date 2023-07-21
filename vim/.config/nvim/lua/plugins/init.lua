@@ -1,126 +1,133 @@
-local bootstraping = PACKER_BOOTSTRAPING -- globals.lua
-
-local packer_ok, packer = pcall(require, 'packer')
-if not packer_ok then
-    print('plugins/init.lua: missing requirements')
-    return
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-packer.startup(function(use)
-    -- Core
-    use('wbthomason/packer.nvim') -- This plugin manager
+-- Make sure to set `mapleader` before lazy so your mappings are correct.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
+
+require('lazy').setup({
     -- Dependencies
-    use('nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
-    use('onsails/lspkind-nvim') -- icons for lsp
-    use({
+    'nvim-lua/plenary.nvim',       -- All the lua functions you don't want to write twice.
+    'onsails/lspkind-nvim',        -- icons for lsp
+    {
         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
         config = function()
             require('plugins.nvim-web-devicons')
         end,
-    }) -- icons for telescope and Neotree and all sorts of plugins
+    }, -- icons for telescope and Neotree and all sorts of plugins
 
     -- Productivity
-    use({
+    {
         'numToStr/Comment.nvim',
         config = function()
             require('plugins.Comment')
         end,
-    })
-    use('tpope/vim-sleuth') -- Auto-detect indentation style
-    use({
+    },
+    'tpope/vim-sleuth', -- Auto-detect indentation style
+    {
         'kylechui/nvim-surround',
-        tag = '*', -- Use for stability; omit to use `main` branch for the latest features
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
         config = function()
             require('plugins.nvim-surround')
         end,
-    })
-    use('jiangmiao/auto-pairs')
-    use({
+    },
+    'jiangmiao/auto-pairs',
+    {
         'folke/trouble.nvim',
         config = function()
             require('plugins.trouble')
         end,
-    })
-    use({
+    },
+    {
         'goolord/alpha-nvim',
         config = function()
             require('plugins.alpha')
         end,
-    })
-    use({ 'nvim-telescope/telescope-project.nvim' }) -- quick access to saved projects paths.
-    use({
+    },
+    { 'nvim-telescope/telescope-project.nvim' }, -- quick access to saved projects paths.
+    {
         'Shatur/neovim-session-manager',
         config = function()
             require('plugins.neovim-session-manager')
         end,
-    })
-    use({
+    },
+    {
         'phaazon/hop.nvim',
         config = function()
             require('plugins.hop')
         end,
-    })
-    use({
+    },
+    {
         'lambdalisue/suda.vim',
         config = function()
             require('plugins.suda')
         end,
-    }) -- ask for sudo password
-    use({
+    }, -- ask for sudo password
+    {
         'rafcamlet/nvim-luapad',
         config = function()
             require('plugins.luapad')
         end,
-    }) -- lua scratch pad
+    }, -- lua scratch pad
 
     -- Git
-    use({
+    {
         'kdheepak/lazygit.nvim',
         config = function()
             require('plugins.lazygit')
         end,
-    })
-    use('tpope/vim-fugitive') -- Git commands in nvim
-    use({ 'tpope/vim-rhubarb' }) -- Fugitive-companion to interact with github
-    use({
+    },
+    'tpope/vim-fugitive',      -- Git commands in nvim
+    { 'tpope/vim-rhubarb' },   -- Fugitive-companion to interact with github
+    {
         'lewis6991/gitsigns.nvim', -- Git status for every line
         config = function()
             require('plugins.gitsigns')
         end,
-    })
-    use({
+    },
+    {
         'whiteinge/diffconflicts',
         -- config = function()
         -- require('plugins.diffconflicts')
         -- end,
-    })
+    },
 
     -- File managers
-    use({
+    {
         'nvim-neo-tree/neo-tree.nvim',
         branch = 'v2.x',
-        requires = {
+        dependencies = {
             'MunifTanjim/nui.nvim',
         },
         config = function()
             require('plugins.neo-tree')
         end,
-    })
-    use({
+    },
+    {
         'akinsho/bufferline.nvim',
-        tag = 'v3.*',
+        version = '*',
         config = function()
             require('plugins.bufferline') -- "tabline" for buffers.
         end,
-        requires = {
+        dependencies = {
             { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
         },
-    })
-    use({
+    },
+    {
         'nvim-telescope/telescope.nvim',
-        requires = {
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        dependencies = {
+            { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
             { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
             {
@@ -133,156 +140,149 @@ packer.startup(function(use)
         config = function()
             require('plugins.telescope')
         end,
-    })
+    },
 
     -- LSP
-    use({ 'neovim/nvim-lspconfig' }) -- Collection of configurations for built-in LSP client
-    use({ 'williamboman/mason.nvim' }) -- LSP servers installer
-    use({ 'williamboman/mason-lspconfig.nvim' }) -- integration with lspconfig
-    use({ 'WhoIsSethDaniel/mason-tool-installer.nvim' }) -- auto install predefined packages
-    use({ 'jose-elias-alvarez/null-ls.nvim' }) -- inject LSP diagnostics, code actions, and more
-    use({ 'davidmh/cspell.nvim' }) -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
-    use({
+    { 'neovim/nvim-lspconfig' },                     -- Collection of configurations for built-in LSP client
+    { 'williamboman/mason.nvim' },                   -- LSP servers installer
+    { 'williamboman/mason-lspconfig.nvim' },         -- integration with lspconfig
+    { 'WhoIsSethDaniel/mason-tool-installer.nvim' }, -- auto install predefined packages
+    { 'jose-elias-alvarez/null-ls.nvim' },           -- inject LSP diagnostics, code actions, and more
+    { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
+    {
         'nvimdev/lspsaga.nvim',
         config = function()
             require('plugins.lspsaga')
         end,
-    }) -- LSP utils with performant UI
-    use('jose-elias-alvarez/typescript.nvim') -- few extra commands for ts. Uses LSP
-    use({
+    },                                        -- LSP utils with performant UI
+    'jose-elias-alvarez/typescript.nvim', -- few extra commands for ts. Uses LSP
+    {
         'marilari88/twoslash-queries.nvim',
         config = function()
             require('plugins.twoslash-queries')
         end,
-    }) -- // live type checking with //  ^?
+    }, -- // live type checking with //  ^?
 
     -- Syntax
-    use({
+    {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+        build = ':TSUpdate',
         config = function()
             require('plugins.treesitter')
         end,
-        requires = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-        },
-    }) -- Highlight, edit, and navigate code using a fast incremental parsing library
-    use('nvim-treesitter/nvim-treesitter-textobjects') -- Additional text objects for treesitter
-
+    },                                                 -- Highlight, edit, and navigate code using a fast incremental parsing library
+    'nvim-treesitter/nvim-treesitter-textobjects', -- Additional text objects for treesitter
+    {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+    },
     -- Autocompletion
-    use({
+    {
         'hrsh7th/nvim-cmp',
         config = function()
             require('plugins.nvim-cmp')
         end,
-    })
-    use('hrsh7th/cmp-path')
-    use('hrsh7th/cmp-buffer')
-    use('hrsh7th/cmp-nvim-lua')
-    use('hrsh7th/cmp-nvim-lsp')
+    },
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-nvim-lsp',
     -- snippets are integrated with autocompletion nvim-cmp
-    use('SirVer/ultisnips')
-    use('quangnguyen30192/cmp-nvim-ultisnips')
+    'SirVer/ultisnips',
+    'quangnguyen30192/cmp-nvim-ultisnips',
 
     -- Registers
-    use({ 'simnalamburt/vim-mundo', cmd = { 'MundoShow', 'MundoToggle' } })
-    use({
+    { 'simnalamburt/vim-mundo', cmd = { 'MundoShow', 'MundoToggle' } },
+    {
         'gbprod/yanky.nvim',
         config = function()
             require('plugins.yanky')
         end,
-    })
+    },
 
     -- Utils
-    use({
+    {
         'vimwiki/vimwiki',
         config = function()
             require('plugins.vimwiki')
         end,
-    })
-    use({
+    },
+    {
         'iamcco/markdown-preview.nvim',
-        run = 'cd app && npm install',
+        build = 'cd app && npm install',
         setup = function()
             -- you need yarn or npm already installed in os
             vim.g.mkdp_filetypes = { 'markdown' }
         end,
         ft = { 'markdown' },
-    })
-    use({
+    },
+    {
         'godlygeek/tabular',
         cmd = { 'Tabularize', 'Tab' },
-    })
-    use({ 'blindFS/vim-colorpicker', cmd = 'ColorPicker' })
-    use({
-        'benmills/vimux', -- run comand(test) in split tmux pane
+    },
+    { 'blindFS/vim-colorpicker', cmd = 'ColorPicker' },
+    {
+        'benmills/vimux', -- build comand(test) in split tmux pane
         config = function()
             require('plugins.vimux')
         end,
-    })
-    use({
+    },
+    {
         'yssl/QFEnter', -- quickfix window (cw) open in split/tab...
         config = function()
             require('plugins.QFEnter')
         end,
-    })
-    use({
+    },
+    {
         'simeji/winresizer',
         config = function()
             require('plugins.winresizer')
         end,
-    })
-    use({
+    },
+    {
         'christoomey/vim-tmux-navigator',
         config = function()
             require('plugins.vim-tmux-navigator')
         end,
-    })
-    use({
+    },
+    {
         'nvim-lualine/lualine.nvim',
         config = function()
             require('plugins.lualine') -- "tabline" for buffers.
         end,
-    })
-    use({
+    },
+    {
         'folke/which-key.nvim',
         config = function()
             require('plugins.which-key')
         end,
-    })
-    use('stevearc/dressing.nvim')
+    },
+    'stevearc/dressing.nvim',
 
     -- Look and feel
-    use({
+    {
         'morhetz/gruvbox',
         config = function()
             require('theme')
         end,
-    })
-    use('lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
-    use({
+    },
+    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+    {
         'blueyed/vim-diminactive',
         config = function()
             require('plugins.vim-diminactive')
         end,
-    })
-    use({
+    },
+    {
         'lilydjwg/colorizer',
         config = function()
             require('plugins.colorizer')
         end,
         cmd = { 'ColorHighlight', 'ColorToggle' },
-    })
-    use({
+    },
+    {
         'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
         config = function()
             require('plugins.illuminate')
         end,
-    })
-
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if bootstraping then
-        require('packer').sync()
-    end
-end)
+    },
+})
