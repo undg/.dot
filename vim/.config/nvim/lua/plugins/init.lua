@@ -143,7 +143,7 @@ packer.startup(function(use)
     use({ 'jose-elias-alvarez/null-ls.nvim' })           -- inject LSP diagnostics, code actions, and more
     use({ 'davidmh/cspell.nvim' })                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     use({
-        'tami5/lspsaga.nvim',
+        'nvimdev/lspsaga.nvim',
         config = function()
             require('plugins.lspsaga')
         end,
