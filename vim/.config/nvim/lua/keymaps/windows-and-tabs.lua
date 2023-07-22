@@ -8,11 +8,11 @@ map.normal('<C-w><C-z>', ':ZoomWinTabToggle<CR>')
 
 map.normal('tt', ':tab split<CR>')
 
--- split navigations
-map.normal('<A-h>', '<C-w><C-h>')
-map.normal('<A-j>', '<C-w><C-j>')
-map.normal('<A-k>', '<C-w><C-k>')
-map.normal('<A-l>', '<C-w><C-l>')
+-- split navigations is done by tmux-navigator plugin
+-- map.normal('<A-h>', '<C-w><C-h>')
+-- map.normal('<A-j>', '<C-w><C-j>')
+-- map.normal('<A-k>', '<C-w><C-k>')
+-- map.normal('<A-l>', '<C-w><C-l>')
 
 -- resize
 map.normal('<Up>', ':resize +5<cr>')
