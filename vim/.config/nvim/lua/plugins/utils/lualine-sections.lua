@@ -60,7 +60,6 @@ M.relative_path = {
             else
                 line = 'lualine_' .. arg.section .. '_visual'
             end
-            ---@diagnostic disable-next-line: undefined-field
             bg = line.bg
         end
 
