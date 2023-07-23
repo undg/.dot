@@ -8,7 +8,6 @@ end
 -- Parsers must be installed manually via :TSInstall
 ts_configs.setup({
     ensure_installed = {
-        "help",
         "html",
         "css",
         "scss",
@@ -18,6 +17,7 @@ ts_configs.setup({
         "jsonc",
         "lua",
         "markdown",
+        "markdown_inline",
         "python",
         "tsx",
         "typescript",
