@@ -1,85 +1,13 @@
-local map = require('utils.map')
 return {
-    -- Dependencies
-    'nvim-lua/plenary.nvim',           -- All the lua functions you don't want to write twice.
-    'onsails/lspkind-nvim',            -- icons for lsp
-    {
-        'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-        config = function()
-            local ok_devicons, devicons = pcall(require, 'nvim-web-devicons')
-            if not ok_devicons then
-                print('plugins/nvim-web-devicons.lua: missing requirements')
-                return
-            end
+    -- { import = 'plugins' }, -- Import everything from plugins folder and merge with this table.
 
-            devicons.setup({
-                -- your personnal icons can go here (to override)
-                -- DevIcon will be appended to `name`
-                override = {
-                    zsh = {
-                        icon = '',
-                        color = '#428850',
-                        name = 'Zsh',
-                    },
-                },
-                -- globally enable default icons (default to false)
-                -- will get overriden by `get_icons` option
-                default = true,
-            })
-        end,
-    }, -- icons for telescope and Neotree and all sorts of plugins
+    -- Dependencies
+    'nvim-lua/plenary.nvim', -- All the lua functions you don't want to write twice.
+    'onsails/lspkind-nvim',  -- icons for lsp
+    { import = 'plugins.devicons' },
 
     -- Productivity
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup({
-                ---Add a space b/w comment and the line
-                padding = true,
-                ---Whether the cursor should stay at its position
-                sticky = true,
-                ---Lines to be ignored while (un)comment
-                ignore = nil,
-                ---LHS of toggle mappings in NORMAL mode
-                toggler = {
-                    ---Line-comment toggle keymap
-                    line = 'gcc',
-                    ---Block-comment toggle keymap
-                    block = 'gbc',
-                },
-                ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-                opleader = {
-                    ---Line-comment keymap
-                    line = 'gc',
-                    ---Block-comment keymap
-                    block = 'gb',
-                },
-                ---LHS of extra mappings
-                extra = {
-                    ---Add comment on the line above
-                    above = 'gcO',
-                    ---Add comment on the line below
-                    below = 'gco',
-                    ---Add comment at the end of line
-                    eol = 'gcA',
-                },
-                ---Enable keybindings
-                ---NOTE: If given `false` then the plugin won't create any mappings
-                mappings = {
-                    ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-                    basic = true,
-                    ---Extra mapping; `gco`, `gcO`, `gcA`
-                    extra = true,
-                    ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
-                    extended = false,
-                },
-                ---Function to call before (un)comment
-                pre_hook = nil,
-                ---Function to call after (un)comment
-                post_hook = nil,
-            })
-        end,
-    },
+    { import = 'plugins.comment' },
     'tpope/vim-sleuth', -- Auto-detect indentation style
     {
         'kylechui/nvim-surround',
@@ -156,70 +84,7 @@ return {
             })
         end,
     },
-    {
-        'goolord/alpha-nvim',
-        config = function()
-            local ok_alpha, alpha = pcall(require, 'alpha')
-            local ok_dashboard, dashboard = pcall(require, 'alpha.themes.dashboard')
-
-            if not ok_alpha or not ok_dashboard then
-                print('lua/plugins/alpha.lua: missing requirements')
-                return
-            end
-
-            local version = 'v' .. vim.version().major .. '.' .. vim.version().minor .. '.' .. vim.version().patch
-
-            -- Set header
-            dashboard.section.header.val = {
-                '                                                     ',
-                '                                                     ',
-                '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
-                '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
-                '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
-                '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
-                '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
-                '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
-                '  ' .. version,
-            }
-
-            dashboard.section.buttons.val = {
-                dashboard.button('sc', '鬒  >  Session (current dir)', ':SessionManager load_current_dir_session<CR>'),
-                dashboard.button('sl', '   >  Last session', ':SessionManager load_last_session<CR>'),
-                dashboard.button('ss', '   >  Sessions list', ':SessionManager load_session<CR>'),
-                dashboard.button('pp', '⌨   >  Projects', ':Telescope project<CR>'),
-                dashboard.button('ff', '   >  Find files', ':Telescope find_files<CR>'),
-                dashboard.button(
-                    'fd',
-                    '   >  Dot find files',
-                    ':cd ~/.dot/ |  Telescope find_files cwd_only=true<CR>'
-                ),
-                dashboard.button(
-                    'fv',
-                    '   >  Nvim find files',
-                    ':cd ~/.config/nvim/ | Telescope find_files cwd_only=true<CR>'
-                ),
-                dashboard.button('oo', '   >  Old files', ':Telescope oldfiles cwd_only=true<CR>'),
-                dashboard.button(
-                    'ov',
-                    '   >  Nvim old files',
-                    ':cd ~/.config/nvim/ | Telescope oldfiles cwd_only=true<CR>'
-                ),
-                dashboard.button('od', '   >  Dot old files', ':cd ~/.dot/ |  Telescope oldfiles cwd_only=true<CR>'),
-                dashboard.button('e', '   >  New file', ':enew <BAR> startinsert <CR>'),
-                dashboard.button('q', '   >  Quit', ':qa<CR>'),
-                dashboard.button('<C-c>', '', ':qa<CR>'),
-            }
-
-            -- Send config to alpha
-            alpha.setup(dashboard.opts)
-
-            map.normal('<leader>sl', ':SessionManager load_last_session<CR>')
-            map.normal('<leader>ss', ':SessionManager load_session<CR>')
-            map.normal('<leader>sc', ':SessionManager load_current_dir_session<CR>')
-            map.normal('<leader>sw', ':SessionManager save_current_session<CR>')
-        end,
-    },
-    { 'nvim-telescope/telescope-project.nvim' }, -- quick access to saved projects paths.
+    { import = 'plugins.alpha' },
     {
         'Shatur/neovim-session-manager',
         config = function()
@@ -1126,249 +991,7 @@ return {
             { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
         },
     },
-    {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {
-            { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
-            { 'nvim-telescope/telescope-file-browser.nvim' },
-            { 'nvim-telescope/telescope-ui-select.nvim' },
-            {
-                'ThePrimeagen/harpoon',
-                config = function()
-                    local ok_harpoon, harpoon = pcall(require, 'harpoon')
-                    if not ok_harpoon then
-                        print('plugins/harpoon.lua: missing requirement')
-                        return
-                    end
-
-                    harpoon.setup({
-                        -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-                        save_on_toggle = true,
-
-                        -- saves the harpoon file upon every change. disabling is unrecommended.
-                        save_on_change = true,
-
-                        -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-                        enter_on_sendcmd = false,
-
-                        -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-                        tmux_autoclose_windows = false,
-
-                        -- filetypes that you want to prevent from adding to the harpoon list menu.
-                        excluded_filetypes = { 'harpoon' },
-
-                        -- set marks specific to each git branch inside git repository
-                        mark_branch = false,
-                        menu = {
-                            width = vim.api.nvim_win_get_width(0) - 20,
-                        },
-                    })
-                end,
-            },
-        },
-        config = function()
-            local ok_telescope, telescope = pcall(require, 'telescope')
-            local ok_actions, actions = pcall(require, 'telescope.actions')
-
-            if not ok_telescope or not ok_actions then
-                print('plugins/telescope/goto: missing requirements')
-                return
-            end
-
-            local fb_actions = telescope.extensions.file_browser.actions
-            -- local trouble = require("trouble.providers.telescope")
-
-            telescope.setup({
-                defaults = {
-                    -- Default configuration for telescope goes here:
-                    -- config_key = value,
-                    layout_strategy = 'vertical',
-                    layout_config = { height = 0.9, width = 0.9 },
-                    mappings = {
-                        i = {
-                            ['<C-n>'] = actions.move_selection_next,
-                            ['<C-j>'] = actions.move_selection_next,
-                            ['<Down>'] = actions.move_selection_next,
-                            ['<C-p>'] = actions.move_selection_previous,
-                            ['<C-k>'] = actions.move_selection_previous,
-                            ['<Up>'] = actions.move_selection_previous,
-
-                            ['<CR>'] = actions.select_default,
-                            ['<C-l>'] = actions.select_default,
-
-                            ['<C-x>'] = actions.select_horizontal,
-                            ['<C-v>'] = actions.select_vertical,
-                            ['<C-t>'] = actions.select_tab,
-
-                            ['<C-u>'] = nil,
-                            ['<PageUp>'] = actions.results_scrolling_up,
-                            ['<C-d>'] = nil,
-                            ['<PageDown>'] = actions.results_scrolling_down,
-
-                            ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
-                            ['<C-Tab>'] = actions.toggle_selection + actions.move_selection_worse,
-                            ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_better,
-                            ['<C-S-Tab>'] = actions.toggle_selection + actions.move_selection_better,
-                            ['<C- >'] = actions.toggle_selection,
-
-                            ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-                            ['<M-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-                            -- ["<C-l>"] = actions.complete_tag,
-                            ['<C-_>'] = actions.which_key, -- keys from pressing <C-/>
-                            ['<C-w>'] = { '<c-s-w>', type = 'command' },
-
-                            ['<esc>'] = actions.close,
-                            ['<C-c>'] = actions.close,
-                            ['<C-m>'] = nil,
-                        },
-                    },
-                },
-                pickers = {
-                    -- Default configuration for builtin pickers goes here:
-                    -- picker_name = {
-                    --   picker_config_key = value,
-                    --   ...
-                    -- }
-                    -- Now the picker_config_key will be applied every time you call this
-                    -- builtin picker
-                },
-                extensions = {
-                    -- You dont need to set any of these options. These are the default ones. Only
-                    -- the load is important
-                    fzf = {
-                        fuzzy = true,                   -- false will only do exact matching
-                        override_generic_sorter = true, -- override the generic sorter
-                        override_file_sorter = true,    -- override the file sorter
-                        case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
-                        -- the default case_mode is "smart_case"
-                    },
-                    file_browser = {
-                        -- theme = "ivy",
-                        layout_strategy = 'vertical',
-                        layout_config = { height = 0.9, width = 0.9 },
-                        mappings = {
-                            i = {
-                                ['<C-i>'] = fb_actions.toggle_hidden,
-                                ['<C-h>'] = fb_actions.goto_parent_dir,
-                                ['<C-c>'] = fb_actions.create,
-                                ['<C-n>'] = fb_actions.rename,
-                                ['<C-d>'] = fb_actions.remove,
-                                ['<C-a>'] = fb_actions.select_all,
-                            },
-                        },
-                    },
-
-                    project = {
-                        hidden_files = true,
-                        search_by = 'title',
-                        sync_with_nvim_tree = true,
-                    },
-                },
-            })
-
-            -- load_extension's, somewhere after setup function:
-            telescope.load_extension('fzf')
-            telescope.load_extension('file_browser')
-            telescope.load_extension('ui-select')
-            telescope.load_extension('harpoon')
-            telescope.load_extension('project')
-
-            -- wrapper with goto commands
-            local ok_tb, tb = pcall(require, 'telescope.builtin')
-
-            if not ok_telescope or not ok_tb then
-                print('plugins/telescope/goto: missing requirements')
-                return
-            end
-
-            -- Goto mapins to specific folders
-            vim.api.nvim_create_user_command('GotoVimFind', "lua require('plugins.telescope.goto').vim().find()", {})
-            vim.api.nvim_create_user_command(
-                'GotoVimBrowse',
-                "lua require('plugins.telescope.goto').vim().browse()",
-                {}
-            )
-            vim.api.nvim_create_user_command('GotoVimGrep', "lua require('plugins.telescope.goto').vim().grep()", {})
-            vim.api.nvim_create_user_command('GotoVimGit', "lua require('plugins.telescope.goto').vim().git()", {})
-
-            vim.api.nvim_create_user_command('GotoZshFind', "lua require('plugins.telescope.goto').zsh().find()", {})
-            vim.api.nvim_create_user_command(
-                'GotoZshBrowse',
-                "lua require('plugins.telescope.goto').zsh().browse()",
-                {}
-            )
-            vim.api.nvim_create_user_command('GotoZshGrep', "lua require('plugins.telescope.goto').zsh().grep()", {})
-            vim.api.nvim_create_user_command('GotoZshGit', "lua require('plugins.telescope.goto').zsh().git()", {})
-
-            vim.api.nvim_create_user_command('GotoDotFind', "lua require('plugins.telescope.goto').dot().find", {})
-            vim.api.nvim_create_user_command(
-                'GotoDotBrowse',
-                "lua require('plugins.telescope.goto').dot().browse()",
-                {}
-            )
-            vim.api.nvim_create_user_command('GotoDotGrep', "lua require('plugins.telescope.goto').dot().grep()", {})
-            vim.api.nvim_create_user_command('GotoDotGit', "lua require('plugins.telescope.goto').dot().git()", {})
-
-            vim.api.nvim_create_user_command('GotoCodeFind', "lua require('plugins.telescope.goto').code().find", {})
-            vim.api.nvim_create_user_command(
-                'GotoCodeBrowse',
-                "lua require('plugins.telescope.goto').code().browse()",
-                {}
-            )
-            vim.api.nvim_create_user_command('GotoCodeGrep', "lua require('plugins.telescope.goto').code().grep()", {})
-            vim.api.nvim_create_user_command('GotoCodeGit', "lua require('plugins.telescope.goto').code().git()", {})
-
-            vim.api.nvim_create_user_command('GotoHmrcFind', "lua require('plugins.telescope.goto').hmrc().find", {})
-            vim.api.nvim_create_user_command(
-                'GotoHmrcBrowse',
-                "lua require('plugins.telescope.goto').hmrc().browse()",
-                {}
-            )
-            vim.api.nvim_create_user_command('GotoHmrcGrep', "lua require('plugins.telescope.goto').hmrc().grep()", {})
-            vim.api.nvim_create_user_command('GotoHmrcGit', "lua require('plugins.telescope.goto').hmrc().git()", {})
-
-            local M = {}
-            local T = {}
-
-            function T.find()
-                tb.find_files({ hidden = true })
-            end
-
-            function T.browse()
-                telescope.extensions.file_browser.file_browser({ hidden = true })
-            end
-
-            function T.git()
-                tb.git_status({ hidden = true })
-            end
-
-            function T.grep()
-                tb.live_grep({ hidden = true })
-            end
-
-            function M.vim()
-                vim.cmd([[ :cd  ~/.dot/vim/.config/nvim/ ]])
-                return T
-            end
-
-            function M.zsh()
-                vim.cmd([[ :cd  ~/.dot/zsh/.config/zsh ]])
-                return T
-            end
-
-            function M.dot()
-                vim.cmd([[ :cd  ~/.dot/ ]])
-                return T
-            end
-
-            function M.code()
-                vim.cmd([[ :cd  ~/Code/ ]])
-                return T
-            end
-
-            return M
-        end,
-    },
+    { import = 'plugins.telescope' },
 
     -- LSP
     { 'neovim/nvim-lspconfig' },                     -- Collection of configurations for built-in LSP client
@@ -1602,65 +1225,8 @@ return {
     'quangnguyen30192/cmp-nvim-ultisnips',
 
     -- Registers
-    { 'simnalamburt/vim-mundo',  cmd = { 'MundoShow', 'MundoToggle' } },
-    {
-        'gbprod/yanky.nvim',
-        config = function()
-            local ok_yanky, yanky = pcall(require, 'yanky')
-            if not ok_yanky then
-                print('plugins/yanky.lua: missing requirements')
-                return
-            end
-
-            yanky.setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-                ring = {
-                    history_length = 16,
-                    storage = 'shada',
-                    sync_with_numbered_registers = true,
-                },
-                picker = {
-                    select = {
-                        -- action = nil, -- nil to use default put action
-                    },
-                    telescope = {
-                        -- mappings = nil, -- nil to use default mappings
-                    },
-                },
-                system_clipboard = {
-                    sync_with_ring = true,
-                },
-                highlight = {
-                    on_put = true,
-                    on_yank = true,
-                    timer = 100,
-                },
-                preserve_cursor_position = {
-                    enabled = true,
-                },
-            })
-
-            -- override default keybindings with wrappers around them.
-            map.normal('p', '<Plug>(YankyPutAfter)')
-            map.normal('P', '<Plug>(YankyPutBefore)')
-            map.xisual('p', '<Plug>(YankyPutAfter)')
-            map.xisual('P', '<Plug>(YankyPutBefore)')
-            -- map.normal("gp", "<Plug>(YankyGPutAfter)")
-            -- map.normal("gP", "<Plug>(YankyGPutBefore)")
-            -- map.xisual("gp", "<Plug>(YankyGPutAfter)")
-            -- map.xisual("gP", "<Plug>(YankyGPutBefore)")
-
-            -- key maps
-            map.normal('<leader>n', '<Plug>(YankyCycleForward)', { noremap = false })
-            map.normal('<leader>N', '<Plug>(YankyCycleBackward)', { noremap = false })
-            map.normal('<leader>h', '<cmd>Telescope yank_history<cr>', { noremap = false })
-
-            -- telescope integration
-            require('telescope').load_extension('yank_history')
-        end,
-    },
+    { 'simnalamburt/vim-mundo', cmd = { 'MundoShow', 'MundoToggle' } },
+    { import = 'plugins.yanky' },
 
     -- Utils
     {
@@ -1683,25 +1249,7 @@ return {
         cmd = { 'Tabularize', 'Tab' },
     },
     { 'blindFS/vim-colorpicker', cmd = 'ColorPicker' },
-    {
-        'benmills/vimux', -- build comand(test) in split tmux pane
-        config = function()
-            vim.g.VimuxDebug = false
-            vim.g.VimuxHeight = 40
-            vim.g.VimuxOpenExtraArgs = ''
-            vim.g.VimuxOrientation = 'h'
-            vim.g.VimuxPromptString = 'Run? '
-            vim.g.VimuxResetSequence = 'q C-u'
-            vim.g.VimuxRunnerName = ''
-            vim.g.VimuxRunnerType = 'pane'
-            vim.g.VimuxRunnerQuery = {}
-            vim.g.VimuxTmuxCommand = 'tmux'
-            vim.g.VimuxUseNearest = true
-            vim.g.VimuxExpandCommand = false
-            vim.g.VimuxCloseOnExit = false
-            vim.g.VimuxCommandShell = false -- enable shell completion (disable arrow up)
-        end,
-    },
+    { import = 'plugins.vimux' },
     {
         'yssl/QFEnter', -- quickfix window (cw) open in split/tab...
         config = function()
@@ -1714,83 +1262,16 @@ return {
             ]])
         end,
     },
-    {
-        'simeji/winresizer',
-        config = function()
-            vim.g.winresizer_enable = '1'
-            vim.g.winresizer_gui_enable = '0'
-
-            -- Finish with <Esc> if this value is 1
-            vim.g.winresizer_finish_with_escape = '1'
-
-            -- The width to add or subtract when the `left` or `right` key is pressed
-            vim.g.winresizer_vert_resize = '10'
-
-            -- The height to add or subtract when the `up` or `down` key is pressed
-            vim.g.winresizer_horiz_resize = '4'
-
-            -- The key used to start winresizer
-            vim.g.winresizer_start_key = '<leader>e'
-            -- nnoremap <leader>e :WinResizerStartResize<cr>
-
-            -- The key used to start winresizer in the GUI
-            -- vim.g.winresizer_gui_start_key=""<C-a>
-
-            -- The keycode used as the `left` or `h` key
-            vim.g.winresizer_keycode_left = '104' -- h
-
-            -- The keycode used as the `right` or `l` key
-            vim.g.winresizer_keycode_right = '108' -- l
-
-            -- The keycode used as the `down` or `j` key
-            vim.g.winresizer_keycode_down = '106' -- j
-
-            -- The keycode used as the `up` or `k` key
-            vim.g.winresizer_keycode_up = '107' -- k
-
-            -- The keycode used as the `focus` or `f` key
-            vim.g.winresizer_keycode_focus = '102' -- f
-
-            -- The keycode used as the `move` or `m` key
-            vim.g.winresizer_keycode_move = '109' -- m
-
-            -- The keycode used as the `resize` or `r` key
-            vim.g.winresizer_keycode_resize = '114' -- r
-
-            -- The keycode used as the `mode` or `e` key
-            vim.g.winresizer_keycode_mode = '101' -- e
-
-            -- The keycode used as the `finish` or Enter> key
-            vim.g.winresizer_keycode_finish = '13' -- Enter>
-
-            -- The keycode used as the `cancel` or `q` key
-            vim.g.winresizer_keycode_cancel = '113' -- q
-        end,
-    },
-    {
-        'christoomey/vim-tmux-navigator',
-        config = function()
-            -- This will execute the update command on leaving vim to a tmux pane. Default is Zero
-            vim.g.tmux_navigator_save_on_switch = 1
-            vim.g.tmux_navigator_no_mappings = 1
-            vim.g.tmux_navigator_no_wrap = 1
-
-            map.normal('<M-h>', ':TmuxNavigateLeft<cr>')
-            map.normal('<M-j>', ':TmuxNavigateDown<cr>')
-            map.normal('<M-k>', ':TmuxNavigateUp<cr>')
-            map.normal('<M-l>', ':TmuxNavigateRight<cr>')
-            map.normal('<M-Bslash>', ':TmuxNavigatePrevious<cr>')
-        end,
-    },
+    { import = 'plugins.winresizer' },
+    { import = 'plugins.vim-tmux-navigator' },
+    { import = 'plugins.which-key' },
     {
         'nvim-lualine/lualine.nvim',
         config = function()
-            local ok_lualine, lualine = pcall(require, 'lualine')
-            -- @TODO (undg) 2023-07-22: move sections to plugins
-            local ok_s, s = pcall(require, 'plugins.lualine.sections')
+            local ok_s, s = pcall(require, 'plugins.utils.lualine-sections')
 
-            if not ok_s or not ok_lualine then
-                print('lua/plugins/lualine.lua: fail to load requirements')
+            if not ok_s then
+                print('lua/plugins/lualine/sections: fail to load requirments')
                 return
             end
 
@@ -1804,7 +1285,7 @@ return {
                 lualine_z = { 'hostname' },
             }
 
-            require'lualine'.setup({
+            require('lualine').setup({
                 options = {
                     icons_enabled = true,
                     component_separators = { left = '', right = '' },
@@ -1823,95 +1304,12 @@ return {
                         winbar = 1000,
                     },
                 },
-                sections = sections,
+                -- sections = sections,
                 inactive_sections = sections,
                 tabline = {},
                 winbar = {},
                 inactive_winbar = {},
                 extensions = { 'nvim-tree', 'fugitive', 'mundo', 'quickfix' },
-            })
-        end,
-    },
-    {
-        'folke/which-key.nvim',
-        config = function()
-            local ok_wkey, wkey = pcall(require, 'which-key')
-            if not ok_wkey then
-                print('plugins/which-key.lua: missing requirements')
-                return
-            end
-
-            wkey.setup({
-                plugins = {
-                    marks = true,         -- shows a list of your marks on ' and `
-                    registers = true,     -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-                    spelling = {
-                        enabled = true,   -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-                        suggestions = 20, -- how many suggestions should be shown in the list?
-                    },
-                    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-                    -- No actual key bindings are created
-                    presets = {
-                        operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
-                        motions = true,      -- adds help for motions
-                        text_objects = true, -- help for text objects triggered after entering an operator
-                        windows = true,      -- default bindings on <c-w>
-                        nav = true,          -- misc bindings to work with windows
-                        z = true,            -- bindings for folds, spelling and others prefixed with z
-                        g = true,            -- bindings for prefixed with g
-                    },
-                },
-                -- add operators that will trigger motion and text object completion
-                -- to enable all native operators, set the preset / operators plugin above
-                operators = { gc = 'Comments' },
-                key_labels = {
-                    -- override the label used to display some keys. It doesn't effect WK in any other way.
-                    -- For example:
-                    -- ["<space>"] = "SPC",
-                    -- ["<cr>"] = "RET",
-                    -- ["<tab>"] = "TAB",
-                },
-                icons = {
-                    breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
-                    separator = '➜', -- symbol used between a key and it's label
-                    group = '+',      -- symbol prepended to a group
-                },
-                popup_mappings = {
-                    scroll_down = '<c-d>', -- binding to scroll down inside the popup
-                    scroll_up = '<c-u>',   -- binding to scroll up inside the popup
-                },
-                window = {
-                    border = 'none',          -- none, single, double, shadow
-                    position = 'bottom',      -- bottom, top
-                    margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
-                    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-                    winblend = 0,
-                },
-                layout = {
-                    height = { min = 4, max = 25 }, -- min and max height of the columns
-                    width = { min = 20, max = 50 }, -- min and max width of the columns
-                    spacing = 3,                    -- spacing between columns
-                    align = 'left',                 -- align columns left, center or right
-                },
-                ignore_missing = false,             -- enable this to hide mappings for which you didn't specify a label
-                -- hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
-                show_help = true,                   -- show help message on the command line when the popup is visible
-                show_keys = true,                   -- show the currently pressed key and its label as a message in the command line
-                triggers = 'auto',                  -- automatically setup triggers
-                -- triggers = {"<leader>"} -- or specify a list manually
-                triggers_blacklist = {
-                    -- list of mode / prefixes that should never be hooked by WhichKey
-                    -- this is mostly relevant for key maps that start with a native binding
-                    -- most people should not need to change this
-                    i = { 'j', 'k' },
-                    v = { 'j', 'k' },
-                },
-                -- disable the WhichKey popup for certain buf types and file types.
-                -- Disabled by deafult for Telescope
-                disable = {
-                    buftypes = {},
-                    filetypes = { 'TelescopePrompt' },
-                },
             })
         end,
     },
@@ -1939,61 +1337,5 @@ return {
         end,
         cmd = { 'ColorHighlight', 'ColorToggle' },
     },
-    {
-        'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
-        config = function()
-            local ok_illuminate, illuminate = pcall(require, 'illuminate')
-            if not ok_illuminate then
-                print('plugins/illuminate.lua: missing requirements')
-                return
-            end
-
-            illuminate.configure({
-                -- providers: provider used to get references in the buffer, ordered by priority
-                providers = {
-                    'lsp',
-                    'treesitter',
-                    'regex',
-                },
-                -- delay: delay in milliseconds
-                delay = 100,
-                -- filetype_overrides: filetype specific overrides.
-                -- The keys are strings to represent the filetype while the values are tables that
-                -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist
-                filetype_overrides = {},
-                -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
-                filetypes_denylist = {
-                    'dirvish',
-                    'fugitive',
-                },
-                -- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
-                filetypes_allowlist = {},
-                -- modes_denylist: modes to not illuminate, this overrides modes_allowlist
-                -- See `:help mode()` for possible values
-                modes_denylist = {},
-                -- modes_allowlist: modes to illuminate, this is overriden by modes_denylist
-                -- See `:help mode()` for possible values
-                modes_allowlist = {},
-                -- providers_regex_syntax_denylist: syntax to not illuminate, this overrides providers_regex_syntax_allowlist
-                -- Only applies to the 'regex' provider
-                -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
-                providers_regex_syntax_denylist = {},
-                -- providers_regex_syntax_allowlist: syntax to illuminate, this is overriden by providers_regex_syntax_denylist
-                -- Only applies to the 'regex' provider
-                -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
-                providers_regex_syntax_allowlist = {},
-                -- under_cursor: whether or not to illuminate under the cursor
-                under_cursor = true,
-                -- large_file_cutoff: number of lines at which to use large_file_config
-                -- The `under_cursor` option is disabled when this cutoff is hit
-                large_file_cutoff = nil,
-                -- large_file_config: config to use for large files (based on large_file_cutoff).
-                -- Supports the same keys passed to .configure
-                -- If nil, vim-illuminate will be disabled for large files.
-                large_file_overrides = nil,
-                -- min_count_to_highlight: minimum number of matches required to perform highlighting
-                min_count_to_highlight = 1,
-            })
-        end,
-    },
+    { import = 'plugins.illuminate' }, -- automatically highlighting other uses of the word under the cursor
 }
