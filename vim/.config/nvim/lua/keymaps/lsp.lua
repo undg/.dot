@@ -29,7 +29,10 @@ map.normal('KK', vim.lsp.buf.signature_help, { silent = true, noremap = true })
 map.normal('ga', vim.lsp.buf.code_action)
 
 map.normal('<leader>gd', ':Lspsaga peek_definition<CR>')
+map.normal('Gd', ':Lspsaga peek_definition<CR>')
+
 map.normal('<leader>gD', ':Lspsaga peek_type_definition<CR>')
+map.normal('GD', ':Lspsaga peek_type_definition<CR>')
 
 map.normal('gd', function()
     tb.lsp_definitions(tb_opt)
