@@ -5,7 +5,7 @@ if not ok_ts_configs then
 end
 
 -- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
+-- Parsers can be installed manually via :TSInstall
 ts_configs.setup({
     ensure_installed = {
         "css",
@@ -33,10 +33,10 @@ ts_configs.setup({
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gnn",
-            node_incremental = "gnn",
+            init_selection = "vv",
+            node_incremental = "v",
+            node_decremental = "V",
             scope_incremental = "gnm",
-            node_decremental = "gmm",
         },
     },
     indent = {
@@ -58,20 +58,20 @@ ts_configs.setup({
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
+                ["]]"] = "@function.outer",
+                ["]c"] = "@class.outer",
             },
             goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
+                ["]["] = "@function.outer",
+                ["]C"] = "@class.outer",
             },
             goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
+                ["[["] = "@function.outer",
+                ["[c"] = "@class.outer",
             },
             goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
+                ["[]"] = "@function.outer",
+                ["[C"] = "@class.outer",
             },
         },
     },
