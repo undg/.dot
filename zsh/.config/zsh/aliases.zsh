@@ -133,7 +133,7 @@ else
 fi
 
 if hash ag 2>/dev/null; then
-    alias ag='ag --smart-case'
+    alias ag='\ag  --smart-case --pager="less -XFR"'
 else
     echo "the_silver_searcher or silversearcher-ag or silver-searcher is not installed."
     install the_silver_searcher
