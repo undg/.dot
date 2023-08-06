@@ -48,8 +48,18 @@ map.normal('gi', function()
     tb.lsp_implementations(tb_opt)
 end)
 
-map.normal('gj', vim.diagnostic.goto_next, { silent = true, noremap = true })
-map.normal('gk', vim.diagnostic.goto_prev, { silent = true, noremap = true })
+map.normal(
+    'gj',
+    ':lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>',
+    { silent = true, noremap = true }
+)
+map.normal('gJ', vim.diagnostic.goto_next, { silent = true, noremap = true })
+map.normal(
+    'gk',
+    ':lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, })<cr>',
+    { silent = true, noremap = true }
+)
+map.normal('gK', vim.diagnostic.goto_prev, { silent = true, noremap = true })
 map.normal('gh', vim.diagnostic.open_float, { silent = true, noremap = true })
 
 local styled = {
