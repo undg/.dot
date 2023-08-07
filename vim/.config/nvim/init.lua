@@ -1,7 +1,10 @@
 require('utils.globals')
 
-require('keymaps.general') -- always first
+-- -- Make sure to set `mapleader` before lazy so your mappings are correct.
+require('keymap.general') -- always first
 
+
+-- install Lazy if necessary.
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -15,11 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- -- Make sure to set `mapleader` before lazy so your mappings are correct.
--- vim.g.mapleader = ' '
--- vim.g.maplocalleader = ' '
-
-require('lazy').setup('plug/all-spec',{
+require('lazy').setup('plugin/all-spec',{
   change_detection = {
     enabled = false,
   } ,
@@ -31,9 +30,8 @@ require('lazy').setup('plug/all-spec',{
 
 require('custom')
 
--- require('theme')
 require('lsp')
 require('config')
 
-require('keymaps')
+require('keymap')
 require('autocmd')

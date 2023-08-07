@@ -1,5 +1,6 @@
 return {
     'folke/trouble.nvim',
+    cmd = { 'Trouble', 'TroubleToggle' },
     config = function()
         local ok_trouble, trouble = pcall(require, 'trouble')
         if not ok_trouble then
@@ -55,10 +56,7 @@ return {
             use_lsp_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
         })
 
-        -- keymaps
-        local map = require('utils.map')
-
-        map.normal(']t', ':lua require("trouble").next({skip_groups = true, jump = true})<cr>')
-        map.normal('[t', ':lua require("trouble").previous({skip_groups = true, jump = true})<cr>')
+        -- keymap
+        require('keymap.trouble')
     end,
 }
