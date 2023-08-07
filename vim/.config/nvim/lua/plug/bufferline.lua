@@ -1,7 +1,11 @@
+-- local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
+-- local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
+--
 return {
     'akinsho/bufferline.nvim',
     dependencies = {
         { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
+        { 'nvim-tree/nvim-web-devicons' },
     },
     version = '*',
     config = {

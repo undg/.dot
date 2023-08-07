@@ -1,45 +1,11 @@
 return {
-
-    { 'nvim-telescope/telescope-project.nvim' }, -- quick access to saved projects paths.
     {
         'nvim-telescope/telescope.nvim',
         dependencies = {
             { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
             { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
-            {
-                'ThePrimeagen/harpoon',
-                config = function()
-                    local ok_harpoon, harpoon = pcall(require, 'harpoon')
-                    if not ok_harpoon then
-                        print('plugins/harpoon.lua: missing requirement')
-                        return
-                    end
-
-                    harpoon.setup({
-                        -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-                        save_on_toggle = true,
-
-                        -- saves the harpoon file upon every change. disabling is unrecommended.
-                        save_on_change = true,
-
-                        -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-                        enter_on_sendcmd = false,
-
-                        -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-                        tmux_autoclose_windows = false,
-
-                        -- filetypes that you want to prevent from adding to the harpoon list menu.
-                        excluded_filetypes = { 'harpoon' },
-
-                        -- set marks specific to each git branch inside git repository
-                        mark_branch = false,
-                        menu = {
-                            width = vim.api.nvim_win_get_width(0) - 20,
-                        },
-                    })
-                end,
-            },
+            { 'nvim-telescope/telescope-project.nvim' }, -- quick access to saved projects paths.
         },
         config = function()
             local ok_telescope, telescope = pcall(require, 'telescope')
@@ -148,6 +114,56 @@ return {
             telescope.load_extension('harpoon')
             telescope.load_extension('project')
 
+            -- keymaps
+            local map = require('utils.map')
+            local getVisualSelectionFn = require('custom/get-visual-selection')
+            local tb = require('telescope.builtin')
+            local opts = { noremap = true, silent = true }
+
+            -- Core
+            map.normal('<leader>m', ':Telescope<cr>')
+            map.normal(',.', ':Telescope find_files hidden=true<cr>')
+            map.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
+            map.normal(
+                '<leader>.',
+                ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>'
+            )
+
+            map.normal('<leader>fb', ':Telescope buffers<cr>')
+            map.normal('<leader>fg', ':Telescope live_grep<cr>')
+            map.normal('<leader>fr', ':Telescope resume<cr>')
+            map.normal('<leader>fq', ':Telescope quickfixhistory<cr>')
+            map.normal('<leader>fp', ':Telescope project<cr>')
+            map.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
+            map.normal('<leader>fh', ':Telescope help_tags<cr>')
+            map.normal('<leader>fm', ':Telescope keymaps<cr>')
+            map.normal('<leader>fc', ':Telescope commands<cr>')
+
+            -- Custom goto commands
+            map.normal('<leader>ve', ':GotoVimFind<cr>')
+            map.normal('<leader>fvf', ':GotoVimFind<cr>')
+            map.normal('<leader>fvb', ':GotoVimBrowse<cr>')
+            map.normal('<leader>fvs', ':GotoVimGit<cr>')
+            map.normal('<leader>fvg', ':GotoVimGrep<cr>')
+
+            map.normal('<leader>fzf', ':GotoZshFind<cr>')
+            map.normal('<leader>fzb', ':GotoZshBrowse<cr>')
+            map.normal('<leader>fzs', ':GotoZshGit<cr>')
+            map.normal('<leader>fzg', ':GotoZshGrep<cr>')
+
+            map.normal('<leader>fdf', ':GotoDotFind<cr>')
+            map.normal('<leader>fdb', ':GotoDotBrowse<cr>')
+            map.normal('<leader>fds', ':GotoDotGit<cr>')
+            map.normal('<leader>fdg', ':GotoDotGrep<cr>')
+
+            map.normal('<leader>fcf', ':GotoCodeFind<cr>')
+            map.normal('<leader>fcb', ':GotoCodeBrowse<cr>')
+            map.normal('<leader>fcs', ':GotoCodeGit<cr>')
+            map.normal('<leader>fcg', ':GotoCodeGrep<cr>')
+
+            map.visual('<leader>fg', function()
+                tb.live_grep({ default_text = getVisualSelectionFn() })
+            end, opts)
         end,
     },
 }

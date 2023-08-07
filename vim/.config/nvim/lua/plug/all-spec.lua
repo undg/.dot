@@ -24,6 +24,7 @@ return {
     { import = 'plug.neo-tree' },
     { import = 'plug.bufferline' },
     { import = 'plug.telescope' },
+    { import = 'plug.harpoon' },
 
     -- LSP
     { 'neovim/nvim-lspconfig' },                     -- Collection of configurations for built-in LSP client
@@ -48,7 +49,7 @@ return {
     { import = 'plug.markdown-preview' },
     { 'godlygeek/tabular',               cmd = { 'Tabularize', 'Tab' } },
     { 'blindFS/vim-colorpicker',         cmd = 'ColorPicker' },
-    { import = 'plug.QFEnter' },            -- quickfix window (cw) open in split/tab...
+    { import = 'plug.qfenter' },            -- quickfix window (cw) open in split/tab...
     { import = 'plug.winresizer' },
     { import = 'plug.vimux' },              -- run commands in vimux pane
     { import = 'plug.vim-tmux-navigator' }, -- hybrid tmux, vim window navigation.
