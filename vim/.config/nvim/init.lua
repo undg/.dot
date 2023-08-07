@@ -19,11 +19,19 @@ vim.opt.rtp:prepend(lazypath)
 -- vim.g.mapleader = ' '
 -- vim.g.maplocalleader = ' '
 
-require('lazy').setup(require('plugins'))
+require('lazy').setup('plug/all-spec',{
+  change_detection = {
+    enabled = false,
+  } ,
+  install = {
+    colorscheme = { "gruvbox" }
+  }
+
+})
 
 require('custom')
 
-require('theme')
+-- require('theme')
 require('lsp')
 require('config')
 

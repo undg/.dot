@@ -2,8 +2,18 @@ local ok_path, my_path = pcall(require, 'utils.path')
 local ok_window, my_window = pcall(require, 'utils.window')
 local ok_s, s = pcall(require, 'utils.string')
 
-if not ok_path or not ok_window or not ok_s then
-    print('lua/plugins/lualine/sections: fail to load requirments')
+if not ok_path then
+    print('lua/plug-cfg/lualine/sections: fail to load path')
+    return
+end
+
+if  not ok_window then
+    print('lua/plug-cfg/lualine/sections: fail to load window')
+    return
+end
+
+if not ok_s then
+    print('lua/plug-cfg/lualine/sections: fail to load s')
     return
 end
 
@@ -42,7 +52,7 @@ M.cwd = {
 
 M.relative_path = {
     'filename',
-    file_status = true, -- Displays file status (readonly status, modified status)
+    file_status = true,    -- Displays file status (readonly status, modified status)
     newfile_status = true, -- Display new file status (new file means no write after created)
     path = path_type.relative,
     color = function(arg)
@@ -84,10 +94,10 @@ M.relative_path = {
     shorting_target = shorting_target, -- Shortens path to leave 40 spaces in the window
     -- for other components. (terrible name, any suggestions?)
     symbols = {
-        modified = '[+]', -- Text to show when the file is modified.
-        readonly = '[-]', -- Text to show when the file is non-modiiable or readonly.
+        modified = '[+]',      -- Text to show when the file is modified.
+        readonly = '[-]',      -- Text to show when the file is non-modiiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.
-        newfile = '[New]', -- Text to show for new created file before first writting
+        newfile = '[New]',     -- Text to show for new created file before first writting
     },
 }
 
@@ -140,4 +150,3 @@ M.location = {
 }
 
 return M
-
