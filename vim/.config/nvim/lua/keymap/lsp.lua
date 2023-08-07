@@ -10,7 +10,7 @@ if --
     or not tb_ok
     or not typescript_ok
 then
-    print("keymaps/lsp.lua: requirement's fail")
+    print("keymap/lsp.lua: requirement's fail")
     return
 end
 

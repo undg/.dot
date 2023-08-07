@@ -1,7 +1,7 @@
 return {
     'nvim-lualine/lualine.nvim',
     config = function()
-        local ok_s, s = pcall(require, 'plug-cfg.lualine.sections')
+        local ok_s, s = pcall(require, 'config.lualine.sections')
         if not ok_s then
             return
         end
