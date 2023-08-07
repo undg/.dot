@@ -1,10 +1,8 @@
 return {
     'nvim-lualine/lualine.nvim',
     config = function()
-        local ok_s, s = pcall(require, 'plugins.utils.lualine-sections')
-
+        local ok_s, s = pcall(require, 'plug-cfg.lualine.sections')
         if not ok_s then
-            print('lua/plugins/lualine/sections: fail to load requirments')
             return
         end
 
@@ -37,7 +35,7 @@ return {
                     winbar = 1000,
                 },
             },
-            -- sections = sections,
+            sections = sections,
             inactive_sections = sections,
             tabline = {},
             winbar = {},
