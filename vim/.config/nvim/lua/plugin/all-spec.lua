@@ -1,7 +1,7 @@
 return {
     -- Dependencies
-    'nvim-lua/plenary.nvim',     -- All the lua functions you don't want to write twice.
     { import = 'plugin.icons' }, -- icons used by few plugins
+    { 'nvim-lua/plenary.nvim' }, -- All the lua functions you don't want to write twice.
 
     -- Productivity
     { import = 'plugin.comment' },                -- commenting code
