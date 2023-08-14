@@ -18,7 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('plugin/all-spec',{
+require('lazy').setup('plugin/_all',{
   change_detection = {
     enabled = false,
   } ,

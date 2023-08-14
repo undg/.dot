@@ -16,6 +16,8 @@ return {
         -- Treesitter configuration
         -- Parsers must be installed manually via :TSInstall
         ts_configs.setup({
+            modules = {},
+            ignore_install = {},
             ensure_installed = {
                 'html',
                 'css',
