@@ -38,9 +38,7 @@ local lsp2mason = {
     cfg_no_file = {
         cssls = 'cssls',
         html = 'html',
-        -- prosemd_lsp = 'prosemd-lsp',
         clangd = 'clangd',
-        -- pyright = 'pyright',
         pylsp = 'python-lsp-server',
         marksman = 'marksman',
         bashls = 'bash-language-server',
@@ -72,12 +70,7 @@ else
     null_ls.setup({
         sources = {
             null_ls.builtins.formatting.prettierd,
-            null_ls.builtins.formatting.stylua.with({
-                extra_args = {
-                    '--config-path',
-                    vim.fn.expand('~/.config/stylua/stylua.toml'),
-                },
-            }),
+            null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.shfmt,
             null_ls.builtins.formatting.fixjson,
             null_ls.builtins.formatting.black,
