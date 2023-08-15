@@ -47,7 +47,7 @@ exec --no-startup-id sleep 6 && $kodi_only_on_cm                 # Media center
 exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
 exec_always --no-startup-id ~/bin/volctl_once                    # Volume applet in system tray
 exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
-exec_always --no-startup-id xset r rate 250 60                   # Speedy keys delay/repeatSpeed
+exec_always --no-startup-id xset r rate 200 100                  # Speedy keys delay/repeatSpeed
 
 
 set $transparent #000000
