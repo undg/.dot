@@ -22,7 +22,35 @@ return {
         -- NOTE: this is changed from v1.x, which used the old style of highlight groups
         -- in the form "LspDiagnosticsSignWarning"
 
+        local priorities = {
+            ['index.js'] = 6,
+            ['index.jsx'] = 6,
+            ['index.ts'] = 6,
+            ['index.tsx'] = 6,
+            ['init.lua'] = 6,
+            ['mod.ts'] = 6,
+            ['__init__.py'] = 6,
+        }
+
         neoTree.setup({
+            -- sort_function = nil,           -- uses a custom function for sorting files and directories in the tree
+            sort_function = function(a, b)
+                -- show files before subdirectories
+                -- if a.type ~= b.type then
+                --     return a.type == 'file'
+                -- end
+                -- sort by priority if it possible
+                if priorities[a.name] and priorities[b.name] then
+                    return priorities[a.name] > priorities[b.name]
+                end
+                -- if the priority is set for only one, then the
+                -- one who has it set will be the first
+                if priorities[a.name] or priorities[b.name] then
+                    return priorities[a.name] ~= nil
+                end
+                -- default path sort
+                return a.path < b.path
+            end,
             -- If a user has a sources list it will replace this one.
             -- Only sources listed here will be loaded.
             -- You can also add an external source by adding it's name to this list.
@@ -62,7 +90,6 @@ return {
             -- set to -1 to disable the resize timer entirely
             --                           -- NOTE: this will speed up to 50 ms for 1 second following a resize
             sort_case_insensitive = false, -- used when sorting files and directories in the tree
-            sort_function = nil,           -- uses a custom function for sorting files and directories in the tree
             use_popups_for_input = true,   -- If false, inputs will use vim.ui.input() instead of custom floats.
             use_default_mappings = true,
             -- source_selector provides clickable tabs to switch between sources.
@@ -88,9 +115,9 @@ return {
                 --             equal  : |/    a    \/    b    \/    c    \|
                 --             active : |/  focused tab    \/  b  \/  c  \|
                 truncation_character = '…', -- character to use when truncating the tab label
-                tabs_min_width = nil,       -- nil | int: if int padding is added based on `content_layout`
-                tabs_max_width = nil,       -- this will truncate text even if `text_trunc_to_fit = false`
-                padding = 0,                -- can be int or table
+                tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
+                tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
+                padding = 0, -- can be int or table
                 -- padding = { left = 2, right = 0 },
                 -- separator = "▕", -- can be string or table, see below
                 separator = { left = '▏', right = '▕' },
