@@ -58,7 +58,7 @@ return {
     { 'stevearc/dressing.nvim' },                           -- better floating window styles
 
     -- Look and feel
-    { import = 'plugin.gruvbox' },             -- best theme on the universe
+    { import = 'plugin.theme' },             -- gruvbox is best theme on the universe
     { import = 'plugin.vim-diminactive' },     -- dim inactive window
     { import = 'plugin.colorizer' },           -- paint hex values with color
     { import = 'plugin.illuminate' },          -- automatically highlighting other uses of the word under the cursor
