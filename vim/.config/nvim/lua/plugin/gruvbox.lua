@@ -24,6 +24,7 @@ return {
         vim.cmd('hi IlluminatedWordRead guibg=#191919')
         vim.cmd('hi IlluminatedWordText guibg=#191919')
         vim.cmd('hi IlluminatedWordWrite guibg=#191919')
+        vim.cmd('hi DiagnosticError guifg=#ed4337')
 
         -- Map (lukas-reineke/indent-blankline.nvim)
         vim.g.indent_blankline_char = '┊'
