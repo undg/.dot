@@ -29,6 +29,7 @@ return {
             ['index.tsx'] = 6,
             ['init.lua'] = 6,
             ['mod.ts'] = 6,
+            ['main.go'] = 6,
             ['__init__.py'] = 6,
         }
 
