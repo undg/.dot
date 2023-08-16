@@ -11,7 +11,8 @@ dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XA
 udiskie &
 
 # speedy keys
-xset r rate 250 80
+# xset r rate 200 100
+exec ~/bin/speedy-keys.sh
 
 exec i3
 
