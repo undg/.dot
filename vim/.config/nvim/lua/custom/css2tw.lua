@@ -32,11 +32,10 @@ local function copyToRegister()
     local tw = css2tw(getVisualSelectionFn())
 
     vim.fn.setreg('"', tw)
-    vim.fn.setreg('c', tw)
 end
 
 local function pasteFromRegister()
-    local regiser = vim.fn.getreg('c')
+    local regiser = vim.fn.getreg('"')
 
     local tw = css2tw(regiser)
 
