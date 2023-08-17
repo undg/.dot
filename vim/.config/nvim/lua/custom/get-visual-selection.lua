@@ -2,7 +2,6 @@
 -- @example
 --     local tb = require("telescope/builtin")
 --     tb.live_grep({ default_text = getVisualSelectionFn() })
-
 local function getVisualSelection()
     vim.cmd('noau normal! "vy"')
     local text = vim.fn.getreg("v")
@@ -17,4 +16,3 @@ local function getVisualSelection()
 end
 
 return getVisualSelection
-

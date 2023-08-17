@@ -1,0 +1,4 @@
+#!/bin/env zsh
+
+cd ~/Code/Arahi/arahi-tools-poc/
+pnpm tsx scripts/convert-styles-to-tailwindcss-class-names.script.ts "$@"
