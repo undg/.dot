@@ -6,14 +6,14 @@ if not ok_getVisualSelectionFn then
     return
 end
 
-local function css2tw()
+local function css2tw(cssStyles)
     if not string.match(vim.fn.getcwd(), '/Arahi/') then
         return
     end
 
     local script = 'pnpm tsx scripts/convert-styles-to-tailwindcss-class-names.script.ts'
 
-    local handler = io.popen(script .. ' "' .. getVisualSelectionFn() .. '"')
+    local handler = io.popen(script .. ' "' .. cssStyles .. '"')
 
     if handler == nil then
         print('Something fucked up. Handler not established, quit.')
@@ -25,8 +25,25 @@ local function css2tw()
 
     handler:close()
 
-    vim.fn.setreg('"', formated)
+    return formated
 end
 
-map.visual('<leader>tw', css2tw, { desc = 'Conver CSS to Arahi TW classes' })
--- vim.api.nvim_create_user_command('ArahiToolsCss2tw', css2tw, {})
+local function copyToRegister()
+    local tw = css2tw(getVisualSelectionFn())
+
+    vim.fn.setreg('"', tw)
+    vim.fn.setreg('c', tw)
+end
+
+local function pasteFromRegister()
+    local regiser = vim.fn.getreg('c')
+
+    local tw = css2tw(regiser)
+
+    vim.api.nvim_set_current_line(tw)
+end
+
+map.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })
+map.normal('<leader>tw', pasteFromRegister, { desc = 'Conver CSS to Arahi TW classes' })
+
+vim.api.nvim_create_user_command('ArahiToolsCss2tw', pasteFromRegister, {})
