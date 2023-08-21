@@ -50,15 +50,16 @@ local lsp2mason = {
 if string.match(vim.fn.getcwd(), '/Arahi/') then
     null_ls.setup({
         sources = {
-            null_ls.builtins.formatting.prettier.with({
-                prefer_local = 'node_modules/.bin',
-            }),
+            -- null_ls.builtins.formatting.prettier.with({
+            --     prefer_local = 'node_modules/.bin',
+            -- }),
             null_ls.builtins.formatting.shfmt,
             null_ls.builtins.formatting.fixjson,
 
             null_ls.builtins.completion.tags,
 
             null_ls.builtins.hover.dictionary,
+
             typescript_code_action,
 
             cspell.diagnostics,
@@ -106,15 +107,21 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 for name in pairs(lsp2mason.cfg_file) do
     mason_lsp[#mason_lsp + 1] = name
+
     local config = require('lsp.' .. name)
+
     config['capabilities'] = capabilities
+
     lspconfig[name].setup(config)
 end
 
 for name in pairs(lsp2mason.cfg_no_file) do
     mason_lsp[#mason_lsp + 1] = name
+
     local config = {}
+
     config['capabilities'] = capabilities
+
     lspconfig[name].setup(config)
 end
 
