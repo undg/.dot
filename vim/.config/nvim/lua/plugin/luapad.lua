@@ -1,6 +1,6 @@
 return {
     'rafcamlet/nvim-luapad',
-    config = {
+    opts = {
         count_limit = 150000,
         error_indicator = false,
         eval_on_move = true,
