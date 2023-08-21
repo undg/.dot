@@ -151,7 +151,7 @@ fi
 if hash pnpm 2>/dev/null; then
     alias p='pnpm'
 else
-    echo "pnpm is not installed."
+    # echo "pnpm is not installed."
     # install pnpm
 fi
 
