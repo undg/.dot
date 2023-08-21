@@ -1,6 +1,6 @@
 return {
     'nvimdev/lspsaga.nvim',
-    config = {
+    opts = {
         debug = false,
         diagnostic = {
             show_code_action = false,

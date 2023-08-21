@@ -8,7 +8,7 @@ return {
         { 'nvim-tree/nvim-web-devicons' },
     },
     version = '*',
-    config = {
+    opts = {
         options = {
             mode = 'buffers', -- set to "tabs" to only show tabpages instead
             numbers = function(opts)
