@@ -1,3 +1,5 @@
+local configs = require('lspconfig/configs')
+
 return {
     on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = true
@@ -22,7 +24,7 @@ return {
             mode = 'all',
         },
         format = true,
-        nodePath = '',
+        nodePath = vim.NIL,
         onIgnoredFiles = 'off',
         packageManager = 'npm',
         quiet = false,
@@ -32,6 +34,14 @@ return {
         validate = 'on',
         workingDirectory = {
             mode = 'location',
+        },
+    },
+    commands = {
+        EslintFixAll = {
+            function()
+                configs.eslint.fix_all({ sync = true, bufnr = 0 })
+            end,
+            description = 'Fix all eslint problems for this buffer',
         },
     },
 }
