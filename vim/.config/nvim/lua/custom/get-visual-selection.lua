@@ -1,8 +1,7 @@
 -- Return text selected in visual mode.
 -- @example
---     local tb = require("telescope/builtin")
---     tb.live_grep({ default_text = getVisualSelectionFn() })
-local function getVisualSelection()
+--     require("telescope.builtin").live_grep({ default_text = get_visual_selection() })
+local function get_visual_selection()
     vim.cmd('noau normal! "vy"')
     local text = vim.fn.getreg("v")
     vim.fn.setreg("v", {})
@@ -15,4 +14,4 @@ local function getVisualSelection()
     end
 end
 
-return getVisualSelection
+return get_visual_selection
