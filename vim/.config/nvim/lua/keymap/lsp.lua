@@ -1,5 +1,6 @@
 local map_ok, map = pcall(require, 'utils.map')
 local tb_ok, tb = pcall(require, 'telescope.builtin')
+local t_ok, t = pcall(require, 'telescope.builtin')
 local lspsaga_ok = pcall(require, 'lspsaga')
 -- local lspsaga_action_ok = pcall(require, 'lspsaga.action')
 local typescript_ok = pcall(require, 'typescript')
@@ -8,6 +9,7 @@ if --
     not map_ok
     or not lspsaga_ok
     or not tb_ok
+    or not t_ok
     or not typescript_ok
 then
     print("keymap/lsp.lua: requirement's fail")
@@ -18,7 +20,7 @@ local tb_opt = {
     fname_width = 0.5,
     trim_text = false,
     show_line = false,
-    include_current_line = false,
+    include_current_line = true,
 }
 
 map.normal('<LEADER>p', vim.lsp.buf.format)
@@ -34,17 +36,23 @@ map.normal('Gd', ':Lspsaga peek_definition<CR>')
 map.normal('<leader>gD', ':Lspsaga peek_type_definition<CR>')
 map.normal('GD', ':Lspsaga peek_type_definition<CR>')
 
-map.normal('gd', function()
+map.normal('gd', vim.lsp.buf.definition)
+map.normal('<leader>gd', function()
     tb.lsp_definitions(tb_opt)
 end)
-map.normal('gD', function()
+
+map.normal('gD', vim.lsp.buf.type_definition)
+map.normal('<leader>gD', function()
     tb.lsp_type_definitions(tb_opt)
 end)
 
-map.normal('gr', function()
+map.normal('gr', vim.lsp.buf.references)
+map.normal('<leader>gr', function()
     tb.lsp_references(tb_opt)
 end)
-map.normal('gi', function()
+
+map.normal('gi', vim.lsp.buf.implementation)
+map.normal('<leader>gi', function()
     tb.lsp_implementations(tb_opt)
 end)
 
