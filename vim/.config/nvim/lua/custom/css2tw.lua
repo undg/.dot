@@ -39,7 +39,7 @@ local function pasteFromRegister()
 
     local lines = css2tw(regiser)
 
-    vim.api.nvim_put({lines}, 'c', true, true)
+    vim.api.nvim_put({lines}, 'c', true, false)
 end
 
 map.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })
