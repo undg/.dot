@@ -29,17 +29,17 @@ local function css2tw(cssStyles)
 end
 
 local function copyToRegister()
-    local tw = css2tw(getVisualSelectionFn())
+    local lines = css2tw(getVisualSelectionFn())
 
-    vim.fn.setreg('"', tw)
+    vim.fn.setreg('"', lines)
 end
 
 local function pasteFromRegister()
     local regiser = vim.fn.getreg('"')
 
-    local tw = css2tw(regiser)
+    local lines = css2tw(regiser)
 
-    vim.api.nvim_set_current_line(tw)
+    vim.api.nvim_put({lines}, 'c', true, true)
 end
 
 map.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })
