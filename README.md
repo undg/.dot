@@ -10,12 +10,10 @@ cd .dot
 
 git submodule foreach git pull
 
-sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)   # Install zap.
+sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh)   # Install zap.
 ./install
 
 touch ~/.config/zsh/secret.zsh # private env variables and scripts 
-
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 ```
 > -j8 is an optional performance optimization available in version 2.8. It fetches up to 8 submodules in parallel.
@@ -37,16 +35,7 @@ git submodule update
 done
 
 
-
-
-## full system setup
-
-run ansible playbook
-```
-cd _init
-```
-
-## only dotfiles
+## Manage dotfiles
 
 ```
 ./install
