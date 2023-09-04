@@ -32,10 +32,8 @@ set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscr
 
 
 # #---Starting External Scripts---# #
-# Setting the background:
-exec --no-startup-id picom --config /dev/null                    # Composite manager
-exec --no-startup-id unclutter                                   # Hide mouse after a brief period
-exec --no-startup-id ~/bin/echocancel                            # Pulse mixer echo cancelation
+exec --no-startup-id picom                                       # Composite manager
+# exec --no-startup-id ~/bin/echocancel                            # Pulse mixer echo cancelation
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec --no-startup-id lxsession                                   # FE for polkit
@@ -207,7 +205,8 @@ bindsym $winKey+Escape          exec --no-startup-id dunstctl close
 bindsym $winKey+Shift+Escape    exec --no-startup-id dunstctl history-pop
 #bindsym $winKey+BackSpace
 bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
-bindsym $winKey+grave           exec --no-startup-id rofimoji --skin-tone neutral --action clipboard copy
+# bindsym $winKey+grave           exec --no-startup-id rofimoji --skin-tone neutral --action clipboard copy
+bindsym $winKey+grave           exec --no-startup-id rofi -modi emoji -show emoji
 bindsym $winKey+Insert          exec --no-startup-id showclip
 bindsym $winKey+Pause           exec --no-startup-id xcqr
 
