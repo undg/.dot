@@ -1,6 +1,6 @@
 local map_ok, map = pcall(require, 'utils.map')
 local tb_ok, tb = pcall(require, 'telescope.builtin')
-local t_ok, t = pcall(require, 'telescope.builtin')
+local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 -- local lspsaga_action_ok = pcall(require, 'lspsaga.action')
 local typescript_ok = pcall(require, 'typescript')
@@ -30,10 +30,10 @@ map.normal('K', vim.lsp.buf.hover, { silent = true, noremap = true })
 map.normal('KK', vim.lsp.buf.signature_help, { silent = true, noremap = true })
 map.normal('ga', vim.lsp.buf.code_action)
 
-map.normal('<leader>gd', ':Lspsaga peek_definition<CR>')
+map.normal('<leader>Gd', ':Lspsaga peek_definition<CR>')
 map.normal('Gd', ':Lspsaga peek_definition<CR>')
 
-map.normal('<leader>gD', ':Lspsaga peek_type_definition<CR>')
+map.normal('<leader>GD', ':Lspsaga peek_type_definition<CR>')
 map.normal('GD', ':Lspsaga peek_type_definition<CR>')
 
 map.normal('<leader>gd', vim.lsp.buf.definition)
@@ -50,6 +50,13 @@ map.normal('<leader>gr', vim.lsp.buf.references)
 map.normal('gr', function()
     tb.lsp_references(tb_opt)
 end)
+-- vim.keymap.set('n', '<leader>gr', function()
+--     vim.lsp.buf.references()
+--     -- vim.cmd('cclose')
+--     tb.quickfix()
+--     -- tb.lsp_references(tb_opt)
+-- end)
+
 
 map.normal('<leader>gi', vim.lsp.buf.implementation)
 map.normal('gi', function()
@@ -76,6 +83,7 @@ local styled = {
     noautocmd = true,
 }
 
+-- @TODO (undg) 2023-09-06: movie it to UI stuff.
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)

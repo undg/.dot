@@ -20,12 +20,18 @@ map.normal(
     ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = true, hide_parent_dir = true, select_buffer = true, respect_gitignore = true })<cr>'
 )
 
+
 map.normal('<leader>fb', ':Telescope buffers<cr>')
 map.normal('<leader>fg', ':Telescope live_grep<cr>')
 map.normal('<leader>fr', ':Telescope resume<cr>')
-map.normal('fq', function()
+
+local open_quick_fix_window_in_telescope = function()
+    vim.cmd('cclose')
     tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
-end)
+end
+map.normal('fq', open_quick_fix_window_in_telescope)
+map.normal('<leader>gq', open_quick_fix_window_in_telescope)
+map.normal('<leader>gc', open_quick_fix_window_in_telescope)
 map.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
 map.normal('<leader>fp', ':Telescope project<cr>')
 map.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
