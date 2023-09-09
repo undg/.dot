@@ -19,16 +19,21 @@ install() {
 
 alias :q='exit'
 
-if command -v exa &>/dev/null; then
-    alias l='exa'
-    alias ls='exa --group-directories-first --icons --git'
+if command -v eza &>/dev/null; then
+    alias l='eza'
+    alias ls='eza --group-directories-first --icons --git'
     alias ll='ls -lah --git'
-    alias la='exa -a'
+    alias la='eza -a'
     alias tree='ll --tree --level=2'
 else
-    echo "exa is not installed."
-    install exa
+    echo "eza is not installed."
+    install eza
 fi
+
+alias lt="ls --sort newest"
+alias llt="ll --sort newest"
+alias ltr="ls --sort oldest"
+alias lltr="ll --sort oldest"
 
 if command -v fasd &>/dev/null; then
     alias j="fasd_cd -d -r"
@@ -36,11 +41,6 @@ else
     echo "exa is not installed."
     install fasd
 fi
-
-alias lt="ls --sort newest"
-alias llt="ll --sort newest"
-alias ltr="ls --sort oldest"
-alias lltr="ll --sort oldest"
 
 alias egrep="egrep --color=auto"
 alias grep="grep --color=auto"
