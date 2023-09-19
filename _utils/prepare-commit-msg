@@ -1,8 +1,9 @@
 #!/bin/sh
-printf -- "commitMsg:"
 
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
 SHA1=$3
 
-/usr/bin/perl -i.bak -ne 'print unless(m/^. Please enter the commit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+
+echo "[$BRANCH_NAME] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
+
