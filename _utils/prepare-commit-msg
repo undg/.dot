@@ -1,11 +1,24 @@
 #!/bin/sh
 
+# Extract paths of staged files
+STAGED_FILES=$(git diff --cached --name-only)
 
-BRANCH_NAME=$(git symbolic-ref --short HEAD)
-COMMIT_MSG_FILE=$1
-COMMIT_SOURCE=$2
-SHA1=$3
+# Extract the first level directory from all staged files
+DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | uniq)
 
+# Count the number of unique first level directories
+DIR_COUNT=$(echo "$DIRS" | wc -l)
 
-echo "[$BRANCH_NAME] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
+# If there's more than one directory or no directory, exit with an error or without any action
+if [ $DIR_COUNT -gt 1 ]; then
+    echo "Error: Multiple first-level directories detected in staged files."
+    exit 1
+elif [ -z "$DIRS" ]; then
+    exit 0
+fi
 
+# The file that contains the commit log message is passed by git to this hook as the first argument
+COMMIT_MSG_FILE="$1"
+
+# Append the directory name to the beginning of the commit message
+echo "[$DIRS] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
