@@ -85,18 +85,22 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 plug "zsh-users/zsh-syntax-highlighting"
+# fix invisible strings that starts with # or $
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/510
+ZSH_HIGHLIGHT_STYLES[comment]='none'
+
 plug "zap-zsh/fzf" # famous fuzzy finder
 
 plug "zsh-users/zsh-history-substring-search"
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^[[A' history-substring-search-up # arrow up
+bindkey '^[[B' history-substring-search-down # arrow down
 
 
 #################################
 # Start: key mappings
 #################################
-bindkey '^a' beginning-of-line #  Give some love to emacs
-bindkey '^e' end-of-line #  Give some love to emacs
+bindkey '^a' beginning-of-line # Give some love to emacs
+bindkey '^e' end-of-line # Give some love to emacs
 
 bindkey '^h' backward-kill-word
 bindkey '^j' backward-word
