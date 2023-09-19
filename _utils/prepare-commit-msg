@@ -1,5 +1,5 @@
 #!/bin/sh
-printf -- "commitMsg:" > $1
+printf -- "commitMsg:"
 
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
