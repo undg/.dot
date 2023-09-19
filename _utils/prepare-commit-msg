@@ -12,7 +12,7 @@ DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}')
 # Count the number of unique first level directories
 DIR_COUNT=$(echo "$DIRS" | wc -l)
 
-DIRS_ONELINE=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | awk 1 ORS=', ' | awk '$0=gensub(/^(.*), /,"\\1 ","g",$0)')
+DIRS_ONELINE=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | awk 1 ORS=', ' | awk '$0=gensub(/^(.*), /,"\\1","g",$0)')
 
 # If there's more than one directory or no directory, exit with an error or without any action
 if [ $DIR_COUNT -gt 1 ]; then
@@ -21,7 +21,7 @@ if [ $DIR_COUNT -gt 1 ]; then
     echo ""
 
     read -p "Abort? Y/n: " yn
-    if [ "$yn" != "no" ]; then
+    if [ "${yn:0:1}" != "n" ]; then
         exit 1
     fi
 elif [ -z "$DIRS" ]; then
