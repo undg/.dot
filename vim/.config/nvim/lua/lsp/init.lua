@@ -50,9 +50,9 @@ local lsp2mason = {
 if string.match(vim.fn.getcwd(), '/Arahi/') then
     null_ls.setup({
         sources = {
-            null_ls.builtins.formatting.prettier.with({
-                prefer_local = 'node_modules/.bin',
-            }),
+            -- null_ls.builtins.formatting.prettier.with({
+            --     prefer_local = 'node_modules/.bin',
+            -- }),
             null_ls.builtins.formatting.shfmt,
             null_ls.builtins.formatting.fixjson,
 
