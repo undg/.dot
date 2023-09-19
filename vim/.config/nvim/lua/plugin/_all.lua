@@ -27,6 +27,7 @@ return {
     { import = 'plugin.harpoon' },
 
     -- LSP, code and linting
+    -- { import = 'plugin.nvim-lint' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.lspsaga' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.typescript' },                -- LSP Typescript utils with performant UI
     { import = 'plugin.treesitter' },                -- syntax highlight
