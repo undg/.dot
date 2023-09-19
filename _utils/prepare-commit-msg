@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Allows us to read user input below, assigns stdin to keyboard
+exec < /dev/tty
+
 # Extract paths of staged files
 STAGED_FILES=$(git diff --cached --name-only)
 
@@ -9,11 +12,15 @@ DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}')
 # Count the number of unique first level directories
 DIR_COUNT=$(echo "$DIRS" | wc -l)
 
+DIRS_ONELINE=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | awk 1 ORS=', ' | awk '$0=gensub(/^(.*), /,"\\1 ","g",$0)')
+
 # If there's more than one directory or no directory, exit with an error or without any action
 if [ $DIR_COUNT -gt 1 ]; then
     echo "Error: Multiple first-level directories detected in staged files."
     echo "       Split them into multiple commits. Only one group allowed per one commit."
-    read -p "Abort? Yes/no: " yn
+    echo ""
+
+    read -p "Abort? Y/n: " yn
     if [ "$yn" != "no" ]; then
         exit 1
     fi
@@ -25,4 +32,4 @@ fi
 COMMIT_MSG_FILE="$1"
 
 # Append the directory name to the beginning of the commit message
-echo "[$DIRS] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
+echo "[$DIRS_ONELINE] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
