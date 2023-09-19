@@ -4,7 +4,7 @@
 STAGED_FILES=$(git diff --cached --name-only)
 
 # Extract the first level directory from all staged files
-DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | uniq)
+DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}')
 
 # Count the number of unique first level directories
 DIR_COUNT=$(echo "$DIRS" | wc -l)
@@ -12,7 +12,11 @@ DIR_COUNT=$(echo "$DIRS" | wc -l)
 # If there's more than one directory or no directory, exit with an error or without any action
 if [ $DIR_COUNT -gt 1 ]; then
     echo "Error: Multiple first-level directories detected in staged files."
-    exit 1
+    echo "       Split them into multiple commits. Only one group allowed per one commit."
+    read -p "Abort? Yes/no: " yn
+    if [ "$yn" != "no" ]; then
+        exit 1
+    fi
 elif [ -z "$DIRS" ]; then
     exit 0
 fi
