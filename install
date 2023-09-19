@@ -8,7 +8,7 @@ function stow_patch() {
 
 for folder in */
 do
-    if [ $folder != '_init/' ]
+    if [ $folder != '_utils/' ]
     then
         echo "--------------------------"
         stow_patch -D $folder
