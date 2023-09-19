@@ -38,7 +38,7 @@ alias lltr="ll --sort oldest"
 if command -v fasd &>/dev/null; then
     alias j="fasd_cd -d -r"
 else
-    echo "exa is not installed."
+    echo "fasd is not installed."
     install fasd
 fi
 
