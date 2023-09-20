@@ -3,16 +3,19 @@
 # Allows us to read user input below, assigns stdin to keyboard
 exec < /dev/tty
 
+# The file that contains the commit log message is passed by git to this hook as the first argument
+COMMIT_MSG_FILE="$1"
+
 # Extract paths of staged files
 STAGED_FILES=$(git diff --cached --name-only)
 
 # Extract the first level directory from all staged files
-DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}')
+DIRS=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | uniq)
 
 # Count the number of unique first level directories
 DIR_COUNT=$(echo "$DIRS" | wc -l)
 
-DIRS_ONELINE=$(echo "$STAGED_FILES" | awk -F'/' '{print $1}' | awk 1 ORS=', ' | awk '$0=gensub(/^(.*), /,"\\1","g",$0)')
+DIRS_ONELINE=$(echo "$DIRS" | awk 1 ORS=', ' | awk '$0=gensub(/^(.*), /,"\\1","g",$0)')
 
 # If there's more than one directory or no directory, exit with an error or without any action
 if [ $DIR_COUNT -gt 1 ]; then
@@ -28,8 +31,6 @@ elif [ -z "$DIRS" ]; then
     exit 0
 fi
 
-# The file that contains the commit log message is passed by git to this hook as the first argument
-COMMIT_MSG_FILE="$1"
 
 # Append the directory name to the beginning of the commit message
 echo "[$DIRS_ONELINE] $(cat $COMMIT_MSG_FILE)" > $COMMIT_MSG_FILE
