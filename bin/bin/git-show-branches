@@ -4,6 +4,12 @@ if [ "$1" == "prune" ]; then
 	git remote prune origin
 fi
 
-for branch in $(git branch -r | grep -v HEAD); do
-	echo -e $(git show --format="%ai %ar by %an" $branch | head -n 1) \\t$branch
-done | sort -r
+if [ "$1" == "my" ]; then
+	git remote prune origin
+fi
+
+BRANCHES=$(git branch -r | grep -v HEAD)
+
+for branch in $BRANCHES; do
+	echo -e $(git show --format="%ai; %ar; by %an;" $branch | head -n 1) \\t$branch
+done | sort | column -s';' -t
