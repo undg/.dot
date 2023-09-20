@@ -90,7 +90,7 @@ map.normal('<leader>/', ':noh<cr>')
 
 -- Substitute search and replace
 map.normal('S', ':%s/')
-map.visual('<leader>S', 'y:%s/<c-r>0')
+map.visual('<leader>S', 'y:%s/\\(<c-r>0\\)')
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
 -- this is overriden in nvim-hlslens
