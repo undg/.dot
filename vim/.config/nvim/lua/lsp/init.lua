@@ -50,9 +50,9 @@ local lsp2mason = {
 if string.match(vim.fn.getcwd(), '/Arahi/') then
     null_ls.setup({
         sources = {
-            -- null_ls.builtins.formatting.prettier.with({
-            --     prefer_local = 'node_modules/.bin',
-            -- }),
+            null_ls.builtins.formatting.prettier.with({
+                prefer_local = 'node_modules/.bin',
+            }),
             null_ls.builtins.formatting.shfmt,
             null_ls.builtins.formatting.fixjson,
 
@@ -88,7 +88,7 @@ end
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
     'stylua',     -- format lua
-    'prettier',   -- format js/ts
+    -- 'prettier',   -- format js/ts
     'shfmt',      -- format sh
     'fixjson',    -- format json
     'black',      -- format python
