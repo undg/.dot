@@ -66,4 +66,5 @@
 	fdiffFilter = delta --color-only
 [push]
 	followTags = true
+	autoSetupRemote = true
 
