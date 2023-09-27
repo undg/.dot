@@ -1,9 +1,5 @@
 return {
     'mfussenegger/nvim-lint',
-    opts = {
-        -- Configuration here, or leave empty to use defaults
-        -- :h nvim-surround.configuration.
-    },
     config = function()
         local lint = require('lint')
 
