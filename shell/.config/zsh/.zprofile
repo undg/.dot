@@ -38,5 +38,7 @@ export QT_PLATFORM_PLUGIN="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
 
+export GTK_THEME=Adwaita:dark
+
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
