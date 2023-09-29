@@ -29,6 +29,7 @@ map.normal('<LEADER>rfn', ':TypescriptRenameFile<CR>', { silent = false, noremap
 map.normal('K', vim.lsp.buf.hover, { silent = true, noremap = true })
 map.normal('KK', vim.lsp.buf.signature_help, { silent = true, noremap = true })
 map.normal('ga', vim.lsp.buf.code_action)
+map.visual('ga', vim.lsp.buf.code_action)
 
 map.normal('<leader>Gd', ':Lspsaga peek_definition<CR>')
 map.normal('Gd', ':Lspsaga peek_definition<CR>')
