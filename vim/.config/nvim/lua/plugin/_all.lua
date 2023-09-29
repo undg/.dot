@@ -30,6 +30,7 @@ return {
     -- { import = 'plugin.nvim-lint' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.lspsaga' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.typescript' },                -- LSP Typescript utils with performant UI
+    { import = 'plugin.golang' },                    -- LSP golang utils with performant UI
     { import = 'plugin.treesitter' },                -- syntax highlight
     { import = 'plugin.trouble' },                   -- organize errors and warnings
     { import = 'plugin.autocompletion' },            -- collection of plugins related with autocompletion
@@ -43,7 +44,7 @@ return {
 
     -- Registers
     { import = 'plugin.yanky' },
-    { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
+    { 'simnalamburt/vim-mundo',             cmd = { 'MundoShow', 'MundoToggle' } },
 
     -- Utils
     { import = 'plugin.vimwiki' },
@@ -54,12 +55,12 @@ return {
     { import = 'plugin.vim-tmux-navigator' },               -- hybrid tmux, vim window navigation.
     { import = 'plugin.which-key' },                        -- display interactive footer with available keymaps
     { import = 'plugin.lualine' },                          -- status bar with few informations
-    { 'godlygeek/tabular',                        cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
-    { 'blindFS/vim-colorpicker',                  cmd = 'ColorPicker' }, -- open xorg window with color picker
+    { 'godlygeek/tabular',                  cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
+    { 'blindFS/vim-colorpicker',            cmd = 'ColorPicker' }, -- open xorg window with color picker
     { 'stevearc/dressing.nvim' },                           -- better floating window styles
 
     -- Look and feel
-    { import = 'plugin.theme' },             -- gruvbox is best theme on the universe
+    { import = 'plugin.theme' },               -- gruvbox is best theme on the universe
     { import = 'plugin.vim-diminactive' },     -- dim inactive window
     { import = 'plugin.colorizer' },           -- paint hex values with color
     { import = 'plugin.illuminate' },          -- automatically highlighting other uses of the word under the cursor

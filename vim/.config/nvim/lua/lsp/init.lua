@@ -34,6 +34,7 @@ local lsp2mason = {
         yamlls = 'yaml-language-server',
         lua_ls = 'lua-language-server',
         eslint = 'eslint_d',
+        gopls = 'gopls',
     },
     cfg_no_file = {
         cssls = 'cssls',
@@ -42,7 +43,6 @@ local lsp2mason = {
         pylsp = 'python-lsp-server',
         marksman = 'marksman',
         bashls = 'bash-language-server',
-        gopls = 'gopls',
         tailwindcss = 'tailwindcss-language-server',
     },
 }
@@ -95,6 +95,7 @@ local mason_non_lsp = {
 
     'actionlint', -- github action files diagnostic
     'goimports-reviser',
+    'goimports',
 }
 
 -- Lsp server names that will be installed via Manson
