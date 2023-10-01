@@ -13,6 +13,7 @@ return {
                 ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
                 ['http://json.schemastore.org/stylelintrc'] = '.stylelintrc.{yml,yaml}',
                 ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}',
+                ['https://goreleaser.com/static/schema.json'] = '.goreleaser.{yml,yaml}',
             },
         },
     },
