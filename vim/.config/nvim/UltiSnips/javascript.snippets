@@ -115,10 +115,10 @@ if`!p snip.rv = keyword_spacing(snip)`(${1:true}) {
 endsnippet
 
 snippet switch
-switch`!p snip.rv = keyword_spacing(snip)`(${VISUAL}${1:expression}) {
+switch (${VISUAL}${1:expression}) {
 	case '${VISUAL}${3:case}':
 		${4}
-		break`!p snip.rv = semi(snip)`
+		break
 	${0}
 	default:
 		${2}
