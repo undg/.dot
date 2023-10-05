@@ -1,6 +1,6 @@
 #!/bin/env sh
 
-if [[ "$1" == "stop" ]]; then
+if [[ "$1" == "x" ]]; then
 	tmux send-keys -t 1 C-c
 	tmux send-keys -t 2 C-c
 	tmux send-keys -t 3 C-c
