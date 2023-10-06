@@ -50,7 +50,8 @@ return {
                     return priorities[a.name] ~= nil
                 end
                 -- default path sort
-                return a.path < b.path
+                -- return a.path < b.path
+                return a.path > b.path
             end,
             -- If a user has a sources list it will replace this one.
             -- Only sources listed here will be loaded.
@@ -231,7 +232,7 @@ return {
                 --  },
                 --},
                 indent = {
-                    indent_size = 2,
+                    indent_size = 4,
                     padding = 1,
                     -- indent guides
                     with_markers = true,
@@ -346,7 +347,7 @@ return {
                 position = 'left',         -- left, right, top, bottom, float, current
                 width = 40,                -- applies to left and right positions
                 height = 15,               -- applies to top and bottom positions
-                auto_expand_width = false, -- expand the window when file exceeds the window width. does not work with position = "float"
+                auto_expand_width = true, -- expand the window when file exceeds the window width. does not work with position = "float"
                 popup = {                  -- settings that apply to float position only
                     size = {
                         height = '80%',
@@ -378,7 +379,7 @@ return {
                     ['l'] = 'focus_preview',
                     ['S'] = 'open_split',
                     -- ["S"] = "split_with_window_picker",
-                    ['s'] = 'open_vsplit',
+                    ['v'] = 'open_vsplit',
                     -- ["s"] = "vsplit_with_window_picker",
                     ['t'] = 'open_tabnew',
                     -- ["<cr>"] = "open_drop",
