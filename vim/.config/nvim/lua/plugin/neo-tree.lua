@@ -11,6 +11,27 @@ return {
             return
         end
 
+        local events = require('neo-tree.events')
+        ---@class FileMovedArgs
+        ---@field source string
+        ---@field destination string
+
+        ---@param args FileMovedArgs
+        local function on_file_remove(args)
+            local ts_clients = vim.lsp.get_active_clients({ name = 'tsserver' })
+            for _, ts_client in ipairs(ts_clients) do
+                ts_client.request('workspace/executeCommand', {
+                    command = '_typescript.applyRenameFile',
+                    arguments = {
+                        {
+                            sourceUri = vim.uri_from_fname(args.source),
+                            targetUri = vim.uri_from_fname(args.destination),
+                        },
+                    },
+                })
+            end
+        end
+
         -- Unless you are still migrating, remove the deprecated commands from v1.x
         vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -137,6 +158,24 @@ return {
                 highlight_background = 'NeoTreeTabInactive',
                 highlight_separator = 'NeoTreeTabSeparatorInactive',
                 highlight_separator_active = 'NeoTreeTabSeparatorActive',
+            },
+
+            event_handlers = {
+                {
+                    event = events.NEO_TREE_BUFFER_ENTER,
+                    handler = function()
+                        vim.wo.number = true
+                        vim.wo.relativenumber = true
+                    end,
+                },
+                {
+                    event = events.FILE_MOVED,
+                    handler = on_file_remove,
+                },
+                {
+                    event = events.FILE_RENAMED,
+                    handler = on_file_remove,
+                },
             },
             --
             --event_handlers = {
@@ -342,13 +381,13 @@ return {
                 },
             },
             nesting_rules = {},
-            window = {                     -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+            window = {                    -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
                 -- possible options. These can also be functions that return these options.
-                position = 'left',         -- left, right, top, bottom, float, current
-                width = 40,                -- applies to left and right positions
-                height = 15,               -- applies to top and bottom positions
+                position = 'left',        -- left, right, top, bottom, float, current
+                width = 40,               -- applies to left and right positions
+                height = 15,              -- applies to top and bottom positions
                 auto_expand_width = true, -- expand the window when file exceeds the window width. does not work with position = "float"
-                popup = {                  -- settings that apply to float position only
+                popup = {                 -- settings that apply to float position only
                     size = {
                         height = '80%',
                         width = '50%',
