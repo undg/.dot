@@ -65,17 +65,17 @@ map.normal('gi', function()
 end)
 
 map.normal(
-    'gj',
+    '<leader>gj',
     ':lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>',
     { silent = true, noremap = true }
 )
-map.normal('GJ', vim.diagnostic.goto_next, { silent = true, noremap = true })
+map.normal('gj', vim.diagnostic.goto_next, { silent = true, noremap = true })
 map.normal(
-    'gk',
+    '<leader>gk',
     ':lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, })<cr>',
     { silent = true, noremap = true }
 )
-map.normal('GK', vim.diagnostic.goto_prev, { silent = true, noremap = true })
+map.normal('gk', vim.diagnostic.goto_prev, { silent = true, noremap = true })
 map.normal('gh', vim.diagnostic.open_float, { silent = true, noremap = true })
 
 local styled = {
