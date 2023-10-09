@@ -27,7 +27,7 @@ return {
     { import = 'plugin.harpoon' },
 
     -- LSP, code and linting
-    -- { import = 'plugin.nvim-lint' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
+    -- { import = 'plugin.nvim-lint' },                   -- custom linting setup with mfussenegger/nvim-lint.
     { import = 'plugin.lspsaga' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.typescript' },                -- LSP Typescript utils with performant UI
     { import = 'plugin.golang' },                    -- LSP golang utils with performant UI
@@ -50,7 +50,6 @@ return {
     { import = 'plugin.vimwiki' },
     { import = 'plugin.markdown-preview' },
     { import = 'plugin.qfenter' },                          -- quickfix window (cw) open in split/tab...
-    { import = 'plugin.winresizer' },                       -- easy resize windows
     { import = 'plugin.vimux' },                            -- run commands in vimux pane
     { import = 'plugin.vim-tmux-navigator' },               -- hybrid tmux, vim window navigation.
     { import = 'plugin.which-key' },                        -- display interactive footer with available keymaps
