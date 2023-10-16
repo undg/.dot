@@ -59,16 +59,16 @@ return {
             -- IlluminatedWordRead xxx guibg=#191919
             vim.cmd('hi IlluminatedWordRead guibg=#525252')
             local bold_value = 16777215
-            local bold_hex = string.format("%06x", bold_value) -- 'ffffff'
+            -- local bold_hex = string.format('%06x', bold_value) -- 'ffffff'
             local normal_color = '#191919'
             local bold_color = '#ffffff'
 
             if current_value == bold_value then
                 vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = normal_color })
-                print('bold', '#' .. current_value)
+                print('hl toogle_IlluminateWordRead(bold) |', 'hex: #' .. string.format('%06x', current_value), '| dec:', current_value)
             else
                 vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = bold_color })
-                print('norm', current_value)
+                print('hl toogle_IlluminateWordRead(norm) |', 'hex: #' .. string.format('%06x', current_value), '| dec:', current_value)
             end
         end
 
