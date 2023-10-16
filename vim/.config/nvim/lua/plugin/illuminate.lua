@@ -1,3 +1,4 @@
+local map = require('utils.map')
 return {
     'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
     config = function()
@@ -53,5 +54,29 @@ return {
             -- min_count_to_highlight: minimum number of matches required to perform highlighting
             min_count_to_highlight = 1,
         })
+
+        local function toogle_IlluminateWordRead(current_value)
+            -- IlluminatedWordRead xxx guibg=#191919
+            vim.cmd('hi IlluminatedWordRead guibg=#525252')
+            local bold_value = 16777215
+            local bold_hex = string.format("%06x", bold_value) -- 'ffffff'
+            local normal_color = '#191919'
+            local bold_color = '#ffffff'
+
+            if current_value == bold_value then
+                vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = normal_color })
+                print('bold', '#' .. current_value)
+            else
+                vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = bold_color })
+                print('norm', current_value)
+            end
+        end
+
+        map.normal('<leader>*', function()
+            toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
+        end)
+        map.normal('<leader>8', function()
+            toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
+        end)
     end,
 }
