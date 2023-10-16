@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PNPM_VERSION_PACKAGE_JSON="$(cat package.json | jq -r '.packageManager' | cut -d @ -f2)"
+PNPM_VERSION_OS="$(pnpm --version)"
+
+if [[ "$PNPM_VERSION_PACKAGE_JSON" = "$PNPM_VERSION_OS" ]]; then
+	echo ok
+else
+	echo no_ok
+    echo "package.json: $PNPM_VERSION_PACKAGE_JSON != pnpm: $PNPM_VERSION_OS"
+    # not tested
+    rtx install pnpm@$PNPM_VERSION_PACKAGE_JSON
+    rtx global pnpm@$PNPM_VERSION_PACKAGE_JSON
+fi
