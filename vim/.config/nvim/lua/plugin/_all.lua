@@ -41,10 +41,11 @@ return {
     { 'jose-elias-alvarez/null-ls.nvim' },           -- inject LSP diagnostics, code actions, and more
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
+    { import = 'plugin.sg' },                   -- LLM with the context of Sourcegraph’s code graph
 
     -- Registers
     { import = 'plugin.yanky' },
-    { 'simnalamburt/vim-mundo',             cmd = { 'MundoShow', 'MundoToggle' } },
+    { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
 
     -- Utils
     { import = 'plugin.vimwiki' },
@@ -54,8 +55,8 @@ return {
     { import = 'plugin.vim-tmux-navigator' },               -- hybrid tmux, vim window navigation.
     { import = 'plugin.which-key' },                        -- display interactive footer with available keymaps
     { import = 'plugin.lualine' },                          -- status bar with few informations
-    { 'godlygeek/tabular',                  cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
-    { 'blindFS/vim-colorpicker',            cmd = 'ColorPicker' }, -- open xorg window with color picker
+    { 'godlygeek/tabular',                        cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
+    { 'blindFS/vim-colorpicker',                  cmd = 'ColorPicker' }, -- open xorg window with color picker
     { 'stevearc/dressing.nvim' },                           -- better floating window styles
 
     -- Look and feel
