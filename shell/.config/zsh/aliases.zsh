@@ -1,21 +1,21 @@
 #!/usr/bin/env zsh
 
+
+# Main install function
+
 install() {
-    if hash pacman 2>/dev/null; then
-        echo "Installing $1"
-        # sudo pacman -S $1
-        yay -S $1
-    elif hash pkg 2>/dev/null; then
-        case $1 in
-            xclip | fping)
-                return 
-                ;;
-        esac
-        echo "Installing $1"
-        pkg install $1
-    fi
-    zsh
+  local package=$1
+
+  if is_installed pacman; then
+    install_with_pacman $package
+  elif is_installed pkg; then
+    install_with_pkg $package
+  fi
+
+  exec zsh
 }
+
+# Alias definitions
 
 alias :q='exit'
 
@@ -199,4 +199,42 @@ colors() {
   do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'};
   done
 }
+
+# Helper functions
+
+is_installed() {
+  hash $1 2>/dev/null
+}
+
+install_with_pacman() {
+  echo "Installing $1 with pacman"
+  yay -S $1
+}
+
+install_with_pkg() {
+  if [[ $1 == "xclip" || $1 == "fping" ]]; then
+    return
+  fi
+
+  echo "Installing $1 with pkg"
+  pkg install $1
+}
+
+# old function that is battle tested. Delete after testing new one.
+# install() {
+#     if hash pacman 2>/dev/null; then
+#         echo "Installing $1"
+#         # sudo pacman -S $1
+#         yay -S $1
+#     elif hash pkg 2>/dev/null; then
+#         case $1 in
+#             xclip | fping)
+#                 return 
+#                 ;;
+#         esac
+#         echo "Installing $1"
+#         pkg install $1
+#     fi
+#     zsh
+# }
 
