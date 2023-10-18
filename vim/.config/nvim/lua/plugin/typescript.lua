@@ -11,7 +11,7 @@ return {
 
         keys = {
             { '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
-            { '<leader>sr', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
+            { '<leader>sd', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
         },
     },
 }
