@@ -1,0 +1,12 @@
+#!/bin/sh
+# Credit to Maddison Hellstrom (@b0o on Github)
+qrencode -o - -s 5 \
+	"$(xclip -out -selection clipboard)" |
+	timeout 30s feh --force-aliasing \
+		--image-bg white \
+		--auto-zoom \
+		--geometry 640x480 \
+		--scale-down \
+		-
+		# -F \
+		# --zoom max \
