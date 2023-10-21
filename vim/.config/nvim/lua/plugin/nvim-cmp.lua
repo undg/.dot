@@ -49,6 +49,7 @@ return {
                 { name = 'ultisnips' },
                 { name = 'buffer',   keyword_length = 4 },
                 { name = 'spell' },
+                { name = 'codeium' },
             },
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
@@ -58,15 +59,19 @@ return {
             },
             formatting = {
                 format = lspkind.cmp_format({
-                    with_text = true,
+                    mode = 'symbol',
+                    ellipsis_char = '...',
+
+                    with_text = false,
                     maxwidth = 50,
                     menu = {
                         nvim_lsp = '',
                         nvim_lua = '',
                         path = '',
-                        ultisnips = '',
+                        ultisnips = '✂',
                         buffer = '',
                         spell = '',
+                        codeium = '',
                     },
                 }),
             },
