@@ -41,17 +41,10 @@ return {
     { 'jose-elias-alvarez/null-ls.nvim' },           -- inject LSP diagnostics, code actions, and more
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
-    { import = 'plugin.sg' },                        -- LLM with the context of Sourcegraph’s code graph
-    {
-        'Exafunction/codeium.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'hrsh7th/nvim-cmp',
-        },
-        config = function()
-            require('codeium').setup({})
-        end,
-    },
+
+    -- AI, LLM
+    { import = 'plugin.sg' },                        -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
+    { import = 'plugin.codeium' },                   -- codeium is AI powered code completion. codeium.com
 
     -- Registers
     { import = 'plugin.yanky' },
