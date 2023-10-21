@@ -13,7 +13,9 @@ return {
 
         local events = require('neo-tree.events')
         ---@class FileMovedArgs
+        --- @diagnostic disable-next-line: duplicate-doc-field
         ---@field source string
+        --- @diagnostic disable-next-line: duplicate-doc-field
         ---@field destination string
 
         ---@param args FileMovedArgs
