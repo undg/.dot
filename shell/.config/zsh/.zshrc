@@ -1,6 +1,32 @@
 #!/usr/bin/env zsh
 
 #################################
+# Start: Profiling
+# Set profiling to 
+# 0 - off
+# 1 - produce /tmp/startuplog.*_functions
+# 2 - produce above and more detailed /tmp/startlog.*_commands
+#################################
+PROFILING_LEVEL=0
+
+# See: https://stackoverflow.com/a/4351664/2103996
+
+if (( PROFILING_LEVEL > 0 )); then
+	if (( PROFILING_LEVEL > 1 )); then
+		# Per-command profiling:
+		zmodload zsh/datetime
+		setopt promptsubst
+		PS4='+$EPOCHREALTIME %N:%i> '
+		exec 3>&2 2> /tmp/startlog.$$.$(date +%Y-%m-%d_%H-%M-%S)_commands
+		setopt xtrace prompt_subst
+
+	fi
+	# Per-function profiling:
+	zmodload zsh/zprof
+fi
+	zmodload zsh/zprof
+
+#################################
 # Start: Initialisation
 #################################
 
@@ -60,17 +86,15 @@ touch -a "$ZDOTDIR/private.zsh"
 
 
 #################################
-# Start: Sources and Plugins
+# Sources and Plugins
 #################################
 src "$ZDOTDIR/config.zsh"
-# @TODO (undg) 2023-02-19: moved to zprofile to run on login. Test and delete.
-# src "$ZDOTDIR/path.zsh"
 src "$ZDOTDIR/aliases.zsh"
 src "$ZDOTDIR/private.zsh" # file in gitignore
 # src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 eval "$(/bin/rtx activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
-plug "chrissicool/zsh-256color"
+# plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "undg/zsh-auto-notify" # system notification for long running processes
 
@@ -97,7 +121,7 @@ bindkey '^[[B' history-substring-search-down # arrow down
 
 
 #################################
-# Start: key mappings
+# key mappings
 #################################
 bindkey '^a' beginning-of-line # Give some love to emacs
 bindkey '^e' end-of-line # Give some love to emacs
@@ -116,9 +140,22 @@ zle -N exit_zsh
 bindkey "^[q" exit_zsh
 
 #################################
-# Start: edit command in vim
+# edit command in vim
 #################################
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
 
+#################################
+# Profiling
+#################################
+if (( PROFILING_LEVEL > 0 )); then
+	if (( PROFILING_LEVEL > 1 )); then
+		# Per-command profiling:
+		unsetopt xtrace
+		exec 2>&3 3>&-
+	fi
+
+	# Per-function profiling:
+	zprof > /tmp/startlog.$$.$(date +%Y-%m-%d_%H-%M-%S)_functions
+fi
