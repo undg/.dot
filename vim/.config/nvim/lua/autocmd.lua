@@ -25,6 +25,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+-- Set markdown as the filetype for the Cody prompt
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+    pattern = 'cody_prompt',
+    callback = function()
+        vim.bo.filetype = 'markdown'
+    end,
+})
+
+-- Set markdown as the filetype for the Cody history
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+    pattern = 'cody_history',
+    callback = function()
+        vim.bo.filetype = 'markdown'
+    end,
+})
+
 -- -- Automatic toggling between line number modes
 -- -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
 -- vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
