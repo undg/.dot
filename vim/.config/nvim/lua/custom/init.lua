@@ -4,5 +4,6 @@ require('custom.json2ts')
 require('custom.search-selected')
 -- require('custom.statusline')
 require('custom.css2tw')
+require('custom.open-plugin-page')
 
 
