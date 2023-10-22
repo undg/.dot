@@ -32,8 +32,9 @@ set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscr
 
 
 # #---Starting External Scripts---# #
-exec_always --no-startup-id picom                                       # Composite manager
-# exec --no-startup-id ~/bin/echocancel                            # Pulse mixer echo cancelation
+exec_always --no-startup-id picom                                # Composite manager
+# exec --no-startup-id ~/bin/echocancel                          # Pulse mixer echo cancelation
+exec_always --no-startup-id noisetorch -i                        # active noise cancelation
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec_always --no-startup-id lxqt-policykit-agent                 # FE for polkit
@@ -46,7 +47,6 @@ exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
 exec_always --no-startup-id ~/bin/volctl_once                    # Volume applet in system tray
 exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
 exec_always --no-startup-id ~/bin/speedy-keys.sh                 # Speedy keys
-exec_always --no-startup-id noisetorch -i                        # active noise cancelation
 
 
 set $transparent #000000
