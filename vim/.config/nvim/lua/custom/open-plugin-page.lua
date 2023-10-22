@@ -14,4 +14,5 @@ local function open_plugin_page()
     end
 end
 
-vim.api.nvim_create_user_command('OpenPluginPage', open_plugin_page)
+vim.api.nvim_create_user_command('OpenPluginPage', open_plugin_page, {})
+map.normal('<leader>op', "yi':OpenPluginPage<cr>")
