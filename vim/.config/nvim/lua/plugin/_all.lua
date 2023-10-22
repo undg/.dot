@@ -33,7 +33,7 @@ return {
     { import = 'plugin.golang' },                    -- LSP golang utils with performant UI
     { import = 'plugin.treesitter' },                -- syntax highlight
     { import = 'plugin.trouble' },                   -- organize errors and warnings
-    { import = 'plugin.nvim-cmp' },            -- collection of plugins related with autocompletion
+    { import = 'plugin.nvim-cmp' },                  -- collection of plugins related with autocompletion
     { 'neovim/nvim-lspconfig' },                     -- Collection of configurations for built-in LSP client
     { 'williamboman/mason.nvim' },                   -- LSP servers installer
     { 'williamboman/mason-lspconfig.nvim' },         -- integration with lspconfig
@@ -41,14 +41,12 @@ return {
     { 'jose-elias-alvarez/null-ls.nvim' },           -- inject LSP diagnostics, code actions, and more
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
-
-    -- AI, LLM
     { import = 'plugin.sg' },                        -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
     { import = 'plugin.codeium' },                   -- codeium is AI powered code completion. codeium.com
 
     -- Registers
     { import = 'plugin.yanky' },
-    { 'simnalamburt/vim-mundo',             cmd = { 'MundoShow', 'MundoToggle' } },
+    { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
 
     -- Utils
     { import = 'plugin.vimwiki' },
@@ -58,8 +56,8 @@ return {
     { import = 'plugin.vim-tmux-navigator' },               -- hybrid tmux, vim window navigation.
     { import = 'plugin.which-key' },                        -- display interactive footer with available keymaps
     { import = 'plugin.lualine' },                          -- status bar with few informations
-    { 'godlygeek/tabular',                  cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
-    { 'blindFS/vim-colorpicker',            cmd = 'ColorPicker' }, -- open xorg window with color picker
+    { 'godlygeek/tabular',                        cmd = { 'Tabularize', 'Tab' } }, -- align text in colums in table style.
+    { 'blindFS/vim-colorpicker',                  cmd = 'ColorPicker' }, -- open xorg window with color picker
     { 'stevearc/dressing.nvim' },                           -- better floating window styles
 
     -- Look and feel
