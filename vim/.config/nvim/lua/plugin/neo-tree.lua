@@ -56,26 +56,69 @@ return {
             ['__init__.py'] = 6,
         }
 
+        local function getBaseName(name)
+            local base_name
+            local file_name = name:match('^(.*)(%.[^%.]+)$')
+            local dir_name = name:match('^(.*)/$')
+            if file_name == nil then
+                base_name = dir_name
+            else
+                base_name = file_name
+            end
+            return base_name
+        end
+
+        local function sort(a, b)
+            -- sort by priority if it possible
+            if priorities[a.name] and priorities[b.name] then
+                return priorities[a.name] > priorities[b.name]
+            end
+            -- if the priority is set for only one, then the
+            -- one who has it set will be the first
+            if priorities[a.name] or priorities[b.name] then
+                return priorities[a.name] ~= nil
+            end
+
+            if not a then
+                return false
+            end
+            if not a.name then
+                return false
+            end
+            if not a.path then
+                return false
+            end
+            if not a.type then
+                return false
+            end
+
+            if not b then
+                return true
+            end
+            if not b.name then
+                return true
+            end
+            if not b.path then
+                return true
+            end
+            if not b.type then
+                return true
+            end
+
+            -- local a_base = getBaseName(a.name)
+            -- local b_base = getBaseName(b.name)
+            --
+            -- if a_base == b_base then
+            --     return a.type ~= 'directory'
+            -- end
+
+            -- default path sort
+            return a.path < b.path
+        end
+
         neoTree.setup({
             -- sort_function = nil,           -- uses a custom function for sorting files and directories in the tree
-            sort_function = function(a, b)
-                -- show files before subdirectories
-                -- if a.type ~= b.type then
-                --     return a.type == 'file'
-                -- end
-                -- sort by priority if it possible
-                if priorities[a.name] and priorities[b.name] then
-                    return priorities[a.name] > priorities[b.name]
-                end
-                -- if the priority is set for only one, then the
-                -- one who has it set will be the first
-                if priorities[a.name] or priorities[b.name] then
-                    return priorities[a.name] ~= nil
-                end
-                -- default path sort
-                -- return a.path < b.path
-                return a.path > b.path
-            end,
+            sort_function = sort,
             -- If a user has a sources list it will replace this one.
             -- Only sources listed here will be loaded.
             -- You can also add an external source by adding it's name to this list.

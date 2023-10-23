@@ -9,7 +9,7 @@ return {
     { import = 'plugin.alpha' },                  -- home screen
     { import = 'plugin.neovim-session-manager' }, -- autosave and restore session
     { import = 'plugin.suda' },                   -- ask for sudo password
-    -- { import = 'plugin.luapad' },                 -- lua scratch pad
+    { import = 'plugin.luapad' },                 -- lua scratch pad
     { 'tpope/vim-sleuth' },                       -- Auto-detect indentation style
     { 'jiangmiao/auto-pairs' },                   -- auto closing brackets, quotes etc.
 
