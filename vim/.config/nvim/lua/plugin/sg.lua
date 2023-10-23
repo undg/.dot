@@ -26,7 +26,16 @@ return {
             })
         end
 
+        local function gen_commit_message()
+            local git_diff = vim.fn.system('git diff --cached')
+
+
+            commands.do_task(0, 2, 2, 'Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should follow the conventional commit format and provide meaningful context for future readers. Make first line very short but meaningful.' .. git_diff)
+        end
+
         vim.api.nvim_create_user_command('CodyShortenTypeError', shorten_type_error, {})
         map.normal('<leader>ce', shorten_type_error)
+
+        vim.api.nvim_create_user_command('CodyCommitMessage', gen_commit_message, {})
     end,
 }
