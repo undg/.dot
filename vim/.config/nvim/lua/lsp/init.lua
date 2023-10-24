@@ -55,13 +55,9 @@ if string.match(vim.fn.getcwd(), '/Arahi/') then
             }),
             null_ls.builtins.formatting.shfmt,
             null_ls.builtins.formatting.fixjson,
-
             null_ls.builtins.completion.tags,
-
             null_ls.builtins.hover.dictionary,
-
             typescript_code_action,
-
             cspell.diagnostics,
             cspell.code_actions,
         },
@@ -75,9 +71,7 @@ else
             null_ls.builtins.formatting.fixjson,
             null_ls.builtins.formatting.black,
             null_ls.builtins.formatting.goimports,
-
             null_ls.builtins.completion.tags,
-
             null_ls.builtins.hover.dictionary,
             typescript_code_action,
         },

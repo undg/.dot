@@ -8,11 +8,11 @@ return {
         local sg = require('sg')
         local commands = require('sg.cody.commands')
         sg.setup({
-            -- Pass your own custom attach function
-            --        - gd -> goto definition
-            --        - gr -> goto references
-            -- on_attach = your_custom_lsp_attach_function,
-            -- on_attach = require('lspconfig').on_attach,
+            on_attach = function(client, bufnr)
+                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+                vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+            end,
         })
 
         local function shorten_type_error()
@@ -51,6 +51,5 @@ return {
         vim.api.nvim_create_user_command('CodyReadme', generate_readme, {})
         vim.api.nvim_create_user_command('CodyShortenTypeError', shorten_type_error, {})
         map.normal('<leader>ce', shorten_type_error)
-
     end,
 }
