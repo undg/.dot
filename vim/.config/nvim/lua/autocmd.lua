@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 
 -- Set markdown as the filetype for the Cody history
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-    pattern = 'cody_history',
+    pattern = {'markdown.cody_history', 'markdown.cody_prompt'},
     callback = function()
         vim.bo.filetype = 'markdown'
     end,
