@@ -6,6 +6,7 @@ return {
     config = function()
         -- Sourcegraph configuration. All keys are optional
         local sg = require('sg')
+        local types = require('sg.types')
         local cody_commands = require('sg.cody.commands')
         sg.setup({
             on_attach = function(_, bufnr)
@@ -13,6 +14,7 @@ return {
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
             end,
+            auth_strategy = { types.auth_strategy.nvim, types.auth_strategy.env, types.auth_strategy.app },
         })
 
         local function shorten_type_error()
@@ -31,7 +33,8 @@ return {
                 'CodyTask '
                 ..
                 'Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should provide meaningful context for future readers. Here you have git diff changes with usual patch syntax. ```diff'
-                .. vim.fn.system('git diff --cached') .. '```'
+                .. vim.fn.system('git diff --cached')
+                .. '```'
             )
         end
 
