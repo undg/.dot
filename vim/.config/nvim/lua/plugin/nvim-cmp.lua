@@ -50,7 +50,7 @@ return {
                 { name = 'buffer',   keyword_length = 4 },
                 { name = 'spell' },
                 { name = 'codeium' },
-                { name = 'cody' },
+                -- { name = 'cody' },
             },
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
@@ -73,7 +73,7 @@ return {
                         buffer = '',
                         spell = '',
                         codeium = '',
-                        cody = '',
+                        -- cody = '',
                     },
                 }),
             },

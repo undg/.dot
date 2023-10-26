@@ -25,19 +25,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
--- Set markdown as the filetype for the Cody prompt
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-    pattern = 'cody_prompt',
-    callback = function()
-        vim.bo.filetype = 'markdown'
-    end,
-})
-
 -- Set markdown as the filetype for the Cody history
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     pattern = {'markdown.cody_history', 'markdown.cody_prompt'},
     callback = function()
         vim.bo.filetype = 'markdown'
+        -- vim.api.nvim_win_set_width(0, 100)
     end,
 })
 
