@@ -3,6 +3,7 @@ local map = require('utils.map')
 return {
     'sourcegraph/sg.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = "VeryLazy",
     config = function()
         -- Sourcegraph configuration. All keys are optional
         local sg = require('sg')
@@ -14,7 +15,7 @@ return {
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
             end,
-            auth_strategy = { types.auth_strategy.nvim, types.auth_strategy.env, types.auth_strategy.app },
+            auth_strategy = { types.auth_strategy.env, types.auth_strategy.nvim, types.auth_strategy.app },
         })
 
         local function shorten_type_error()
@@ -53,13 +54,13 @@ return {
 
             local diff
             if #pr_diff < 2000 then
-                print('pr_diff shorten than 2k, provide to Cody FULL diff')
+                print('SHORT pr_diff: Shorten than 2k, provide to Cody FULL diff')
                 diff = ' - Check the output of `gh diff` to ensure the PR description accurately reflects the changes. '
                     .. '```diff'
                     .. pr_diff
                     .. '```'
             else
-                print('pr_diff longer than 2k, provide to Cody only FILE NAMES diff')
+                print('LONG pr_diff: Longer than 2k, provide to Cody only FILE NAMES diff')
                 diff =
                     ' - Check the output of `gh diff --name-only` to ensure the PR description accurately reflects the changes. '
                     .. '```diff'
@@ -68,7 +69,8 @@ return {
             end
             vim.api.nvim_command(
                 'CodyTask '
-                .. ' - write a detailed PR description with the same context as the commit message, but with a short title.'
+                .. ' - Write a detailed PR description.'
+                .. ' - The PR description should explain what the changes were made and why they were made.'
                 .. diff
             )
         end
@@ -76,8 +78,17 @@ return {
         local function generate_readme()
             vim.api.nvim_command(
                 'CodyTask '
-                ..
-                'Write a detailed README.md file to document the code located in the same directory as my current selection. Summarize what the code in this directory is meant to accomplish. Explain the key files, functions, classes, and features. Use Markdown formatting for headings, code blocks, lists, etc. to make the it organized and readable. Aim for a beginner-friendly explanation that gives a developer unfamiliar with the code a good starting point to understand it. Make sure to include: - Overview of directory purpose - Functionality explanations - Relevant diagrams or visuals if helpful. Write the README content clearly and concisely using complete sentences and paragraphs based on the shared context. Use proper spelling, grammar, and punctuation throughout. Surround your full README text with triple backticks so it renders properly as a code block. Do not make assumptions or fabricating additional details.'
+                .. 'Write a detailed README.md file to document the code located in the same directory as my current selection.'
+                .. 'Summarize what the code in this directory is meant to accomplish.'
+                .. 'Explain the key files, functions, classes, and features.'
+                .. 'Use Markdown formatting for headings, code blocks, lists, etc. to make the it organized and readable.'
+                .. 'Aim for a beginner-friendly explanation that gives a developer unfamiliar with the code a good starting point to understand it.'
+                .. 'Make sure to include:'
+                .. ' - Overview of directory purpose'
+                .. ' - Functionality explanations'
+                .. ' - Relevant diagrams or visuals if helpful. Write the README content clearly and concisely using complete sentences and paragraphs based on the shared context.'
+                .. 'Use proper spelling, grammar, and punctuation throughout.'
+                .. 'Do not make assumptions or fabricating additional details.'
                 .. vim.fn.system('ls %:p:h')
             )
         end
