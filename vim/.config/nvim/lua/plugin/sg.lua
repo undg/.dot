@@ -34,9 +34,41 @@ return {
             vim.api.nvim_command(
                 'CodyTask '
                 ..
-                'Provide an informative commit message by sumarizing code changes from the git diff command output pressended bellow. The commit message shold provide meaningful context for future readers. Prefix it with text in current line (in same line). Bellow put one empty line, followed by a description of the changes (only if short title in first line, was not enought). Here is output of git diff --cached command: ```diff'
+                ' - Start with a short title that explains the main purpose of the commit. This should be on the first line. Prefix with text text in current line.'
+                ..
+                ' - Add a blank line after the title, then provide a longer description of the changes if needed. The description should explain why the changes were made and any relevant context. '
+                ..
+                ' - Use the imperative mood when describing what the commit does. For example: "Update README" rather than "Updated README". '
+                ..
+                ' - Keep commit messages short but informative. About 50-72 characters for the title, and no more than 72 characters per line in description. '
+                .. ' - Check the output of `git diff --cached` to ensure the commit message accurately reflects the changes. '
+                .. '```diff'
                 .. git_diff
                 .. '```'
+            )
+        end
+
+        local function generate_pr_description()
+            local pr_diff = vim.fn.system('gh pr diff')
+
+            local diff
+            if #pr_diff < 2000 then
+                print('pr_diff shorten than 2k, provide to Cody FULL diff')
+                diff = ' - Check the output of `gh diff` to ensure the PR description accurately reflects the changes. '
+                    .. '```diff'
+                    .. pr_diff
+                    .. '```'
+            else
+                print('pr_diff longer than 2k, provide to Cody only FILE NAMES diff')
+                diff = ' - Check the output of `gh diff --name-only` to ensure the PR description accurately reflects the changes. '
+                    .. '```diff'
+                    .. vim.fn.system('gh pr diff --name-only')
+                    .. '```'
+            end
+            vim.api.nvim_command(
+                'CodyTask '
+                .. ' - write a detailed PR description with the same context as the commit message, but with a short title.'
+                .. diff
             )
         end
 
@@ -49,14 +81,22 @@ return {
             )
         end
 
-        vim.api.nvim_create_user_command('CodyGenCommitMessage', generate_commit_message, {})
+        vim.api.nvim_create_user_command(
+            'CodyGenCommitMessage',
+            generate_commit_message,
+            { desc = 'Generate commit message' }
+        )
         vim.api.nvim_create_user_command('CodyGenGitCommitMessage', function()
             vim.api.nvim_command('G commit')
             generate_commit_message()
-        end, {})
+        end, { desc = 'Open git commit and generate commit message' })
 
-        vim.api.nvim_create_user_command('CodyGenReadme', generate_readme, {})
-        vim.api.nvim_create_user_command('CodyShortenTypeError', shorten_type_error, {})
+        vim.api.nvim_create_user_command('CodyGenReadme', generate_readme, { desc = 'Generate README' })
+        vim.api.nvim_create_user_command(
+            'CodyShortenTypeError',
+            shorten_type_error,
+            { desc = 'Shorten type error, keep cursor on or before error' }
+        )
         map.normal('<leader>ce', shorten_type_error)
     end,
 }
