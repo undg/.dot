@@ -29,12 +29,13 @@ return {
         end
 
         local function generate_commit_message()
+            local git_diff = vim.fn.system('git diff --cached')
+
             vim.api.nvim_command(
                 'CodyTask '
                 ..
-                'Provide and informative commit message by sumarizing code changes from the git diff command output pressended bellow. The commit message shold provide meaningful context for future readers. Prefix it with text in current line. Here is output of git diff --cached command: ```diff'
-                -- 'Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should provide meaningful context for future readers. Here you have git diff changes with usual patch syntax. ```diff'
-                .. vim.fn.system('git diff --cached')
+                'Provide an informative commit message by sumarizing code changes from the git diff command output pressended bellow. The commit message shold provide meaningful context for future readers. Prefix it with text in current line (in same line). Bellow put one empty line, followed by a description of the changes (only if short title in first line, was not enought). Here is output of git diff --cached command: ```diff'
+                .. git_diff
                 .. '```'
             )
         end
