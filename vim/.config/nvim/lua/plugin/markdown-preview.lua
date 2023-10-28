@@ -7,10 +7,6 @@ return {
         local install_path = vim.fn.stdpath('data') .. '/lazy/markdown-preview.nvim/app'
         local cmd = 'bash'
 
-        if vim.fn.has('win64') == 1 then
-            cmd = 'pwsh'
-        end
-
         job:new({
             command = cmd,
             args = { '-c', 'npm install && git restore .' },
