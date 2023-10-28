@@ -60,7 +60,8 @@ return {
                     .. '```'
             else
                 print('pr_diff longer than 2k, provide to Cody only FILE NAMES diff')
-                diff = ' - Check the output of `gh diff --name-only` to ensure the PR description accurately reflects the changes. '
+                diff =
+                    ' - Check the output of `gh diff --name-only` to ensure the PR description accurately reflects the changes. '
                     .. '```diff'
                     .. vim.fn.system('gh pr diff --name-only')
                     .. '```'
@@ -86,12 +87,21 @@ return {
             generate_commit_message,
             { desc = 'Generate commit message' }
         )
+
         vim.api.nvim_create_user_command('CodyGenGitCommitMessage', function()
             vim.api.nvim_command('G commit')
             generate_commit_message()
         end, { desc = 'Open git commit and generate commit message' })
 
+        vim.api.nvim_create_user_command(
+            'CodyGenPrDescription',
+            generate_pr_description,
+            { desc = 'Generate PR description' }
+        )
+
+
         vim.api.nvim_create_user_command('CodyGenReadme', generate_readme, { desc = 'Generate README' })
+
         vim.api.nvim_create_user_command(
             'CodyShortenTypeError',
             shorten_type_error,
