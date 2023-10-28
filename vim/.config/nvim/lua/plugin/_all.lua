@@ -42,8 +42,8 @@ return {
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
     { import = 'plugin.sg' },                        -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
-    { import = 'plugin.codeium' },                   -- codeium is AI powered code completion. codeium.com
-
+    { import = 'plugin.codeium' },                   -- LLM codeium is AI powered code completion. codeium.com
+    { import = 'plugin.chat-gpt' },                  -- LLM chatGPT is AI powered code completion and chat bot.
     -- Registers
     { import = 'plugin.yanky' },
     { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
