@@ -1,4 +1,4 @@
-local map = require("utils.map")
+local keymap = require("utils.keymap")
 
-map.visual("<leader>tb", ":Tab/")
-map.normal("<leader>tb", ":Tab/")
+keymap.visual("<leader>tb", ":Tab/")
+keymap.normal("<leader>tb", ":Tab/")

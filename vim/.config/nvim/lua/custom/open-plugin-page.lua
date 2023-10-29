@@ -1,4 +1,4 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 local function is_lua_buffer()
     local bufpath = vim.api.nvim_buf_get_name(0)
@@ -15,4 +15,4 @@ local function open_plugin_page()
 end
 
 vim.api.nvim_create_user_command('OpenPluginPage', open_plugin_page, {})
-map.normal('<leader>op', "yi':OpenPluginPage<cr>")
+keymap.normal('<leader>op', "yi':OpenPluginPage<cr>")

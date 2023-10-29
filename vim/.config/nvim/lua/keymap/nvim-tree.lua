@@ -1,4 +1,4 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 local function nvimTreeToggleFocus()
     if vim.bo.filetype == 'NvimTree' then
@@ -9,12 +9,12 @@ local function nvimTreeToggleFocus()
 end
 vim.api.nvim_create_user_command('NvimTreeToggleFocus', nvimTreeToggleFocus, {})
 
-map.normal('<F2>', ':NvimTreeFindFileToggle<CR>')
-map.normal('<leader>2', ':NvimTreeFindFileToggle<CR>')
-map.normal('<leader>ff', ':NvimTreeFindFileToggle<cr>')
+keymap.normal('<F2>', ':NvimTreeFindFileToggle<CR>')
+keymap.normal('<leader>2', ':NvimTreeFindFileToggle<CR>')
+keymap.normal('<leader>ff', ':NvimTreeFindFileToggle<cr>')
 
-map.normal('<F3>', ':NvimTreeToggleFocus<cr>')
-map.normal('<leader>3', ':NvimTreeToggleFocus<cr>')
+keymap.normal('<F3>', ':NvimTreeToggleFocus<cr>')
+keymap.normal('<leader>3', ':NvimTreeToggleFocus<cr>')
 
-map.normal('<F4>', ':NvimTreeClose<cr>')
-map.normal('<leader>4', ':NvimTreeClose<cr>')
+keymap.normal('<F4>', ':NvimTreeClose<cr>')
+keymap.normal('<leader>4', ':NvimTreeClose<cr>')

@@ -1,3 +1,3 @@
-local map = require("utils.map")
-map.normal("<leader>gg", ":LazyGitCurrentFile<cr>")
-map.normal("<leader>GG", ":LazyGitFilterCurrentFile<cr>")
+local keymap = require("utils.keymap")
+keymap.normal("<leader>gg", ":LazyGitCurrentFile<cr>")
+keymap.normal("<leader>GG", ":LazyGitFilterCurrentFile<cr>")

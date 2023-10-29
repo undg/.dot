@@ -1,11 +1,11 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 -- override default keybindings with wrappers around them.
-map.normal('p', '<Plug>(YankyPutAfter)')
-map.normal('P', '<Plug>(YankyPutBefore)')
-map.xisual('p', '<Plug>(YankyPutAfter)')
-map.xisual('P', '<Plug>(YankyPutBefore)')
+keymap.normal('p', '<Plug>(YankyPutAfter)')
+keymap.normal('P', '<Plug>(YankyPutBefore)')
+keymap.xisual('p', '<Plug>(YankyPutAfter)')
+keymap.xisual('P', '<Plug>(YankyPutBefore)')
 
-map.normal('<leader>n', '<Plug>(YankyCycleForward)', { noremap = false })
-map.normal('<leader>N', '<Plug>(YankyCycleBackward)', { noremap = false })
-map.normal('<leader>h', '<cmd>Telescope yank_history<cr>', { noremap = false })
+keymap.normal('<leader>n', '<Plug>(YankyCycleForward)', { noremap = false })
+keymap.normal('<leader>N', '<Plug>(YankyCycleBackward)', { noremap = false })
+keymap.normal('<leader>h', '<cmd>Telescope yank_history<cr>', { noremap = false })

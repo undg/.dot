@@ -10,9 +10,8 @@ return {
         vim.g.lazygit_use_custom_config_file_path = 0                       -- config file path is evaluated if this value is 1
         vim.g.lazygit_config_file_path = ''                                 -- custom config file path
 
-        -- keymap
-        local map = require('utils.map')
-        map.normal('<leader>gg', ':LazyGitCurrentFile<cr>')
-        map.normal('<leader>GG', ':LazyGitFilterCurrentFile<cr>')
+        local keymap = require('utils.keymap')
+        keymap.normal('<leader>gg', ':LazyGitCurrentFile<cr>')
+        keymap.normal('<leader>GG', ':LazyGitFilterCurrentFile<cr>')
     end,
 }

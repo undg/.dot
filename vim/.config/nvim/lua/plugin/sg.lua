@@ -1,9 +1,9 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 return {
     'sourcegraph/sg.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    event = "VeryLazy",
+    event = 'VeryLazy',
     config = function()
         -- Sourcegraph configuration. All keys are optional
         local sg = require('sg')
@@ -52,26 +52,15 @@ return {
         local function generate_pr_description()
             local pr_diff = vim.fn.system('gh pr diff')
 
-            local diff
-            if #pr_diff < 2000 then
-                print('SHORT pr_diff: Shorten than 2k, provide to Cody FULL diff')
-                diff = ' - Check the output of `gh diff` to ensure the PR description accurately reflects the changes. '
-                    .. '```diff'
-                    .. pr_diff
-                    .. '```'
-            else
-                print('LONG pr_diff: Longer than 2k, provide to Cody only FILE NAMES diff')
-                diff =
-                    ' - Check the output of `gh diff --name-only` to ensure the PR description accurately reflects the changes. '
-                    .. '```diff'
-                    .. vim.fn.system('gh pr diff --name-only')
-                    .. '```'
-            end
+            print('SHORT pr_diff: Shorten than 2k, provide to Cody FULL diff')
             vim.api.nvim_command(
                 'CodyTask '
                 .. ' - Write a detailed PR description.'
                 .. ' - The PR description should explain what the changes were made and why they were made.'
-                .. diff
+                .. ' - Check the output of `gh diff` to ensure the PR description accurately reflects the changes. '
+                .. '```diff'
+                .. pr_diff
+                .. '```'
             )
         end
 
@@ -82,11 +71,13 @@ return {
                 .. 'Summarize what the code in this directory is meant to accomplish.'
                 .. 'Explain the key files, functions, classes, and features.'
                 .. 'Use Markdown formatting for headings, code blocks, lists, etc. to make the it organized and readable.'
-                .. 'Aim for a beginner-friendly explanation that gives a developer unfamiliar with the code a good starting point to understand it.'
+                ..
+                'Aim for a beginner-friendly explanation that gives a developer unfamiliar with the code a good starting point to understand it.'
                 .. 'Make sure to include:'
                 .. ' - Overview of directory purpose'
                 .. ' - Functionality explanations'
-                .. ' - Relevant diagrams or visuals if helpful. Write the README content clearly and concisely using complete sentences and paragraphs based on the shared context.'
+                ..
+                ' - Relevant diagrams or visuals if helpful. Write the README content clearly and concisely using complete sentences and paragraphs based on the shared context.'
                 .. 'Use proper spelling, grammar, and punctuation throughout.'
                 .. 'Do not make assumptions or fabricating additional details.'
                 .. vim.fn.system('ls %:p:h')
@@ -110,7 +101,6 @@ return {
             { desc = 'Generate PR description' }
         )
 
-
         vim.api.nvim_create_user_command('CodyGenReadme', generate_readme, { desc = 'Generate README' })
 
         vim.api.nvim_create_user_command(
@@ -118,6 +108,6 @@ return {
             shorten_type_error,
             { desc = 'Shorten type error, keep cursor on or before error' }
         )
-        map.normal('<leader>ce', shorten_type_error)
+        keymap.normal('<leader>ce', shorten_type_error)
     end,
 }

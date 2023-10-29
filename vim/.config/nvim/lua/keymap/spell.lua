@@ -1,17 +1,17 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 -- Toggle spell check
-map.normal('<F9>', ':setlocal spell! spell?<CR>')
-map.insert('<F9>', '<ESC>:setlocal spell! spell?<CR>a')
+keymap.normal('<F9>', ':setlocal spell! spell?<CR>')
+keymap.insert('<F9>', '<ESC>:setlocal spell! spell?<CR>a')
 
 -- More consistent movement.
-map.normal('z]', ']s')
-map.normal(']z', ']s')
+keymap.normal('z]', ']s')
+keymap.normal(']z', ']s')
 
-map.normal('z[', '[s')
-map.normal('[z', '[s')
+keymap.normal('z[', '[s')
+keymap.normal('[z', '[s')
 
-map.normal('z=', ':Telescope spell_suggest<cr>')
+keymap.normal('z=', ':Telescope spell_suggest<cr>')
 --[[
 vim.cmd[[
 function! Getreg()
@@ -26,9 +26,9 @@ function! TransTranslate()
 ┊   return system('trans en:pl --play --brief -join-sentence ' . Getreg())
 endfunction
 
-map.normal('zs', '"zyiw :echon TransDefine()<cr>')
-map.visual('zs', '"zy   :echon TransDefine()<cr>')
+keymap.normal('zs', '"zyiw :echon TransDefine()<cr>')
+keymap.visual('zs', '"zy   :echon TransDefine()<cr>')
 
-map.normal('zx', '"zyiw :call TransTranslate()<cr>')
-map.visual('zx', '"zy   :call TransTranslate()<cr>')
+keymap.normal('zx', '"zyiw :call TransTranslate()<cr>')
+keymap.visual('zx', '"zy   :call TransTranslate()<cr>')
 --]]
