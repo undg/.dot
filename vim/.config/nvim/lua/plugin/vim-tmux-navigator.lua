@@ -1,4 +1,4 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 return {
     'christoomey/vim-tmux-navigator',
     config = function()
@@ -7,10 +7,10 @@ return {
         vim.g.tmux_navigator_no_mappings = 1
         vim.g.tmux_navigator_no_wrap = 1
 
-        map.normal('<M-h>', ':TmuxNavigateLeft<cr>')
-        map.normal('<M-j>', ':TmuxNavigateDown<cr>')
-        map.normal('<M-k>', ':TmuxNavigateUp<cr>')
-        map.normal('<M-l>', ':TmuxNavigateRight<cr>')
-        map.normal('<M-Bslash>', ':TmuxNavigatePrevious<cr>')
+        keymap.normal('<M-h>', ':TmuxNavigateLeft<cr>')
+        keymap.normal('<M-j>', ':TmuxNavigateDown<cr>')
+        keymap.normal('<M-k>', ':TmuxNavigateUp<cr>')
+        keymap.normal('<M-l>', ':TmuxNavigateRight<cr>')
+        keymap.normal('<M-Bslash>', ':TmuxNavigatePrevious<cr>')
     end,
 }

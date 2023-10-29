@@ -1,4 +1,4 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 return {
     'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
     config = function()
@@ -76,10 +76,10 @@ return {
             end
         end
 
-        map.normal('<leader>*', function()
+        keymap.normal('<leader>*', function()
             toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
         end)
-        map.normal('<leader>8', function()
+        keymap.normal('<leader>8', function()
             toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
         end)
     end,

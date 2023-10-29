@@ -1,4 +1,4 @@
-local map = require('utils.map')
+local keymap = require('utils.keymap')
 
 local get_visual_selection = require('custom.get-visual-selection')
 
@@ -12,56 +12,56 @@ local tb_opt = {
 }
 
 -- Core
-map.normal('<leader>m', ':Telescope<cr>')
-map.normal(',.', ':Telescope find_files hidden=false<cr>')
-map.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
-map.normal(
+keymap.normal('<leader>m', ':Telescope<cr>')
+keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
+keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
+keymap.normal(
     '<leader>.',
     ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = false, hide_parent_dir = false, select_buffer = true, respect_gitignore = true })<cr>'
 )
 
 
-map.normal('<leader>fb', ':Telescope buffers<cr>')
-map.normal('<leader>fg', ':Telescope live_grep<cr>')
-map.normal('<leader>fr', ':Telescope resume<cr>')
+keymap.normal('<leader>fb', ':Telescope buffers<cr>')
+keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
+keymap.normal('<leader>fr', ':Telescope resume<cr>')
 
 local open_quick_fix_window_in_telescope = function()
     vim.cmd('cclose')
     tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
 end
-map.normal('fq', open_quick_fix_window_in_telescope)
-map.normal('<leader>gq', open_quick_fix_window_in_telescope)
-map.normal('<leader>gc', open_quick_fix_window_in_telescope)
+keymap.normal('fq', open_quick_fix_window_in_telescope)
+keymap.normal('<leader>gq', open_quick_fix_window_in_telescope)
+keymap.normal('<leader>gc', open_quick_fix_window_in_telescope)
 
-map.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
-map.normal('<leader>fp', ':Telescope project<cr>')
-map.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
-map.normal('<leader>fh', ':Telescope help_tags<cr>')
-map.normal('<leader>fm', ':Telescope keymaps<cr>')
-map.normal('<leader>f;', ':Telescope commands<cr>')
+keymap.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
+keymap.normal('<leader>fp', ':Telescope project<cr>')
+keymap.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
+keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
+keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
+keymap.normal('<leader>f;', ':Telescope commands<cr>')
 
 -- Custom goto commands
-map.normal('<leader>ve', ':GotoVimFind<cr>')
-map.normal('<leader>fvf', ':GotoVimFind<cr>')
-map.normal('<leader>fvb', ':GotoVimBrowse<cr>')
-map.normal('<leader>fvs', ':GotoVimGit<cr>')
-map.normal('<leader>fvg', ':GotoVimGrep<cr>')
+keymap.normal('<leader>ve', ':GotoVimFind<cr>')
+keymap.normal('<leader>fvf', ':GotoVimFind<cr>')
+keymap.normal('<leader>fvb', ':GotoVimBrowse<cr>')
+keymap.normal('<leader>fvs', ':GotoVimGit<cr>')
+keymap.normal('<leader>fvg', ':GotoVimGrep<cr>')
 
-map.normal('<leader>fzf', ':GotoZshFind<cr>')
-map.normal('<leader>fzb', ':GotoZshBrowse<cr>')
-map.normal('<leader>fzs', ':GotoZshGit<cr>')
-map.normal('<leader>fzg', ':GotoZshGrep<cr>')
+keymap.normal('<leader>fzf', ':GotoZshFind<cr>')
+keymap.normal('<leader>fzb', ':GotoZshBrowse<cr>')
+keymap.normal('<leader>fzs', ':GotoZshGit<cr>')
+keymap.normal('<leader>fzg', ':GotoZshGrep<cr>')
 
-map.normal('<leader>fdf', ':GotoDotFind<cr>')
-map.normal('<leader>fdb', ':GotoDotBrowse<cr>')
-map.normal('<leader>fds', ':GotoDotGit<cr>')
-map.normal('<leader>fdg', ':GotoDotGrep<cr>')
+keymap.normal('<leader>fdf', ':GotoDotFind<cr>')
+keymap.normal('<leader>fdb', ':GotoDotBrowse<cr>')
+keymap.normal('<leader>fds', ':GotoDotGit<cr>')
+keymap.normal('<leader>fdg', ':GotoDotGrep<cr>')
 
-map.normal('<leader>fcf', ':GotoCodeFind<cr>')
-map.normal('<leader>fcb', ':GotoCodeBrowse<cr>')
-map.normal('<leader>fcs', ':GotoCodeGit<cr>')
-map.normal('<leader>fcg', ':GotoCodeGrep<cr>')
+keymap.normal('<leader>fcf', ':GotoCodeFind<cr>')
+keymap.normal('<leader>fcb', ':GotoCodeBrowse<cr>')
+keymap.normal('<leader>fcs', ':GotoCodeGit<cr>')
+keymap.normal('<leader>fcg', ':GotoCodeGrep<cr>')
 
-map.visual('<leader>fg', function()
+keymap.visual('<leader>fg', function()
     tb.live_grep({ default_text = get_visual_selection() })
 end, { noremap = true, silent = true })
