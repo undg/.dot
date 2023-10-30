@@ -1,7 +1,20 @@
-local function get_pull_request_as_table()
-    local gh_json_res = vim.fn.system('gh pr view --json title,body,commits,files')
-    return vim.fn.json_decode(gh_json_res)
+local map = require('utils.map')
+
+local function get_json()
+    return vim.fn.system('gh pr view --json title,body,commits,files')
 end
+
+local table = vim.fn.json_decode(get_json())
+
+local title = table['title']
+local body = table['body']
+local commits = map(table['commits'], function(commit)
+    return commit['messageHeadline']
+end)
+
+local files = map(table['files'], function(file)
+    return file['path']
+end)
 
 local function get_description()
     local pr_diff = vim.fn.system('gh pr diff')
