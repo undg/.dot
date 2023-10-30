@@ -25,6 +25,7 @@ local function get_table()
 end
 
 local function get_description()
+    -- @TODO (undg) 2023-10-30: Add to prompt example of PR structure 
     vim.api.nvim_command(
         'CodyTask '
         .. ' - Write a detailed PR description.'
