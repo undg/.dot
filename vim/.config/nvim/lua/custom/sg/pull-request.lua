@@ -1,32 +1,37 @@
-local map = require('utils.map')
+local map = require('utils.table').map
 
-local function get_json()
-    return vim.fn.system('gh pr view --json title,body,commits,files')
+local function get_table()
+    local json = vim.fn.system('gh pr view --json title,body,commits,files')
+    local table = vim.fn.json_decode(json)
+
+    local title = table['title']
+
+    local description = table['body']
+
+    local commits = map(table['commits'], function(commit)
+        return commit['messageHeadline']
+    end)
+
+    local files = map(table['files'], function(file)
+        return file['path']
+    end)
+
+    return {
+        title = title,
+        description = description,
+        commits = commits,
+        files = files,
+    }
 end
 
-local table = vim.fn.json_decode(get_json())
-
-local title = table['title']
-local body = table['body']
-local commits = map(table['commits'], function(commit)
-    return commit['messageHeadline']
-end)
-
-local files = map(table['files'], function(file)
-    return file['path']
-end)
-
 local function get_description()
-    local pr_diff = vim.fn.system('gh pr diff')
-
-    -- @TODO (undg) 2023-10-29: improve. Use gh-cli to get json. Then skim json and provide (reduced to only neccessary data) context.
     vim.api.nvim_command(
         'CodyTask '
         .. ' - Write a detailed PR description.'
         .. ' - The PR description should explain what the changes were made and why they were made.'
-        .. ' - Check the output of `gh diff` to ensure the PR description accurately reflects the changes. '
+        .. ' - Here you have json with  title, description, commits titles and files that were changed in the PR.'
         .. '```diff'
-        .. pr_diff
+        .. vim.fn.json_encode(get_table())
         .. '```'
     )
 end
