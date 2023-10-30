@@ -22,11 +22,11 @@ return {
         vim.keymap.set('n', '<leader>at', ai.commit.title.get, { desc = ai.commit.title.desc })
 
         vim.api.nvim_create_user_command('AiCommitMessage', ai.commit.message.get, { desc = ai.commit.message.desc })
-        vim.keymap.set('n', '<leader>am', ai.commit.message.get, { desc = ai.commit.message.desc })
+        vim.keymap.set('n', '<leader>ac', ai.commit.message.get, { desc = ai.commit.message.desc })
 
         vim.api.nvim_create_user_command('AiCommitMessageOpen', ai.commit.open_with_message.get,
             { desc = ai.commit.open_with_message.desc })
-        vim.keymap.set('n', '<leader>ac', ai.commit.open_with_message.get, { desc = ai.commit.open_with_message.desc })
+        vim.keymap.set('n', '<leader>ag', ai.commit.open_with_message.get, { desc = ai.commit.open_with_message.desc })
 
         vim.api.nvim_create_user_command('AiPullRequestDescription', ai.pull_request.description.get,
             { desc = ai.pull_request.description.desc })
