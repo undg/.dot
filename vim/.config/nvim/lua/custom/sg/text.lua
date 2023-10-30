@@ -3,7 +3,7 @@ local function get_fix()
 end
 
 return {
-    fix = {
+    proofread = {
         get = get_fix,
         desc = 'Text: Proofread the selected text for spelling, grammar, and English correctness.',
     },

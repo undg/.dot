@@ -39,6 +39,11 @@ return {
             { desc = ai.type_error.shorten.desc })
         vim.keymap.set('n', '<leader>ae', ai.type_error.shorten.get,
             { desc = ai.type_error.shorten.desc })
+
+        vim.api.nvim_create_user_command('AiTextProofread', ai.type_error.shorten.get,
+            { desc = ai.type_error.shorten.desc })
+        vim.keymap.set('n', '<leader>at', ai.text.proofread.get,
+            { desc = ai.text.proofread.desc })
         -- stylua: ignore end
     end,
 }
