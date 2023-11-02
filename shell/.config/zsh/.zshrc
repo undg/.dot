@@ -31,7 +31,7 @@ fi
 #################################
 
 # src
-function src() {
+local function src_local() {
 	file=$1
 	[ -f "$file" ] && source "$file" || $2 || echo "$file not exist."
 }
@@ -88,10 +88,10 @@ touch -a "$ZDOTDIR/private.zsh"
 #################################
 # Sources and Plugins
 #################################
-src "$ZDOTDIR/config.zsh"
-src "$ZDOTDIR/aliases.zsh"
-src "$ZDOTDIR/private.zsh" # file in gitignore
-# src "/opt/asdf-vm/asdf.sh" # lang version manager/installer
+src_local "$ZDOTDIR/config.zsh"
+src_local "$ZDOTDIR/aliases.zsh"
+src_local "$ZDOTDIR/private.zsh" # file in gitignore
+# src_local "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 eval "$(/bin/rtx activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 # plug "chrissicool/zsh-256color"
@@ -99,9 +99,9 @@ plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "undg/zsh-auto-notify" # system notification for long running processes
 
 plug "romkatv/powerlevel10k" # powerlevel10k prompt
-src ~/.config/zsh/p10k.zsh
+src_local ~/.config/zsh/p10k.zsh
 
-src "$ZDOTDIR/completion.zsh"
+src_local "$ZDOTDIR/completion.zsh"
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
 
 plug "zsh-users/zsh-autosuggestions" # fish like suggestion
