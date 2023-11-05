@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# tmux-sessionizer
+#
+# Fork of ThePrimeagen's tmux-sessionizer: 
+# https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+#
+# This script launches a new tmux session or switches to an existing session 
+# for a given directory.
+#
+# Usage:
+#   tmux-sessionizer [dir]
+#
+# If no dir is specified, prompts user to select with fzf.
+#
+# Creates a session name based on dir name.
+# Checks if tmux is already running:
+#   - If not, starts new session
+#   - If yes, checks if named session exists:
+#     - If not, creates it
+#     - If yes, switches to it
+#
+# Allows quickly opening a tmux session for a project directory.
+# Session name derived from dir name for easy identification.
+#
+# Requirements:
+# - tmux
+# - fzf
+
+if [[ $# -eq 1 ]]; then
+	selected=$1
+else
+	# List of directories with projects
+	selected=$(find ~/Code ~/Code/Arahi ~/Code/playground/ ~/Code/Whitbread/ ~/Code/Pega/ ~/.dot/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+# Nothing selected
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+# No tmux in background ($TMUX) && no tmux running
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+	echo 'New instance'
+	tmux new-session -s $selected_name -c $selected
+	exit 0
+fi
+
+# No session found
+if ! tmux has-session -t=$selected_name 2>/dev/null; then
+	tmux new-session -ds $selected_name -c $selected
+fi
+
+# Outside tmux, but tmux is running
+if [[ -z $TMUX ]]; then
+	# Create or attach to session_namme
+	tmux new-session -A -s $selected_name -c $selected
+fi
+
+# Inside tmux, session exists, switch to session_name
+tmux switch-client -t $selected_name
