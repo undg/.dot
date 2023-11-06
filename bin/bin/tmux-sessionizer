@@ -31,7 +31,13 @@ if [[ $# -eq 1 ]]; then
 	selected=$1
 else
 	# List of directories with projects
-	selected=$(find ~/Code ~/Code/Arahi ~/Code/playground/ ~/Code/Whitbread/ ~/Code/Pega/ ~/.dot/ -mindepth 1 -maxdepth 1 -type d | fzf)
+	selected=$(
+		find ~/Code \
+			~/Code/playground/ \
+			~/.dot/ ~/.dot/**/.config/ \
+			~/Code/Arahi/ ~/Code/Whitbread/ ~/Code/Pega/ \
+			-mindepth 1 -maxdepth 1 -type d | fzf
+	)
 fi
 
 # Nothing selected
