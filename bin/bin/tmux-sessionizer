@@ -2,10 +2,10 @@
 
 # tmux-sessionizer
 #
-# Fork of ThePrimeagen's tmux-sessionizer: 
+# Fork of ThePrimeagen's tmux-sessionizer:
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 #
-# This script launches a new tmux session or switches to an existing session 
+# This script launches a new tmux session or switches to an existing session
 # for a given directory.
 #
 # Usage:
