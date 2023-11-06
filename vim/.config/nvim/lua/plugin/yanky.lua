@@ -1,10 +1,11 @@
 return {
     'gbprod/yanky.nvim',
+    dependencies = { 'kkharji/sqlite.lua' },
     config = function()
         require('yanky').setup({
             ring = {
                 history_length = 16,
-                storage = 'shada',
+                storage = 'sqlite',
                 sync_with_numbered_registers = true,
             },
             system_clipboard = {
