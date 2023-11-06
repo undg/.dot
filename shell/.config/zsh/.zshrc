@@ -142,9 +142,7 @@ zle -N exit_zsh
 bindkey "^[q" exit_zsh
 
 # https://unix.stackexchange.com/a/79905
-# tmux-sessionizer() ~/bin/tmux-sessionizer
-# zle -N tmux-sessionizer
-# bindkey '^g' tmux-sessionizer
+# same bind-key is set in tmux
 bindkey -s '^g' '^utmux-sessionizer^M'
 
 
