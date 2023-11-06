@@ -16,7 +16,9 @@ local function get_commit()
         ..
         ' - Keep commit messages short but informative. About 50-72 characters for the title, and no more than 72 characters per line in description. '
         .. ' - Check the output of `git diff --cached` to ensure the commit message accurately reflects the changes. '
-        .. '```diff'
+        ..
+        ' - Bellow is patch, where prefix `+` means added and prefix `-` means removed. Lines without prefix are unchanged.'
+        .. '```git diff output:'
         .. git_diff
         .. '```'
     )
