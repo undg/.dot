@@ -142,9 +142,11 @@ zle -N exit_zsh
 bindkey "^[q" exit_zsh
 
 # https://unix.stackexchange.com/a/79905
-tmux-sessionizer() ~/bin/tmux-sessionizer
-zle -N tmux-sessionizer
-bindkey '^g' tmux-sessionizer
+# tmux-sessionizer() ~/bin/tmux-sessionizer
+# zle -N tmux-sessionizer
+# bindkey '^g' tmux-sessionizer
+bindkey -s '^g' '^utmux-sessionizer^M'
+
 
 #################################
 # edit command in vim
