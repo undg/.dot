@@ -61,10 +61,13 @@ if ! tmux has-session -t=$selected_name 2>/dev/null; then
 fi
 
 # Outside tmux, but tmux is running
-if [[ -z $TMUX ]]; then
-	# Create or attach to session_namme
-	tmux new-session -A -s $selected_name -c $selected
+if [[ -n $TMUX ]]; then
+	echo "Go to session"
+	# Inside tmux, session exists, switch to session_name
+	tmux switch-client -t $selected_name
+	exit 0
 fi
 
-# Inside tmux, session exists, switch to session_name
-tmux switch-client -t $selected_name
+echo "Default"
+# Create or attach to session_namme
+tmux new-session -A -s $selected_name -c $selected
