@@ -123,6 +123,8 @@ bindkey '^[[B' history-substring-search-down # arrow down
 #################################
 # key mappings
 #################################
+set -o emacs 
+
 bindkey '^a' beginning-of-line # Give some love to emacs
 bindkey '^e' end-of-line # Give some love to emacs
 
