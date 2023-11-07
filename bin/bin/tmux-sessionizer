@@ -26,6 +26,7 @@ else
 	# List of directories with potential projects
 	selected=$(
 		find ~/ \
+			~/.dot/bin/ \
 			~/.dot/**/.config/ \
 			~/Code/ \
 			~/Code/playground/ \
