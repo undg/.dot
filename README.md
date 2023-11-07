@@ -1,44 +1,28 @@
 # Dotfiles
 
-## Clone
+## Installation
 
-Don't forget about submodules.
-```
-git clone -j8 --recursive https://github.com/undg/.dot
+```bash
+git clone https://github.com/undg/.dot # clone the repository
 
-cd .dot
-
-git submodule foreach git pull
+cd .dot # enter the repository
 
 sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh)   # Install zap.
-./install
 
-touch ~/.config/zsh/secret.zsh # private env variables and scripts 
-
-```
-> -j8 is an optional performance optimization available in version 2.8. It fetches up to 8 submodules in parallel.
-
-
-Have you forgotten? Again? xS
-```
-git submodule update --init --recursive
-```
+./install # symlink dotfiles with stow
 
 ```
-git submodule init
-```
 
-```
-git submodule update
-```
-
-done
+Done
 
 
 ## Manage dotfiles
 
-```
+```bash
 ./install
+ 
+# OR
+
 ./clean-env
 ```
 
