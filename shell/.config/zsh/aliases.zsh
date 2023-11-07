@@ -178,8 +178,8 @@ else
 fi
 
 if hash tmux 2>/dev/null; then
-    alias ta='tmux attach -t'
-    alias tn='tmux new -t'
+    alias ta='tmux new -t'
+    alias tn='tmux new -A -s'
     alias tl='tmux ls'
 else
     echo "tmux is not installed."
