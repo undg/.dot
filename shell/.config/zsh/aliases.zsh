@@ -219,22 +219,3 @@ install_with_pkg() {
   echo "Installing $1 with pkg"
   pkg install $1
 }
-
-# old function that is battle tested. Delete after testing new one.
-# install() {
-#     if hash pacman 2>/dev/null; then
-#         echo "Installing $1"
-#         # sudo pacman -S $1
-#         yay -S $1
-#     elif hash pkg 2>/dev/null; then
-#         case $1 in
-#             xclip | fping)
-#                 return 
-#                 ;;
-#         esac
-#         echo "Installing $1"
-#         pkg install $1
-#     fi
-#     zsh
-# }
-
