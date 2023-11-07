@@ -10,7 +10,8 @@ local function shorten()
     local diagnostic_message = go_get_diagnostic_message()
 
     vim.api.nvim_command(
-        'CodyAsk'
+        'CodyTask'
+        .. ' '
         .. 'Explain this diagnostic in shortest possible way. Remove all unnecesary noise, make it short and sweet.'
         .. diagnostic_message
     )
