@@ -29,9 +29,7 @@ local open_quick_fix_window_in_telescope = function()
     vim.cmd('cclose')
     tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
 end
-keymap.normal('fq', open_quick_fix_window_in_telescope)
-keymap.normal('<leader>gq', open_quick_fix_window_in_telescope)
-keymap.normal('<leader>gc', open_quick_fix_window_in_telescope)
+keymap.normal('fq', open_quick_fix_window_in_telescope, {desc = 'Open QuickFix in Telescope'})
 
 keymap.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
 keymap.normal('<leader>fp', ':Telescope project<cr>')
