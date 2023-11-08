@@ -4,9 +4,8 @@ windows:
     window_index: 9
     layout: tiled
     panes:
-      - y dev
-      - y lint:tsc -w
       - eslint-git-diff -w src
+      - y lint:tsc -w
+      - y dev
       - y test -w -R min
-      -
 
