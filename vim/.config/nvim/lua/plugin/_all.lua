@@ -16,6 +16,7 @@ return {
     -- Git
     { import = 'plugin.lazygit' },  -- open lazygit in floating window. Lazygit need to be installed in system
     { import = 'plugin.gitsigns' }, -- Git status for every line
+    { import = 'plugin.neogit' },   -- A Magit clone for Neovim
     { 'tpope/vim-fugitive' },       -- Git commands in nvim
     { 'tpope/vim-rhubarb' },        -- Fugitive-companion to interact with github
     { 'whiteinge/diffconflicts' },  -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
