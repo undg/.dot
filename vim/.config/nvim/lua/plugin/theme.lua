@@ -1,12 +1,39 @@
 return {
-    'morhetz/gruvbox',
+    'ellisonleao/gruvbox.nvim', -- https://github.com/ellisonleao/gruvbox.nvim
+    priority = 1000,
     config = function()
-        vim.o.background = 'dark'
+        require('gruvbox').setup({
+            terminal_colors = true, -- add neovim terminal colors
+            undercurl = true,
+            underline = true,
+            bold = true,
+            italic = {
+                strings = true,
+                emphasis = true,
+                comments = true,
+                operators = false,
+                folds = true,
+            },
+            strikethrough = true,
+            invert_selection = false,
+            invert_signs = false,
+            invert_tabline = false,
+            invert_intend_guides = false,
+            inverse = true, -- invert background for search, diffs, statuslines and errors
+            contrast = 'hard',  -- can be "hard", "soft" or empty string
+            palette_overrides = {},
+            overrides = {},
+            dim_inactive = false,
+            transparent_mode = false,
+        })
+        vim.cmd([[colorscheme gruvbox]])
+
+        -- vim.o.background = 'dark'
 
         -- Set colorscheme (order is important here)
-        vim.o.termguicolors = true
-        vim.g.onedark_terminal_italics = 2
-        vim.cmd([[colorscheme gruvbox]])
+        -- vim.o.termguicolors = true
+        -- vim.g.onedark_terminal_italics = 2
+        -- vim.cmd([[colorscheme gruvbox]])
         vim.cmd('highlight Cursorline guibg=#2f2f2f')
 
         -- Set statusbar (lightline)
@@ -25,7 +52,7 @@ return {
         vim.cmd('hi IlluminatedWordText guibg=#191919')
         vim.cmd('hi IlluminatedWordWrite guibg=#191919')
         vim.cmd('hi DiagnosticError guifg=#ee6666')
-
+        --
         -- Map (lukas-reineke/indent-blankline.nvim)
         vim.g.indent_blankline_char = '┊'
         vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
