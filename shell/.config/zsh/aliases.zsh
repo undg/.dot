@@ -7,7 +7,7 @@ install() {
   local package=$1
 
   if is_installed pacman; then
-    install_with_pacman $package
+    install_with_yay $package
   elif is_installed pkg; then
     install_with_pkg $package
   fi
@@ -186,6 +186,13 @@ else
     install tmux
 fi
 
+if hash tmuxp 2>/dev/null; then
+    alias tparahi='tmuxp load --append arahi'
+else
+    echo "tmuxp is not installed."
+    install tmuxp
+fi
+
 alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
 alias yay-list='yay -Qu --aur'
 
@@ -206,7 +213,7 @@ is_installed() {
   hash $1 2>/dev/null
 }
 
-install_with_pacman() {
+install_with_yay() {
   echo "Installing $1 with pacman"
   yay -S $1
 }
