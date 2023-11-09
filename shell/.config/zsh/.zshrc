@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# This zshrc is using simple zap plugin manager. `zap --help` for more details.
+# Code that is not imported from plugins repositories, is simply sourced.
+
 #################################
 # Start: Profiling
 # Set profiling to 
