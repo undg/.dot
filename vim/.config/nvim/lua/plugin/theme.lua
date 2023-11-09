@@ -59,5 +59,25 @@ return {
         vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
         vim.g.indent_blankline_char_highlight = 'LineNr'
         vim.g.indent_blankline_show_trailing_blankline_indent = false
+
+        -- Style and layout for diagnostic/hover floating windows
+        local styled = {
+            border = 'rounded',
+            style = 'minimal',
+            noautocmd = true,
+        }
+        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
+
+        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
+
+        vim.diagnostic.config({
+            float = {
+                border = styled.border,
+                header = 'diagnostic:',
+                source = true,
+                prefix = '  ', -- padding left
+                suffix = '  ', -- padding right
+            },
+        })
     end,
 }
