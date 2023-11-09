@@ -12,7 +12,7 @@
 #################################
 PROFILING_LEVEL=0
 
-# See: https://stackoverflow.com/a/4351664/2103996
+# Based on: https://stackoverflow.com/a/4351664/2103996
 
 if (( PROFILING_LEVEL > 0 )); then
 	if (( PROFILING_LEVEL > 1 )); then
@@ -117,11 +117,6 @@ ZSH_HIGHLIGHT_STYLES[comment]='none'
 
 plug "zap-zsh/fzf" # famous fuzzy finder
 
-plug "zsh-users/zsh-history-substring-search"
-bindkey '^[[A' history-substring-search-up # arrow up
-bindkey '^[[B' history-substring-search-down # arrow down
-
-
 #################################
 # key mappings
 #################################
@@ -147,6 +142,15 @@ bindkey "^[q" exit_zsh
 # same bind-key is set in tmux
 bindkey -s '^g' '^utmux-sessionizer^M'
 
+# replace "zsh-users/zsh-history-substring-search" with native solution
+# https://unix.stackexchange.com/a/672892
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Arrow up
+bindkey "^[[B" down-line-or-beginning-search # Arrow down
+
 
 #################################
 # edit command in vim
@@ -154,6 +158,7 @@ bindkey -s '^g' '^utmux-sessionizer^M'
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
+
 
 #################################
 # Profiling
