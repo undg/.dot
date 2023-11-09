@@ -70,9 +70,6 @@ elif (( $+commands[archey3] )); then
 	print
 fi
 
-# auto source .env file in project folder.
-plug "undg/zsh-autodotenv"
-
 #################################
 # Powerlevel10k
 #################################
@@ -91,6 +88,8 @@ touch -a "$ZDOTDIR/private.zsh"
 #################################
 # Sources and Plugins
 #################################
+# auto source .env file in project folder.
+plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
 src_local "$ZDOTDIR/private.zsh" # file in gitignore
