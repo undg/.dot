@@ -12,7 +12,7 @@ return {
         })
         local keymap = require('utils.keymap')
 
-        keymap.normal('<leader>gg', ':Neogit<cr>', { desc = 'Neogit: Open' })
+        keymap.normal('<leader>gm', ':Neogit<cr>', { desc = 'Neogit: Open' })
         keymap.normal('<leader>gf', ':DiffviewFileHistory<cr>', { desc = 'Neogit: Open diff for current file' })
         keymap.visual(
             '<leader>gf',
