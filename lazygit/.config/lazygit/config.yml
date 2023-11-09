@@ -1,5 +1,5 @@
 gui:
-  gui:
+  # gui:
   branchColors:
     "vim": "#11AAFF"
     "zsh": "#CF97FF"
@@ -43,7 +43,7 @@ gui:
   showRandomTip: false
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: true
+  # showIcons: true
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
 git:
@@ -76,16 +76,16 @@ git:
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editCommand: "" # see 'Configuring File Editing' section
-  editCommandTemplate: ""
-  openCommand: ""
+  editCommand: "nvim" # see 'Configuring File Editing' section
+  # editCommandTemplate: ""
+  # openCommand: ""
 refresher:
   refreshInterval: 5 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
 update:
   method: never # can be: prompt | background | never
   days: 14 # how often an update is checked for
-reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
+# reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
 confirmOnQuit: false
 quitOnTopLevelReturn: true # determines whether hitting 'esc' will quit the application when there is nothing to cancel/close
 disableStartupPopups: true
@@ -115,13 +115,13 @@ keybinding:
     jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
     nextMatch: "n"
     prevMatch: "N"
-    optionMenu: "m" # show help menu
+    optionMenu: null # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
     goInto: "<enter>"
     openRecentRepos: "<c-r>"
     confirm: "<enter>"
-    confirm-alt1: "y"
+    # confirm-alt1: "y"
     remove: "d"
     new: "n"
     edit: "e"
@@ -151,7 +151,7 @@ keybinding:
     # diffingMenu-alt: '<c-e>' # deprecated
     copyToClipboard: "<c-o>"
     submitEditorText: "<enter>"
-    appendNewline: "<a-enter>"
+    # appendNewline: "<a-enter>"
     extrasMenu: "@"
     toggleWhitespaceInDiffView: "<c-w>"
     increaseContextInDiffView: "}"
