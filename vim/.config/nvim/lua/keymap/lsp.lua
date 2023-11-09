@@ -58,43 +58,22 @@ end)
 --     -- tb.lsp_references(tb_opt)
 -- end)
 
-
-keymap.normal('<leader>gi', vim.lsp.buf.implementation)
+keymap.normal('<leader>gi', vim.lsp.buf.implementation, { desc = 'lsp: implementation' })
 keymap.normal('gi', function()
     tb.lsp_implementations(tb_opt)
-end)
+end, { desc = 'lsp: implementation (telescope)' })
 
 keymap.normal(
     '<leader>gj',
     ':lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>',
-    { silent = true, noremap = true }
+    { silent = true, noremap = true, desc = 'lsp: diagnostic_goto_next ERROR' }
 )
-keymap.normal('gj', vim.diagnostic.goto_next, { silent = true, noremap = true })
+keymap.normal('gj', vim.diagnostic.goto_next, { silent = true, noremap = true, desc = 'lsp: diagnostic_goto_next' })
 keymap.normal(
     '<leader>gk',
     ':lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, })<cr>',
-    { silent = true, noremap = true }
+    { silent = true, noremap = true, desc = 'lsp: diagnostic_goto_prev ERROR' }
 )
-keymap.normal('gk', vim.diagnostic.goto_prev, { silent = true, noremap = true })
-keymap.normal('gh', vim.diagnostic.open_float, { silent = true, noremap = true })
+keymap.normal('gk', vim.diagnostic.goto_prev, { silent = true, noremap = true, desc = 'lsp: diagnostic_goto_prev' })
+keymap.normal('gh', vim.diagnostic.open_float, { silent = true, noremap = true, desc = 'lsp: diagnostic_open_float' })
 
-local styled = {
-    border = 'rounded',
-    style = 'minimal',
-    noautocmd = true,
-}
-
--- @TODO (undg) 2023-09-06: movie it to UI stuff.
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
-
-vim.diagnostic.config({
-    float = {
-        border = styled.border,
-        header = 'diagnostic:',
-        source = true,
-        prefix = '  ', -- padding left
-        suffix = '  ', -- padding right
-    },
-})
