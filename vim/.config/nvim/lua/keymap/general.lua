@@ -12,6 +12,9 @@ keymap.normal('Q', '<Nop>')
 -- Stop that stupid window from popping up!
 keymap.normal('q:', ':q')
 
+-- Quickly quit
+keymap.normal('<leader>q', ':q')
+
 -- no need for ESC
 keymap.insert('jk', '<ESC>')
 
