@@ -35,7 +35,11 @@ keymap.normal('<CR>', '@@')
 keymap.normal('<LEADER>cd', ':lcd %:p:h<CR>')
 
 -- remove white spaces on end line
-keymap.normal('<LEADER>sp', ':%s/\\s\\+$//ge<CR>:echomsg "white space cleaing"<cr>')
+keymap.normal(
+    '<LEADER>sp',
+    ':%s/\\s\\+$//ge|norm <CR>:echomsg "white space cleaing"<cr>',
+    { desc = 'remove trailing whitespace' }
+)
 
 -- Toggle list (display unprintable characters).
 keymap.normal('<F10>', ':set list!<CR>')
@@ -43,7 +47,11 @@ keymap.insert('<F10>', '<esc>:set list!<CR>i')
 
 -- get git branch go into insert mode.
 -- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
-keymap.normal('<leader>gb', ':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A')
+keymap.normal(
+    '<leader>gb',
+    ':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A',
+    { desc = 'get git branch name' }
+)
 
 -- indent, highlight in visual stay
 keymap.visual('>', '>gv')
@@ -86,7 +94,7 @@ keymap.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, s
 keymap.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Annihilate semicolons!!! 💀
-keymap.normal("<leader>;", ":%s/;$//g<cr>'':noh<cr>")
+keymap.normal('<leader>;', ":%s/;$//g<cr>'':noh<cr>")
 
 -- Disable highlight till next search
 keymap.normal('<leader>/', ':noh<cr>')
