@@ -157,7 +157,7 @@ set $WINDOW_steam                     [class="Steam"]
 set $WINDOW_kodi                      [class="Kodi"]
 set $WINDOW_iriunwebcam               [class="iriunwebcam"]
 set $WINDOW_teams                     [title="Microsoft Teams Notification"]
-set $WINDOW_pavucontrol               [class="Pavucontrol"]
+set $WINDOW_floating                  [class="(Pavucontrol|Blueman-manager)"]
 set $WINDOW_insta360_settings         [class="insta360 studio 2023.exe" title="User Preference"]
 set $WINDOW_battlenet                 [class="battle.net.exe"]
 set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
@@ -170,11 +170,11 @@ for_window $WINDOW_starcraft_ii move workspace $ws3
 for_window $WINDOW_kodi move workspace $ws5
 for_window $WINDOW_iriunwebcam move workspace $ws5
 
-for_window $WINDOW_pavucontrol floating enable
-for_window $WINDOW_pavucontrol sticky enable
-for_window $WINDOW_pavucontrol resize set 1200 950
-# for_window $WINDOW_pavucontrol move to output secondary
-for_window $WINDOW_pavucontrol move position 3920 1105 # 2 screens right minus window width and bellow top screen + bar + border
+for_window $WINDOW_floating floating enable
+for_window $WINDOW_floating sticky enable
+for_window $WINDOW_floating resize set 1200 1000
+# for_window $WINDOW_floating move to output secondary
+# for_window $WINDOW_floating move position 3920 1105 # 2 screens right minus window width and bellow top screen + bar + border
 
 for_window $WINDOW_insta360_settings floating enable
 for_window $WINDOW_insta360_settings sticky enable
@@ -205,7 +205,7 @@ bindsym $winKey+space           focus mode_toggle
 bindsym $winKey+Escape          exec --no-startup-id dunstctl close # close Notification
 bindsym $winKey+Shift+Escape    exec --no-startup-id dunstctl history-pop # show Notification history
 #bindsym $winKey+BackSpace
-bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
+# bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
 # bindsym $winKey+grave           exec --no-startup-id rofimoji --skin-tone neutral --action clipboard copy
 bindsym $winKey+grave           exec --no-startup-id rofi -modi emoji -show emoji
 bindsym $winKey+Insert          exec --no-startup-id showclip
@@ -269,7 +269,8 @@ bindsym $winKey+Shift+x         exec --no-startup-id prompt "Exit i3?" "i3-msg e
 # bindsym $winKey+Shift+c
 #bindsym $winKey+v
 #bindsym $winKey+Shift+v
-bindsym $winKey+b               bar mode toggle
+# bindsym $winKey+b               bar mode toggle
+bindsym $winKey+b               exec --no-startup-id ~/bin/blueman-manager-toggle
 # bindsym $winKey+Shift+b
 #bindsym $winKey+n
 # bindsym $winKey+Shift+n
