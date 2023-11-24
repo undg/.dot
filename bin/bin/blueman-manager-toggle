@@ -1,0 +1,12 @@
+#!/bin/env sh
+
+APP=blueman-manager
+
+PID=$(pgrep -x $APP)
+echo "$PID"
+
+if [ "$PID" == "" ]; then
+	$APP
+else
+	killall $APP
+fi
