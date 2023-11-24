@@ -1,10 +1,11 @@
 #!/bin/env sh
+APP=pavucontrol
 
-PID=$(pgrep -x pavucontrol)
+PID=$(pgrep -x $APP)
 echo "$PID"
 
 if [ "$PID" == "" ]; then
-	pavucontrol
+	$APP
 else
-	killall pavucontrol
+	killall $APP
 fi
