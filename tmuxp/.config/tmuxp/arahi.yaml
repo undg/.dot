@@ -7,5 +7,5 @@ windows:
       - eslint-git-diff -w src
       - y lint:tsc -w
       - y dev
-      - y test -w -R min
+      - y test -R min --watch
 
