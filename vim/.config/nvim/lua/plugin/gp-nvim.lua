@@ -7,6 +7,7 @@ return {
                 -- openai_api_key = os.getenv('OPENAI_API_KEY_FOR_ROBITX_GP'),
                 -- api endpoint (you can change this to azure endpoint)
                 openai_api_endpoint = 'https://api.openai.com/v1/chat/completions',
+                -- openai_api_endpoint = 'https://api.openai.com/v1/embeddings',
                 -- openai_api_endpoint = "https://$URL.openai.azure.com/openai/deployments/{{model}}/chat/completions?api-version=2023-03-15-preview",
                 -- prefix for all commands
                 cmd_prefix = 'Gp',
@@ -20,7 +21,9 @@ return {
                 chat_model = {
                     -- model = 'gpt-3.5-turbo',
                     -- model = 'gpt-4',
+                    -- model = 'gpt-4-32k',
                     model = 'gpt-4-1106-preview', -- gpt-4-turbo
+                    -- model = 'text-embedding-ada-002',
                     temperature = 1.1,
                     top_p = 1,
                 },
@@ -53,9 +56,9 @@ return {
                 chat_conceal_model_params = true,
                 -- local shortcuts bound to the chat buffer
                 -- (be careful to choose something which will work across specified modes)
-                chat_shortcut_respond = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-g><C-g>' },
-                chat_shortcut_delete = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-g>d' },
-                chat_shortcut_new = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-g>n' },
+                chat_shortcut_respond = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-CR>' },
+                chat_shortcut_delete = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-d>d' },
+                chat_shortcut_new = { modes = { 'n', 'i', 'v', 'x' }, shortcut = '<C-n>' },
                 -- default search term when using :GpChatFinder
                 chat_finder_pattern = 'topic ',
 
