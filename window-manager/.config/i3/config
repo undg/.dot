@@ -337,7 +337,7 @@ bindsym Shift+XF86AudioMute   exec --no-startup-id ~/bin/mypctl --max
 bindsym Control+XF86AudioMute exec --no-startup-id ~/bin/mypctl --normal
 bindsym XF86AudioLowerVolume  exec --no-startup-id ~/bin/mypctl --down
 bindsym XF86AudioRaiseVolume  exec --no-startup-id ~/bin/mypctl --up
-bindsym XF86PowerOff          exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
+bindsym $winKey+XF86PowerOff  exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 bindsym XF86WWW               exec --no-startup-id $BROWSER
 bindsym XF86ScreenSaver       exec exec --no-startup-id lockscreen
 bindsym XF86Eject             exec --no-startup-id dmenuumount
