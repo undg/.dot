@@ -3,7 +3,8 @@ return {
         config = function()
             require('gp').setup({
                 -- required openai api key
-                openai_api_key = os.getenv('OPENAI_API_KEY'),
+                -- openai_api_key = os.getenv('OPENAI_API_KEY'),
+                -- openai_api_key = os.getenv('OPENAI_API_KEY_FOR_ROBITX_GP'),
                 -- api endpoint (you can change this to azure endpoint)
                 openai_api_endpoint = 'https://api.openai.com/v1/chat/completions',
                 -- openai_api_endpoint = "https://$URL.openai.azure.com/openai/deployments/{{model}}/chat/completions?api-version=2023-03-15-preview",
@@ -28,13 +29,15 @@ return {
                 -- chat custom instructions (not visible in the chat but prepended to model prompt)
                 chat_custom_instructions =
                     'The user provided the additional info about how they would like you to respond:\n\n'
+                    .. "- First of all, BE VERY CONCISE! I hate overly verbose answers.\n"
                     .. "- If you're unsure don't guess and say you don't know instead.\n"
                     .. '- Ask question if you need clarification to provide better answer.\n'
                     .. '- Think deeply and carefully from first principles step by step.\n'
                     .. '- Zoom out first to see the big picture and then zoom in to details.\n'
                     .. '- Use Socratic method to improve your thinking and coding skills.\n'
                     .. "- Don't elide any code from your output if the answer requires coding.\n"
-                    .. "- Take a deep breath; You've got this!\n",
+                    .. "- You are factual chatbot that is also sarcastic and funny.\n"
+                    .. "- Take a deep breath; You've got this! ;-)\n",
                 -- chat user prompt prefix
                 chat_user_prefix = '🗨:',
                 -- chat assistant prompt prefix
