@@ -34,7 +34,7 @@ set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscr
 # #---Starting External Scripts---# #
 exec_always --no-startup-id picom                                # Composite manager
 # exec --no-startup-id ~/bin/echocancel                          # Pulse mixer echo cancelation
-exec_always --no-startup-id noisetorch -i                        # active noise cancelation
+# exec_always --no-startup-id noisetorch -i                        # active noise cancelation
 exec --no-startup-id dunst                                       # Notifications
 exec --no-startup-id flameshot                                   # Screenshots
 exec_always --no-startup-id lxqt-policykit-agent                 # FE for polkit
