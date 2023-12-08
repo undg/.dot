@@ -5,7 +5,6 @@ return {
             { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
             { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-telescope/telescope-ui-select.nvim' },
-            { 'nvim-telescope/telescope-project.nvim' }, -- quick access to saved projects paths.
         },
         config = function()
             local ok_telescope, telescope = pcall(require, 'telescope')
@@ -87,12 +86,6 @@ return {
                             },
                         },
                     },
-
-                    project = {
-                        hidden_files = true,
-                        search_by = 'title',
-                        sync_with_nvim_tree = true,
-                    },
                 },
             })
 
@@ -101,7 +94,6 @@ return {
             telescope.load_extension('file_browser')
             telescope.load_extension('ui-select')
             telescope.load_extension('harpoon')
-            telescope.load_extension('project')
 
             -- keymap
             require('keymap.telescope')
