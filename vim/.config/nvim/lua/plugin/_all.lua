@@ -47,10 +47,9 @@ return {
     { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
 
     -- AI
-    { import = 'plugin.sg' },       -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
-    { import = 'plugin.codeium' },  -- LLM codeium is AI powered code completion. codeium.com
-    -- { import = 'plugin.chat-gpt' }, -- LLM chatGPT is AI powered code completion and chat bot. https://platform.openai.com/
-    { import = 'plugin.gp-nvim' },  -- LLM chatGPT is AI powered code completion and chat bot. https://platform.openai.com/
+    { import = 'plugin.sg' },      -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
+    { import = 'plugin.codeium' }, -- LLM codeium is AI powered code completion. codeium.com
+    { import = 'plugin.gp-nvim' }, -- LLM chatGPT is AI powered code completion and chat bot. https://platform.openai.com/
 
     -- Utils
     { import = 'plugin.vimwiki' },
