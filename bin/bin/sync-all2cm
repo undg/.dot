@@ -68,6 +68,7 @@ rsync_src_desc() {
 rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/Storage-2/Camera"
 rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/Storage-2/Camera"
 rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/Storage-2/Whatsapp"
+rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/Storage-2/URecorder"
 
 # Insta360
 rsync_src_desc "/run/media/undg/disk/DCIM/Camera01/" "/mnt/Storage-2/Insta360/RAW"
