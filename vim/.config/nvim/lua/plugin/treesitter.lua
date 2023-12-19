@@ -40,6 +40,8 @@ return {
             highlight = {
                 enable = true, -- false will disable the whole extension
                 use_languagetree = true,
+                additional_vim_regex_highlighting = true,
+                -- seen that on teej_dv stream, some magical extra powers to treesitter.
             },
             incremental_selection = {
                 enable = true,
