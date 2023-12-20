@@ -26,7 +26,7 @@ return {
         format = true,
         nodePath = vim.NIL,
         onIgnoredFiles = 'off',
-        packageManager = 'npm',
+        packageManager = 'pnpm',
         quiet = false,
         rulesCustomizations = {},
         run = 'onType',
