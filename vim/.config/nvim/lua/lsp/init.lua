@@ -6,8 +6,6 @@ local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
 local cspell_ok, cspell = pcall(require, 'cspell')
 
--- local typescript_code_action_ok, typescript_code_action = pcall(require, 'typescript.extensions.null-ls.code-actions')
-
 if
     not lspconfig_ok
     or not cmp_nvim_lsp_ok

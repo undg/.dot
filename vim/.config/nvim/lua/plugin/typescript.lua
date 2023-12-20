@@ -1,8 +1,28 @@
 return {
     {
         'pmizio/typescript-tools.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'neovim/nvim-lspconfig',
+            {
+
+                'marilari88/twoslash-queries.nvim', -- // live type checking with //  ^?
+                opts = {
+                    multi_line = true,              -- to print types in multi line mode
+                    is_enabled = true,              -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
+                    highlight = 'DevIconBat',       -- to set up a highlight group for the virtual text
+                },
+
+                keys = {
+                    { '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
+                    { '<leader>sd', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
+                },
+            },
+        },
         opts = {
+            on_attach = function(client, bufnr)
+                require('twoslash-queries').attach(client, bufnr)
+            end,
             settings = {
                 -- spawn additional tsserver instance to calculate diagnostics on it
                 separate_diagnostic_server = true,
@@ -12,7 +32,7 @@ return {
                 -- "remove_unused_imports"|"organize_imports") -- or string "all"
                 -- to include all supported code actions
                 -- specify commands exposed as code_actions
-                expose_as_code_action = "all",
+                expose_as_code_action = 'all',
                 -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
                 -- not exists then standard path resolution strategy is applied
                 tsserver_path = nil,
@@ -49,18 +69,4 @@ return {
         },
     },
     -- 'jose-elias-alvarez/typescript.nvim', -- few extra commands for ts. Uses LSP
-    {
-
-        'marilari88/twoslash-queries.nvim', -- // live type checking with //  ^?
-        opts = {
-            multi_line = true,              -- to print types in multi line mode
-            is_enabled = true,              -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
-            highlight = 'DevIconBat',       -- to set up a highlight group for the virtual text
-        },
-
-        keys = {
-            { '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
-            { '<leader>sd', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
-        },
-    },
 }
