@@ -2,15 +2,14 @@ local keymap_ok, keymap = pcall(require, 'utils.keymap')
 local tb_ok, tb = pcall(require, 'telescope.builtin')
 local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
--- local lspsaga_action_ok = pcall(require, 'lspsaga.action')
-local typescript_ok = pcall(require, 'typescript')
+-- local typescript_ok = pcall(require, 'typescript')
 
 if --
     not keymap_ok
     or not lspsaga_ok
     or not tb_ok
     or not t_ok
-    or not typescript_ok
+    -- or not typescript_ok
 then
     print("keymap/lsp.lua: requirement's fail")
     return
@@ -23,9 +22,11 @@ local tb_opt = {
     include_current_line = true,
 }
 
-keymap.normal('<LEADER>p', vim.lsp.buf.format, { desc = 'lsp: format' })
+keymap.normal('<LEADER>p', function()
+    vim.lsp.buf.format({ timeout_ms = 2000, async = true})
+end, { desc = 'lsp: format' })
 keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
-keymap.normal('<LEADER>rfn', ':TypescriptRenameFile<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
+-- keymap.normal('<LEADER>rfn', ':TypescriptRenameFile<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
 keymap.normal('K', vim.lsp.buf.hover, { desc = 'lsp: hover', silent = true, noremap = true })
 keymap.normal('KK', vim.lsp.buf.signature_help, { desc = 'lsp: signature_help', silent = true, noremap = true })
 keymap.normal('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
@@ -76,4 +77,3 @@ keymap.normal(
 )
 keymap.normal('gk', vim.diagnostic.goto_prev, { silent = true, noremap = true, desc = 'lsp: diagnostic_goto_prev' })
 keymap.normal('gh', vim.diagnostic.open_float, { silent = true, noremap = true, desc = 'lsp: diagnostic_open_float' })
-

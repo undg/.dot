@@ -6,7 +6,7 @@ local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
 local cspell_ok, cspell = pcall(require, 'cspell')
 
-local typescript_code_action_ok, typescript_code_action = pcall(require, 'typescript.extensions.null-ls.code-actions')
+-- local typescript_code_action_ok, typescript_code_action = pcall(require, 'typescript.extensions.null-ls.code-actions')
 
 if
     not lspconfig_ok
@@ -16,7 +16,7 @@ if
     or not mason_installer_ok
     or not null_ls_ok
     or not cspell_ok
-    or not typescript_code_action_ok
+    -- or not typescript_code_action_ok
 then
     print('lsp/init.lua: require failed')
     return
@@ -30,10 +30,10 @@ local lsp2mason = {
     cfg_file = {
         denols = 'deno',
         jsonls = 'json-lsp',
-        tsserver = 'typescript-language-server',
+        -- tsserver = 'typescript-language-server',
         yamlls = 'yaml-language-server',
         lua_ls = 'lua-language-server',
-        eslint = 'eslint_d',
+        -- eslint = 'eslint_d',
         gopls = 'gopls',
     },
     cfg_no_file = {
@@ -47,37 +47,41 @@ local lsp2mason = {
     },
 }
 
+local M_null_ls_sources = {
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.formatting.prettierd,
+
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.fixjson,
+    null_ls.builtins.completion.tags,
+    null_ls.builtins.hover.dictionary,
+    -- typescript_code_action,
+}
+
 if string.match(vim.fn.getcwd(), '/Arahi/') then
-    null_ls.setup({
-        sources = {
-            null_ls.builtins.formatting.prettier.with({
-                prefer_local = 'node_modules/.bin',
-            }),
-            null_ls.builtins.formatting.shfmt,
-            null_ls.builtins.formatting.fixjson,
-            null_ls.builtins.completion.tags,
-            null_ls.builtins.hover.dictionary,
-            typescript_code_action,
-            cspell.diagnostics,
-            cspell.code_actions,
-        },
-    })
     print('null_ls: setup for arahi only')
+    local arahi_sources = {
+        -- null_ls.builtins.formatting.prettier.with({
+        --     prefer_local = 'node_modules/.bin',
+        -- }),
+        cspell.diagnostics,
+        cspell.code_actions,
+    }
+    vim.list_extend(M_null_ls_sources, arahi_sources)
 else
-    null_ls.setup({
-        sources = {
-            null_ls.builtins.formatting.stylua,
-            null_ls.builtins.formatting.shfmt,
-            null_ls.builtins.formatting.fixjson,
-            null_ls.builtins.formatting.black,
-            null_ls.builtins.formatting.goimports,
-            null_ls.builtins.completion.tags,
-            null_ls.builtins.hover.dictionary,
-            typescript_code_action,
-        },
-    })
     print('null_ls: universal setup')
+    local universal_sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.goimports,
+    }
+    vim.list_extend(M_null_ls_sources, universal_sources)
 end
+
+null_ls.setup({
+    sources = M_null_ls_sources,
+})
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
@@ -90,6 +94,8 @@ local mason_non_lsp = {
     'actionlint', -- github action files diagnostic
     'goimports-reviser',
     'goimports',
+    'eslint_d',
+    'eslint',
 }
 
 -- Lsp server names that will be installed via Manson
