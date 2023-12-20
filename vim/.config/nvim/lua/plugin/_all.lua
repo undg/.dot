@@ -39,7 +39,7 @@ return {
     { 'williamboman/mason.nvim' },                   -- LSP servers installer
     { 'williamboman/mason-lspconfig.nvim' },         -- integration with lspconfig
     { 'WhoIsSethDaniel/mason-tool-installer.nvim' }, -- auto install predefined packages
-    { 'jose-elias-alvarez/null-ls.nvim' },           -- inject LSP diagnostics, code actions, and more
+    { 'nvimtools/none-ls.nvim' },                    -- inject LSP diagnostics, code actions, and more
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
     -- Registers
