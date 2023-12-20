@@ -34,7 +34,9 @@ return {
                 tsserver_path = nil,
                 -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
                 -- (see 💅 `styled-components` support section)
-                tsserver_plugins = { 'styled-components' },
+                tsserver_plugins = {
+                    '@styled/typescript-styled-plugin',
+                },
                 -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
                 -- memory limit in megabytes or "auto"(basically no limit)
                 tsserver_max_memory = 'auto',
