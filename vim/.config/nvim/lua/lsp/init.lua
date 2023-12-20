@@ -51,20 +51,15 @@ local M_null_ls_sources = {
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettierd,
-
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.completion.tags,
     null_ls.builtins.hover.dictionary,
-    -- typescript_code_action,
 }
 
 if string.match(vim.fn.getcwd(), '/Arahi/') then
     print('null_ls: setup for arahi only')
     local arahi_sources = {
-        -- null_ls.builtins.formatting.prettier.with({
-        --     prefer_local = 'node_modules/.bin',
-        -- }),
         cspell.diagnostics,
         cspell.code_actions,
     }
