@@ -14,7 +14,7 @@ return {
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
             end,
-            auth_strategy = { types.auth_strategy.env, types.auth_strategy.nvim, types.auth_strategy.app },
+            auth_strategy = "environment-variables",
         })
 
         -- stylua: ignore start
