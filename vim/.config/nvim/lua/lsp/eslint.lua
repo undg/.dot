@@ -36,12 +36,12 @@ return {
             mode = 'location',
         },
     },
-    commands = {
-        EslintFixAll = {
-            function()
-                configs.eslint.fix_all({ sync = true, bufnr = 0 })
-            end,
-            description = 'Fix all eslint problems for this buffer',
-        },
-    },
+    -- commands = {
+    --     EslintFixAll = {
+    --         function()
+    --             configs.eslint.fix_all({ sync = true, bufnr = 0 })
+    --         end,
+    --         description = 'Fix all eslint problems for this buffer',
+    --     },
+    -- },
 }

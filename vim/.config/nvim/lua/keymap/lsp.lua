@@ -2,14 +2,14 @@ local keymap_ok, keymap = pcall(require, 'utils.keymap')
 local tb_ok, tb = pcall(require, 'telescope.builtin')
 local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
--- local typescript_ok = pcall(require, 'typescript')
+local typescript_ok = pcall(require, 'typescript-tools')
 
 if --
     not keymap_ok
     or not lspsaga_ok
     or not tb_ok
     or not t_ok
-    -- or not typescript_ok
+    or not typescript_ok
 then
     print("keymap/lsp.lua: requirement's fail")
     return
@@ -23,10 +23,10 @@ local tb_opt = {
 }
 
 keymap.normal('<LEADER>p', function()
-    vim.lsp.buf.format({ timeout_ms = 2000, async = true})
+    vim.lsp.buf.format({ timeout_ms = 2000, async = true })
 end, { desc = 'lsp: format' })
 keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
--- keymap.normal('<LEADER>rfn', ':TypescriptRenameFile<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
+keymap.normal('<LEADER>rfn', ':TSToolsRenameFile sync<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
 keymap.normal('K', vim.lsp.buf.hover, { desc = 'lsp: hover', silent = true, noremap = true })
 keymap.normal('KK', vim.lsp.buf.signature_help, { desc = 'lsp: signature_help', silent = true, noremap = true })
 keymap.normal('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
@@ -53,11 +53,15 @@ keymap.normal('gr', function()
     tb.lsp_references(tb_opt)
 end, { desc = 'lsp: references (telescope)' })
 -- vim.keymap.set('n', '<leader>gr', function()
+--     vim.fn.jobstart()
 --     vim.lsp.buf.references()
---     -- vim.cmd('cclose')
+--     vim.cmd('cclose')
 --     tb.quickfix()
 --     -- tb.lsp_references(tb_opt)
 -- end)
+
+
+keymap.normal('gfr', ':TSToolsFileReferences sync', { desc = 'lsp: show file references' })
 
 keymap.normal('<leader>gi', vim.lsp.buf.implementation, { desc = 'lsp: implementation' })
 keymap.normal('gi', function()
