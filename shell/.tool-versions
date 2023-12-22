@@ -6,3 +6,4 @@ deno   latest
 lua    5.4.4
 pnpm   latest
 neovim stable
+java   latest
