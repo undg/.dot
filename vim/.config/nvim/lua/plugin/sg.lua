@@ -37,13 +37,44 @@ return {
 
         vim.api.nvim_create_user_command('AiTypeErrorShort', ai.type_error.shorten.get,
             { desc = ai.type_error.shorten.desc })
-        vim.keymap.set('n', '<leader>ae', ai.type_error.shorten.get, { desc = ai.type_error.shorten.desc })
+        vim.keymap.set('n', '<leader>ace', ai.type_error.shorten.get, { desc = ai.type_error.shorten.desc })
 
         vim.api.nvim_create_user_command('AiTextProofread', ai.type_error.shorten.get,
             { desc = ai.type_error.shorten.desc })
-        vim.keymap.set('n', '<leader>at', ai.text.proofread.get, { desc = ai.text.proofread.desc })
+        vim.keymap.set('n', '<leader>actx', ai.text.proofread.get, { desc = ai.text.proofread.desc })
         -- stylua: ignore end
 
         vim.keymap.set('v', '<leader>aca', ':CodyAsk ')
+        vim.keymap.set('n', '<leader>acc', ':CodyToggle<cr>')
+
+        -- Ask Cody a question about current selection
+        vim.keymap.set('v', '<leader>aca', ':CodyAsk ')
+
+        -- Start a new Cody chat
+        vim.keymap.set('n', '<leader>acc', ':CodyChat<CR>')
+
+        -- Reset and start new Cody chat
+        vim.keymap.set('n', '<leader>acC', ':CodyChat!<CR>')
+
+        -- Toggle Cody chat window
+        vim.keymap.set('n', '<leader>acc', ':CodyToggle<CR>')
+
+        -- Create Cody task
+        vim.keymap.set('v', '<leader>actt', ':CodyTask<CR>')
+
+        -- View last Cody task
+        vim.keymap.set('n', '<leader>actv', ':CodyTaskView<CR>')
+
+        -- Accept current Cody task
+        vim.keymap.set('n', '<leader>acta', ':CodyTaskAccept<CR>')
+
+        -- Cycle to previous Cody task
+        vim.keymap.set('n', '<leader>actp', ':CodyTaskPrev<CR>')
+
+        -- Cycle to next Cody task
+        vim.keymap.set('n', '<leader>actn', ':CodyTaskNext<CR>')
+
+        -- Restart Cody
+        vim.keymap.set('n', '<leader>acr', ':CodyRestart<CR>')
     end,
 }
