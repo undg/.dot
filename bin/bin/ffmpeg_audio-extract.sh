@@ -8,8 +8,9 @@ NC='\033[0m'   #'0'    is back no color
 
 if [[ $# -eq 0 ]] || [[ "$1" =~ ^(-h|--help|help)$ ]]; then
 	printf "
-	script.sh [file1 file2 file3 ...]
-		If no arguments are passed, all files in current folder will be processed.
+	extract audio from video files to wav with pcm_s16le codec.
+
+	ffmpeg_audio-extract.sh [file1 file2 file3 ...]
 
 	help --help -h
 		This help message.
@@ -18,31 +19,23 @@ if [[ $# -eq 0 ]] || [[ "$1" =~ ^(-h|--help|help)$ ]]; then
 fi
 
 printf "
-${R}Compressed media will land in mov folder!
+${R}Extract audio from video files
 ${NC}Press ANY key to continue.\n"
 read
 
 CURRENT_DIR=$(pwd)
 files=$@ # files passed as an arguments
 
-OUT_DIR="mov"
-if [ ! -d "$OUT_DIR" ]; then
-	mkdir "$OUT_DIR"
-fi
-
 for f in $files; do
-	f_date=$(date -r "$f" +"%Y-%m-%d_%H-%M-%S")
 	f_fullname="${f##*/}"
 	f_name="${f_fullname%.*}"
-	f_ext=${f##*.}
-	# f_out="$OUT_DIR"/"$f_date"__"$f_name".mov
-	f_out="$OUT_DIR"/"$f_name".mov
+	f_out="$f_name".wav
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
 
-	ffmpeg -i "$f" -c:v prores_ks -profile:v 3 -qscale:v 9 -vendor ap10 -pix_fmt yuv422p10le -acodec pcm_s16le "$f_out"
+	ffmpeg -i "$f" -acodec pcm_s16le -ac 1 -ar 16000 "$f_out"
 
-	notify-send "transcoded: $f"
+	notify-send "$f_out: audio extracted"
 done
 
 notify-send "transcoded-all: $files"
