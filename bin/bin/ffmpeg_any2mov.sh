@@ -40,7 +40,7 @@ for f in $files; do
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
 
-	ffmpeg -i "$f" -c:v prores_ks -profile:v 3 -qscale:v 9 -vendor ap10 -pix_fmt yuv422p10le -acodec pcm_s16le "$f_out"
+	ffmpeg -i "$f" -c:v prores_ks -profile:v 3 -qscale:v 9 -vendor ap10 -pix_fmt yuv422p10le -acodec pcm_s16le -ac 1 -ar 16000 "$f_out"
 
 	notify-send "transcoded: $f"
 done
