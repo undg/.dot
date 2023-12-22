@@ -25,6 +25,7 @@ if command -v eza &>/dev/null; then
     alias ll='ls -lah --git'
     alias la='eza -a'
     alias tree='ll --tree --level=2'
+    alias treee='ll --tree'
 else
     echo "eza is not installed."
     install eza
