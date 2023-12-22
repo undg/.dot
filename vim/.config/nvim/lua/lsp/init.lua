@@ -14,7 +14,7 @@ if
     or not mason_installer_ok
     or not null_ls_ok
     or not cspell_ok
-    -- or not typescript_code_action_ok
+-- or not typescript_code_action_ok
 then
     print('lsp/init.lua: require failed')
     return
@@ -79,7 +79,7 @@ null_ls.setup({
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
     'stylua',     -- format lua
-    -- 'prettier',   -- format js/ts
+    'prettierd',  -- format js/ts
     'shfmt',      -- format sh
     'fixjson',    -- format json
     'black',      -- format python
@@ -88,7 +88,6 @@ local mason_non_lsp = {
     'goimports-reviser',
     'goimports',
     'eslint_d',
-    'eslint',
 }
 
 -- Lsp server names that will be installed via Manson
