@@ -6,8 +6,6 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     event = 'VeryLazy',
     config = function()
-        local types = require('sg.types')
-
         require('sg').setup({
             on_attach = function(_, bufnr)
                 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
@@ -16,6 +14,8 @@ return {
             end,
             auth_strategy = 'environment-variables',
         })
+
+        -- @TODO (undg) 2023-12-22: use whichkey to organize them into groups and namespaces.
 
         -- stylua: ignore start
         vim.api.nvim_create_user_command('AiCommitTitle', ai.commit.title.get, { desc = ai.commit.title.desc })
