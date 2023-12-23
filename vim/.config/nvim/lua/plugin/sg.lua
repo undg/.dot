@@ -77,6 +77,6 @@ return {
                 name = 'task',
                 t = { ':CodyTask ', 'Create Cody task' },
             },
-        }, { prefix = '<leader>ac', mode = 'v', { silent = false } })
+        }, { prefix = '<leader>ac', mode = 'v', silent = false })
     end,
 }
