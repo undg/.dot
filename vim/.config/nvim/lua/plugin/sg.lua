@@ -38,7 +38,7 @@ return {
 
         local ok_wk, wk = pcall(require, 'which-key')
         if not ok_wk then
-            print('plugin/gp-nvim: "which-key" not found, skipping wk.register')
+            print('plugins/sg.lua: missing requirements')
             return
         end
 
