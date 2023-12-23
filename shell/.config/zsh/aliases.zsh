@@ -142,25 +142,8 @@ else
     install silver-searcher
 fi
 
-if hash yarn 2>/dev/null; then
-    alias y='yarn'
-else
-    echo "yarn is not installed."
-    install yarn
-fi
-
-if hash pnpm 2>/dev/null; then
-    alias p='pnpm'
-else
-    # echo "pnpm is not installed."
-    # install pnpm
-fi
-
-if hash npm 2>/dev/null; then
-    alias n='npm run'
-else
-    echo "npm is not installed."
-fi
+alias y='yarn'
+alias p='pnpm'
 
 alias vimwiki='nvim -c VimwikiIndex'
 
