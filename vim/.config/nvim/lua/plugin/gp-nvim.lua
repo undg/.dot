@@ -142,9 +142,53 @@ return {
                     )
                 end,
 
-                -- your own functions can go here, see README for more examples like
+                -- your own functions can go here, see README for more examples
                 -- :GpExplain, :GpUnitTests.., :GpBetterChatNew, ..
+
+                -- example of usig enew as a function specifying type for the new buffer
+                CodeReview = function(gp, params)
+                    local template = 'I have the following code from {{filename}}:\n\n'
+                        .. '```{{filetype}}\n{{selection}}\n```\n\n'
+                        .. 'Please analyze for code smells and suggest improvements.'
+                    local agent = gp.get_chat_agent()
+                    gp.Prompt(params, gp.Target.enew('markdown'), nil, agent.model, template, agent.system_prompt)
+                end,
+
+                -- example of adding command which explains the selected code
+                Explain = function(gp, params)
+                    local template = 'I have the following code from {{filename}}:\n\n'
+                        .. '```{{filetype}}\n{{selection}}\n```\n\n'
+                        .. 'Please respond by explaining the code above.'
+                    local agent = gp.get_chat_agent()
+                    gp.Prompt(params, gp.Target.popup, nil, agent.model, template, agent.system_prompt)
+                end,
+
+                -- example of adding command which writes unit tests for the selected code
+                UnitTests = function(gp, params)
+                    local template = 'I have the following code from {{filename}}:\n\n'
+                        .. '```{{filetype}}\n{{selection}}\n```\n\n'
+                        .. 'Please respond by writing table driven unit tests for the code above.'
+                    local agent = gp.get_command_agent()
+                    gp.Prompt(params, gp.Target.enew, nil, agent.model, template, agent.system_prompt)
+                end,
             },
         })
+        local ok_wk, wk = pcall(require, 'which-key')
+        if not ok_wk then
+            print('plugins/gp-nvim.lua: missing requirements')
+            return
+        end
+
+        wk.register({
+            name = 'ChatGPT',
+            C = { ':GpChatNew vsplit<cr>', ':GpChatNew' },
+            c = { ':GpChatToggle vsplit<cr>', ':GpChatToggle' },
+            f = { ':GpChatFinder<cr>', ':GpChatFinder' },
+            r = { ':GpRewrite<cr>', ':GpRewrite' },
+            n = { ':GpVNew<cr>', ':GpVNew' },
+            x = { ':GpContext vsplint<cr>', ':GpContext' },
+            a = { ':GpNextAgent<cr>', ':GpNextAgent' },
+            s = { ':GpStop<cr>', ':GpStop' },
+        }, { prefix = '<leader>ag', mode = { 'n', 'v' }, silent = false })
     end,
 }
