@@ -1,13 +1,13 @@
 return {
     'folke/which-key.nvim',
     config = function()
-        local ok_wkey, wkey = pcall(require, 'which-key')
+        local ok_wkey, wk = pcall(require, 'which-key')
         if not ok_wkey then
             print('plugins/which-key.lua: missing requirements')
             return
         end
 
-        wkey.setup({
+        wk.setup({
             plugins = {
                 marks = true,         -- shows a list of your marks on ' and `
                 registers = true,     -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -79,5 +79,12 @@ return {
                 filetypes = { 'TelescopePrompt' },
             },
         })
+
+        wk.register({
+            a = { name = 'Ai', },
+            b = { name = 'Buffer', },
+            f = { name = 'Filesystem', },
+        }, { prefix = '<leader>', mode = { 'n', 'v' } })
+
     end,
 }
