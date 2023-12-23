@@ -7,3 +7,4 @@ lua    5.4.4
 pnpm   latest
 neovim stable
 java   latest
+yarn   1.22.0 # pin it till the issue is resolved https://github.com/yarnpkg/yarn/issues/9015
