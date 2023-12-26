@@ -43,12 +43,12 @@ else
     install fasd
 fi
 
+# Search
 alias egrep="egrep --color=auto"
 alias grep="grep --color=auto"
-alias egr="egrep -iHnr"
 alias gr="grep -iHnr"
-alias cegr="egrep -iHnr --color=always"
-alias cgr="egrep -iHnr --color=always"
+
+alias duh="du -h | sort -h"
 
 # A trailing space in VALUE causes the next word to be checked for alias substitution when the alias is expanded.
 alias watch="watch --color --interval 0.5 "
