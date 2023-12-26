@@ -25,7 +25,7 @@ read
 CURRENT_DIR=$(pwd)
 files=$@ # files passed as an arguments
 
-OUT_DIR="mov"
+OUT_DIR="converted"
 if [ ! -d "$OUT_DIR" ]; then
 	mkdir "$OUT_DIR"
 fi
@@ -35,12 +35,11 @@ for f in $files; do
 	f_fullname="${f##*/}"
 	f_name="${f_fullname%.*}"
 	f_ext=${f##*.}
-	# f_out="$OUT_DIR"/"$f_date"__"$f_name".mov
-	f_out="$OUT_DIR"/"$f_name".mov
+	f_out="$OUT_DIR"/"$f_name"-audio-pcm."$f_ext"
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
 
-	ffmpeg -i "$f" -c:v prores_ks -profile:v 3 -qscale:v 9 -vendor ap10 -pix_fmt yuv422p10le -acodec pcm_s16le -ac 1 -ar 16000 "$f_out"
+	ffmpeg -i "$f" -vcodec copy -acodec pcm_s16le "$f_out"
 
 	notify-send "transcoded: $f"
 done

@@ -8,9 +8,8 @@ NC='\033[0m'   #'0'    is back no color
 
 if [[ $# -eq 0 ]] || [[ "$1" =~ ^(-h|--help|help)$ ]]; then
 	printf "
-	extract audio from video files to wav with pcm_s16le codec.
-
-	ffmpeg_audio-extract.sh [file1 file2 file3 ...]
+	script.sh [file1 file2 file3 ...]
+		If no arguments are passed, all files in current folder will be processed.
 
 	help --help -h
 		This help message.
@@ -26,9 +25,16 @@ read
 CURRENT_DIR=$(pwd)
 files=$@ # files passed as an arguments
 
+
+
+
+
+
 for f in $files; do
+	f_date=$(date -r "$f" +"%Y-%m-%d_%H-%M-%S")
 	f_fullname="${f##*/}"
 	f_name="${f_fullname%.*}"
+	f_ext=${f##*.}
 	f_out="$f_name".wav
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
