@@ -71,17 +71,13 @@ rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/S
 rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/Storage-2/RAW/URecorder"
 
 # Insta360
-rsync_src_desc "/run/media/undg/disk/DCIM/Camera01/" "/mnt/Storage-2/RAW/insta360-x3"
-rsync_src_desc "/run/media/undg/disk1/DCIM/Camera01/" "/mnt/Storage-2/RAW/insta360-x3"
-rsync_src_desc "/run/media/undg/disk2/DCIM/Camera01/" "/mnt/Storage-2/RAW/insta360-x3"
+rsync_src_desc "/run/media/undg/insta360-x3/DCIM/Camera01/" "/mnt/Storage-2/RAW/insta360-x3"
 
 # Dji
-rsync_src_desc "/run/media/undg/disk/DCIM/100MEDIA/" "/mnt/Storage-2/RAW/dji-pocket2"
-rsync_src_desc "/run/media/undg/disk1/DCIM/100MEDIA/" "/mnt/Storage-2/RAW/dji-pocket2"
-rsync_src_desc "/run/media/undg/disk2/DCIM/100MEDIA/" "/mnt/Storage-2/RAW/dji-pocket2"
+rsync_src_desc "/run/media/undg/dji-pocket2/DCIM/100MEDIA/" "/mnt/Storage-2/RAW/dji-pocket2"
 
 # zoom f2
-rsync_src_desc "/run/media/undg/4A21-0000/" "/mnt/Storage-2/RAW/zoom-f2"
+rsync_src_desc "/run/media/undg/zoom-f2/" "/mnt/Storage-2/RAW/zoom-f2"
 
 # Backup of backup
 rsync_src_desc "/mnt/Storage-1/backups/" "/mnt/Storage-2/backups"
