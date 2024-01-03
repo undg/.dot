@@ -12,6 +12,10 @@
 # Load more completions
 fpath=($ZAP_DIR/plugins/zsh-completions/src $ZDOTDIR/completion $fpath)
 
+# Load compleations dynamically (keep an eye on performance)
+eval $(rbw gen-completions zsh)
+
+
 # Should be called before compinit
 zmodload zsh/complist
 

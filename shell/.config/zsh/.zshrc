@@ -93,7 +93,6 @@ plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
 src_local "$ZDOTDIR/private.zsh" # file in gitignore
-# src_local "/opt/asdf-vm/asdf.sh" # lang version manager/installer
 eval "$(/bin/rtx activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 # plug "chrissicool/zsh-256color"
