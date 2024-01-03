@@ -82,17 +82,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # This file is git ignored but sourced
-touch -a "$ZDOTDIR/private.zsh"
+touch -a "$ZDOTDIR/secret.zsh"
 
 
 #################################
 # Sources and Plugins
 #################################
+src_local "$ZDOTDIR/secret.zsh" # file in gitignore
 # auto source .env file in project folder.
 plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
-src_local "$ZDOTDIR/private.zsh" # file in gitignore
 eval "$(/bin/rtx activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 # plug "chrissicool/zsh-256color"
