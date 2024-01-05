@@ -32,6 +32,7 @@ return {
     { import = 'plugin.lspsaga' },                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
     { import = 'plugin.typescript' },                -- LSP Typescript utils with performant UI
     { import = 'plugin.golang' },                    -- LSP golang utils with performant UI
+    { 'folke/neodev.nvim' },                         -- Neovim full signature help, docs and completion for the nvim lua API.
     { import = 'plugin.treesitter' },                -- syntax highlight
     { import = 'plugin.trouble' },                   -- organize errors and warnings
     { import = 'plugin.nvim-cmp' },                  -- collection of plugins related with autocompletion
@@ -42,6 +43,7 @@ return {
     { 'nvimtools/none-ls.nvim' },                    -- inject LSP diagnostics, code actions, and more
     { 'davidmh/cspell.nvim' },                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
     { 'SirVer/ultisnips' },                          -- snippets that are integrated with autocompletion nvim-cmp
+
     -- Registers
     { import = 'plugin.yanky' },
     { 'simnalamburt/vim-mundo',                   cmd = { 'MundoShow', 'MundoToggle' } },
