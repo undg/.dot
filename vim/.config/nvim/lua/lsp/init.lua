@@ -55,7 +55,9 @@ local M_null_ls_sources = {
     null_ls.builtins.hover.dictionary,
 }
 
-if string.match(vim.fn.getcwd(), '/Arahi/') then
+local cwd = vim.fn.getcwd()
+
+if cwd and string.match(cwd, '/Arahi/') then
     print('null_ls: setup for arahi only')
     local arahi_sources = {
         cspell.diagnostics,
