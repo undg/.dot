@@ -29,21 +29,18 @@ rsync_src_desc() {
 	local dst=$2
 
 	# split by ':'
-	IFS=':' read -r -a src_arr <<< "$src"
+	IFS=':' read -r -a src_arr <<<"$src"
 	local src_host=${src_arr[0]}
 	local src_path=${src_arr[1]}
 
-
 	local src_ok=false
 	local desc_ok=false
-
-
 
 	# SOURCE
 	local src_msg="${Green}$src${NC}"
 	if test -d "$src" && test -x "$src"; then
 		src_ok=true
-	elif [[ `ssh $src_host test -d $src_path && echo exists` ]]; then
+	elif [[ $(ssh $src_host test -d $src_path && echo exists) ]]; then
 		src_ok=true
 	else
 		src_ok=false
@@ -69,22 +66,25 @@ rsync_src_desc() {
 }
 
 # Ixi
-rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/Storage-2/Camera"
-rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/Storage-2/Camera"
-rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/Storage-2/Whatsapp"
-rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/Storage-2/RAW/URecorder"
+rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/s2/Camera"
+rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/s2/Camera"
+rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/s2/Whatsapp"
+rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/s2/RAW/URecorder"
 
-# zoom f2
-rsync_src_desc "/run/media/undg/F2_SD/" "/mnt/Storage-2/RAW/zoom-f2"
+# download to s0 {zoom-f2, Insta360, DJI}
+rsync_src_desc "/run/media/undg/F2_SD/" "/mnt/s0/RAW/zoom-f2"
+rsync_src_desc "/run/media/undg/insta360-x3/DCIM/Camera01/" "/mnt/s0/RAW/insta360-x3"
+rsync_src_desc "/run/media/undg/DJI-pocket2/DCIM/100MEDIA/" "/mnt/s0/RAW/dji-pocket2"
 
-# Insta360
-rsync_src_desc "/run/media/undg/insta360-x3/DCIM/Camera01/" "/mnt/Storage-2/RAW/insta360-x3"
-
-# DJI
-rsync_src_desc "/run/media/undg/DJI-pocket2/DCIM/100MEDIA/" "/mnt/Storage-2/RAW/dji-pocket2"
+# Save to s2 {zoom-f2, Insta360, DJI}
+rsync_src_desc "/mnt/s0/RAW/zoom-f2" "/mnt/s2/RAW/zoom-f2"
+rsync_src_desc "/mnt/s0/RAW/insta360-x3" "/mnt/s2/RAW/insta360-x3"
+rsync_src_desc "/mnt/s0/RAW/dji-pocket2" "/mnt/s2/RAW/dji-pocket2"
 
 # Backup of backup
-rsync_src_desc "/mnt/Storage-1/backups/" "/mnt/Storage-2/backups"
-rsync_src_desc "/mnt/Storage-2/backups/" "/mnt/Storage-1/backups"
+rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
+rsync_src_desc "/mnt/s2/backups/" "/mnt/s1/backups"
 
-rsync_src_desc "/mnt/Storage-1/backups/" "/mnt/Storage-2/backups" # looks strange, but it have a sense if you'll think about it.
+# AGAIN ⁉️
+# Looks strange, but it have a sense, if you'll think about it 🤔 
+rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
