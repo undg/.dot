@@ -25,8 +25,10 @@ keymap.normal('<LEADER><CR>', ':write<CR>')
 keymap.normal(';w', ':write<CR>')
 keymap.normal(';a', ':wall<CR>')
 -- quit only
-keymap.normal("QQ", ":q<CR>") -- align with ZZ, that is default keybinding for write and quit
-keymap.normal('XX', ':q!<CR>') -- easier ZQ, quit don't save
+keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
+keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
+keymap.normal("QQ", ":q<CR>", {desc = 'quit'})
+keymap.normal('XX', ':q!<CR>', {desc = 'force quit (don\'t save)'})
 
 -- redo last macro
 keymap.normal('<CR>', '@@')
@@ -84,8 +86,10 @@ keymap.normal('<C-n>', ':cnext<CR>zzzv')
 keymap.normal('<C-p>', ':cprev<CR>zzzv')
 
 -- move selection up and down
--- keymap.visual('<C-k>', ':m -2<CR>gv=gv')
--- keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
+keymap.xisual('<C-k>', ':m -2<CR>gv=gv')
+keymap.xisual('<C-j>', ":m '>+<CR>gv=gv")
+keymap.visual('<C-k>', ':m -2<CR>gv=gv')
+keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
 
 -- Extra break points
 keymap.insert(',', ',<C-g>u')
