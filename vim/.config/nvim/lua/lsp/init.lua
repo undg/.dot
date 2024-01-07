@@ -61,7 +61,6 @@ if cwd and string.match(cwd, '/Arahi/') then
     print('null_ls: setup for arahi only')
     local arahi_sources = {
         cspell.diagnostics,
-        cspell.code_actions,
     }
     vim.list_extend(M_null_ls_sources, arahi_sources)
 else
