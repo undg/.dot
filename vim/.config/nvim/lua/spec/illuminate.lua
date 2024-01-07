@@ -1,7 +1,8 @@
 local keymap = require('utils.keymap')
-return {
-    'RRethy/vim-illuminate', -- automatically highlighting other uses of the word under the cursor
-    config = function()
+
+local M = { 'RRethy/vim-illuminate' }
+
+function M.config()
         local ok_illuminate, illuminate = pcall(require, 'illuminate')
         if not ok_illuminate then
             print('plugins/illuminate.lua: missing requirements')
@@ -82,5 +83,6 @@ return {
         keymap.normal('<leader>8', function()
             toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
         end)
-    end,
-}
+end
+
+return M
