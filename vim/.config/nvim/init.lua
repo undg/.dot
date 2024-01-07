@@ -1,7 +1,9 @@
 require('utils.globals')
 
--- -- Make sure to set `mapleader` before lazy so your mappings are correct.
-require('keymap.general')
+-- Make sure to set `mapleader` before lazy so your mappings are correct.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 
 require('plugins')
 require('start-lazy')
@@ -12,7 +14,6 @@ require('lsp')
 
 require('config')
 
--- @TODO (undg) 2024-01-07: move them to plugins
 require('keymap')
 
 require('autocmd')

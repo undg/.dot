@@ -1,5 +1,6 @@
 -- https://github.com/onsails/lspkind-nvim
 -- https://github.com/nvim-tree/nvim-web-devicons
+
 return {
     { 'onsails/lspkind-nvim' },         -- icons for lsp
     {

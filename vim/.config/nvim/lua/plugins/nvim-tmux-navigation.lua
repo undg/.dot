@@ -1,3 +1,5 @@
+-- https://github.com/alexghergh/nvim-tmux-navigation
+
 local keymap = require('utils.keymap')
 
 local M = {
