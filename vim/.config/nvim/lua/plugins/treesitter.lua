@@ -1,7 +1,7 @@
 local M = {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-        'JoosepAlviste/nvim-ts-context-commentstring', -- helper plugin for comment str,
+        'JoosepAlviste/nvim-ts-context-commentstring', -- helper plugin for comment str and [tj]sx,
         -- Highlight, edit, and navigate code using a fast incremental parsing library
         'nvim-treesitter/nvim-treesitter-textobjects', -- Additional text objects for treesitter
     },
@@ -43,16 +43,17 @@ M.config = function()
         highlight = {
             enable = true, -- false will disable the whole extension
             use_languagetree = true,
-            additional_vim_regex_highlighting = true,
             -- seen that on teej_dv stream, some magical extra powers to treesitter.
+            -- it looks and behaves better, but have some performance penally
+            additional_vim_regex_highlighting = false,
         },
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = '<c-v>nm',
-                node_incremental = '<c-v>n',
-                scope_incremental = '<c-v>nn',
-                node_decremental = '<c-v>m',
+                init_selection = 'vn',
+                node_incremental = 'vn',
+                scope_incremental = 'vnm',
+                node_decremental = 'vm',
             },
         },
         indent = {

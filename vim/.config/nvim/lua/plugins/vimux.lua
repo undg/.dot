@@ -1,5 +1,6 @@
 return {
     'benmills/vimux', -- build comand(test) in split tmux pane
+    cmd = { 'VimuxPromptCommand', 'VimuxRunCommand' },
     config = function()
         vim.g.VimuxDebug = false
         vim.g.VimuxHeight = 40
