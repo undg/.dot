@@ -1,3 +1,5 @@
+-- https://github.com/goolord/alpha-nvim
+
 local keymap = require('utils.keymap')
 return {
     'goolord/alpha-nvim',

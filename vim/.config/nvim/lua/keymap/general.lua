@@ -25,7 +25,7 @@ keymap.normal('<LEADER><CR>', ':write<CR>')
 keymap.normal(';w', ':write<CR>')
 keymap.normal(';a', ':wall<CR>')
 -- quit only
--- map.normal("QQ", ":q<CR>") -- align with ZZ, that is default keybinding for write and quit
+keymap.normal("QQ", ":q<CR>") -- align with ZZ, that is default keybinding for write and quit
 keymap.normal('XX', ':q!<CR>') -- easier ZQ, quit don't save
 
 -- redo last macro
