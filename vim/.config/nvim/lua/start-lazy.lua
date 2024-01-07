@@ -18,7 +18,7 @@ require('lazy').setup({
   spec = LAZY_PLUGIN_SPEC,
   change_detection = {
     enabled = true,
-    notify = true,
+    notify = false,
   },
   install = {
     colorscheme = { 'gruvbox' },
