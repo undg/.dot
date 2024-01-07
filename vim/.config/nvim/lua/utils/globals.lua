@@ -25,4 +25,14 @@ P = function(any)
     return any
 end
 
+LAZY_PLUGIN_SPEC = {}
 
+---@param item string path to spec file
+function Spec(item)
+    table.insert(LAZY_PLUGIN_SPEC, { import = item })
+end
+
+---@param item string Plugin github repo
+function Git(item)
+    table.insert(LAZY_PLUGIN_SPEC, item)
+end
