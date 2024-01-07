@@ -70,7 +70,7 @@ keymap.visual('<LEADER>p', '"_dP')
 -- Copy all
 keymap.normal('<LEADER>cc', 'ggVG"+y')
 
--- Keep it in center
+-- Keep it in center (quality of life)
 keymap.normal('n', 'nzz')
 keymap.normal('N', 'Nzz')
 keymap.normal("''", "''zz")
@@ -82,6 +82,10 @@ keymap.visual("''", "''zzzv")
 keymap.normal('J', 'mzJ`z')
 keymap.normal('<C-n>', ':cnext<CR>zzzv')
 keymap.normal('<C-p>', ':cprev<CR>zzzv')
+
+-- move selection up and down
+-- keymap.visual('<C-k>', ':m -2<CR>gv=gv')
+-- keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
 
 -- Extra break points
 keymap.insert(',', ',<C-g>u')
@@ -112,3 +116,21 @@ keymap.normal('#', '#N')
 keymap.normal('gh', ':diffget //2<cr>')
 keymap.normal('gl', ':diffget //3<cr>')
 keymap.normal('gp', ':diffput //1<cr>')
+
+-- WINDOWS AND TABS --
+----------------------
+-- Zoom / Fullscreen
+keymap.normal('tt', ':tab split<CR>')
+
+-- split navigations is done by tmux-navigator plugin
+-- keymap.normal('<A-h>', '<C-w><C-h>')
+-- keymap.normal('<A-j>', '<C-w><C-j>')
+-- keymap.normal('<A-k>', '<C-w><C-k>')
+-- keymap.normal('<A-l>', '<C-w><C-l>')
+
+-- resize
+keymap.normal('<Up>', ':resize +5<cr>')
+keymap.normal('<Down>', ':resize -5<cr>')
+
+keymap.normal('<Left>', ':vertical resize -5<cr>')
+keymap.normal('<Right>', ':vertical resize +5<cr>')

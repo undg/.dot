@@ -3,9 +3,6 @@ local keymap = require('utils.keymap')
 -- WINDOWS AND TABS --
 ----------------------
 -- Zoom / Fullscreen
-keymap.normal('<C-w>z', ':ZoomWinTabToggle<CR>')
-keymap.normal('<C-w><C-z>', ':ZoomWinTabToggle<CR>')
-
 keymap.normal('tt', ':tab split<CR>')
 
 -- split navigations is done by tmux-navigator plugin
