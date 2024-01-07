@@ -27,12 +27,13 @@ end
 
 LAZY_PLUGIN_SPEC = {}
 
----@param item string path to spec file
-function Spec(item)
-    table.insert(LAZY_PLUGIN_SPEC, { import = item })
+---@param path string @path to spec file
+function Spec(path)
+    table.insert(LAZY_PLUGIN_SPEC, { import = path })
 end
 
----@param item string Plugin github repo
-function Git(item)
+---@param url string Plugin github url
+function Git(url)
+    local item = url:gsub('https://github.com/', '')
     table.insert(LAZY_PLUGIN_SPEC, item)
 end
