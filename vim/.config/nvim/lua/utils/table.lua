@@ -41,4 +41,13 @@ function M.map(input_table, mapper)
     return new_table
 end
 
+---serialize first level of table.
+---
+---@param input_table table The input table
+function M.serialize(input_table)
+    for i, v in ipairs(input_table) do
+        print(i, ':', v)
+    end
+end
+
 return M
