@@ -1,6 +1,5 @@
 return {
     'folke/noice.nvim', -- https://github.com/folke/noice.nvim
-    -- event = 'VeryLazy',
     opts = {
         lsp = {
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
