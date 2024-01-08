@@ -1,6 +1,13 @@
+-- https://github.com/pmizio/typescript-tools.nvim
+
+-- https://github.com/nvim-lua/plenary.nvim
+-- https://github.com/neovim/nvim-lspconfig
+-- https://github.com/marilari88/twoslash-queries.nvim
+
 return {
     {
         'pmizio/typescript-tools.nvim',
+        ft = {'typescript' ,'typescriptreact', 'javascript', 'javascriptreact' },
         dependencies = {
             'nvim-lua/plenary.nvim',
             'neovim/nvim-lspconfig',
@@ -12,6 +19,8 @@ return {
                     is_enabled = true,              -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
                     highlight = 'DevIconBat',       -- to set up a highlight group for the virtual text
                 },
+
+                cmd = 'TwoslashQueriesInspect',
 
                 keys = {
                     { '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
@@ -66,5 +75,4 @@ return {
             },
         },
     },
-    -- 'jose-elias-alvarez/typescript.nvim', -- few extra commands for ts. Uses LSP
 }

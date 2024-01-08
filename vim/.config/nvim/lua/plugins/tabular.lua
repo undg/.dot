@@ -1,1 +1,4 @@
-return { 'godlygeek/tabular', cmd = { 'Tabularize', 'Tab' } }
+return {
+    'godlygeek/tabular', -- https://github.com/godlygeek/tabular
+    cmd = { 'Tabularize', 'Tab' },
+}

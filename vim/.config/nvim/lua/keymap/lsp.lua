@@ -1,5 +1,5 @@
 local keymap_ok, keymap = pcall(require, 'utils.keymap')
-local tb_ok, tb = pcall(require, 'telescope.builtin')
+local tb_ok, telescope_builtin = pcall(require, 'telescope.builtin')
 local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 local typescript_ok = pcall(require, 'typescript-tools')
@@ -40,32 +40,32 @@ keymap.normal('GD', ':Lspsaga peek_type_definition<CR>', { desc = 'lsp: peek_typ
 
 keymap.normal('<leader>gd', vim.lsp.buf.definition, { desc = 'lsp: definition' })
 keymap.normal('gd', function()
-    tb.lsp_definitions(tb_opt)
+    telescope_builtin.lsp_definitions(tb_opt)
 end, { desc = 'lsp: definition (telescope)' })
 
 keymap.normal('<leader>gD', vim.lsp.buf.type_definition, { desc = 'lsp: type_definition' })
 keymap.normal('gD', function()
-    tb.lsp_type_definitions(tb_opt)
+    telescope_builtin.lsp_type_definitions(tb_opt)
 end, { desc = 'lsp: type_definition (telescope)' })
 
 keymap.normal('<leader>gr', vim.lsp.buf.references, { desc = 'lsp: references' })
-keymap.normal('gr', function()
-    tb.lsp_references(tb_opt)
+keymap.normal('grr', function()
+    telescope_builtin.lsp_references(tb_opt)
 end, { desc = 'lsp: references (telescope)' })
 -- vim.keymap.set('n', '<leader>gr', function()
 --     vim.fn.jobstart()
 --     vim.lsp.buf.references()
 --     vim.cmd('cclose')
---     tb.quickfix()
---     -- tb.lsp_references(tb_opt)
+--     telescope_builtin.quickfix()
+--     -- telescope_builtin.lsp_references(tb_opt)
 -- end)
 
 
-keymap.normal('gfr', ':TSToolsFileReferences sync', { desc = 'lsp: show file references' })
+keymap.normal('grf', ':TSToolsFileReferences sync', { desc = 'lsp: show file references' })
 
 keymap.normal('<leader>gi', vim.lsp.buf.implementation, { desc = 'lsp: implementation' })
 keymap.normal('gi', function()
-    tb.lsp_implementations(tb_opt)
+    telescope_builtin.lsp_implementations(tb_opt)
 end, { desc = 'lsp: implementation (telescope)' })
 
 keymap.normal(

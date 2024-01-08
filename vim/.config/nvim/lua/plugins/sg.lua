@@ -1,9 +1,8 @@
--- Sourcegraph configuration. All keys are optional
 local ai = require('custom.sg')
 
 return {
-    'sourcegraph/sg.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    'sourcegraph/sg.nvim', -- https://github.com/sourcegraph/sg.nvim
+    dependencies = { 'nvim-lua/plenary.nvim' }, -- https://github.com/nvim-lua/plenary.nvim
     event = 'VeryLazy',
     config = function()
         require('sg').setup({

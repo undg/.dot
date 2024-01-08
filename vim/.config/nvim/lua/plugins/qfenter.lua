@@ -1,6 +1,6 @@
 return {
-    'yssl/QFEnter', -- quickfix window (cw) open in split/tab...
-    config = function()
+    'yssl/QFEnter', -- https://github.com/yssl/QFEnter
+    init = function()
         vim.cmd([[
                 augroup myvimrc
                     autocmd!

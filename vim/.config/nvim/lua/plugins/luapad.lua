@@ -1,3 +1,5 @@
+-- https://github.com/rafcamlet/nvim-luapad
+
 return {
     'rafcamlet/nvim-luapad',
     opts = {
