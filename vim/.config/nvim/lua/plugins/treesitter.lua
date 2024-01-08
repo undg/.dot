@@ -14,10 +14,9 @@ local M = {
 
 M.config = function()
     local ensure_installed = {
-        'html',
         'css',
-        'scss',
         'graphql',
+        'html',
         'javascript',
         'jsdoc',
         'jsonc',
@@ -25,6 +24,8 @@ M.config = function()
         'markdown',
         'markdown_inline',
         'python',
+        'regex',
+        'scss',
         'tsx',
         'typescript',
         'vim',
