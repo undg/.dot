@@ -69,5 +69,7 @@ Spec('plugins.theme')                                         -- gruvbox is best
 Spec('plugins.vim-diminactive')                               -- dim inactive window
 Spec('plugins.colorizer')                                     -- paint hex values with color
 Spec('plugins.illuminate')                                    -- automatically highlighting other uses of the word under the cursor
-Spec('plugins.fidget')                                        -- notification
+Spec('plugins.fidget')                                        -- LSP notification
+Spec('plugins.noice')                                         -- notification
 Git('https://github.com/lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
+
