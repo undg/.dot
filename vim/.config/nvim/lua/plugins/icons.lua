@@ -1,10 +1,9 @@
--- https://github.com/onsails/lspkind-nvim
--- https://github.com/nvim-tree/nvim-web-devicons
-
 return {
-    { 'onsails/lspkind-nvim' },         -- icons for lsp
+    -- icons for lsp
+    { 'onsails/lspkind-nvim' }, -- https://github.com/onsails/lspkind-nvim
     {
-        'nvim-tree/nvim-web-devicons', -- icons for telescope and Neotree and all sorts of plugins
+        -- icons for telescope and Neotree and all sorts of plugins
+        'nvim-tree/nvim-web-devicons', -- https://github.com/nvim-tree/nvim-web-devicons
         config = function()
             local ok_devicons, devicons = pcall(require, 'nvim-web-devicons')
             if not ok_devicons then

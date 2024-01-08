@@ -1,5 +1,12 @@
 return {
-    'vimwiki/vimwiki',
+    'vimwiki/vimwiki', -- https://github.com/vimwiki/vimwiki
+    cmd = {
+        'VimwikiIndex',
+        'VimwikiTabIndex',
+        'VimwikiTabMakeDiaryNote',
+        'VimwikiUiSelect',
+        'VimwikiDiaryIndex',
+    },
     init = function()
         vim.g.vimwiki_list = {
             {

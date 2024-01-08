@@ -1,15 +1,14 @@
--- https://github.com/alexghergh/nvim-tmux-navigation
-
 local keymap = require('utils.keymap')
 
 local M = {
-    'alexghergh/nvim-tmux-navigation',
-    opts = {
-        disable_when_zoomed = true, -- defaults to false
-    },
+    'alexghergh/nvim-tmux-navigation', -- https://github.com/alexghergh/nvim-tmux-navigation
 }
 
-function M.config()
+M.opts = {
+    disable_when_zoomed = true, -- defaults to false
+}
+
+function M.init()
     local nvim_tmux_nav = require('nvim-tmux-navigation')
 
     keymap.normal('<M-h>', nvim_tmux_nav.NvimTmuxNavigateLeft)

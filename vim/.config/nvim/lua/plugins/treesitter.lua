@@ -1,3 +1,7 @@
+-- https://github.com/nvim-treesitter/nvim-treesitter
+
+-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 local M = {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {

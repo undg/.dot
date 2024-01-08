@@ -1,6 +1,9 @@
 return {
-    'gbprod/yanky.nvim',
-    dependencies = { 'kkharji/sqlite.lua' },
+    'gbprod/yanky.nvim',                 -- https://github.com/gbprod/yanky.nvim
+    dependencies = {
+        'kkharji/sqlite.lua',            -- https://github.com/kkharji/sqlite.lua
+        'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
+    },
     config = function()
         require('yanky').setup({
             ring = {
@@ -22,7 +25,7 @@ return {
         })
 
         -- key maps
-        require('keymap.yanky')
+        -- require('keymap.yanky')
 
         -- telescope integration
         require('telescope').load_extension('yank_history')

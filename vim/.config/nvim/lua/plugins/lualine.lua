@@ -1,5 +1,5 @@
 return {
-    'nvim-lualine/lualine.nvim',
+    'nvim-lualine/lualine.nvim', -- https://github.com/nvim-lualine/lualine.nvim
     config = function()
         local ok_s, s = pcall(require, 'custom.lualine.sections')
         if not ok_s then

@@ -1,5 +1,5 @@
 return {
-    'robitx/gp.nvim',
+    'robitx/gp.nvim', -- https://github.com/robitx/gp.nvim
     config = function()
         require('gp').setup({
             -- required openai api key
@@ -211,6 +211,7 @@ return {
                 end,
             },
         })
+
         local ok_wk, wk = pcall(require, 'which-key')
         if not ok_wk then
             print('plugins/gp-nvim.lua: missing requirements')
