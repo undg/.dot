@@ -16,15 +16,15 @@ return {
   opts = {
     workspaces = {
       {
+        name = 'Work',
+        path = '~/Dropbox/DropsyncFiles/Work',
+      },
+      {
         name = 'Personal',
         path = '~/Dropbox/DropsyncFiles/Personal',
       },
       {
-        name = 'Work',
-        path = '~/Dropbox/DropsyncFiles/Work/',
-      },
-      {
-        name = 'vimwiki',
+        name = 'wiki',
         path = '~/Dropbox/DropsyncFiles/vimwiki',
       },
     },
