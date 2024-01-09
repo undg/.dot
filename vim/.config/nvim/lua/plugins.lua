@@ -64,6 +64,7 @@ Spec('plugins.lualine')                          -- status bar with few informat
 Spec('plugins.tabular')                          -- align text in colums in table style.
 Spec('plugins.vim-colorpicker')                  -- open xorg window with color picker
 Git('https://github.com/stevearc/dressing.nvim') -- better floating window styles
+Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin lua functions
 
 -- Look and feel
 Spec('plugins.theme')                                         -- gruvbox is best theme on the universe
