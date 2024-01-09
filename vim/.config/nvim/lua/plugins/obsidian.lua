@@ -13,6 +13,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim', -- https://github.com/nvim-lua/plenary.nvim
   },
+  -- https://github.com/epwalsh/obsidian.nvim?tab=readme-ov-file#configuration-options
   opts = {
     workspaces = {
       {
@@ -29,6 +30,6 @@ return {
       },
     },
 
-    -- see below for full list of options 👇
+    notes_subdir = "notes",
   },
 }
