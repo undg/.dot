@@ -53,8 +53,8 @@ Spec('plugins.gp-nvim') -- LLM chatGPT is AI powered code completion and chat bo
 
 -- Utils
 -- @TODO (undg) 2024-01-08: think about replacement
-Spec('plugins.vimwiki')
-Spec('plugins.obsidian')
+-- Spec('plugins.vimwiki')
+Spec('plugins.obsidian')                         -- Note taking and knowledge base
 Spec('plugins.markdown-preview')                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec('plugins.qfenter')                          -- quickfix window (cw) open in split/tab...
 Spec('plugins.vimux')                            -- run commands in vimux pane
@@ -67,13 +67,12 @@ Git('https://github.com/stevearc/dressing.nvim') -- better floating window style
 Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin lua functions
 
 -- Look and feel
-Spec('plugins.theme')                                         -- gruvbox is best theme on the universe
-Spec('plugins.vim-diminactive')                               -- dim inactive window
-Spec('plugins.colorizer')                                     -- paint hex values with color
-Spec('plugins.illuminate')                                    -- automatically highlighting other uses of the word under the cursor
-Spec('plugins.fidget')                                        -- LSP notification
+Spec('plugins.theme')           -- gruvbox is best theme on the universe
+Spec('plugins.vim-diminactive') -- dim inactive window
+Spec('plugins.colorizer')       -- paint hex values with color
+Spec('plugins.illuminate')      -- automatically highlighting other uses of the word under the cursor
+Spec('plugins.fidget')          -- LSP notification
 -- @TODO (undg) 2024-01-09: Give it a try and experiment with it a bit.
---                          I'm not shure if I do like it. Looks nice and falshy but usability is my concern. 
+--                          I'm not shure if I do like it. Looks nice and falshy but usability is my concern.
 -- Spec('plugins.noice')                                         -- notification fireworks.
 Git('https://github.com/lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
-
