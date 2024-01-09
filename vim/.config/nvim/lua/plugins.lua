@@ -72,6 +72,8 @@ Spec('plugins.vim-diminactive')                               -- dim inactive wi
 Spec('plugins.colorizer')                                     -- paint hex values with color
 Spec('plugins.illuminate')                                    -- automatically highlighting other uses of the word under the cursor
 Spec('plugins.fidget')                                        -- LSP notification
--- Spec('plugins.noice')                                         -- notification
+-- @TODO (undg) 2024-01-09: Give it a try and experiment with it a bit.
+--                          I'm not shure if I do like it. Looks nice and falshy but usability is my concern. 
+-- Spec('plugins.noice')                                         -- notification fireworks.
 Git('https://github.com/lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
 
