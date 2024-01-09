@@ -54,6 +54,7 @@ Spec('plugins.gp-nvim') -- LLM chatGPT is AI powered code completion and chat bo
 -- Utils
 -- @TODO (undg) 2024-01-08: think about replacement
 Spec('plugins.vimwiki')
+Spec('plugins.obsidian')
 Spec('plugins.markdown-preview')                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec('plugins.qfenter')                          -- quickfix window (cw) open in split/tab...
 Spec('plugins.vimux')                            -- run commands in vimux pane
@@ -70,6 +71,6 @@ Spec('plugins.vim-diminactive')                               -- dim inactive wi
 Spec('plugins.colorizer')                                     -- paint hex values with color
 Spec('plugins.illuminate')                                    -- automatically highlighting other uses of the word under the cursor
 Spec('plugins.fidget')                                        -- LSP notification
-Spec('plugins.noice')                                         -- notification
+-- Spec('plugins.noice')                                         -- notification
 Git('https://github.com/lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
 
