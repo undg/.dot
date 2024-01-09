@@ -1,0 +1,34 @@
+return {
+  'epwalsh/obsidian.nvim', -- https://github.com/epwalsh/obsidian.nvim
+  version = '*',
+  -- lazy = true,
+  -- ft = 'markdown',
+  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+  --   "BufReadPre path/to/my-vault/**.md",
+  --   "BufNewFile path/to/my-vault/**.md",
+  -- },
+  dependencies = {
+    'nvim-lua/plenary.nvim', -- https://github.com/nvim-lua/plenary.nvim
+  },
+  opts = {
+    workspaces = {
+      {
+        name = 'Personal',
+        path = '~/Dropbox/DropsyncFiles/Personal',
+      },
+      {
+        name = 'Work',
+        path = '~/Dropbox/DropsyncFiles/Work/',
+      },
+      {
+        name = 'vimwiki',
+        path = '~/Dropbox/DropsyncFiles/vimwiki',
+      },
+    },
+
+    -- see below for full list of options 👇
+  },
+}
