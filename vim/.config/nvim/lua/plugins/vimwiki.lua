@@ -10,7 +10,7 @@ return {
     init = function()
         vim.g.vimwiki_list = {
             {
-                path = '~/Dropbox/vimwiki',
+                path = '~/Dropbox/DropsyncFiles/vimwiki',
                 syntax = 'markdown',
                 ext = '.md',
             },
