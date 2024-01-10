@@ -1,10 +1,38 @@
--- https://github.com/goolord/alpha-nvim
-
 local keymap = require('utils.keymap')
+local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-util')
+
+if not ok_obsidian_util then
+    print('plugins/obsidian.lua: missing required obsidian-util')
+    return
+end
 
 local M = { 'goolord/alpha-nvim' } -- https://github.com/goolord/alpha-nvim
 
 function M.config()
+    local function open_new_obsidian_work()
+        local workspace = obsidian_util.workspaces.work
+        local cmd = ':cd ' .. workspace.path .. '<cr>'
+        cmd = cmd .. ':ObsidianWorkspace ' .. workspace.name .. '<cr>'
+        cmd = cmd .. ':ObsidianToday<CR>'
+        return cmd
+    end
+
+    local function open_new_obsidian_personal()
+        local workspace = obsidian_util.workspaces.personal
+        local cmd = ':cd ' .. workspace.path .. '<cr>'
+        cmd = cmd .. ':ObsidianWorkspace ' .. workspace.name .. '<cr>'
+        cmd = cmd .. ':ObsidianToday<CR>'
+        return cmd
+    end
+
+    local function open_new_obsidian_wiki()
+        local workspace = obsidian_util.workspaces.wiki
+        local cmd = ':cd ' .. workspace.path .. '<cr>'
+        cmd = cmd .. ':ObsidianWorkspace ' .. workspace.name .. '<cr>'
+        cmd = cmd .. ':ObsidianToday<CR>'
+        return cmd
+    end
+
     local ok_alpha, alpha = pcall(require, 'alpha')
     local ok_dashboard, dashboard = pcall(require, 'alpha.themes.dashboard')
 
@@ -33,8 +61,8 @@ function M.config()
         dashboard.button('o', '   >  Old files', ':Telescope oldfiles cwd_only=true<CR>'),
         dashboard.button('e', '   >  New file', ':enew <BAR> startinsert <CR>'),
         dashboard.button('g', '🗪   >  ChatGPT', ':GpChatNew<CR>'),
-        dashboard.button('w', '🖋  >  Note Work', ':ObsidianWorkspace Work<cr>:ObsidianToday<CR>'),
-        dashboard.button('p', '󱦹   >  Note Personal', ':ObsidianWorkspace Personal<cr>:ObsidianToday<CR>'),
+        dashboard.button('w', '🖋  >  Note Work', open_new_obsidian_work()),
+        dashboard.button('p', '󱦹   >  Note Personal', open_new_obsidian_personal()),
         dashboard.button('ss', '   >  Sessions list', ':SessionManager load_session<CR>'),
         dashboard.button('f', '   >  Find files', ':Telescope find_files<CR>'),
         dashboard.button('q', '   >  Quit', ':qa<CR>'),
