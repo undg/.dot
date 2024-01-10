@@ -26,9 +26,19 @@ keymap.normal('<LEADER>p', function()
     vim.lsp.buf.format({ timeout_ms = 2000, async = true })
 end, { desc = 'lsp: format' })
 keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
-keymap.normal('<LEADER>rfn', ':TSToolsRenameFile sync<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
-keymap.normal('K', vim.lsp.buf.hover, { desc = 'lsp: hover', silent = true, noremap = true })
-keymap.normal('KK', vim.lsp.buf.signature_help, { desc = 'lsp: signature_help', silent = true, noremap = true })
+keymap.normal(
+    '<LEADER>rfn',
+    ':TSToolsRenameFile sync<CR>',
+    { desc = 'lsp: rename_file', silent = false, noremap = true }
+)
+keymap.normal('K', function()
+    if vim.bo.filetype == 'help' then
+        vim.api.nvim_feedkeys('K', 'ni', true)
+    else
+        vim.lsp.buf.hover()
+    end
+end, { desc = 'lsp: hover / help: go to ref', silent = true, noremap = true })
+keymap.normal('<leader>K', vim.lsp.buf.signature_help, { desc = 'lsp: signature_help', silent = true, noremap = true })
 keymap.normal('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
 keymap.visual('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
 
@@ -59,7 +69,6 @@ end, { desc = 'lsp: references (telescope)' })
 --     telescope_builtin.quickfix()
 --     -- telescope_builtin.lsp_references(tb_opt)
 -- end)
-
 
 keymap.normal('grf', ':TSToolsFileReferences sync', { desc = 'lsp: show file references' })
 
