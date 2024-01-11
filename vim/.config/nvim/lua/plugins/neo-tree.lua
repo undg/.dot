@@ -24,9 +24,27 @@ function M.config()
     --- @diagnostic disable-next-line: duplicate-doc-field
     ---@field destination string
 
+
+    -- @TODO (undg) 2024-01-11: migrate it from lsp to typescript-tools plugin
+    ---@param args FileMovedArgs
+    local function on_file_remove_tsserver(args)
+        local ts_clients = vim.lsp.get_active_clients({ name = 'tsserver' })
+        for _, ts_client in ipairs(ts_clients) do
+            ts_client.request('workspace/executeCommand', {
+                command = '_typescript.applyRenameFile',
+                arguments = {
+                    {
+                        sourceUri = vim.uri_from_fname(args.source),
+                        targetUri = vim.uri_from_fname(args.destination),
+                    },
+                },
+            })
+        end
+    end
+
     ---@param args FileMovedArgs
     local function on_file_remove(args)
-        local ts_clients = vim.lsp.get_active_clients({ name = 'tsserver' })
+        local ts_clients = vim.lsp.get_active_clients({ name = 'typescript-tools' })
         for _, ts_client in ipairs(ts_clients) do
             ts_client.request('workspace/executeCommand', {
                 command = '_typescript.applyRenameFile',
