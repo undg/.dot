@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+REMOTE=$(echo $1 | cut -d'/' -f1)
+
+BRANCH="${1#origin/}"
+
+REST="${@:2}"
+
+git push $REMOTE --delete $BRANCH $REST
