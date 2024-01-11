@@ -34,3 +34,7 @@ endsnippet
 snippet useA "useAtom" b
 const [$1, set${1/\w+/\u$0/g}] = useAtom($2)
 endsnippet
+
+snippet useFactJson "useFactJson" b
+const [config, updateConfig] = useFactJson(${1:props.dataset}, ${2:props.self}, ${3:waterfallV2TileConfigSchema});
+endsnippet
