@@ -12,7 +12,7 @@ local M = {
     version = '*',
 }
 
-M.opts = {
+local opts = {
     options = {
         mode = 'buffers', -- set to "tabs" to only show tabpages instead
         numbers = function(opts)
@@ -74,5 +74,66 @@ M.opts = {
         -- end
     },
 }
+
+function M.config()
+    local bufferline = require('bufferline')
+    bufferline.setup(opts)
+
+    local keymap = require('utils.keymap')
+
+    local ok_wkey, wk = pcall(require, 'which-key')
+    if not ok_wkey then
+        print('plugins/which-key.lua: missing requirements')
+        return
+    end
+
+    -- Select/Goto
+    keymap.normal('<leader>bp', ':BufferLineCyclePrev<cr>')
+    keymap.normal('<leader>bn', ':BufferLineCycleNext<cr>')
+
+    keymap.normal('<leader>j', function()
+        bufferline.go_to_buffer(1, true)
+    end)
+    keymap.normal('<leader>k', function()
+        bufferline.go_to_buffer(2, true)
+    end)
+    keymap.normal('<leader>l', function()
+        bufferline.go_to_buffer(3, true)
+    end)
+    keymap.normal('<leader>;', function()
+        bufferline.go_to_buffer(4, true)
+    end)
+    keymap.normal("<leader>'", function()
+        bufferline.go_to_buffer(5, true)
+    end)
+    keymap.normal('<leader>$', function()
+        bufferline.go_to_buffer(-1, true)
+    end)
+
+    -- Pin
+    keymap.normal('<leader>bb', ':BufferLineTogglePin<cr>')
+
+    -- Move
+    keymap.normal('<C-j>', ':BufferLineMovePrev<cr>')
+    keymap.normal('<C-k>', ':BufferLineMoveNext<cr>')
+    keymap.normal('<C-h>', ':BufferLineCyclePrev<cr>')
+    keymap.normal('<C-l>', ':BufferLineCycleNext<cr>')
+
+    -- Close
+    local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
+    local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
+    keymap.normal('<leader>qq', CMD_CLOSE_GO_NEXT)
+
+    keymap.normal('<C-Q>', CMD_CLOSE_GO_PREV)
+
+    wk.register({
+        c = {
+            name = 'Buffer Close',
+            c = { CMD_CLOSE_GO_PREV, 'Close Buffer' },
+            h = { ':BufferLineCloseLeft<CR>', 'BufferLineCloseLeft' },
+            l = { ':BufferLineCloseRight<CR>', 'BufferLineCloseRight' },
+        },
+    }, { prefix = '<leader>b' })
+end
 
 return M
