@@ -14,6 +14,7 @@ keymap.normal('q:', ':q')
 
 -- Quickly quit
 keymap.normal('<leader>q', ':q<cr>')
+keymap.normal(';q', ':q<cr>')
 
 -- no need for ESC
 keymap.insert('jk', '<ESC>')
