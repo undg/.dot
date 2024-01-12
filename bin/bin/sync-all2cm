@@ -67,9 +67,9 @@ rsync_src_desc() {
 }
 
 # Ixi
-rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/s2/Camera"
-rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/s2/Camera"
-rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/s2/Whatsapp"
+rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/s2/RAW/Camera"
+rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/s2/RAW/Camera"
+rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/s2/RAW/Whatsapp"
 rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/s2/RAW/URecorder"
 
 # download to s0 {zoom-f2, Insta360, DJI}
