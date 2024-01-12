@@ -42,6 +42,13 @@ Git('https://github.com/nvimtools/none-ls.nvim')                    -- inject LS
 Git('https://github.com/davidmh/cspell.nvim')                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
 Git('https://github.com/SirVer/ultisnips')                          -- snippets that are integrated with autocompletion nvim-cmp
 
+-- -- Debugging (DAP)
+-- Git('https://github.com/fussenegger/nvim-dap')
+-- Git('https://github.com/eoluz/nvim-dap-go')
+-- Git('https://github.com/carriga/nvim-dap-ui')
+-- Git('https://github.com/heHamsta/nvim-dap-virtual-text')
+-- Git('https://github.com/vim-telescope/telescope-dap.nvim')
+
 -- Registers
 Spec('plugins.yanky')
 Spec('plugins.vim-mundo')
