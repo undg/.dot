@@ -3,14 +3,14 @@ Spec('plugins.icons')                           -- icons used by few plugins
 Git('https://github.com/nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
 
 -- Productivity
-Spec('plugins.comment')                        -- commenting code
-Spec('plugins.nvim-surround')                  -- surround selection with brackets, quotes etc.
-Spec('plugins.nvim-autopairs')                 -- auto closing brackets, quotes etc.
-Spec('plugins.alpha')                          -- home screen
-Spec('plugins.neovim-session-manager')         -- autosave and restore session
-Spec('plugins.suda')                           -- ask for sudo password
-Spec('plugins.luapad')                         -- lua scratch pad
-Git('https://github.com/tpope/vim-sleuth')     -- Auto-detect indentation style
+Spec('plugins.comment')                    -- commenting code
+Spec('plugins.nvim-surround')              -- surround selection with brackets, quotes etc.
+Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
+Spec('plugins.alpha')                      -- home screen
+Spec('plugins.neovim-session-manager')     -- autosave and restore session
+Spec('plugins.suda')                       -- ask for sudo password
+Spec('plugins.luapad')                     -- lua scratch pad
+Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 -- Git('https://github.com/jiangmiao/auto-pairs') -- auto closing brackets, quotes etc.
 
 -- Git
@@ -75,14 +75,13 @@ Git('https://github.com/stevearc/dressing.nvim') -- better floating window style
 Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin lua functions
 
 -- Look and feel
-Spec('plugins.theme')           -- gruvbox is best theme on the universe
-Spec('plugins.vim-diminactive') -- dim inactive window
-Spec('plugins.colorizer')       -- paint hex values with color
-Spec('plugins.illuminate')      -- automatically highlighting other uses of the word under the cursor
-Spec('plugins.fidget')          -- LSP notification
-Spec('plugins.windows-nvim')    -- Automatically manage size of current window;
+Spec('plugins.theme')                 -- gruvbox is best theme on the universe
+Spec('plugins.vim-diminactive')       -- dim inactive window
+Spec('plugins.colorizer')             -- paint hex values with color
+Spec('plugins.illuminate')            -- automatically highlighting other uses of the word under the cursor
+Spec('plugins.fidget')                -- LSP notification
+Spec('plugins.windows-nvim')          -- Automatically manage size of current window;
+Spec('plugins.indent-blankline-nvim') -- Add indentation guides even on blank lines in fold
 -- @TODO (undg) 2024-01-09: Give it a try and experiment with it a bit.
 --                          I'm not shure if I do like it. Looks nice and falshy but usability is my concern.
 -- Spec('plugins.noice')                                         -- notification fireworks.
-
-Git('https://github.com/lukas-reineke/indent-blankline.nvim') -- Add indentation guides even on blank lines
