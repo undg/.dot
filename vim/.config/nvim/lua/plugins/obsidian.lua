@@ -19,7 +19,9 @@ return {
     local ok_wk, wk = pcall(require, 'which-key')
 
     if not ok_obsidian_util or not ok_wk then
-      print('plugins/obsidian.lua: missing requirments')
+      print('plugins/obsidian.lua: missing requirements')
+      print('obsidian_util: ', ok_obsidian_util)
+      print('which-key: ', ok_wk)
       return
     end
 
