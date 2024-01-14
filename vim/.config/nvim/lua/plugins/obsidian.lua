@@ -15,7 +15,7 @@ return {
   },
   -- https://github.com/epwalsh/obsidian.nvim?tab=readme-ov-file#configuration-options
   config = function()
-    local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-util')
+    local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-utils')
     local ok_wk, wk = pcall(require, 'which-key')
 
     if not ok_obsidian_util or not ok_wk then
