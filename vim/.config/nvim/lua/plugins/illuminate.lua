@@ -59,7 +59,7 @@ function M.config()
     })
 
     local ok_util, util =
-        pcall(require, 'plugins.illuminate-util')
+        pcall(require, 'plugins.illuminate-utils')
     if not ok_util then
         print('plugins/illuminate.lua: missing requirements')
     end
