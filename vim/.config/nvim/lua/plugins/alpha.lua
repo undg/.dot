@@ -1,8 +1,9 @@
 local keymap = require('utils.keymap')
-local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-util')
+local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-utils')
 
 if not ok_obsidian_util then
-    print('plugins/obsidian.lua: missing required obsidian-util')
+    print('plugins/alpha.lua: missing requirements')
+    print('obsidian:', ok_obsidian_util)
     return
 end
 
