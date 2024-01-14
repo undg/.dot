@@ -17,8 +17,9 @@ vim.opt.swapfile = false                                                       -
 vim.o.hidden = true                                                            -- Do not save when switching buffers
 vim.opt.autoread = true                                                        -- Auto reload file when changed from the outside
 vim.opt.undofile = true                                                        -- Save undo history
+vim.o.conceallevel = 0                                                         -- Don't render markdown (hide ```, parse checkbockes etc.)
 
-                                                                               -- wildmenu (command-line)
+-- Wildmenu (command-line)
 vim.opt.wildmenu = true                                                        -- autocompletion on
 vim.opt.wildmode = "longest:full,full"                                         -- style
 vim.opt.wildoptions = "pum,tagfile"                                            -- options
@@ -26,17 +27,17 @@ vim.o.inccommand = "nosplit"                                                   -
 vim.opt.history = 900                                                          -- The command-line history table size.
 vim.opt.path = vim.opt.path + "**"                                             -- Help with searching via :find and :grep (I'm using 3rd party for that anyway)
 
-                                                                               -- don't report in :checkhealth
+-- :checkhealth - Don't report problems bellow
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-                                                                               -- Searching
+-- Searching
 vim.opt.magic = true                                                           -- For regular expressions turn magic on
 vim.o.hlsearch = true                                                          -- highlight
 vim.o.ignorecase = true                                                        -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true                                                         -- Case insensitive searching UNLESS /C or capital in search
 
-                                                                               -- Look and feel
+-- Look and feel
 vim.opt.splitbelow = true                                                      -- Areas of the screen where the window splits should occur
 vim.opt.splitright = true                                                      -- Areas of the screen where the window splits should occur
 vim.opt.scrolloff = 3                                                          -- Minimal number of screen lines to keep above and below the cursor.
@@ -48,28 +49,28 @@ vim.opt.errorbells = false                                                     -
 vim.opt.visualbell = false                                                     -- No annoying sound on errors
 vim.opt.termguicolors = true                                                   -- enable highlight groups
 
-                                                                               -- show white spaces, but only on demand
+-- Show white spaces, but only on demand
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
 vim.opt.listchars = "eol:¬,tab:!⇥,trail:·,extends:>,precedes:<,space:·"
 vim.opt.list = false
 
-                                                                               -- default indentation (there is plugin that's trying to guess indentation style in opened file)
+-- Default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-                                                                               -- folding
+-- folding
 vim.opt.foldmethod = "indent"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 9
 
-                                                                               -- DON'T WRAP LONG LINES! I'll wrap them with formatter or by myself.
+-- DON'T WRAP LONG LINES! I'll wrap them with formatter or by myself.
 vim.opt.textwidth = 0
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakindentopt = "min:60,shift:0,sbr"
 vim.opt.showbreak = "+++ "                                                     -- show that sign on breaked lines.
-                                                                               -- @example ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.
+-- @example ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.

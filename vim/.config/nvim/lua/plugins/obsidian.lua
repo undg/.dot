@@ -26,6 +26,9 @@ return {
     end
 
     require('obsidian').setup({
+      ui = {
+        enable = false,
+      },
       workspaces = {
         obsidian_util.workspaces.work,
         obsidian_util.workspaces.personal,
