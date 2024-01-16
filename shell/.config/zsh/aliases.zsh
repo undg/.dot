@@ -24,8 +24,8 @@ if command -v eza &>/dev/null; then
     alias ls='eza --group-directories-first --icons --git'
     alias ll='ls -lah --git'
     alias la='eza -a'
-    alias tree='ll --tree --level=2'
-    alias treee='ll --tree'
+    alias tree='ll --tree'
+    alias treee='ll --tree --level=3'
 else
     echo "eza is not installed."
     install eza
