@@ -47,6 +47,7 @@ exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
 exec_always --no-startup-id ~/bin/volctl_once                    # Volume applet in system tray
 exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
 exec_always --no-startup-id ~/bin/speedy-keys.sh                 # Speedy keys
+exec --no-startup-id sleep 10 && dropbox
 
 
 set $transparent #000000
