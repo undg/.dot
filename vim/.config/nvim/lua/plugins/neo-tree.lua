@@ -1,19 +1,18 @@
--- https://github.com/nvim-neo-tree/neo-tree.nvim
-
--- https://github.com/MunifTanjim/nui.nvim
-
 local M = {
-    'nvim-neo-tree/neo-tree.nvim',
+    'nvim-neo-tree/neo-tree.nvim', -- https://github.com/nvim-neo-tree/neo-tree.nvim
     branch = 'v2.x',
     dependencies = {
-        'MunifTanjim/nui.nvim',
+        'MunifTanjim/nui.nvim', -- https://github.com/MunifTanjim/nui.nvim
     },
 }
 
 function M.config()
     local ok_neoTree, neoTree = pcall(require, 'neo-tree')
-    if not ok_neoTree then
+    local ok_sort, sort = pcall(require, 'plugins.neo-tree-utils-sort')
+    if not ok_neoTree or not ok_sort then
         print('plugins/neo-tree.lua: missing requirements')
+        print('ok_neoTree:', ok_neoTree)
+        print('ok_sort:', ok_sort)
         return
     end
 
@@ -23,7 +22,6 @@ function M.config()
     ---@field source string
     --- @diagnostic disable-next-line: duplicate-doc-field
     ---@field destination string
-
 
     -- @TODO (undg) 2024-01-11: migrate it from lsp to typescript-tools plugin
     ---@param args FileMovedArgs
@@ -69,79 +67,7 @@ function M.config()
     -- NOTE: this is changed from v1.x, which used the old style of highlight groups
     -- in the form "LspDiagnosticsSignWarning"
 
-    local priorities = {
-        ['index.js'] = 6,
-        ['index.jsx'] = 6,
-        ['index.ts'] = 6,
-        ['index.tsx'] = 6,
-        ['init.lua'] = 6,
-        ['mod.ts'] = 6,
-        ['main.go'] = 6,
-        ['__init__.py'] = 6,
-    }
-
-    local function getBaseName(name)
-        local base_name
-        local file_name = name:match('^(.*)(%.[^%.]+)$')
-        local dir_name = name:match('^(.*)/$')
-        if file_name == nil then
-            base_name = dir_name
-        else
-            base_name = file_name
-        end
-        return base_name
-    end
-
-    local function sort(a, b)
-        -- sort by priority if it possible
-        if priorities[a.name] and priorities[b.name] then
-            return priorities[a.name] > priorities[b.name]
-        end
-        -- if the priority is set for only one, then the
-        -- one who has it set will be the first
-        if priorities[a.name] or priorities[b.name] then
-            return priorities[a.name] ~= nil
-        end
-
-        if not a then
-            return false
-        end
-        if not a.name then
-            return false
-        end
-        if not a.path then
-            return false
-        end
-        if not a.type then
-            return false
-        end
-
-        if not b then
-            return true
-        end
-        if not b.name then
-            return true
-        end
-        if not b.path then
-            return true
-        end
-        if not b.type then
-            return true
-        end
-
-        -- local a_base = getBaseName(a.name)
-        -- local b_base = getBaseName(b.name)
-        --
-        -- if a_base == b_base then
-        --     return a.type ~= 'directory'
-        -- end
-
-        -- default path sort
-        return a.path < b.path
-    end
-
     neoTree.setup({
-        -- sort_function = nil,           -- uses a custom function for sorting files and directories in the tree
         sort_function = sort,
         -- If a user has a sources list it will replace this one.
         -- Only sources listed here will be loaded.
