@@ -29,7 +29,9 @@ keymap.normal(';a', ':wall<CR>')
 keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
 keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
 keymap.normal("QQ", ":q<CR>", {desc = 'quit'})
+keymap.normal("QA", ":qa<CR>", {desc = 'quit all'})
 keymap.normal('XX', ':q!<CR>', {desc = 'force quit (don\'t save)'})
+keymap.normal('XA', ':qa!<CR>', {desc = 'force quit all (don\'t save)'})
 
 -- redo last macro
 keymap.normal('<CR>', '@@')
