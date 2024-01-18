@@ -70,7 +70,6 @@ Spec('plugins.nvim-tmux-navigation')             -- hybrid tmux, vim window navi
 Spec('plugins.which-key')                        -- display interactive footer with available keymaps
 Spec('plugins.lualine')                          -- status bar with few informations
 Spec('plugins.tabular')                          -- align text in colums in table style.
-Spec('plugins.vim-colorpicker')                  -- open xorg window with color picker
 Git('https://github.com/stevearc/dressing.nvim') -- better floating window styles
 Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin lua functions
 
