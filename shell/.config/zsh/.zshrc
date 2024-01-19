@@ -93,7 +93,7 @@ src_local "$ZDOTDIR/secret.zsh" # file in gitignore
 plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
-eval "$(/bin/rtx activate zsh)" # lang version manager/installer
+eval "$(/bin/mise activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 # plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.

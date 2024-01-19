@@ -51,7 +51,7 @@
     command_execution_time  # duration of the last command
     direnv                  # direnv status (https://direnv.net/)
     # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    rtx                     # rtx version manager (https://github.com/jdxcode/rtx)
+    mise                     # mise version manager (https://github.com/jdxcode/mise)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
@@ -566,33 +566,13 @@
   # typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
 
-  # Powerlevel10k prompt segments for rtx
-#
+  ###############[ MISE: mise version manager (https://github.com/jdxcode/mise) ]###############
 # https://github.com/romkatv/powerlevel10k
-# https://github.com/jdxcode/rtx
-# [Feature request: add segment for rtx](https://github.com/romkatv/powerlevel10k/issues/2212)
-#
-# Usage in ~/.zshrc:
-#
-#   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#   [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-#   [[ -f ~/.p10k.rtx.zsh ]] && source ~/.p10k.rtx.zsh
-#
-
-# () {
-  # function prompt_rtx() {
-  #   local plugins=("${(@f)$(rtx current 2>/dev/null)}")
-  #   local plugin
-  #   for plugin in ${(k)plugins}; do
-  #     local parts=("${(@s/ /)plugin}")
-  #     local tool=${(U)parts[1]}
-  #     local version=${parts[2]}
-  #     p10k segment -r -i "${tool}_ICON" -s $tool -t "$version"
-  #   done
-  # }
-
-  function prompt_rtx() {
-    local plugins=("${(@f)$(rtx current 2>/dev/null)}")
+# https://github.com/jdxcode/mise
+# [Feature request: add segment for mise](https://github.com/romkatv/powerlevel10k/issues/2212)
+# This is port asdf to mise
+  function prompt_mise() {
+    local plugins=("${(@f)$(mise current 2>/dev/null)}")
     local plugin
     for plugin in ${(k)plugins}; do
       local parts=("${(@s/ /)plugin}")
@@ -602,52 +582,25 @@
     done
   }
 
-  # typeset -g POWERLEVEL9K_RTX_FOREGROUND=66
-  #
-  # typeset -g POWERLEVEL9K_RTX_DOTNET_CORE_FOREGROUND=134
-  # typeset -g POWERLEVEL9K_RTX_ELIXIR_FOREGROUND=129
-  # typeset -g POWERLEVEL9K_RTX_ERLANG_FOREGROUND=125
-  # typeset -g POWERLEVEL9K_RTX_FLUTTER_FOREGROUND=38
-  # typeset -g POWERLEVEL9K_RTX_GOLANG_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_RTX_HASKELL_FOREGROUND=172
-  # typeset -g POWERLEVEL9K_RTX_JAVA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_RTX_JULIA_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_RTX_LUA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_RTX_NODEJS_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_RTX_PERL_FOREGROUND=67
-  # typeset -g POWERLEVEL9K_RTX_PHP_FOREGROUND=99
-  # typeset -g POWERLEVEL9K_RTX_POSTGRES_FOREGROUND=31
-  # typeset -g POWERLEVEL9K_RTX_PYTHON_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_RTX_RUBY_FOREGROUND=168
-  # typeset -g POWERLEVEL9K_RTX_RUST_FOREGROUND=37
-  #
-  # # Substitute the default asdf prompt element
-  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[@]/asdf/rtx}")
-# }
-
-
-
-
-  ###############[ asdf: asdf version manager (https://github.com/asdf-vm/asdf) ]###############
-  # Default asdf color. Only used to display tools for which there is no color override (see below).
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_RTX_${TOOL}_FOREGROUND.
-  typeset -g POWERLEVEL9K_RTX_FOREGROUND=66
+  # Default mise color. Only used to display tools for which there is no color override (see below).
+  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_MISE_${TOOL}_FOREGROUND.
+  typeset -g POWERLEVEL9K_MISE_FOREGROUND=66
 
   # There are four parameters that can be used to hide asdf tools. Each parameter describes
   # conditions under which a tool gets hidden. Parameters can hide tools but not unhide them. If at
   # least one parameter decides to hide a tool, that tool gets hidden. If no parameter decides to
   # hide a tool, it gets shown.
   #
-  # Special note on the difference between POWERLEVEL9K_RTX_SOURCES and
-  # POWERLEVEL9K_RTX_PROMPT_ALWAYS_SHOW. Consider the effect of the following commands:
+  # Special note on the difference between POWERLEVEL9K_MISE_SOURCES and
+  # POWERLEVEL9K_MISE_PROMPT_ALWAYS_SHOW. Consider the effect of the following commands:
   #
   #   asdf local  python 3.8.1
   #   asdf global python 3.8.1
   #
   # After running both commands the current python version is 3.8.1 and its source is "local" as
-  # it takes precedence over "global". If POWERLEVEL9K_RTX_PROMPT_ALWAYS_SHOW is set to false,
+  # it takes precedence over "global". If POWERLEVEL9K_MISE_PROMPT_ALWAYS_SHOW is set to false,
   # it'll hide python version in this case because 3.8.1 is the same as the global version.
-  # POWERLEVEL9K_RTX_SOURCES will hide python version only if the value of this parameter doesn't
+  # POWERLEVEL9K_MISE_SOURCES will hide python version only if the value of this parameter doesn't
   # contain "local".
 
   # Hide tool versions that don't come from one of these sources.
@@ -659,136 +612,122 @@
   # - global  `asdf current` says "set by /home/username/file"
   #
   # Note: If this parameter is set to (shell local global), it won't hide tools.
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_RTX_${TOOL}_SOURCES.
-  typeset -g POWERLEVEL9K_RTX_SOURCES=(shell local global)
+  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_MISE_${TOOL}_SOURCES.
+  typeset -g POWERLEVEL9K_MISE_SOURCES=(shell local global)
 
   # If set to false, hide tool versions that are the same as global.
   #
   # Note: The name of this parameter doesn't reflect its meaning at all.
   # Note: If this parameter is set to true, it won't hide tools.
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_RTX_${TOOL}_PROMPT_ALWAYS_SHOW.
-  typeset -g POWERLEVEL9K_RTX_PROMPT_ALWAYS_SHOW=true
+  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_MISE_${TOOL}_PROMPT_ALWAYS_SHOW.
+  typeset -g POWERLEVEL9K_MISE_PROMPT_ALWAYS_SHOW=true
 
   # If set to false, hide tool versions that are equal to "system".
   #
   # Note: If this parameter is set to true, it won't hide tools.
-  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_RTX_${TOOL}_SHOW_SYSTEM.
-  typeset -g POWERLEVEL9K_RTX_SHOW_SYSTEM=true
+  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_MISE_${TOOL}_SHOW_SYSTEM.
+  typeset -g POWERLEVEL9K_MISE_SHOW_SYSTEM=true
 
   # If set to non-empty value, hide tools unless there is a file matching the specified file pattern
   # in the current directory, or its parent directory, or its grandparent directory, and so on.
   #
   # Note: If this parameter is set to empty value, it won't hide tools.
   # Note: SHOW_ON_UPGLOB isn't specific to asdf. It works with all prompt segments.
-  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_RTX_${TOOL}_SHOW_ON_UPGLOB.
+  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_MISE_${TOOL}_SHOW_ON_UPGLOB.
   #
   # Example: Hide nodejs version when there is no package.json and no *.js files in the current
   # directory, in `..`, in `../..` and so on.
   #
-  #   typeset -g POWERLEVEL9K_RTX_NODEJS_SHOW_ON_UPGLOB='*.js|package.json'
-  typeset -g POWERLEVEL9K_RTX_SHOW_ON_UPGLOB=
+  #   typeset -g POWERLEVEL9K_MISE_NODEJS_SHOW_ON_UPGLOB='*.js|package.json'
+  typeset -g POWERLEVEL9K_MISE_SHOW_ON_UPGLOB=
 
   # Ruby version from asdf.
-  typeset -g POWERLEVEL9K_RTX_RUBY_FOREGROUND=168
-  # typeset -g POWERLEVEL9K_RTX_RUBY_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_RUBY_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_RUBY_FOREGROUND=168
+  # typeset -g POWERLEVEL9K_MISE_RUBY_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_RUBY_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Python version from asdf.
-  typeset -g POWERLEVEL9K_RTX_PYTHON_FOREGROUND=37
-  typeset -g POWERLEVEL9K_RTX_PYTHON_VISUAL_IDENTIFIER_EXPANSION=''
-  typeset -g POWERLEVEL9K_RTX_PYTHON_SHOW_ON_UPGLOB='*.py'
+  typeset -g POWERLEVEL9K_MISE_PYTHON_FOREGROUND=37
+  typeset -g POWERLEVEL9K_MISE_PYTHON_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_MISE_PYTHON_SHOW_ON_UPGLOB='*.py'
 
   # Go version from asdf.
-  typeset -g POWERLEVEL9K_RTX_GOLANG_FOREGROUND=172
-  typeset -g POWERLEVEL9K_RTX_GOLANG_VISUAL_IDENTIFIER_EXPANSION='🐹'
-  typeset -g POWERLEVEL9K_RTX_GOLANG_SHOW_ON_UPGLOB='*.go'
+  typeset -g POWERLEVEL9K_MISE_GOLANG_FOREGROUND=172
+  typeset -g POWERLEVEL9K_MISE_GOLANG_VISUAL_IDENTIFIER_EXPANSION='🐹'
+  typeset -g POWERLEVEL9K_MISE_GOLANG_SHOW_ON_UPGLOB='*.go'
 
   # Node.js version from asdf.
-  typeset -g POWERLEVEL9K_RTX_NODEJS_FOREGROUND=70
-  typeset -g POWERLEVEL9K_RTX_NODEJS_VISUAL_IDENTIFIER_EXPANSION=''
-  typeset -g POWERLEVEL9K_RTX_NODEJS_SHOW_ON_UPGLOB='package.json'
+  typeset -g POWERLEVEL9K_MISE_NODEJS_FOREGROUND=70
+  typeset -g POWERLEVEL9K_MISE_NODEJS_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_MISE_NODEJS_SHOW_ON_UPGLOB='package.json'
 
-  typeset -g POWERLEVEL9K_RTX_DENO_FOREGROUND=27
-  typeset -g POWERLEVEL9K_RTX_DENO_VISUAL_IDENTIFIER_EXPANSION='🦕'
-  typeset -g POWERLEVEL9K_RTX_DENO_SHOW_ON_UPGLOB='deno.json'
+  typeset -g POWERLEVEL9K_MISE_DENO_FOREGROUND=27
+  typeset -g POWERLEVEL9K_MISE_DENO_VISUAL_IDENTIFIER_EXPANSION='🦕'
+  typeset -g POWERLEVEL9K_MISE_DENO_SHOW_ON_UPGLOB='deno.json'
 
-  typeset -g POWERLEVEL9K_RTX_BUN_FOREGROUND=214
-  typeset -g POWERLEVEL9K_RTX_BUN_VISUAL_IDENTIFIER_EXPANSION='🧅'
-  typeset -g POWERLEVEL9K_RTX_BUN_SHOW_ON_UPGLOB='bun.env'
+  typeset -g POWERLEVEL9K_MISE_BUN_FOREGROUND=214
+  typeset -g POWERLEVEL9K_MISE_BUN_VISUAL_IDENTIFIER_EXPANSION='🧅'
+  typeset -g POWERLEVEL9K_MISE_BUN_SHOW_ON_UPGLOB='bun.env'
 
   # Rust version from asdf.
-  typeset -g POWERLEVEL9K_RTX_RUST_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_RTX_RUST_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_RUST_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_RUST_FOREGROUND=37
+  # typeset -g POWERLEVEL9K_MISE_RUST_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_RUST_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # .NET Core version from asdf.
-  typeset -g POWERLEVEL9K_RTX_DOTNET_CORE_FOREGROUND=134
-  # typeset -g POWERLEVEL9K_RTX_DOTNET_CORE_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_DOTNET_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_DOTNET_CORE_FOREGROUND=134
+  # typeset -g POWERLEVEL9K_MISE_DOTNET_CORE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_DOTNET_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Flutter version from asdf.
-  typeset -g POWERLEVEL9K_RTX_FLUTTER_FOREGROUND=38
-  # typeset -g POWERLEVEL9K_RTX_FLUTTER_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_FLUTTER_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_FLUTTER_FOREGROUND=38
+  # typeset -g POWERLEVEL9K_MISE_FLUTTER_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_FLUTTER_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Lua version from asdf.
-  typeset -g POWERLEVEL9K_RTX_LUA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_RTX_LUA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  typeset -g POWERLEVEL9K_RTX_LUA_SHOW_ON_UPGLOB='*.lua'
+  typeset -g POWERLEVEL9K_MISE_LUA_FOREGROUND=32
+  # typeset -g POWERLEVEL9K_MISE_LUA_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_MISE_LUA_SHOW_ON_UPGLOB='*.lua'
 
   # Java version from asdf.
-  typeset -g POWERLEVEL9K_RTX_JAVA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_RTX_JAVA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_JAVA_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_JAVA_FOREGROUND=32
+  # typeset -g POWERLEVEL9K_MISE_JAVA_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_JAVA_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Perl version from asdf.
-  typeset -g POWERLEVEL9K_RTX_PERL_FOREGROUND=67
-  # typeset -g POWERLEVEL9K_RTX_PERL_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_PERL_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_PERL_FOREGROUND=67
+  # typeset -g POWERLEVEL9K_MISE_PERL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_PERL_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Erlang version from asdf.
-  typeset -g POWERLEVEL9K_RTX_ERLANG_FOREGROUND=125
-  # typeset -g POWERLEVEL9K_RTX_ERLANG_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_ERLANG_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_ERLANG_FOREGROUND=125
+  # typeset -g POWERLEVEL9K_MISE_ERLANG_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_ERLANG_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Elixir version from asdf.
-  typeset -g POWERLEVEL9K_RTX_ELIXIR_FOREGROUND=129
-  # typeset -g POWERLEVEL9K_RTX_ELIXIR_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_ELIXIR_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_ELIXIR_FOREGROUND=129
+  # typeset -g POWERLEVEL9K_MISE_ELIXIR_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_ELIXIR_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Postgres version from asdf.
-  typeset -g POWERLEVEL9K_RTX_POSTGRES_FOREGROUND=31
-  # typeset -g POWERLEVEL9K_RTX_POSTGRES_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_POSTGRES_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_POSTGRES_FOREGROUND=31
+  # typeset -g POWERLEVEL9K_MISE_POSTGRES_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_POSTGRES_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # PHP version from asdf.
-  typeset -g POWERLEVEL9K_RTX_PHP_FOREGROUND=99
-  # typeset -g POWERLEVEL9K_RTX_PHP_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_PHP_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_PHP_FOREGROUND=99
+  # typeset -g POWERLEVEL9K_MISE_PHP_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_PHP_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Haskell version from asdf.
-  typeset -g POWERLEVEL9K_RTX_HASKELL_FOREGROUND=172
-  # typeset -g POWERLEVEL9K_RTX_HASKELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_HASKELL_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_MISE_HASKELL_FOREGROUND=172
+  # typeset -g POWERLEVEL9K_MISE_HASKELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_HASKELL_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Julia version from asdf.
-  typeset -g POWERLEVEL9K_RTX_JULIA_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_RTX_JULIA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_RTX_JULIA_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  typeset -g POWERLEVEL9K_MISE_JULIA_FOREGROUND=70
+  # typeset -g POWERLEVEL9K_MISE_JULIA_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_MISE_JULIA_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   ###############[ asdf: asdf version manager (https://github.com/asdf-vm/asdf) ]###############
   # Default asdf color. Only used to display tools for which there is no color override (see below).
