@@ -105,7 +105,7 @@ keymap.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, s
 keymap.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Annihilate semicolons!!! 💀
-keymap.normal('<leader>;', ":%s/;$//g<cr>'':noh<cr>")
+-- keymap.normal('<leader>;', ":%s/;$//g<cr>'':noh<cr>")
 
 -- Disable highlight till next search
 keymap.normal('<leader>/', ':noh<cr>')
