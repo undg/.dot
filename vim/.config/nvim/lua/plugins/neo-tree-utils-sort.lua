@@ -11,7 +11,8 @@ local priorities = {
 
 local function remove_extension(a)
     if a.type == 'file' then
-        local ext_pattern = '%.' .. a.ext .. '$'
+        local ext = a.ext or ''
+        local ext_pattern = '%.' .. ext .. '$'
         return a.path:gsub(ext_pattern, '')
     else
         return a.path
