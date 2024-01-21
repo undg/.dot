@@ -132,29 +132,7 @@ return {
             keymap.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
             keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
             keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
-            keymap.normal('<leader>f;', ':Telescope commands<cr>')
-
-            -- Custom goto commands
-            keymap.normal('<leader>ve', ':GotoVimFind<cr>')
-            keymap.normal('<leader>fvf', ':GotoVimFind<cr>')
-            keymap.normal('<leader>fvb', ':GotoVimBrowse<cr>')
-            keymap.normal('<leader>fvs', ':GotoVimGit<cr>')
-            keymap.normal('<leader>fvg', ':GotoVimGrep<cr>')
-
-            keymap.normal('<leader>fzf', ':GotoZshFind<cr>')
-            keymap.normal('<leader>fzb', ':GotoZshBrowse<cr>')
-            keymap.normal('<leader>fzs', ':GotoZshGit<cr>')
-            keymap.normal('<leader>fzg', ':GotoZshGrep<cr>')
-
-            keymap.normal('<leader>fdf', ':GotoDotFind<cr>')
-            keymap.normal('<leader>fdb', ':GotoDotBrowse<cr>')
-            keymap.normal('<leader>fds', ':GotoDotGit<cr>')
-            keymap.normal('<leader>fdg', ':GotoDotGrep<cr>')
-
-            keymap.normal('<leader>fcf', ':GotoCodeFind<cr>')
-            keymap.normal('<leader>fcb', ':GotoCodeBrowse<cr>')
-            keymap.normal('<leader>fcs', ':GotoCodeGit<cr>')
-            keymap.normal('<leader>fcg', ':GotoCodeGrep<cr>')
+            keymap.normal('<leader>fc', ':Telescope commands<cr>')
 
             keymap.visual('<leader>fg', function()
                 tb.live_grep({ default_text = get_visual_selection() })
