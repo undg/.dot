@@ -31,7 +31,8 @@ function M.config()
     vim.g.rainbow_delimiters = { highlight = highlight }
 
     require('ibl').setup({
-        indent = { highlight = highlight },
+        -- indent = { highlight = highlight }, -- color all of them
+        scope = { highlight = highlight }, -- color only current
     })
 
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
