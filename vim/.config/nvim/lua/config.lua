@@ -56,9 +56,9 @@ vim.opt.list = false
 
 -- Default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- folding
