@@ -48,7 +48,7 @@ local lsp2mason = {
 local M_null_ls_sources = {
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.prettierd,
+    -- null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.completion.tags,
@@ -80,7 +80,7 @@ null_ls.setup({
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
     'stylua',     -- format lua
-    'prettierd',  -- format js/ts
+    -- 'prettierd',  -- format js/ts
     'shfmt',      -- format sh
     'fixjson',    -- format json
     'black',      -- format python
