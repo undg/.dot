@@ -86,6 +86,13 @@ return {
                             },
                         },
                     },
+                    smart_open = {
+                        show_scores = true,
+                        ignore_patterns = { '*.git/*', '*/tmp/*' },
+                        match_algorithm = 'fzf',
+                        disable_devicons = false,
+                        open_buffer_indicators = { previous = '👀', others = '🙈' },
+                    },
                 },
             })
 
@@ -111,7 +118,8 @@ return {
             -- Core
             keymap.normal('<leader>m', ':Telescope<cr>')
             keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
-            keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
+            -- keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
+            keymap.normal('<leader>,', ':Telescope smart_open<cr>')
             keymap.normal(
                 '<leader>.',
                 ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = false, hide_parent_dir = false, select_buffer = true, respect_gitignore = true })<cr>'
