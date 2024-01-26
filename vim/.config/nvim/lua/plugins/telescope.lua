@@ -115,9 +115,9 @@ return {
                 include_current_line = true,
             }
 
-            -- Core
             keymap.normal('<leader>m', ':Telescope<cr>')
-            keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
+            -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
+            keymap.normal(',.', ':Telescope smart_open<cr>')
             -- keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
             keymap.normal('<leader>,', ':Telescope smart_open<cr>')
             keymap.normal(
