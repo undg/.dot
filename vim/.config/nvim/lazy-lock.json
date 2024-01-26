@@ -53,6 +53,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "e2d6ce7b07941b0788177e1297699ad99c1470dc" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "sg.nvim": { "branch": "master", "commit": "691e138a86ccb4083c46ff62ab5eb53f9148696d" },
+  "smart-open.nvim": { "branch": "main", "commit": "cf8cbaab3b802f4690eda3b1cc6dfc606d313695" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "suda.vim": { "branch": "master", "commit": "8b0fc3711760195aba104e2d190cff9af8267052" },
   "tabular": { "branch": "master", "commit": "339091ac4dd1f17e225fe7d57b48aff55f99b23a" },
