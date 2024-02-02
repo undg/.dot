@@ -31,6 +31,8 @@ keymap.normal(
     ':TSToolsRenameFile sync<CR>',
     { desc = 'lsp: rename_file', silent = false, noremap = true }
 )
+keymap.normal('<LEADER>ri', ':TSToolsOrganizeImports<cr>', { desc = 'lsp: Organize import', silent = false, noremap = true })
+keymap.normal('<LEADER>ru', ':TSToolsRemoveUnused<cr>', { desc = 'lsp: Organize import', silent = false, noremap = true })
 keymap.normal('K', function()
     if vim.bo.filetype == 'help' then
         vim.api.nvim_feedkeys('K', 'ni', true)
