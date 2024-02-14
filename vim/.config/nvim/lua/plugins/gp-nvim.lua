@@ -29,7 +29,7 @@ return {
                     chat = true,
                     command = false,
                     -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-3.5-turbo-1106', temperature = 0.5, top_p = 1 },
+                    model = { model = 'gpt-3.5-turbo', temperature = 0.5, top_p = 1 },
                     -- system prompt (use this to specify the persona/role of the AI)
                     system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
                         .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
@@ -50,9 +50,10 @@ return {
                     chat = true,
                     command = false,
                     -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-4-1106-preview', temperature = 0.5, top_p = 1 },
+                    model = { model = 'gpt-4-turbo-preview', temperature = 0.4, top_p = 0.8 },
                     system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
                         .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
+                        .. "- DO NOT EXPLAN if not explicitly asked for explanation.\n"
                         .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
                         .. "- If unsure, respond with 'I don't know'.\n"
                         .. '- Request clarification only when crucial.\n'
