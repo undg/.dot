@@ -212,8 +212,9 @@ bindsym $winKey+Shift+Escape    exec --no-startup-id dunstctl history-pop # show
 # bindsym $winKey+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
 # bindsym $winKey+grave           exec --no-startup-id rofimoji --skin-tone neutral --action clipboard copy
 bindsym $winKey+grave           exec --no-startup-id rofi -modi emoji -show emoji
-bindsym $winKey+\\+          exec --no-startup-id showclip
-bindsym $winKey+\\=           exec --no-startup-id xcqr
+bindsym $winKey+Shift+plus         exec --no-startup-id qr-code-feh
+for_window [title="qr_code_feh-uniq_title"] floating enable
+bindsym $winKey+equal           exec  --no-startup-id qr-code-dunst
 
 
 # #---Letter Key Bindings---# #
