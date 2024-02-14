@@ -3,6 +3,8 @@
 qrencode -o - -s 5 \
 	"$(xclip -out -selection clipboard)" |
 	timeout 30s feh --force-aliasing \
+	# use that title in i3/config config to make it float
+	  --title "qr_code_feh-uniq_title" \
 		--image-bg white \
 		--auto-zoom \
 		--geometry 640x480 \
