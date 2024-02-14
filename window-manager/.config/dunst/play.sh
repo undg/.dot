@@ -1,10 +1,10 @@
 #!/bin/sh
 
-ignore_apps=("Spotify" "Kodi")
+ignore_apps=("Spotify" "Kodi" "zsh")
 
 for app in "${ignore_apps[@]}"; do
   if [ "$app" = "$1" ]; then
-    exit 0
+    exit 1
   fi
 done
 
