@@ -7,19 +7,20 @@ B='\033[0;34m' #'0;34' is Blue's ANSI color code
 NC='\033[0m'   #'0'    is back no color
 
 
-SCRIPT_PATH="/home/undg/.config/dunst/play.sh"
+SCRIPT_PATH=~/.config/dunst/play.sh
 IGNORED_APP="Spotify"
+NON_IGNORED_APP="NonIgnoredApp"
 
 
 
-if sh ~/.config/dunst/play.sh "$IGNORED_APP"; then
-	printf "${R}Test failed:$NC Spotify should be ignored.\n"
+if sh "$SCRIPT_PATH" "$IGNORED_APP"; then
+	echo -e "$R  Test failed:$B Spotify$NC should be ignored."
 else
-	printf "${G}Test passed:$NC Spotify is correctly ignored.\n"
+	echo -e "$G  Test passed:$B Spotify$NC is correctly ignored."
 fi
 
-if sh "$SCRIPT_PATH" NonIgnoredApp; then
-	printf "${G}Test passed:$NC NonIgnoredApp is not ignored as expected.\n"
+if sh "$SCRIPT_PATH" "$NON_IGNORED_APP"; then
+	echo -e "$G  Test passed:$B NonIgnoredApp$NC is not ignored as expected."
 else
-	printf "${R}Test failed:$NC NonIgnoredApp should not be ignored.\n"
+	echo -e "$R  Test failed:$B NonIgnoredApp$NC should not be ignored."
 fi
