@@ -51,7 +51,6 @@
     hide_duplicate_count = true
     show_indicators = yes
     icon_position = left
-    icon_size = 64
     max_icon_size = 128
     #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/
     sticky_history = yes
@@ -109,6 +108,10 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
+[play_sound]
+   summary = "*"
+   script = /home/undg/.config/dunst/play.sh
+   # urgency = low
 
 #[espeak]
 #    summary = "*"
