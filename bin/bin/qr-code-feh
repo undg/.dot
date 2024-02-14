@@ -1,10 +1,12 @@
 #!/bin/sh
+# use that title in i3/config config to make it float
+UNIQ_TITLE="qr_code_feh-uniq_title"
+
 # Credit to Maddison Hellstrom (@b0o on Github)
 qrencode -o - -s 5 \
 	"$(xclip -out -selection clipboard)" |
 	timeout 30s feh --force-aliasing \
-	# use that title in i3/config config to make it float
-	  --title "qr_code_feh-uniq_title" \
+	  --title "$UNIQ_TITLE" \
 		--image-bg white \
 		--auto-zoom \
 		--geometry 640x480 \
