@@ -6,5 +6,5 @@ qrencode -o "$file" -s 5 \
 	"$(xclip -out -selection clipboard)" &&
 	dunstify -I "$file" $(date +%H:%m:%S) qrcode
 
-sleep 30
+sleep 60
 rm "$file"
