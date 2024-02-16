@@ -74,12 +74,12 @@ rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/s2/RAW/URecorder"
 
 # download to s0 {zoom-f2, Insta360, DJI}
 rsync_src_desc "/run/media/undg/F2_SD/" "/mnt/s0/RAW/zoom-f2"
-rsync_src_desc "/run/media/undg/insta360-x3/DCIM/Camera01/" "/mnt/s0/RAW/insta360-x3"
+rsync_src_desc "/run/media/undg/INSTA360-X3/DCIM/Camera01/" "/mnt/s0/RAW/INSTA360-X3"
 rsync_src_desc "/run/media/undg/DJI-pocket2/DCIM/100MEDIA/" "/mnt/s0/RAW/dji-pocket2"
 
 # Save to s2 {zoom-f2, Insta360, DJI}
 rsync_src_desc "/mnt/s0/RAW/zoom-f2/" "/mnt/s2/RAW/zoom-f2"
-rsync_src_desc "/mnt/s0/RAW/insta360-x3/" "/mnt/s2/RAW/insta360-x3"
+rsync_src_desc "/mnt/s0/RAW/INSTA360-X3/" "/mnt/s2/RAW/INSTA360-X3"
 rsync_src_desc "/mnt/s0/RAW/dji-pocket2/" "/mnt/s2/RAW/dji-pocket2"
 
 # Backup of backup
