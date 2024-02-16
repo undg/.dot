@@ -69,6 +69,7 @@
   "ultisnips": { "branch": "master", "commit": "b393ba65386d47664421e1f8b246a87a6e8b218c" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-diminactive": { "branch": "master", "commit": "6f2e14e6ff6a038285937c378ec3685e6ff7ee36" },
+  "vim-doge": { "branch": "master", "commit": "622736ca29ecd6e2720623696d48179c4da430ac" },
   "vim-fugitive": { "branch": "master", "commit": "854a8df0d06b8d3fcb30fa7f2b08c62b553eee3b" },
   "vim-illuminate": { "branch": "master", "commit": "3bd2ab64b5d63b29e05691e624927e5ebbf0fb86" },
   "vim-mundo": { "branch": "master", "commit": "2ceda8c65f7b3f9066820729fc02003a09df91f9" },
