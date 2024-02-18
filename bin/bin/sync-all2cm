@@ -60,7 +60,7 @@ rsync_src_desc() {
 	# RSYNC
 	if test "$src_ok" = true && test "$desc_ok" = true; then
 		echo -e "\n${Purple}$dst${NC} <- ${Green}$src${NC}"
-		rsync $DEBUG -vazr --progress "$src" "$dst"
+		rsync $DEBUG -vazr --exclude '.trashed*' --progress "$src" "$dst"
 	else
 		echo -e "\n$dst_msg${NC} <- $src_msg${NC}"
 	fi
@@ -71,6 +71,14 @@ rsync_src_desc "ixi:storage/dcim/Camera/" "/mnt/s2/RAW/Camera"
 rsync_src_desc "ixi:storage/pictures/dontBackup/" "/mnt/s2/RAW/Camera"
 rsync_src_desc "ixi:storage/shared/Android/media/com.whatsapp/WhatsApp/" "/mnt/s2/RAW/Whatsapp"
 rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/s2/RAW/URecorder"
+
+# get music from spotify list and send music to phone
+MP3_DIR=/mnt/s1/Media/Music/mp3/
+cd $MP3_DIR 
+spotdl 'https://open.spotify.com/playlist/2TQNmQIGMyAEmLHATItBhz'
+cd -
+# @TODO (undg) 2024-02-18: abstract in rsync_src_desc. ATM only src can be used as remote location
+rsync $DEBUG -vazr --progress "$MP3_DIR" "ixi:storage/music/mp3"
 
 # download to s0 {zoom-f2, Insta360, DJI}
 rsync_src_desc "/run/media/undg/F2_SD/" "/mnt/s0/RAW/zoom-f2"
