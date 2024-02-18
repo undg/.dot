@@ -13,13 +13,14 @@
 ; 	username = localUser
 
 [alias]
+	a = add .
 	ck = checkout
 	b = branch -vv
 	br = branch
 	cm = commit
 	st = status
 	d = difftool
-  ; l = log --decorate --oneline --graph
+;       l = log --decorate --oneline --graph
 	l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
 	m = merge --no-ff
 	ff = merge --ff-only
@@ -27,7 +28,7 @@
 	c = clone --recursive
 	p = pull
 	pr = pull --rebase
-	rp = checkout HEAD -- package-lock.json   
+	; rp = checkout HEAD -- package-lock.json   
 	prune-origin = remote prune origin
 	branch-list-remote = for-each-ref --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)    %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=authordate refs/remotes
 
