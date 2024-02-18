@@ -95,5 +95,5 @@ rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
 rsync_src_desc "/mnt/s2/backups/" "/mnt/s1/backups"
 
 # AGAIN ⁉️
-# Looks strange, but it have a sense, if you'll think about it 🤔
+# Looks strange, but if you'll think about it, it have a sense 
 rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
