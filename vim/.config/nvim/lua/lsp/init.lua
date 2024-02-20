@@ -47,7 +47,7 @@ local lsp2mason = {
 
 local M_null_ls_sources = {
     null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
+    -- null_ls.builtins.formatting.eslint_d,
     -- null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.fixjson,
@@ -88,7 +88,7 @@ local mason_non_lsp = {
     'actionlint', -- github action files diagnostic
     'goimports-reviser',
     'goimports',
-    'eslint_d',
+    -- 'eslint_d',
 }
 
 -- Lsp server names that will be installed via Manson
