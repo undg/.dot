@@ -1,13 +1,9 @@
--- https://github.com/akinsho/bufferline.nvim
-
--- https://github.com/moll/vim-bbye
--- https://github.com/nvim-tree/nvim-web-devicons
-
 local M = {
-    'akinsho/bufferline.nvim',
+    'akinsho/bufferline.nvim', -- https://github.com/akinsho/bufferline.nvim
     dependencies = {
-        { 'moll/vim-bbye' }, -- :Bdelete and :Bwipeout to preserve window layout
-        { 'nvim-tree/nvim-web-devicons' },
+        -- :Bdelete and :Bwipeout to preserve window layout
+        { 'moll/vim-bbye' }, -- https://github.com/moll/vim-bbye
+        { 'nvim-tree/nvim-web-devicons' }, -- https://github.com/nvim-tree/nvim-web-devicons
     },
     version = '*',
 }
