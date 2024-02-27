@@ -53,13 +53,13 @@ function M.config()
             end),
         },
         sources = {
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lua' },
-            { name = 'path' },
-            { name = 'ultisnips' },
-            { name = 'buffer',   keyword_length = 4 },
-            { name = 'spell' },
-            { name = 'codeium' },
+            { name = 'nvim_lsp',   keyword_length = 1 },
+            { name = 'nvim_lua',   keyword_length = 1 },
+            { name = 'path',   keyword_length = 1 },
+            { name = 'ultisnips',   keyword_length = 2 },
+            { name = 'buffer',   keyword_length = 3 },
+            { name = 'spell',   keyword_length = 3 },
+            { name = 'codeium',   keyword_length = 3 },
             -- { name = 'cody' },
         },
         snippet = {
@@ -71,7 +71,7 @@ function M.config()
         formatting = {
             format = lspkind.cmp_format({
                 mode = 'symbol',
-                ellipsis_char = '...',
+                ellipsis_char = '…',
 
                 with_text = false,
                 maxwidth = 50,
