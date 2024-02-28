@@ -8,7 +8,8 @@ import * as React from 'react'
 endsnippet
 
 snippet rfc "react AK's functional component"
-export const ${1:`!p snip.rv = snip.basename.replace("_", " ").title().replace(" ", "")`}: React.FunctionComponent<${2:{}}> = (props) => {
+import * as React from 'react';
+export const ${1:`!p snip.rv = snip.basename.replace("_", " ").title().replace(" ", "").replace("-", "")`}: React.FunctionComponent<${2:{}}> = (props) => {
 	$0
 	return <p>$1</p>
 }
