@@ -84,6 +84,3 @@ Spec('plugins.illuminate')            -- automatically highlighting other uses o
 Spec('plugins.fidget')                -- LSP notification
 Spec('plugins.windows-nvim')          -- Automatically manage size of current window;
 Spec('plugins.indent-blankline-nvim') -- Add indentation guides even on blank lines in fold
--- @TODO (undg) 2024-01-09: Give it a try and experiment with it a bit.
---                          I'm not shure if I do like it. Looks nice and falshy but usability is my concern.
--- Spec('plugins.noice')                                         -- notification fireworks.
