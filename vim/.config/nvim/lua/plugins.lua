@@ -25,6 +25,7 @@ Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to conv
 Spec('plugins.neo-tree')
 Spec('plugins.bufferline')
 Spec('plugins.telescope')
+Spec('plugins.dir-telescope')
 Spec('plugins.smart-open')
 Spec('plugins.harpoon')
 

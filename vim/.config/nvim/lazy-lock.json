@@ -14,6 +14,7 @@
   "cspell.nvim": { "branch": "main", "commit": "2e65904243f41b9002618d1fe0d79def6c795eeb" },
   "diffconflicts": { "branch": "master", "commit": "05e8d2e935a235b8f8e6d308a46a5f028ea5bf97" },
   "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
+  "dir-telescope.nvim": { "branch": "main", "commit": "1f3a041f870d1edf9cc64635e79f4b829e755978" },
   "dressing.nvim": { "branch": "master", "commit": "c1179336aaeca82a785cade27e9b7b276af3222e" },
   "fidget.nvim": { "branch": "main", "commit": "3a93300c076109d86c7ce35ec67a8034ae6ba9db" },
   "fzf-lua": { "branch": "main", "commit": "36195a230246fc44e8144ee0b454fc022ac5326b" },
