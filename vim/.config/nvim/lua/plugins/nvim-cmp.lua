@@ -56,7 +56,7 @@ function M.config()
             { name = 'nvim_lsp',   keyword_length = 1 },
             { name = 'nvim_lua',   keyword_length = 1 },
             { name = 'path',   keyword_length = 1 },
-            { name = 'ultisnips',   keyword_length = 2 },
+            { name = 'ultisnips'},
             { name = 'buffer',   keyword_length = 3 },
             { name = 'spell',   keyword_length = 3 },
             { name = 'codeium',   keyword_length = 3 },
