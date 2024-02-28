@@ -65,8 +65,6 @@ Spec('plugins.ollama-nvim') -- AI with local server and locally downloaded model
 Spec('plugins.gen-nvim')    -- AI with local server and locally downloaded models. Install https://github.com/jmorganca/ollama (in arch std extra repo)
 
 -- Utils
--- @TODO (undg) 2024-01-08: think about replacement
--- Spec('plugins.vimwiki')
 Spec('plugins.obsidian')                         -- Note taking and knowledge base
 Spec('plugins.markdown-preview')                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec('plugins.qfenter')                          -- quickfix window (cw) open in split/tab...
