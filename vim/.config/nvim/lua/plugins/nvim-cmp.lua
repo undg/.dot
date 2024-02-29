@@ -59,7 +59,7 @@ function M.config()
             { name = 'ultisnips'},
             { name = 'buffer',   keyword_length = 3 },
             { name = 'spell',   keyword_length = 3 },
-            { name = 'codeium',   keyword_length = 3 },
+            -- { name = 'codeium',   keyword_length = 3 },
             -- { name = 'cody' },
         },
         snippet = {
