@@ -3,7 +3,6 @@ return {
         'nvim-telescope/telescope.nvim',                                    -- https://github.com/nvim-telescope/telescope.nvim
         dependencies = {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-            'nvim-telescope/telescope-file-browser.nvim',                   -- https://github.com/nvim-telescope/telescope-file-browser.nvim
             'nvim-telescope/telescope-ui-select.nvim',                      -- https://github.com/nvim-telescope/telescope-ui-select.nvim
         },
         config = function()
@@ -15,7 +14,6 @@ return {
                 return
             end
 
-            local fb_actions = telescope.extensions.file_browser.actions
             -- local trouble = require("trouble.providers.telescope")
 
             telescope.setup({
@@ -72,20 +70,6 @@ return {
                         case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
                         -- the default case_mode is "smart_case"
                     },
-                    file_browser = {
-                        layout_strategy = 'vertical',
-                        layout_config = { height = 0.9, width = 0.9 },
-                        mappings = {
-                            i = {
-                                ['<C-i>'] = fb_actions.toggle_hidden,
-                                ['<C-h>'] = fb_actions.goto_parent_dir,
-                                ['<C-c>'] = fb_actions.create,
-                                ['<C-n>'] = fb_actions.rename,
-                                ['<C-d>'] = fb_actions.remove,
-                                ['<C-a>'] = fb_actions.select_all,
-                            },
-                        },
-                    },
                     smart_open = {
                         show_scores = true,
                         ignore_patterns = { '*.git/*', '*/tmp/*' },
@@ -98,7 +82,6 @@ return {
 
             -- load_extension's, somewhere after setup function:
             telescope.load_extension('fzf')
-            telescope.load_extension('file_browser')
             telescope.load_extension('ui-select')
 
             -- keymap
@@ -120,13 +103,13 @@ return {
             keymap.normal(',.', ':Telescope smart_open<cr>')
             -- keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
             keymap.normal('<leader>,', ':Telescope smart_open<cr>')
-            keymap.normal(
-                '<leader>.',
-                ':lua require("telescope").extensions.file_browser.file_browser({hidden = true, path = "%:p:h", grouped = false, hide_parent_dir = false, select_buffer = true, respect_gitignore = true })<cr>'
-            )
+            -- -- @TODO (undg) 2024-03-04: use new plugin for it
+            -- keymap.normal('<leader>.', ':')
 
             keymap.normal('<leader>fb', ':Telescope buffers<cr>')
             keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
+            -- -- @TODO (undg) 2024-03-04: use new plugin for it
+            keymap.normal('<leader>fG', ':')
             keymap.normal('<leader>fr', ':Telescope resume<cr>')
 
             local open_quick_fix_window_in_telescope = function()
