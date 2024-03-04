@@ -50,7 +50,6 @@ local M_null_ls_sources = {
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.formatting.fixjson,
     null_ls.builtins.completion.tags,
     null_ls.builtins.hover.dictionary,
 }
@@ -81,7 +80,6 @@ null_ls.setup({
 local mason_non_lsp = {
     'stylua',     -- format lua
     'shfmt',      -- format sh
-    'fixjson',    -- format json
     'black',      -- format python
 
     'actionlint', -- github action files diagnostic
