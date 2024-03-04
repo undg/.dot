@@ -31,7 +31,7 @@ local lsp2mason = {
         -- tsserver = 'typescript-language-server',
         yamlls = 'yaml-language-server',
         lua_ls = 'lua-language-server',
-        -- eslint = 'eslint_d',
+        eslint = 'eslint_d',
         gopls = 'gopls',
     },
     cfg_no_file = {
@@ -46,8 +46,6 @@ local lsp2mason = {
 }
 
 local M_null_ls_sources = {
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.completion.tags,
