@@ -4,6 +4,18 @@ return {
         dependencies = {
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
             'nvim-telescope/telescope-ui-select.nvim',                      -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+
+            {
+                'princejoogie/dir-telescope.nvim', -- https://github.com/princejoogie/dir-telescope.nvim
+                config = function()
+                    require('dir-telescope').setup({
+                        -- these are the default options set
+                        hidden = true,
+                        no_ignore = false,
+                        show_preview = true,
+                    })
+                end,
+            },
         },
         config = function()
             local ok_telescope, telescope = pcall(require, 'telescope')
@@ -103,13 +115,11 @@ return {
             keymap.normal(',.', ':Telescope smart_open<cr>')
             -- keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
             keymap.normal('<leader>,', ':Telescope smart_open<cr>')
-            -- -- @TODO (undg) 2024-03-04: use new plugin for it
-            -- keymap.normal('<leader>.', ':')
+            keymap.normal('<leader>.', require('telescope').extensions.dir.find_files)
 
             keymap.normal('<leader>fb', ':Telescope buffers<cr>')
             keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
-            -- -- @TODO (undg) 2024-03-04: use new plugin for it
-            keymap.normal('<leader>fG', ':')
+            keymap.normal('<leader>fG', require('telescope').extensions.dir.live_grep)
             keymap.normal('<leader>fr', ':Telescope resume<cr>')
 
             local open_quick_fix_window_in_telescope = function()
