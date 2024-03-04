@@ -171,7 +171,8 @@ else
 fi
 
 if hash tmuxp 2>/dev/null; then
-    alias tparahi='tmuxp load --append arahi'
+    alias tmuxp-arahi='tmux kill-window -t 9;tmuxp load --append arahi'
+    alias tmuxp-arahi-kill='tmux kill-window -t 9'
 else
     echo "tmuxp is not installed."
     install tmuxp
