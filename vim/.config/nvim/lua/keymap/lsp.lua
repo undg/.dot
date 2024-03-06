@@ -1,5 +1,4 @@
 local keymap_ok, keymap = pcall(require, 'utils.keymap')
-local tb_ok, telescope_builtin = pcall(require, 'telescope.builtin')
 local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 local typescript_ok = pcall(require, 'typescript-tools')
@@ -7,7 +6,6 @@ local typescript_ok = pcall(require, 'typescript-tools')
 if --
     not keymap_ok
     or not lspsaga_ok
-    or not tb_ok
     or not t_ok
     or not typescript_ok
 then
@@ -15,24 +13,21 @@ then
     return
 end
 
-local tb_opt = {
-    fname_width = 0.5,
-    trim_text = false,
-    show_line = false,
-    include_current_line = true,
-}
-
 keymap.normal('<LEADER>p', function()
     vim.lsp.buf.format({ timeout_ms = 2000, async = true })
 end, { desc = 'lsp: format' })
 keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
+keymap.normal('<LEADER>rfn', ':TSToolsRenameFile sync<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
 keymap.normal(
-    '<LEADER>rfn',
-    ':TSToolsRenameFile sync<CR>',
-    { desc = 'lsp: rename_file', silent = false, noremap = true }
+    '<LEADER>ri',
+    ':TSToolsOrganizeImports<cr>',
+    { desc = 'lsp: Organize import', silent = false, noremap = true }
 )
-keymap.normal('<LEADER>ri', ':TSToolsOrganizeImports<cr>', { desc = 'lsp: Organize import', silent = false, noremap = true })
-keymap.normal('<LEADER>ru', ':TSToolsRemoveUnused<cr>', { desc = 'lsp: Organize import', silent = false, noremap = true })
+keymap.normal(
+    '<LEADER>ru',
+    ':TSToolsRemoveUnused<cr>',
+    { desc = 'lsp: Organize import', silent = false, noremap = true }
+)
 keymap.normal('K', function()
     if vim.bo.filetype == 'help' then
         vim.api.nvim_feedkeys('K', 'ni', true)
@@ -51,33 +46,19 @@ keymap.normal('<leader>GD', ':Lspsaga peek_type_definition<CR>', { desc = 'lsp: 
 keymap.normal('GD', ':Lspsaga peek_type_definition<CR>', { desc = 'lsp: peek_type_definition' })
 
 keymap.normal('<leader>gd', vim.lsp.buf.definition, { desc = 'lsp: definition' })
-keymap.normal('gd', function()
-    telescope_builtin.lsp_definitions(tb_opt)
-end, { desc = 'lsp: definition (telescope)' })
+keymap.normal('gd', ':Telescope lsp_definitions<cr>', { desc = 'lsp: definition (telescope)' })
 
 keymap.normal('<leader>gD', vim.lsp.buf.type_definition, { desc = 'lsp: type_definition' })
-keymap.normal('gD', function()
-    telescope_builtin.lsp_type_definitions(tb_opt)
-end, { desc = 'lsp: type_definition (telescope)' })
+keymap.normal('gD', ':Telescope lsp_type_definitions<cr>', { desc = 'lsp: type_definition (telescope)' })
 
 keymap.normal('<leader>gr', vim.lsp.buf.references, { desc = 'lsp: references' })
-keymap.normal('grr', function()
-    telescope_builtin.lsp_references(tb_opt)
-end, { desc = 'lsp: references (telescope)' })
--- vim.keymap.set('n', '<leader>gr', function()
---     vim.fn.jobstart()
---     vim.lsp.buf.references()
---     vim.cmd('cclose')
---     telescope_builtin.quickfix()
---     -- telescope_builtin.lsp_references(tb_opt)
--- end)
+keymap.normal('gr', ':Telescope lsp_references<cr>', { desc = 'lsp: references (telescope)' })
 
-keymap.normal('grf', ':TSToolsFileReferences sync', { desc = 'lsp: show file references' })
+keymap.normal('gfr', ':TSToolsFileReferences<cr>', { desc = 'lsp: show file references' })
 
 keymap.normal('<leader>gi', vim.lsp.buf.implementation, { desc = 'lsp: implementation' })
-keymap.normal('gi', function()
-    telescope_builtin.lsp_implementations(tb_opt)
-end, { desc = 'lsp: implementation (telescope)' })
+keymap.normal('gi', ':TSToolsGoToSourceDefinition<cr>', { desc = 'lsp: implementation (telescope)' })
+keymap.normal('gI', ':Telescope lsp_implementations<cr>', { desc = 'lsp: implementation (telescope)' })
 
 keymap.normal(
     '<leader>gj',
