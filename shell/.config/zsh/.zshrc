@@ -115,7 +115,8 @@ plug "zsh-users/zsh-syntax-highlighting"
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/510
 ZSH_HIGHLIGHT_STYLES[comment]='none'
 
-plug "zap-zsh/fzf" # famous fuzzy finder
+# plug "zap-zsh/fzf" # famous fuzzy finder
+# This overrides ^R and arrow-up (but arrow-up is later re-overriten with up-line-or-beginning-search)
 eval "$(atuin init zsh)" # better shell history
 
 #################################
