@@ -95,6 +95,7 @@ src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
 eval "$(/bin/mise activate zsh)" # lang version manager/installer
 eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
+
 # plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "undg/zsh-auto-notify" # system notification for long running processes
@@ -115,6 +116,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 ZSH_HIGHLIGHT_STYLES[comment]='none'
 
 plug "zap-zsh/fzf" # famous fuzzy finder
+eval "$(atuin init zsh)" # better shell history
 
 #################################
 # key mappings
