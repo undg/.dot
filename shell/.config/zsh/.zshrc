@@ -115,8 +115,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/510
 ZSH_HIGHLIGHT_STYLES[comment]='none'
 
-# plug "zap-zsh/fzf" # famous fuzzy finder
-# This overrides ^R and arrow-up (but arrow-up is later re-overriten with up-line-or-beginning-search)
+# This overrides ^R and arrow-up
 eval "$(atuin init zsh)" # better shell history
 
 #################################
@@ -144,14 +143,18 @@ bindkey "^[q" exit_zsh
 # same bind-key is set in tmux
 bindkey -s '^g' '^utmux-sessionizer^M'
 
+# @TODO (undg) 2024-03-07: detete after testing period
+# ---- replaced with `atuin`
+# plug "zap-zsh/fzf" # famous fuzzy finder
+# ---- replaced with `atuin`
 # replace "zsh-users/zsh-history-substring-search" with native solution
 # https://unix.stackexchange.com/a/672892
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Arrow up
-bindkey "^[[B" down-line-or-beginning-search # Arrow down
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey "^[[A" up-line-or-beginning-search # Arrow up
+# bindkey "^[[B" down-line-or-beginning-search # Arrow down
 
 
 #################################
