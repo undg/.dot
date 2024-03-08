@@ -14,7 +14,6 @@ keymap.normal('q:', ':q')
 
 -- Quickly quit
 keymap.normal('<leader>q', ':q<cr>')
-keymap.normal(';q', ':q<cr>')
 
 -- no need for ESC
 keymap.insert('jk', '<ESC>')
@@ -23,8 +22,6 @@ keymap.insert('jk', '<ESC>')
 keymap.normal('<LEADER><LEADER>', ':wa<CR>')
 keymap.normal('<c-space>', ':wa<CR>')
 keymap.normal('<LEADER><CR>', ':write<CR>')
-keymap.normal(';w', ':write<CR>')
-keymap.normal(';a', ':wall<CR>')
 -- quit only
 keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
 keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
