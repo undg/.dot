@@ -1,9 +1,0 @@
-#!/bin/env sh
-
-cd ~/vimwiki/
-git add .
-git commit -am up;
-git push 
-git pull --rebase
-git push 
-cd -
