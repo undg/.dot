@@ -83,8 +83,9 @@ return {
                         -- the default case_mode is "smart_case"
                     },
                     smart_open = {
+                        cwd_only = true,
                         show_scores = true,
-                        ignore_patterns = { '*.git/*', '*/tmp/*' },
+                        ignore_patterns = { '*.git/*', '*/tmp/*', '*/node_modules/*' },
                         match_algorithm = 'fzf',
                         disable_devicons = false,
                         open_buffer_indicators = { previous = '👀', others = '🙈' },
@@ -113,8 +114,7 @@ return {
             keymap.normal('<leader>m', ':Telescope<cr>')
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
             keymap.normal(',.', ':Telescope smart_open<cr>')
-            -- keymap.normal('<leader>,', ':Telescope find_files hidden=true<cr>')
-            keymap.normal('<leader>,', ':Telescope smart_open<cr>')
+            keymap.normal('<leader>,', ':Telescope smart_open cwd_only=false<cr>')
             keymap.normal('<leader>.', require('telescope').extensions.dir.find_files)
 
             keymap.normal('<leader>fb', ':Telescope buffers<cr>')
