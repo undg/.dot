@@ -126,7 +126,7 @@ eval "$(atuin init zsh --disable-up-arrow)"
 
 # autoload -U atuin-search 
 # zle -N atuin-search 
-bindkey '^f' atuin-search
+# bindkey '^f' atuin-search
 
 #################################
 # key mappings
@@ -155,7 +155,7 @@ bindkey -s '^g' '^utmux-sessionizer^M'
 
 # @TODO (undg) 2024-03-07: detete after testing period
 # ---- replaced with `atuin`
-# plug "zap-zsh/fzf" # famous fuzzy finder
+plug "zap-zsh/fzf" # famous fuzzy finder
 # ---- replaced with `atuin`
 # replace "zsh-users/zsh-history-substring-search" with native solution
 # https://unix.stackexchange.com/a/672892
