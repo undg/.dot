@@ -116,7 +116,17 @@ plug "zsh-users/zsh-syntax-highlighting"
 ZSH_HIGHLIGHT_STYLES[comment]='none'
 
 # This overrides ^R and arrow-up
-eval "$(atuin init zsh)" # better shell history
+# export ATUIN_NOBIND="true"
+# eval "$(atuin init zsh)" # better shell history
+# bindkey '^r' atuin-search
+# bindkey '^R' atuin-up-search
+
+# export ATUIN_NOBIND="true"
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# autoload -U atuin-search 
+# zle -N atuin-search 
+bindkey '^f' atuin-search
 
 #################################
 # key mappings
@@ -149,12 +159,12 @@ bindkey -s '^g' '^utmux-sessionizer^M'
 # ---- replaced with `atuin`
 # replace "zsh-users/zsh-history-substring-search" with native solution
 # https://unix.stackexchange.com/a/672892
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Arrow up
-# bindkey "^[[B" down-line-or-beginning-search # Arrow down
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Arrow up
+bindkey "^[[B" down-line-or-beginning-search # Arrow down
 
 
 #################################
