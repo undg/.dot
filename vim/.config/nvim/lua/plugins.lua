@@ -4,8 +4,10 @@ Git('https://github.com/nvim-lua/plenary.nvim') -- All the lua functions you don
 
 -- Productivity
 Spec('plugins.comment')                    -- commenting code
-Spec('plugins.nvim-surround')              -- surround selection with brackets, quotes etc.
-Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
+-- Spec('plugins.nvim-surround')              -- surround selection with brackets, quotes etc.
+-- @TODO (undg) 2024-03-09: check this alternative for surround
+Spec('plugins.mini-surround')
+-- Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
 Spec('plugins.alpha')                      -- home screen
 Spec('plugins.neovim-session-manager')     -- autosave and restore session
 Spec('plugins.suda')                       -- ask for sudo password
