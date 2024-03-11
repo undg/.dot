@@ -1,20 +1,14 @@
-local ok_path, my_path = pcall(require, 'utils.path')
-local ok_window, my_window = pcall(require, 'utils.window')
-local ok_s, s = pcall(require, 'utils.string')
+local path_ok, my_path = pcall(require, 'utils.path')
+local window_ok, my_window = pcall(require, 'utils.window')
+local s_ok, s = pcall(require, 'utils.string')
 
-if not ok_path then
-    print('lua/plug-cfg/lualine/sections: fail to load path')
-    return
-end
+local not_ok = not path_ok and 'utils.path' --
+    or not window_ok and 'utils.window'
+    or not s_ok and 'utils.string'
+    or false
 
-if  not ok_window then
-    print('lua/plug-cfg/lualine/sections: fail to load window')
-    return
-end
-
-if not ok_s then
-    print('lua/plug-cfg/lualine/sections: fail to load s')
-    return
+if not_ok then
+    vim.notify('lua/custom/lualine/sections: missing - ' .. not_ok, vim.log.levels.ERROR)
 end
 
 local M = {}

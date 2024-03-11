@@ -1,10 +1,20 @@
 local ai = require('custom.sg')
 
 return {
-    'sourcegraph/sg.nvim', -- https://github.com/sourcegraph/sg.nvim
+    'sourcegraph/sg.nvim',                      -- https://github.com/sourcegraph/sg.nvim
     dependencies = { 'nvim-lua/plenary.nvim' }, -- https://github.com/nvim-lua/plenary.nvim
     event = 'VeryLazy',
     config = function()
+        local wk_ok, wk = pcall(require, 'which-key')
+
+        local not_ok = not wk_ok and 'which-key' --
+            or false
+
+        if not_ok then
+            vim.notify('plugins/sg.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
+            return
+        end
+
         require('sg').setup({
             auth_strategy = 'environment-variables',
             on_attach = function(_, bufnr)
@@ -34,12 +44,6 @@ return {
         vim.api.nvim_create_user_command('AiTextProofread', ai.text.proofread.get,
             { desc = ai.text.proofread.desc })
         -- stylua: ignore end
-
-        local ok_wk, wk = pcall(require, 'which-key')
-        if not ok_wk then
-            print('plugins/sg.lua: missing requirements')
-            return
-        end
 
         wk.register({
             name = 'Cody',

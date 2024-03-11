@@ -4,10 +4,15 @@ return {
         'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
     },
     config = function()
-        local ok_harpoon, harpoon = pcall(require, 'harpoon')
-        local ok_telescope, telescope = pcall(require, 'telescope')
-        if not ok_harpoon and not ok_telescope then
-            print('plugins/harpoon.lua: missing requirement')
+        local harpoon_ok, harpoon = pcall(require, 'harpoon')
+        local telescope_ok, telescope = pcall(require, 'telescope')
+
+        local not_ok = not telescope_ok and 'telescope' --
+            or not harpoon_ok and 'harpoon'
+            or false
+
+        if not_ok then
+            vim.notify('plugins/harpoon.lua: missing requirement - ' .. not_ok, vim.log.levels.ERROR)
             return
         end
 

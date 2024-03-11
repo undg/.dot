@@ -5,9 +5,13 @@ return {
         -- icons for telescope and Neotree and all sorts of plugins
         'nvim-tree/nvim-web-devicons', -- https://github.com/nvim-tree/nvim-web-devicons
         config = function()
-            local ok_devicons, devicons = pcall(require, 'nvim-web-devicons')
-            if not ok_devicons then
-                print('plugins/nvim-web-devicons.lua: missing requirements')
+            local devicons_ok, devicons = pcall(require, 'nvim-web-devicons')
+
+            local not_ok = not devicons_ok and 'nvim-web-devicons' --
+                or false
+
+            if not_ok then
+                vim.notify('plugins/icons.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
                 return
             end
 

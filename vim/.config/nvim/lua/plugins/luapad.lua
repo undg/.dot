@@ -8,7 +8,7 @@ return {
         eval_on_move = true,
         error_highlight = 'WarningMsg',
         on_init = function()
-            print('Hello from Luapad!')
+            vim.notify('Hello from Luapad!', vim.log.levels.INFO)
         end,
         context = {
             the_answer = 42,

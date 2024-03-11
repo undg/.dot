@@ -2,7 +2,7 @@ local M = {
     'akinsho/bufferline.nvim', -- https://github.com/akinsho/bufferline.nvim
     dependencies = {
         -- :Bdelete and :Bwipeout to preserve window layout
-        { 'moll/vim-bbye' }, -- https://github.com/moll/vim-bbye
+        { 'moll/vim-bbye' },               -- https://github.com/moll/vim-bbye
         { 'nvim-tree/nvim-web-devicons' }, -- https://github.com/nvim-tree/nvim-web-devicons
     },
     version = '*',
@@ -72,16 +72,21 @@ local opts = {
 }
 
 function M.config()
-    local bufferline = require('bufferline')
+    local bufferline_ok, bufferline = pcall(require, 'bufferline')
+    local wkey_ok, wk = pcall(require, 'which-key')
+
+    local not_ok = not bufferline_ok and 'bufferline' --
+        or not wkey_ok and 'which-key'
+        or false
+
+    if not_ok then
+        vim.notify('plugins/bufferline.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
+        return
+    end
+
     bufferline.setup(opts)
 
     local keymap = require('utils.keymap')
-
-    local ok_wkey, wk = pcall(require, 'which-key')
-    if not ok_wkey then
-        print('plugins/which-key.lua: missing requirements')
-        return
-    end
 
     -- Select/Goto
     keymap.normal('<leader>bp', ':BufferLineCyclePrev<cr>')

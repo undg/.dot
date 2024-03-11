@@ -18,11 +18,15 @@ return {
             },
         },
         config = function()
-            local ok_telescope, telescope = pcall(require, 'telescope')
-            local ok_actions, actions = pcall(require, 'telescope.actions')
+            local telescope_ok, telescope = pcall(require, 'telescope')
+            local actions_ok, actions = pcall(require, 'telescope.actions')
 
-            if not ok_telescope or not ok_actions then
-                print('plugins/telescope/goto: missing requirements')
+            local not_ok = not telescope_ok and 'telescope' --
+                or not actions_ok and 'actions'
+                or false
+
+            if not_ok then
+                vim.notify('plugins/telescope/goto: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
                 return
             end
 

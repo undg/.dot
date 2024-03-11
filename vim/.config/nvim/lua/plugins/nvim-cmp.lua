@@ -11,12 +11,17 @@ local M = {
     },
 }
 function M.config()
-    local ok_cmp, cmp = pcall(require, 'cmp')
-    local ok_lspkind, lspkind = pcall(require, 'lspkind')
-    local ok_cmp_ultisnips_mappings, cmp_ultisnips_mappings = pcall(require, 'cmp_nvim_ultisnips.mappings')
+    local cmp_ok, cmp = pcall(require, 'cmp')
+    local lspkind_ok, lspkind = pcall(require, 'lspkind')
+    local cmp_ultisnips_mappings_ok, cmp_ultisnips_mappings = pcall(require, 'cmp_nvim_ultisnips.mappings')
 
-    if not ok_cmp or not ok_lspkind or not ok_cmp_ultisnips_mappings then
-        print('plugins/nvim-cmp.lua: missing requirements')
+    local not_ok = not cmp_ok and 'cmp' --
+        or not lspkind_ok and 'lspkind'
+        or not cmp_ultisnips_mappings_ok and 'cmp_nvim_ultisnips.mappings'
+        or false
+
+    if not_ok then
+        vim.notify('plugins/nvim-cmp.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
         return
     end
 
@@ -53,12 +58,12 @@ function M.config()
             end),
         },
         sources = {
-            { name = 'nvim_lsp',   keyword_length = 1 },
-            { name = 'nvim_lua',   keyword_length = 1 },
-            { name = 'path',   keyword_length = 1 },
-            { name = 'ultisnips'},
+            { name = 'nvim_lsp', keyword_length = 1 },
+            { name = 'nvim_lua', keyword_length = 1 },
+            { name = 'path',     keyword_length = 1 },
+            { name = 'ultisnips' },
             { name = 'buffer',   keyword_length = 3 },
-            { name = 'spell',   keyword_length = 3 },
+            { name = 'spell',    keyword_length = 3 },
             -- { name = 'codeium',   keyword_length = 3 },
             -- { name = 'cody' },
         },
