@@ -25,7 +25,7 @@ return {
             },
 
             -- Number of lines within which surrounding is searched
-            n_lines = 20,
+            n_lines = 50,
 
             -- Whether to respect selection type:
             -- - Place surroundings on separate lines in linewise mode.
@@ -36,7 +36,7 @@ return {
             -- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
             -- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,
             -- see `:h MiniSurround.config`.
-            search_method = 'cover',
+            search_method = 'cover_or_nearest',
 
             -- Whether to disable showing non-error feedback
             silent = false,

@@ -3,7 +3,7 @@ Spec('plugins.icons')                           -- icons used by few plugins
 Git('https://github.com/nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
 
 -- Productivity
-Spec('plugins.comment')                    -- commenting code
+Spec('plugins.comment') -- commenting code
 -- Spec('plugins.nvim-surround')              -- surround selection with brackets, quotes etc.
 -- @TODO (undg) 2024-03-09: check this alternative for surround
 Spec('plugins.mini-surround')
@@ -83,5 +83,6 @@ Spec('plugins.vim-diminactive')       -- dim inactive window
 Spec('plugins.colorizer')             -- paint hex values with color
 Spec('plugins.illuminate')            -- automatically highlighting other uses of the word under the cursor
 Spec('plugins.fidget')                -- LSP notification
+Git('https://github.com/echasnovski/mini.notify')
 Spec('plugins.windows-nvim')          -- Automatically manage size of current window;
 Spec('plugins.indent-blankline-nvim') -- Add indentation guides even on blank lines in fold

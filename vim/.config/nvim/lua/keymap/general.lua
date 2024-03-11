@@ -108,8 +108,8 @@ keymap.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, s
 keymap.normal('<leader>/', ':noh<cr>')
 
 -- Substitute search and replace
-keymap.normal('S', ':%s/')
-keymap.visual('<leader>S', 'y:%s/\\(<c-r>0\\)')
+keymap.normal('<C-s>', ':%s/')
+keymap.visual('<C-s>', 'y:%s/\\(<c-r>0\\)')
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
 -- this is overriden in nvim-hlslens
