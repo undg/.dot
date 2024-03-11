@@ -1,130 +1,125 @@
-local keymap = require('utils.keymap')
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- @TODO (undg) 2022-12-26: investigate how to preserve window resize functionality by mouse/touch
 -- Don't go visual, stay normal. Disable mouse LeftDrag
-keymap.normal('<LeftDrag>', '<LeftMouse>')
+Keymap.normal('<LeftDrag>', '<LeftMouse>')
 
 -- No fcking way! Nope, I don't want ex mode!
-keymap.normal('Q', '<Nop>')
+Keymap.normal('Q', '<Nop>')
 -- Stop that stupid window from popping up!
-keymap.normal('q:', ':q')
+Keymap.normal('q:', ':q')
 
 -- Quickly quit
-keymap.normal('<leader>q', ':q<cr>')
+Keymap.normal('<leader>q', ':q<cr>')
 
 -- no need for ESC
-keymap.insert('jk', '<ESC>')
+Keymap.insert('jk', '<ESC>')
 
 -- write only
-keymap.normal('<LEADER><LEADER>', ':wa<CR>')
-keymap.normal('<c-space>', ':wa<CR>')
-keymap.normal('<LEADER><CR>', ':write<CR>')
+Keymap.normal('<LEADER><LEADER>', ':wa<CR>')
+Keymap.normal('<c-space>', ':wa<CR>')
+Keymap.normal('<LEADER><CR>', ':write<CR>')
 -- quit only
-keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
-keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
-keymap.normal("QQ", ":q<CR>", {desc = 'quit'})
-keymap.normal("QA", ":qa<CR>", {desc = 'quit all'})
-keymap.normal('XX', ':q!<CR>', {desc = 'force quit (don\'t save)'})
-keymap.normal('XA', ':qa!<CR>', {desc = 'force quit all (don\'t save)'})
+Keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
+Keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
+Keymap.normal("QQ", ":q<CR>", {desc = 'quit'})
+Keymap.normal("QA", ":qa<CR>", {desc = 'quit all'})
+Keymap.normal('XX', ':q!<CR>', {desc = 'force quit (don\'t save)'})
+Keymap.normal('XA', ':qa!<CR>', {desc = 'force quit all (don\'t save)'})
 
 -- redo last macro
-keymap.normal('<CR>', '@@')
+Keymap.normal('<CR>', '@@')
 
 -- cd to current file path
-keymap.normal('<LEADER>cd', ':lcd %:p:h<CR>')
+Keymap.normal('<LEADER>cd', ':lcd %:p:h<CR>')
 
 -- remove white spaces on end line
-keymap.normal(
+Keymap.normal(
     '<LEADER>sp',
     ':%s/\\s\\+$//ge|norm <CR>:echomsg "white space cleaing"<cr>',
     { desc = 'remove trailing whitespace' }
 )
 
 -- Toggle list (display unprintable characters).
-keymap.normal('<F10>', ':set list!<CR>')
-keymap.insert('<F10>', '<esc>:set list!<CR>i')
+Keymap.normal('<F10>', ':set list!<CR>')
+Keymap.insert('<F10>', '<esc>:set list!<CR>i')
 
 -- get git branch go into insert mode.
 -- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
-keymap.normal(
+Keymap.normal(
     '<leader>gb',
     ':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A',
     { desc = 'get git branch name' }
 )
 
 -- indent, highlight in visual stay
-keymap.visual('>', '>gv')
-keymap.visual('<', '<gv')
-
--- ts/sw 2<-->4 toggle indentation
-keymap.normal('<leader>st', ':ToggleIndent<cr>', { silent = false })
+Keymap.visual('>', '>gv')
+Keymap.visual('<', '<gv')
 
 -- Yanking/Pasting/Copy
 -- map.normal('<leader>p', '"+p')
-keymap.visual('<C-C>', '"+y')
-keymap.insert('<C-v>', '<c-o>"+P')
-keymap.visual('<C-v>', 'd"+P')
+Keymap.visual('<C-C>', '"+y')
+Keymap.insert('<C-v>', '<c-o>"+P')
+Keymap.visual('<C-v>', 'd"+P')
 -- Only visual, keep same yank in register
-keymap.visual('<LEADER>p', '"_dP')
+Keymap.visual('<LEADER>p', '"_dP')
 -- Copy all
-keymap.normal('<LEADER>cc', 'ggVG"+y')
+Keymap.normal('<LEADER>cc', 'ggVG"+y')
 
 -- Keep it in center (quality of life)
-keymap.normal('n', 'nzz')
-keymap.normal('N', 'Nzz')
-keymap.normal("''", "''zz")
+Keymap.normal('n', 'nzz')
+Keymap.normal('N', 'Nzz')
+Keymap.normal("''", "''zz")
 
-keymap.visual('n', 'nzzzv')
-keymap.visual('N', 'Nzzzv')
-keymap.visual("''", "''zzzv")
+Keymap.visual('n', 'nzzzv')
+Keymap.visual('N', 'Nzzzv')
+Keymap.visual("''", "''zzzv")
 
-keymap.normal('J', 'mzJ`z')
-keymap.normal('<C-n>', ':cnext<CR>zzzv')
-keymap.normal('<C-p>', ':cprev<CR>zzzv')
+Keymap.normal('J', 'mzJ`z')
+Keymap.normal('<C-n>', ':cnext<CR>zzzv')
+Keymap.normal('<C-p>', ':cprev<CR>zzzv')
 
 -- move selection up and down
-keymap.xisual('<C-k>', ':m -2<CR>gv=gv')
-keymap.xisual('<C-j>', ":m '>+<CR>gv=gv")
-keymap.visual('<C-k>', ':m -2<CR>gv=gv')
-keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
+Keymap.xisual('<C-k>', ':m -2<CR>gv=gv')
+Keymap.xisual('<C-j>', ":m '>+<CR>gv=gv")
+Keymap.visual('<C-k>', ':m -2<CR>gv=gv')
+Keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
 
 -- Extra break points
-keymap.insert(',', ',<C-g>u')
-keymap.insert('.', '.<C-g>u')
-keymap.insert('!', '!<C-g>u')
-keymap.insert('?', '?<C-g>u')
+Keymap.insert(',', ',<C-g>u')
+Keymap.insert('.', '.<C-g>u')
+Keymap.insert('!', '!<C-g>u')
+Keymap.insert('?', '?<C-g>u')
 
 -- Remap for dealing with word wrap
-keymap.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-keymap.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+Keymap.normal('k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+Keymap.normal('j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Annihilate semicolons!!! 💀
 -- keymap.normal('<leader>;', ":%s/;$//g<cr>'':noh<cr>")
 
 -- Disable highlight till next search
-keymap.normal('<leader>/', ':noh<cr>')
+Keymap.normal('<leader>/', ':noh<cr>')
 
 -- Substitute search and replace
-keymap.normal('<C-s>', ':%s/')
-keymap.visual('<C-s>', 'y:%s/\\(<c-r>0\\)')
+Keymap.normal('<C-s>', ':%s/')
+Keymap.visual('<C-s>', 'y:%s/\\(<c-r>0\\)')
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
 -- this is overriden in nvim-hlslens
-keymap.normal('*', '*N')
-keymap.normal('#', '#N')
+Keymap.normal('*', '*N')
+Keymap.normal('#', '#N')
 
 -- 3 way diffsplit (merge conflicts)
-keymap.normal('gh', ':diffget //2<cr>')
-keymap.normal('gl', ':diffget //3<cr>')
-keymap.normal('gp', ':diffput //1<cr>')
+Keymap.normal('gh', ':diffget //2<cr>')
+Keymap.normal('gl', ':diffget //3<cr>')
+Keymap.normal('gp', ':diffput //1<cr>')
 
 -- WINDOWS AND TABS --
 ----------------------
 -- Zoom / Fullscreen
-keymap.normal('tt', ':tab split<CR>')
+Keymap.normal('tt', ':tab split<CR>')
 
 -- split navigations is done by tmux-navigator plugin
 -- keymap.normal('<A-h>', '<C-w><C-h>')
@@ -133,8 +128,8 @@ keymap.normal('tt', ':tab split<CR>')
 -- keymap.normal('<A-l>', '<C-w><C-l>')
 
 -- resize
-keymap.normal('<Up>', ':resize +5<cr>')
-keymap.normal('<Down>', ':resize -5<cr>')
+Keymap.normal('<Up>', ':resize +5<cr>')
+Keymap.normal('<Down>', ':resize -5<cr>')
 
-keymap.normal('<Left>', ':vertical resize -5<cr>')
-keymap.normal('<Right>', ':vertical resize +5<cr>')
+Keymap.normal('<Left>', ':vertical resize -5<cr>')
+Keymap.normal('<Right>', ':vertical resize +5<cr>')

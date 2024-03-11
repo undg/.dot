@@ -37,13 +37,12 @@ end
 ---@param url string Plugin github url
 ---@param opt table|nil Plugin specification (optional)
 function Git(url, opt)
-    -- local spec = opt or {}
-    local spec = setmetatable(opt or {}, { __index = table })
-
     local repo = url:gsub('https://github.com/', '')
+    local spec = setmetatable(opt or {}, { __index = table })
 
     spec:insert(1, repo)
 
-
     LAZY_PLUGIN_SPEC:insert(spec)
 end
+
+Keymap = require('utils.keymap')
