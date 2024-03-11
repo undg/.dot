@@ -57,3 +57,12 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
         vim.opt.relativenumber = false
     end,
 })
+
+-- Format on save
+vim.api.nvim_create_autocmd({ 'BufWrite' }, {
+
+    callback = function(e)
+        vim.notify(e.file, vim.log.levels.INFO, {title = 'Save and format file:', timeout = 500})
+        vim.lsp.buf.format({async = false})
+    end,
+})
