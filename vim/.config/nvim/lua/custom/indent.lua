@@ -4,13 +4,13 @@ local function toggle()
         vim.opt.softtabstop = 4
         vim.opt.shiftwidth = 4
         vim.opt.tabstop = 4
-        vim.notify('Switched to: Indent with 4 spaces.', vim.log.levels.INFO, {title = 'IndentToggle'})
+        vim.notify('Switched to: Indent with 4 spaces.', vim.log.levels.INFO, { title = 'IndentToggle' })
     else
         vim.g.softtabstop = 2
         vim.opt.softtabstop = 2
         vim.opt.shiftwidth = 2
         vim.opt.tabstop = 2
-        vim.notify('Switched to: Indent with 2 spaces.', vim.log.levels.INFO, {title = 'IndentToggle'})
+        vim.notify('Switched to: Indent with 2 spaces.', vim.log.levels.INFO, { title = 'IndentToggle' })
     end
 end
 

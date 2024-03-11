@@ -7,12 +7,15 @@ local M = {
 }
 
 function M.config()
-    local ok_neoTree, neoTree = pcall(require, 'neo-tree')
-    local ok_sort, sort = pcall(require, 'plugins.neo-tree-utils-sort')
-    if not ok_neoTree or not ok_sort then
-        print('plugins/neo-tree.lua: missing requirements')
-        print('ok_neoTree:', ok_neoTree)
-        print('ok_sort:', ok_sort)
+    local neoTree_ok, neoTree = pcall(require, 'neo-tree')
+    local sort_ok, sort = pcall(require, 'plugins.neo-tree-utils-sort')
+
+    local not_ok = not neoTree_ok and 'neo-tree' --
+        or not sort_ok and 'plugins.neo-tree-utils-sort'
+        or false
+
+    if not_ok then
+        vim.notify('plugins/neo-tree.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
         return
     end
 

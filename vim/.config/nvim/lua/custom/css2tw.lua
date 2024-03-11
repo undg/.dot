@@ -1,8 +1,12 @@
 local keymap = require('utils.keymap')
 
-local ok_getVisualSelectionFn, getVisualSelectionFn = pcall(require, 'custom.get-visual-selection')
-if not ok_getVisualSelectionFn then
-    print('custom/css2tw: failed to load custom.get-visual-selection')
+local getVisualSelectionFn_ok, getVisualSelectionFn = pcall(require, 'custom.get-visual-selection')
+
+local not_ok = not getVisualSelectionFn_ok and 'custom.get-visual-selection' --
+    or false
+
+if not_ok then
+    vim.notify('custom/css2tw: failed to load custom.get-visual-selection', vim.log.levels.ERROR)
     return
 end
 
@@ -39,7 +43,7 @@ local function pasteFromRegister()
 
     local lines = css2tw(regiser)
 
-    vim.api.nvim_put({lines}, 'c', true, false)
+    vim.api.nvim_put({ lines }, 'c', true, false)
 end
 
 keymap.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })

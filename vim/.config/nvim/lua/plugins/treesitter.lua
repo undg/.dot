@@ -32,9 +32,13 @@ M.config = function()
         'yaml',
     }
 
-    local ok_ts_configs, ts_configs = pcall(require, 'nvim-treesitter.configs')
-    if not ok_ts_configs then
-        print('plugins/treesitter.configs.lua: missing requirements')
+    local ts_configs_ok, ts_configs = pcall(require, 'nvim-treesitter.configs')
+
+    local not_ok = not ts_configs_ok and 'nvim-treesitter.configs' --
+        or false
+
+    if not_ok then
+        vim.notify('plugins/treesitter.configs.lua: missing requirements', vim.log.levels.ERROR)
         return
     end
 

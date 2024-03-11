@@ -15,13 +15,15 @@ return {
   },
   -- https://github.com/epwalsh/obsidian.nvim?tab=readme-ov-file#configuration-options
   config = function()
-    local ok_obsidian_util, obsidian_util = pcall(require, 'plugins.obsidian-utils')
-    local ok_wk, wk = pcall(require, 'which-key')
+    local obsidian_util_ok, obsidian_util = pcall(require, 'plugins.obsidian-utils')
+    local wk_ok, wk = pcall(require, 'which-key')
 
-    if not ok_obsidian_util or not ok_wk then
-      print('plugins/obsidian.lua: missing requirements')
-      print('obsidian_util: ', ok_obsidian_util)
-      print('which-key: ', ok_wk)
+    local not_ok = not wk_ok and 'which-key'     --
+        or not obsidian_util_ok and 'plugins.obsidian-utils'
+        or false
+
+    if not_ok then
+      vim.notify('plugins/obsidian.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
       return
     end
 

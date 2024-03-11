@@ -5,9 +5,14 @@ local M = {
 }
 
 function M.config()
-    local ok_illuminate, illuminate = pcall(require, 'illuminate')
-    if not ok_illuminate then
-        print('plugins/illuminate.lua: missing requirements')
+    local illuminate_ok, illuminate = pcall(require, 'illuminate')
+    local util_ok, util = pcall(require, 'plugins.illuminate-utils')
+
+    local not_ok = not illuminate_ok and 'illuminate' --
+        or not util_ok and 'plugins.illuminate-utils'
+        or false
+    if not_ok then
+        vim.notify('plugins/illuminate.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
         return
     end
 
@@ -57,12 +62,6 @@ function M.config()
         -- min_count_to_highlight: minimum number of matches required to perform highlighting
         min_count_to_highlight = 1,
     })
-
-    local ok_util, util =
-        pcall(require, 'plugins.illuminate-utils')
-    if not ok_util then
-        print('plugins/illuminate.lua: missing requirements')
-    end
 
     keymap.normal('<leader>*', function()
         util.toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)

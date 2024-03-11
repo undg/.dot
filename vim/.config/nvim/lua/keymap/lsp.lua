@@ -3,13 +3,13 @@ local t_ok, t = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 local typescript_ok = pcall(require, 'typescript-tools')
 
-if --
-    not keymap_ok
-    or not lspsaga_ok
-    or not t_ok
-    or not typescript_ok
-then
-    print("keymap/lsp.lua: requirement's fail")
+local not_ok = not lspsaga_ok and 'lspsaga'
+    or not t_ok and 'telescope'
+    or not typescript_ok and 'typescript-tools'
+    or false -- all ok
+
+if not_ok then
+    vim.notify("keymap/lsp.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
     return
 end
 
@@ -17,7 +17,11 @@ keymap.normal('<LEADER>p', function()
     vim.lsp.buf.format({ timeout_ms = 2000, async = true })
 end, { desc = 'lsp: format' })
 keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
-keymap.normal('<LEADER>rfn', ':TSToolsRenameFile sync<CR>', { desc = 'lsp: rename_file', silent = false, noremap = true })
+keymap.normal(
+    '<LEADER>rfn',
+    ':TSToolsRenameFile sync<CR>',
+    { desc = 'lsp: rename_file', silent = false, noremap = true }
+)
 keymap.normal(
     '<LEADER>ri',
     ':TSToolsOrganizeImports<cr>',

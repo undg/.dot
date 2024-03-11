@@ -3,12 +3,20 @@
 return {
     'Shatur/neovim-session-manager',
     config = function()
-        local ok_session_manager, session_manager = pcall(require, 'session_manager')
-        local ok_path, path = pcall(require, 'plenary.path')
-        local ok_config, _ = pcall(require, 'session_manager.config')
+        local session_manager_ok, session_manager = pcall(require, 'session_manager')
+        local path_ok, path = pcall(require, 'plenary.path')
+        local config_ok, _ = pcall(require, 'session_manager.config')
 
-        if not ok_session_manager or not ok_path or not ok_config then
-            print('lua/plugins/neovim-session-manager.lua: missing requirements')
+        local not_ok = not session_manager_ok and 'session_manager' --
+            or not path_ok and 'plenary.path'
+            or not config_ok and 'session_manager.config'
+            or false
+
+        if not_ok then
+            vim.notify(
+                'lua/plugins/neovim-session-manager.lua: missing requirements - ' .. not_ok,
+                vim.log.levels.ERROR
+            )
             return
         end
 

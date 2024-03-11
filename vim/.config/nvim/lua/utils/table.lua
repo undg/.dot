@@ -30,7 +30,7 @@ function M.map(input_table, mapper)
     local new_table = {}
 
     if type(input_table) ~= 'table' then
-        print('Error: input_table must be a table')
+        vim.notify('Error: input_table must be a table', vim.log.levels.ERROR)
         P(input_table)
         return new_table
     end

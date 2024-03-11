@@ -53,7 +53,7 @@ return {
                     model = { model = 'gpt-4-turbo-preview', temperature = 0.4, top_p = 0.8 },
                     system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
                         .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
-                        .. "- DO NOT EXPLAN if not explicitly asked for explanation.\n"
+                        .. '- DO NOT EXPLAN if not explicitly asked for explanation.\n'
                         .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
                         .. "- If unsure, respond with 'I don't know'.\n"
                         .. '- Request clarification only when crucial.\n'
@@ -201,9 +201,13 @@ return {
             },
         })
 
-        local ok_wk, wk = pcall(require, 'which-key')
-        if not ok_wk then
-            print('plugins/gp-nvim.lua: missing requirements')
+        local wk_ok, wk = pcall(require, 'which-key')
+
+        local not_ok = not wk_ok and 'which-key' --
+            or false
+
+        if not_ok then
+            vim.notify('plugins/gp-nvim.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
             return
         end
 

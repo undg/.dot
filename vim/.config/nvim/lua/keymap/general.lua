@@ -21,12 +21,12 @@ Keymap.normal('<LEADER><LEADER>', ':wa<CR>')
 Keymap.normal('<c-space>', ':wa<CR>')
 Keymap.normal('<LEADER><CR>', ':write<CR>')
 -- quit only
-Keymap.normal("ZZ", ":wq<cr>", {desc = 'write and quit'}) -- this is default keymap, remap to add description
-Keymap.normal("ZA", ":wqa<cr>", {desc = 'write all and quit'})
-Keymap.normal("QQ", ":q<CR>", {desc = 'quit'})
-Keymap.normal("QA", ":qa<CR>", {desc = 'quit all'})
-Keymap.normal('XX', ':q!<CR>', {desc = 'force quit (don\'t save)'})
-Keymap.normal('XA', ':qa!<CR>', {desc = 'force quit all (don\'t save)'})
+Keymap.normal('ZZ', ':wq<cr>', { desc = 'write and quit' }) -- this is default keymap, remap to add description
+Keymap.normal('ZA', ':wqa<cr>', { desc = 'write all and quit' })
+Keymap.normal('QQ', ':q<CR>', { desc = 'quit' })
+Keymap.normal('QA', ':qa<CR>', { desc = 'quit all' })
+Keymap.normal('XX', ':q!<CR>', { desc = "force quit (don't save)" })
+Keymap.normal('XA', ':qa!<CR>', { desc = "force quit all (don't save)" })
 
 -- redo last macro
 Keymap.normal('<CR>', '@@')
