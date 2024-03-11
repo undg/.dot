@@ -25,16 +25,25 @@ P = function(any)
     return any
 end
 
-LAZY_PLUGIN_SPEC = {}
+LAZY_PLUGIN_SPEC = setmetatable({}, { __index = table })
 
 ---Load plugin spec from file
 ---@param path string @path to spec file
 function Spec(path)
-    table.insert(LAZY_PLUGIN_SPEC, { import = path })
+    LAZY_PLUGIN_SPEC:insert({ import = path })
+    -- table.insert(LAZY_PLUGIN_SPEC, { import = path })
 end
 
 ---@param url string Plugin github url
-function Git(url)
-    local item = url:gsub('https://github.com/', '')
-    table.insert(LAZY_PLUGIN_SPEC, item)
+---@param opt table|nil Plugin specification (optional)
+function Git(url, opt)
+    -- local spec = opt or {}
+    local spec = setmetatable(opt or {}, { __index = table })
+
+    local repo = url:gsub('https://github.com/', '')
+
+    spec:insert(1, repo)
+
+
+    LAZY_PLUGIN_SPEC:insert(spec)
 end
