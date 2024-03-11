@@ -14,20 +14,10 @@ function M.toogle_IlluminateWordRead(current_value)
 
     if current_value == bold_dec then
         vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = normal_color })
-        print(
-            'hl toogle_IlluminateWordRead(bold) |',
-            'hex: #' .. string.format('%06x', current_value),
-            '| dec:',
-            current_value
-        )
+        vim.notify('BOLD\t' .. '\thex: #' .. string.format('%06x', current_value) .. '\tdec:' .. current_value, vim.log.levels.INFO, {title = 'IlluminateWordRead'})
     else
         vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = bold_color })
-        print(
-            'hl toogle_IlluminateWordRead(norm) |',
-            'hex: #' .. string.format('%06x', current_value),
-            '| dec:',
-            current_value
-        )
+        vim.notify('NORMAL' .. '\thex: #' .. string.format('%06x', current_value) .. '\tdec:' .. current_value, vim.log.levels.INFO, {title = 'IlluminateWordRead'})
     end
 end
 

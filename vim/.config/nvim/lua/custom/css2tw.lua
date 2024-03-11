@@ -16,7 +16,7 @@ local function css2tw(cssStyles)
     local handler = io.popen(script .. ' "' .. cssStyles .. '"')
 
     if handler == nil then
-        print('Something fucked up. Handler not established, quit.')
+        vim.notify('Something fucked up. Handler not established, quit.', vim.log.levels.ERROR)
         return
     end
 
