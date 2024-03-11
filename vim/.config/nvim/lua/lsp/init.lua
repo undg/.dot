@@ -16,7 +16,17 @@ if
     or not cspell_ok
 -- or not typescript_code_action_ok
 then
-    print('lsp/init.lua: require failed')
+    -- @TODO (undg) 2024-03-11: DRY
+    local not_ok = lspconfig_ok and 'lspconfig not ok\n'
+        or cmp_nvim_lsp_ok and 'cmp_nvim_lsp not ok\n'
+        or mason_ok and 'mason not ok\n'
+        or mason_lspconfig_ok and 'mason_lspconfig not ok\n'
+        or mason_installer_ok and 'mason_installer not ok\n'
+        or null_ls_ok and 'null_ls not ok\n'
+        or cspell_ok and 'cspell not ok\n'
+        or 'idk'
+
+    print('lsp/init.lua: require failed - ' .. not_ok)
     return
 end
 
