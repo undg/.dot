@@ -55,13 +55,13 @@ local M_null_ls_sources = {
 local cwd = vim.fn.getcwd()
 
 if cwd and string.match(cwd, '/Arahi/') then
-    vim.notify('null_ls: setup for arahi only', vim.log.levels.INFO)
+    vim.notify('arahi only setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local arahi_sources = {
         cspell.diagnostics,
     }
     vim.list_extend(M_null_ls_sources, arahi_sources)
 else
-    vim.notify('null_ls: universal setup', vim.log.levels.INFO)
+    vim.notify('universal setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local universal_sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
