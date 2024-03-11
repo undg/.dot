@@ -3,8 +3,8 @@ Spec('plugins.icons')                           -- icons used by few plugins
 Git('https://github.com/nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
 
 -- Productivity
-Spec('plugins.comment') -- commenting code
-Spec('plugins.mini-surround')         -- surround selection with brackets, quotes etc.
+Spec('plugins.comment')                    -- commenting code
+Spec('plugins.mini-surround')              -- surround selection with brackets, quotes etc.
 -- Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
 Spec('plugins.alpha')                      -- home screen
 Spec('plugins.neovim-session-manager')     -- autosave and restore session
@@ -82,4 +82,4 @@ Spec('plugins.colorizer')             -- paint hex values with color
 Spec('plugins.illuminate')            -- automatically highlighting other uses of the word under the cursor
 Spec('plugins.windows-nvim')          -- Automatically manage size of current window;
 Spec('plugins.indent-blankline-nvim') -- Add indentation guides even on blank lines in fold
-Spec('plugins.notification')           -- Show one or more highlighted notifications in a single floating window.
+Spec('plugins.notification')          -- Show one or more highlighted notifications in a single floating window.
