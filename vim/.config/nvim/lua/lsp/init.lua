@@ -2,31 +2,21 @@ local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
 local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 local mason_ok, mason = pcall(require, 'mason')
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
-local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
+local null_ls_ok, null_ls = pcall(require, 'null-ls')
 local cspell_ok, cspell = pcall(require, 'cspell')
 
-if
-    not lspconfig_ok
-    or not cmp_nvim_lsp_ok
-    or not mason_ok
-    or not mason_lspconfig_ok
-    or not mason_installer_ok
-    or not null_ls_ok
-    or not cspell_ok
--- or not typescript_code_action_ok
-then
-    -- @TODO (undg) 2024-03-11: DRY
-    local not_ok = lspconfig_ok and 'lspconfig not ok\n'
-        or cmp_nvim_lsp_ok and 'cmp_nvim_lsp not ok\n'
-        or mason_ok and 'mason not ok\n'
-        or mason_lspconfig_ok and 'mason_lspconfig not ok\n'
-        or mason_installer_ok and 'mason_installer not ok\n'
-        or null_ls_ok and 'null_ls not ok\n'
-        or cspell_ok and 'cspell not ok\n'
-        or 'idk'
+local not_ok = not lspconfig_ok and 'lspconfig not ok\n'
+    or not cmp_nvim_lsp_ok and 'cmp_nvim_lsp not ok\n'
+    or not mason_ok and 'mason not ok\n'
+    or not mason_lspconfig_ok and 'mason_lspconfig not ok\n'
+    or not mason_installer_ok and 'mason_installer not ok\n'
+    or not null_ls_ok and 'null_ls not ok\n'
+    or not cspell_ok and 'cspell not ok\n'
+    or false -- all good, not not_ok
 
-    print('lsp/init.lua: require failed - ' .. not_ok)
+if not_ok then
+    vim.notify('lsp/init.lua: require failed - ' .. not_ok, vim.log.levels.ERROR)
     return
 end
 
@@ -65,13 +55,13 @@ local M_null_ls_sources = {
 local cwd = vim.fn.getcwd()
 
 if cwd and string.match(cwd, '/Arahi/') then
-    print('null_ls: setup for arahi only')
+    vim.notify('null_ls: setup for arahi only', vim.log.levels.INFO)
     local arahi_sources = {
         cspell.diagnostics,
     }
     vim.list_extend(M_null_ls_sources, arahi_sources)
 else
-    print('null_ls: universal setup')
+    vim.notify('null_ls: universal setup', vim.log.levels.INFO)
     local universal_sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
