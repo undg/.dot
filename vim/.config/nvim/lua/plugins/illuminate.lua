@@ -1,5 +1,3 @@
-local keymap = require('utils.keymap')
-
 local M = {
     'RRethy/vim-illuminate', -- https://github.com/RRethy/vim-illuminate
 }
@@ -63,10 +61,10 @@ function M.config()
         min_count_to_highlight = 1,
     })
 
-    keymap.normal('<leader>*', function()
+    Keymap.normal('<leader>*', function()
         util.toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
     end)
-    keymap.normal('<leader>8', function()
+    Keymap.normal('<leader>8', function()
         util.toogle_IlluminateWordRead(vim.api.nvim_get_hl_by_name('IlluminatedWordRead', true).background)
     end)
 end

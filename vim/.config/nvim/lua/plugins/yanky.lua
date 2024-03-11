@@ -24,22 +24,19 @@ return {
             },
         })
 
-        -- key maps
-        local keymap = require('utils.keymap')
+        Keymap.normal('p', '<Plug>(YankyPutAfter)')
+        Keymap.normal('P', '<Plug>(YankyPutBefore)')
+        Keymap.xisual('p', '<Plug>(YankyPutAfter)')
+        Keymap.xisual('P', '<Plug>(YankyPutBefore)')
+        Keymap.normal('gp', '<Plug>(YankyGPutAfter)')
+        Keymap.normal('gP', '<Plug>(YankyGPutBefore)')
+        Keymap.xisual('gp', '<Plug>(YankyGPutAfter)')
+        Keymap.xisual('gP', '<Plug>(YankyGPutBefore)')
 
-        keymap.normal("p", "<Plug>(YankyPutAfter)")
-        keymap.normal("P", "<Plug>(YankyPutBefore)")
-        keymap.xisual("p", "<Plug>(YankyPutAfter)")
-        keymap.xisual("P", "<Plug>(YankyPutBefore)")
-        keymap.normal("gp", "<Plug>(YankyGPutAfter)")
-        keymap.normal("gP", "<Plug>(YankyGPutBefore)")
-        keymap.xisual("gp", "<Plug>(YankyGPutAfter)")
-        keymap.xisual("gP", "<Plug>(YankyGPutBefore)")
+        Keymap.normal('<leader>n', '<Plug>(YankyCycleForward)', { noremap = false })
+        Keymap.normal('<leader>N', '<Plug>(YankyCycleBackward)', { noremap = false })
 
-        keymap.normal("<leader>n", "<Plug>(YankyCycleForward)", { noremap = false })
-        keymap.normal("<leader>N", "<Plug>(YankyCycleBackward)", { noremap = false })
-
-        keymap.normal("<leader>y", ":Telescope yank_history<cr>", { noremap = false })
+        Keymap.normal('<leader>y', ':Telescope yank_history<cr>', { noremap = false })
 
         -- telescope integration
         require('telescope').load_extension('yank_history')

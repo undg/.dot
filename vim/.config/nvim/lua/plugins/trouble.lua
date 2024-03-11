@@ -6,10 +6,8 @@ local M = {
 }
 
 function M.config()
-    local keymap = require('utils.keymap')
-
-    keymap.normal(']t', ':lua require("trouble").next({skip_groups = true, jump = true})<cr>')
-    keymap.normal('[t', ':lua require("trouble").previous({skip_groups = true, jump = true})<cr>')
+    Keymap.normal(']t', ':lua require("trouble").next({skip_groups = true, jump = true})<cr>')
+    Keymap.normal('[t', ':lua require("trouble").previous({skip_groups = true, jump = true})<cr>')
 end
 
 M.opts = {

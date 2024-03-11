@@ -1,11 +1,9 @@
-local keymap = require('utils.keymap')
+Keymap.normal('<leader>gcd', ':Gcd<CR>')
+Keymap.normal('<leader>glcd', ':Glcd<CR>')
 
-keymap.normal('<leader>gcd', ':Gcd<CR>')
-keymap.normal('<leader>glcd', ':Glcd<CR>')
-
-keymap.normal('<leader>gll', ':0Gclog<CR>')
-vim.api.nvim_create_user_command('GfileLog', '0Gclog', { force = true, })
-keymap.normal('<leader>gld', ':Gclog -- %<CR>')
+Keymap.normal('<leader>gll', ':0Gclog<CR>')
+vim.api.nvim_create_user_command('GfileLog', '0Gclog', { force = true })
+Keymap.normal('<leader>gld', ':Gclog -- %<CR>')
 vim.api.nvim_create_user_command('GfileLogDiff', 'Gclog -- %', { force = true })
 
 -- MAKE DAT SHIT CONSISTENT. tpope sucks
