@@ -2,7 +2,7 @@ local nvim_lsp = require('lspconfig')
 
 local ok_twoslash, twoslash = pcall(require, 'twoslash-queries')
 if not ok_twoslash then
-    print('lua/lsp/tsserver.lua: twoslash-queries fail')
+    vim.notify('lua/lsp/tsserver.lua: twoslash-queries fail', vim.log.levels.ERROR)
     return
 end
 
