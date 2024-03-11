@@ -1,5 +1,3 @@
-local keymap = require('utils.keymap')
-
 return {
     'goolord/alpha-nvim', -- https://github.com/goolord/alpha-nvim
     config = function()
@@ -72,9 +70,9 @@ return {
         -- Send config to alpha
         alpha.setup(dashboard.opts)
 
-        keymap.normal('<leader>sl', ':SessionManager load_last_session<CR>')
-        keymap.normal('<leader>ss', ':SessionManager load_session<CR>')
-        keymap.normal('<leader>sc', ':SessionManager load_current_dir_session<CR>')
-        keymap.normal('<leader>sw', ':SessionManager save_current_session<CR>')
+        Keymap.normal('<leader>sl', ':SessionManager load_last_session<CR>')
+        Keymap.normal('<leader>ss', ':SessionManager load_session<CR>')
+        Keymap.normal('<leader>sc', ':SessionManager load_current_dir_session<CR>')
+        Keymap.normal('<leader>sw', ':SessionManager save_current_session<CR>')
     end,
 }

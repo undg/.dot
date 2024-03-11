@@ -20,17 +20,19 @@ return {
         config = function()
             local telescope_ok, telescope = pcall(require, 'telescope')
             local actions_ok, actions = pcall(require, 'telescope.actions')
+            local tb_ok, tb = pcall(require, 'telescope.builtin')
+            local get_visual_selection_ok, get_visual_selection = pcall(require, 'custom.get-visual-selection')
 
             local not_ok = not telescope_ok and 'telescope' --
-                or not actions_ok and 'actions'
+                or not actions_ok and 'telescope.actions'
+                or not tb_ok and 'telescope.builtin'
+                or not get_visual_selection_ok and 'custom.get-visual-selection'
                 or false
 
             if not_ok then
-                vim.notify('plugins/telescope/goto: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
+                vim.notify('plugins/telescope.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
                 return
             end
-
-            -- local trouble = require("trouble.providers.telescope")
 
             telescope.setup({
                 defaults = {
@@ -101,45 +103,31 @@ return {
             telescope.load_extension('fzf')
             telescope.load_extension('ui-select')
 
-            -- keymap
-            local keymap = require('utils.keymap')
-
-            local get_visual_selection = require('custom.get-visual-selection')
-
-            local tb = require('telescope.builtin')
-
-            local tb_opt = {
-                fname_width = 0.5,
-                trim_text = false,
-                show_line = false,
-                include_current_line = true,
-            }
-
-            keymap.normal('<leader>m', ':Telescope<cr>')
+            Keymap.normal('<leader>m', ':Telescope<cr>')
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
-            keymap.normal(',.', ':Telescope smart_open<cr>')
-            keymap.normal('<leader>,', ':Telescope smart_open cwd_only=false<cr>')
-            keymap.normal('<leader>.', require('telescope').extensions.dir.find_files)
+            Keymap.normal(',.', ':Telescope smart_open<cr>')
+            Keymap.normal('<leader>,', ':Telescope smart_open cwd_only=false<cr>')
+            Keymap.normal('<leader>.', telescope.extensions.dir.find_files)
 
-            keymap.normal('<leader>fb', ':Telescope buffers<cr>')
-            keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
-            keymap.normal('<leader>fG', require('telescope').extensions.dir.live_grep)
-            keymap.normal('<leader>fr', ':Telescope resume<cr>')
+            Keymap.normal('<leader>fb', ':Telescope buffers<cr>')
+            Keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
+            Keymap.normal('<leader>fG', telescope.extensions.dir.live_grep)
+            Keymap.normal('<leader>fr', ':Telescope resume<cr>')
 
             local open_quick_fix_window_in_telescope = function()
                 vim.cmd('cclose')
                 tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
             end
-            keymap.normal('fq', open_quick_fix_window_in_telescope, { desc = 'Open QuickFix in Telescope' })
+            Keymap.normal('fq', open_quick_fix_window_in_telescope, { desc = 'Open QuickFix in Telescope' })
 
-            keymap.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
-            keymap.normal('<leader>fp', ':Telescope project<cr>')
-            keymap.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
-            keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
-            keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
-            keymap.normal('<leader>fc', ':Telescope commands<cr>')
+            Keymap.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
+            Keymap.normal('<leader>fp', ':Telescope project<cr>')
+            Keymap.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
+            Keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
+            Keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
+            Keymap.normal('<leader>fc', ':Telescope commands<cr>')
 
-            keymap.visual('<leader>fg', function()
+            Keymap.visual('<leader>fg', function()
                 tb.live_grep({ default_text = get_visual_selection() })
             end, { noremap = true, silent = true })
         end,

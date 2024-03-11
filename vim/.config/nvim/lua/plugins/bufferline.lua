@@ -86,46 +86,44 @@ function M.config()
 
     bufferline.setup(opts)
 
-    local keymap = require('utils.keymap')
-
     -- Select/Goto
-    keymap.normal('<leader>bp', ':BufferLineCyclePrev<cr>')
-    keymap.normal('<leader>bn', ':BufferLineCycleNext<cr>')
+    Keymap.normal('<leader>bp', ':BufferLineCyclePrev<cr>')
+    Keymap.normal('<leader>bn', ':BufferLineCycleNext<cr>')
 
-    keymap.normal('<leader>j', function()
+    Keymap.normal('<leader>j', function()
         bufferline.go_to_buffer(1, true)
     end)
-    keymap.normal('<leader>k', function()
+    Keymap.normal('<leader>k', function()
         bufferline.go_to_buffer(2, true)
     end)
-    keymap.normal('<leader>l', function()
+    Keymap.normal('<leader>l', function()
         bufferline.go_to_buffer(3, true)
     end)
-    keymap.normal('<leader>;', function()
+    Keymap.normal('<leader>;', function()
         bufferline.go_to_buffer(4, true)
     end)
-    keymap.normal("<leader>'", function()
+    Keymap.normal("<leader>'", function()
         bufferline.go_to_buffer(5, true)
     end)
-    keymap.normal('<leader>$', function()
+    Keymap.normal('<leader>$', function()
         bufferline.go_to_buffer(-1, true)
     end)
 
     -- Pin
-    keymap.normal('<leader>bb', ':BufferLineTogglePin<cr>')
+    Keymap.normal('<leader>bb', ':BufferLineTogglePin<cr>')
 
     -- Move
-    keymap.normal('<C-j>', ':BufferLineMovePrev<cr>')
-    keymap.normal('<C-k>', ':BufferLineMoveNext<cr>')
-    keymap.normal('<C-h>', ':BufferLineCyclePrev<cr>')
-    keymap.normal('<C-l>', ':BufferLineCycleNext<cr>')
+    Keymap.normal('<C-j>', ':BufferLineMovePrev<cr>')
+    Keymap.normal('<C-k>', ':BufferLineMoveNext<cr>')
+    Keymap.normal('<C-h>', ':BufferLineCyclePrev<cr>')
+    Keymap.normal('<C-l>', ':BufferLineCycleNext<cr>')
 
     -- Close
     local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
     local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
-    keymap.normal('<leader>qq', CMD_CLOSE_GO_NEXT)
+    Keymap.normal('<leader>qq', CMD_CLOSE_GO_NEXT)
 
-    keymap.normal('<C-Q>', CMD_CLOSE_GO_PREV)
+    Keymap.normal('<C-Q>', CMD_CLOSE_GO_PREV)
 
     wk.register({
         c = {

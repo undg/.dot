@@ -17,26 +17,23 @@ return {
         vim.g.VimuxCloseOnExit = false
         vim.g.VimuxCommandShell = false -- enable shell completion (disable arrow up)
 
-        -- keys
-        local keymap = require('utils.keymap')
-
         -- Run...
-        keymap.normal('<Leader>vv', ':call VimuxRunCommand("./" . bufname("%"))<CR>')
-        -- keymap.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
-        -- keymap.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
-        -- keymap.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
+        Keymap.normal('<Leader>vv', ':call VimuxRunCommand("./" . bufname("%"))<CR>')
+        -- Keymap.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
+        -- Keymap.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
+        -- Keymap.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
 
         -- Prompt for a command to run
-        keymap.normal('<Leader>vp', ':VimuxPromptCommand<CR>')
+        Keymap.normal('<Leader>vp', ':VimuxPromptCommand<CR>')
 
         -- Interrupt any command running in the runner pane
-        keymap.normal('<Leader>vc', ':VimuxInterruptRunner<CR>')
+        Keymap.normal('<Leader>vc', ':VimuxInterruptRunner<CR>')
 
         -- Run last command executed by VimuxRunCommand
-        keymap.normal('<Leader>vl', ':VimuxRunLastCommand<CR>')
+        Keymap.normal('<Leader>vl', ':VimuxRunLastCommand<CR>')
 
         -- !RESTART LAST COMMAND
-        keymap.normal(
+        Keymap.normal(
             '<Leader>vr',
             ':call VimuxInterruptRunner() <bar> :call VimuxInterruptRunner() <bar> :call VimuxRunLastCommand() <cr><cr>'
         )

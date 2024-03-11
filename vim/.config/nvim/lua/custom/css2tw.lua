@@ -1,5 +1,3 @@
-local keymap = require('utils.keymap')
-
 local getVisualSelectionFn_ok, getVisualSelectionFn = pcall(require, 'custom.get-visual-selection')
 
 local not_ok = not getVisualSelectionFn_ok and 'custom.get-visual-selection' --
@@ -46,7 +44,7 @@ local function pasteFromRegister()
     vim.api.nvim_put({ lines }, 'c', true, false)
 end
 
-keymap.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })
-keymap.normal('<leader>tw', pasteFromRegister, { desc = 'Conver CSS to Arahi TW classes' })
+Keymap.visual('<leader>tw', copyToRegister, { desc = 'Conver CSS to Arahi TW classes' })
+Keymap.normal('<leader>tw', pasteFromRegister, { desc = 'Conver CSS to Arahi TW classes' })
 
 vim.api.nvim_create_user_command('ArahiToolsCss2tw', pasteFromRegister, {})
