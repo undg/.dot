@@ -15,9 +15,7 @@ return {
                 vim.notify('lua/plugins/notification.lua: require not found - ' .. not_ok, vim.log.levels.ERROR)
             end
 
-            notify.setup({
-                top_down = false,
-            })
+            notify.setup()
 
             -- require('lsp-notify').setup({ notify = notify })
 
@@ -31,12 +29,5 @@ return {
     {
         'j-hui/fidget.nvim', -- https://github.com/j-hui/fidget.nvim
         config = true,
-        opts = {
-            notification = {
-                window = {
-                    align = 'top',
-                },
-            },
-        },
     },
 }

@@ -44,6 +44,8 @@ return {
                 -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
                 -- (see 💅 `styled-components` support section)
                 tsserver_plugins = {
+                    -- install it yourserf !!!
+                    -- npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
                     '@styled/typescript-styled-plugin',
                 },
                 -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
