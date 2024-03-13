@@ -12,7 +12,7 @@ set $winKey Mod4
 set $altKey Mod1
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
-set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+# set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
 set $DP_left DisplayPort-1
@@ -20,34 +20,26 @@ set $DP_right DisplayPort-0
 set $DP_top HDMI-A-0
 
 
-set $iriunwebcam_only_on_cm        [[ "$(hostname)" == "cm"      ]] && iriunwebcam
-set $kodi_only_on_cm               [[ "$(hostname)" == "cm"      ]] && kodi
-set $d3_only_on_cm                 [[ "$(hostname)" == "cm"      ]] && ~/bin/d3
-set $autorotate_only_on_di7415     [[ "$(hostname)" == "di-7415" ]] && ~/bin/autorotate --display eDP
-
-set $wallpaper feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
-
 set $browser_brave brave --enable-blink-features=MiddleClickAutoscroll
 set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscroll
 
 
 # #---Starting External Scripts---# #
-exec_always --no-startup-id picom                                # Composite manager
-# exec --no-startup-id ~/bin/echocancel                          # Pulse mixer echo cancelation
-# exec_always --no-startup-id noisetorch -i                        # active noise cancelation
-exec --no-startup-id dunst                                       # Notifications
-exec --no-startup-id flameshot                                   # Screenshots
-exec_always --no-startup-id lxqt-policykit-agent                 # FE for polkit
-exec --no-startup-id sleep 2 && $d3_only_on_cm                   # 3 displays xrandr script
-exec --no-startup-id sleep 2 && $autorotate_only_on_di7415       # autorotate 2in1 screen
-exec --no-startup-id $iriunwebcam_only_on_cm                     # Android webcam
-exec --no-startup-id sleep 5 && barrier                          # KVM software
-exec --no-startup-id sleep 6 && $kodi_only_on_cm                 # Media center
-exec_always --no-startup-id sleep 4 && $wallpaper                # Wallpaper
-exec_always --no-startup-id ~/bin/volctl_once                    # Volume applet in system tray
-exec_always --no-startup-id i3-autolayout autolayout             # https://github.com/chmln/i3-auto-layout
-exec_always --no-startup-id ~/bin/speedy-keys.sh                 # Speedy keys
-exec --no-startup-id sleep 10 && dropbox
+exec_always --no-startup-id picom                                                                            # Composite manager
+exec        --no-startup-id dunst                                                                            # Notifications
+exec        --no-startup-id flameshot                                                                        # Screenshots
+exec_always --no-startup-id lxqt-policykit-agent                                                             # FE for polkit
+exec_always --no-startup-id ~/bin/volctl_once                                                                # Volume applet in system tray
+exec_always --no-startup-id ~/bin/speedy-keys.sh                                                             # Speedy keys
+exec        --no-startup-id sleep 5 && barrier                                                               # KVM software
+exec        --no-startup-id sleep 10 && dropbox
+exec_always --no-startup-id sleep 1 && nm-applet                                                             # network manager in systray
+exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg                         # Wallpaper
+
+exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 2 && ~/bin/d3                          # 3 displays xrandr script
+exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && iriunwebcam                                  # Android webcam
+# exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 6 && kodi                              # Media center
+exec        --no-startup-id [[ "$(hostname)" == "di-7415" ]] && sleep 2 && ~/bin/autorotate --display eDP    # autorotate 2in1 screen
 
 
 set $transparent #000000
@@ -308,7 +300,7 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 bindsym $winKey+F1                exec --no-startup-id $browser
 bindsym $winKey+F2                restart
 # bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
-bindsym $winKey+F5                exec --no-startup-id $netrefresh
+# bindsym $winKey+F5                exec --no-startup-id $netrefresh
 # bindsym $winKey+F8                exec --no-startup-id droidcam-run
 
 
@@ -350,7 +342,7 @@ bindsym XF86Suspend           exec --no-startup-id lockscreen
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 15
 bindsym XF86Display           exec --no-startup-id arandr
-bindsym XF86WLAN              exec $netrefresh
+# bindsym XF86WLAN              exec $netrefresh
 
 # MOUSE CONTROLL
 # Press $winKey, click into a window using your left mouse button, and drag it to the position you want.
