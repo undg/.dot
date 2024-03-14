@@ -1,11 +1,10 @@
 session_name: arahi-console-run-dev
-windows: 
-  - window_name: 'run dev'
+windows:
+  - window_name: "run dev"
     window_index: 9
     layout: tiled
     panes:
       - eslint-git-diff -w src
       - y lint:tsc -w
       - y dev
-      - y test -R min --watch
-
+      - y test
