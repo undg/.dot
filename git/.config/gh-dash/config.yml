@@ -15,7 +15,7 @@ issuesSections:
 defaults:
   preview:
     open: true
-    width: 50
+    width: 180
   prsLimit: 20
   issuesLimit: 20
   view: prs
@@ -46,9 +46,15 @@ defaults:
         width: 20
         hidden: true
   refetchIntervalMinutes: 30
-keybindings:
-  issues: []
-  prs: []
-repoPaths: {}
 pager:
-  diff: ""
+  diff: bat
+repoPaths: 
+  :owner/:repo: ~/Code/:owner/:repo
+keybindings:
+  prs:
+    - key: C
+      command: >
+        tmux split-window -h -c {{.RepoPath}} '
+          gh pr checkout {{.PrNumber}} &&
+          nvim -c ":Octo pr edit {{.PrNumber}}"
+        '
