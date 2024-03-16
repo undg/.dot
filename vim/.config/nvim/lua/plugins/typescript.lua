@@ -1,19 +1,13 @@
--- https://github.com/pmizio/typescript-tools.nvim
-
--- https://github.com/nvim-lua/plenary.nvim
--- https://github.com/neovim/nvim-lspconfig
--- https://github.com/marilari88/twoslash-queries.nvim
-
 return {
     {
-        'pmizio/typescript-tools.nvim',
+        'pmizio/typescript-tools.nvim', -- https://github.com/pmizio/typescript-tools.nvim
         ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
         dependencies = {
-            'nvim-lua/plenary.nvim',
-            'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim', -- https://github.com/nvim-lua/plenary.nvim
+            'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
             {
-
-                'marilari88/twoslash-queries.nvim', -- // live type checking with //  ^?
+                -- live type checking with //  ^?
+                'marilari88/twoslash-queries.nvim', -- https://github.com/marilari88/twoslash-queries.nvim
                 opts = {
                     multi_line = true,              -- to print types in multi line mode
                     is_enabled = true,              -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
