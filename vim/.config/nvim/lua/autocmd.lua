@@ -65,3 +65,12 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
 --         vim.lsp.buf.format({async = false})
 --     end,
 -- })
+
+-- Set markdown as the filetype for the Cody history
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+    pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+    callback = function()
+        Keymap.normal('gi', ':TSToolsGoToSourceDefinition', { desc = 'lsp: implementation' })
+        Keymap.normal('gfr', ':TSToolsFileReferences<cr>', { desc = 'lsp: show file references' })
+    end,
+})
