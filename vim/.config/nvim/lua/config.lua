@@ -27,6 +27,8 @@ vim.o.inccommand = "nosplit"                                                   -
 vim.opt.history = 900                                                          -- The command-line history table size.
 vim.opt.path = vim.opt.path + "**"                                             -- Help with searching via :find and :grep (I'm using 3rd party for that anyway)
 
+vim.g.format_on_save = false                                                   -- custom flag used in autocmd to triger vim.lsp.buf.format()
+
 -- :checkhealth - Don't report problems bellow
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
