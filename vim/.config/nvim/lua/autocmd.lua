@@ -59,14 +59,23 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
 })
 
 -- Format on save
--- vim.api.nvim_create_autocmd({ 'BufWrite' }, {
---     callback = function(e)
---         vim.notify(e.file, vim.log.levels.INFO, {title = 'Save and format file:', timeout = 500})
---         vim.lsp.buf.format({async = false})
---     end,
--- })
+vim.api.nvim_create_autocmd({ 'BufWrite' }, {
+    callback = function(e)
+        if vim.g.format_on_save then
+            vim.notify(e.file, vim.log.levels.INFO, { title = 'Save and format file:', timeout = 500 })
+            vim.lsp.buf.format({ async = false })
+        end
+    end,
+})
 
--- Set markdown as the filetype for the Cody history
+local typescript_ok = pcall(require, 'typescript-tools')
+local not_ok = not typescript_ok and 'typescript-tools' --
+    or false
+
+if not_ok then
+    vim.notify("autocmd.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
+end
+
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
     callback = function()
