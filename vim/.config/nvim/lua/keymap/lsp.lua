@@ -1,10 +1,8 @@
-local t_ok = pcall(require, 'telescope')
+local telescope_ok, telescope = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
-local typescript_ok = pcall(require, 'typescript-tools')
 
 local not_ok = not lspsaga_ok and 'lspsaga'
-    or not t_ok and 'telescope'
-    or not typescript_ok and 'typescript-tools'
+    or not telescope_ok and 'telescope'
     or false -- all ok
 
 if not_ok then
@@ -57,11 +55,8 @@ Keymap.normal('gD', ':Telescope lsp_type_definitions<cr>', { desc = 'lsp: type_d
 Keymap.normal('<leader>gr', vim.lsp.buf.references, { desc = 'lsp: references' })
 Keymap.normal('gr', ':Telescope lsp_references<cr>', { desc = 'lsp: references (telescope)' })
 
-Keymap.normal('gfr', ':TSToolsFileReferences<cr>', { desc = 'lsp: show file references' })
-
 Keymap.normal('<leader>gi', vim.lsp.buf.implementation, { desc = 'lsp: implementation' })
-Keymap.normal('gi', ':TSToolsGoToSourceDefinition<cr>', { desc = 'lsp: implementation (telescope)' })
-Keymap.normal('gI', ':Telescope lsp_implementations<cr>', { desc = 'lsp: implementation (telescope)' })
+Keymap.normal('gi', ':Telescope lsp_implementations<cr>', { desc = 'lsp: implementation (telescope)' })
 
 Keymap.normal(
     '<leader>gj',
