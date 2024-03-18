@@ -10,9 +10,6 @@ Keymap.normal('Q', '<Nop>')
 -- Stop that stupid window from popping up!
 Keymap.normal('q:', ':q')
 
--- Quickly quit
-Keymap.normal('<leader>q', ':q<cr>')
-
 -- no need for ESC
 Keymap.insert('jk', '<ESC>')
 
@@ -20,7 +17,8 @@ Keymap.insert('jk', '<ESC>')
 Keymap.normal('<LEADER><LEADER>', ':wa<CR>')
 Keymap.normal('<c-space>', ':wa<CR>')
 Keymap.normal('<LEADER><CR>', ':write<CR>')
--- quit only
+
+-- Quickly quit
 Keymap.normal('ZZ', ':wq<cr>', { desc = 'write and quit' }) -- this is default keymap, remap to add description
 Keymap.normal('ZA', ':wqa<cr>', { desc = 'write all and quit' })
 Keymap.normal('QQ', ':q<CR>', { desc = 'quit' })
@@ -59,7 +57,7 @@ Keymap.visual('<', '<gv')
 
 -- Yanking/Pasting/Copy
 -- map.normal('<leader>p', '"+p')
-Keymap.visual('<C-C>', '"+y')
+Keymap.visual('<C-c>', '"+y')
 Keymap.insert('<C-v>', '<c-o>"+P')
 Keymap.visual('<C-v>', 'd"+P')
 -- Only visual, keep same yank in register
