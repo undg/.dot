@@ -62,6 +62,7 @@ Spec('plugins.codeium')     -- LLM codeium is AI powered code completion. codeiu
 Spec('plugins.gp-nvim')     -- LLM chatGPT is AI powered code completion and chat bot. https://platform.openai.com/
 Spec('plugins.ollama-nvim') -- AI with local server and locally downloaded models. Install https://github.com/jmorganca/ollama (in arch std extra repo)
 Spec('plugins.gen-nvim')    -- AI with local server and locally downloaded models. Install https://github.com/jmorganca/ollama (in arch std extra repo)
+Spec('plugins.ogpt')
 
 -- Utils
 Spec('plugins.obsidian')                         -- Note taking and knowledge base
