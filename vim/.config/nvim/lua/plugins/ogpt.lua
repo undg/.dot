@@ -1,6 +1,6 @@
 return {
     {
-        'huynle/ogpt.nvim',
+        'huynle/ogpt.nvim', -- https://github.com/huynle/ogpt.nvim/blob/main/lua/ogpt/config.lua
         event = 'VeryLazy',
         opts = {
             default_provider = 'ollama',
