@@ -7,7 +7,7 @@ focus_follows_mouse no
 for_window [class="^.*"] border pixel 4
 
 # #---Basic Definitions---# #
-set $term --no-startup-id kitty
+set $term --no-startup-id alacritty
 set $winKey Mod4
 set $altKey Mod1
 set $shutdown sudo -A shutdown -h now
