@@ -48,6 +48,7 @@ Keymap.normal('K', function()
         vim.lsp.buf.hover()
     end
 end, { desc = 'lsp: hover / help: go to ref', silent = true, noremap = true })
+
 Keymap.normal('<leader>K', vim.lsp.buf.signature_help, { desc = 'lsp: signature_help', silent = true, noremap = true })
 Keymap.normal('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
 Keymap.visual('ga', vim.lsp.buf.code_action, { desc = 'lsp: code_action' })
