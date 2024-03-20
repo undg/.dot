@@ -79,7 +79,7 @@ end
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
     callback = function()
-        Keymap.normal('gi', ':TSToolsGoToSourceDefinition', { desc = 'lsp: implementation' })
+        Keymap.normal('gi', ':TSToolsGoToSourceDefinition<cr>', { desc = 'lsp: implementation' })
         Keymap.normal('gfr', ':TSToolsFileReferences<cr>', { desc = 'lsp: show file references' })
     end,
 })
