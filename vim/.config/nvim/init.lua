@@ -4,7 +4,6 @@ require('utils.globals')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 require('plugins')
 require('start-lazy')
 
