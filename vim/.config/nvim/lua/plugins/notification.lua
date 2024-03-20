@@ -10,7 +10,6 @@ return {
                 background_colour = '#000000',
             })
 
-
             local telescope_ok, telescope = pcall(require, 'telescope')
 
             local not_ok = not telescope_ok and 'telescope' --
