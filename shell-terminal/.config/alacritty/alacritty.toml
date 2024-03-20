@@ -158,7 +158,7 @@ save_to_clipboard = true
 
 [window]
 decorations = "none"
-opacity = 0.95
+opacity = 0.91
 
 [window.padding]
 x = 10
