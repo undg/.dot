@@ -5,8 +5,13 @@ return {
         -- 'mrded/nvim-lsp-notify', -- https://github.com/mrded/nvim-lsp-notify
         -- },
         config = function()
+            local notify = require('notify')
+            notify.setup({
+                background_colour = '#000000',
+            })
+
+
             local telescope_ok, telescope = pcall(require, 'telescope')
-            local notify_ok, notify = pcall(require, 'notify')
 
             local not_ok = not telescope_ok and 'telescope' --
                 or false
@@ -14,8 +19,6 @@ return {
             if not_ok then
                 vim.notify('lua/plugins/notification.lua: require not found - ' .. not_ok, vim.log.levels.ERROR)
             end
-
-            notify.setup()
 
             -- require('lsp-notify').setup({ notify = notify })
 
