@@ -71,7 +71,6 @@
   "typescript-tools.nvim": { "branch": "master", "commit": "c43d9580c3ff5999a1eabca849f807ab33787ea7" },
   "ultisnips": { "branch": "master", "commit": "b393ba65386d47664421e1f8b246a87a6e8b218c" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
-  "vim-diminactive": { "branch": "master", "commit": "6f2e14e6ff6a038285937c378ec3685e6ff7ee36" },
   "vim-doge": { "branch": "master", "commit": "e8aa8acb1924ecc78a31c2de487e96ecc92720a9" },
   "vim-fugitive": { "branch": "master", "commit": "41beedabc7e948c787ea5696e04c3544c3674e23" },
   "vim-illuminate": { "branch": "master", "commit": "305bf07b919ac526deb5193280379e2f8b599926" },
