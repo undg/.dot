@@ -78,7 +78,7 @@ Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin
 
 -- Look and feel
 Spec('plugins.theme')                 -- gruvbox is best theme on the universe
-Spec('plugins.vim-diminactive')       -- dim inactive window
+-- Spec('plugins.vim-diminactive')       -- dim inactive window
 Spec('plugins.colorizer')             -- paint hex values with color
 Spec('plugins.illuminate')            -- automatically highlighting other uses of the word under the cursor
 Spec('plugins.windows-nvim')          -- Automatically manage size of current window;
