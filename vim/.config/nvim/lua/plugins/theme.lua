@@ -23,8 +23,8 @@ return {
             contrast = 'hard', -- can be "hard", "soft" or empty string
             palette_overrides = {},
             overrides = {},
-            dim_inactive = false,
-            transparent_mode = false,
+            dim_inactive = true,
+            transparent_mode = true,
         })
         vim.cmd([[colorscheme gruvbox]])
 
