@@ -36,11 +36,9 @@ Spec('plugins.treesitter')                                          -- syntax hi
 Spec('plugins.trouble')                                             -- organize errors and warnings
 Spec('plugins.nvim-cmp')                                            -- collection of plugins related with autocompletion
 Spec('plugins.vim-doge')
+Spec('plugins.mason')
 Git('https://github.com/folke/neodev.nvim')                         -- Neovim full signature help, docs and completion for the nvim lua API.
 Git('https://github.com/neovim/nvim-lspconfig')                     -- Collection of configurations for built-in LSP client
-Git('https://github.com/williamboman/mason.nvim')                   -- LSP servers installer
-Git('https://github.com/williamboman/mason-lspconfig.nvim')         -- integration with lspconfig
-Git('https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim') -- auto install predefined packages
 Git('https://github.com/nvimtools/none-ls.nvim')                    -- inject LSP diagnostics, code actions, and more
 Git('https://github.com/davidmh/cspell.nvim')                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
 Git('https://github.com/SirVer/ultisnips')                          -- snippets that are integrated with autocompletion nvim-cmp

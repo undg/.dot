@@ -5,18 +5,13 @@
 -- https://github.com/neovim/nvim-lspconfig/issues/1931
 
 local function fix_by_custom_hover()
-    -- Border that will match styles that are set in other floating windows
-    -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-    local border = {
-        { '╭', 'FloatBorder' },
-        { '─', 'FloatBorder' },
-        { '╮', 'FloatBorder' },
-        { '│', 'FloatBorder' },
-        { '╯', 'FloatBorder' },
-        { '─', 'FloatBorder' },
-        { '╰', 'FloatBorder' },
-        { '│', 'FloatBorder' },
-    }
+    local border_ok, border = pcall(require, 'utils.border')
+    local not_ok = not border_ok and 'utils.border' --
+        or false
+
+    if not_ok then
+        vim.notify('pligins/mason.lua: missing required ', not_ok)
+    end
 
     -- Replace hover function with custom implementation
     -- https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
