@@ -29,6 +29,10 @@ function M.config()
     vim.o.completeopt = 'menu,menuone,noinsert,noselect'
 
     cmp.setup({
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+        },
         mapping = {
             -- ['<C-k>'] = cmp.mapping.select_prev_item(),
             ['<Up>'] = cmp.mapping.select_prev_item(),
