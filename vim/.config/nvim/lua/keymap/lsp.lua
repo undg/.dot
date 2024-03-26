@@ -1,9 +1,7 @@
 local telescope_ok, telescope = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 
-local not_ok = not lspsaga_ok and 'lspsaga'
-    or not telescope_ok and 'telescope'
-    or false -- all ok
+local not_ok = not lspsaga_ok and 'lspsaga' or not telescope_ok and 'telescope' or false -- all ok
 
 if not_ok then
     vim.notify("keymap/lsp.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
@@ -24,8 +22,10 @@ Keymap.normal('<LEADER>p', function()
     vim.notify(msg, vim.log.levels.INFO)
 end, { desc = 'Toggle format on save' })
 
+Keymap.normal('<leader>P', vim.lsp.buf.format, { desc = 'Format' })
 
 Keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
+
 Keymap.normal(
     '<LEADER>rfn',
     ':TSToolsRenameFile sync<CR>',
