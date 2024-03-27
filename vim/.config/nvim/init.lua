@@ -7,7 +7,6 @@ vim.g.maplocalleader = ' '
 require('plugins')
 require('start-lazy')
 
-require('custom')
 require('custom.formater')
 require('custom.indent')
 require('custom.json2ts')
