@@ -1,7 +1,0 @@
-require('custom.formater')
-require('custom.indent')
-require('custom.json2ts')
-require('custom.search-selected')
-require('custom.css2tw')
-require('custom.ultisnip-functions')
-require('custom.pum-completion-up-down')
