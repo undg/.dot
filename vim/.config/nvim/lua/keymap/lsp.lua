@@ -1,4 +1,4 @@
-local telescope_ok, telescope = pcall(require, 'telescope')
+local telescope_ok  = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 
 local not_ok = not lspsaga_ok and 'lspsaga' or not telescope_ok and 'telescope' or false -- all ok
