@@ -84,7 +84,6 @@ else
 fi
 
 if hash git 2>/dev/null; then
-    alias g=git
     # cd to git root
     alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 else
@@ -177,6 +176,12 @@ if hash tmuxp 2>/dev/null; then
 else
     echo "tmuxp is not installed."
     install tmuxp
+fi
+if hash  googler &>/dev/null; then
+    alias g='googler --np '
+else
+    echo "googler is not installed."
+    install googler
 fi
 
 alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
