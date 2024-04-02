@@ -108,8 +108,14 @@ endsnippet
 # error handling
 snippet iferr "Basic error handling" b
 if err != nil {
-	log.${1:Fatal}(err)
+	log.${1:Println}("ERROR $0", err)
 }
+endsnippet
+
+snippet iferrVoid "Void error handling" b
+		if err := ${1:VOID}; err != nil {
+			log.Println("ERROR $0", err)
+		}
 endsnippet
 
 # vim:ft=snippets:
