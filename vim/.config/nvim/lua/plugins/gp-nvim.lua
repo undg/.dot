@@ -105,7 +105,7 @@ return {
             chat_conceal_model_params = false,
             -- local shortcuts bound to the chat buffer
             -- (be careful to choose something which will work across specified modes)
-            chat_shortcut_respond = { modes = { 'n', 'i' }, shortcut = '<C-CR>' },
+            chat_shortcut_respond = { modes = { 'n' }, shortcut = '<CR>' },
             chat_shortcut_stop = { modes = { 'n' }, shortcut = '<C-x>' },
             chat_shortcut_new = { modes = { 'n' }, shortcut = '<C-n>' },
             -- default search term when using :GpChatFinder
