@@ -213,7 +213,7 @@ keybinding:
   commitFiles:
     checkoutCommitFile: "c"
   main:
-    toggleDragSelect: "v"
+    # toggleDragSelect: "v"
     toggleDragSelect-alt: "V"
     toggleSelectHunk: "a"
     pickBothHunks: "b"
