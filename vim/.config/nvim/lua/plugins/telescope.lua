@@ -107,7 +107,8 @@ return {
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
             Keymap.normal(',.', ':Telescope smart_open<cr>')
             Keymap.normal('<leader>,', ':Telescope smart_open cwd_only=false<cr>')
-            Keymap.normal('<leader>.', telescope.extensions.dir.find_files)
+            Keymap.normal('<leader>.f', telescope.extensions.dir.find_files)
+            Keymap.normal('<leader>.g', telescope.extensions.dir.live_grep)
 
             Keymap.normal('<leader>fb', ':Telescope buffers<cr>')
             Keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
