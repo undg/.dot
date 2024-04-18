@@ -27,7 +27,7 @@ set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscr
 # #---Starting External Scripts---# #
 exec_always --no-startup-id picom                                                                            # Composite manager
 exec        --no-startup-id dunst                                                                            # Notifications
-exec --no-startup-id unclutter                                                                        # Hide inactive mouse
+exec        --no-startup-id unclutter                                                                        # Hide inactive mouse
 exec        --no-startup-id flameshot                                                                        # Screenshots
 exec_always --no-startup-id lxqt-policykit-agent                                                             # FE for polkit
 exec_always --no-startup-id ~/bin/volctl_once                                                                # Volume applet in system tray
