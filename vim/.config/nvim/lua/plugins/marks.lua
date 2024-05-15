@@ -5,7 +5,21 @@ return {
             -- whether to map keybinds or not. default true
             default_mappings = true,
             -- which builtin marks to show. default {}
-            builtin_marks = { '.', '<', '>', '^' },
+            builtin_marks = {
+                -- '"', -- position where last exited current buffer
+                -- '.', -- position of last change in current buffer
+                -- '^', -- position of last insertion in current buffer
+                -- '[', -- start of last change or yank
+                -- ']', -- end of last change or yank
+                -- '<', -- start of last visual selection
+                -- '>', -- end of last visual selection
+                -- '{', -- backward paragraph start
+                -- '}', -- forward paragraph end
+                -- ':', -- position of last command-line mode
+                -- '/', -- position of last '/' or '?' command
+                -- '?', -- position of last '?' or '/' command
+                -- '`', -- position of last m' or m` mark set
+            },
             -- whether movements cycle back to the beginning/end of buffer. default true
             cyclic = true,
             -- whether the shada file is updated after modifying uppercase marks. default false
