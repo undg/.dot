@@ -29,19 +29,19 @@ Spec('plugins.smart-open')
 Spec('plugins.harpoon')
 
 -- LSP, code and linting
-Spec('plugins.lspsaga')                                             -- Improves the Neovim built-in LSP experience.lspsaga.lua
-Spec('plugins.typescript')                                          -- LSP Typescript utils with performant UI
-Spec('plugins.golang')                                              -- LSP golang utils with performant UI
-Spec('plugins.treesitter')                                          -- syntax highlight
-Spec('plugins.trouble')                                             -- organize errors and warnings
-Spec('plugins.nvim-cmp')                                            -- collection of plugins related with autocompletion
+Spec('plugins.lspsaga')    -- Improves the Neovim built-in LSP experience.lspsaga.lua
+Spec('plugins.typescript') -- LSP Typescript utils with performant UI
+Spec('plugins.golang')     -- LSP golang utils with performant UI
+Spec('plugins.treesitter') -- syntax highlight
+Spec('plugins.trouble')    -- organize errors and warnings
+Spec('plugins.nvim-cmp')   -- collection of plugins related with autocompletion
 Spec('plugins.vim-doge')
 Spec('plugins.mason')
-Git('https://github.com/folke/neodev.nvim')                         -- Neovim full signature help, docs and completion for the nvim lua API.
-Git('https://github.com/neovim/nvim-lspconfig')                     -- Collection of configurations for built-in LSP client
-Git('https://github.com/nvimtools/none-ls.nvim')                    -- inject LSP diagnostics, code actions, and more
-Git('https://github.com/davidmh/cspell.nvim')                       -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
-Git('https://github.com/SirVer/ultisnips')                          -- snippets that are integrated with autocompletion nvim-cmp
+Git('https://github.com/folke/neodev.nvim')      -- Neovim full signature help, docs and completion for the nvim lua API.
+Git('https://github.com/neovim/nvim-lspconfig')  -- Collection of configurations for built-in LSP client
+Git('https://github.com/nvimtools/none-ls.nvim') -- inject LSP diagnostics, code actions, and more
+Git('https://github.com/davidmh/cspell.nvim')    -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
+Git('https://github.com/SirVer/ultisnips')       -- snippets that are integrated with autocompletion nvim-cmp
 
 -- -- Debugging (DAP)
 -- Git('https://github.com/fussenegger/nvim-dap')
@@ -71,6 +71,7 @@ Spec('plugins.nvim-tmux-navigation')             -- hybrid tmux, vim window navi
 Spec('plugins.which-key')                        -- display interactive footer with available keymaps
 Spec('plugins.lualine')                          -- status bar with few informations
 Spec('plugins.tabular')                          -- align text in colums in table style.
+Spec('plugins.marks')                            -- better marks management
 Git('https://github.com/stevearc/dressing.nvim') -- better floating window styles
 Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin lua functions
 

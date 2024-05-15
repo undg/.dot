@@ -13,6 +13,9 @@ Keymap.normal('q:', ':q')
 -- no need for ESC
 Keymap.insert('jk', '<ESC>')
 
+-- -- easy mark
+Keymap.normal('M', "'")
+
 -- write only
 Keymap.normal('<LEADER><LEADER>', ':wa<CR>')
 Keymap.normal('<c-space>', ':wa<CR>')
