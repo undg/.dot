@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd({ 'BufWrite' }, {
     callback = function(e)
         if vim.g.format_on_save then
             vim.notify(e.file, vim.log.levels.INFO, { title = 'Save and format file:', timeout = 500 })
-            vim.lsp.buf.format({ async = false })
+            vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
         end
     end,
 })
