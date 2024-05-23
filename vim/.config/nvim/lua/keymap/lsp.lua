@@ -1,4 +1,4 @@
-local telescope_ok  = pcall(require, 'telescope')
+local telescope_ok = pcall(require, 'telescope')
 local lspsaga_ok = pcall(require, 'lspsaga')
 
 local not_ok = not lspsaga_ok and 'lspsaga' or not telescope_ok and 'telescope' or false -- all ok
@@ -22,7 +22,9 @@ Keymap.normal('<LEADER>p', function()
     vim.notify(msg, vim.log.levels.INFO)
 end, { desc = 'Toggle format on save' })
 
-Keymap.normal('<leader>P', vim.lsp.buf.format, { desc = 'Format' })
+Keymap.normal('<leader>P', function()
+    vim.lsp.buf.format({ timeout_ms = 3000 })
+end, { desc = 'Format' })
 
 Keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
 
