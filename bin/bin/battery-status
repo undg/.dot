@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ find /sys/class/power_supply/BAT0/ -type f \
+   \(  -name uevent \
+    -o -name charge_full_design \
+    -o -name current_now \
+    -o -name charge_now \
+    -o -name present \
+    -o -name curr1_input \
+    -o -name charge_full \
+    -o -name capacity \
+    -o -name voltage_now \
+    -o -name status \
+    -o -name alarm \
+    -o -name voltage_min_design \
+    -o -name capacity_level  \) \
+    -exec awk '{printf "%-55s : %s\n", FILENAME, $0}' {} \;
+
