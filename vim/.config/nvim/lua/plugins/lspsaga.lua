@@ -1,7 +1,6 @@
--- https://github.com/nvimdev/lspsaga.nvim
-
+-- @TODO (undg) 2024-06-17: find alternative for diagnostics and definition's, this plugin is bloated
 return {
-    'nvimdev/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim', -- https://github.com/nvimdev/lspsaga.nvim
     opts = {
         debug = false,
         diagnostic = {
@@ -12,5 +11,8 @@ return {
                 edit = '<leader><enter>',
             },
         },
+        symbol_in_winbar = { -- breadcrumbs
+            enable = false,
+        }
     },
 }
