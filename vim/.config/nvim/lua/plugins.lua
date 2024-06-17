@@ -35,6 +35,7 @@ Spec('plugins.golang')     -- LSP golang utils with performant UI
 Spec('plugins.treesitter') -- syntax highlight
 Spec('plugins.trouble')    -- organize errors and warnings
 Spec('plugins.nvim-cmp')   -- collection of plugins related with autocompletion
+Spec('plugins.nvim-navic') -- Breadcrumbs
 Spec('plugins.vim-doge')
 Spec('plugins.mason')
 Git('https://github.com/folke/neodev.nvim')      -- Neovim full signature help, docs and completion for the nvim lua API.

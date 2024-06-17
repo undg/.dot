@@ -25,6 +25,7 @@ return {
         opts = {
             on_attach = function(client, bufnr)
                 require('twoslash-queries').attach(client, bufnr)
+                -- require("nvim-navic").attach(client, bufnr)
             end,
             settings = {
                 separate_diagnostic_server = true,
