@@ -15,7 +15,7 @@ Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 -- Git
 Spec('plugins.lazygit')                           -- open lazygit in floating window. Lazygit need to be installed in system
 Spec('plugins.gitsigns')                          -- Git status for every line
-Spec('plugins.neogit')                            -- A Magit clone for Neovim
+-- Spec('plugins.neogit')                            -- A Magit clone for Neovim
 Spec('plugins.octo-nvim')
 Git('https://github.com/tpope/vim-fugitive')      -- Git commands in nvim
 Git('https://github.com/tpope/vim-rhubarb')       -- Fugitive-companion to interact with github
