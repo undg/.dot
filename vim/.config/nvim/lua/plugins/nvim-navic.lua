@@ -1,5 +1,5 @@
 return {
-    'SmiteshP/nvim-navic',
+    'SmiteshP/nvim-navic', -- https://github.com/SmiteshP/nvim-navic
     dependencies = {
         'neovim/nvim-lspconfig',
     },
@@ -10,6 +10,7 @@ return {
             lsp = {
                 auto_attach = true,
             },
+            highlight = true,
         })
 
         vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
