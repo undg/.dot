@@ -20,6 +20,7 @@ if [[ $# -eq 0 ]] || [[ "$1" =~ ^(-h|--help|help)$ ]]; then
 fi
 
 CURRENT_DIR=$(pwd)
+# @TODO (undg) 2024-06-28: fix files with spaces in names
 files=$@ # files passed as an arguments
 
 for f in $files; do
