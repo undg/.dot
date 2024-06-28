@@ -28,8 +28,13 @@ return {
         onIgnoredFiles = 'off',
         packageManager = 'pnpm',
         quiet = false,
-        rulesCustomizations = {},
-        run = 'onType',
+        rulesCustomizations = {
+            { rule = '@typescript-eslint/no-unused-vars', severity = 'off' },
+            { rule = 'spaced-comment',                    severity = 'off' },
+            { rule = 'simple-import-sort/imports',        severity = 'off' },
+        },
+        run = 'onSave',
+        severity_sort = true,
         useESLintClass = false,
         validate = 'on',
         workingDirectory = {
