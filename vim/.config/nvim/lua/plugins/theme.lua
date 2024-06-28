@@ -77,6 +77,20 @@ return {
                 source = true,
                 prefix = '  ', -- padding left
                 suffix = '  ', -- padding right
+                format = function(diagnostic)
+                    if diagnostic.source == 'eslint' then
+                        P(diagnostic)
+                        return string.format(
+                            '%s\n%s\n%s',
+                            diagnostic.message,
+                            -- shows the name of the rule
+                            diagnostic.user_data.lsp.code,
+                            -- shows url to rule documentation
+                            diagnostic.user_data.lsp.codeDescription.href
+                        )
+                    end
+                    return string.format('%s [%s]', diagnostic.message, diagnostic.source)
+                end,
             },
         })
     end,
