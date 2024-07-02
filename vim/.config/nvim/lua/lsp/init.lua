@@ -58,7 +58,7 @@ local cwd = vim.fn.getcwd()
 if cwd and string.match(cwd, '/Arahi/') then
     vim.notify('arahi only setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local arahi_sources = {
-        cspell.diagnostics,
+        -- cspell.diagnostics,
     }
     vim.list_extend(M_null_ls_sources, arahi_sources)
 else
