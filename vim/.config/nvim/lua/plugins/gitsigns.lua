@@ -13,32 +13,12 @@ return {
 
         gitsigns.setup({
             signs = {
-                add = { hl = 'GitSignsAdd', text = '+', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
-                change = {
-                    hl = 'GitSignsChange',
-                    text = '~',
-                    numhl = 'GitSignsChangeNr',
-                    linehl = 'GitSignsChangeLn',
-                },
-                delete = {
-                    hl = 'GitSignsDelete',
-                    text = '_',
-                    numhl = 'GitSignsDeleteNr',
-                    linehl = 'GitSignsDeleteLn',
-                },
-                topdelete = {
-                    hl = 'GitSignsDelete',
-                    text = '‾',
-                    numhl = 'GitSignsDeleteNr',
-                    linehl = 'GitSignsDeleteLn',
-                },
-                changedelete = {
-                    hl = 'GitSignsChange',
-                    text = '~',
-                    numhl = 'GitSignsChangeNr',
-                    linehl = 'GitSignsChangeLn',
-                },
-                untracked = { hl = 'GitSignsAdd', text = '┆', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+                add = { text = '+' },
+                change = { text = '~' },
+                delete = { text = '_' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '~' },
+                untracked = { text = '┆' },
             },
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
             numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
@@ -82,9 +62,6 @@ return {
                 row = 0,
                 col = 1,
             },
-            yadm = {
-                enable = false,
-            },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
@@ -116,15 +93,15 @@ return {
                 end, { expr = true })
 
                 -- Actions
-                map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>')
+                map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'gitsigns: stage_hunk' })
                 -- map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
-                map('n', '<leader>gs', gs.stage_hunk)
-                map('n', '<leader>gu', gs.reset_hunk)
-                map('n', '<leader>gp', gs.preview_hunk)
-                -- map('n', '<leader>hR', gs.reset_buffer)
+                map('n', '<leader>gs', gs.stage_hunk, { desc = 'gitsigns: preview_hunk' })
+                map('n', '<leader>gu', gs.reset_hunk, { desc = 'gitsigns: reset_hunk' })
+                map('n', '<leader>gU', gs.reset_buffer, { desc = 'gitsigns: reset_buffer' })
+                map('n', '<leader>gp', gs.preview_hunk, { desc = 'gitsigns: preview_hunk' })
+                map('n', '<leader>gP', gs.diffthis, { desc = 'gitsigns: diffthis' })
                 -- map('n', '<leader>hb', function() gs.blame_line{full=true} end)
                 -- map('n', '<leader>tb', gs.toggle_current_line_blame)
-                -- map('n', '<leader>hd', gs.diffthis)
                 -- map('n', '<leader>hD', function() gs.diffthis('~') end)
                 -- map('n', '<leader>td', gs.toggle_deleted)
 
