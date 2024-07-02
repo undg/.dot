@@ -38,7 +38,7 @@ exec_always --no-startup-id sleep 1 && nm-applet                                
 exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/anime-girl-ps4.jpg                         # Wallpaper
 
 exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 2 && ~/bin/d3                          # 3 displays xrandr script
-exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && iriunwebcam                                  # Android webcam
+# exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && iriunwebcam                                  # Android webcam
 # exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 6 && kodi                              # Media center
 exec        --no-startup-id [[ "$(hostname)" == "di-7415" ]] && sleep 2 && ~/bin/autorotate --display eDP    # autorotate 2in1 screen
 
