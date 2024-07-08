@@ -16,4 +16,4 @@ end
 
 vim.api.nvim_create_user_command('IndentToggle', toggle, {})
 -- ts/sw 2<-->4 toggle indentation
-Keymap.normal('<leader>st', toggle, { silent = false })
+Keymap.normal('<leader>st', toggle, { silent = false, desc = "Toggle softtabstop (indentation) 2 <-> 4" })
