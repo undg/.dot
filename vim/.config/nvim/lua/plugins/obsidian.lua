@@ -36,6 +36,12 @@ return {
         obsidian_util.workspaces.personal,
         obsidian_util.workspaces.wiki,
       },
+      follow_url_func = function(url)
+        vim.fn.jobstart({"xdg-open", url})  -- Linux <3
+
+        -- Open the URL in the default web browser.
+        -- vim.fn.jobstart({ 'open', url })    -- Mac OS 💩
+      end,
 
       notes_subdir = 'notes',
       daily_notes = {
