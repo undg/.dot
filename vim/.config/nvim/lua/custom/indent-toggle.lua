@@ -1,4 +1,4 @@
-local function toggle()
+local function toggleTabs()
     if vim.g.softtabstop == 2 then
         vim.g.softtabstop = 4
         vim.opt.softtabstop = 4
@@ -14,6 +14,6 @@ local function toggle()
     end
 end
 
-vim.api.nvim_create_user_command('IndentToggle', toggle, {})
+vim.api.nvim_create_user_command('IndentToggle', toggleTabs, {})
 -- ts/sw 2<-->4 toggle indentation
-Keymap.normal('<leader>st', toggle, { silent = false, desc = "Toggle softtabstop (indentation) 2 <-> 4" })
+Keymap.normal('<leader>st', toggleTabs, { silent = false, desc = "Toggle set=tabstop (indentation) 2 <-> 4" })
