@@ -29,7 +29,22 @@ return {
 
     require('obsidian').setup({
       ui = {
-        enable = false,
+        enable = true,
+        checkboxes = {
+          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+          -- [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
+          -- ['x'] = { char = '', hl_group = 'ObsidianDone' },
+          ['>'] = { char = '', hl_group = 'ObsidianTodo' },
+          -- ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
+          ['!'] = { char = '', hl_group = 'ObsidianImportant' },
+          -- Replace the above with this if you don't have a patched font:
+          [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+          ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+
+          -- You can also add more custom ones...
+        },
+        -- Use bullet marks for non-checkbox lists.
+        bullets = { char = '•', hl_group = 'ObsidianBullet' },
       },
       workspaces = {
         obsidian_util.workspaces.work,
@@ -37,7 +52,7 @@ return {
         obsidian_util.workspaces.wiki,
       },
       follow_url_func = function(url)
-        vim.fn.jobstart({"xdg-open", url})  -- Linux <3
+        vim.fn.jobstart({ 'xdg-open', url })         -- Linux <3
 
         -- Open the URL in the default web browser.
         -- vim.fn.jobstart({ 'open', url })    -- Mac OS 💩
