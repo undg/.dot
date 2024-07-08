@@ -6,6 +6,9 @@
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 4
 
+focus_on_window_activation focus # smart|urgent|focus|none
+
+
 # #---Basic Definitions---# #
 set $term --no-startup-id alacritty
 set $winKey Mod4
