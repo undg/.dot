@@ -17,7 +17,8 @@ vim.opt.swapfile = false                                                       -
 vim.o.hidden = true                                                            -- Do not save when switching buffers
 vim.opt.autoread = true                                                        -- Auto reload file when changed from the outside
 vim.opt.undofile = true                                                        -- Save undo history
-vim.o.conceallevel = 0                                                         -- Don't render markdown (hide ```, parse checkbockes etc.)
+-- vim.o.conceallevel = 0                                                         -- Don't render markdown (hide ```, parse checkbockes etc.)
+vim.o.conceallevel = 1                                                         -- Render markdown (hide ```, parse checkbockes etc.)
 
 -- Wildmenu (command-line)
 vim.opt.wildmenu = true                                                        -- autocompletion on
