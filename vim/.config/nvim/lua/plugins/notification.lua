@@ -8,6 +8,8 @@ return {
             local notify = require('notify')
             notify.setup({
                 background_colour = '#000000',
+                top_down = false, -- true: top; false: bottom
+                fps = 60,
             })
 
             local telescope_ok, telescope = pcall(require, 'telescope')
@@ -23,8 +25,7 @@ return {
 
             vim.notify = notify
 
-            Keymap.normal('f<esc>', telescope.extensions.notify.notify)
-            Keymap.normal('<leader>f<esc>', telescope.extensions.notify.notify)
+            Keymap.normal('<leader>S', telescope.extensions.notify.notify)
             Keymap.normal('<leader><esc>', notify.dismiss)
         end,
     },
