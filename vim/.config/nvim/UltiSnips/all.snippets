@@ -39,32 +39,32 @@ endsnippet
 #########
 # DATES #
 #########
-snippet date "YYYY-MM-DD" w
+snippet date "YYYY-MM-DD" d
 `!v strftime("%Y-%m-%d")`
 endsnippet
 
-snippet ddate "Month DD, YYYY" w
+snippet ddate "Month DD, YYYY" d
 `!v strftime("%b %d, %Y")`
 endsnippet
 
-snippet diso "ISO format datetime" w
+snippet diso "ISO format datetime" d
 `!v strftime("%Y-%m-%d %H:%M:%S%z")`
 endsnippet
 
-snippet time "hh:mm" w
+snippet time "hh:mm" d
 `!v strftime("%H:%M")`
 endsnippet
 
-snippet timesec "hh:mm:ss" w
+snippet timesec "hh:mm:ss" d
 `!v strftime("%H:%M:%S")`
 endsnippet
 
 
-snippet datetime "YYYY-MM-DD hh:mm" w
+snippet datetime "YYYY-MM-DD hh:mm" d
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
 
-snippet datetimesec "YYYY-MM-DD hh:mm:ss" w
+snippet datetimesec "YYYY-MM-DD hh:mm:ss" d
 `!v strftime("%Y-%m-%d %H:%M:%S")`
 endsnippet
 
@@ -86,11 +86,11 @@ snippet todo-- "TODO"
 -- @TODO (`git config user.name`) `!v strftime("%Y-%m-%d")`: $1 
 endsnippet
 
-snippet uuid "Random UUID" w
+snippet uuid "Random UUID" d
 `!p if not snip.c: snip.rv = str(uuid4())`
 endsnippet
 
-snippet uuidShort "Random UUID" w
+snippet uuidShort "Random UUID" d
 `!p if not snip.c: snip.rv = str(uuid4()).split('-')[0]`
 endsnippet
 
