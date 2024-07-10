@@ -14,12 +14,24 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 #################
 
 
+# Some of those variables are used in ~/.config/i3/config
+
 export EDITOR="nvim"
-# export TERMINAL="alacritty"
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
+# export TERMINAL="kitty"
 export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
+
+if [[ "$(hostname)" == "cm" ]]; then
+  export SCREEN_LEFT="DisplayPort-1"
+  export SCREEN_RIGHT="DisplayPort-0"
+  export SCREEN_TOP="HDMI-A-0"
+else
+  export SCREEN_LEFT="HDMI-A-0"
+  export SCREEN_RIGHT="eDP"
+  export SCREEN_TOP="HDMI-A-0"
+fi
 
 # less/man colors
 export LESS=-R
