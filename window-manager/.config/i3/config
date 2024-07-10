@@ -1,5 +1,10 @@
 # vim: filetype=config syn=sh
-# This config file will use environmental variables such as $BROWSER and $TERMINAL.
+# This config file will use environmental variables such as
+# $BROWSER
+# $TERMINAL
+# $SCREEN_LEFT
+# $SCREEN_RIGHT
+# $SCREEN_TOP.
 # You can set these variables in ~/.config/zsh/.zprofile
 
 # #---i3 Settings---# #
@@ -10,7 +15,7 @@ focus_on_window_activation focus # smart|urgent|focus|none
 
 
 # #---Basic Definitions---# #
-set $term --no-startup-id alacritty
+set $term --no-startup-id $TERMINAL
 set $winKey Mod4
 set $altKey Mod1
 set $shutdown sudo -A shutdown -h now
@@ -138,17 +143,17 @@ bindsym $winKey+n                  move workspace to output next
 # @TODO (undg) 2024-01-10: prev dosen't exist, LOL
 # bindsym $winKey+p                  move workspace to output prev
 
-workspace 1 output                 $DP_left
-workspace 2 output                 $DP_left
-workspace 3 output                 $DP_left
-workspace 4 output                 $DP_left
+workspace $ws1 output                 $DP_left
+workspace $ws2 output                 $DP_left
+workspace $ws3 output                 $DP_left
+workspace $ws4 output                 $DP_left
 
-workspace 5 output                 $DP_top
-workspace 6 output                 $DP_top
+workspace $ws5 output                 $DP_top
+workspace $ws6 output                 $DP_top
 
-workspace 7 output                 $DP_right
-workspace 8 output                 $DP_right
-workspace 9 output                 $DP_right
+workspace $ws7 output                 $DP_right
+workspace $ws8 output                 $DP_right
+workspace $ws9 output                 $DP_right
 
 set $WINDOW_gta5                      [class="steam_app_271590"]
 set $WINDOW_portal2                   [class="portal2_linux"]
@@ -301,7 +306,7 @@ bindsym $winKey+minus                 split vertical ;; exec $term
 
 
 # #---Function Buttons---# #
-bindsym $winKey+F1                exec --no-startup-id $browser
+# bindsym $winKey+F1                exec --no-startup-id $browser
 bindsym $winKey+F2                restart
 # bindsym $winKey+F4                exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 # bindsym $winKey+F5                exec --no-startup-id $netrefresh
