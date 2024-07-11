@@ -25,12 +25,12 @@ export READER="xreader"
 
 if [[ "$(hostname)" == "cm" ]]; then
   export SCREEN_LEFT="DisplayPort-1"
-  export SCREEN_RIGHT="DisplayPort-0"
   export SCREEN_TOP="HDMI-A-0"
+  export SCREEN_RIGHT="DisplayPort-0"
 elif [[ "$(hostname)" == "di-7415" ]]; then
-  export SCREEN_LEFT="eDP"       # BOTTOM in work
-  export SCREEN_RIGHT="HDMI-A-0" # TOP in work
-  export SCREEN_TOP="HDMI-A-0"   # TOP in work
+  export SCREEN_LEFT="HDMI-A-0" # TOP in work
+  export SCREEN_TOP="HDMI-A-0"  # TOP in work
+  export SCREEN_RIGHT="eDP"     # BOTTOM in work
 fi
 
 # less/man colors
