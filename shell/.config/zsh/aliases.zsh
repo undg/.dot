@@ -61,6 +61,13 @@ else
     install neovim
 fi
 
+if hash mise 2>/dev/null; then
+    alias m="mise"
+else
+    echo "mise is missing"
+    install mise
+fi
+
 if hash fping 2>/dev/null; then
     alias wping="fping wp.pl -l | cut -d , -f 3-4"
 else
