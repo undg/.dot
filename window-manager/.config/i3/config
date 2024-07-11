@@ -23,12 +23,7 @@ set $reboot sudo -A reboot
 # set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
-set $DP_left DisplayPort-1
-set $DP_right DisplayPort-0
-set $DP_top HDMI-A-0
-
-
-set $browser_brave brave --enable-blink-features=MiddleClickAutoscroll
+set $browser_brave $BROWSER --enable-blink-features=MiddleClickAutoscroll
 set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscroll
 
 
@@ -143,17 +138,17 @@ bindsym $winKey+n                  move workspace to output next
 # @TODO (undg) 2024-01-10: prev dosen't exist, LOL
 # bindsym $winKey+p                  move workspace to output prev
 
-workspace $ws1 output                 $DP_left
-workspace $ws2 output                 $DP_left
-workspace $ws3 output                 $DP_left
-workspace $ws4 output                 $DP_left
+workspace $ws1 output                 $SCREEN_LEFT
+workspace $ws2 output                 $SCREEN_LEFT
+workspace $ws3 output                 $SCREEN_LEFT
+workspace $ws4 output                 $SCREEN_LEFT
 
-workspace $ws5 output                 $DP_top
-workspace $ws6 output                 $DP_top
+workspace $ws5 output                 $SCREEN_TOP
+workspace $ws6 output                 $SCREEN_TOP
 
-workspace $ws7 output                 $DP_right
-workspace $ws8 output                 $DP_right
-workspace $ws9 output                 $DP_right
+workspace $ws7 output                 $SCREEN_RIGHT
+workspace $ws8 output                 $SCREEN_RIGHT
+workspace $ws9 output                 $SCREEN_RIGHT
 
 set $WINDOW_gta5                      [class="steam_app_271590"]
 set $WINDOW_portal2                   [class="portal2_linux"]
