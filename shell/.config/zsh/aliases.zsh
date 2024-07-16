@@ -56,6 +56,7 @@ alias watch="watch --color --interval 0.5 "
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
     alias v="nvim"
+    alias gp="nvim -c ':GpProofread'"
 else
     echo "neovim is missing"
     install neovim
