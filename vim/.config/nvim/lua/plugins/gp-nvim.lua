@@ -1,3 +1,27 @@
+vim.api.nvim_create_user_command('GpProofread', function(args)
+    if args.range > 0 then
+        print(args.line1 .. '-' .. args.line2 .. ' pizzas')
+    end
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+    local lines = vim.fn.getline(start_pos[2], end_pos[2])
+    print(lines)
+    local selection = ''
+
+    if type(lines) == 'table' then
+        selection = table.concat(lines, '\n')
+    end
+
+    vim.cmd('GpChatNew')
+    vim.api.nvim_feedkeys(
+        "iProofread this text for grammar and clarity. Provide short summary with what's corrected. Use markdown. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
+        .. selection
+        .. '\n\n',
+        'n',
+        true
+    )
+end, { range = true })
+
 return {
     'robitx/gp.nvim', -- https://github.com/robitx/gp.nvim
     config = function()
@@ -241,38 +265,15 @@ return {
 
         wk.register({
             name = 'ChatGPT',
-            C = { ':GpChatNew vsplit<cr>', ':GpChatNew' },
-            c = { ':GpChatToggle vsplit<cr>', ':GpChatToggle' },
-            f = { ':GpChatFinder<cr>', ':GpChatFinder' },
-            r = { ':GpRewrite<cr>', ':GpRewrite' },
-            n = { ':GpVNew<cr>', ':GpVNew' },
-            x = { ':GpContext vsplint<cr>', ':GpContext' },
             a = { ':GpNextAgent<cr>', ':GpNextAgent' },
+            c = { ':GpChatToggle vsplit<cr>', ':GpChatToggle' },
+            C = { ':GpChatNew vsplit<cr>', ':GpChatNew' },
+            f = { ':GpChatFinder<cr>', ':GpChatFinder' },
+            n = { ':GpVNew<cr>', ':GpVNew' },
+            p = { ':GpProofread<cr>', ':GpProofread' },
+            r = { ':GpRewrite<cr>', ':GpRewrite' },
             s = { ':GpStop<cr>', ':GpStop' },
+            x = { ':GpContext vsplint<cr>', ':GpContext' },
         }, { prefix = '<leader>ag', mode = { 'n', 'v' }, silent = false })
     end,
-
-    vim.api.nvim_create_user_command('GpProofread', function(args)
-        if args.range > 0 then
-            print(args.line1 .. '-' .. args.line2 .. ' pizzas')
-        end
-        local start_pos = vim.fn.getpos("'<")
-        local end_pos = vim.fn.getpos("'>")
-        local lines = vim.fn.getline(start_pos[2], end_pos[2])
-        print(lines)
-        local selection = ''
-
-        if type(lines) == 'table' then
-            selection = table.concat(lines, '\n')
-        end
-
-        vim.cmd('GpChatNew')
-        vim.api.nvim_feedkeys(
-            "iProofread this text for grammar and clarity. Provide short summary with what's corrected. Use markdown. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
-            .. selection
-            .. '\n\n',
-            'n',
-            true
-        )
-    end, {range = true}),
 }
