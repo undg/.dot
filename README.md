@@ -13,6 +13,21 @@ sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh)   # I
 
 ```
 
+## Bind custom githooks
+
+Alter git config with custom githooks:
+
+```
+hooksPath = _githooks
+```
+
+
+OR CLI:
+
+```bash
+git config --local core.hooksPath _githooks/
+```
+
 Done
 
 
@@ -25,4 +40,5 @@ Done
 
 ./clean-env
 ```
+
 
