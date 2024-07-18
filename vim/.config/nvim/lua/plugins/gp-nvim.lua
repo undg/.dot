@@ -252,12 +252,27 @@ return {
         }, { prefix = '<leader>ag', mode = { 'n', 'v' }, silent = false })
     end,
 
-    vim.api.nvim_create_user_command('GpProofread', function()
+    vim.api.nvim_create_user_command('GpProofread', function(args)
+        if args.range > 0 then
+            print(args.line1 .. '-' .. args.line2 .. ' pizzas')
+        end
+        local start_pos = vim.fn.getpos("'<")
+        local end_pos = vim.fn.getpos("'>")
+        local lines = vim.fn.getline(start_pos[2], end_pos[2])
+        print(lines)
+        local selection = ''
+
+        if type(lines) == 'table' then
+            selection = table.concat(lines, '\n')
+        end
+
         vim.cmd('GpChatNew')
         vim.api.nvim_feedkeys(
-            "iProofread this text for grammar and clarity. Provide short summary with what's corrected. Use markdown. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n",
+            "iProofread this text for grammar and clarity. Provide short summary with what's corrected. Use markdown. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
+            .. selection
+            .. '\n\n',
             'n',
             true
         )
-    end, {}),
+    end, {range = true}),
 }
