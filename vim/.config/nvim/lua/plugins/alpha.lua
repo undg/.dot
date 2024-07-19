@@ -59,7 +59,7 @@ return {
             dashboard.button('o', '   >  Old files', ':Telescope oldfiles cwd_only=true<CR>'),
             dashboard.button('e', '   >  New file', ':enew <BAR> startinsert <CR>'),
             dashboard.button('gg', '🗪   >  ChatGPT', ':GpChatNew<CR>'),
-            dashboard.button('gs', '🗪   >  ChatGPT (proofread)', ':GpProofread<CR>'),
+            dashboard.button('gp', '🗪   >  ChatGPT (proofread)', ':GpProofread<CR>'),
             dashboard.button('w', '🖋  >  Note Work', open_new_obsidian_work()),
             dashboard.button('p', '󱦹   >  Note Personal', open_new_obsidian_personal()),
             dashboard.button('ss', '   >  Sessions list', ':SessionManager load_session<CR>'),
