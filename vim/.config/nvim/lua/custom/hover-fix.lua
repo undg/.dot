@@ -10,7 +10,7 @@ local function fix_by_custom_hover()
         or false
 
     if not_ok then
-        vim.notify('pligins/mason.lua: missing required ', not_ok)
+        vim.notify('plugins/mason.lua: missing required ', not_ok)
     end
 
     -- Replace hover function with custom implementation
@@ -22,13 +22,15 @@ local function fix_by_custom_hover()
             return
         end
         local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-        markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+        markdown_lines = vim.lsp.util.split(markdown_lines)
         if vim.tbl_isempty(markdown_lines) then
             return
         end
         return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
     end
 end
+
+local ok_notify, notify = pcall(require,'notify')
 
 -- See https://github.com/neovim/nvim-lspconfig/issues/1931#issuecomment-1297599534
 local function fix_by_filter_notify()
@@ -39,10 +41,14 @@ local function fix_by_filter_notify()
                 return
             end
         end
-        return require('notify')(msg, ...)
+        return notify(msg, ...)
     end
 end
 
+
+
+if ok_notify then
 -- Chose one fix and uncomment
 fix_by_filter_notify()
+end
 -- fix_by_custom_hover()
