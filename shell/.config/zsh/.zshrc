@@ -153,7 +153,7 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey "^[q" exit_zsh
 
-# tmux-sessionizer is script to quickly change/create tmux sessions. It's a fork of theprimagean script.
+# tmux-sessionizer is script to quickly change/create tmux sessions. It's a fork of ThePrimagean script.
 # src: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://unix.stackexchange.com/a/79905
 # Same bind-key is set in tmux
