@@ -133,25 +133,31 @@ eval "$(atuin init zsh --disable-up-arrow)"
 #################################
 set -o emacs 
 
-bindkey '^a' beginning-of-line # Give some love to emacs
-bindkey '^e' end-of-line # Give some love to emacs
+bindkey '^a' beginning-of-line    # Give some love to emacs
+bindkey '^e' end-of-line          # Give some love to emacs
+bindkey "^[[1;5C" forward-word    # ctrl+left
+bindkey "^[[1;5D" backward-word   # ctrl+right
 
-bindkey '^h' backward-kill-word
-bindkey '^j' backward-word
-bindkey '^k' forward-word
-bindkey '^l' undo
-bindkey '^o' redo
+bindkey '^h' backward-kill-word   # ctrl+h
+bindkey '^j' backward-word        # ctrl+j
+bindkey '^k' forward-word         # ctrl+k
+bindkey '^l' undo                 # ctrl+l
+bindkey '^o' redo                 # ctrl+o
 
-bindkey "\e[3~" delete-char # fix delete key
+bindkey "\e[3~" delete-char       # fix delete key
 bindkey "^?" backward-delete-char # fix backspace after normal mode
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word            # ctrl+del
 
 exit_zsh() { exit }
 zle -N exit_zsh
 bindkey "^[q" exit_zsh
 
+# tmux-sessionizer is script to quickly change/create tmux sessions. It's a fork of theprimagean script.
+# src: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://unix.stackexchange.com/a/79905
-# same bind-key is set in tmux
-bindkey -s '^g' '^utmux-sessionizer^M'
+# Same bind-key is set in tmux
+bindkey -s '^g' '^utmux-sessionizer^M' # ctrl+g
 
 # @TODO (undg) 2024-03-07: detete after testing period
 # ---- replaced with `atuin`
@@ -163,13 +169,10 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Arrow up
-bindkey "^[[B" down-line-or-beginning-search # Arrow down
+bindkey "^[[A" up-line-or-beginning-search   # ctrl+up
+bindkey "^[[B" down-line-or-beginning-search # ctrl+down
 
 
-#################################
-# edit command in vim
-#################################
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
