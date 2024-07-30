@@ -13,8 +13,8 @@ Spec('plugins.luapad')                     -- lua scratch pad
 Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 
 -- Git
-Spec('plugins.lazygit')                           -- open lazygit in floating window. Lazygit need to be installed in system
-Spec('plugins.gitsigns')                          -- Git status for every line
+Spec('plugins.lazygit')  -- open lazygit in floating window. Lazygit need to be installed in system
+Spec('plugins.gitsigns') -- Git status for every line
 -- Spec('plugins.neogit')                            -- A Magit clone for Neovim
 Spec('plugins.octo-nvim')
 Git('https://github.com/tpope/vim-fugitive')      -- Git commands in nvim
@@ -25,7 +25,7 @@ Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to conv
 Spec('plugins.neo-tree')
 Spec('plugins.bufferline')
 Spec('plugins.telescope')
-Spec('plugins.smart-open')
+Spec('plugins.smart-open') -- telescope plugin
 Spec('plugins.harpoon')
 
 -- LSP, code and linting
@@ -55,22 +55,13 @@ Git('https://github.com/SirVer/ultisnips')       -- snippets that are integrated
 Spec('plugins.yanky')
 Spec('plugins.vim-mundo')
 
--- AI
-Spec('plugins.sg')          -- LLM Cody chat and Sourcegraph AI code search engine. sourcegraph.com
-Spec('plugins.codeium')     -- LLM codeium is AI powered code completion. codeium.com
-Spec('plugins.gp-nvim')     -- LLM chatGPT is AI powered code completion and chat bot. https://platform.openai.com/
-Spec('plugins.ollama-nvim') -- AI with local server and locally downloaded models. Install https://github.com/jmorganca/ollama (in arch std extra repo)
-Spec('plugins.gen-nvim')    -- AI with local server and locally downloaded models. Install https://github.com/jmorganca/ollama (in arch std extra repo)
-Spec('plugins.ogpt')
-
 -- Utils
 Spec('plugins.obsidian')                         -- Note taking and knowledge base
 Spec('plugins.markdown-preview')                 -- Preview Markdown in your modern browser with synchronised scrolling
+Spec('plugins.gp-nvim')                          -- AI chat interface for popular LLM's with API
 Spec('plugins.qfenter')                          -- quickfix window (cw) open in split/tab...
 Spec('plugins.vimux')                            -- run commands in vimux pane
 Spec('plugins.nvim-tmux-navigation')             -- hybrid tmux, vim window navigation.
-Spec('plugins.which-key')                        -- display interactive footer with available keymaps
-Spec('plugins.lualine')                          -- status bar with few informations
 Spec('plugins.tabular')                          -- align text in colums in table style.
 Spec('plugins.marks')                            -- better marks management
 Git('https://github.com/stevearc/dressing.nvim') -- better floating window styles
@@ -78,6 +69,8 @@ Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin
 
 -- Look and feel
 Spec('plugins.theme')                 -- gruvbox is best theme on the universe
+Spec('plugins.lualine')               -- status bar with few informations
+Spec('plugins.which-key')             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
 Spec('plugins.colorizer')             -- paint hex values with color
 Spec('plugins.illuminate')            -- automatically highlighting other uses of the word under the cursor

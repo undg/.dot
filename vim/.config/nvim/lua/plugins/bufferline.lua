@@ -125,14 +125,16 @@ function M.config()
 
     Keymap.normal('<C-Q>', CMD_CLOSE_GO_PREV)
 
-    wk.register({
-        c = {
-            name = 'Buffer Close',
-            c = { CMD_CLOSE_GO_PREV, 'Close Buffer' },
-            h = { ':BufferLineCloseLeft<CR>', 'BufferLineCloseLeft' },
-            l = { ':BufferLineCloseRight<CR>', 'BufferLineCloseRight' },
-        },
-    }, { prefix = '<leader>b' })
+    wk.add({
+        { '<leader>b',   group = 'Buffer' },
+        { '<leader>bc',  group = 'Buffer Close' },
+        { '<leader>bcc', CMD_CLOSE_GO_PREV,           desc = 'Close Buffer go prev' },
+        { '<C-Q>',       CMD_CLOSE_GO_PREV,           desc = 'Close Buffer go prev' },
+        { '<leader>bC',  CMD_CLOSE_GO_NEXT,           desc = 'Close Buffer go next' },
+        { '<leader>qq',  CMD_CLOSE_GO_NEXT,           desc = 'Close Buffer go next' },
+        { '<leader>bch', ':BufferLineCloseLeft<CR>',  desc = 'BufferLineCloseLeft' },
+        { '<leader>bcl', ':BufferLineCloseRight<CR>', desc = 'BufferLineCloseRight' },
+    })
 end
 
 return M

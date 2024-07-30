@@ -38,8 +38,8 @@ return {
           -- ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
           ['!'] = { char = '', hl_group = 'ObsidianImportant' },
           -- Replace the above with this if you don't have a patched font:
-          [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-          ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+          [' '] = { char = '☐', hl_group = 'ObsidianTodo' },
+          ['x'] = { char = '✔', hl_group = 'ObsidianDone' },
 
           -- You can also add more custom ones...
         },
@@ -71,27 +71,22 @@ return {
       },
     })
 
-    local keymaps = {
-      d = { ':ObsidianToday<cr>', 'Open/Create daily' },
-      n = { ':ObsidianNew<cr>', 'Create new note' },
-      q = { ':ObsidianQuickSwitch<cr>', 'Quick switch' },
-      s = { ':ObsidianSearch<cr>', 'Search' },
-    }
+    wk.add({
+      { '<leader>o',  group = 'Obsidian',         silent = false },
+      { '<leader>od', ':ObsidianToday<cr>',       desc = 'Obsidian: Open/Create daily' },
+      { '<leader>oi', ':ObsidianPasteImg<cr>',    desc = 'Obsidian: Paste image' },
+      { '<leader>on', ':ObsidianNew<cr>',         desc = 'Obsidian: Create new note' },
+      { '<leader>op', ':ObsidianOpen<cr>',      desc = 'Obsidian: Open in obsidiona' },
+      { '<leader>oq', ':ObsidianQuickSwitch<cr>', desc = 'Obsidian: Quick switch' },
+      { '<leader>or', ':ObsidianRename<cr>',      desc = 'Obsidian: Rename note' },
+      { '<leader>os', ':ObsidianSearch<cr>',      desc = 'Obsidian: Search' },
+      { '<leader>ot', ':ObsidianTOC<cr>',      desc = 'Obsidian: Show TOC' },
+    })
 
-    wk.register({
-      name = 'Obsidian',
-
-      i = { ':ObsidianPasteImg<cr>', 'Paste image' },
-      r = { ':ObsidianRename<cr>', 'Rename note' },
-
-      w = { name = 'Work', keymaps },
-      p = { name = 'Personal', keymaps },
-      v = { name = 'Wiki', keymaps },
-    }, { prefix = '<leader>o', mode = { 'n' }, silent = false })
-
-    wk.register({
-      name = 'Obsidian',
-      l = { ':ObsidianLinkNew', 'Create new link' },
-    }, { prefix = '<leader>o', mode = { 'v' }, silent = false })
+    wk.add({
+      mode = 'v',
+      { '<leader>o',  group = 'Obsidian', silent = false },
+      { '<leader>ol', ':ObsidianLinkNew', desc = 'Obsidian: Create new link' },
+    })
   end,
 }
