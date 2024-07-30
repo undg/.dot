@@ -25,7 +25,7 @@ return {
 
             vim.notify = notify
 
-            Keymap.normal('<leader>S', telescope.extensions.notify.notify)
+            Keymap.normal('<leader>S', telescope.extensions.notify.notify, {desc = "List Notifications"})
             Keymap.normal('<leader><esc>', notify.dismiss)
         end,
     },

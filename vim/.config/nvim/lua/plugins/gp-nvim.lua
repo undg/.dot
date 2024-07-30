@@ -27,12 +27,14 @@ return {
     config = function()
         require('gp').setup({
             -- required openai api key
-            -- openai_api_key = os.getenv('OPENAI_API_KEY'),
-            -- openai_api_key = os.getenv('OPENAI_API_KEY_FOR_ROBITX_GP'),
-            -- api endpoint (you can change this to azure endpoint)
-            openai_api_endpoint = 'https://api.openai.com/v1/chat/completions',
-            -- openai_api_endpoint = 'https://api.openai.com/v1/embeddings',
-            -- openai_api_endpoint = "https://$URL.openai.azure.com/openai/deployments/{{model}}/chat/completions?api-version=2023-03-15-preview",
+            openai = {
+                endpoint = 'https://api.openai.com/v1/chat/completions',
+                secret = os.getenv('OPENAI_API_KEY'),
+            },
+            -- ollama = {
+            --     endpoint = 'https://api.openai.com/v1/chat/completions',
+            -- }
+
             -- prefix for all commands
             cmd_prefix = 'Gp',
             -- optional curl parameters (for proxy, etc.)
@@ -263,17 +265,19 @@ return {
             return
         end
 
-        wk.register({
-            name = 'ChatGPT',
-            a = { ':GpNextAgent<cr>', ':GpNextAgent' },
-            c = { ':GpChatToggle vsplit<cr>', ':GpChatToggle' },
-            C = { ':GpChatNew vsplit<cr>', ':GpChatNew' },
-            f = { ':GpChatFinder<cr>', ':GpChatFinder' },
-            n = { ':GpVNew<cr>', ':GpVNew' },
-            p = { ':GpProofread<cr>', ':GpProofread' },
-            r = { ':GpRewrite<cr>', ':GpRewrite' },
-            s = { ':GpStop<cr>', ':GpStop' },
-            x = { ':GpContext vsplint<cr>', ':GpContext' },
-        }, { prefix = '<leader>ag', mode = { 'n', 'v' }, silent = false })
+        wk.add({
+            mode = { 'n', 'v' },
+            { "<leader>a", group = "Ai" },
+            { '<leader>ag',  group = 'ChatGPT',          silent = false },
+            { '<leader>aga', ':GpNextAgent<cr>',         desc = ':GpNextAgent' },
+            { '<leader>agc', ':GpChatToggle vsplit<cr>', desc = ':GpChatToggle' },
+            { '<leader>agC', ':GpChatNew vsplit<cr>',    desc = ':GpChatNew' },
+            { '<leader>agf', ':GpChatFinder<cr>',        desc = ':GpChatFinder' },
+            { '<leader>agn', ':GpVNew<cr>',              desc = ':GpVNew' },
+            { '<leader>agp', ':GpProofread<cr>',         desc = ':GpProofread' },
+            { '<leader>agr', ':GpRewrite<cr>',           desc = ':GpRewrite' },
+            { '<leader>ags', ':GpStop<cr>',              desc = ':GpStop' },
+            { '<leader>agx', ':GpContext vsplint<cr>',   desc = ':GpContext' },
+        })
     end,
 }
