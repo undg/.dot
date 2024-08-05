@@ -11,7 +11,7 @@ rm -rf ~/.config/atuin
 
 for folder in */
 do
-    if [[ $folder =~ ^_.* ]]
+    if [[ ! $folder =~ ^_.* ]]
     then
         echo "--------------------------"
         stow_patch -D $folder
