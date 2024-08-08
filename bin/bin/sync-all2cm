@@ -18,7 +18,7 @@ LightCyan="\033[1;36m"
 White="\033[1;37m"
 NC="\033[0m"
 
-# Keep slash at the end of the source to include only it's content.
+# KEEP SLASH AT THE END of the source to include only it's content.
 # Other way folder itself will be copied to destination
 # Standard rsync thing
 rsync_src_desc() {
@@ -90,16 +90,6 @@ rsync $DEBUG -vazr --progress "$MP3_DIR" "ixi:storage/music/mp3"
 rsync $DEBUG -vazr --progress "$LIKED_DIR" "ixi:storage/music/liked"
 # end
 #########################
-
-# download to s0 {zoom-f2, Insta360, DJI}
-rsync_src_desc "/run/media/undg/F2_SD/" "/mnt/s0/RAW/zoom-f2"
-rsync_src_desc "/run/media/undg/INSTA360-X3/DCIM/Camera01/" "/mnt/s0/RAW/INSTA360-X3"
-rsync_src_desc "/run/media/undg/DJI-pocket2/DCIM/100MEDIA/" "/mnt/s0/RAW/dji-pocket2"
-
-# Save to s2 {zoom-f2, Insta360, DJI}
-rsync_src_desc "/mnt/s0/RAW/zoom-f2/" "/mnt/s2/RAW/zoom-f2"
-rsync_src_desc "/mnt/s0/RAW/INSTA360-X3/" "/mnt/s2/RAW/INSTA360-X3"
-rsync_src_desc "/mnt/s0/RAW/dji-pocket2/" "/mnt/s2/RAW/dji-pocket2"
 
 # Backup of backup
 rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
