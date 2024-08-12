@@ -34,7 +34,7 @@ return {
             { rule = 'simple-import-sort/imports',        severity = 'off' },
             { rule = 'react/self-closing-comp',           severity = 'off' },
         },
-        run = 'onSave',
+        run = 'onType', -- onSave, onType
         severity_sort = true,
         useESLintClass = false,
         validate = 'on',
