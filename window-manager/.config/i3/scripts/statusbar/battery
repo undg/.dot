@@ -28,42 +28,42 @@ fg="#928374"
 if [ "$capacity" -ge 99 ]; then
 	fg="#928374"
 	if [ $status == $CHARGING ]; then
-		icon='󱊦 '
+		icon='󱊦  '
 	else
 		icon='󱊣'
 	fi
 elif [ "$capacity" -ge 90 ]; then
 	fg="#928374"
 	if [ $status == $CHARGING ]; then
-		icon='󱊦'
+		icon='󱊦 '
 	else
 		icon='󰂂'
 	fi
 elif [ "$capacity" -ge 65 ]; then
 	fg="#928374"
 	if [ $status == $CHARGING ]; then
-		icon='󱊥'
+		icon='󱊥 '
 	else
 		icon='󰁿'
 	fi
 elif [ "$capacity" -ge 40 ]; then
 	fg="#928374"
 	if [ $status == $CHARGING ]; then
-		icon='󰢝'
+		icon='󰢝 '
 	else
 		icon='󰁽'
 	fi
 elif [ "$capacity" -ge 15 ]; then
 	fg="#d79921"
 	if [ $status == $CHARGING ]; then
-		icon='󱊤'
+		icon='󱊤 '
 	else
 		icon='󰁻'
 	fi
 else
 	fg="#fb4934"
 	if [ $status == $CHARGING ]; then
-		icon='󰢟'
+		icon='󰢟 '
 	else
 		icon='󰁺'
 	fi
