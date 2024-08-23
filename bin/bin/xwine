@@ -1,0 +1,5 @@
+#!/bin/env bash
+
+notify-send 'kill wine server'
+
+yes|killall -9 -i -r .exe|killall -9 wineserver
