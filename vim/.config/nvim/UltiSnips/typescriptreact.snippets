@@ -47,3 +47,25 @@ endsnippet
 snippet useFactJson "useFactJson()" b
 const [config, updateConfig] = useFactJson(${1:props.dataset}, ${2:props.fact}, ${3:someTileConfigSchema});
 endsnippet
+
+snippet ifNoProd "if NODE_ENV !== production" b
+if (process.env.NODE_ENV !== 'production') { 
+	$0
+}
+endsnippet
+
+snippet ifJotaiDebugLabel "if NODE_ENV !== production" b
+if (process.env.NODE_ENV !== 'production') { 
+	$1.debugLabel = '$1'
+}
+$0
+endsnippet
+
+snippet newAtom "if NODE_ENV !== production" b
+const $1Atom = atom($2)
+if (process.env.NODE_ENV !== 'production') { 
+	$1Atom.debugLabel = '$1Atom'
+}
+$0
+endsnippet
+
