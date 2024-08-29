@@ -127,6 +127,7 @@ return {
             Keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
             Keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
             Keymap.normal('<leader>fc', ':Telescope commands<cr>')
+            Keymap.normal('<leader>:', ':Telescope commands<cr>')
 
             Keymap.visual('<leader>fg', function()
                 tb.live_grep({ default_text = get_visual_selection() })
