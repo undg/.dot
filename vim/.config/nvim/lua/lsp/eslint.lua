@@ -47,34 +47,19 @@ return {
     -- commands = {
     --     EslintFixAll = {
     --         function()
+    --             vim.lsp.buf.format({ async = false })
     --             configs.eslint.fix_all({ sync = true, bufnr = 0 })
     --         end,
-    --         description = 'Fix all eslint problems for this buffer',
+    --         description = 'Fix all eslint problems for this buffer'
     --     },
-    -- },
-    -- commands = {
-    --     EslintFixAll = {
+    --     EslintRunOnBuffer = {
     --         function()
-    --             vim.lsp.buf.format({ async = false })
+    --             vim.lsp.buf.execute_command({
+    --                 command = "_typescript.eslint.executeAutofix",
+    --                 arguments = { vim.api.nvim_buf_get_name(0) }
+    --             })
     --         end,
-    --         description = 'Fix all eslint problems for this buffer', -- conflict
+    --         description = 'Run ESLint on the current buffer',
     --     },
     -- },
-    commands = {
-        EslintFixAll = {
-            function()
-                vim.lsp.buf.format({ async = false })
-            end,
-            description = 'Fix all eslint problems for this buffer',
-        },
-        EslintRunOnBuffer = {
-            function()
-                vim.lsp.buf.execute_command({
-                    command = "_typescript.eslint.executeAutofix",
-                    arguments = { vim.api.nvim_buf_get_name(0) }
-                })
-            end,
-            description = 'Run ESLint on the current buffer',
-        },
-    },
 }
