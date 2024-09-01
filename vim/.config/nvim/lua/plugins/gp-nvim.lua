@@ -42,18 +42,21 @@ return {
             .. "- Stay focused and effective in your responses. You've got this!\n"
 
         require('gp').setup({
-            -- required openai api key
-            openai = {
-                endpoint = 'https://api.openai.com/v1/chat/completions',
-                secret = os.getenv('OPENAI_API_KEY'),
-            },
-            anthropic = {
-                endpoint = 'https://api.anthropic.com/v1/messages',
-                secret = os.getenv('ANTHROPIC_API_KEY'),
+            providers = {
+                openai = {
+                    endpoint = 'https://api.openai.com/v1/chat/completions',
+                    secret = os.getenv('OPENAI_API_KEY'),
+                },
+                anthropic = {
+                    endpoint = 'https://api.anthropic.com/v1/messages',
+                    secret = os.getenv('ANTHROPIC_API_KEY'),
+                },
             },
 
             agents = {
                 { disable = true, name = 'ChatGPT4o-mini' },
+                { disable = true, name = 'ChatClaude-3-5-Sonnet' },
+                { disable = true, name = 'ChatClaude-3-Haiku' },
                 {
                     name = 'ChatGPT4o',
                     chat = true,
@@ -62,12 +65,20 @@ return {
                     system_prompt = system_prompt,
                 },
                 {
-                    name = 'Claude',
                     provider = 'anthropic',
+                    name = 'ChatClaude-3-5-Sonnet',
                     chat = true,
                     command = false,
-                    model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = system_prompt,
+                    model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
+                    system_prompt = system_prompt
+                },
+                {
+                    provider = 'anthropic',
+                    name = 'ChatClaude-3-Haiku',
+                    chat = true,
+                    command = false,
+                    model = { model = 'claude-3-haiku-20240307', temperature = 0.4, top_p = 0.95 },
+                    system_prompt = system_prompt
                 },
             },
 
