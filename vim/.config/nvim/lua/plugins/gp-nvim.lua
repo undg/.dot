@@ -25,18 +25,55 @@ end, { range = true })
 return {
     'robitx/gp.nvim', -- https://github.com/robitx/gp.nvim
     config = function()
+        local system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
+            .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
+            .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
+            .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
+            .. "- Focus on a short and efficient way of communicating.'.\n"
+            .. "- If unsure, respond with 'I don't know'.\n"
+            .. '- Request clarification only when crucial.\n'
+            .. '- Emphasize first principles for reasoning.\n'
+            .. '- Pay attention to the broader context before specifics.\n'
+            .. '- Use the Socratic method to refine thinking and problem-solving.\n'
+            .. '- use other methods to guarantee the most correct answer!\n'
+            .. '- Provide complete code when necessary without excessive details.\n'
+            .. '- Keep explanations concise and precise, avoiding excessive verbosity.\n'
+            .. '- Utilize humor or sarcasm when contextually appropriate.\n'
+            .. "- Stay focused and effective in your responses. You've got this!\n"
+
         require('gp').setup({
             -- required openai api key
             openai = {
                 endpoint = 'https://api.openai.com/v1/chat/completions',
                 secret = os.getenv('OPENAI_API_KEY'),
             },
-            -- ollama = {
-            --     endpoint = 'https://api.openai.com/v1/chat/completions',
-            -- }
+            anthropic = {
+                endpoint = 'https://api.anthropic.com/v1/messages',
+                secret = os.getenv('ANTHROPIC_API_KEY'),
+            },
+
+            agents = {
+                { disable = true, name = 'ChatGPT4o-mini' },
+                {
+                    name = 'ChatGPT4o',
+                    chat = true,
+                    command = false,
+                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = system_prompt,
+                },
+                {
+                    name = 'Claude',
+                    provider = 'anthropic',
+                    chat = true,
+                    command = false,
+                    model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = system_prompt,
+                },
+            },
 
             -- prefix for all commands
             cmd_prefix = 'Gp',
+
             -- optional curl parameters (for proxy, etc.)
             -- curl_params = { "--proxy", "http://X.X.X.X:XXXX" }
             curl_params = {},
@@ -44,119 +81,25 @@ return {
             -- directory for storing chat files
             chat_dir = vim.fn.stdpath('data'):gsub('/$', '') .. '/gp/chats',
 
-            -- default command agents (model + persona)
-            -- name, model and system_prompt are mandatory fields
-            -- to use agent for chat set chat = true, for command set command = true
-            -- to remove some default agent completely set it just with the name like:
-            -- agents = {  { name = "ChatGPT4" }, ... },
-            agents = {
-                {
-                    name = 'ChatGPT3-5',
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-3.5-turbo', temperature = 0.5, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
-                        .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
-                        .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
-                        .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
-                        .. "- Focus on a short and efficient way of communicating.'.\n"
-                        .. "- If unsure, respond with 'I don't know'.\n"
-                        .. '- Request clarification only when crucial.\n'
-                        .. '- Emphasize first principles for reasoning.\n'
-                        .. '- Pay attention to the broader context before specifics.\n'
-                        .. '- Use the Socratic method to refine thinking and problem-solving.\n'
-                        .. '- use other methods to guarantee the most correct answer!\n'
-                        .. '- Provide complete code when necessary without excessive details.\n'
-                        .. '- Keep explanations concise and precise, avoiding excessive verbosity.\n'
-                        .. '- Utilize humor or sarcasm when contextually appropriate.\n'
-                        .. "- Stay focused and effective in your responses. You've got this!\n",
-                },
-                {
-                    name = 'ChatGPT4',
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-4-turbo', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
-                        .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
-                        .. '- DO NOT EXPLAN if not explicitly asked for explanation.\n'
-                        .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
-                        .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
-                        .. "- Focus on a short and efficient way of communicating.'.\n"
-                        .. "- If unsure, respond with 'I don't know'.\n"
-                        .. '- Request clarification only when crucial.\n'
-                        .. '- Answer only what asked for.\n'
-                        .. '- Emphasize first principles for reasoning.\n'
-                        .. '- Pay attention to the broader context before specifics.\n'
-                        .. '- Use the Socratic method to refine thinking and problem-solving.\n'
-                        .. '- use other methods to guarantee the most correct answer!\n'
-                        .. '- Provide complete code when necessary without excessive details.\n'
-                        .. '- Keep explanations concise and precise, avoiding excessive verbosity.\n'
-                        .. '- Utilize humor or sarcasm when contextually appropriate.\n'
-                        .. "- Stay focused and effective in your responses. You've got this!\n",
-                },
-                {
-                    name = 'ChatGPT4-o',
-                    chat = true,
-                    command = false,
-                    -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
-                        .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
-                        .. '- DO NOT EXPLAN if not explicitly asked for explanation.\n'
-                        .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
-                        .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
-                        .. "- Focus on a short and efficient way of communicating.'.\n"
-                        .. "- If unsure, respond with 'I don't know'.\n"
-                        .. '- Request clarification only when crucial.\n'
-                        .. '- Answer only what asked for.\n'
-                        .. '- Emphasize first principles for reasoning.\n'
-                        .. '- Pay attention to the broader context before specifics.\n'
-                        .. '- Use the Socratic method to refine thinking and problem-solving.\n'
-                        .. '- use other methods to guarantee the most correct answer!\n'
-                        .. '- Provide complete code when necessary without excessive details.\n'
-                        .. '- Keep explanations concise and precise, avoiding excessive verbosity.\n'
-                        .. '- Utilize humor or sarcasm when contextually appropriate.\n'
-                        .. "- Stay focused and effective in your responses. You've got this!\n",
-                },
-                {
-                    name = 'CodeGPT3-5',
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-3.5-turbo-1106', temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = 'You are an AI working as a code editor.\n\n'
-                        .. 'Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n'
-                        .. 'START AND END YOUR ANSWER WITH:\n\n```',
-                },
-                {
-                    name = 'CodeGPT4',
-                    chat = false,
-                    command = true,
-                    -- string with model name or table with model name and parameters
-                    model = { model = 'gpt-4-1106-preview', temperature = 0.8, top_p = 1 },
-                    -- system prompt (use this to specify the persona/role of the AI)
-                    system_prompt = 'You are an AI working as a code editor.\n\n'
-                        .. 'Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n'
-                        .. 'START AND END YOUR ANSWER WITH:\n\n```',
-                },
-            },
             -- chat user prompt prefix
             chat_user_prefix = '🗨:',
+
             -- chat assistant prompt prefix
             chat_assistant_prefix = '🤖:',
+
             -- chat topic generation prompt
             chat_topic_gen_prompt = 'Summarize the topic of our conversation above'
                 .. ' in two or three words. Respond only with those words.',
+
             -- chat topic model (string with model name or table with model name and parameters)
             chat_topic_gen_model = 'gpt-3.5-turbo-16k',
+
             -- explicitly confirm deletion of a chat file
             chat_confirm_delete = true,
+
             -- conceal model parameters in chat
             chat_conceal_model_params = false,
+
             -- local shortcuts bound to the chat buffer
             -- (be careful to choose something which will work across specified modes)
             chat_shortcut_respond = { modes = { 'n' }, shortcut = '<CR>' },
@@ -169,18 +112,6 @@ return {
             -- command prompt prefix for asking user for input
             -- command_prompt_prefix = '🤖 ~ ',
             command_prompt_prefix_template = '🤖 ~ {{agent}}',
-
-            -- command model (string with model name or table with model name and parameters)
-            -- command_model = {
-            --     -- model = 'gpt-4',
-            --     model = 'gpt-4-1106-preview', -- gpt-4-turbo
-            --     temperature = 1.1,
-            --     top_p = 1,
-            -- },
-            -- command system prompt
-            -- command_system_prompt = 'You are an AI working as code editor.\n\n'
-            --     .. 'Please AVOID COMMENTARY OUTSIDE OF SNIPPET RESPONSE.\n'
-            --     .. 'Start and end your answer with:\n\n```',
 
             -- auto select command response (easier chaining of commands)
             command_auto_select_response = true,
@@ -267,7 +198,7 @@ return {
 
         wk.add({
             mode = { 'n', 'v' },
-            { "<leader>a", group = "Ai" },
+            { '<leader>a',   group = 'Ai' },
             { '<leader>ag',  group = 'ChatGPT',          silent = false },
             { '<leader>aga', ':GpNextAgent<cr>',         desc = ':GpNextAgent' },
             { '<leader>agc', ':GpChatToggle vsplit<cr>', desc = ':GpChatToggle' },
