@@ -131,6 +131,9 @@ function M.config()
         { '<leader>qq',  CMD_CLOSE_GO_NEXT,           desc = 'Close Buffer go next' },
         { '<leader>bch', ':BufferLineCloseLeft<CR>',  desc = 'BufferLine Close Left' },
         { '<leader>bcl', ':BufferLineCloseRight<CR>', desc = 'BufferLine Close Right' },
+
+        { '<leader>bt', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
+        { '<leader>bT', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
     })
 end
 
