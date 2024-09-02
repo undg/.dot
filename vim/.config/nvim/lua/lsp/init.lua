@@ -47,7 +47,11 @@ local lsp2mason = {
 }
 
 local M_null_ls_sources = {
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettierd.with({
+        env = {
+            PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(vim.fn.findfile('.prettierrc.json', vim.fn.getcwd() .. ';')),
+        },
+    }),
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.completion.tags,
     null_ls.builtins.hover.dictionary,
