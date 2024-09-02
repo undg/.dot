@@ -8,7 +8,7 @@ import * as React from 'react'
 endsnippet
 
 snippet rfc "react functional component"
-import React, {FC} from 'react';
+import type { FC } from 'react';
 export const ${1:`!p snip.rv = snip.basename.replace("_", " ").title().replace(" ", "").replace("-", "")`}: FC<${2:{}}> = (props) => {
 	$0
 	return <p>$1</p>
