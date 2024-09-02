@@ -7,20 +7,12 @@ snippet ir "import * as React from 'react'"
 import * as React from 'react'
 endsnippet
 
-snippet rfc "react AK's functional component"
-import * as React from 'react';
-export const ${1:`!p snip.rv = snip.basename.replace("_", " ").title().replace(" ", "").replace("-", "")`}: React.FunctionComponent<${2:{}}> = (props) => {
+snippet rfc "react functional component"
+import React, {FC} from 'react';
+export const ${1:`!p snip.rv = snip.basename.replace("_", " ").title().replace(" ", "").replace("-", "")`}: FC<${2:{}}> = (props) => {
 	$0
 	return <p>$1</p>
 }
-endsnippet
-
-snippet rfcc "react functional component"
-import React, { FC } from "react"
-
-interface ${1:function_name}Props {${4:props_types}}
-
-export const ${1:function_name}: FC<${1:function_name}Props> = (${2:props}) => ${3:function_body}
 endsnippet
 
 snippet useS "useState" b
