@@ -23,11 +23,12 @@ Git('https://github.com/tpope/vim-rhubarb')       -- Fugitive-companion to inter
 Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
 
 -- File managers
-Spec('plugins.neo-tree')
+Spec('plugins.telescope') -- swiss knife
+Spec('plugins.neo-tree') -- file manager
+Spec('plugins.oil-nvim') -- file manager
 Spec('plugins.bufferline')
-Spec('plugins.telescope')
-Spec('plugins.smart-open') -- telescope plugin
-Spec('plugins.harpoon')
+Spec('plugins.smart-open') -- telescope plugin to smart sort files by usage and importance
+Spec('plugins.harpoon') -- bookmark like buffer storage
 
 -- LSP, code and linting
 Spec('plugins.lspsaga')    -- Improves the Neovim built-in LSP experience.lspsaga.lua
