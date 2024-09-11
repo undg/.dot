@@ -23,12 +23,12 @@ Git('https://github.com/tpope/vim-rhubarb')       -- Fugitive-companion to inter
 Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
 
 -- File managers
-Spec('plugins.telescope') -- swiss knife
-Spec('plugins.neo-tree') -- file manager
-Spec('plugins.oil-nvim') -- file manager
+Spec('plugins.telescope')  -- swiss knife
+Spec('plugins.neo-tree')   -- file manager
+Spec('plugins.oil-nvim')   -- file manager
 Spec('plugins.bufferline')
 Spec('plugins.smart-open') -- telescope plugin to smart sort files by usage and importance
-Spec('plugins.harpoon') -- bookmark like buffer storage
+Spec('plugins.harpoon')    -- bookmark like buffer storage
 
 -- LSP, code and linting
 Spec('plugins.lspsaga')    -- Improves the Neovim built-in LSP experience.lspsaga.lua
@@ -60,6 +60,7 @@ Spec('plugins.vim-mundo')
 -- Utils
 Spec('plugins.obsidian')                         -- Note taking and knowledge base
 Spec('plugins.markdown-preview')                 -- Preview Markdown in your modern browser with synchronised scrolling
+Spec('plugins.render-markdown-nvim')             -- render markdown in vim editor
 Spec('plugins.gp-nvim')                          -- AI chat interface for popular LLM's with API
 Spec('plugins.avante')                           -- AI code assistance, Cursor emulator
 Spec('plugins.qfenter')                          -- quickfix window (cw) open in split/tab...
