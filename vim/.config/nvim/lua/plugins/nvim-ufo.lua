@@ -40,6 +40,7 @@ return {
         vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
         require('ufo').setup({
+            open_fold_hl_timeout = 0,
             fold_virt_text_handler = fold_virt_text_handler,
 
             provider_selector = function(bufnr, filetype, buftype)
