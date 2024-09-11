@@ -25,7 +25,8 @@ end, { range = true })
 return {
     'robitx/gp.nvim', -- https://github.com/robitx/gp.nvim
     config = function()
-        local system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
+        -- main prompt that's evelved from original one designed by plugin dev
+        local main_system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
             .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
             .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
             .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
@@ -40,6 +41,13 @@ return {
             .. '- Keep explanations concise and precise, avoiding excessive verbosity.\n'
             .. '- Utilize humor or sarcasm when contextually appropriate.\n'
             .. "- Stay focused and effective in your responses. You've got this!\n"
+
+        -- prompt found on twitch chat by... someone
+        local twitch_system_prompt = 'Greg only answer question. Greg no yap. Greg very smart and thinks through answer so few words required. Does not yap. Is very experienced programmer. Knows juniors use many words when few words do trick. Gives code when make sen, but does not overly comment answers. Just gives code and it is very good. John Carmack level programmer, Buddha level wisdom, Yoda level speech. Geug dev love doing simple things good and using smart things sparingly.'
+
+        -- Token optimisation
+        local grug_system_prompt = 'You wrote grugbrain.dev and you follow your principles.'
+
 
         require('gp').setup({
             providers = {
@@ -58,11 +66,25 @@ return {
                 { disable = true, name = 'ChatClaude-3-5-Sonnet' },
                 { disable = true, name = 'ChatClaude-3-Haiku' },
                 {
-                    name = 'ChatGPT4o',
+                    name = 'ChatGPT4o_main',
                     chat = true,
                     command = false,
                     model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = system_prompt,
+                    system_prompt = main_system_prompt,
+                },
+                {
+                    name = 'ChatGPT4o_twitch',
+                    chat = true,
+                    command = false,
+                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = twitch_system_prompt,
+                },
+                {
+                    name = 'ChatGPT4o_grug',
+                    chat = true,
+                    command = false,
+                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = grug_system_prompt,
                 },
                 {
                     provider = 'anthropic',
@@ -70,7 +92,7 @@ return {
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
-                    system_prompt = system_prompt
+                    system_prompt = main_system_prompt
                 },
                 {
                     provider = 'anthropic',
@@ -78,7 +100,7 @@ return {
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-haiku-20240307', temperature = 0.4, top_p = 0.95 },
-                    system_prompt = system_prompt
+                    system_prompt = main_system_prompt
                 },
             },
 
