@@ -45,7 +45,7 @@
 	pager = less -iXFRE
 	filemode = false
 	commentChar = "#"
-	excludesfile = ~/.gitignone_global
+	excludesfile = ~/.gitignore_global
 
 [mergetool]
 	trustExitCode = true
