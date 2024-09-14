@@ -119,8 +119,8 @@ function M.config()
         { '<C-j>',       ':BufferLineMovePrev<cr>' },
         { '<C-k>',       ':BufferLineMoveNext<cr>' },
         { '<leader>BB',  ':BufferLineTogglePin<CR>',  desc = 'BufferLine Toggle Pin' },
-        { '<leader>bB',  ':BufferLineTogglePin<CR>',  desc = 'BufferLine Toggle Pin' },
-        { '<leader>bb',  ":lua require'bufferline'.move_to(1)<cr>",  desc = 'BufferLine Move buffer to START' },
+        { '<leader>bb',  ':BufferLineTogglePin<CR>',  desc = 'BufferLine Toggle Pin' },
+        { '<leader>BB',  ":BufferLineTogglePin<CR>:lua require'bufferline'.move_to(1)<cr>:BufferLineTogglePin<CR>",  desc = 'BufferLine Move buffer to START' },
         { '<leader>b^',  ":lua require'bufferline'.move_to(1)<cr>",  desc = 'BufferLine Move buffer to START' },
         { '<leader>b$',  ":lua require'bufferline'.move_to(#vim.fn.getbufinfo({buflisted = 1}))<cr>",  desc = 'BufferLine Move buffer to the END' },
         -- Close
