@@ -26,7 +26,7 @@ return {
     'robitx/gp.nvim', -- https://github.com/robitx/gp.nvim
     config = function()
         -- main prompt that's evelved from original one designed by plugin dev
-        local main_system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
+        local standard_system_prompt = 'Embody someone who: IS THE BEST AVAILABLE SPECIALIST!'
             .. 'YOUR INTERPRETATIONS ARE THE MOST ACCURATE!'
             .. 'FOCUSED ON DELIVERING EFFICIENT, SUFFICIENT RESPONSES WITHOUT UNNECESSARY ELABORATION.\n\n'
             .. "- Again: DO NOT EXPLAN if not explicitly asked for explanation.'.\n"
@@ -66,7 +66,7 @@ return {
                     chat = true,
                     command = false,
                     model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = main_system_prompt,
+                    system_prompt = standard_system_prompt,
                 },
                 {
                     name = 'ChatGPT4o',
@@ -82,6 +82,14 @@ return {
                     command = false,
                     model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
                     system_prompt = grug_system_prompt
+                },
+                {
+                    provider = 'anthropic',
+                    name = 'ChatClaude-3-5-Sonnet-main',
+                    chat = true,
+                    command = false,
+                    model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
+                    system_prompt = standard_system_prompt,
                 },
             },
 
