@@ -1,6 +1,4 @@
 prSections:
-  - title: Arahi open
-    filters: repo:arahi-tech/arahi-console is:open draft:false
   - title: My Pull Requests
     filters: author:@me
   - title: Needs My Review
@@ -53,7 +51,6 @@ pager:
   diff: bat
 repoPaths:
   undg/*: ~/Code/*
-  arahi-tech/*: ~/Code/Arahi/*
   "*": ~/Code/*
 keybindings:
   prs:
