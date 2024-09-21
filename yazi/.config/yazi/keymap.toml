@@ -2,12 +2,13 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[[manager.prepend_keymap]]
-on   = "q"
-run  = 'shell "$SHELL" --block --confirm'
-desc = "Open shell here"
-
 [manager]
+
+prepend_keymap = [
+{ on   = "q", run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+{ on   = "l", run  = 'plugin --sync smart-enter', desc = "Enter the child directory, or open the file" },
+{ on   = "<enter>", run  = 'plugin --sync smart-enter', desc = "Enter the child directory, or open the file" },
+]
 
 keymap = [
 	{ on = "<Esc>", run = "escape",                           desc = "Exit visual mode, clear selected, or cancel search" },
@@ -170,7 +171,7 @@ keymap = [
 	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
 	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 
-	{ on = "<Enter>", run = "inspect", desc = "Inspect the task" },
+	# { on = "<Enter>", run = "inspect", desc = "Inspect the task" },
 	{ on = "x",       run = "cancel",  desc = "Cancel the task" },
 
 	# Help
