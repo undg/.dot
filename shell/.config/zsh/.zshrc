@@ -62,11 +62,15 @@ if (( $+commands[fortune] )); then
 		fortune -s
 		print
 	fi
-elif (( $+commands[neofetch] )); then
-	archey3 -c red
+elif (( $+commands[fastfetch] )); then
+	printf '\n'
+	fastfetch --logo arch --logo-type small --logo-padding-top 4 --separator " → " --structure "OS:Kernel:Uptime:Packages:Shell:DE:WM:Terminal:CPU:GPU:Memory:Disk:LocalIP:Battery" --color-keys blue --color-title yellow --pipe "lolcat -F 0.3" --multithreading --disable-linewrap
 	print
 elif (( $+commands[archey3] )); then
 	archey3 -c red
+	print
+elif (( $+commands[neofetch] )); then
+	neofetch
 	print
 fi
 
