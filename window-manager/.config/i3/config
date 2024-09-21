@@ -17,6 +17,7 @@ focus_on_window_activation focus # smart|urgent|focus|none
 
 # #---Basic Definitions---# #
 set $term --no-startup-id $TERMINAL
+set $term2 --no-startup-id kitty
 set $winKey Mod4
 set $altKey Mod1
 set $shutdown sudo -A shutdown -h now
@@ -209,6 +210,7 @@ for_window $WINDOW_teams       floating     enable
 
 # #---Basic Bindings---# #
 bindsym $winKey+Return          exec $term
+bindsym $winKey+Shift+Return          exec $term2
 # bindsym $winKey+Shift+Return    exec --no-startup-id samedir
 bindsym $winKey+Shift+space     floating toggle
 bindsym $winKey+space           focus mode_toggle
