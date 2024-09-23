@@ -4,4 +4,4 @@ if [ "$1" == "prune" ]; then
 	git remote prune origin
 fi
 
-git branch -v | grep -E " [a-f0-9]{8} \[gone\]" | awk '{ system("git branch -D " $1) }'
+git branch -v | grep -E " [a-f0-9]{7} \[gone\]" | awk '{ system("git branch -D " $1) }'
