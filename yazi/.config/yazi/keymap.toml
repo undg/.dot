@@ -8,6 +8,7 @@ prepend_keymap = [
 { on   = "q", run  = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
 { on   = "l", run  = 'plugin --sync smart-enter', desc = "Enter the child directory, or open the file" },
 { on   = "<enter>", run  = 'plugin --sync smart-enter', desc = "Enter the child directory, or open the file" },
+{ on   = "y", run  = [ ''' shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm ''', "yank" ], desc = "Copy selected files to the system clipboard while yanking" },
 ]
 
 keymap = [
