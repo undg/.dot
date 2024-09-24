@@ -59,25 +59,28 @@ return {
 
             agents = {
                 { disable = true, name = 'ChatGPT4o-mini' },
+                { disable = true, name = 'ChatGPT4o_legacy' },
                 { disable = true, name = 'ChatClaude-3-5-Sonnet' },
                 { disable = true, name = 'ChatClaude-3-Haiku' },
+
                 {
-                    name = 'ChatGPT4o_legacy',
-                    chat = true,
-                    command = false,
-                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
-                    system_prompt = standard_system_prompt,
-                },
-                {
-                    name = 'ChatGPT4o',
+                    name = 'ChatGPT4o-grug',
                     chat = true,
                     command = false,
                     model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
                     system_prompt = grug_system_prompt,
                 },
                 {
+                    name = 'ChatGPT4o',
+                    chat = true,
+                    command = false,
+                    model = { model = 'gpt-4o', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = standard_system_prompt,
+                },
+
+                {
                     provider = 'anthropic',
-                    name = 'ChatClaude-3-5-Sonnet',
+                    name = 'ChatClaude-3-5-Sonnet-grug',
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
@@ -85,10 +88,27 @@ return {
                 },
                 {
                     provider = 'anthropic',
-                    name = 'ChatClaude-3-5-Sonnet-main',
+                    name = 'ChatClaude-3-5-Sonnet',
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
+                    system_prompt = standard_system_prompt,
+                },
+
+                {
+                    provider = 'anthropic',
+                    name = 'ChatClaude-3-Haiku-grug',
+                    chat = true,
+                    command = false,
+                    model = { model = 'claude-3-haiku-20240307', temperature = 0.4, top_p = 0.95 },
+                    system_prompt = grug_system_prompt
+                },
+                {
+                    provider = 'anthropic',
+                    name = 'ChatClaude-3-Haiku',
+                    chat = true,
+                    command = false,
+                    model = { model = 'claude-3-haiku-20240307', temperature = 0.4, top_p = 0.95 },
                     system_prompt = standard_system_prompt,
                 },
             },
@@ -221,7 +241,7 @@ return {
         wk.add({
             mode = { 'n', 'v' },
             { '<leader>a',   group = 'Ai' },
-            { '<leader>ag',  group = 'ChatGPT',          silent = false },
+            { '<leader>ag',  group = 'gp-nvim',          silent = false },
             { '<leader>aga', ':GpNextAgent<cr>',         desc = ':GpNextAgent' },
             { '<leader>agc', ':GpChatToggle vsplit<cr>', desc = ':GpChatToggle' },
             { '<leader>agC', ':GpChatNew vsplit<cr>',    desc = ':GpChatNew' },
@@ -231,6 +251,13 @@ return {
             { '<leader>agr', ':GpRewrite<cr>',           desc = ':GpRewrite' },
             { '<leader>ags', ':GpStop<cr>',              desc = ':GpStop' },
             { '<leader>agx', ':GpContext vsplint<cr>',   desc = ':GpContext' },
+
+            { '<leader>agh', ':GpAgent ChatGPT4o-grug<cr>',   desc = 'AI: ChatGPT4o [grug]' },
+            { '<leader>agH', ':GpAgent ChatGPT4o<cr>',   desc = 'AI: ChatGPT4o [standard]' },
+            { '<leader>agj', ':GpAgent ChatClaude-3-5-Sonnet-grug<cr>',   desc = 'AI: Sonnet [grug]' },
+            { '<leader>agJ', ':GpAgent ChatClaude-3-5-Sonnet<cr>',   desc = 'AI: Sonet [standard]' },
+            { '<leader>agk', ':GpAgent ChatClaude-3-Haiku-grug<cr>',   desc = 'AI: Haiku [grug]' },
+            { '<leader>agK', ':GpAgent ChatClaude-3-Haiku<cr>',   desc = 'AI: Haiku [standard]' },
         })
     end,
 }
