@@ -1,15 +1,14 @@
 local function toggleConceal()
     if vim.o.conceallevel == 0 then
         vim.cmd('RenderMarkdown enable')
-        vim.fn.timer_start(1, function()
+        vim.fn.timer_start(100, function()
             vim.o.conceallevel = 3
         end)
 
         vim.notify('Switched to: conceallevel=' .. vim.o.conceallevel .. ' and RenderMarkdown enable' , vim.log.levels.INFO, { title = 'ConcealToggle' })
     else
-        -- vim.o.conceallevel = 0
         vim.cmd('RenderMarkdown disable')
-        vim.fn.timer_start(1, function()
+        vim.fn.timer_start(100, function()
             vim.o.conceallevel = 0
         end)
 
