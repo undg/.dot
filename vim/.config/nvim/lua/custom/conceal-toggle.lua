@@ -1,12 +1,22 @@
 local function toggleConceal()
     if vim.o.conceallevel == 0 then
-        vim.o.conceallevel = 1
-        vim.notify('Switched to: conceal with level 1.', vim.log.levels.INFO, { title = 'ConcealToggle' })
+        vim.cmd('RenderMarkdown enable')
+        vim.fn.timer_start(1, function()
+            vim.o.conceallevel = 3
+        end)
+
+        vim.notify('Switched to: conceallevel=' .. vim.o.conceallevel .. ' and RenderMarkdown enable' , vim.log.levels.INFO, { title = 'ConcealToggle' })
     else
-        vim.o.conceallevel = 0
-        vim.notify('Switched to: conceal with level 0.', vim.log.levels.INFO, { title = 'ConcealToggle' })
+        -- vim.o.conceallevel = 0
+        vim.cmd('RenderMarkdown disable')
+        vim.fn.timer_start(1, function()
+            vim.o.conceallevel = 0
+        end)
+
+        vim.notify('Switched to: conceallevel=' .. vim.o.conceallevel .. ' and RenderMarkdown disable' , vim.log.levels.INFO, { title = 'ConcealToggle' })
     end
+    print(vim.o.conceallevel)
 end
 
-vim.api.nvim_create_user_command('ConcealToggle', toggleConceal, {desc = "Toggle render markdown" })
-Keymap.normal('<leader>sc', toggleConceal, { silent = false, desc = "Toggle set=conceallevel (render markdown)" })
+vim.api.nvim_create_user_command('ConcealToggle', toggleConceal, { desc = 'Toggle render markdown' })
+Keymap.normal('<leader>sc', toggleConceal, { silent = false, desc = 'Toggle set=conceallevel (render markdown)' })
