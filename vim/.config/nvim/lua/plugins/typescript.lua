@@ -42,13 +42,17 @@ return {
                     -- install it yourserf !!!
                     -- npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
                     '@styled/typescript-styled-plugin',
+                    "typescript-plugin-css-modules",
                 },
                 -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
                 -- memory limit in megabytes or "auto"(basically no limit)
                 tsserver_max_memory = 'auto',
                 -- described below
                 tsserver_format_options = {},
-                tsserver_file_preferences = {},
+                tsserver_file_preferences = {
+                    importModuleSpecifierPreference = 'non-relative',
+                    includePackageJsonAutoImports = 'off',
+                },
                 -- locale of all tsserver messages, supported locales you can find here:
                 -- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
                 tsserver_locale = 'en',
@@ -66,7 +70,7 @@ return {
                 -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-auto-tag,
                 -- that maybe have a conflict if enable this feature. )
                 jsx_close_tag = {
-                    enable = false,
+                    enable = true,
                     filetypes = { 'javascriptreact', 'typescriptreact' },
                 },
             },
