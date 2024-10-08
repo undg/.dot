@@ -49,7 +49,7 @@ exec_always --no-startup-id ~/bin/speedy-keys.sh                                
 exec        --no-startup-id sleep 5 && barrier                                                               # KVM software
 exec        --no-startup-id sleep 10 && dropbox
 exec_always --no-startup-id sleep 1 && nm-applet                                                             # network manager in systray
-exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/kraken-from-the-space.png
+exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
 # exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/anime-girl-ps4.jpg                         # Wallpaper
 
 exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 2 && ~/bin/d3                          # 3 displays xrandr script
