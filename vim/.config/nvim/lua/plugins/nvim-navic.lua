@@ -13,6 +13,6 @@ return {
             highlight = true,
         })
 
-        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        vim.o.winbar = "  %f > %{%v:lua.require'nvim-navic'.get_location()%}"
     end,
 }
