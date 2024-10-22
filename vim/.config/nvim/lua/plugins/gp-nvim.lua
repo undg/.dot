@@ -71,6 +71,13 @@ return {
                     system_prompt = grug_system_prompt,
                 },
                 {
+                    name = 'ChatGPT4o-grug-mini',
+                    chat = true,
+                    command = false,
+                    model = { model = 'gpt-4o-mini', temperature = 0.4, top_p = 0.8 },
+                    system_prompt = grug_system_prompt,
+                },
+                {
                     name = 'ChatGPT4o',
                     chat = true,
                     command = false,
