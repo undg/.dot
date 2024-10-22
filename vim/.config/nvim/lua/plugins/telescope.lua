@@ -102,6 +102,8 @@ return {
             -- load_extension's, somewhere after setup function:
             telescope.load_extension('fzf')
             telescope.load_extension('ui-select')
+            require('custom.telescope.gp-nvim-agent-picker')
+
 
             Keymap.normal('<leader>m', ':Telescope<cr>')
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
