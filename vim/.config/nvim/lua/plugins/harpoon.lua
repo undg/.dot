@@ -36,10 +36,10 @@ return {
         Keymap.normal('<leader>tj', ":lua require('harpoon.ui').nav_next()<cr>")
         Keymap.normal('<leader>tk', ":lua require('harpoon.ui').nav_prev()<cr>")
 
-        Keymap.normal('<leader>fj', ":lua require('harpoon.ui').nav_file(1)<cr>")
-        Keymap.normal('<leader>fk', ":lua require('harpoon.ui').nav_file(2)<cr>")
-        Keymap.normal('<leader>fl', ":lua require('harpoon.ui').nav_file(3)<cr>")
-        Keymap.normal('<leader>f;', ":lua require('harpoon.ui').nav_file(4)<cr>")
-        Keymap.normal("<leader>f'", ":lua require('harpoon.ui').nav_file(5)<cr>")
+        Keymap.normal('<leader>j', ":lua require('harpoon.ui').nav_file(1)<cr>")
+        Keymap.normal('<leader>k', ":lua require('harpoon.ui').nav_file(2)<cr>")
+        Keymap.normal('<leader>l', ":lua require('harpoon.ui').nav_file(3)<cr>")
+        Keymap.normal('<leader>;', ":lua require('harpoon.ui').nav_file(4)<cr>")
+        Keymap.normal("<leader>'", ":lua require('harpoon.ui').nav_file(5)<cr>")
     end,
 }

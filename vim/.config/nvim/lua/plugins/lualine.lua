@@ -7,8 +7,8 @@ return {
         end
 
         local sections = {
-            lualine_a = { s.branch, s.progress },
-            lualine_b = { s.harpoon },
+            lualine_a = { s.progress, s.branch, s.harpoon },
+            lualine_b = {},
             lualine_c = {},
 
             lualine_x = { 'diagnostics', 'diff' },
