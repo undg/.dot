@@ -7,11 +7,13 @@ return {
         end
 
         local sections = {
-            lualine_a = { s.progress },
-            lualine_b = { s.harpoon, s.branch, s.fileformat },
+            lualine_a = { s.branch, s.progress },
+            lualine_b = { s.harpoon },
+            lualine_c = {},
 
             lualine_x = { 'diagnostics', 'diff' },
-            lualine_y = { s.cwd, s.filetype },
+            lualine_y = { s.cwd, s.fileformat, s.filetype },
+            lualine_z = {},
         }
 
         require('lualine').setup({
