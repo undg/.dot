@@ -1,10 +1,16 @@
 return {
     {
-        'nvim-telescope/telescope.nvim',                                    -- https://github.com/nvim-telescope/telescope.nvim
+        'nvim-telescope/telescope.nvim',                                            -- https://github.com/nvim-telescope/telescope.nvim
         dependencies = {
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-            'nvim-telescope/telescope-ui-select.nvim',                      -- https://github.com/nvim-telescope/telescope-ui-select.nvim
-
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+            'nvim-telescope/telescope-ui-select.nvim',                              -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+            {
+                'danielfalk/smart-open.nvim',                                       -- https://github.com/danielfalk/smart-open.nvim
+                dependencies = {
+                    'kkharji/sqlite.lua',                                           -- https://github.com/kkharji/sqlite.lua
+                    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- Only required if using match_algorithm fzf
+                },
+            },
             {
                 'princejoogie/dir-telescope.nvim', -- https://github.com/princejoogie/dir-telescope.nvim
                 config = function()
@@ -16,7 +22,12 @@ return {
                     })
                 end,
             },
+            {
+                'undg/telescope-gp-agent-picker.nvim',            -- https://github.com/undg/telescope-gp-agent-picker.nvim
+                -- dir = '~/Code/telescope-gp-agent-picker.nvim', -- path to plugin for local development
+            },
         },
+
         config = function()
             local telescope_ok, telescope = pcall(require, 'telescope')
             local actions_ok, actions = pcall(require, 'telescope.actions')
@@ -102,12 +113,12 @@ return {
             -- load_extension's, somewhere after setup function:
             telescope.load_extension('fzf')
             telescope.load_extension('ui-select')
-            require('custom.telescope.gp-nvim-agent-picker')
-
+            telescope.load_extension('smart_open')
+            telescope.load_extension('gp-agent-picker')
 
             Keymap.normal('<leader>m', ':Telescope<cr>')
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
-            Keymap.normal(',.', ':Telescope smart_open<cr>')
+            Keymap.normal(',.', ':Telescope smart_open<cr>') -- smart_open telescope _extension
             Keymap.normal('<leader>,', ':Telescope smart_open cwd_only=false<cr>')
             Keymap.normal('<leader>.f', telescope.extensions.dir.find_files)
             Keymap.normal('<leader>.g', telescope.extensions.dir.live_grep)
@@ -130,6 +141,8 @@ return {
             Keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
             Keymap.normal('<leader>fc', ':Telescope commands<cr>')
             Keymap.normal('<leader>:', ':Telescope commands<cr>')
+
+            Keymap.normal('<leader>fa', ':Telescope gp-agent-picker open<cr>', { desc = 'gp.nvim Agent Picker' })
 
             Keymap.visual('<leader>fg', function()
                 tb.live_grep({ default_text = get_visual_selection() })
