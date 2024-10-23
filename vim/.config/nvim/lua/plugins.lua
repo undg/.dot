@@ -27,7 +27,6 @@ Spec('plugins.telescope')  -- swiss knife
 Spec('plugins.neo-tree')   -- file manager
 Spec('plugins.oil-nvim')   -- file manager
 Spec('plugins.bufferline')
-Spec('plugins.smart-open') -- telescope plugin to smart sort files by usage and importance
 Spec('plugins.harpoon')    -- bookmark like buffer storage
 
 -- LSP, code and linting
