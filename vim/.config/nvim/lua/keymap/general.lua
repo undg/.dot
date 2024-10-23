@@ -87,6 +87,9 @@ Keymap.xisual('<C-j>', ":m '>+<CR>gv=gv")
 Keymap.visual('<C-k>', ':m -2<CR>gv=gv')
 Keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
 
+Keymap.normal('<A-k>', ':m -2<CR>==')
+Keymap.normal('<A-j>', ':m +1<CR>==')
+
 -- Extra break points
 Keymap.insert(',', ',<C-g>u')
 Keymap.insert('.', '.<C-g>u')
