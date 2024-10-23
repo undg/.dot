@@ -1,10 +1,12 @@
 local path_ok, my_path = pcall(require, 'utils.path')
 local window_ok, my_window = pcall(require, 'utils.window')
 local s_ok, s = pcall(require, 'utils.string')
+local harpoon_ok, harpoon = pcall(require, 'custom.lualine.harpoon')
 
 local not_ok = not path_ok and 'utils.path' --
     or not window_ok and 'utils.window'
     or not s_ok and 'utils.string'
+    or not harpoon_ok and 'lualine.harpoon'
     or false
 
 if not_ok then
@@ -33,6 +35,8 @@ local branch_color = function(is_git_arg)
     end
 end
 local section_a_color = { bg = '#504945', fg = '#191919' }
+
+M.harpoon = harpoon
 
 M.cwd = {
     'filename',
