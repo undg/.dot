@@ -8,12 +8,10 @@ return {
 
         local sections = {
             lualine_a = { s.progress },
-            lualine_b = { s.branch, s.fileformat },
-            lualine_c = { s.cwd, '' },
+            lualine_b = { s.harpoon, s.branch, s.fileformat },
 
-            lualine_x = { s.location, s.relative_path, 'diagnostics', 'diff' },
-            lualine_y = { s.filetype },
-            lualine_z = { 'hostname' },
+            lualine_x = { 'diagnostics', 'diff' },
+            lualine_y = { s.cwd, s.filetype },
         }
 
         require('lualine').setup({
@@ -28,7 +26,7 @@ return {
                 },
                 ignore_focus = {},
                 always_divide_middle = false,
-                globalstatus = false,
+                globalstatus = true,
                 refresh = {
                     statusline = 1000,
                     tabline = 1000,
