@@ -1,9 +1,10 @@
 local harpoon_ok, harpoon = pcall(require, 'harpoon')
-local path = require('utils.path')
-local highlight = require('lualine.highlight')
-local color = { norm = { bg = '#228B22' }, curr = { bg = '#C70039' } }
+local path_ok, path = pcall(require, 'utils.path')
+local str_ok, str = pcall(require, 'utils.str')
 
 local not_ok = not harpoon_ok and 'harpoon' --
+    or not path_ok and 'utils.path'
+    or not str_ok and 'utils.str'
     or false
 
 if not_ok then
@@ -11,32 +12,21 @@ if not_ok then
     return
 end
 
-local function color_path(text, hl_group)
-    return string.format('%%#%s#%s%%#Normal#', hl_group, text)
-end
-
-vim.api.nvim_set_hl(0, 'CustomHarpoonCurrentBuffer', { fg = 'Blue', bold = true })
-
 return function()
-    local separator = ''
+    local separator = str.color_text(' ', 'Normal')
     local buf_curr = vim.api.nvim_get_current_buf()
     local buf_name = vim.api.nvim_buf_get_name(buf_curr)
 
     local menu_items = harpoon.get_mark_config().marks ---@diagnostic disable-line: undefined-field
 
-    local menu_string = separator
-
-    local items = {}
+    local items = { separator }
     for _, item in ipairs(menu_items) do
         local is_curr = string.find(buf_name, item.filename)
-        local star = is_curr and '✴' or ''
-        local shortened_path = is_curr and color_path(path.shorten(item.filename), 'Tag')
-            or path.shorten(item.filename)
-        table.insert(items, string.format('%s', shortened_path))
+        local hl_group = is_curr and 'lualine_a_visual' or 'lualine_b_normal'
+        local shortened_path = str.color_text(' ' .. path.shorten(item.filename) .. ' ', hl_group)
 
-        menu_string = menu_string .. star .. path.shorten(item.filename) .. star .. separator
+        table.insert(items, shortened_path)
     end
-    menu_string = table.concat(items, separator)
-    return menu_string
+
+    return table.concat(items, separator)
 end
--- {s.harpoon, color = {fg = '#ff0000'}}

@@ -1,11 +1,11 @@
 local path_ok, my_path = pcall(require, 'utils.path')
 local window_ok, my_window = pcall(require, 'utils.window')
-local s_ok, s = pcall(require, 'utils.string')
+local str_ok, str = pcall(require, 'utils.str')
 local harpoon_ok, harpoon = pcall(require, 'custom.lualine.harpoon')
 
 local not_ok = not path_ok and 'utils.path' --
     or not window_ok and 'utils.window'
-    or not s_ok and 'utils.string'
+    or not str_ok and 'utils.string'
     or not harpoon_ok and 'lualine.harpoon'
     or false
 
@@ -79,14 +79,14 @@ M.relative_path = {
 
         return { fg = fg, bg = bg }
     end,
-    fmt = function(str)
-        if s.starts_with(str, 'suda:///') or s.starts_with(str, 's///') then
+    fmt = function(filename)
+        if str.starts_with(filename, 'suda:///') or str.starts_with(filename, 's///') then
             sudo = true
         else
             sudo = false
         end
 
-        return str
+        return filename
     end,
 
     shorting_target = shorting_target, -- Shortens path to leave 40 spaces in the window
@@ -104,13 +104,13 @@ M.branch = {
     color = branch_color(is_git),
     icons_enabled = true,
     separator = { left = '', right = '' },
-    fmt = function(str)
-        if str == '' then
+    fmt = function(branch)
+        if branch == '' then
             is_git = false
             return 'noop'
         else
             is_git = true
-            return str
+            return branch
         end
     end,
 }
@@ -125,13 +125,13 @@ M.filetype = {
     'filetype',
     icons_enabled = true,
     separator = { left = '', right = '' },
-    fmt = function(str)
-        if str == 'typescriptreact' then
+    fmt = function(filetype)
+        if filetype == 'typescriptreact' then
             return 'tsx'
-        elseif str == 'javascriptreact' then
+        elseif filetype == 'javascriptreact' then
             return 'jsx'
         else
-            return str
+            return filetype
         end
     end,
 }
