@@ -86,54 +86,68 @@ function M.config()
 
     bufferline.setup(opts)
 
-    -- Select/Goto
-    Keymap.normal('<leader>fj', function()
+    local GOTO_1 = function()
         bufferline.go_to_buffer(1, true)
-    end)
-    Keymap.normal('<leader>fk', function()
+    end
+    local GOTO_2 = function()
         bufferline.go_to_buffer(2, true)
-    end)
-    Keymap.normal('<leader>fl', function()
+    end
+    local GOTO_3 = function()
         bufferline.go_to_buffer(3, true)
-    end)
-    Keymap.normal('<leader>f;', function()
+    end
+    local GOTO_4 = function()
         bufferline.go_to_buffer(4, true)
-    end)
-    Keymap.normal("<leader>f'", function()
+    end
+    local GOTO_5 = function()
         bufferline.go_to_buffer(5, true)
-    end)
-    Keymap.normal('<leader>f$', function()
+    end
+    local GOTO_LAST = function()
         bufferline.go_to_buffer(-1, true)
-    end)
+    end
 
     -- Close
     local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
     local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
 
     wk.add({
+        -- GOTO
+        { '<leader>bj', GOTO_1 },
+        { '<leader>bk', GOTO_2 },
+        { '<leader>bl', GOTO_3 },
+        { '<leader>b;', GOTO_4 },
+        { "<leader>b'", GOTO_5 },
+        { '<leader>b$', GOTO_LAST },
         -- Cycle
-        { '<C-h>',       ':BufferLineCyclePrev<cr>' },
-        { '<C-l>',       ':BufferLineCycleNext<cr>' },
-        { '<leader>b',   group = 'Buffer' },
+        { '<C-h>',      ':BufferLineCyclePrev<cr>' },
+        { '<C-l>',      ':BufferLineCycleNext<cr>' },
+        { '<leader>b',  group = 'Buffer' },
         -- Move and Pin
-        { '<C-j>',       ':BufferLineMovePrev<cr>' },
-        { '<C-k>',       ':BufferLineMoveNext<cr>' },
-        { '<leader>BB',  ':BufferLineTogglePin<CR>',  desc = 'BufferLine Toggle Pin' },
-        { '<leader>bb',  ':BufferLineTogglePin<CR>',  desc = 'BufferLine Toggle Pin' },
-        { '<leader>BB',  ":BufferLineTogglePin<CR>:lua require'bufferline'.move_to(1)<cr>:BufferLineTogglePin<CR>",  desc = 'BufferLine Move buffer to START' },
-        { '<leader>b^',  ":lua require'bufferline'.move_to(1)<cr>",  desc = 'BufferLine Move buffer to START' },
-        { '<leader>b$',  ":lua require'bufferline'.move_to(#vim.fn.getbufinfo({buflisted = 1}))<cr>",  desc = 'BufferLine Move buffer to the END' },
+        { '<C-j>',      ':BufferLineMovePrev<cr>' },
+        { '<C-k>',      ':BufferLineMoveNext<cr>' },
+        { '<leader>BB', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
+        { '<leader>bb', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
+        {
+            '<leader>BB',
+            ":BufferLineTogglePin<CR>:lua require'bufferline'.move_to(1)<cr>:BufferLineTogglePin<CR>",
+            desc = 'BufferLine Move buffer to START',
+        },
+        { '<leader>b^',  ":lua require'bufferline'.move_to(1)<cr>", desc = 'BufferLine Move buffer to START' },
+        {
+            '<leader>b$',
+            ":lua require'bufferline'.move_to(#vim.fn.getbufinfo({buflisted = 1}))<cr>",
+            desc = 'BufferLine Move buffer to the END',
+        },
         -- Close
         { '<leader>bc',  group = 'Buffer Close' },
-        { '<leader>bcc', CMD_CLOSE_GO_PREV,           desc = 'Close Buffer go prev' },
-        { '<C-Q>',       CMD_CLOSE_GO_PREV,           desc = 'Close Buffer go prev' },
-        { '<leader>bC',  CMD_CLOSE_GO_NEXT,           desc = 'Close Buffer go next' },
-        { '<leader>qq',  CMD_CLOSE_GO_NEXT,           desc = 'Close Buffer go next' },
-        { '<leader>bch', ':BufferLineCloseLeft<CR>',  desc = 'BufferLine Close Left' },
-        { '<leader>bcl', ':BufferLineCloseRight<CR>', desc = 'BufferLine Close Right' },
+        { '<leader>bcc', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
+        { '<C-Q>',       CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
+        { '<leader>bC',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
+        { '<leader>qq',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
+        { '<leader>bch', ':BufferLineCloseLeft<CR>',                desc = 'BufferLine Close Left' },
+        { '<leader>bcl', ':BufferLineCloseRight<CR>',               desc = 'BufferLine Close Right' },
 
-        { '<leader>bt', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
-        { '<leader>bT', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
+        { '<leader>bt',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
+        { '<leader>bT',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
     })
 end
 
