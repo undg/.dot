@@ -2,10 +2,13 @@ local M = {}
 
 ---shortens path by turning apple/orange -> a/orange
 ---@param path string
----@param sep string path separator
----@param max_len integer maximum length of the full filename string
+---@param sep? string path separator
+---@param max_len? integer maximum length of the full filename string
 ---@return string
 function M.shorten(path, sep, max_len)
+    sep = sep or '/'
+    max_len = max_len or 20
+
     local len = #path
     if len <= max_len then
         return path
