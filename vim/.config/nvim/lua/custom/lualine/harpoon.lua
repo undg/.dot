@@ -11,11 +11,11 @@ if not_ok then
     return
 end
 
-local function colorize(text, hl_group)
-    return string.format("%%#%s#%s%%#Normal#", hl_group, text)
+local function color_path(text, hl_group)
+    return string.format('%%#%s#%s%%#Normal#', hl_group, text)
 end
 
-vim.api.nvim_set_hl(0, "CustomHarpoonCurrentBuffer", { fg = "Blue", bold = true })
+vim.api.nvim_set_hl(0, 'CustomHarpoonCurrentBuffer', { fg = 'Blue', bold = true })
 
 return function()
     local separator = ''
@@ -28,15 +28,15 @@ return function()
 
     local items = {}
     for _, item in ipairs(menu_items) do
-
         local is_curr = string.find(buf_name, item.filename)
         local star = is_curr and '✴' or ''
-        local shortened_path = colorize(path.shorten(path.shorten(item.filename)), "CustomHarpoonCurrentBuffer")
-        table.insert(items, string.format("%s%s%s", star, shortened_path, star))
+        local shortened_path = is_curr and color_path(path.shorten(item.filename), 'Tag')
+            or path.shorten(item.filename)
+        table.insert(items, string.format('%s', shortened_path))
 
         menu_string = menu_string .. star .. path.shorten(item.filename) .. star .. separator
     end
     menu_string = table.concat(items, separator)
     return menu_string
 end
--- {s.harpoon, color = {fg = '#ff0000'}} 
+-- {s.harpoon, color = {fg = '#ff0000'}}
