@@ -10,7 +10,7 @@ end
 
 ---Check if string ends with another string
 ---@param full_str string Text to test
----@param ends_with string Text to check for occurrence at the end
+---@param suffix string Text to check for occurrence at the end
 ---@return boolean
 function M.ends_with(full_str, suffix)
 
