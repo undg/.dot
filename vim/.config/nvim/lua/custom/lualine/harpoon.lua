@@ -24,9 +24,14 @@ local M = function()
 
     for i = 1, 5 do
         local item = menu_items[i]
-        local is_curr = string.find(buf_name, item.filename)
+        if not item then
+            break
+        end
+
+        local is_curr = str.ends_with(buf_name, item.filename)
         local hl_group = is_curr and 'lualine_a_visual' or 'lualine_b_normal'
-        local render_fname = str.color_text(' ' .. str.subscript(i) .. '' .. path.shorten(item.filename) .. ' ', hl_group)
+        local render_fname =
+            str.color_text(' ' .. str.subscript(i) .. '' .. path.shorten(item.filename) .. ' ', hl_group)
 
         table.insert(items, render_fname)
     end
