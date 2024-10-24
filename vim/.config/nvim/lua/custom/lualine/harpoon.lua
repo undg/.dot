@@ -22,12 +22,13 @@ local M = function()
 
     table.insert(items, separator)
 
-    for _, item in ipairs(menu_items) do
+    for i = 1, 5 do
+        local item = menu_items[i]
         local is_curr = string.find(buf_name, item.filename)
         local hl_group = is_curr and 'lualine_a_visual' or 'lualine_b_normal'
-        local shortened_path = str.color_text(' ' .. path.shorten(item.filename) .. ' ', hl_group)
+        local render_fname = str.color_text(' ' .. str.subscript(i) .. '' .. path.shorten(item.filename) .. ' ', hl_group)
 
-        table.insert(items, shortened_path)
+        table.insert(items, render_fname)
     end
 
     return table.concat(items, separator)
