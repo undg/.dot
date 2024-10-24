@@ -25,5 +25,35 @@ function M.color_text(text, hl_group)
     return string.format('%%#%s#%s%%#Normal#', hl_group, text)
 end
 
+---Format a number using the provided scripts
+---
+---@param n integer The number to format
+---@param scripts table The table of scripts to use for each digit
+---@return string The formatted string representation of the number
+local function formatWithScripts(n, scripts)
+  local result = ""
+  for i = 1, #tostring(n) do
+    local digit = tonumber(string.sub(tostring(n), i, i))
+    result = result .. scripts[digit]
+  end
+  return result
+end
+
+---Transform digit to subscript
+---@param n integer The digit to convert to subscript
+---@return string The subscript representation of the digit
+function M.subscript(n)
+  local subscripts = {"₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₀"}
+  return formatWithScripts(n, subscripts)
+end
+
+---Transform digit to transcript
+---@param n integer The digit to convert to transcript
+---@return string The transcript representation of the digit
+function M.transcript(n)
+  local transcripts = {"⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"}
+  return formatWithScripts(n, transcripts)
+end
+
 return M
 
