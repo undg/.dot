@@ -12,8 +12,9 @@ end
 ---@param full_str string Text to test
 ---@param ends_with string Text to check for occurrence at the end
 ---@return boolean
-function M.ends_with(full_str, ends_with)
-    return string.sub(full_str, -#ends_with, string.len(ends_with)) == ends_with
+function M.ends_with(full_str, suffix)
+
+    return full_str:sub(- #suffix) == suffix
 end
 
 
