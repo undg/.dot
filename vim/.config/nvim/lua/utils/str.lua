@@ -29,12 +29,15 @@ end
 ---Format a number using the provided scripts
 ---
 ---@param n integer The number to format
----@param scripts table The table of scripts to use for each digit
+---@param scripts table The table of 10 scripts to use for each digit {1,2,...9,0}
 ---@return string The formatted string representation of the number
 local function formatWithScripts(n, scripts)
   local result = ""
   for i = 1, #tostring(n) do
     local digit = tonumber(string.sub(tostring(n), i, i))
+    if digit == 0 then
+      digit = 10
+    end
     result = result .. scripts[digit]
   end
   return result
@@ -52,7 +55,7 @@ end
 ---@param n integer The digit to convert to transcript
 ---@return string The transcript representation of the digit
 function M.transcript(n)
-  local transcripts = {"⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"}
+  local transcripts = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
   return formatWithScripts(n, transcripts)
 end
 
