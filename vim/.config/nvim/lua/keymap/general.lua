@@ -82,13 +82,13 @@ Keymap.normal('<C-n>', ':cnext<CR>zzzv')
 Keymap.normal('<C-p>', ':cprev<CR>zzzv')
 
 -- move selection up and down
-Keymap.xisual('<C-k>', ':m -2<CR>gv=gv')
-Keymap.xisual('<C-j>', ":m '>+<CR>gv=gv")
-Keymap.visual('<C-k>', ':m -2<CR>gv=gv')
-Keymap.visual('<C-j>', ":m '>+<CR>gv=gv")
+Keymap.xisual('<S-UP>', ':m -2<CR>gv=gv')
+Keymap.xisual('<S-DOWN>', ":m '>+<CR>gv=gv")
+Keymap.visual('<S-UP>', ':m -2<CR>gv=gv')
+Keymap.visual('<S-DOWN>', ":m '>+<CR>gv=gv")
 
-Keymap.normal('<A-k>', ':m -2<CR>==')
-Keymap.normal('<A-j>', ':m +1<CR>==')
+Keymap.normal('<S-UP>', ':m -2<CR>==')
+Keymap.normal('<S-DOWN>', ':m +1<CR>==')
 
 -- Extra break points
 Keymap.insert(',', ',<C-g>u')
@@ -132,8 +132,8 @@ Keymap.normal('tt', ':tab split<CR>')
 -- keymap.normal('<A-l>', '<C-w><C-l>')
 
 -- resize
-Keymap.normal('<Up>', ':resize +5<cr>')
-Keymap.normal('<Down>', ':resize -5<cr>')
-
-Keymap.normal('<Left>', ':vertical resize -5<cr>')
-Keymap.normal('<Right>', ':vertical resize +5<cr>')
+-- Keymap.normal('<C-Up>', ':resize +5<cr>')
+-- Keymap.normal('<C-Down>', ':resize -5<cr>')
+--
+-- Keymap.normal('<C-Left>', ':vertical resize -5<cr>')
+-- Keymap.normal('<C-Right>', ':vertical resize +5<cr>')

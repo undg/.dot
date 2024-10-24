@@ -18,6 +18,7 @@ return {
 
         telescope.load_extension('harpoon')
 
+        ---@diagnostic disable-next-line: undefined-field
         harpoon.setup({
             save_on_toggle = true,              -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
             save_on_change = true,              -- saves the harpoon file upon every change. disabling is unrecommended.
@@ -31,8 +32,12 @@ return {
         })
 
         Keymap.normal('<leader>tt', ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
-        Keymap.normal('<leader>tr', ':Telescope harpoon marks<cr>')
+        Keymap.normal('<S-RIGHT>', ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
+
         Keymap.normal('<leader>ta', ":lua require('harpoon.mark').add_file()<cr>")
+        Keymap.normal('<S-LEFT>', ":lua require('harpoon.mark').add_file()<cr>")
+
+        Keymap.normal('<leader>tr', ':Telescope harpoon marks<cr>')
         Keymap.normal('<leader>tj', ":lua require('harpoon.ui').nav_next()<cr>")
         Keymap.normal('<leader>tk', ":lua require('harpoon.ui').nav_prev()<cr>")
 
