@@ -2,10 +2,10 @@ local M = {}
 
 ---shortens path by turning apple/orange -> a/orange
 ---@param path string
----@param sep? string path separator
 ---@param max_len? integer maximum length of the full filename string
+---@param sep? string path separator
 ---@return string
-function M.shorten(path, sep, max_len)
+function M.shorten(path, max_len, sep)
     sep = sep or '/'
     max_len = max_len or 20
 
@@ -14,7 +14,7 @@ function M.shorten(path, sep, max_len)
         return path
     end
 
-    local segments = vim.split(path, sep)
+    local segments = vim.fn.split(path, sep)
     for idx = 1, #segments - 1 do
         if len <= max_len then
             break
@@ -28,6 +28,28 @@ function M.shorten(path, sep, max_len)
 
     return table.concat(segments, sep)
 end
+
+function M.shortenUnique(path, paths)
+    local sep = '/'
+    local segments = vim.split(path, sep)
+    local filename = segments[#segments]
+    local unique = true
+
+    for _, p in ipairs(paths) do
+        if p ~= path and p:match(filename .. '$') then
+            unique = false
+            break
+        end
+    end
+
+    if unique then
+        return filename
+    else
+        table.remove(segments) -- Remove filename
+        return table.concat(segments, sep) .. sep .. filename
+    end
+end
+
 
 M.from_home = function()
     return string.gsub(vim.fn.getcwd(), '/home/%w+/', '~/')
