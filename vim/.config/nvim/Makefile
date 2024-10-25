@@ -7,5 +7,4 @@ test/watch:
 	find -name '*.lua' | entr -c nvim --headless -c "PlenaryBustedDirectory spec/"
 
 test/watch/file:
-	@read -p "Enter file to watch: " file; \
-	find -name '*.lua' | entr -c nvim --headless -c "PlenaryBustedFile $$file" || echo "File not found: $$file"
+	@find spec -name '*.lua' | fzf --prompt="Select file to watch: " | xargs -I {} sh -c 'find -name "*.lua" | entr -c nvim --headless -c "PlenaryBustedFile {}" || echo "File not found: {}"'
