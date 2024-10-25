@@ -32,24 +32,24 @@ end
 function M.shortenUnique(path, paths)
     local sep = '/'
     local segments = vim.split(path, sep)
-    local filename = segments[#segments]
+    local fname = segments[#segments]
+    local parrent = segments[#segments - 1]
     local unique = true
 
-    for _, p in ipairs(paths) do
-        if p ~= path and p:match(filename .. '$') then
-            unique = false
-            break
+    for _, t in ipairs(paths) do
+        if t ~= path then -- Skip the current path
+            local t_segments = vim.split(t, sep)
+            local t_fname = t_segments[#t_segments]
+
+            if t_fname == fname then
+                unique = false
+                break
+            end
         end
     end
 
-    if unique then
-        return filename
-    else
-        table.remove(segments) -- Remove filename
-        return table.concat(segments, sep) .. sep .. filename
-    end
+    return unique and fname or parrent .. sep .. fname
 end
-
 
 M.from_home = function()
     return string.gsub(vim.fn.getcwd(), '/home/%w+/', '~/')
