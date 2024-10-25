@@ -1,10 +1,8 @@
-.PHONY: install test test/watch
+.PHONY: test test/watch
 
-install:
-	luarocks install --only-deps nvim-scm-1.rockspec
-
-test:
-	busted
+test: 
+	nvim --headless -c "PlenaryBustedDirectory spec/"
 
 test/watch:
-	find -name '*.lua' | entr -c busted
+	find -name '*.lua' | entr -c nvim --headless -c "PlenaryBustedDirectory spec/"
+

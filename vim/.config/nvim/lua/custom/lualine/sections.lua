@@ -44,7 +44,7 @@ M.cwd = {
     newfile_status = false,
     fmt = function()
         local estimated_space_available = my_window.width() - shorting_target
-        return my_path.shorten(my_path.from_home(), '/', estimated_space_available)
+        return my_path.shorten(my_path.from_home(), estimated_space_available, '/')
     end,
 }
 
