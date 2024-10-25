@@ -1,4 +1,4 @@
-local map = require('utils.table').map
+local tbl = require('utils.tbl')
 
 local function get_table()
     local json = vim.fn.system('gh pr view --json title,body,commits,files')
@@ -8,11 +8,11 @@ local function get_table()
 
     local description = table['body']
 
-    local commits = map(table['commits'], function(commit)
+    local commits = tbl.map(table['commits'], function(commit)
         return commit['messageHeadline']
     end)
 
-    local files = map(table['files'], function(file)
+    local files = tbl.map(table['files'], function(file)
         return file['path']
     end)
 

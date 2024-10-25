@@ -50,4 +50,17 @@ function M.serialize(input_table)
     end
 end
 
+--- Slices a table from start to finish.
+-- @param tbl The table to slice.
+-- @param start The starting index (1-based).
+-- @param finish The ending index (1-based).
+-- @return A new table containing the sliced elements.
+function M.slice(tbl, start, finish)
+    local sliced = {}
+    for i = start, finish do
+        table.insert(sliced, tbl[i])
+    end
+    return sliced
+end
+
 return M
