@@ -1,6 +1,6 @@
 local M = {}
 
----shortens path by turning apple/orange -> a/orange
+---Shortens path by turning apple/orange.lua -> a/orange.lua
 ---@param path string
 ---@param max_len? integer maximum length of the full filename string
 ---@param sep? string path separator
@@ -29,6 +29,11 @@ function M.shorten(path, max_len, sep)
     return table.concat(segments, sep)
 end
 
+---Shortens path by turning apple/orange.lua -> orange.lua
+---It will add a parent if the list has multiple files under the same name.
+---@param path string The path to be shortened
+---@param paths table A table of paths to compare against
+---@return string The shortened unique path
 function M.shortenUnique(path, paths)
     local sep = '/'
     local segments = vim.split(path, sep)
@@ -48,7 +53,9 @@ function M.shortenUnique(path, paths)
         end
     end
 
-    return unique and fname or parrent .. sep .. fname
+    local extended = parrent and parrent .. sep .. fname or fname
+
+    return unique and fname or extended
 end
 
 M.from_home = function()
