@@ -8,4 +8,4 @@ test/watch:
 
 test/watch/file:
 	@read -p "Enter file to watch: " file; \
-	[ -f "$$file" ] && echo "$$file" | entr -c nvim --headless -c "PlenaryBustedFile $$file" || echo "File not found: $$file"
+	find -name '*.lua' | entr -c nvim --headless -c "PlenaryBustedFile $$file" || echo "File not found: $$file"
