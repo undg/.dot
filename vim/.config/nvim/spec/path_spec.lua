@@ -31,5 +31,15 @@ describe('Path Utilities', function()
             }
             assert.are.equal('parrent/file.lua', path.shortenUnique(files[1], files))
         end)
+
+        it('should deal with no parrent', function()
+            local files = {
+                'file.lua',
+                'different-parrent/file.lua',
+                'different/parrent/different-file.lua',
+            }
+            assert.are.equal('file.lua', path.shortenUnique(files[1], files))
+        end)
+
     end)
 end)
