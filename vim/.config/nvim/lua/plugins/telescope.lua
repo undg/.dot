@@ -107,14 +107,18 @@ return {
                         disable_devicons = false,
                         open_buffer_indicators = { previous = '👀', others = '🙈' },
                     },
+                    gp_picker = {
+                        chat_mode = 'chat', -- 'chat' 'command' 'both' (default)
+                    }
                 },
             })
 
             -- load_extension's, somewhere after setup function:
+
             telescope.load_extension('fzf')
             telescope.load_extension('ui-select')
             telescope.load_extension('smart_open')
-            telescope.load_extension('gp-agent-picker')
+            telescope.load_extension('gp_picker')
 
             Keymap.normal('<leader>m', ':Telescope<cr>')
             -- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
@@ -142,7 +146,7 @@ return {
             Keymap.normal('<leader>fc', ':Telescope commands<cr>')
             Keymap.normal('<leader>:', ':Telescope commands<cr>')
 
-            Keymap.normal('<leader>fa', ':Telescope gp-agent-picker open<cr>', { desc = 'gp.nvim Agent Picker' })
+            Keymap.normal('<leader>fa', ':Telescope gp_picker agent<cr>', { desc = 'gp.nvim Agent Picker' })
 
             Keymap.visual('<leader>fg', function()
                 tb.live_grep({ default_text = get_visual_selection() })
