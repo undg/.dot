@@ -87,6 +87,10 @@ Keymap.xisual('<S-DOWN>', ":m '>+<CR>gv=gv")
 Keymap.visual('<S-UP>', ':m -2<CR>gv=gv')
 Keymap.visual('<S-DOWN>', ":m '>+<CR>gv=gv")
 
+-- new line above and bellow
+Keymap.insert('<C-k>', '<C-o>O')
+Keymap.insert('<C-j>', '<C-o>o')
+
 Keymap.normal('<S-UP>', ':m -2<CR>==')
 Keymap.normal('<S-DOWN>', ':m +1<CR>==')
 
