@@ -1,19 +1,22 @@
-local function toggleTabs()
-    if vim.g.softtabstop == 2 then
-        vim.g.softtabstop = 4
-        vim.opt.softtabstop = 4
-        vim.opt.shiftwidth = 4
-        vim.opt.tabstop = 4
-        vim.notify('Switched to: Indent with 4 spaces.', vim.log.levels.INFO, { title = 'IndentToggle' })
-    else
-        vim.g.softtabstop = 2
-        vim.opt.softtabstop = 2
-        vim.opt.shiftwidth = 2
-        vim.opt.tabstop = 2
-        vim.notify('Switched to: Indent with 2 spaces.', vim.log.levels.INFO, { title = 'IndentToggle' })
-    end
+local function IndentCycle(state)
+	local states = {
+		{ name = '2 spaces',    expandtab = true,  width = 2 },
+		{ name = '4 spaces',    expandtab = true,  width = 4 },
+		{ name = '2-wide tabs', expandtab = false, width = 2 },
+		{ name = '4-wide tabs', expandtab = false, width = 4 },
+	}
+
+	vim.g.indent_state = state or ((vim.g.indent_state or 0) % #states + 1)
+	local new_state = states[vim.g.indent_state]
+
+	vim.opt.expandtab = new_state.expandtab
+	vim.opt.tabstop = new_state.width
+	vim.opt.softtabstop = new_state.width
+	vim.opt.shiftwidth = new_state.width
+
+	vim.notify('Switched to: ' .. new_state.name, vim.log.levels.INFO, { title = 'IndentCycle' })
 end
 
-vim.api.nvim_create_user_command('IndentToggle', toggleTabs, {})
--- ts/sw 2<-->4 toggle indentation
-Keymap.normal('<leader>st', toggleTabs, { silent = false, desc = "Toggle set=tabstop (indentation) 2 <-> 4" })
+vim.api.nvim_create_user_command('CycleIndent', IndentCycle, {})
+Keymap.normal('<leader>st', IndentCycle, { silent = false, desc = 'Toggle indentation style' })
+
