@@ -1,4 +1,4 @@
-local function IndentCycle(state)
+local function IndentCycle()
 	local states = {
 		{ name = '2 spaces',    expandtab = true,  width = 2 },
 		{ name = '4 spaces',    expandtab = true,  width = 4 },
@@ -6,7 +6,7 @@ local function IndentCycle(state)
 		{ name = '4-wide tabs', expandtab = false, width = 4 },
 	}
 
-	vim.g.indent_state = state or ((vim.g.indent_state or 0) % #states + 1)
+	vim.g.indent_state = (vim.g.indent_state or 0) % #states + 1
 	local new_state = states[vim.g.indent_state]
 
 	vim.opt.expandtab = new_state.expandtab
@@ -17,6 +17,5 @@ local function IndentCycle(state)
 	vim.notify('Switched to: ' .. new_state.name, vim.log.levels.INFO, { title = 'IndentCycle' })
 end
 
-vim.api.nvim_create_user_command('CycleIndent', IndentCycle, {})
+vim.api.nvim_create_user_command('IndentCycle', IndentCycle, {})
 Keymap.normal('<leader>st', IndentCycle, { silent = false, desc = 'Toggle indentation style' })
-
