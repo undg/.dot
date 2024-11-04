@@ -54,15 +54,15 @@ vim.opt.termguicolors = true                                                   -
 
 -- Show white spaces, but only on demand
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
-vim.opt.listchars = "eol:¬,tab:!⇥,trail:·,extends:>,precedes:<,space:·"
+vim.opt.listchars = "eol:¬,tab:▸ ,trail:·,extends:>,precedes:<,space:·"
 vim.opt.list = false
 
 -- Default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
-vim.opt.softtabstop = 2
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = false
 
 -- folding
 vim.opt.foldmethod = "indent"
