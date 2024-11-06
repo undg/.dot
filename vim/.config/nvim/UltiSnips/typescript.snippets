@@ -38,13 +38,13 @@ snippet cfun "function (assigned to const)"
 ${1:const }${2:name} = ($3) => ${VISUAL}$0
 endsnippet
 
-snippet des "describe('should ', ()=>{})" b
+snippet des "describe(`should `, ()=>{})" b
 describe(\`${1:description}\`, () => {
 	${2}
 })
 endsnippet
 
-snippet it "is('should ', ()=>{})" b
+snippet it "it(`should `, ()=>{})" b
 it(\`should ${1:description}\`, () => {
 	${2}
 })
