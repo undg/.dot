@@ -73,12 +73,7 @@ local function find_prettier_config()
 end
 
 local M_null_ls_sources = {
-    -- null_ls.builtins.formatting.prettierd.with({
-    --     env = {
-    --         PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(vim.fn.findfile('.prettierrc.json', vim.fn.getcwd() .. ';')),
-    --     },
-    -- }),
-    null_ls.builtins.formatting.shfmt,
+    -- null_ls.builtins.formatting.shfmt,
     null_ls.builtins.completion.tags,
     null_ls.builtins.hover.dictionary,
 }
@@ -95,8 +90,8 @@ else
     vim.notify('universal setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local universal_sources = {
         -- null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.goimports,
+        -- null_ls.builtins.formatting.black,
+        -- null_ls.builtins.formatting.goimports,
     }
     vim.list_extend(M_null_ls_sources, universal_sources)
 end

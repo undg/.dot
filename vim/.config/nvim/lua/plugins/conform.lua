@@ -4,13 +4,15 @@ return {
         require('conform').setup({
             formatters_by_ft = {
                 lua = { 'stylua' },
-                -- Conform will run multiple formatters sequentially
                 python = { 'isort', 'black' },
-                -- Conform will run the first available formatter
-                javascript = { 'prettier', 'prettier', stop_after_first = true },
-                typescript = { 'prettier', 'prettier', stop_after_first = true },
-                reacttypescript = { 'prettier', 'prettier', stop_after_first = true },
-                typescriptreact = { 'prettier', 'prettier', stop_after_first = true },
+                bash = { 'shfmt' },
+                zsh = { 'shfmt' },
+                sh = { 'shfmt' },
+                go = {'goimports', 'gofmt'},
+                javascript = { 'prettierd', 'prettier', stop_after_first = true },
+                typescript = { 'prettierd', 'prettier', stop_after_first = true },
+                reacttypescript = { 'prettierd', 'prettier', stop_after_first = true },
+                typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
             },
         })
     end,
