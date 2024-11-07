@@ -46,73 +46,13 @@ local lsp2mason = {
     },
 }
 
-local function find_prettier_config()
-    local config_files = {
-        '.prettierrc',
-        '.prettierrc.json',
-        '.prettierrc.yml',
-        '.prettierrc.yaml',
-        '.prettierrc.json5',
-        '.prettierrc.js',
-        '.prettierrc.cjs',
-        '.prettierrc.mjs',
-        '.prettierrc.toml',
-        'prettier.config.js',
-        'prettier.config.cjs',
-        'prettier.config.mjs',
-    }
-
-    for _, file in ipairs(config_files) do
-        local path = vim.fn.findfile(file, vim.fn.getcwd() .. ';')
-        if path ~= '' then
-            return path
-        end
-    end
-
-    return nil
-end
-
-local M_null_ls_sources = {
-    -- null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.completion.tags,
-    null_ls.builtins.hover.dictionary,
-}
-
-local cwd = vim.fn.getcwd()
-
-if cwd and string.match(cwd, '/DONT_NEED_THAT_HACKS_ANYMORE/') then
-    vim.notify('arahi only setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
-    local arahi_sources = {
-        -- cspell.diagnostics,
-    }
-    vim.list_extend(M_null_ls_sources, arahi_sources)
-else
-    vim.notify('universal setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
-    local universal_sources = {
-        -- null_ls.builtins.formatting.stylua,
-        -- null_ls.builtins.formatting.black,
-        -- null_ls.builtins.formatting.goimports,
-    }
-    vim.list_extend(M_null_ls_sources, universal_sources)
-end
-
 null_ls.setup({
-    sources = M_null_ls_sources,
+    sources = { null_ls.builtins.completion.tags, null_ls.builtins.hover.dictionary },
 })
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
-    'stylua', -- format lua
-    'shfmt', -- format sh
-    'black', -- format python
-
     'actionlint', -- github action files diagnostic
-    'goimports-reviser',
-    'goimports',
-
-    -- I got them from AUR
-    -- 'prettierd',  -- format js/ts
-    -- 'eslint_d',
 }
 
 -- Lsp server names that will be installed via Manson
@@ -127,7 +67,7 @@ for name in pairs(lsp2mason.cfg_file) do
 
     local config = require('lsp.' .. name)
 
-    -- config['capabilities'] = capabilities
+    config['capabilities'] = capabilities
 
     lspconfig[name].setup(config)
 end
