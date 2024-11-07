@@ -46,12 +46,38 @@ local lsp2mason = {
     },
 }
 
+local function find_prettier_config()
+    local config_files = {
+        '.prettierrc',
+        '.prettierrc.json',
+        '.prettierrc.yml',
+        '.prettierrc.yaml',
+        '.prettierrc.json5',
+        '.prettierrc.js',
+        '.prettierrc.cjs',
+        '.prettierrc.mjs',
+        '.prettierrc.toml',
+        'prettier.config.js',
+        'prettier.config.cjs',
+        'prettier.config.mjs',
+    }
+
+    for _, file in ipairs(config_files) do
+        local path = vim.fn.findfile(file, vim.fn.getcwd() .. ';')
+        if path ~= '' then
+            return path
+        end
+    end
+
+    return nil
+end
+
 local M_null_ls_sources = {
-    null_ls.builtins.formatting.prettierd.with({
-        env = {
-            PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(vim.fn.findfile('.prettierrc.json', vim.fn.getcwd() .. ';')),
-        },
-    }),
+    -- null_ls.builtins.formatting.prettierd.with({
+    --     env = {
+    --         PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(vim.fn.findfile('.prettierrc.json', vim.fn.getcwd() .. ';')),
+    --     },
+    -- }),
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.completion.tags,
     null_ls.builtins.hover.dictionary,
@@ -59,7 +85,7 @@ local M_null_ls_sources = {
 
 local cwd = vim.fn.getcwd()
 
-if cwd and string.match(cwd, '/Arahi/') then
+if cwd and string.match(cwd, '/DONT_NEED_THAT_HACKS_ANYMORE/') then
     vim.notify('arahi only setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local arahi_sources = {
         -- cspell.diagnostics,
@@ -68,7 +94,7 @@ if cwd and string.match(cwd, '/Arahi/') then
 else
     vim.notify('universal setup', vim.log.levels.INFO, { title = 'Custom null-ls' })
     local universal_sources = {
-        null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.goimports,
     }
@@ -81,9 +107,9 @@ null_ls.setup({
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
-    'stylua',     -- format lua
-    'shfmt',      -- format sh
-    'black',      -- format python
+    'stylua', -- format lua
+    'shfmt', -- format sh
+    'black', -- format python
 
     'actionlint', -- github action files diagnostic
     'goimports-reviser',
@@ -106,7 +132,7 @@ for name in pairs(lsp2mason.cfg_file) do
 
     local config = require('lsp.' .. name)
 
-    config['capabilities'] = capabilities
+    -- config['capabilities'] = capabilities
 
     lspconfig[name].setup(config)
 end
