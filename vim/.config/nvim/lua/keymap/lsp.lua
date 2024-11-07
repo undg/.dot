@@ -8,23 +8,6 @@ if not_ok then
     return
 end
 
-Keymap.normal('<LEADER>p', function()
-    vim.g.format_on_save = not vim.g.format_on_save
-
-    local msg = 'Format on save = OFF'
-    if vim.g.format_on_save then
-        msg = 'Format on save = ON'
-    end
-
-    vim.notify(msg, vim.log.levels.INFO)
-end, { desc = 'Toggle format on save' })
-
-local ok_conform, conform = pcall(require, 'conform')
-if not ok_conform then
-    vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = 'keymap/lsp.lua:', timeout = 500 })
-end
-Keymap.normal('<leader>P', conform.format, { desc = 'Format' })
-
 Keymap.normal('<LEADER>rn', vim.lsp.buf.rename, { desc = 'lsp: rename', silent = false, noremap = true })
 
 Keymap.normal(
