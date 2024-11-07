@@ -3,13 +3,13 @@ Spec('plugins.icons')                           -- icons used by few plugins
 Git('https://github.com/nvim-lua/plenary.nvim') -- All the lua functions you don't want to write twice.
 
 -- Productivity
-Spec('plugins.comment')                    -- commenting code
-Spec('plugins.mini-surround')              -- surround selection with brackets, quotes etc.
+Spec('plugins.comment')                -- commenting code
+Spec('plugins.mini-surround')          -- surround selection with brackets, quotes etc.
 -- Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
-Spec('plugins.alpha')                      -- home screen
-Spec('plugins.neovim-session-manager')     -- autosave and restore session
-Spec('plugins.suda')                       -- ask for sudo password
-Spec('plugins.luapad')                     -- lua scratch pad
+Spec('plugins.alpha')                  -- home screen
+Spec('plugins.neovim-session-manager') -- autosave and restore session
+Spec('plugins.suda')                   -- ask for sudo password
+Spec('plugins.luapad')                 -- lua scratch pad
 -- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 
 -- Git
@@ -23,18 +23,19 @@ Git('https://github.com/tpope/vim-rhubarb')       -- Fugitive-companion to inter
 Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
 
 -- File managers
-Spec('plugins.telescope')  -- swiss knife
-Spec('plugins.neo-tree')   -- file manager
-Spec('plugins.oil-nvim')   -- file manager
-Spec('plugins.harpoon')    -- bookmark like buffer storage
+Spec('plugins.telescope') -- swiss knife
+Spec('plugins.neo-tree')  -- file manager
+Spec('plugins.oil-nvim')  -- file manager
+Spec('plugins.harpoon')   -- bookmark like buffer storage
 
 -- LSP, code and linting
-Spec('plugins.lspsaga')    -- Improves the Neovim built-in LSP experience.lspsaga.lua
-Spec('plugins.typescript') -- LSP Typescript utils with performant UI
-Spec('plugins.golang')     -- LSP golang utils with performant UI
-Spec('plugins.treesitter') -- syntax highlight
-Spec('plugins.trouble')    -- organize errors and warnings
-Spec('plugins.nvim-cmp')   -- collection of plugins related with autocompletion
+Spec('plugins.lspsaga')                          -- Improves the Neovim built-in LSP experience.lspsaga.lua
+Spec('plugins.typescript')                       -- LSP Typescript utils with performant UI
+Spec('plugins.golang')                           -- LSP golang utils with performant UI
+Spec('plugins.treesitter')                       -- syntax highlight
+Spec('plugins.conform')                          -- better formatting
+Spec('plugins.trouble')                          -- organize errors and warnings
+Spec('plugins.nvim-cmp')                         -- collection of plugins related with autocompletion
 Spec('plugins.mason')
 Git('https://github.com/folke/neodev.nvim')      -- Neovim full signature help, docs and completion for the nvim lua API.
 Git('https://github.com/neovim/nvim-lspconfig')  -- Collection of configurations for built-in LSP client
@@ -71,7 +72,7 @@ Git('https://github.com/milisims/nvim-luaref')   -- adds a reference for builtin
 Spec('plugins.theme')                 -- gruvbox is best theme on the universe
 Spec('plugins.lualine')               -- status bar with few informations
 Spec('plugins.bufferline')
-Spec('plugins.nvim-navic') -- Breadcrumbs
+Spec('plugins.nvim-navic')            -- Breadcrumbs
 Spec('plugins.which-key')             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
 Spec('plugins.colorizer')             -- paint hex values with color
