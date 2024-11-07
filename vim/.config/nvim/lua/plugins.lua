@@ -10,7 +10,7 @@ Spec('plugins.alpha')                      -- home screen
 Spec('plugins.neovim-session-manager')     -- autosave and restore session
 Spec('plugins.suda')                       -- ask for sudo password
 Spec('plugins.luapad')                     -- lua scratch pad
-Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
+-- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 
 -- Git
 Spec('plugins.lazygit')  -- open lazygit in floating window. Lazygit need to be installed in system
