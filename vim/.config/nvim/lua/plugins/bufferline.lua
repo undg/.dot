@@ -108,6 +108,7 @@ function M.config()
     -- Close
     local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
     local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
+    local CMD_CLOSE_GP_CHATS = ":execute 'bufdo if expand(\"%:p\") =~ \"^' . expand('~/.local/share/nvim/gp/chats/') . '.*.md$\" | bd! | endif'<cr>"
 
     wk.add({
         -- GOTO
@@ -138,13 +139,14 @@ function M.config()
             desc = 'BufferLine Move buffer to the END',
         },
         -- Close
-        { '<leader>bc',  group = 'Buffer Close' },
-        { '<leader>bcc', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
+        { '<leader>bd',  group = 'Buffer Close' },
+        { '<leader>bdc', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer' },
         { '<C-Q>',       CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
-        { '<leader>bC',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
+        { '<leader>bD',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
         { '<leader>qq',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
-        { '<leader>bch', ':BufferLineCloseLeft<CR>',                desc = 'BufferLine Close Left' },
-        { '<leader>bcl', ':BufferLineCloseRight<CR>',               desc = 'BufferLine Close Right' },
+        { '<leader>bdh', ':BufferLineCloseLeft<CR>',                desc = 'Close Buffer on the Left' },
+        { '<leader>bdl', ':BufferLineCloseRight<CR>',               desc = 'Close Buffer on the Right' },
+        { '<leader>bda', CMD_CLOSE_GP_CHATS,                        desc = 'Close Buffer with gp.nvim chats' },
 
         { '<leader>bt',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
         { '<leader>bT',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
