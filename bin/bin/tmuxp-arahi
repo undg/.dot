@@ -1,7 +1,0 @@
-#!/bin/sh
-
-tmux kill-window -t 9
-
-if [[ $1 != 'kill' ]]; then
-	tmuxp load --append arahi
-fi
