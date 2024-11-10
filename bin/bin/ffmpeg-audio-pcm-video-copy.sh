@@ -22,20 +22,15 @@ ${R}Compressed media will land in mov folder!
 ${NC}Press ANY key to continue.\n"
 read
 
-CURRENT_DIR=$(pwd)
-files=$@ # files passed as an arguments
+files=("$@") # files passed as an arguments
 
-OUT_DIR="converted"
-if [ ! -d "$OUT_DIR" ]; then
-	mkdir "$OUT_DIR"
-fi
-
-for f in $files; do
+for f in "${files}"; do
+	f_dir=$(dirname "$(realpath "$f")")
 	f_date=$(date -r "$f" +"%Y-%m-%d_%H-%M-%S")
 	f_fullname="${f##*/}"
 	f_name="${f_fullname%.*}"
 	f_ext=${f##*.}
-	f_out="$OUT_DIR"/"$f_name"-audio-pcm."$f_ext"
+	f_out="$f_dir"/"$f_name"-audio-pcm."$f_ext"
 
 	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
 

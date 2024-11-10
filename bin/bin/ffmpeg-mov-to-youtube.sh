@@ -23,24 +23,26 @@ ${R}Compressed media will land in same folder!
 ${NC}Press ANY key to continue.\n"
 read
 
-CURRENT_DIR=$(pwd)
 files=("$@") # files passed as an arguments
 
 for f in "${files}"; do
+	f_dir=$(dirname "$(realpath "$f")")
 	f_date=$(date -r "$f" +"%Y-%m-%d_%H-%M-%S")
 	f_fullname="${f##*/}"
 	f_name="${f_fullname%.*}"
 	f_ext=${f##*.}
-	f_out="$f_name"-youtube."$f_ext"
+	f_out="$f_dir"/"$f_name"-youtube.mp4
 
-	printf "\n${B}~~~~~~>${G} $CURRENT_DIR/$f ${B}===>${G} $f_out ${NC}\n"
+	printf "\n${B}~~~~~~>${G} $f_dir/$f ${B}===>${G} $f_out ${NC}\n"
 
-	ffmpeg -i "$f" -c:v hevc_vaapi -vaapi_device /dev/dri/renderD128 \
+	ffmpeg -i "$f" \
+		-c:v hevc_vaapi \
+		-vaapi_device /dev/dri/renderD128 \
 		-vf 'format=nv12,hwupload,fps=30000/1001' \
 		-profile:v main \
 		-level:v 5.2 \
 		-rc_mode CQP \
-		-qp 21 \
+		-qp 28 \
 		-g 30 \
 		-keyint_min 15 \
 		-bf 2 \
