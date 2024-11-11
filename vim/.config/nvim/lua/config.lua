@@ -28,7 +28,7 @@ vim.o.inccommand = "nosplit"                                                   -
 vim.opt.history = 900                                                          -- The command-line history table size.
 vim.opt.path = vim.opt.path + "**"                                             -- Help with searching via :find and :grep (I'm using 3rd party for that anyway)
 
-vim.g.format_on_save = false                                                   -- custom flag used in autocmd to triger vim.lsp.buf.format()
+vim.g.format_on_save = false                                                   -- custom flag used in autocmd to trigger vim.lsp.buf.format()
 
 -- :checkhealth - Don't report problems bellow
 vim.g.loaded_ruby_provider = 0
@@ -45,7 +45,7 @@ vim.opt.splitbelow = true                                                      -
 vim.opt.splitright = true                                                      -- Areas of the screen where the window splits should occur
 vim.opt.scrolloff = 3                                                          -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.cursorline = true                                                      -- highlight current line
-vim.wo.signcolumn = "auto:6-9"                                                      -- always show area left from line numbers ,@TODO (undg) 2022-12-25: fit here more informations. gitsign, marks, dap...
+vim.wo.signcolumn = "auto:6-9"                                                 -- always show area left from line numbers ,@TODO (undg) 2022-12-25: fit here more informations. Gitsign, marks, dap...
 vim.wo.number = true                                                           -- Make line numbers default ,this is overridden in auto command with hybrid line number
 vim.opt.lazyredraw = true                                                      -- Don't redraw while executing macros (good performance config)
 vim.opt.errorbells = false                                                     -- No annoying sound on errors
@@ -56,6 +56,11 @@ vim.opt.termguicolors = true                                                   -
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
 vim.opt.listchars = "eol:¬,tab:▸ ,trail:·,extends:>,precedes:<,space:·"
 vim.opt.list = true
+
+-- Spell
+vim.opt.spelloptions = 'camel'
+vim.opt.spelllang = 'en'
+vim.opt.spell = true
 
 -- Default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
@@ -75,5 +80,5 @@ vim.opt.textwidth = 0
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakindentopt = "min:60,shift:0,sbr"
-vim.opt.showbreak = "+++ "                                                     -- show that sign on breaked lines.
+vim.opt.showbreak = "+++ "                                                     -- show that sign on break lines.
 -- @example ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.  ...and if they need to be long, just display them with line break.
