@@ -37,7 +37,6 @@ local lsp2mason = {
     cfg_no_file = {
         cssls = 'cssls',
         html = 'html',
-        clangd = 'clangd',
         pylsp = 'python-lsp-server',
         marksman = 'marksman',
         bashls = 'bash-language-server',
