@@ -2,8 +2,8 @@
 
 
 # main install function
-SKIP_INSTALLS=0
-FIRST_INSTALLS=0
+local SKIP_INSTALLS=0
+local FIRST_INSTALLS=0
 install() {
 	local package=$1
 
