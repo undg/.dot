@@ -98,11 +98,12 @@ plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
 
-if command -v mise &>/dev/null then
+if command -v mise &>/dev/null; then
 	eval "$(/bin/mise activate zsh)" # lang version manager/installer
 fi
 
-if command -v fasd &>/dev/null then
+
+if command -v fasd &>/dev/null; then
 	eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
 fi
 
