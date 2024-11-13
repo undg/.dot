@@ -193,3 +193,7 @@ gdscript
 gdshader
 gitattributes
 gitcommit
+sshfs
+rpi
+mnt
+fusermount
