@@ -24,6 +24,6 @@ Keymap.normal('<Leader>vl', ':VimuxRunLastCommand<CR>')
 
 -- !RESTART LAST COMMAND
 Keymap.normal(
-    '<Leader>vr',
-    ':call VimuxInterruptRunner() <bar> :call VimuxInterruptRunner() <bar> :call VimuxRunLastCommand() <cr>'
+	'<Leader>vr',
+	':call VimuxInterruptRunner() <bar> :call VimuxInterruptRunner() <bar> :call VimuxRunLastCommand() <cr>'
 )

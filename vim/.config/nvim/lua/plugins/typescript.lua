@@ -9,16 +9,16 @@ return {
 				-- live type checking with //  ^?
 				'marilari88/twoslash-queries.nvim', -- https://github.com/marilari88/twoslash-queries.nvim
 				opts = {
-					multi_line = true,              -- to print types in multi line mode
-					is_enabled = true,              -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
-					highlight = 'DevIconBat',       -- to set up a highlight group for the virtual text
+					multi_line = true, -- to print types in multi line mode
+					is_enabled = true, -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
+					highlight = 'DevIconBat', -- to set up a highlight group for the virtual text
 				},
 
 				cmd = 'TwoslashQueriesInspect',
 
 				keys = {
 					{ '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
-					{ '<leader>sd', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
+					{ '<leader>sd', ':TwoslashQueriesRemove<CR>', desc = 'Twoslash Remove' },
 				},
 			},
 		},
@@ -46,7 +46,7 @@ return {
 					-- install it yourserf !!!
 					-- npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
 					'@styled/typescript-styled-plugin',
-					"typescript-plugin-css-modules",
+					'typescript-plugin-css-modules',
 				},
 				-- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
 				-- memory limit in megabytes or "auto"(basically no limit)

@@ -11,8 +11,8 @@ indent_type = "Tabs"
 indent_width = 4
 
 # AutoPreferDouble, AutoPreferSingle, ForceDouble, ForceSingle
-quote_style = "AutoPreferSingle"
-# quote_style = "AutoPreferDouble"
+# quote_style = "AutoPreferSingle"
+quote_style = "AutoPreferDouble"
 
 # Always, NoSingleString, NoSingleTable, None
 call_parentheses = "Always"

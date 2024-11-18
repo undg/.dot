@@ -1,8 +1,8 @@
 -- https://github.com/lambdalisue/suda.vim
 
 return {
-    'lambdalisue/suda.vim',
-    config = function()
-        vim.g.suda_smart_edit = 1
-    end,
+	'lambdalisue/suda.vim',
+	config = function()
+		vim.g.suda_smart_edit = 1
+	end,
 }

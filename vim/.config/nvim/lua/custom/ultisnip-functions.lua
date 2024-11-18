@@ -12,4 +12,3 @@ vim.cmd([[
   endif
   endfunction
 ]])
-
