@@ -37,9 +37,9 @@ Keymap.normal('<LEADER>cd', ':lcd %:p:h<CR>')
 
 -- remove white spaces on end line
 Keymap.normal(
-    '<LEADER>sp',
-    ':%s/\\s\\+$//ge|norm <CR>:echomsg "white space cleaing"<cr>',
-    { desc = 'remove trailing whitespace' }
+	'<LEADER>sp',
+	':%s/\\s\\+$//ge|norm <CR>:echomsg "white space cleaing"<cr>',
+	{ desc = 'remove trailing whitespace' }
 )
 
 -- Toggle list (display unprintable characters).
@@ -49,9 +49,9 @@ Keymap.insert('<F10>', '<esc>:set list!<CR>i')
 -- get git branch go into insert mode.
 -- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
 Keymap.normal(
-    '<leader>gb',
-    ':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A',
-    { desc = 'get git branch name' }
+	'<leader>gb',
+	':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A',
+	{ desc = 'get git branch name' }
 )
 
 -- indent, highlight in visual stay
