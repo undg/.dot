@@ -40,7 +40,6 @@ Spec('plugins.mason')
 Git('https://github.com/folke/neodev.nvim') -- Neovim full signature help, docs and completion for the nvim lua API.
 Git('https://github.com/neovim/nvim-lspconfig') -- Collection of configurations for built-in LSP client
 Git('https://github.com/nvimtools/none-ls.nvim') -- inject LSP diagnostics, code actions, and more
-Git('https://github.com/davidmh/cspell.nvim') -- null-ls companion plugin for cspell. Built-in version is no longer maintained.
 Git('https://github.com/SirVer/ultisnips') -- snippets that are integrated with autocompletion nvim-cmp
 
 -- -- Debugging (DAP)
