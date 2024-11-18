@@ -1,9 +1,9 @@
 local function nvimTreeToggleFocus()
-    if vim.bo.filetype == 'NvimTree' then
-        vim.api.nvim_input('<C-W><C-P>')
-    else
-        vim.cmd('NvimTreeFindFile')
-    end
+	if vim.bo.filetype == 'NvimTree' then
+		vim.api.nvim_input('<C-W><C-P>')
+	else
+		vim.cmd('NvimTreeFindFile')
+	end
 end
 vim.api.nvim_create_user_command('NvimTreeToggleFocus', nvimTreeToggleFocus, {})
 

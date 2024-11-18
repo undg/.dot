@@ -1,4 +1,3 @@
 return {
-    autostart = false
+	autostart = false,
 }
-

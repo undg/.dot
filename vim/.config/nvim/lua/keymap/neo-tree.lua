@@ -1,25 +1,25 @@
 local function treeFileToggleFocus()
-    if vim.bo.filetype == 'neo-tree' then
-        vim.api.nvim_input('<C-W><C-P>')
-    else
-        vim.cmd('Neotree reveal left')
-    end
+	if vim.bo.filetype == 'neo-tree' then
+		vim.api.nvim_input('<C-W><C-P>')
+	else
+		vim.cmd('Neotree reveal left')
+	end
 end
 
 local function treeBuffToggleFocus()
-    if vim.bo.filetype == 'neo-tree' then
-        vim.api.nvim_input('<C-W><C-P>')
-    else
-        vim.cmd('Neotree buffers right')
-    end
+	if vim.bo.filetype == 'neo-tree' then
+		vim.api.nvim_input('<C-W><C-P>')
+	else
+		vim.cmd('Neotree buffers right')
+	end
 end
 
 local function treeGitToggleFocus()
-    if vim.bo.filetype == 'neo-tree' then
-        vim.api.nvim_input('<C-W><C-P>')
-    else
-        vim.cmd('Neotree git_status right')
-    end
+	if vim.bo.filetype == 'neo-tree' then
+		vim.api.nvim_input('<C-W><C-P>')
+	else
+		vim.cmd('Neotree git_status right')
+	end
 end
 
 vim.api.nvim_create_user_command('TreeFileToggleFocus', treeFileToggleFocus, {})

@@ -6,4 +6,3 @@ vim.cmd([[
     cnoremap <expr> <down> pumvisible() ? '<right>' : '<down>'
   endif
 ]])
-

@@ -1,7 +1,7 @@
 local function IndentCycle()
 	local states = {
-		{ name = '2 spaces',    expandtab = true,  width = 2 },
-		{ name = '4 spaces',    expandtab = true,  width = 4 },
+		{ name = '2 spaces', expandtab = true, width = 2 },
+		{ name = '4 spaces', expandtab = true, width = 4 },
 		{ name = '2-wide tabs', expandtab = false, width = 2 },
 		{ name = '4-wide tabs', expandtab = false, width = 4 },
 	}
