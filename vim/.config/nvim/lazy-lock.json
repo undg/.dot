@@ -12,7 +12,6 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "colorizer": { "branch": "master", "commit": "72790a003d5a706c287486a1a81e3a6b32158b54" },
   "conform.nvim": { "branch": "master", "commit": "8c354323201d04530727d8bdcc4669791ee082ef" },
-  "cspell.nvim": { "branch": "main", "commit": "2c29bf573292c8f5053383d1be4ab908f4ecfc47" },
   "diffconflicts": { "branch": "master", "commit": "4972d1401e008c5e9afeb703eddd1b2c2a1d1199" },
   "dir-telescope.nvim": { "branch": "main", "commit": "805405b9f98dc3470f8676773dc0e6151a9158ed" },
   "dressing.nvim": { "branch": "master", "commit": "1b7921eecc65af1baf8ac1dc06f0794934cbcfb2" },

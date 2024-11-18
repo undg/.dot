@@ -1,22 +1,21 @@
-local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-local mason_ok, mason = pcall(require, 'mason')
-local mason_lspconfig_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
-local mason_installer_ok, mason_installer = pcall(require, 'mason-tool-installer')
-local null_ls_ok, null_ls = pcall(require, 'null-ls')
-local cspell_ok, cspell = pcall(require, 'cspell')
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local mason_ok, mason = pcall(require, "mason")
+local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+local mason_installer_ok, mason_installer = pcall(require, "mason-tool-installer")
+local null_ls_ok, null_ls = pcall(require, "null-ls")
 
-local not_ok = not lspconfig_ok and 'lspconfig not ok\n'
-	or not cmp_nvim_lsp_ok and 'cmp_nvim_lsp not ok\n'
-	or not mason_ok and 'mason not ok\n'
-	or not mason_lspconfig_ok and 'mason_lspconfig not ok\n'
-	or not mason_installer_ok and 'mason_installer not ok\n'
-	or not null_ls_ok and 'null_ls not ok\n'
-	or not cspell_ok and 'cspell not ok\n'
+local not_ok = not lspconfig_ok and "lspconfig not ok\n"
+	or not cmp_nvim_lsp_ok and "cmp_nvim_lsp not ok\n"
+	or not mason_ok and "mason not ok\n"
+	or not mason_lspconfig_ok and "mason_lspconfig not ok\n"
+	or not mason_installer_ok and "mason_installer not ok\n"
+	or not null_ls_ok and "null_ls not ok\n"
+	or not cspell_ok and "cspell not ok\n"
 	or false -- all good, not not_ok
 
 if not_ok then
-	vim.notify('lsp/init.lua: require failed - ' .. not_ok, vim.log.levels.ERROR)
+	vim.notify("lsp/init.lua: require failed - " .. not_ok, vim.log.levels.ERROR)
 	return
 end
 
@@ -26,22 +25,22 @@ end
 -- }
 local lsp2mason = {
 	cfg_file = {
-		denols = 'deno',
-		jsonls = 'json-lsp',
+		denols = "deno",
+		jsonls = "json-lsp",
 		-- tsserver = 'typescript-language-server',
-		yamlls = 'yaml-language-server',
-		lua_ls = 'lua-language-server',
-		eslint = 'eslint_d',
-		gopls = 'gopls',
+		yamlls = "yaml-language-server",
+		lua_ls = "lua-language-server",
+		eslint = "eslint_d",
+		gopls = "gopls",
 	},
 	cfg_no_file = {
-		cssls = 'cssls',
-		html = 'html',
-		pylsp = 'python-lsp-server',
-		marksman = 'marksman',
-		bashls = 'bash-language-server',
-		tailwindcss = 'tailwindcss-language-server',
-		cssmodules_ls = 'cssmodules-language-server',
+		cssls = "cssls",
+		html = "html",
+		pylsp = "python-lsp-server",
+		marksman = "marksman",
+		bashls = "bash-language-server",
+		tailwindcss = "tailwindcss-language-server",
+		cssmodules_ls = "cssmodules-language-server",
 	},
 }
 
@@ -51,7 +50,7 @@ null_ls.setup({
 
 -- Non lsp Mason packages to auto install. Package name
 local mason_non_lsp = {
-	'actionlint', -- github action files diagnostic
+	"actionlint", -- github action files diagnostic
 }
 
 -- Lsp server names that will be installed via Manson
@@ -64,9 +63,9 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 for name in pairs(lsp2mason.cfg_file) do
 	mason_lsp[#mason_lsp + 1] = name
 
-	local config = require('lsp.' .. name)
+	local config = require("lsp." .. name)
 
-	config['capabilities'] = capabilities
+	config["capabilities"] = capabilities
 
 	lspconfig[name].setup(config)
 end
@@ -76,7 +75,7 @@ for name in pairs(lsp2mason.cfg_no_file) do
 
 	local config = {}
 
-	config['capabilities'] = capabilities
+	config["capabilities"] = capabilities
 
 	lspconfig[name].setup(config)
 end
