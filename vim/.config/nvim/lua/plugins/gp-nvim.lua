@@ -15,8 +15,8 @@ vim.api.nvim_create_user_command('GpProofread', function(args)
     vim.cmd('GpChatNew')
     vim.api.nvim_feedkeys(
         "iProofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
-        .. selection
-        .. '\n\n',
+            .. selection
+            .. '\n\n',
         'n',
         true
     )
@@ -43,7 +43,8 @@ return {
             .. "- Stay focused and effective in your responses. You've got this!\n"
 
         -- prompt found on twitch chat, adjusted
-        local grug_system_prompt = 'Grug only answer question. Grug no yap. Grug very smart and thinks through answer so few words required. Does not yap. Is very experienced programmer. Knows juniors use many words when few words do trick. Gives code when make sen, but does not overly comment answers. Just gives code and it is very good. John Carmack level programmer, Buddha level wisdom, Yoda level speech. Grug dev love doing simple things good and using smart things sparingly. Grug wrote all his principles on  grugbrain.dev'
+        local grug_system_prompt =
+            'Grug only answer question. Grug no yap. Grug very smart and thinks through answer so few words required. Does not yap. Is very experienced programmer. Knows juniors use many words when few words do trick. Gives code when make sen, but does not overly comment answers. Just gives code and it is very good. John Carmack level programmer, Buddha level wisdom, Yoda level speech. Grug dev love doing simple things good and using smart things sparingly. Grug wrote all his principles on  grugbrain.dev'
 
         require('gp').setup({
             providers = {
@@ -54,6 +55,9 @@ return {
                 anthropic = {
                     endpoint = 'https://api.anthropic.com/v1/messages',
                     secret = os.getenv('ANTHROPIC_API_KEY'),
+                },
+                ollama = {
+                    endpoint = 'http://localhost:11434/v1/chat/completions',
                 },
             },
 
@@ -91,7 +95,7 @@ return {
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-5-sonnet-20240620', temperature = 0.4, top_p = 0.95 },
-                    system_prompt = grug_system_prompt
+                    system_prompt = grug_system_prompt,
                 },
                 {
                     provider = 'anthropic',
@@ -108,7 +112,7 @@ return {
                     chat = true,
                     command = false,
                     model = { model = 'claude-3-haiku-20240307', temperature = 0.4, top_p = 0.95 },
-                    system_prompt = grug_system_prompt
+                    system_prompt = grug_system_prompt,
                 },
                 {
                     provider = 'anthropic',
@@ -247,24 +251,24 @@ return {
 
         wk.add({
             mode = { 'n', 'v' },
-            { '<leader>a',   group = 'Ai' },
-            { '<leader>ag',  group = 'gp-nvim',          silent = false },
-            { '<leader>aga', ':GpNextAgent<cr>',         desc = ':GpNextAgent' },
+            { '<leader>a', group = 'Ai' },
+            { '<leader>ag', group = 'gp-nvim', silent = false },
+            { '<leader>aga', ':GpNextAgent<cr>', desc = ':GpNextAgent' },
             { '<leader>agc', ':GpChatToggle vsplit<cr>', desc = ':GpChatToggle' },
-            { '<leader>agC', ':GpChatNew vsplit<cr>',    desc = ':GpChatNew' },
-            { '<leader>agf', ':GpChatFinder<cr>',        desc = ':GpChatFinder' },
-            { '<leader>agn', ':GpVNew<cr>',              desc = ':GpVNew' },
-            { '<leader>agp', ':GpProofread<cr>',         desc = ':GpProofread' },
-            { '<leader>agr', ':GpRewrite<cr>',           desc = ':GpRewrite' },
-            { '<leader>ags', ':GpStop<cr>',              desc = ':GpStop' },
-            { '<leader>agx', ':GpContext vsplint<cr>',   desc = ':GpContext' },
+            { '<leader>agC', ':GpChatNew vsplit<cr>', desc = ':GpChatNew' },
+            { '<leader>agf', ':GpChatFinder<cr>', desc = ':GpChatFinder' },
+            { '<leader>agn', ':GpVNew<cr>', desc = ':GpVNew' },
+            { '<leader>agp', ':GpProofread<cr>', desc = ':GpProofread' },
+            { '<leader>agr', ':GpRewrite<cr>', desc = ':GpRewrite' },
+            { '<leader>ags', ':GpStop<cr>', desc = ':GpStop' },
+            { '<leader>agx', ':GpContext vsplint<cr>', desc = ':GpContext' },
 
-            { '<leader>agh', ':GpAgent ChatGPT4o-grug<cr>',   desc = 'AI: ChatGPT4o [grug]' },
-            { '<leader>agH', ':GpAgent ChatGPT4o<cr>',   desc = 'AI: ChatGPT4o [standard]' },
-            { '<leader>agj', ':GpAgent ChatClaude-3-5-Sonnet-grug<cr>',   desc = 'AI: Sonnet [grug]' },
-            { '<leader>agJ', ':GpAgent ChatClaude-3-5-Sonnet<cr>',   desc = 'AI: Sonet [standard]' },
-            { '<leader>agk', ':GpAgent ChatClaude-3-Haiku-grug<cr>',   desc = 'AI: Haiku [grug]' },
-            { '<leader>agK', ':GpAgent ChatClaude-3-Haiku<cr>',   desc = 'AI: Haiku [standard]' },
+            { '<leader>agh', ':GpAgent ChatGPT4o-grug<cr>', desc = 'AI: ChatGPT4o [grug]' },
+            { '<leader>agH', ':GpAgent ChatGPT4o<cr>', desc = 'AI: ChatGPT4o [standard]' },
+            { '<leader>agj', ':GpAgent ChatClaude-3-5-Sonnet-grug<cr>', desc = 'AI: Sonnet [grug]' },
+            { '<leader>agJ', ':GpAgent ChatClaude-3-5-Sonnet<cr>', desc = 'AI: Sonet [standard]' },
+            { '<leader>agk', ':GpAgent ChatClaude-3-Haiku-grug<cr>', desc = 'AI: Haiku [grug]' },
+            { '<leader>agK', ':GpAgent ChatClaude-3-Haiku<cr>', desc = 'AI: Haiku [standard]' },
         })
     end,
 }
