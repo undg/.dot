@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command("AiProofread", function(args)
 		selection = table.concat(lines, "\n")
 	end
 
-	vim.cmd("GpChatNew")
+	vim.cmd("AiChatNew")
 	vim.api.nvim_feedkeys(
 		"iProofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
 			.. selection
@@ -264,15 +264,15 @@ return {
 			mode = { "n", "v" },
 			{ "<leader>a", group = "Ai" },
 			{ "<leader>ai", group = "gp-nvim", silent = false },
-			{ "<leader>aga", ":GpNextAgent<cr>", desc = ":GpNextAgent" },
-			{ "<leader>agc", ":GpChatToggle vsplit<cr>", desc = ":GpChatToggle" },
-			{ "<leader>agC", ":GpChatNew vsplit<cr>", desc = ":GpChatNew" },
-			{ "<leader>agf", ":GpChatFinder<cr>", desc = ":GpChatFinder" },
-			{ "<leader>agn", ":GpVNew<cr>", desc = ":GpVNew" },
-			{ "<leader>agp", ":GpProofread<cr>", desc = ":GpProofread" },
-			{ "<leader>agr", ":GpRewrite<cr>", desc = ":GpRewrite" },
-			{ "<leader>ags", ":GpStop<cr>", desc = ":GpStop" },
-			{ "<leader>agx", ":GpContext vsplint<cr>", desc = ":GpContext" },
+			{ "<leader>aia", ":AiNextAgent<cr>", desc = ":AiNextAgent" },
+			{ "<leader>ait", ":AiChatToggle vsplit<cr>", desc = ":AiChatToggle" },
+			{ "<leader>aic", ":AiChatNew vsplit<cr>", desc = ":AiChatNew" },
+			{ "<leader>aif", ":AiChatFinder<cr>", desc = ":AiChatFinder" },
+			{ "<leader>ain", ":AiVNew<cr>", desc = ":AiVNew" },
+			{ "<leader>aip", ":AiProofread<cr>", desc = ":AiProofread" },
+			{ "<leader>air", ":AiRewrite<cr>", desc = ":AiRewrite" },
+			{ "<leader>ais", ":AiStop<cr>", desc = ":AiStop" },
+			{ "<leader>aix", ":AiContext vsplint<cr>", desc = ":AiContext" },
 		})
 	end,
 }
