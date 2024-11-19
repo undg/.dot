@@ -11,7 +11,6 @@ local not_ok = not lspconfig_ok and "lspconfig not ok\n"
 	or not mason_lspconfig_ok and "mason_lspconfig not ok\n"
 	or not mason_installer_ok and "mason_installer not ok\n"
 	or not null_ls_ok and "null_ls not ok\n"
-	or not cspell_ok and "cspell not ok\n"
 	or false -- all good, not not_ok
 
 if not_ok then
