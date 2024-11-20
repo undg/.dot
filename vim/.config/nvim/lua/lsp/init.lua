@@ -40,6 +40,7 @@ local lsp2mason = {
 		bashls = "bash-language-server",
 		tailwindcss = "tailwindcss-language-server",
 		cssmodules_ls = "cssmodules-language-server",
+		svelte = "svelte-language-server",
 	},
 }
 
