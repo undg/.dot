@@ -61,7 +61,7 @@ local models = {
 	-- OLLAMA
 	{
 		provider = "ollama",
-		name = "ChatOllamaLlama3.1-8B",
+		name = "Llama3.2-8B",
 		model = {
 			model = "llama3.2",
 			temperature = 0.4,
@@ -69,27 +69,37 @@ local models = {
 			min_p = 0.05,
 		},
 	},
+	{
+		provider = "ollama",
+		name = "qwen2.5-3b",
+		model = {
+			model = "qwen2.5-3b",
+			temperature = 0.1,
+			top_p = 1,
+			min_p = 0.05,
+		},
+	},
 
 	-- OPENAI
 	{
-		name = "ChatGPT4o-grug-mini",
+		name = "GPT4o-grug-mini",
 		model = { model = "gpt-4o-mini", temperature = 0.4, top_p = 0.8 },
 	},
 	{
-		name = "ChatGPT4o",
+		name = "GPT4o",
 		model = { model = "gpt-4o", temperature = 0.4, top_p = 0.8 },
 	},
 
 	{
 		provider = "anthropic",
-		name = "ChatClaude-3-5-Sonnet",
+		name = "Claude-3-5-Sonnet",
 		model = { model = "claude-3-5-sonnet-20240620", temperature = 0.4, top_p = 0.95 },
 	},
 
 	-- ANTHROPIC
 	{
 		provider = "anthropic",
-		name = "ChatClaude-3-Haiku",
+		name = "Claude-3-Haiku",
 		model = {
 			model = "claude-3-haiku-20240307",
 			temperature = 0.4,
