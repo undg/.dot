@@ -4,6 +4,7 @@ return {
 		require('conform').setup({
 			formatters_by_ft = {
 				lua = { 'stylua' },
+				json = { 'prettierd', 'prettier', stop_after_first = true },
 				python = { 'isort', 'black' },
 				bash = { 'shfmt' },
 				zsh = { 'shfmt' },
