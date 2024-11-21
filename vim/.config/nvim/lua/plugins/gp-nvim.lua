@@ -15,8 +15,8 @@ vim.api.nvim_create_user_command("AiProofread", function(args)
 	vim.cmd("AiChatNew")
 	vim.api.nvim_feedkeys(
 		"iProofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
-			.. selection
-			.. "\n\n",
+		.. selection
+		.. "\n\n",
 		"n",
 		true
 	)
@@ -60,55 +60,50 @@ Grug wrote all his principles on  grugbrain.dev]],
 local models = {
 	-- OLLAMA
 	{
-		provider = "ollama",
 		name = "Llama3.2-8B",
-		model = {
-			model = "llama3.2",
-			temperature = 0.4,
-			top_p = 1,
-			min_p = 0.05,
-		},
+		provider = "ollama",
+		model = { model = "llama3.2", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 	{
+		name = "qwen2.5",
 		provider = "ollama",
-		name = "qwen2.5-3b",
-		model = {
-			model = "qwen2.5-3b",
-			temperature = 0.1,
-			top_p = 1,
-			min_p = 0.05,
-		},
+		model = { model = "qwen2.5:3b", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 
 	-- OPENAI
 	{
 		name = "GPT4o-grug-mini",
+		provider = "openai",
 		model = { model = "gpt-4o-mini", temperature = 0.4, top_p = 0.8 },
 	},
 	{
 		name = "GPT4o",
+		provider = "openai",
 		model = { model = "gpt-4o", temperature = 0.4, top_p = 0.8 },
-	},
-
-	{
-		provider = "anthropic",
-		name = "Claude-3-5-Sonnet",
-		model = { model = "claude-3-5-sonnet-20240620", temperature = 0.4, top_p = 0.95 },
 	},
 
 	-- ANTHROPIC
 	{
+		name = "Claude-3-5-Sonnet",
 		provider = "anthropic",
-		name = "Claude-3-Haiku",
-		model = {
-			model = "claude-3-haiku-20240307",
-			temperature = 0.4,
-			top_p = 0.95,
-		},
+		model = { model = "claude-3-5-sonnet-20240620", temperature = 0.4, top_p = 0.95 },
+	},
+	{
+		name = "Claude-3-5-Haiku",
+		provider = "anthropic",
+		model = { model = "claude-3-5-haiku-latest", temperature = 0.4, top_p = 0.95, },
+	},
+
+	-- xai
+	{
+		name = "xai",
+		provider = "xai",
+		model = { model = "grok-beta", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 }
 
 local agents = {
+	-- Disable default agents that I'll declare myself
 	{ disable = true, name = "ChatGPT4o-mini" },
 	{ disable = true, name = "ChatGPT4o_legacy" },
 	{ disable = true, name = "ChatClaude-3-5-Sonnet" },
@@ -149,6 +144,10 @@ return {
 				},
 				ollama = {
 					endpoint = "http://localhost:11434/v1/chat/completions",
+				},
+				xai = {
+					endpoint = "https://api.x.ai/v1/chat/completions",
+					secret = os.getenv("XAI_API_KEY"),
 				},
 			},
 
@@ -272,17 +271,17 @@ return {
 
 		wk.add({
 			mode = { "n", "v" },
-			{ "<leader>a", group = "Ai" },
-			{ "<leader>ai", group = "gp-nvim", silent = false },
-			{ "<leader>aia", ":AiNextAgent<cr>", desc = ":AiNextAgent" },
+			{ "<leader>a",   group = "Ai" },
+			{ "<leader>ai",  group = "gp-nvim",          silent = false },
+			{ "<leader>aia", ":AiNextAgent<cr>",         desc = ":AiNextAgent" },
 			{ "<leader>ait", ":AiChatToggle vsplit<cr>", desc = ":AiChatToggle" },
-			{ "<leader>aic", ":AiChatNew vsplit<cr>", desc = ":AiChatNew" },
-			{ "<leader>aif", ":AiChatFinder<cr>", desc = ":AiChatFinder" },
-			{ "<leader>ain", ":AiVNew<cr>", desc = ":AiVNew" },
-			{ "<leader>aip", ":AiProofread<cr>", desc = ":AiProofread" },
-			{ "<leader>air", ":AiRewrite<cr>", desc = ":AiRewrite" },
-			{ "<leader>ais", ":AiStop<cr>", desc = ":AiStop" },
-			{ "<leader>aix", ":AiContext vsplint<cr>", desc = ":AiContext" },
+			{ "<leader>aic", ":AiChatNew vsplit<cr>",    desc = ":AiChatNew" },
+			{ "<leader>aif", ":AiChatFinder<cr>",        desc = ":AiChatFinder" },
+			{ "<leader>ain", ":AiVNew<cr>",              desc = ":AiVNew" },
+			{ "<leader>aip", ":AiProofread<cr>",         desc = ":AiProofread" },
+			{ "<leader>air", ":AiRewrite<cr>",           desc = ":AiRewrite" },
+			{ "<leader>ais", ":AiStop<cr>",              desc = ":AiStop" },
+			{ "<leader>aix", ":AiContext vsplint<cr>",   desc = ":AiContext" },
 		})
 	end,
 }
