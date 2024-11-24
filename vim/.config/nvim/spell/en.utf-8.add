@@ -317,3 +317,15 @@ issuecomment
 vim
 stevearc
 Tmp
+pactl
+bool
+audiodeprecated
+alsa
+dupa
+pci
+struct
+paplay
+proc
+sys
+userdata
+vite
