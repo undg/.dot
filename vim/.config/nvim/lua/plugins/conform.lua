@@ -48,9 +48,8 @@ return {
 		end
 
 		wk.add({
-			{ "<leader>s", group = "Toggle", slient = false },
-			{ "<leader>sps", format_on_save_toggle, { desc = "Toggle format on save" } },
-
+			{ "<leader>s", group = "Toggle", silent = false },
+			{ "<leader>S", format_on_save_toggle, { desc = "Toggle format on save" } },
 			{ "<leader>p", require("conform").format , { desc = "Format" } },
 		})
 	end,
