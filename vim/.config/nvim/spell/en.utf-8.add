@@ -330,3 +330,6 @@ sys
 userdata
 vite
 ws
+formatoptions
+textwidth
+filetypes
