@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
 	callback = function()
-		-- Simplify UI for certaind filetypes
+		-- Simplify UI for certain filetypes
 		if --
 			vim.bo.filetype == 'alpha'
 			or vim.bo.filetype == 'help'
@@ -67,8 +67,7 @@ vim.api.nvim_create_autocmd({ 'BufWrite' }, {
 				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = 'autocomd.lua:', timeout = 500 })
 			end
 			vim.notify(e.file, vim.log.levels.INFO, { title = 'Save and format file:', timeout = 500 })
-			-- @TODO (undg) 2024-11-07: something not wroom wroom. Sometimes it's wroom wroom.
-			conform.format({ async = true })
+			conform.format()
 		end
 	end,
 })
