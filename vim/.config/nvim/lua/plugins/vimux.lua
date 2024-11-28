@@ -1,6 +1,6 @@
 return {
 	'benmills/vimux', -- https://github.com/benmills/vimux
-	cmd = { 'VimuxPromptCommand', 'VimuxRunCommand' },
+	-- cmd = { 'VimuxPromptCommand', 'VimuxRunCommand' },
 	init = function()
 		vim.g.VimuxDebug = false
 		vim.g.VimuxHeight = 40
@@ -19,9 +19,9 @@ return {
 
 		-- Run...
 		Keymap.normal('<Leader>vv', ':call VimuxRunCommand("./" . bufname("%"))<CR>')
-		-- Keymap.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
-		-- Keymap.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
-		-- Keymap.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
+		Keymap.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
+		Keymap.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
+		Keymap.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
 
 		-- Prompt for a command to run
 		Keymap.normal('<Leader>vp', ':VimuxPromptCommand<CR>')
