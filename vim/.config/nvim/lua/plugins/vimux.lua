@@ -19,9 +19,10 @@ return {
 
 		-- Run...
 		Keymap.normal('<Leader>vv', ':call VimuxRunCommand("./" . bufname("%"))<CR>')
-		Keymap.normal('<Leader>vt', ':call VimuxRunCommand("tsc " . bufname("%"))<CR>')
+		Keymap.normal('<Leader>vt', ':call VimuxRunCommand("ts-node " . bufname("%"))<CR>')
 		Keymap.normal('<Leader>vn', ':call VimuxRunCommand("node " . bufname("%"))<CR>')
 		Keymap.normal('<Leader>vd', ':call VimuxRunCommand("deno run --allow-all " . bufname("%"))<CR>')
+		Keymap.normal('<Leader>vg', ':call VimuxRunCommand("go run " . bufname("%"))<CR>')
 
 		-- Prompt for a command to run
 		Keymap.normal('<Leader>vp', ':VimuxPromptCommand<CR>')
