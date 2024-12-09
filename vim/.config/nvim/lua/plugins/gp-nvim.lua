@@ -65,9 +65,9 @@ local models = {
 		model = { model = "llama3.2", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 	{
-		name = "llama3.2",
+		name = "llama3.3:70b",
 		provider = "ollama",
-		model = { model = "llama3.2:latest", temperature = 0.4, top_p = 1, min_p = 0.05, },
+		model = { model = "llama3.3:70b", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 
 	-- OPENAI
