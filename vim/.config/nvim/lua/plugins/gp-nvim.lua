@@ -65,9 +65,9 @@ local models = {
 		model = { model = "llama3.2", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 	{
-		name = "qwen2.5",
+		name = "llama3.2",
 		provider = "ollama",
-		model = { model = "qwen2.5:3b", temperature = 0.4, top_p = 1, min_p = 0.05, },
+		model = { model = "llama3.2:latest", temperature = 0.4, top_p = 1, min_p = 0.05, },
 	},
 
 	-- OPENAI
@@ -86,7 +86,7 @@ local models = {
 	{
 		name = "Claude-3-5-Sonnet",
 		provider = "anthropic",
-		model = { model = "claude-3-5-sonnet-20240620", temperature = 0.4, top_p = 0.95 },
+		model = { model = "claude-3-5-sonnet-latest", temperature = 0.4, top_p = 0.95 },
 	},
 	{
 		name = "Claude-3-5-Haiku",
@@ -94,7 +94,7 @@ local models = {
 		model = { model = "claude-3-5-haiku-latest", temperature = 0.4, top_p = 0.95, },
 	},
 
-	-- xai
+	-- XAI
 	{
 		name = "xai",
 		provider = "xai",
