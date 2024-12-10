@@ -135,9 +135,14 @@ Keymap.normal('tt', ':tab split<CR>')
 -- keymap.normal('<A-k>', '<C-w><C-k>')
 -- keymap.normal('<A-l>', '<C-w><C-l>')
 
--- resize
+-- RESIZE
 Keymap.normal('<A-u>', ':resize +5<cr>')
 Keymap.normal('<A-i>', ':resize -5<cr>')
---
 Keymap.normal('<A-y>', ':vertical resize -5<cr>')
 Keymap.normal('<A-o>', ':vertical resize +5<cr>')
+
+-- MOVE
+Keymap.normal('<A-n>', '<C-w>H')
+Keymap.normal('<A-m>', '<C-w>K')
+Keymap.normal('<A-,>', '<C-w>L')
+Keymap.normal('<A-.>', '<C-w>L')
