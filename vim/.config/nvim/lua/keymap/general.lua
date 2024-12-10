@@ -115,7 +115,7 @@ Keymap.normal('<C-s>', ':%s/')
 Keymap.visual('<C-s>', 'y:%s/\\(<c-r>0\\)')
 
 -- Don't jump to next/prev. Wait for me! At least jump back.
--- this is overriden in nvim-hlslens
+-- this is overridden in nvim-hlslens
 Keymap.normal('*', '*N')
 Keymap.normal('#', '#N')
 
@@ -126,7 +126,7 @@ Keymap.normal('gp', ':diffput //1<cr>')
 
 -- WINDOWS AND TABS --
 ----------------------
--- Zoom / Fullscreen
+-- Zoom / Full screen
 Keymap.normal('tt', ':tab split<CR>')
 
 -- split navigations is done by tmux-navigator plugin
@@ -136,8 +136,8 @@ Keymap.normal('tt', ':tab split<CR>')
 -- keymap.normal('<A-l>', '<C-w><C-l>')
 
 -- resize
--- Keymap.normal('<C-Up>', ':resize +5<cr>')
--- Keymap.normal('<C-Down>', ':resize -5<cr>')
+Keymap.normal('<A-u>', ':resize +5<cr>')
+Keymap.normal('<A-i>', ':resize -5<cr>')
 --
--- Keymap.normal('<C-Left>', ':vertical resize -5<cr>')
--- Keymap.normal('<C-Right>', ':vertical resize +5<cr>')
+Keymap.normal('<A-y>', ':vertical resize -5<cr>')
+Keymap.normal('<A-o>', ':vertical resize +5<cr>')
