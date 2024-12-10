@@ -4,10 +4,10 @@ local M = {
 
 function M.config()
 	local illuminate_ok, illuminate = pcall(require, 'illuminate')
-	local util_ok, util = pcall(require, 'plugins.illuminate-utils')
+	local iu_ok, iu = pcall(require, 'plugins.illuminate-utils')
 
 	local not_ok = not illuminate_ok and 'illuminate' --
-		or not util_ok and 'plugins.illuminate-utils'
+		or not iu_ok and 'plugins.illuminate-utils'
 		or false
 	if not_ok then
 		vim.notify('plugins/illuminate.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
@@ -62,10 +62,10 @@ function M.config()
 	})
 
 	Keymap.normal('<leader>*', function()
-		util.toogle_IlluminateWordRead(vim.api.nvim_get_hl(util.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
 	end)
 	Keymap.normal('<leader>8', function()
-		util.toogle_IlluminateWordRead(vim.api.nvim_get_hl(util.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
 	end)
 end
 

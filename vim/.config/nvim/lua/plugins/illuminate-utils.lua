@@ -11,7 +11,7 @@ M.buf_nr = 0
 function M.toogle_IlluminateWordRead(current_value)
 	-- @TODO (undg) 2023-10-16: get that from hl and store on the side, it's default only for gruvbox, or this plugin in dark mode
 	local normal_hex = '191919'
-	-- @TODO (undg) 2023-10-16: find nice color for flashlighting
+	-- @TODO (undg) 2023-10-16: find nice color for flash lighting
 	local bold_hex = 'ffffff'
 
 	local bold_dec = tonumber(bold_hex, 16)
