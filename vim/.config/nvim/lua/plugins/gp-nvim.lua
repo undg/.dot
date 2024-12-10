@@ -69,12 +69,17 @@ local models = {
 	{
 		name = "Llama3.2-8B",
 		provider = "ollama",
-		model = { model = "llama3.2", temperature = 0.4, top_p = 1, min_p = 0.05, },
+		model = { model = "llama3.2", temperature = 0.4, top_p = 1, min_p = 0.05 },
 	},
 	{
 		name = "llama3.3:70b",
 		provider = "ollama",
-		model = { model = "llama3.3:70b", temperature = 0.4, top_p = 1, min_p = 0.05, },
+		model = { model = "llama3.3:70b", temperature = 0.4, top_p = 1, min_p = 0.05 },
+	},
+	{
+		name = "qwq",
+		provider = "ollama",
+		model = { model = "qwq:32b-preview-q4_K_M", temperature = 0.4, top_p = 1, min_p = 0.05 },
 	},
 
 	-- OPENAI
@@ -98,14 +103,41 @@ local models = {
 	{
 		name = "Claude-3-5-Haiku",
 		provider = "anthropic",
-		model = { model = "claude-3-5-haiku-latest", temperature = 0.4, top_p = 0.95, },
+		model = { model = "claude-3-5-haiku-latest", temperature = 0.4, top_p = 0.95 },
 	},
 
 	-- XAI
 	{
 		name = "xai",
 		provider = "xai",
-		model = { model = "grok-beta", temperature = 0.4, top_p = 1, min_p = 0.05, },
+		model = { model = "grok-beta", temperature = 0.4, top_p = 1, min_p = 0.05 },
+	},
+
+	-- -- MINIMAX
+	-- name = "minimaxi",
+	-- provider = "minimaxi",
+	-- model = { model = "abab7-chat-preview", temperature = 0.4, top_p = 1, min_p = 0.05 },
+}
+
+local providers = {
+	openai = {
+		endpoint = "https://api.openai.com/v1/chat/completions",
+		secret = os.getenv("OPENAI_API_KEY"),
+	},
+	anthropic = {
+		endpoint = "https://api.anthropic.com/v1/messages",
+		secret = os.getenv("ANTHROPIC_API_KEY"),
+	},
+	ollama = {
+		endpoint = "http://localhost:11434/v1/chat/completions",
+	},
+	xai = {
+		endpoint = "https://api.x.ai/v1/chat/completions",
+		secret = os.getenv("XAI_API_KEY"),
+	},
+	minimaxi = {
+		endpoint = "https://api.minimaxi.chat/v1/text/chatcompletion_v2",
+		secret = os.getenv("MINIMAXI_API_KEY"),
 	},
 }
 
@@ -140,27 +172,11 @@ return {
 	"robitx/gp.nvim", -- https://github.com/robitx/gp.nvim
 	config = function()
 		require("gp").setup({
-			providers = {
-				openai = {
-					endpoint = "https://api.openai.com/v1/chat/completions",
-					secret = os.getenv("OPENAI_API_KEY"),
-				},
-				anthropic = {
-					endpoint = "https://api.anthropic.com/v1/messages",
-					secret = os.getenv("ANTHROPIC_API_KEY"),
-				},
-				ollama = {
-					endpoint = "http://localhost:11434/v1/chat/completions",
-				},
-				xai = {
-					endpoint = "https://api.x.ai/v1/chat/completions",
-					secret = os.getenv("XAI_API_KEY"),
-				},
-			},
-
+			providers = providers,
 			agents = agents,
 			cmd_prefix = "Ai",
 			curl_params = {},
+			---@diagnostic disable-next-line: param-type-mismatch
 			chat_dir = vim.fn.stdpath("data"):gsub("/$", "") .. "/gp/chats",
 			chat_user_prefix = "🗨:",
 
