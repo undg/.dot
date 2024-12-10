@@ -42,6 +42,10 @@ Git('https://github.com/neovim/nvim-lspconfig') -- Collection of configurations 
 Git('https://github.com/nvimtools/none-ls.nvim') -- inject LSP diagnostics, code actions, and more
 Git('https://github.com/SirVer/ultisnips') -- snippets that are integrated with autocompletion nvim-cmp
 
+-- -- TESTTING
+-- -- @TODO (undg) 2024-12-10: IT'S PROMISSING, but underdeveloped. Need DAP and a bit of work.
+-- Spec('plugins.neotest') -- running tests
+
 -- -- Debugging (DAP)
 -- Git('https://github.com/fussenegger/nvim-dap')
 -- Git('https://github.com/eoluz/nvim-dap-go')
