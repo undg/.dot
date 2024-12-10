@@ -143,6 +143,6 @@ Keymap.normal('<A-o>', ':vertical resize +5<cr>')
 
 -- MOVE
 Keymap.normal('<A-n>', '<C-w>H')
-Keymap.normal('<A-m>', '<C-w>K')
-Keymap.normal('<A-,>', '<C-w>L')
+Keymap.normal('<A-m>', '<C-w>J')
+Keymap.normal('<A-,>', '<C-w>K')
 Keymap.normal('<A-.>', '<C-w>L')
