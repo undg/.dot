@@ -11,6 +11,7 @@ Spec('plugins.neovim-session-manager') -- autosave and restore session
 Spec('plugins.suda') -- ask for sudo password
 Spec('plugins.luapad') -- lua scratch pad
 -- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
+Spec('plugins.bigfile') -- lighter config for big files
 
 -- Git
 Spec('plugins.lazygit') -- open lazygit in floating window. Lazygit need to be installed in system
@@ -23,7 +24,7 @@ Git('https://github.com/tpope/vim-rhubarb') -- Fugitive-companion to interact wi
 Git('https://github.com/whiteinge/diffconflicts') -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
 
 -- File managers
-Spec('plugins.telescope') -- swiss knife
+Spec('plugins.telescope') -- Swiss knife
 Spec('plugins.neo-tree') -- file manager
 Spec('plugins.oil-nvim') -- file manager
 Spec('plugins.harpoon') -- bookmark like buffer storage
@@ -42,8 +43,8 @@ Git('https://github.com/neovim/nvim-lspconfig') -- Collection of configurations 
 Git('https://github.com/nvimtools/none-ls.nvim') -- inject LSP diagnostics, code actions, and more
 Git('https://github.com/SirVer/ultisnips') -- snippets that are integrated with autocompletion nvim-cmp
 
--- -- TESTTING
--- -- @TODO (undg) 2024-12-10: IT'S PROMISSING, but underdeveloped. Need DAP and a bit of work.
+-- -- Testing
+-- -- @TODO (undg) 2024-12-10: IT'S PROMISING, but underdeveloped. Need DAP and a bit of work.
 -- Spec('plugins.neotest') -- running tests
 
 -- -- Debugging (DAP)
@@ -66,7 +67,7 @@ Spec('plugins.avante') -- AI code assistance, Cursor emulator
 Spec('plugins.qfenter') -- quickfix window (cw) open in split/tab...
 Spec('plugins.vimux') -- run commands in vimux pane
 Spec('plugins.nvim-tmux-navigation') -- hybrid tmux, vim window navigation.
-Spec('plugins.tabular') -- align text in colums in table style.
+Spec('plugins.tabular') -- align text in column in table style.
 Spec('plugins.marks') -- better marks management
 Git('https://github.com/stevearc/dressing.nvim') -- better floating window styles
 Git('https://github.com/milisims/nvim-luaref') -- adds a reference for builtin lua functions
