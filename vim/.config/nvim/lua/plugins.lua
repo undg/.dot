@@ -47,7 +47,8 @@ Git('https://github.com/SirVer/ultisnips') -- snippets that are integrated with 
 -- -- @TODO (undg) 2024-12-10: IT'S PROMISING, but underdeveloped. Need DAP and a bit of work.
 -- Spec('plugins.neotest') -- running tests
 
--- -- Debugging (DAP)
+-- Debugging
+-- (DAP)
 -- Git('https://github.com/fussenegger/nvim-dap')
 -- Git('https://github.com/eoluz/nvim-dap-go')
 -- Git('https://github.com/carriga/nvim-dap-ui')
