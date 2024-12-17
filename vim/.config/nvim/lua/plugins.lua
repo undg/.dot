@@ -48,6 +48,7 @@ Git('https://github.com/SirVer/ultisnips') -- snippets that are integrated with 
 -- Spec('plugins.neotest') -- running tests
 
 -- Debugging
+Git('https://github.com/pappasam/nvim-repl')
 -- (DAP)
 -- Git('https://github.com/fussenegger/nvim-dap')
 -- Git('https://github.com/eoluz/nvim-dap-go')
