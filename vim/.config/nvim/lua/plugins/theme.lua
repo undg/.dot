@@ -65,6 +65,8 @@ return {
 			border = 'rounded',
 			style = 'minimal',
 			noautocmd = true,
+			height = 3,
+			width = 20,
 		}
 		vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
 
