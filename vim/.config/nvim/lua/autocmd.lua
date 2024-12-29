@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 })
 
 -- Format on save
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+vim.api.nvim_create_autocmd({ "BufWriteCmd" }, {
 	pattern = "*",
 	callback = function(e)
 		if vim.g.format_on_save then
@@ -69,7 +69,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 			end
 			vim.notify(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
 			conform.format({ bufnr = e.buf })
-			P("format on save")
 		end
 	end,
 })
