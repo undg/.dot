@@ -1,4 +1,4 @@
-session_name: arahi-console-run-dev
+session_name: console-run-dev
 windows:
   - window_name: "run dev"
     window_index: 9
