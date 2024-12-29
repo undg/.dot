@@ -1,7 +1,7 @@
 return {
-	'nvim-lualine/lualine.nvim', -- https://github.com/nvim-lualine/lualine.nvim
+	"nvim-lualine/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
 	config = function()
-		local ok_s, s = pcall(require, 'custom.lualine.sections')
+		local ok_s, s = pcall(require, "custom.lualine.sections")
 		if not ok_s then
 			return
 		end
@@ -11,17 +11,17 @@ return {
 			lualine_b = {},
 			lualine_c = {},
 
-			lualine_x = { 'diagnostics', 'diff' },
+			lualine_x = { "diagnostics", "diff" },
 			lualine_y = { s.cwd, s.fileformat, s.filetype },
 			lualine_z = {},
 		}
 
-		require('lualine').setup({
+		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				component_separators = { left = '', right = '' },
+				component_separators = { left = "", right = "" },
 
-				section_separators = { left = '', right = '' },
+				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					-- statusline = { 'alpha' },
 					-- winbar = { 'alpha' },
@@ -40,7 +40,7 @@ return {
 			tabline = {},
 			winbar = {},
 			inactive_winbar = {},
-			extensions = { 'nvim-tree', 'fugitive', 'mundo', 'quickfix' },
+			extensions = { "nvim-tree", "fugitive", "mundo", "quickfix" },
 		})
 	end,
 }

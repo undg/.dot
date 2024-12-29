@@ -1,7 +1,5 @@
-vim.g.format_on_save = false -- or true for default
-
 local function format_on_save_toggle()
-		vim.g.format_on_save = not vim.g.format_on_save
+	vim.g.format_on_save = not vim.g.format_on_save
 
 	local msg = "Format on save = OFF"
 	if vim.g.format_on_save then

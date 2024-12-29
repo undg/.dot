@@ -59,16 +59,15 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 })
 
 -- Format on save
-vim.api.nvim_create_autocmd({ "BufWriteCmd" }, {
-	pattern = "*",
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	callback = function(e)
 		if vim.g.format_on_save then
 			local ok_conform, conform = pcall(require, "conform")
 			if not ok_conform then
 				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = "autocomd.lua:", timeout = 500 })
 			end
-			vim.notify(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
-			conform.format({ bufnr = e.buf })
+			vim.notify_once(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
+			conform.format()
 		end
 	end,
 })
