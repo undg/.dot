@@ -1,17 +1,17 @@
 -- Fix auto comment.
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = '*',
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
 	callback = function()
 		-- vim.opt.formatoptions:remove("c") -- Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
 		-- vim.opt.formatoptions:remove("r") -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
-		vim.opt.formatoptions:remove('o') -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+		vim.opt.formatoptions:remove("o") -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
 		-- read more... :help fo-table
 	end,
 })
 
 -- Set wrap and spell in gitcommit and markdown
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'gitcommit', 'markdown' },
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
@@ -19,30 +19,30 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Highligh on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
+		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
 	end,
 })
 
 -- Set markdown as the filetype for the Cody history
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-	pattern = { 'markdown.cody_history', 'markdown.cody_prompt' },
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "markdown.cody_history", "markdown.cody_prompt" },
 	callback = function()
-		vim.bo.filetype = 'markdown'
+		vim.bo.filetype = "markdown"
 		-- vim.api.nvim_win_set_width(0, 100)
 	end,
 })
 
 -- Automatic toggling between line number modes
 -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
 	callback = function()
 		-- Simplify UI for certain filetypes
 		if --
-			vim.bo.filetype == 'alpha'
-			or vim.bo.filetype == 'help'
-			or vim.bo.filetype == 'NvimTree'
+			vim.bo.filetype == "alpha"
+			or vim.bo.filetype == "help"
+			or vim.bo.filetype == "NvimTree"
 		then
 			vim.opt.relativenumber = false
 			return
@@ -52,48 +52,50 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
 })
 
 -- [Insert] absolute line numbers
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 	callback = function()
 		vim.opt.relativenumber = false
 	end,
 })
 
 -- Format on save
-vim.api.nvim_create_autocmd({ 'BufWrite' }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = "*",
 	callback = function(e)
 		if vim.g.format_on_save then
-			local ok_conform, conform = pcall(require, 'conform')
+			local ok_conform, conform = pcall(require, "conform")
 			if not ok_conform then
-				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = 'autocomd.lua:', timeout = 500 })
+				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = "autocomd.lua:", timeout = 500 })
 			end
-			vim.notify(e.file, vim.log.levels.INFO, { title = 'Save and format file:', timeout = 500 })
-			conform.format()
+			vim.notify(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
+			conform.format({ bufnr = e.buf })
+			P("format on save")
 		end
 	end,
 })
 
-local typescript_ok = pcall(require, 'typescript-tools')
-local not_ok = not typescript_ok and 'typescript-tools' --
+local typescript_ok = pcall(require, "typescript-tools")
+local not_ok = not typescript_ok and "typescript-tools" --
 	or false
 
 if not_ok then
 	vim.notify("autocmd.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
 end
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-	pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	callback = function()
-		Keymap.normal('gi', ':TSToolsGoToSourceDefinition<cr>', { desc = 'lsp: implementation' })
-		Keymap.normal('gfr', ':TSToolsFileReferences<cr>', { desc = 'lsp: show file references' })
+		Keymap.normal("gi", ":TSToolsGoToSourceDefinition<cr>", { desc = "lsp: implementation" })
+		Keymap.normal("gfr", ":TSToolsFileReferences<cr>", { desc = "lsp: show file references" })
 	end,
 })
 
 -- Detect Git conflicts and set up a keymap to resolve them
-vim.api.nvim_create_autocmd('User', {
-	pattern = 'GitConflictDetected',
+vim.api.nvim_create_autocmd("User", {
+	pattern = "GitConflictDetected",
 	callback = function()
 		-- vim.notify('Conflict detected in ' .. vim.fn.expand('<afile>'))
-		vim.keymap.set('n', 'cww', function()
+		vim.keymap.set("n", "cww", function()
 			engage.conflict_buster() ---@diagnostic disable-line: undefined-global
 			create_buffer_local_mappings() ---@diagnostic disable-line: undefined-global
 		end)
