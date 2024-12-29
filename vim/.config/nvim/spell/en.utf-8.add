@@ -395,3 +395,6 @@ blankline
 url
 statuslines
 Kyro
+statusline
+winbar
+lualine
