@@ -162,14 +162,20 @@ workspace $ws7 output                 $DP_right
 workspace $ws8 output                 $DP_right
 workspace $ws9 output                 $DP_right
 
+# Apps
 set $WINDOW_gta5                      [class="steam_app_271590"]
 set $WINDOW_portal2                   [class="portal2_linux"]
 set $WINDOW_steam                     [class="Steam"]
 set $WINDOW_kodi                      [class="Kodi"]
-set $WINDOW_floating                  [class="(Pavucontrol|Blueman-manager)"]
 set $WINDOW_insta360_settings         [class="insta360 studio 2023.exe" title="User Preference"]
 set $WINDOW_battlenet                 [class="battle.net.exe"]
 set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
+
+# Generic
+set $WINDOW_floating_resized          [class="(Pavucontrol|Blueman-manager)"]
+set $WINDOW_floating                  [class="(dialog|download|error|file_progress)"]
+
+for_window $WINDOW_floating floating enable
 
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
@@ -178,19 +184,15 @@ for_window $WINDOW_starcraft_ii move workspace $ws3
 
 for_window $WINDOW_kodi move workspace $ws5
 
-for_window $WINDOW_floating floating enable
-for_window $WINDOW_floating sticky enable
-for_window $WINDOW_floating resize set 1200 1000
-# for_window $WINDOW_floating move to output secondary
-# for_window $WINDOW_floating move position 3920 1105 # 2 screens right minus window width and bellow top screen + bar + border
+for_window $WINDOW_floating_resized floating enable
+for_window $WINDOW_floating_resized sticky enable
+for_window $WINDOW_floating_resized resize set 1200 1000
 
 for_window $WINDOW_insta360_settings floating enable
 for_window $WINDOW_insta360_settings sticky enable
 
 for_window [class="Pinentry"] sticky enable
 for_window [class="sent"] border pixel 0px
-# for_window [class="Blender"] move to workspace $ws6
-# for_window [class="marble"] move to workspace $ws7
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 
 for_window $WINDOW_portal2     floating     disable
