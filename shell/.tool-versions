@@ -1,9 +1,0 @@
-nodejs latest
-golang latest
-python system
-bun    latest
-deno   latest
-lua    5.4.4
-pnpm   latest
-java   latest
-yarn   1.22.0 # pin it till the issue is resolved https://github.com/yarnpkg/yarn/issues/9015
