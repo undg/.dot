@@ -164,11 +164,8 @@ workspace $ws9 output                 $DP_right
 
 set $WINDOW_gta5                      [class="steam_app_271590"]
 set $WINDOW_portal2                   [class="portal2_linux"]
-set $WINDOW_awakened                  [class="awakened-poe-trade"]
 set $WINDOW_steam                     [class="Steam"]
 set $WINDOW_kodi                      [class="Kodi"]
-set $WINDOW_iriunwebcam               [class="iriunwebcam"]
-set $WINDOW_teams                     [title="Microsoft Teams Notification"]
 set $WINDOW_floating                  [class="(Pavucontrol|Blueman-manager)"]
 set $WINDOW_insta360_settings         [class="insta360 studio 2023.exe" title="User Preference"]
 set $WINDOW_battlenet                 [class="battle.net.exe"]
@@ -180,7 +177,6 @@ for_window $WINDOW_battlenet move workspace $ws3
 for_window $WINDOW_starcraft_ii move workspace $ws3
 
 for_window $WINDOW_kodi move workspace $ws5
-for_window $WINDOW_iriunwebcam move workspace $ws5
 
 for_window $WINDOW_floating floating enable
 for_window $WINDOW_floating sticky enable
@@ -201,12 +197,8 @@ for_window $WINDOW_portal2     floating     disable
 for_window $WINDOW_portal2     fullscreen
 for_window $WINDOW_steam       layout       tabbed
 for_window $WINDOW_kodi        layout       tabbed
-for_window $WINDOW_iriunwebcam layout       tabbed
-for_window $WINDOW_iriunwebcam floating     disable
 for_window $WINDOW_gta5        floating     disable
-for_window $WINDOW_awakened    border       pixel 1px
 for_window $WINDOW_kodi        border       pixel 1px
-for_window $WINDOW_teams       floating     enable
 
 
 # #---Basic Bindings---# #
