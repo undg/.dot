@@ -398,3 +398,5 @@ Kyro
 statusline
 winbar
 lualine
+Whitelist
+whitelist
