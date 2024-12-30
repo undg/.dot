@@ -71,9 +71,9 @@ Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
 Spec("plugins.tabular")                          -- align text in column in table style.
 Spec("plugins.marks")                            -- better marks management
+Spec("plugins.streamer-mode")                    -- hide shell local variables
 Git("https://github.com/stevearc/dressing.nvim") -- better floating window styles
 Git("https://github.com/milisims/nvim-luaref")   -- adds a reference for builtin lua functions
-Git("https://github.com/Kolkhis/streamer-mode.nvim")
 
 -- Look and feel
 Spec("plugins.theme")                 -- gruvbox is best theme on the universe
