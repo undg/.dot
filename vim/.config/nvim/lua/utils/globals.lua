@@ -6,7 +6,7 @@
 --- @usage
 --- local utils = R('utils')
 R = function(package)
-	require('package').loaded = nil
+	require("package").loaded = nil
 	return require(package)
 end
 
@@ -37,7 +37,7 @@ end
 ---@param url string Plugin github url
 ---@param opt table|nil Plugin specification (optional)
 function Git(url, opt)
-	local repo = url:gsub('https://github.com/', '')
+	local repo = url:gsub("https://github.com/", "")
 	local spec = setmetatable(opt or {}, { __index = table })
 
 	spec:insert(1, repo)
@@ -45,4 +45,4 @@ function Git(url, opt)
 	LAZY_PLUGIN_SPEC:insert(spec)
 end
 
-Keymap = require('utils.keymap')
+Keymap = require("utils.keymap")
