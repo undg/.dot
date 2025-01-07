@@ -1,29 +1,35 @@
 return {
-	"yetone/avante.nvim",        -- https://github.com/yetone/avante.nvim
+	"yetone/avante.nvim", -- https://github.com/yetone/avante.nvim
+	event = "VeryLazy",
+	version = false,
+	build = "make",
 	dependencies = {
-		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
+		"hrsh7th/nvim-cmp",
+		"nvim-tree/nvim-web-devicons",
 	},
-	event = "VeryLazy",
-	build = "make", -- This is Optional, only if you want to use tiktoken_core to calculate tokens count
 	opts = {
-		---@diagnostic disable-next-line: duplicate-doc-alias
-		---@alias Provider "openai" | "claude" | "azure"  | "copilot" | "cohere" | [string]
-		provider = "openai",
-		claude = {
-			endpoint = "https://api.anthropic.com",
-			model = "claude-3-5-sonnet-20240620",
-			temperature = 0,
-			max_tokens = 4096,
-		},
-		windows = {
-			wrap = true, -- similar to vim.o.wrap
-			width = 50, -- default % based on available width
-			sidebar_header = {
-				align = "center", -- left, center, right for title
-				rounded = true,
+		provider = "deepseek",
+		vendors = {
+			deepseek = {
+				__inherited_from = "openai",
+				api_key_name = "DEEPSEEK_API_KEY",
+				endpoint = "https://api.deepseek.com",
+				model = "deepseek-coder",
+			},
+			ollama = {
+				__inherited_from = "openai",
+				endpoint = "http://localhost:11434/v1",
+				api_key_name = "",
+				model = "llama3.2:latest",
+			},
+			["claude-sonet"] = {
+				__inherited_from = "openai",
+				api_key_name = "ANTHROPIC_API_KEY",
+				endpoint = "https://api.anthropic.com/v1/messages",
+				model = "claude-3-5-sonnet-latest",
 			},
 		},
 	},
