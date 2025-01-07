@@ -62,6 +62,12 @@ Gives code when make sen, but does not overly comment answers. Just gives code a
 Grug dev love doing simple things good and using smart things sparingly.
 Grug wrote all his principles on  grugbrain.dev]],
 	},
+
+	-- vanilla
+	{
+		name = "empty",
+		prompt = "",
+	},
 }
 
 local models = {
@@ -113,6 +119,12 @@ local models = {
 		model = { model = "grok-beta", temperature = 0.4, top_p = 1, min_p = 0.05 },
 	},
 
+	-- DEEPSEEK
+	{
+		name = "deepseek",
+		provider = "deepseek",
+		model = { model = "deepseek-chat", temperature = 0.4, top_p = 1, min_p = 0.05 },
+	},
 	-- -- MINIMAX
 	-- name = "minimaxi",
 	-- provider = "minimaxi",
@@ -138,6 +150,10 @@ local providers = {
 	minimaxi = {
 		endpoint = "https://api.minimaxi.chat/v1/text/chatcompletion_v2",
 		secret = os.getenv("MINIMAXI_API_KEY"),
+	},
+	deepseek = {
+		endpoint = "https://api.deepseek.com/chat/completions",
+		secret = os.getenv("DEEPSEEK_API_KEY"),
 	},
 }
 
