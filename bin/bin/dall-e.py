@@ -27,9 +27,11 @@ def get_args():
     parser.add_argument("--hd", action="store_true", help="HD quality")
     parser.add_argument("-n", "--natural",
                         action="store_true", help="Natural style")
+    parser.add_argument("--verbose", action="store_true", help="verbose")
     return parser.parse_args()
 
 
+# @TODO (undg) 2025-01-08: I can't have flags on
 def get_prompt():
     if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
         return sys.argv[1]
@@ -79,6 +81,9 @@ def getch():
 
 
 def generate_image(prompt, args):
+    if args.verbose:
+        print("Open OpenAi client")
+
     client = OpenAI()
 
     size = "1024x1024"
@@ -124,9 +129,20 @@ def signal_handler(sig, frame):
 
 def main():
     signal.signal(signal.SIGINT, signal_handler)
+
     args = get_args()
+    if args.verbose:
+        print("args", args)
+
     prompt = get_prompt()
+    if args.verbose:
+        print("prompt", prompt)
+
     url, params = generate_image(prompt, args)
+    if args.verbose:
+        print("url", url)
+        print("params", params)
+
     handle_image(url, params)
 
 
