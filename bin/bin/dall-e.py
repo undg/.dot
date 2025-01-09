@@ -8,6 +8,8 @@ import termios
 import tty
 import webbrowser
 from datetime import datetime
+from io import StringIO
+from unittest.mock import MagicMock, patch
 
 import requests
 from openai import OpenAI
@@ -45,6 +47,10 @@ def get_default_filename():
     return f"dalle_{timestamp}"
 
 
+def test_get_default_filename():
+    assert get_default_filename().startswith("dalle_")
+
+
 def save_files(url, params):
     default_name = get_default_filename()
     filename = input(f"Save as ({default_name}): ").strip()
@@ -71,15 +77,41 @@ def save_files(url, params):
     return False
 
 
-def getch():
+def get_char():
+    # get file descriptor, keeb input stream
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
-        tty.setraw(sys.stdin.fileno())
+        tty.setraw(fd)
         ch = sys.stdin.read(1)
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
+
+
+def test_get_char():
+    char = "a"
+    # Create fake terminal settings to return from tcgetattr
+    mock_termios = MagicMock()
+    # Create fake keyboard
+    mock_stdin = StringIO(char)
+
+    def mock_fileno():
+        return 0
+
+    mock_stdin.fileno = mock_fileno
+
+    def mock_read(num):
+        return char
+
+    mock_stdin.read = mock_read
+
+    # Use all mocks
+    with patch("sys.stdin", mock_stdin), patch(
+        "termios.tcgetattr", return_value=mock_termios
+    ), patch("termios.tcsetattr"), patch("tty.setraw"):
+
+        assert get_char() == char
 
 
 def generate_image(prompt, args):
@@ -111,7 +143,7 @@ def show_actions(url, params):
     while True:
         print(
             "What do with image? [o]pen/[s]ave/[p]rint/[q]uit: ", end="", flush=True)
-        action = getch().lower()
+        action = get_char().lower()
         print(action)
 
         if action == "o":
