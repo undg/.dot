@@ -1,12 +1,23 @@
-node_modules/
 Session.vim
-*.swa
-*.swo
-*.swp
 *.log
 npm-debug.log*
 .npm
 .env
 
+# ???
+zprivate.zsh
+# zsh completion cache
 .zcompdump*
 .zsh_history
+
+# Python mess
+__pycache__/
+*.pyc
+
+# Node mess
+node_modules/
+
+# Vim mess
+*.swa
+*.swo
+*.swp
