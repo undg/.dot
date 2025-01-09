@@ -31,10 +31,12 @@ def get_args():
     return parser.parse_args()
 
 
-# @TODO (undg) 2025-01-08: I can't have flags on
 def get_prompt():
-    if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
-        return sys.argv[1]
+    args = sys.argv[1:]
+    filtered = [arg for arg in args if not arg.startswith("-")]
+
+    if filtered[0]:
+        return filtered[0]
     return sys.stdin.read().strip()
 
 
@@ -105,7 +107,7 @@ def generate_image(prompt, args):
     return response.data[0].url, params
 
 
-def handle_image(url, params):
+def show_actions(url, params):
     while True:
         print(
             "What do with image? [o]pen/[s]ave/[p]rint/[q]uit: ", end="", flush=True)
@@ -135,6 +137,10 @@ def main():
         print("args", args)
 
     prompt = get_prompt()
+
+    if not prompt:
+        print("Missing prompt", file=sys.stderr)
+
     if args.verbose:
         print("prompt", prompt)
 
@@ -143,7 +149,7 @@ def main():
         print("url", url)
         print("params", params)
 
-    handle_image(url, params)
+    show_actions(url, params)
 
 
 if __name__ == "__main__":
