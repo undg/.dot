@@ -147,7 +147,7 @@ bindsym $winKey+Shift+9            move container to workspace $ws9
 bindsym $winKey+Shift+0            move container to workspace $ws10
 
 bindsym $winKey+n                  move workspace to output next
-# @TODO (undg) 2024-01-10: prev dosen't exist, LOL
+# @TODO (undg) 2024-01-10: prev doesn't exist, LOL
 # bindsym $winKey+p                  move workspace to output prev
 
 workspace $ws1 output                 $DP_left
@@ -172,7 +172,7 @@ set $WINDOW_battlenet                 [class="battle.net.exe"]
 set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
 
 # Generic
-set $WINDOW_floating_resized          [class="(Pavucontrol|Blueman-manager)"]
+set $WINDOW_floating_resized          [class="(pavucontrol|Blueman-manager)"]
 set $WINDOW_floating                  [class="(dialog|download|error|file_progress)"]
 
 for_window $WINDOW_floating floating enable
