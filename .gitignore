@@ -8,6 +8,8 @@ npm-debug.log*
 zprivate.zsh
 # zsh completion cache
 .zcompdump*
+.zcompcache/
+
 .zsh_history
 
 # Python mess
