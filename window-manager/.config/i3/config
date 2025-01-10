@@ -16,7 +16,8 @@ focus_on_window_activation focus # smart|urgent|focus|none
 
 
 # #---Basic Definitions---# #
-set $term --no-startup-id kitty
+# set $term --no-startup-id kitty
+set $term --no-startup-id alacritty
 set $term2 --no-startup-id $TERMINAL
 set $winKey Mod4
 set $altKey Mod1
