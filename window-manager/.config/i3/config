@@ -175,8 +175,10 @@ set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
 # Generic
 set $WINDOW_floating_resized          [class="(pavucontrol|Blueman-manager)"]
 set $WINDOW_floating                  [class="(dialog|download|error|file_progress)"]
+set $WINDOW_popup                     [window_role="pop-up"]
 
 for_window $WINDOW_floating floating enable
+for_window $WINDOW_popup    floating enable
 
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
