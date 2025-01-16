@@ -54,7 +54,11 @@ fi
 # Print a static or dynamic, hopefully interesting, adage.
 # First "if installed" win [fortune(and cowsay), neofetch, archey3]
 
-if (( $+commands[fortune] )); then
+if (( $+commands[fastfetch] )); then
+	printf '\n'
+	fastfetch --logo arch --logo-type small --logo-padding-top 4 --separator " → " --structure "OS:Kernel:Uptime:Packages:Shell:DE:WM:Terminal:CPU:GPU:Memory:Disk:LocalIP:Battery" --color-keys blue --color-title yellow --pipe "lolcat -F 0.3" --multithreading --disable-linewrap
+	print
+elif (( $+commands[fortune] )); then
 	if (( $+commands[cowsay] )); then
 		fortune definitions|cowsay
 		print
@@ -62,10 +66,6 @@ if (( $+commands[fortune] )); then
 		fortune -s
 		print
 	fi
-elif (( $+commands[fastfetch] )); then
-	printf '\n'
-	fastfetch --logo arch --logo-type small --logo-padding-top 4 --separator " → " --structure "OS:Kernel:Uptime:Packages:Shell:DE:WM:Terminal:CPU:GPU:Memory:Disk:LocalIP:Battery" --color-keys blue --color-title yellow --pipe "lolcat -F 0.3" --multithreading --disable-linewrap
-	print
 elif (( $+commands[archey3] )); then
 	archey3 -c red
 	print
