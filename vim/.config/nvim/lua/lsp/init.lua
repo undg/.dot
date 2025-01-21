@@ -29,7 +29,7 @@ local lsp2mason = {
 		-- tsserver = 'typescript-language-server',
 		yamlls = "yaml-language-server",
 		lua_ls = "lua-language-server",
-		eslint = "eslint_d",
+		eslint = "eslint",
 		gopls = "gopls",
 	},
 	cfg_no_file = {
