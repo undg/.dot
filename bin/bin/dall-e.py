@@ -21,6 +21,15 @@ def get_args():
         "prompt", nargs="?", help="Image prompt (if not provided, will read from stdin)"
     )
     parser.add_argument(
+        "-o", "--open", action="store_true", help="Open in browser ASAP"
+    )
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="Be quiet! Do not ask for anything",
+    )
+    parser.add_argument(
         "-p", "--portrait", action="store_true", help="Portrait mode (1024x1792)"
     )
     parser.add_argument(
@@ -177,11 +186,16 @@ def main():
         print("prompt", prompt)
 
     url, params = generate_image(prompt, args)
+
     if args.verbose:
         print("url", url)
         print("params", params)
 
-    show_actions(url, params)
+    if args.open:
+        webbrowser.open(url)
+
+    if not args.quiet:
+        show_actions(url, params)
 
 
 if __name__ == "__main__":
