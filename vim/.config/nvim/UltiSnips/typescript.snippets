@@ -79,3 +79,19 @@ snippet cspell "cspell:disable" b
 // cspell:disable -- disable spell checking for strings
 endsnippet
 
+snippet zustandCreatePersistendStore "Zustand: create persistend storage" b
+export const useModelPickerStore = create<{
+	//
+	k: string
+}>()(
+	devtools(
+		persist(
+			immer((set, get) => ({
+				//
+				k: '',
+			})),
+			{ name: '${1:any-store-name}', storage: createJSONStorage(() => ${2:sessionStorage}) },
+		),
+	),
+)
+endsnippet
