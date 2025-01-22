@@ -80,17 +80,17 @@ snippet cspell "cspell:disable" b
 endsnippet
 
 snippet zustandCreatePersistendStore "Zustand: create persistend storage" b
-export const useModelPickerStore = create<{
+export const use${1:Name}Store = create<{
 	//
-	k: string
+	${4:key}: ${5:string}
 }>()(
 	devtools(
 		persist(
 			immer((set, get) => ({
 				//
-				k: '',
+				${4:key}: $6,
 			})),
-			{ name: '${1:any-store-name}', storage: createJSONStorage(() => ${2:sessionStorage}) },
+			{ name: '${2:name}', storage: createJSONStorage(() => ${3:sessionStorage}) },
 		),
 	),
 )
