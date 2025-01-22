@@ -104,8 +104,24 @@ snippet uuid "Random UUID"
 `!p if not snip.c: snip.rv = str(uuid4())`
 endsnippet
 
-snippet uuidShort "Random UUID" i
+snippet "uuid "Random UUID"
+"`!p if not snip.c: snip.rv = str(uuid4())`"
+endsnippet
+
+snippet 'uuid "Random 'UUID'"
+'`!p if not snip.c: snip.rv = str(uuid4())`'
+endsnippet
+
+snippet uuidShort "Random short UUID"
 `!p if not snip.c: snip.rv = str(uuid4()).split('-')[0]`
+endsnippet
+
+snippet "uuidShort "Random short UUID"
+"`!p if not snip.c: snip.rv = str(uuid4()).split('-')[0]`"
+endsnippet
+
+snippet 'uuidShort "Random short 'UUID'"
+'`!p if not snip.c: snip.rv = str(uuid4()).split('-')[0]`'
 endsnippet
 
 # vim:ft=snippets:
