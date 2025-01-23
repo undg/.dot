@@ -174,7 +174,7 @@ set $WINDOW_starcraft_ii              [class="sc2_x64.exe"]
 
 # Generic
 set $WINDOW_floating_resized          [class="(pavucontrol|Blueman-manager)"]
-set $WINDOW_floating                  [class="(dialog|download|error|file_progress)"]
+set $WINDOW_floating                  [class="(dialog|download|error|file_progress|org.gnome.FileRoller)"]
 set $WINDOW_popup                     [window_role="pop-up"]
 set $WINDOW_obs_audiomixer            [class="obs" title="Audio Mixer"]
 
