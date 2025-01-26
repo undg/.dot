@@ -242,3 +242,4 @@ colors() {
 	done
 }
 
+alias ollama-user-log='journalctl --user-unit ollama.service --since today'
