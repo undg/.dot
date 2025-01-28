@@ -125,6 +125,11 @@ local models = {
 		provider = "deepseek",
 		model = { model = "deepseek-chat", temperature = 0.4, top_p = 1, min_p = 0.05 },
 	},
+	{
+		name = "deepseek-r1",
+		provider = "deepseek",
+		model = { model = "deepseek-reasoner", temperature = 0.4, top_p = 1, min_p = 0.05 },
+	},
 	-- -- MINIMAX
 	-- name = "minimaxi",
 	-- provider = "minimaxi",
