@@ -22,9 +22,15 @@ return {
 				sh = { "shfmt" },
 				go = { "goimports", "gofmt" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				reacttypescript = { "prettierd", "prettier", stop_after_first = true },
 				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				formatters = {
+					prettier = {
+						prepend_args = { "--prose-wrap", "preserve" },
+					},
+				},
 			},
 			-- Set this to change the default values when calling conform.format()
 			-- This will also affect the default values for format_on_save/format_after_save
