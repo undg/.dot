@@ -66,7 +66,7 @@ Grug wrote all his principles on  grugbrain.dev]],
 	-- vanilla
 	{
 		name = "empty",
-		prompt = "",
+		prompt = "You are helpfull assistant.",
 	},
 }
 
