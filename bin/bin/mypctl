@@ -14,7 +14,11 @@ notify_volume() {
 	icon="🔊"
 	[ "$mute" = "yes" ] && icon="🔇"
 
-	notify-send -r 9999 "$icon Volume" "$volume%" -h int:value:$volume
+	notify-send \
+		-r 9999 \
+		"$icon Volume" "$volume%" \
+		-h int:value:$volume
+
 }
 
 # Lock mechanism
