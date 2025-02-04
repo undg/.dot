@@ -1,2 +1,59 @@
 #!/bin/bash
-node ~/Code/mypctl/dist/mypctl.js $@
+
+LOCK_FILE="/tmp/volume_control.lock"
+
+get_volume() {
+	pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | sed 's/%//'
+}
+
+notify_volume() {
+	local volume mute icon
+	volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -1)
+	mute=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -Po '(?<=Mute: )(yes|no)')
+
+	icon="🔊"
+	[ "$mute" = "yes" ] && icon="🔇"
+
+	notify-send -r 9999 "$icon Volume" "$volume%" -h int:value:$volume
+}
+
+# Lock mechanism
+(
+	flock -n 9 || exit 1
+
+	case $1 in
+	"--up")
+		current=$(get_volume)
+		if [ "$current" -lt 150 ]; then
+			pactl set-sink-mute @DEFAULT_SINK@ 0
+			pactl set-sink-volume @DEFAULT_SINK@ +5%
+			notify_volume
+		fi
+		;;
+	"--down")
+		pactl set-sink-volume @DEFAULT_SINK@ -5%
+		notify_volume
+		;;
+	"--mute")
+		pactl set-sink-mute @DEFAULT_SINK@ 1
+		notify_volume
+		;;
+	"--unmute")
+		pactl set-sink-mute @DEFAULT_SINK@ 0
+		notify_volume
+		;;
+	"--normal")
+		pactl set-sink-volume @DEFAULT_SINK@ 75%
+		notify_volume
+		;;
+	"--max")
+		pactl set-sink-volume @DEFAULT_SINK@ 195%
+		notify_volume
+		;;
+	*)
+		echo "Usage: $0 {--up|--down|--mute|--unmute|--normal|--max}"
+		exit 1
+		;;
+	esac
+
+) 9>"${LOCK_FILE}"
