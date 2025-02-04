@@ -35,8 +35,11 @@ notify_volume() {
 		fi
 		;;
 	"--down")
-		pactl set-sink-volume @DEFAULT_SINK@ -5%
-		notify_volume
+		current=$(get_volume)
+		if [ "$current" -gt 0 ]; then
+			pactl set-sink-volume @DEFAULT_SINK@ -5%
+			notify_volume
+		fi
 		;;
 	"--mute")
 		pactl set-sink-mute @DEFAULT_SINK@ 1
@@ -51,7 +54,7 @@ notify_volume() {
 		notify_volume
 		;;
 	"--max")
-		pactl set-sink-volume @DEFAULT_SINK@ 195%
+		pactl set-sink-volume @DEFAULT_SINK@ 175%
 		notify_volume
 		;;
 	*)
