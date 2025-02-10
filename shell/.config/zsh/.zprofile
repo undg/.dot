@@ -13,7 +13,6 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 # End: old zsh artefacts
 #################
 
-
 # Some of those variables are used in ~/.config/i3/config
 
 export EDITOR="nvim"
@@ -24,13 +23,13 @@ export CHROME="chromium"
 export READER="xreader"
 
 if [[ "$(hostname)" == "cm" ]]; then
-  export SCREEN_LEFT="DisplayPort-1"
-  export SCREEN_TOP="HDMI-A-0"
-  export SCREEN_RIGHT="DisplayPort-0"
+	export SCREEN_LEFT="DisplayPort-1"
+	export SCREEN_TOP="HDMI-A-0"
+	export SCREEN_RIGHT="DisplayPort-0"
 elif [[ "$(hostname)" == "di-7415" ]]; then
-  export SCREEN_LEFT="HDMI-A-0" # TOP in work
-  export SCREEN_TOP="HDMI-A-0"  # TOP in work
-  export SCREEN_RIGHT="eDP"     # BOTTOM in work
+	export SCREEN_LEFT="HDMI-A-0" # TOP in work
+	export SCREEN_TOP="HDMI-A-0"  # TOP in work
+	export SCREEN_RIGHT="eDP"     # BOTTOM in work
 fi
 
 # less/man colors
@@ -42,7 +41,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
 export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_PLATFORMTHEME="qt5ct"
