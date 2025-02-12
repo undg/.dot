@@ -22,6 +22,9 @@ export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
 
+export ANDROID_SDK_ROOT=~/Android/Sdk
+export ANDROID_HOME=~/Android/Sdk
+
 if [[ "$(hostname)" == "cm" ]]; then
 	export SCREEN_LEFT="DisplayPort-1"
 	export SCREEN_TOP="HDMI-A-0"
