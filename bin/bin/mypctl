@@ -2,8 +2,14 @@
 
 LOCK_FILE="/tmp/volume_control.lock"
 
+get_all_sinks() {
+	pactl list short sinks | cut -f1
+}
+
 get_volume() {
-	pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | sed 's/%//'
+	for sink in $(get_all_sinks); do
+		pactl get-sink-volume $sink | awk '{print $5}' | sed 's/%//'
+	done
 }
 
 notify_volume() {
@@ -27,19 +33,23 @@ notify_volume() {
 
 	case $1 in
 	"--up")
-		current=$(get_volume)
-		if [ "$current" -lt 150 ]; then
-			pactl set-sink-mute @DEFAULT_SINK@ 0
-			pactl set-sink-volume @DEFAULT_SINK@ +5%
-			notify_volume
-		fi
+		for sink in $(get_all_sinks); do
+			current=$(pactl get-sink-volume $sink | awk '{print $5}' | sed 's/%//')
+			if [ "$current" -lt 150 ]; then
+				pactl set-sink-mute $sink 0
+				pactl set-sink-volume $sink +5%
+			fi
+		done
+		notify_volume
 		;;
 	"--down")
-		current=$(get_volume)
-		if [ "$current" -gt 0 ]; then
-			pactl set-sink-volume @DEFAULT_SINK@ -5%
-			notify_volume
-		fi
+		for sink in $(get_all_sinks); do
+			current=$(pactl get-sink-volume $sink | awk '{print $5}' | sed 's/%//')
+			if [ "$current" -gt 0 ]; then
+				pactl set-sink-volume $sink -5%
+			fi
+		done
+		notify_volume
 		;;
 	"--mute")
 		pactl set-sink-mute @DEFAULT_SINK@ 1
@@ -50,11 +60,15 @@ notify_volume() {
 		notify_volume
 		;;
 	"--normal")
-		pactl set-sink-volume @DEFAULT_SINK@ 75%
+		for sink in $(get_all_sinks); do
+			pactl set-sink-volume $sink 75%
+		done
 		notify_volume
 		;;
 	"--max")
-		pactl set-sink-volume @DEFAULT_SINK@ 175%
+		for sink in $(get_all_sinks); do
+			pactl set-sink-volume $sink 175%
+		done
 		notify_volume
 		;;
 	*)
