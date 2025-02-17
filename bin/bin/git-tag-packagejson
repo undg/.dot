@@ -1,23 +1,25 @@
 #!/bin/bash
 
+# Read tag from package.json and use it as a git tag from dev branch
+
 function askYesNo {
-    QUESTION=$1
-    DEFAULT=$2
-    if [ "$DEFAULT" = true ]; then
-        OPTIONS="[Y/n]"
-        DEFAULT="y"
-    else
-        OPTIONS="[y/N]"
-        DEFAULT="n"
-    fi
-    read -p "$QUESTION $OPTIONS " -n 1 -s -r INPUT
-    INPUT=${INPUT:-${DEFAULT}}
-    echo ${INPUT}
-    if [[ "$INPUT" =~ ^[yY]$ ]]; then
-        ANSWER=true
-    else
-        ANSWER=false
-    fi
+	QUESTION=$1
+	DEFAULT=$2
+	if [ "$DEFAULT" = true ]; then
+		OPTIONS="[Y/n]"
+		DEFAULT="y"
+	else
+		OPTIONS="[y/N]"
+		DEFAULT="n"
+	fi
+	read -p "$QUESTION $OPTIONS " -n 1 -s -r INPUT
+	INPUT=${INPUT:-${DEFAULT}}
+	echo ${INPUT}
+	if [[ "$INPUT" =~ ^[yY]$ ]]; then
+		ANSWER=true
+	else
+		ANSWER=false
+	fi
 }
 
 LAST_TAG=$(git describe --tags)
@@ -25,40 +27,39 @@ LAST_TAG=$(git describe --tags)
 TAG=$(awk -F\" '/"version":/ {print $4}' package.json)
 
 if [[ "$LAST_TAG" == "v$TAG" ]]; then
-    echo "WARNING: tag v$TAG already exit"
-    echo "ABORT"
-    exit 0
+	echo "WARNING: tag v$TAG already exit"
+	echo "ABORT"
+	exit 0
 else
-    echo "git tag v$TAG"
+	echo "git tag v$TAG"
 fi
-
 
 echo ''
 askYesNo "Pull dev branch?" true
 if [ "$ANSWER" = true ]; then
-    git checkout dev
-    git pull
-    git log --oneline -1
+	git checkout dev
+	git pull
+	git log --oneline -1
 else
-    echo "INFO: Don't pull"
-    git log --oneline -1
+	echo "INFO: Don't pull"
+	git log --oneline -1
 fi
 
 echo ''
 askYesNo "Use this version tag (v$TAG)?" true
 if [ "$ANSWER" = true ]; then
-    git tag v$TAG
-    git log --oneline -1
+	git tag v$TAG
+	git log --oneline -1
 else
-    echo "INFO: Don't tag"
-    git log --oneline -1
+	echo "INFO: Don't tag"
+	git log --oneline -1
 fi
 
 echo ''
 askYesNo "Push tags to repository?" true
 if [ "$ANSWER" = true ]; then
-    git push --tags --no-verify
-    echo "DONE"
+	git push --tags --no-verify
+	echo "DONE"
 else
-    echo "INFO: Don't push"
+	echo "INFO: Don't push"
 fi
