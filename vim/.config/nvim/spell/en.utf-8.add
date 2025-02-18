@@ -515,3 +515,5 @@ typesgen
 structs
 stuff
 systemd
+monorepo
+SHA
