@@ -99,6 +99,11 @@ local models = {
 		provider = "openai",
 		model = { model = "gpt-4o", temperature = 0.4, top_p = 0.8 },
 	},
+	{
+		name = "GPTo3-mini",
+		provider = "openai",
+		model = { model = "gpt-4o-mini", temperature = 0.4, top_p = 0.8 },
+	},
 
 	-- ANTHROPIC
 	{
@@ -302,6 +307,25 @@ return {
 				end,
 			},
 		})
+
+		-- Monkey patch the dispatcher after setup
+		local dispatcher = require("gp.dispatcher")
+		local original_prepare_payload = dispatcher.prepare_payload
+		dispatcher.prepare_payload = function(messages, model, provider)
+			local output = original_prepare_payload(messages, model, provider)
+			if provider == "deepseek" and model.model:sub(1, 2) == "openai-reasoning" then
+				for i = #messages, 1, -1 do
+					if messages[i].role == "system" then
+						table.remove(messages, i)
+					end
+				end
+				output.max_tokens = nil
+				output.temperature = nil
+				output.top_p = nil
+				output.stream = true
+			end
+			return output
+		end
 
 		local wk_ok, wk = pcall(require, "which-key")
 
