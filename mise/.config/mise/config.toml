@@ -1,14 +1,13 @@
 [tools]
 nodejs = "latest"
 golang = "latest"
-# python = "3.11"
 python = "latest"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
 pnpm   = "latest"
 java   = "latest"
-yarn = "latest"
+yarn  = "latest"
 usage = "latest"
 
 
