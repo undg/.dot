@@ -12,8 +12,12 @@ setopt autocd
 HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
-# WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-WORDCHARS=${WORDCHARS/\//}
+# WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/'
+WORDCHARS=${WORDCHARS/\//} # Remove `/` from WORDCHARS
+WORDCHARS=${WORDCHARS/-/}  # Remove `-` from WORDCHARS
+WORDCHARS=${WORDCHARS/./}  # Remove `.` from WORDCHARS
+WORDCHARS=${WORDCHARS/_/}  # Remove `_` from WORDCHARS
+WORDCHARS=${WORDCHARS/;/}  # Remove `;` from WORDCHARS
 
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format.
