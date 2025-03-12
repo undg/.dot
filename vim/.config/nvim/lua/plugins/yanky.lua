@@ -1,7 +1,7 @@
 return {
-	'gbprod/yanky.nvim', -- https://github.com/gbprod/yanky.nvim
+	'gbprod/yanky.nvim',           -- https://github.com/gbprod/yanky.nvim
 	dependencies = {
-		'kkharji/sqlite.lua', -- https://github.com/kkharji/sqlite.lua
+		'kkharji/sqlite.lua',      -- https://github.com/kkharji/sqlite.lua
 		'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
 	},
 	config = function()
@@ -12,7 +12,7 @@ return {
 				sync_with_numbered_registers = true,
 			},
 			system_clipboard = {
-				sync_with_ring = true,
+				sync_with_ring = false,
 			},
 			highlight = {
 				on_put = true,
