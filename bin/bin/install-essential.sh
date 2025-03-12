@@ -1,0 +1,37 @@
+#/bin/bash
+
+sudo pacman --noconfirm -S alacritty
+sudo pacman --noconfirm -S arandr
+sudo pacman --noconfirm -S atuin
+sudo pacman --noconfirm -S base
+sudo pacman --noconfirm -S base-devel
+sudo pacman --noconfirm -S eza
+sudo pacman --noconfirm -S fasd
+sudo pacman --noconfirm -S fd
+sudo pacman --noconfirm -S flameshot
+sudo pacman --noconfirm -S flatpak
+sudo pacman --noconfirm -S fzf
+sudo pacman --noconfirm -S git
+sudo pacman --noconfirm -S github-cli
+sudo pacman --noconfirm -S hq
+sudo pacman --noconfirm -S imagemagick
+sudo pacman --noconfirm -S jq
+sudo pacman --noconfirm -S lazygit
+sudo pacman --noconfirm -S luarocks
+sudo pacman --noconfirm -S man-db
+sudo pacman --noconfirm -S neovim
+sudo pacman --noconfirm -S openssh
+sudo pacman --noconfirm -S python-pynvim
+sudo pacman --noconfirm -S rbw
+sudo pacman --noconfirm -S ripgrep
+sudo pacman --noconfirm -S rsync
+sudo pacman --noconfirm -S stow
+sudo pacman --noconfirm -S the_silver_searcher
+sudo pacman --noconfirm -S tig
+sudo pacman --noconfirm -S tmux
+sudo pacman --noconfirm -S translate-shell
+sudo pacman --noconfirm -S trash-cli
+sudo pacman --noconfirm -S tree-sitter-cli
+sudo pacman --noconfirm -S unzip
+sudo pacman --noconfirm -S wget
+sudo pacman --noconfirm -S zsh
