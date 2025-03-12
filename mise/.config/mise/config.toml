@@ -1,7 +1,7 @@
 [tools]
 nodejs = "latest"
 golang = "latest"
-python = "latest"
+python = "3.13"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
@@ -9,6 +9,8 @@ pnpm   = "latest"
 java   = "latest"
 yarn  = "latest"
 usage = "latest"
+go = "latest"
+node = "latest"
 
 
 # This was a quick fix for corepack false positives.
