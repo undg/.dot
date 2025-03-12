@@ -97,8 +97,9 @@ alias duh="du -h | sort -h"
 alias watch="watch --color --interval 0.5 "
 
 if hash nvim 2>/dev/null; then
-	alias vim="nvim"
-	alias v="nvim --nopugin"
+	alias v="/usr/bin/vim"
+	alias vim="/usr/bin/nvim"
+	alias vp="nvim --nopugin"
 	alias gp="nvim -c ':AiProofread'"
 else
 	echo "neovim is missing"
