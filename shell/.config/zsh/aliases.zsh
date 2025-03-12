@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 
+# @TODO (Bartek Laskowski) 2025-03-12: it's violation of single responsibility. Redesign installation of essential packages. They should not be part of this file.
+
 # main install function
 local SKIP_INSTALLS=0
 local FIRST_INSTALLS=0
@@ -201,9 +203,14 @@ alias vimwiki='nvim -c VimwikiIndex'
 
 if hash xclip 2>/dev/null; then
 	alias xclip='xclip -sel c'
-else
-	echo "xclip is not installed."
-	install xclip
+elif
+	# @TODO (Bartek Laskowski) 2025-03-12: think about it and uncomment. I can check if it's under WSL or check agains host name.
+	# echo "xclip is not installed."
+	# install xclip
+fi
+
+if hash win32yank.exe 2>/dev/null; then
+	alias xclip='win32yank.exe -i'
 fi
 
 if hash tig 2>/dev/null; then
@@ -233,7 +240,8 @@ alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
 alias yay-list='yay -Qu --aur'
 
 # Avoid breaking fingers with date
-alias date-clip='date --iso-8601 | xclip'
+# alias date-clip='date --iso-8601 | xclip'
+alias date-clip='date --iso-8601 | win32yank.exe -i'
 alias date-today="date +%Y-%m-%d"
 alias date-now="date +%Y-%m-%d_%H-%m_%S"
 
