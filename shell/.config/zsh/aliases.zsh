@@ -203,7 +203,7 @@ alias vimwiki='nvim -c VimwikiIndex'
 
 if hash xclip 2>/dev/null; then
 	alias xclip='xclip -sel c'
-elif
+# elif
 	# @TODO (Bartek Laskowski) 2025-03-12: think about it and uncomment. I can check if it's under WSL or check agains host name.
 	# echo "xclip is not installed."
 	# install xclip
