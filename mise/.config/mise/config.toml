@@ -10,7 +10,7 @@ java   = "latest"
 yarn  = "latest"
 usage = "latest"
 go = "latest"
-node = "latest"
+node = "22"
 
 
 # This was a quick fix for corepack false positives.
