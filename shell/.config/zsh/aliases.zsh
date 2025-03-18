@@ -252,3 +252,5 @@ colors() {
 }
 
 alias ollama-user-log='journalctl --user-unit ollama.service --since today'
+
+alias docker-ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
