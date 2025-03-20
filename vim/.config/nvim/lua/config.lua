@@ -29,7 +29,7 @@ vim.o.inccommand = 'nosplit'           -- Incremental live completion
 vim.opt.history = 900                  -- The command-line history table size.
 vim.opt.path = vim.opt.path + '**'     -- Help with searching via :find and :grep (I'm using 3rd party for that anyway)
 
-vim.g.format_on_save = true            -- custom flag used in autocmd to trigger vim.lsp.buf.format()
+vim.g.format_on_save = false            -- custom flag used in autocmd to trigger vim.lsp.buf.format()
 
 -- :checkhealth - Don't report problems bellow
 vim.g.loaded_ruby_provider = 0
