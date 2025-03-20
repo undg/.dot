@@ -12,6 +12,7 @@ sudo pacman --noconfirm -S flameshot
 sudo pacman --noconfirm -S flatpak
 sudo pacman --noconfirm -S fzf
 sudo pacman --noconfirm -S git
+sudo pacman --noconfirm -S git-delta
 sudo pacman --noconfirm -S github-cli
 sudo pacman --noconfirm -S hq
 sudo pacman --noconfirm -S imagemagick
