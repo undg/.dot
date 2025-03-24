@@ -11,61 +11,67 @@ snippet status "Status" bA
 status $1`!p snip.rv = complete(t[1], ['build', 'ci', 'test', 'refactor', 'perf', 'improvement', 'docs', 'chore', 'feat', 'fix'])`
 endsnippet
 
-snippet fix "fix conventional commit"
-fix(${1:scope}): ${2:title}
-
-${0:${VISUAL}}
-endsnippet
-
-snippet feat "feat conventional commit"
+snippet cz-feat "feat: A new feature [commit][cz]"
 feat(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet chore "chore conventional commit"
-chore(${1:scope}): ${2:title}
+snippet cz-fix "fix: A bug fix [commit][cz]"
+fix(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet docs "docs conventional commit"
+snippet cz-docs "docs: Documentation only changes [commit][cz]"
 docs(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet improvement "improvement conventional commit"
-improvement(${1:scope}): ${2:title}
+snippet cz-style "style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) [commit][cz]"
+docs(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet perf "perf conventional commit"
-perf(${1:scope}): ${2:title}
-
-${0:${VISUAL}}
-endsnippet
-
-snippet refactor "refactor conventional commit"
+snippet cz-refactor "refactor: A code change that neither fixes a bug nor adds a feature [commit][cz]"
 refactor(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet test "test conventional commit"
+snippet cz-perf "perf: A code change that improves performance [commit][cz]"
+perf(${1:scope}): ${2:title}
+
+${0:${VISUAL}}
+endsnippet
+
+snippet cz-test "test: Adding missing tests [commit][cz]"
 test(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet ci "ci conventional commit"
+snippet cz-chore "chore: Changes to the build process or auxiliary tools and libraries such as documentation generation [commit][cz]"
+chore(${1:scope}): ${2:title}
+
+${0:${VISUAL}}
+endsnippet
+
+snippet improvement "improvement [commit]"
+improvement(${1:scope}): ${2:title}
+
+${0:${VISUAL}}
+endsnippet
+
+snippet ci "ci [commit]"
 ci(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
 endsnippet
 
-snippet build "build conventional commit"
+snippet build "build [commit]"
 build(${1:scope}): ${2:title}
 
 ${0:${VISUAL}}
