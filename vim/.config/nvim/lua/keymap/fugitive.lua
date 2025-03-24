@@ -1,10 +1,11 @@
 Keymap.normal('<leader>gcd', ':Gcd<CR>')
 Keymap.normal('<leader>glcd', ':Glcd<CR>')
 
-Keymap.normal('<leader>gll', ':0Gclog<CR>')
 vim.api.nvim_create_user_command('GfileLog', '0Gclog', { force = true })
-Keymap.normal('<leader>gld', ':Gclog -- %<CR>')
+Keymap.normal('<leader>gll', ':0Gclog<CR>', {desc = "Show commits history for this file"})
+
 vim.api.nvim_create_user_command('GfileLogDiff', 'Gclog -- %', { force = true })
+Keymap.normal('<leader>gld', ':Gclog -- %<CR>', {desc = "Show commits history for this file (DIFF changes)"})
 
 -- MAKE DAT SHIT CONSISTENT. tpope sucks
 -- vim.api.nvim_del_user_command('Gblame')
