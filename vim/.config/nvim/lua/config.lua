@@ -64,7 +64,6 @@ vim.opt.spelloptions = 'camel'
 vim.opt.spelllang = 'en'
 vim.opt.spell = true
 
--- Default indentation (there is plugin that's trying to guess indentation style in opened file)
 vim.opt.autoindent = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
