@@ -6,7 +6,7 @@ return {
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
 		keywords = {
-			TODO = { icon = " ", color = "warning" },
+			TODO = { icon = " ", color = "error" },
 			-- 	['@TODO (Bartek Laskowski)'] = { icon = "⚠", color = "error", alt = "no TODO's leftover" },
 			-- 	['@TODO (undg)'] = { icon = "⚠", color = "error", alt = "no TODO's leftover" },
 		},
