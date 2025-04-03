@@ -12,6 +12,7 @@ Spec("plugins.suda")                   -- ask for sudo password
 Spec("plugins.luapad")                 -- lua scratch pad
 -- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 Spec("plugins.bigfile")                -- lighter config for big files
+Spec("plugins.todo-comments")          -- highlight and search TODO comments
 
 -- Git
 Spec("plugins.lazygit")  -- open lazygit in floating window. Lazygit need to be installed in system
