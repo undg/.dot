@@ -1,11 +1,13 @@
 -- highlight setup
+vim.api.nvim_set_hl(0, "HiglightLinePresent", { bg = "#ffffff" })
+
 -- use only in visual
 vim.api.nvim_create_user_command('HiglightLines', function(opts)
 	local lstart = opts.line1
 	local lend = opts.line2
 
 	for line = lstart, lend do
-		vim.fn.matchaddpos("HighlightCurrent", { line })
+		vim.fn.matchaddpos("HiglightLinePresent", { line })
 	end
 
 	vim.api.nvim_input("<Esc>")
