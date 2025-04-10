@@ -62,10 +62,10 @@ function M.config()
 	})
 
 	Keymap.normal('<leader>*', function()
-		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, { name = 'HighlightCurrent' }).bg)
 	end)
 	Keymap.normal('<leader>8', function()
-		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, { name = 'HighlightCurrent' }).bg)
 	end)
 end
 

@@ -43,6 +43,8 @@ return {
 			component_function = { gitbranch = 'fugitive#head' },
 		}
 
+		vim.api.nvim_set_hl(0, "HighlightCurrent", { bg = "#444444" })
+
 		-- Undo underline that's set by default (RRethy/vim-illuminate)
 		vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = '' })
 		vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = '' })
