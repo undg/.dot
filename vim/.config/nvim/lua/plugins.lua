@@ -68,7 +68,7 @@ Spec("plugins.obsidian")                         -- Note taking and knowledge ba
 Spec("plugins.markdown-preview")                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec("plugins.render-markdown-nvim")             -- render markdown in vim editor
 Spec("plugins.gp-nvim")                          -- AI chat interface for popular LLM's with API
-Spec("plugins.avante")                           -- AI code assistance, Cursor emulator
+-- Spec("plugins.avante")                           -- AI code assistance, Cursor emulator
 Spec("plugins.qfenter")                          -- quickfix window (cw) open in split/tab...
 Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
