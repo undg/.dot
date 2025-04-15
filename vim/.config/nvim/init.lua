@@ -17,6 +17,7 @@ require("custom.pum-completion-up-down")
 require("custom.hover-fix") -- @TODO (undg) 2024-03-20: Check it once a while and try to delete fix. Doc inside file.
 require("custom.lsp-actions-checker")
 require("custom.highlight")
+require("custom.git-files")
 
 require("lsp")
 
