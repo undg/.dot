@@ -21,7 +21,7 @@ return {
 		end
 
 		wk.add({
-			{ "<leader>c",  gruop = 'git-conflict',         silent = true },
+			{ "<leader>c",  group = 'GitConflict',          silent = true },
 			{ "<leader>co", ":GitConflictChooseOurs<cr>",   desc = "(git-conflict) choose ours" },
 			{ "<leader>ct", ":GitConflictChooseTheirs<cr>", desc = "(git-conflict) choose theirs" },
 			{ "<leader>cb", ":GitConflictChooseBoth<cr>",   desc = "(git-conflict) choose both" },
