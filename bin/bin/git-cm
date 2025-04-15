@@ -1,0 +1,30 @@
+#!/bin/sh
+
+show_help() {
+  cat << EOF
+Usage: $(basename $0) <commit message>
+Formats commit message based on branch name:
+- feat/69/sexy-branch     -> "feat(69): message"
+- chore/1337/elite-branch -> "chore(1337): message"
+- 777/lucky-branch        -> "feat(777): message"
+
+Types: feat, fix, style, chore, docs, perf, refactor
+EOF
+  exit 0
+}
+
+[ "$1" = "-h" ] && show_help
+[ "$1" = "--help" ] && show_help
+
+BRANCH=$(git branch --show-current)
+TYPE=$(echo $BRANCH | awk -F'/' '{print $1}' | grep -E '^(feat|fix|style|chore|docs|perf|refactor)$' || echo "feat")
+TICKET=$(echo $BRANCH | awk -F'/' '{print $2}' | grep -E '^[0-9]+$' || echo $(echo $BRANCH | awk -F'/' '{print $1}'))
+
+dry_run() {
+    echo "git cm -m '$TYPE($TICKET): $@'"
+    exit 0
+}
+
+[ "$1" = "--dry" ] && dry_run "$@"
+
+git cm -m "$TYPE($TICKET): $@"
