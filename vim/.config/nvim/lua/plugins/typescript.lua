@@ -9,8 +9,8 @@ return {
 				-- live type checking with //  ^?
 				'marilari88/twoslash-queries.nvim', -- https://github.com/marilari88/twoslash-queries.nvim
 				opts = {
-					multi_line = true, -- to print types in multi line mode
-					is_enabled = true, -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
+					multi_line = true,  -- to print types in multi line mode
+					is_enabled = true,  -- to keep disabled at startup and enable it on request with the EnableTwoslashQueries
 					highlight = 'DevIconBat', -- to set up a highlight group for the virtual text
 				},
 
@@ -18,7 +18,7 @@ return {
 
 				keys = {
 					{ '<leader>si', ':TwoslashQueriesInspect<CR>', desc = 'Twoslash Instpect' },
-					{ '<leader>sd', ':TwoslashQueriesRemove<CR>', desc = 'Twoslash Remove' },
+					{ '<leader>sd', ':TwoslashQueriesRemove<CR>',  desc = 'Twoslash Remove' },
 				},
 			},
 		},
@@ -30,6 +30,19 @@ return {
 				-- Disable formatting. I use prettier with ./conform.lua
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
+
+				local ok_wk, wk = pcall(require, "which-key")
+
+				local not_ok = not ok_wk and "wk not ok\n" or false -- all good, not not_ok
+
+				if not_ok then
+					vim.notify("lsp/plugins/typescript.lua: require failed - " .. not_ok, vim.log.levels.ERROR)
+					return
+				end
+
+				wk.add({
+					{ "<leader>go", ":TSToolsOrganizeImports<cr>" },
+				})
 			end,
 			settings = {
 				separate_diagnostic_server = true,
