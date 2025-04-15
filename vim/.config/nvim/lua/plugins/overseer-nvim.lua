@@ -23,7 +23,7 @@ return {
 	},
 
 	keys = {
-		{ "<leader>fv",  "",                             desc = "Overseer command" },
+		{ "<leader>fv",  group = "Overseer",             desc = "Overseer command" },
 		{ "<leader>fvv", "<cmd>OverseerRun<cr>",         desc = "Run" },
 		{ "<leader>fvj", "<cmd>OverseerToggle<cr>",      desc = "Toggle" },
 		{ "<leader>fvk", "<cmd>OverseerTaskAction<cr>",  desc = "TaskAction" },
