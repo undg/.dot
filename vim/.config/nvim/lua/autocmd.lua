@@ -18,6 +18,24 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Auto-prepend commit message with branch type and ticket number
+-- Format: type/ticket/description (e.g. feat/505140/group-color)
+-- Will add: feat(505140):
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit" },
+	callback = function()
+		local branch = vim.fn.system('git branch --show-current'):gsub('\n', '')
+		local type, ticket = branch:match("^(%w+)/(%d+)")
+
+		if type and ticket then
+			local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1]
+			if first_line == "" then
+				vim.api.nvim_buf_set_lines(0, 0, 1, false, { string.format("%s(%s): ", type, ticket) })
+			end
+		end
+	end,
+})
+
 -- Highligh on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
