@@ -12,33 +12,23 @@ return {
 				-- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
 				-- min_width and max_width can be a single value or a list of mixed integer/float types.
 				-- max_width = {100, 0.2} means "the lesser of 100 columns or 20% of total"
-				max_width = { 60, 0.2 },
+				max_width = { 20, 0.2 },
 				-- min_width = {40, 0.1} means "the greater of 40 columns or 10% of total"
-				min_width = { 30, 0.1 },
+				min_width = { 10, 0.1 },
 				-- optionally define an integer/float for the exact width of the task list
 				width = nil,
-				max_height = { 80, 0.1 },
-				min_height = 30,
+				max_height = { 70, 0.1 },
+				min_height = 20,
 				height = nil,
 				-- String that separates tasks
 				separator = "────────────────────────────────────────",
 				-- Default direction. Can be "left", "right", or "bottom"
-				direction = "bottom",
+				direction = "left",
 			},
 		})
 
-		-- {
-		-- 	"version": "2.0.0",
-		-- 	"tasks": [
-		-- 		{
-		-- 			"type": "shell",
-		-- 	"command": "pnpm eslint --format compact .",
-		-- 				"problemMatcher": ["$eslint-compact"]
-		-- 		}
-		-- 		]
-		-- }
 		overseer.register_template({
-			name = "npm run lint",
+			name = "npm run lint -- --format compact",
 			builder = function()
 				return {
 
@@ -71,7 +61,7 @@ return {
 
 	keys = {
 		{ "<leader>fv",  group = "Overseer", },
-		{ "<leader>fvr", "<cmd>OverseerRun<cr>",         desc = "(Overseer) Run" },
+		{ "<leader>fvj", "<cmd>OverseerRun<cr>",         desc = "(Overseer) Run" },
 		{ "<leader>fvv", "<cmd>OverseerToggle<cr>",      desc = "(Overseer) Toggle" },
 		{ "<leader>fvk", "<cmd>OverseerTaskAction<cr>",  desc = "(Overseer) TaskAction" },
 		{ "<leader>fvl", "<cmd>OverseerQuickAction<cr>", desc = "(Overseer) QuickAction" },
