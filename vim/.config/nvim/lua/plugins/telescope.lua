@@ -1,13 +1,13 @@
 return {
 	{
-		'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
+		'nvim-telescope/telescope.nvim',                             -- https://github.com/nvim-telescope/telescope.nvim
 		dependencies = {
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-			'nvim-telescope/telescope-ui-select.nvim', -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+			'nvim-telescope/telescope-ui-select.nvim',               -- https://github.com/nvim-telescope/telescope-ui-select.nvim
 			{
-				'danielfalk/smart-open.nvim', -- https://github.com/danielfalk/smart-open.nvim
+				'danielfalk/smart-open.nvim',                        -- https://github.com/danielfalk/smart-open.nvim
 				dependencies = {
-					'kkharji/sqlite.lua', -- https://github.com/kkharji/sqlite.lua
+					'kkharji/sqlite.lua',                            -- https://github.com/kkharji/sqlite.lua
 					{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }, -- Only required if using match_algorithm fzf
 				},
 			},
@@ -128,6 +128,7 @@ return {
 			Keymap.normal('<leader>.g', telescope.extensions.dir.live_grep)
 
 			Keymap.normal('<leader>fb', ':Telescope buffers<cr>')
+			Keymap.normal('<leader>fB', ':Telescope git_branches<cr>')
 			Keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
 			Keymap.normal('<leader>fG', telescope.extensions.dir.live_grep)
 			Keymap.normal('<leader>fr', ':Telescope resume<cr>')
