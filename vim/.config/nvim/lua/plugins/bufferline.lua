@@ -2,7 +2,7 @@ local M = {
 	'akinsho/bufferline.nvim', -- https://github.com/akinsho/bufferline.nvim
 	dependencies = {
 		-- :Bdelete and :Bwipeout to preserve window layout
-		{ 'moll/vim-bbye' }, -- https://github.com/moll/vim-bbye
+		{ 'moll/vim-bbye' },         -- https://github.com/moll/vim-bbye
 		{ 'nvim-tree/nvim-web-devicons' }, -- https://github.com/nvim-tree/nvim-web-devicons
 	},
 	version = '*',
@@ -47,10 +47,10 @@ local opts = {
 		end,
 		-- NOTE: this will be called a lot so don't do any heavy processing here
 		custom_filter = nil,
-		color_icons = true, -- true | false, -- whether or not to add the filetype icon highlights
+		color_icons = true,       -- true | false, -- whether or not to add the filetype icon highlights
 		show_buffer_icons = true, -- true | false, -- disable filetype icons for buffers
 		show_buffer_close_icons = true, -- true | false,
-		show_close_icon = true, -- true | false,
+		show_close_icon = true,   -- true | false,
 		show_tab_indicators = true, -- true | false,
 		show_duplicate_prefix = true, -- true | false, -- whether to show duplicate buffer prefix
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
@@ -109,7 +109,7 @@ function M.config()
 	local CMD_CLOSE_GO_NEXT = ':BufferLineCycleNext<CR>:BufferLineCyclePrev<CR>:Bdelete<cr>'
 	local CMD_CLOSE_GO_PREV = ':Bdelete<cr>'
 	local CMD_CLOSE_GP_CHATS =
-		":execute 'bufdo if expand(\"%:p\") =~ \"^' . expand('~/.local/share/nvim/gp/chats/') . '.*.md$\" | bd! | endif'<cr>"
+	":execute 'bufdo if expand(\"%:p\") =~ \"^' . expand('~/.local/share/nvim/gp/chats/') . '.*.md$\" | bd! | endif'<cr>"
 
 	wk.add({
 		-- GOTO
@@ -120,12 +120,12 @@ function M.config()
 		{ "<leader>b'", GOTO_5 },
 		{ '<leader>b$', GOTO_LAST },
 		-- Cycle
-		{ '<C-h>', ':BufferLineCyclePrev<cr>' },
-		{ '<C-l>', ':BufferLineCycleNext<cr>' },
-		{ '<leader>b', group = 'Buffer' },
+		{ '<C-h>',      ':BufferLineCyclePrev<cr>' },
+		{ '<C-l>',      ':BufferLineCycleNext<cr>' },
+		{ '<leader>b',  group = 'Buffer' },
 		-- Move and Pin
-		{ '<C-j>', ':BufferLineMovePrev<cr>' },
-		{ '<C-k>', ':BufferLineMoveNext<cr>' },
+		{ '<C-j>',      ':BufferLineMovePrev<cr>' },
+		{ '<C-k>',      ':BufferLineMoveNext<cr>' },
 		{ '<leader>BB', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
 		{ '<leader>bb', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
 		{
@@ -133,24 +133,25 @@ function M.config()
 			":BufferLineTogglePin<CR>:lua require'bufferline'.move_to(1)<cr>:BufferLineTogglePin<CR>",
 			desc = 'BufferLine Move buffer to START',
 		},
-		{ '<leader>b^', ":lua require'bufferline'.move_to(1)<cr>", desc = 'BufferLine Move buffer to START' },
+		{ '<leader>b^',  ":lua require'bufferline'.move_to(1)<cr>", desc = 'BufferLine Move buffer to START' },
 		{
 			'<leader>b$',
 			":lua require'bufferline'.move_to(#vim.fn.getbufinfo({buflisted = 1}))<cr>",
 			desc = 'BufferLine Move buffer to the END',
 		},
 		-- Close
-		{ '<leader>bd', group = 'Buffer Close' },
-		{ '<leader>bdc', CMD_CLOSE_GO_PREV, desc = 'Close Buffer' },
-		{ '<C-Q>', CMD_CLOSE_GO_PREV, desc = 'Close Buffer go prev' },
-		{ '<leader>bD', CMD_CLOSE_GO_NEXT, desc = 'Close Buffer go next' },
-		{ '<leader>qq', CMD_CLOSE_GO_NEXT, desc = 'Close Buffer go next' },
-		{ '<leader>bdh', ':BufferLineCloseLeft<CR>', desc = 'Close Buffer on the Left' },
-		{ '<leader>bdl', ':BufferLineCloseRight<CR>', desc = 'Close Buffer on the Right' },
-		{ '<leader>bda', CMD_CLOSE_GP_CHATS, desc = 'Close Buffer with gp.nvim chats' },
+		{ '<leader>bd',  group = 'Buffer Close' },
+		{ '<leader>bdd', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer' },
+		{ '<leader>bdc', ":BufferLineCloseOthers<cr>",              desc = 'Close Buffer other than current' },
+		{ '<C-Q>',       CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
+		{ '<leader>bD',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
+		{ '<leader>qq',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
+		{ '<leader>bdh', ':BufferLineCloseLeft<CR>',                desc = 'Close Buffer on the Left' },
+		{ '<leader>bdl', ':BufferLineCloseRight<CR>',               desc = 'Close Buffer on the Right' },
+		{ '<leader>bda', CMD_CLOSE_GP_CHATS,                        desc = 'Close Buffer with gp.nvim chats' },
 
-		{ '<leader>bt', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
-		{ '<leader>bT', ':Telescope buffers<CR>', desc = 'Show buffers in Telescope' },
+		{ '<leader>bt',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
+		{ '<leader>bT',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
 	})
 end
 
