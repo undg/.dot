@@ -21,10 +21,10 @@ TYPE=$(echo $BRANCH | awk -F'/' '{print $1}' | grep -E '^(feat|fix|style|chore|d
 TICKET=$(echo $BRANCH | awk -F'/' '{print $2}' | grep -E '^[0-9]+$' || echo $(echo $BRANCH | awk -F'/' '{print $1}'))
 
 dry_run() {
-    echo "git cm -m '$TYPE($TICKET): $@'"
+    echo "git commit -m '$TYPE($TICKET): $@'"
     exit 0
 }
 
 [ "$1" = "--dry" ] && dry_run "$@"
 
-git cm -m "$TYPE($TICKET): $@"
+git commit -m "$TYPE($TICKET): $@"
