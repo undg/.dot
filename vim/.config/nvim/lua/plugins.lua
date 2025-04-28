@@ -41,6 +41,7 @@ Spec("plugins.trouble")                          -- organize errors and warnings
 Spec("plugins.nvim-cmp")                         -- collection of plugins related with autocompletion
 Spec("plugins.mason")
 Spec("plugins.overseer-nvim")                    -- A task runner and job management plugin for Neovim
+Git("https://github.com/cseickel/diagnostic-window.nvim")
 Git("https://github.com/folke/neodev.nvim")      -- Neovim full signature help, docs and completion for the nvim lua API.
 Git("https://github.com/neovim/nvim-lspconfig")  -- Collection of configurations for built-in LSP client
 Git("https://github.com/nvimtools/none-ls.nvim") -- inject LSP diagnostics, code actions, and more
