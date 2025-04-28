@@ -30,6 +30,8 @@ return {
 				-- Disable formatting. I use prettier with ./conform.lua
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
+				-- disable the TypeScript Language Server (ts) from providing information about unused code
+				client.server_capabilities.diagnosticUnnecessary = false
 
 				local ok_wk, wk = pcall(require, "which-key")
 
