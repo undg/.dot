@@ -68,6 +68,10 @@ return {
 							['<C-t>'] = actions.select_tab,
 
 							['<C-u>'] = nil,
+							['<C-Left>'] = actions.preview_scrolling_left,
+							['<C-Down>'] = actions.preview_scrolling_down,
+							['<C-Up>'] = actions.preview_scrolling_up,
+							['<C-Right>'] = actions.preview_scrolling_right,
 							['<PageUp>'] = actions.results_scrolling_up,
 							['<C-d>'] = nil,
 							['<PageDown>'] = actions.results_scrolling_down,
