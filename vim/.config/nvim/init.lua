@@ -18,6 +18,7 @@ require("custom.hover-fix") -- @TODO (undg) 2024-03-20: Check it once a while an
 require("custom.lsp-actions-checker")
 require("custom.highlight")
 require("custom.git-files")
+require("custom.only-global-marks")
 
 require("lsp")
 
