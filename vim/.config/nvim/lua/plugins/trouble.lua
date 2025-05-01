@@ -5,6 +5,16 @@ return {
 	keys = {
 		{
 			"<leader>xx",
+			"<cmd>Trouble diagnostics filter.severity=vim.diagnostic.severity.ERROR<cr>",
+			desc = "Diagnostics only ERROR's (Trouble)",
+		},
+		{
+			"<leader>xw",
+			"<cmd>Trouble diagnostics filter.severity=vim.diagnostic.severity.WARN<cr>",
+			desc = "Diagnostics only WARN's (Trouble)",
+		},
+		{
+			"<leader>xa",
 			"<cmd>Trouble diagnostics toggle<cr>",
 			desc = "Diagnostics (Trouble)",
 		},
@@ -35,12 +45,12 @@ return {
 		},
 		-- Go To *** Item
 		{
-			"<leader>xj",
+			"<leader>xn",
 			':lua require("trouble").next({skip_groups = true, jump = true})<cr>',
 			desc = "Go to the next item (Trouble)",
 		},
 		{
-			"<leader>xk",
+			"<leader>xp",
 			':lua require("trouble").prev({skip_groups = true, jump = true})<cr>',
 			desc = "Go to the previous item (Trouble)",
 		},
