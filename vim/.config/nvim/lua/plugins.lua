@@ -86,9 +86,9 @@ Spec("plugins.bufferline")
 Spec("plugins.nvim-navic")            -- Breadcrumbs
 Spec("plugins.which-key")             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
-Spec("plugins.colorizer")             -- paint hex values with color
 Spec("plugins.illuminate")            -- automatically highlighting other uses of the word under the cursor
 Spec("plugins.windows-nvim")          -- Automatically manage size of current window;
 Spec("plugins.indent-blankline-nvim") -- Add indentation guides even on blank lines in fold
 Spec("plugins.nvim-ufo")
 Spec("plugins.notification")          -- Show one or more highlighted notifications in a single floating window.
+Spec("plugins.colorizer")             -- paint hex values with color
