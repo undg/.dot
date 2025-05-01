@@ -147,8 +147,8 @@ return {
 			Keymap.normal('<leader>fp', ':Telescope project<cr>')
 			Keymap.normal('<leader>fo', ':Telescope oldfiles cwd_only=true<cr>')
 			Keymap.normal('<leader>fh', ':Telescope help_tags<cr>')
-			Keymap.normal('<leader>fm', ':Telescope keymaps<cr>')
-			Keymap.normal('<leader>fc', ':Telescope commands<cr>')
+			Keymap.normal('<leader>fm', ':Telescope marks<cr>')
+			-- Keymap.normal('<leader>fc', ':Telescope commands<cr>')
 			Keymap.normal('<leader>:', ':Telescope commands<cr>')
 
 			Keymap.normal('<leader>fa', ':Telescope gp_picker agent<cr>', { desc = 'gp.nvim Agent Picker' })
