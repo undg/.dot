@@ -27,7 +27,7 @@ local sudo -- suda plugin required
 local is_git
 -- @TODO (undg) 2022-12-31: fix it,
 -- logic is temporary flipped around.
-local branch_color = function(is_git_arg)
+local function branch_color(is_git_arg)
 	if is_git_arg then
 		return { bg = '#A8A8A8', fg = '#706965' }
 	else
@@ -144,7 +144,7 @@ M.progress = {
 
 M.location = {
 	'location',
-	color = section_a_color,
+	-- color = section_a_color,
 }
 
 return M
