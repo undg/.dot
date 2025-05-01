@@ -1,12 +1,19 @@
-local M = {
-	'lilydjwg/colorizer', -- https://github.com/lilydjwg/colorizer
-	cmd = { 'ColorHighlight', 'ColorToggle' },
-	event = 'VeryLazy',
+return {
+	'uga-rosa/ccc.nvim', -- https://github.com/uga-rosa/ccc.nvim
+	config = function()
+		-- Enable true color
+		vim.opt.termguicolors = true
+
+		local ccc = require("ccc")
+		local mapping = ccc.mapping
+
+		ccc.setup({
+			-- Your preferred settings
+			-- Example: enable highlighter
+			highlighter = {
+				auto_enable = true,
+				lsp = true,
+			},
+		})
+	end
 }
-
-function M.init()
-	vim.g.colorizer_startup = 0
-	vim.g.colorizer_maxlines = 1000
-end
-
-return M
