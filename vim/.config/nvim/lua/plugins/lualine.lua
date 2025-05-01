@@ -13,7 +13,7 @@ return {
 
 			lualine_x = { "diagnostics", "diff" },
 			lualine_y = { s.cwd, s.fileformat, s.filetype },
-			lualine_z = {},
+			lualine_z = { s.location },
 		}
 
 		require("lualine").setup({
