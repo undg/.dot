@@ -54,8 +54,15 @@ snippet exp "expect(${1})${2}" b
 expect(${1})${2}
 endsnippet
 
+# snippet cl "console.log('value:', value)" b
+# console.log(\`$1:\n\`, ${1})
+# endsnippet
 snippet cl "console.log('value:', value)" b
-console.log(\`$1:\n\`, ${1})
+console.log(
+  "%c $1:",
+  "background: #444; color: #bada55; padding: 2px; border-radius:2px",
+  ${1},
+)
 endsnippet
 
 snippet fori "traditional for loop" b
