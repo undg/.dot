@@ -64,6 +64,11 @@ Gives code when make sen, but does not overly comment answers. Just gives code a
 Grug dev love doing simple things good and using smart things sparingly.
 Grug wrote all his principles on  grugbrain.dev]],
 	},
+	{
+		name = "proofread",
+		prompt =
+		"iProofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
+	},
 
 	{
 		name = "grammar-grug",
@@ -172,10 +177,11 @@ local models = {
 		provider = "deepseek",
 		model = { model = "deepseek-reasoner", temperature = 0.4, top_p = 1, min_p = 0.05 },
 	},
-	-- -- MINIMAX
-	-- name = "minimaxi",
-	-- provider = "minimaxi",
-	-- model = { model = "abab7-chat-preview", temperature = 0.4, top_p = 1, min_p = 0.05 },
+
+	-- SPARK
+	name = "spark-test-ride",
+	provider = "spark",
+	model = { model = "gpt-4o-mini", temperature = 0.4, top_p = 0.95 },
 }
 
 local providers = {
@@ -201,6 +207,10 @@ local providers = {
 	deepseek = {
 		endpoint = "https://api.deepseek.com/chat/completions",
 		secret = os.getenv("DEEPSEEK_API_KEY"),
+	},
+	spark = {
+		endpoint = os.getenv("SPARK_API_URL"),
+		secret = os.getenv("SPARK_API_KEY"),
 	},
 }
 
