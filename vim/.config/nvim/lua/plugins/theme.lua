@@ -81,14 +81,15 @@ return {
 				suffix = '  ', -- padding right
 				format = function(diagnostic)
 					if diagnostic.source == 'eslint' then
-						P(diagnostic)
 						return string.format(
 							'%s\n%s\n%s',
 							diagnostic.message,
 							-- shows the name of the rule
 							diagnostic.user_data.lsp.code,
 							-- shows url to rule documentation
-							diagnostic.user_data.lsp.code.codeDescription.href
+							diagnostic.user_data.lsp.codeDescription and
+							diagnostic.user_data.lsp.codeDescription.href or
+							"No documentation URL"
 						)
 					end
 					return string.format('%s [%s]', diagnostic.message, diagnostic.source)
