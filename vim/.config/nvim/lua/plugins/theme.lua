@@ -87,7 +87,7 @@ return {
 							-- shows the name of the rule
 							diagnostic.user_data.lsp.code,
 							-- shows url to rule documentation
-							diagnostic.user_data.lsp.codeDescription.href
+							diagnostic.user_data.lsp.code.codeDescription.href
 						)
 					end
 					return string.format('%s [%s]', diagnostic.message, diagnostic.source)
