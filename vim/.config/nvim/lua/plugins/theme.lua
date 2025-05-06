@@ -68,6 +68,7 @@ return {
 			wrap_at = 40,
 		}
 
+		-- @TODO (undg) 2025-05-06: vim.lsp.with() and all vim.lsp.handlers.* are deprecated
 		vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
 		vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
 
