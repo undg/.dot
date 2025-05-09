@@ -54,16 +54,21 @@ snippet exp "expect(${1})${2}" b
 expect(${1})${2}
 endsnippet
 
-# snippet cl "console.log('value:', value)" b
-# console.log(\`$1:\n\`, ${1})
-# endsnippet
-snippet cl "console.log('value:', value)" b
+snippet cl "console.log('value:', value) [browser]" b
 console.log(
   "%c $1:",
   "background: #444444; color: #bada55; padding: 2px; border-radius:3px",
   ${1},
 )
 endsnippet
+
+snippet cl "console.log('value:', value) [cli]" b
+console.log(
+  "\x1b[41m  $1:  \x1b[0m",
+  ${1},
+)
+endsnippet
+
 
 snippet fori "traditional for loop" b
 for(let ${1:i} = 0; $1< ${2:arr.length}; $1++) {
