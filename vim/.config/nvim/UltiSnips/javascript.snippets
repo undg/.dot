@@ -48,14 +48,14 @@ function ($1) {
 endsnippet
 priority -50
 
-snippet des "describe('should ', ()=>{})" b
+snippet des "describe('description', ()=>{})" b
 describe(\`${1:description}\`, () => {
 	${2}
 })
 endsnippet
 
-snippet it "is('should ', ()=>{})" b
-it(\`should ${1:description}\`, () => {
+snippet it "it('should', ()=>{})" b
+it(\`${1:should}\`, () => {
 	${2}
 })
 endsnippet
