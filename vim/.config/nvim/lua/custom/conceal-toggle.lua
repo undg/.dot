@@ -1,6 +1,20 @@
+local function renderMarkdown(on)
+	if vim.filetype ~= 'markdown' then
+		return
+	end
+
+	if on then
+		vim.cmd('RenderMarkdown enable')
+	end
+
+	if not on then
+		vim.cmd('RenderMarkdown disable')
+	end
+end
+
 local function toggleConceal()
 	if vim.o.conceallevel == 0 then
-		vim.cmd('RenderMarkdown enable')
+		renderMarkdown(true)
 		vim.fn.timer_start(100, function()
 			vim.o.conceallevel = 3
 		end)
@@ -11,7 +25,7 @@ local function toggleConceal()
 			{ title = 'ConcealToggle' }
 		)
 	else
-		vim.cmd('RenderMarkdown disable')
+		renderMarkdown(false)
 		vim.fn.timer_start(100, function()
 			vim.o.conceallevel = 0
 		end)
