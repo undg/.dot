@@ -118,17 +118,23 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
----@brief Preserve folds and cursor position during format-on-save
----@details Captures window view state (including folds) before save/format,
----        then restores it after save completes. Prevents formatter from
----        messing with manual folds.
+---@brief Preserve ALL folds during format-on-save
+---@details Saves ALL fold states before save/format,
+---        then forces restore of everything after save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
+		-- Save both view and fold states
 		local view = vim.fn.winsaveview()
+		local folds = vim.fn.getwininfo(vim.fn.win_getid())[1].folds
+
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			once = true,
 			callback = function()
 				vim.fn.winrestview(view)
+				-- Force restore all folds
+				for _, fold in ipairs(folds) do
+					vim.cmd(fold[1] .. "," .. fold[2] .. "fold")
+				end
 			end,
 		})
 	end,
