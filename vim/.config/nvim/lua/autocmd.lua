@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "gitcommit" },
 	callback = function()
-		local branch = vim.fn.system('git branch --show-current'):gsub('\n', '')
+		local branch = vim.fn.system("git branch --show-current"):gsub("\n", "")
 		local type, ticket = branch:match("^(%w+)/(%d+)")
 
 		if type and ticket then
@@ -115,5 +115,21 @@ vim.api.nvim_create_autocmd("User", {
 			engage.conflict_buster() ---@diagnostic disable-line: undefined-global
 			create_buffer_local_mappings() ---@diagnostic disable-line: undefined-global
 		end)
+	end,
+})
+
+---@brief Preserve folds and cursor position during format-on-save
+---@details Captures window view state (including folds) before save/format,
+---        then restores it after save completes. Prevents formatter from
+---        messing with manual folds.
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		local view = vim.fn.winsaveview()
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			once = true,
+			callback = function()
+				vim.fn.winrestview(view)
+			end,
+		})
 	end,
 })
