@@ -18,6 +18,7 @@
 	b = branch -vv
 	br = branch
 	cm = commit
+	cmm = commit -m
 	st = status
 	d = difftool
 ;       l = log --decorate --oneline --graph
