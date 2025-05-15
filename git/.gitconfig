@@ -17,8 +17,7 @@
 	ck = checkout
 	b = branch -vv
 	br = branch
-	cm = commit
-	cmm = commit -m
+	cm = commit -m
 	st = status
 	d = difftool
 ;       l = log --decorate --oneline --graph
@@ -26,12 +25,13 @@
 	m = merge --no-ff
 	ff = merge --ff-only
 	pull = pull --prune
-	c = clone --recursive
+	; c = clone --recursive
 	p = pull
 	pr = pull --rebase
 	; rp = checkout HEAD -- package-lock.json   
 	prune-origin = remote prune origin
 	branch-list-remote = for-each-ref --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)    %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=authordate refs/remotes
+	c = commit
 
 
 [diff]
