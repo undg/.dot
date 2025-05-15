@@ -1,4 +1,11 @@
-if require("utils.is-installed")("obsidian") then
+local is_installed_ok, is_installed = pcall(require, "utils.is-installed")
+
+if not is_installed_ok then
+	vim.notify("plugins/obsidian.lua: missing requirement - utils.is-installed", vim.log.levels.ERROR)
+	return
+end
+
+if not is_installed("obsidian") then
 	print("obsidian not installed. SKIP plugin")
 	return {}
 end
