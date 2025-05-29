@@ -24,7 +24,7 @@ end
 -- }
 local lsp2mason = {
 	cfg_file = {
-		denols = "deno",
+		-- denols = "deno",
 		jsonls = "json-lsp",
 		-- tsserver = 'typescript-language-server',
 		yamlls = "yaml-language-server",
