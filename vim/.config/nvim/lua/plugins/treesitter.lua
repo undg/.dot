@@ -9,6 +9,8 @@ local M = {
 		-- Highlight, edit, and navigate code using a fast incremental parsing library
 		'nvim-treesitter/nvim-treesitter-textobjects', -- Additional text objects for treesitter
 	},
+	lazy = false,
+	branch = 'main',
 	build = ':TSUpdate',
 }
 
