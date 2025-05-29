@@ -14,7 +14,7 @@ vim.api.nvim_create_user_command("AiProofread", function(args)
 
 	vim.cmd("AiChatNew")
 	vim.api.nvim_feedkeys(
-		"iProofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
+		"Proofread this text for grammar and clarity. Provide short summary with what's corrected ON THE TOP. Proofreaded text should be AT THE END. KEEP SAME FORMAT, if it was markdown, html, or any other, keep it. Say `ALL CORRECT` if appropriate. Separate paragraphs and titles with extra new line:\n\n"
 		.. selection
 		.. "\n\n",
 		"n",
