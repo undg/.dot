@@ -25,7 +25,6 @@ return {
 		opts = {
 			on_attach = function(client, bufnr)
 				require('twoslash-queries').attach(client, bufnr)
-				-- require("nvim-navic").attach(client, bufnr)
 
 				-- Disable formatting. I use prettier with ./conform.lua
 				client.server_capabilities.documentFormattingProvider = false
