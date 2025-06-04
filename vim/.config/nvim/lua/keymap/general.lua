@@ -65,8 +65,8 @@ Keymap.insert('<C-v>', '<c-o>"+P')
 Keymap.visual('<C-v>', 'd"+P')
 -- Only visual, keep same yank in register
 Keymap.visual('<LEADER>p', '"_dP')
--- Copy all
-Keymap.normal('<LEADER>cc', 'ggVG"+y')
+-- Copy all and go back to original place
+Keymap.normal('<LEADER>YY', 'mmggVG"+y\'m')
 
 -- Keep it in center (quality of life)
 Keymap.normal('n', 'nzz')
