@@ -24,7 +24,6 @@ return {
 				lsp = true,
 			},
 			pickers = {
-				-- ccc.picker.custom_entries(colors.toHighlight),
 				ccc.picker.css_name,
 				ccc.picker.hex,
 				ccc.picker.css_rgb,
