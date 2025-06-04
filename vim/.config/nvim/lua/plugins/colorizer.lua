@@ -163,25 +163,25 @@ for _, value in pairs(colors) do
 	colorsList[#colorsList + 1] = value
 end
 
-local function getIndex()
+local function getCurrent()
 	local word = vim.fn.expand("<cWORD>")
 	word = word:gsub("[\"`'](.*)[\"`']", "%1") -- strip quotes
 	word = word:gsub("[,;()[{}]", "")       -- strip common characters that may be next to cWORD
 	word = word:gsub("]", "")               -- strip it separately, as it's hard to escape
 
-	local currentIndex
+	local index
 
 	for i, color in ipairs(colorsList) do
 		if color:lower() == word:lower() then
-			currentIndex = i
+			index = i
 		end
 	end
 
-	return word, currentIndex
+	return word, index
 end
 
 local function cycle(direction)
-	local word, currentIndex = getIndex()
+	local word, currentIndex = getCurrent()
 
 	local newColor
 
@@ -196,20 +196,20 @@ local function cycle(direction)
 	end
 
 	local line = vim.api.nvim_get_current_line()
-	local col = vim.fn.col(".")
-	local start_col = vim.fn.searchpos(word, "bcn", vim.fn.line("."))
-	local end_col = start_col[2] + #word - 1
+	local cursor_col = vim.fn.col(".")
+	local search_pos = vim.fn.searchpos(word, "bcn", vim.fn.line("."))
+	local search_col = search_pos[2]
+	local end_col = search_col + #word - 1
 
 	-- Only replace if cursor is within word bounds
-	if col >= start_col[2] and col <= end_col then
-		local before = line:sub(1, start_col[2] - 1)
+	if cursor_col >= search_col and cursor_col <= end_col then
+		local before = line:sub(1, search_col - 1)
 		local after = line:sub(end_col + 1)
 		vim.api.nvim_set_current_line(before .. newColor .. after)
+		-- Move cursor to the beginning or word
+		vim.api.nvim_win_set_cursor(0, { search_pos[1], search_pos[2] - 1 })
 	end
 end
-
--- Yellow = "#FFFF00"
--- RosyBrown = "#FFFF00", Red = "#4169E1",
 
 local function next()
 	cycle("next")
