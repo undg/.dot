@@ -149,19 +149,21 @@ local colors = {
 	YellowGreen = "#9ACD32",
 }
 
+local colorsToHighlight = {}
 for key, value in pairs(colors) do
-	colors[string.lower(key)] = value
+	colorsToHighlight[string.lower(key)] = value
+	colorsToHighlight[key] = value
 end
 
 local colorsList = {}
-
 for key, _ in pairs(colors) do
-	colorsList[#colorsList + 1] = key
+	table.insert(colorsList, key)
+end
+for _, value in pairs(colors) do
+	table.insert(colorsList, value)
 end
 
-for _, value in pairs(colors) do
-	colorsList[#colorsList + 1] = value
-end
+-- SlateBlue = "SeaGreen", Lavender = "#2F4F4F", #DCDCDC = "Crimson",
 
 local function getCurrent()
 	local word = vim.fn.expand("<cWORD>")
@@ -236,7 +238,7 @@ return {
 				lsp = true,
 			},
 			pickers = {
-				ccc.picker.custom_entries(colors),
+				ccc.picker.custom_entries(colorsToHighlight),
 			},
 		})
 
