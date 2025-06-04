@@ -164,10 +164,10 @@ for _, value in pairs(colors) do
 end
 
 local function getIndex()
-	local word = vim.fn.expand('<cWORD>')
-	word = word:gsub('["`\'](.*)["`\']', '%1') -- strip quotes
-	word = word:gsub("[,;()[{}]", '')       -- strip common characters that may be next to cWORD
-	word = word:gsub("]", '')               -- strip it separately, as it's hard to escape
+	local word = vim.fn.expand("<cWORD>")
+	word = word:gsub("[\"`'](.*)[\"`']", "%1") -- strip quotes
+	word = word:gsub("[,;()[{}]", "")       -- strip common characters that may be next to cWORD
+	word = word:gsub("]", "")               -- strip it separately, as it's hard to escape
 
 	local currentIndex
 
@@ -184,31 +184,43 @@ local function cycle(direction)
 	local word, currentIndex = getIndex()
 
 	local newColor
+
 	if not currentIndex then
 		return
 	end
 
-	if direction == 'next' then
+	if direction == "next" then
 		newColor = colorsList[currentIndex + 1] or colorsList[1]
 	else
 		newColor = colorsList[currentIndex - 1] or colorsList[#colorsList]
 	end
 
-	local newLine = vim.api.nvim_get_current_line():gsub(word, newColor)
+	local line = vim.api.nvim_get_current_line()
+	local col = vim.fn.col(".")
+	local start_col = vim.fn.searchpos(word, "bcn", vim.fn.line("."))
+	local end_col = start_col[2] + #word - 1
 
-	vim.api.nvim_set_current_line(newLine)
+	-- Only replace if cursor is within word bounds
+	if col >= start_col[2] and col <= end_col then
+		local before = line:sub(1, start_col[2] - 1)
+		local after = line:sub(end_col + 1)
+		vim.api.nvim_set_current_line(before .. newColor .. after)
+	end
 end
 
+-- Yellow = "#FFFF00"
+-- RosyBrown = "#FFFF00", Red = "#4169E1",
+
 local function next()
-	cycle('next')
+	cycle("next")
 end
 
 local function prev()
-	cycle('prev')
+	cycle("prev")
 end
 
 return {
-	'uga-rosa/ccc.nvim', -- https://github.com/uga-rosa/ccc.nvim
+	"uga-rosa/ccc.nvim", -- https://github.com/uga-rosa/ccc.nvim
 	config = function()
 		-- Enable true color
 		vim.opt.termguicolors = true
@@ -228,10 +240,10 @@ return {
 			},
 		})
 
-		Keymap.normal('<leader>cc', "", { desc = "(ccc)" })
-		Keymap.normal('<leader>ccc', ":CccPick<cr>", { desc = "(ccc) Color picker" })
-		Keymap.normal('<leader>cct', ":CccHighlighterToggle<cr>", { desc = "(ccc) Toggle color highlighter" })
-		Keymap.normal('<leader>ccn', next, { desc = "(ccc) next" })
-		Keymap.normal('<leader>ccp', prev, { desc = "(ccc) prev" })
-	end
+		Keymap.normal("<leader>cc", "", { desc = "(ccc)" })
+		Keymap.normal("<leader>ccc", ":CccPick<cr>", { desc = "(ccc) Color picker" })
+		Keymap.normal("<leader>cct", ":CccHighlighterToggle<cr>", { desc = "(ccc) Toggle color highlighter" })
+		Keymap.normal("<leader>ccn", next, { desc = "(ccc) next" })
+		Keymap.normal("<leader>ccp", prev, { desc = "(ccc) prev" })
+	end,
 }
