@@ -1,5 +1,12 @@
 local colors = require("custom.colors")
--- mock original colors
+
+-- Dynamically extracts the color word (must start with a capital letter) from mock_line,
+-- simulating the word under the cursor. Surrounding text should not be capitalized.
+local function extract_color_word(line)
+	return line:match("%u%l+")
+end
+
+-- mock original colors, capitalized, order matter
 colors.colors = {
 	"Indigo", -- 1
 	"Blue", -- 2
@@ -13,10 +20,8 @@ describe("Color Cycling", function()
 
 	before_each(function()
 		vim.fn = {
-			-- Dynamically extracts the color word (must start with a capital letter) from mock_line,
-			-- simulating the word under the cursor. Surrounding text should not be capitalized.
 			expand = function()
-				return mock_line:match("%u%l+")
+				return extract_color_word(mock_line)
 			end,
 			col = function()
 				return 6
@@ -68,5 +73,11 @@ describe("Color Cycling", function()
 		assert.equals(mock_line, "text Green text")
 		colors.cycle("prev")
 		assert.equals(mock_line, "text Blue text")
+	end)
+
+	it("should handle case when no color is under the cursor", function()
+		mock_line = "text noColorHere text"
+		colors.cycle("next")
+		assert.equals(mock_line, "text noColorHere text")
 	end)
 end)
