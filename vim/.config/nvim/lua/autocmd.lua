@@ -62,17 +62,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
 			or vim.bo.filetype == "help"
 			or vim.bo.filetype == "NvimTree"
 		then
-			vim.opt.relativenumber = false
+			vim.opt_local.relativenumber = false
 			return
 		end
-		vim.opt.relativenumber = true
+		vim.opt_local.relativenumber = true
 	end,
 })
 
 -- [Insert] absolute line numbers
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 	callback = function()
-		vim.opt.relativenumber = false
+		vim.opt_local.relativenumber = false
 	end,
 })
 
@@ -131,5 +131,20 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				vim.fn.winrestview(view)
 			end,
 		})
+	end,
+})
+
+-- Disable line numbers and conceal in Copilot buffers.
+--
+-- Types of copilot buffers:
+-- - `copilot-chat` - Main chat buffer
+-- - `copilot-overlay` - Overlay buffers (e.g. help, info, diff)
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "copilot-*",
+	callback = function()
+		-- Set buffer-local options
+		vim.opt_local.relativenumber = false
+		vim.opt_local.number = false
+		vim.opt_local.conceallevel = 0
 	end,
 })
