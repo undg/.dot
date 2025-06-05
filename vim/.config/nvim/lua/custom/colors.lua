@@ -5,14 +5,13 @@ M.colors = {
 	-- dark
 	"Black",
 	"Navy",
-	"Sienna",
+	"Green",
+	"Olive",
+	"Blue",
+	"Indigo",
+	"Red",
 	"Maroon",
 	"Magenta",
-	"Green",
-	"Red",
-	"Indigo",
-	"Blue",
-	"Olive",
 
 	-- light
 	"White",
@@ -67,7 +66,6 @@ function M.cycle(direction)
 
 	-- Only replace if cursor is within word bounds
 	if start_col < cursor_col and cursor_col <= end_col then
-		-- if cursor_col >= start_col + 1 and cursor_col <= end_col then
 		local before = line:sub(1, start_col)
 		local after = line:sub(end_col + 1)
 		vim.api.nvim_set_current_line(before .. newColor .. after)
