@@ -41,5 +41,12 @@ return {
 		Keymap.normal("<leader>cct", ":CccHighlighterToggle<cr>", { desc = "(ccc) Toggle color highlighter" })
 		Keymap.normal("<leader>ccn", colors.next, { desc = "(ccc) next" })
 		Keymap.normal("<leader>ccp", colors.prev, { desc = "(ccc) prev" })
+
+		Keymap.normal("<leader>cc0", colors.go_by(1), { desc = "(ccc) next" })
+		Keymap.normal("<leader>cc1", colors.go_by(2), { desc = "(ccc) next" })
+		Keymap.normal("<leader>cc2", colors.go_by(3), { desc = "(ccc) next" })
+		Keymap.normal("<leader>cc3", colors.go_by(4), { desc = "(ccc) next" })
+		Keymap.normal("<leader>cc4", colors.go_by(5), { desc = "(ccc) next" })
+		Keymap.normal("<leader>cc5", colors.go_by(6), { desc = "(ccc) next" })
 	end,
 }
