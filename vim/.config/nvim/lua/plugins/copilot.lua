@@ -74,7 +74,15 @@ When presenting code changes:
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
 			Keymap.visual("<leader>aa", chat.open, { desc = "(CopilotChat) open chat window" })
-			Keymap.visual("<leader>ad", ":CopilotChatDoc", { desc = "(CopilotChat) generate documentation" })
+
+			Keymap.normal("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
+			Keymap.visual("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
+
+			Keymap.normal("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
+			Keymap.visual("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
+
+			Keymap.normal("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
+			Keymap.visual("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
 		end,
 	},
 	-- See Commands section for default commands if you want to lazy load on them
