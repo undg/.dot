@@ -149,7 +149,7 @@ Keymap.normal("<A-,>", "<C-w>K")
 Keymap.normal("<A-.>", "<C-w>L")
 
 -- only terminal.
--- ESC to exit insert and go back to normal mode
+-- <Leader>ESC to exit insert and go back to normal mode
 vim.api.nvim_set_keymap("t", "<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
 
 -- yank file path
