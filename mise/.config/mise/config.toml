@@ -1,7 +1,7 @@
 [tools]
 nodejs = "latest"
 golang = "latest"
-python = "3.13.2"
+python = "3.12"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
