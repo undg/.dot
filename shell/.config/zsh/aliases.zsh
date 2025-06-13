@@ -4,7 +4,7 @@
 # @TODO (Bartek Laskowski) 2025-03-12: it's violation of single responsibility. Redesign installation of essential packages. They should not be part of this file.
 
 # main install function
-local SKIP_INSTALLS=0
+local SKIP_INSTALLS=1
 local FIRST_INSTALLS=0
 install() {
 	local package=$1
