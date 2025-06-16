@@ -99,8 +99,8 @@ alias duh="du -h | sort -h"
 alias watch="watch --color --interval 0.5 "
 
 if hash nvim 2>/dev/null; then
-	alias v="/usr/bin/vim"
-	alias vim="/usr/bin/nvim"
+	alias v="vim"
+	alias vim="nvim"
 	alias vp="nvim --nopugin"
 	alias gp="nvim -c ':AiProofread'"
 else
