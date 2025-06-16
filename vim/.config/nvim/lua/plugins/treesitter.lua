@@ -16,9 +16,9 @@ return {
 		},
 	},
 	lazy = false,
-	-- branch = "main", -- new releases but broken
-	branch = "master", -- pin to legacy, not broken
-	-- commit = "42fc28ba918343ebfd5565147a42a26580579482", -- pin to before 308d27
+	-- branch = "main", -- new releases, unstable
+	-- branch = "master", -- legacy backward compatible
+	commit = "42fc28ba918343ebfd5565147a42a26580579482", -- pin to before 308d27
 	build = ":TSUpdate",
 
 	config = function()
