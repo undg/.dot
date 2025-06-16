@@ -64,6 +64,12 @@ install_with_apt() {
 
 alias :q='exit'
 
+if command -v ripgrep &>/dev/null; then
+else
+	echo "ripgrep is not installed."
+	install ripgrep
+fi
+
 if command -v eza &>/dev/null; then
 	alias l='eza'
 	alias ls='eza --group-directories-first --icons --git'
