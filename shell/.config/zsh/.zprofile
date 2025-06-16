@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Profile file. Runs on login.
 
 source ~/.config/zsh/path.zsh
@@ -7,7 +7,7 @@ source ~/.config/zsh/path.zsh
 # Start: old zsh artefacts
 export GPG_TTY=$(tty)
 export VISUAL=nvim
-export VEDITOR="$VISUAL"
+export EDITOR="$VISUAL"
 export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 
 # End: old zsh artefacts
@@ -53,5 +53,12 @@ export QT_SCALE_FACTOR=1
 
 export GTK_THEME=Adwaita:dark
 
-# Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+if [[ "$(uname)" == "Linux" ]]; then
+	# Start graphical server if i3 not already running.
+	[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+fi
+
+
+if [[ "$(uname)" == "Darwin" ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
