@@ -1,29 +1,34 @@
--- https://github.com/nvim-treesitter/nvim-treesitter
-
--- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
--- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 return {
-	'nvim-treesitter/nvim-treesitter',
+	"nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
 	dependencies = {
-		'JoosepAlviste/nvim-ts-context-commentstring', -- helper plugin for comment str and [tj]sx,
-		-- { 'JoosepAlviste/nvim-ts-context-commentstring', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
+		-- helper plugin for comment str and [tj]sx,
+		{
+			"JoosepAlviste/nvim-ts-context-commentstring", -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+			dependencies = { "nvim-treesitter/nvim-treesitter" },
+		},
 
 		-- Highlight, edit, and navigate code using a fast incremental parsing library
-		'nvim-treesitter/nvim-treesitter-textobjects', -- Additional text objects for treesitter
-		-- { 'nvim-treesitter/nvim-treesitter-textobjects', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
+		-- Additional text objects for treesitter
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects", -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+			-- commit = "89ebe73cd2836db80a22d9748999ace0241917a5", -- pin to before 308d27
+			dependencies = { "nvim-treesitter/nvim-treesitter" },
+		},
 	},
 	lazy = false,
-	branch = 'main',
-	build = ':TSUpdate',
+	-- branch = "main", -- new releases but broken
+	branch = "master", -- pin to legacy, not broken
+	-- commit = "42fc28ba918343ebfd5565147a42a26580579482", -- pin to before 308d27
+	build = ":TSUpdate",
 
 	config = function()
-		local ts_configs_ok, ts_configs = pcall(require, 'nvim-treesitter.configs')
+		local ts_configs_ok, ts_configs = pcall(require, "nvim-treesitter.configs")
 
-		local not_ok = not ts_configs_ok and 'nvim-treesitter.configs' --
+		local not_ok = not ts_configs_ok and "nvim-treesitter.configs" --
 			or false
 
 		if not_ok then
-			vim.notify('plugins/treesitter.configs.lua: missing requirements', vim.log.levels.ERROR)
+			vim.notify("plugins/treesitter.configs.lua: missing requirements", vim.log.levels.ERROR)
 			return
 		end
 
@@ -31,7 +36,7 @@ return {
 		ts_configs.setup({
 			modules = {},
 			ignore_install = {},
-			ensure_installed = ensure_installed,
+			ensure_installed = {},
 			sync_install = false,
 			auto_install = true,
 			highlight = {
@@ -44,10 +49,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = 'vn',
-					node_incremental = 'vn',
-					scope_incremental = 'vnm',
-					node_decremental = 'vm',
+					init_selection = "vn",
+					node_incremental = "vn",
+					scope_incremental = "vnm",
+					node_decremental = "vm",
 				},
 			},
 			indent = {
@@ -59,32 +64,32 @@ return {
 					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
 					keymaps = {
 						-- You can use the capture groups defined in textobjects.scm
-						['af'] = '@function.outer',
-						['if'] = '@function.inner',
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
 						-- ['ac'] = '@class.outer',
 						-- ['ic'] = '@class.inner',
-						['ac'] = '@code_block.outer',
-						['ic'] = '@code_block.inner',
+						["ac"] = "@code_block.outer",
+						["ic"] = "@code_block.inner",
 					},
 				},
 				move = {
 					enable = true,
 					set_jumps = true, -- whether to set jumps in the jumplist
 					goto_next_start = {
-						[']]'] = '@function.outer',
-						[']v'] = '@class.outer',
+						["]]"] = "@function.outer",
+						["]v"] = "@class.outer",
 					},
 					goto_previous_start = {
-						['[['] = '@function.outer',
-						['[m'] = '@class.outer',
+						["[["] = "@function.outer",
+						["[m"] = "@class.outer",
 					},
 					goto_next_end = {
-						[']['] = '@function.outer',
-						[']V'] = '@class.outer',
+						["]["] = "@function.outer",
+						["]V"] = "@class.outer",
 					},
 					goto_previous_end = {
-						['[]'] = '@function.outer',
-						['[M'] = '@class.outer',
+						["[]"] = "@function.outer",
+						["[M"] = "@class.outer",
 					},
 				},
 			},
@@ -97,5 +102,5 @@ return {
 				-- termcolors = {} -- table of colour name strings
 			},
 		})
-	end
+	end,
 }
