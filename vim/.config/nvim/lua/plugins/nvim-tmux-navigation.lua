@@ -14,6 +14,12 @@ function M.init()
 	Keymap.normal('<M-k>', nvim_tmux_nav.NvimTmuxNavigateUp)
 	Keymap.normal('<M-l>', nvim_tmux_nav.NvimTmuxNavigateRight)
 	Keymap.normal('<M-Bslash>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
+
+	-- move for less capable OS without alt key
+	Keymap.normal('˙', nvim_tmux_nav.NvimTmuxNavigateLeft)
+	Keymap.normal('∆', nvim_tmux_nav.NvimTmuxNavigateDown)
+	Keymap.normal('˚', nvim_tmux_nav.NvimTmuxNavigateUp)
+	Keymap.normal('¬', nvim_tmux_nav.NvimTmuxNavigateRight)
 end
 
 return M

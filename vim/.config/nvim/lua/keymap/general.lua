@@ -135,18 +135,33 @@ Keymap.normal("tt", ":tab split<CR>")
 -- keymap.normal('<A-j>', '<C-w><C-j>')
 -- keymap.normal('<A-k>', '<C-w><C-k>')
 -- keymap.normal('<A-l>', '<C-w><C-l>')
+-- -- MOVE for less capable OS without alt key
+-- Keymap.normal("˙", "<C-w>H")
+-- Keymap.normal("∆", "<C-w>J")
+-- Keymap.normal("˚", "<C-w>K")
+-- Keymap.normal("¬", "<C-w>L")
 
 -- RESIZE
+Keymap.normal("<A-y>", ":vertical resize -5<cr>")
 Keymap.normal("<A-u>", ":resize +5<cr>")
 Keymap.normal("<A-i>", ":resize -5<cr>")
-Keymap.normal("<A-y>", ":vertical resize -5<cr>")
 Keymap.normal("<A-o>", ":vertical resize +5<cr>")
+-- RESIZE for less capable OS without alt key
+Keymap.normal("¥", ":vertical resize -5<cr>")
+Keymap.normal("¨", ":resize +5<cr>")
+Keymap.normal("ˆ", ":resize -5<cr>")
+Keymap.normal("ø", ":vertical resize +5<cr>")
 
 -- MOVE
 Keymap.normal("<A-n>", "<C-w>H")
 Keymap.normal("<A-m>", "<C-w>J")
 Keymap.normal("<A-,>", "<C-w>K")
 Keymap.normal("<A-.>", "<C-w>L")
+-- MOVE for less capable OS without alt key
+Keymap.normal("˜", "<C-w>H")
+Keymap.normal("µ", "<C-w>J")
+Keymap.normal("≤", "<C-w>K")
+Keymap.normal("≥", "<C-w>L")
 
 -- only terminal.
 -- <Leader>ESC to exit insert and go back to normal mode
