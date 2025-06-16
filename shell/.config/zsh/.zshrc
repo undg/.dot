@@ -100,7 +100,7 @@ src_local "$ZDOTDIR/aliases.zsh"
 
 if command -v mise &>/dev/null; then
 	# eval "$(/bin/mise activate zsh --shims)" # lang version manager/installer
-	eval "$(/bin/mise activate zsh)" # lang version manager/installer
+	eval "$(mise activate zsh)" # lang version manager/installer
 fi
 
 
