@@ -31,7 +31,7 @@ mouse = "Middle"
 save_to_clipboard = true
 
 [window]
-decorations = "none"
+#decorations = "none"
 opacity = 0.91
 
 [window.padding]
