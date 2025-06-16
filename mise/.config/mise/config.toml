@@ -5,12 +5,12 @@ python = "3.12"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
+npm    = "latest"
 pnpm   = "latest"
-java   = "latest"
-yarn  = "latest"
-usage = "latest"
-go = "latest"
-node = "22"
+yarn   = "latest"
+usage  = "latest"
+go     = "latest"
+node   = "22"
 
 
 # This was a quick fix for corepack false positives.
