@@ -1,1 +1,3 @@
 secret.zsh
+# special macOS patch (since Venture) keeps those non standard sessions ids here
+.zsh_sessions/
