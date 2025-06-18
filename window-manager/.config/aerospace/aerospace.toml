@@ -75,10 +75,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 [gaps]
 inner.horizontal = 8
 inner.vertical =   8
-outer.left =       8
-outer.bottom =     8
-outer.top =        8
-outer.right =      8
+outer.left =       4
+outer.right =      4
+outer.bottom = [{monitor."built-in" = 2 }, 10]
+outer.top = [{ monitor."built-in" = 8 }, 42]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
