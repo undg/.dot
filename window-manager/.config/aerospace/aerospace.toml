@@ -12,16 +12,22 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# after-startup-command = [
+#     # JankyBorders has a built-in detection of already running process,
+#     # so it won't be run twice on AeroSpace restart
+#     'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+# ]
+
 after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+    'exec-and-forget ~/.config/borders/bordersrc'
 ]
 
-exec-on-workspace-change = [
-	'/bin/bash',
-	'-c',
-	'/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Start AeroSpace at login
@@ -48,6 +54,11 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 key-mapping.preset = 'qwerty'
 
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
+automatically-unhide-macos-hidden-apps = true
+
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
@@ -62,12 +73,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+inner.horizontal = 8
+inner.vertical =   8
+outer.left =       8
+outer.bottom =     8
+outer.top =        8
+outer.right =      8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -138,6 +149,9 @@ cmd-shift-7 = 'move-node-to-workspace 7'
 cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 
+cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+cmd-shift-f = 'fullscreen'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 # cmd-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
@@ -153,11 +167,29 @@ r = ['reload-config', 'mode main']
 esc = ['flatten-workspace-tree', 'mode main'] # reset layout
 # s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
  # (accordion|tiles|horizontal|vertical|h_accordion|v_accordion|h_tiles|v_tiles|tiling|floating)
-space = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+# space = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 # backspace = ['close-all-windows-but-current', 'mode main']
 f = 'fullscreen'
 
-cmd-shift-h = ['join-with left', 'mode main']
-cmd-shift-j = ['join-with down', 'mode main']
-cmd-shift-k = ['join-with up', 'mode main']
-cmd-shift-l = ['join-with right', 'mode main']
+cmd-h = ['join-with left', 'mode main']
+cmd-j = ['join-with down', 'mode main']
+cmd-k = ['join-with up', 'mode main']
+cmd-l = ['join-with right', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+    # 1 = 1                            # Monitor sequence number from left to right. 1-based indexing
+    # 2 = 'main'                       # Main monitor
+    # 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+    # 4 = 'built-in'                   # Case insensitive regex substring
+    # 5 = '^built-in retina display$'  # Case insensitive regex match
+    # 6 = ['secondary', 'dell']        # You can specify multiple patterns. The first matching pattern will be used
+
+    1 = '1' 
+    2 = '1'
+    3 = '1'
+    4 = '1'
+    5 = [ 'built-in' ] 
+    6 = [ 'built-in' ]
+    7 = [ '3', '2' ]
+    8 = [ '3', '2' ]
+    9 = [ '3', '2' ]
