@@ -66,8 +66,6 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer",   keyword_length = 3 },
 				{ name = "spell",    keyword_length = 3 },
-				-- { name = 'codeium',   keyword_length = 3 },
-				-- { name = 'cody' },
 			},
 			snippet = {
 				-- REQUIRED - you must specify a snippet engine
@@ -86,7 +84,7 @@ return {
 						nvim_lsp = "",
 						nvim_lua = "",
 						path = "",
-						luasnips = "✂",
+						luasnip = "✂",
 						buffer = "",
 						spell = "",
 						codeium = "",
