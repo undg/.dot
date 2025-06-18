@@ -88,8 +88,6 @@ return {
 						luasnip = "✂",
 						buffer = "",
 						spell = "",
-						codeium = "",
-						cody = "",
 					},
 				}),
 			},
