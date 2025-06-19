@@ -14,6 +14,7 @@ local function git_user()
 	return ""
 end
 
+-- stylua: ignore
 return {
 	s("todo", {
 		f(function()
@@ -22,15 +23,12 @@ return {
 		i(1),
 	}),
 	s("todo//", {
-		t("// @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "),
-		i(1),
+		t("// @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
 	}),
 	s("todo#", {
-		t("# @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "),
-		i(1),
+		t("# @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
 	}),
 	s("todo--", {
-		t("-- @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "),
-		i(1),
+		t("-- @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
 	}),
 }

@@ -17,10 +17,23 @@ return {
 			dependencies = { "rafamadriz/friendly-snippets" },
 			config = function()
 				require("luasnip.loaders.from_vscode").load()
-				require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+				require("luasnip.loaders.from_lua").lazy_load({
+					paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+				})
+
+				vim.keymap.set({ "i", "s" }, "<C-k>", function()
+					require("luasnip").jump(1)
+				end, { silent = true })
+				vim.keymap.set({ "i", "s" }, "<C-j>", function()
+					require("luasnip").jump(-1)
+				end, { silent = true })
+
+				vim.keymap.set({ "i", "s" }, "<C-n>", "<Plug>luasnip-next-choice", {})
+				vim.keymap.set({ "i", "s" }, "<C-p>", "<Plug>luasnip-prev-choice", {})
 			end,
 		},
 	},
+
 	config = function()
 		local cmp_ok, cmp = pcall(require, "cmp")
 		local lspkind_ok, lspkind = pcall(require, "lspkind")
