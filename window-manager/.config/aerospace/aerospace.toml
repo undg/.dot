@@ -105,23 +105,17 @@ outer.top = [{ monitor."built-in" = 8 }, 42]
 # cmd-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 # cmd-enter = 'exec-and-forget open /opt/homebrew/bin/alacritty'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-slash = 'layout tiles horizontal vertical'
-cmd-comma = 'layout accordion horizontal vertical'
-f11 = 'fullscreen'
-cmd-q = 'close'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-h = 'focus left'
 cmd-j = 'focus down'
 cmd-k = 'focus up'
 cmd-l = 'focus right'
 
-cmd-alt-j = 'move down'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-alt-h = 'move left'
-cmd-alt-k = 'move up'
-cmd-alt-l = 'move right'
+cmd-shift-j = 'move down'
+cmd-shift-h = 'move left'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-shift-minus = 'resize smart -50'
@@ -156,6 +150,12 @@ cmd-shift-f = 'fullscreen'
 # cmd-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 cmd-m = 'move-workspace-to-monitor --wrap-around next'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+cmd-t = 'layout tiles horizontal vertical'
+cmd-shift-t = 'layout accordion horizontal vertical'
+f11 = 'fullscreen'
+cmd-q = 'close'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-semicolon = 'mode service'
