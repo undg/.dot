@@ -117,6 +117,12 @@ cmd-shift-h = 'move left'
 cmd-shift-k = 'move up'
 cmd-shift-l = 'move right'
 
+cmd-alt-h = 'join-with left'
+cmd-alt-j = 'join-with down'
+cmd-alt-k = 'join-with up'
+cmd-alt-l = 'join-with right'
+
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-shift-minus = 'resize smart -50'
 cmd-shift-equal = 'resize smart +50'
