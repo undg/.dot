@@ -23,11 +23,11 @@ return {
 		t("expect("), i(1), t(")"), i(2)
 	}),
 	s("cl", {
-		t({ "console.log(", '  "%c ' }), i(1), t({ ':",', '  "background: ' }), i(2, "Navy"), t("; color: "), i(3,
+		t({ "console.log(", '  "%c ' }), rep(1), t({ ':",', '  "background: ' }), i(2, "Navy"), t("; color: "), i(3,
 		" White"), t({ "; padding: 2px; border-radius:3px\",", "  " }), i(1), t({ ",", ")" })
 	}),
 	s("clc", {
-		t({ 'console.log(', '  "\\x1b[41m  ' }), i(1), t({ ':  \\x1b[0m",', '  ' }), i(1), t({ ",", ")" })
+		t({ 'console.log(', '  "\\x1b[41m  ' }), rep(1), t({ ':  \\x1b[0m",', '  ' }), i(1), t({ ",", ")" })
 	}),
 	s("fori", {
 		t("for(let "), i(1, "i"), t(" = 0; "), rep(1), t("< "), i(2, "arr.length"), t("; "), rep(1), t("++) {"), t({ "",
