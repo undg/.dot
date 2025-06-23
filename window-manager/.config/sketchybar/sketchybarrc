@@ -5,6 +5,7 @@
 # For a (much) more advanced configuration example see my dotfiles:
 # https://github.com/FelixKratz/dotfiles
 
+CONFIG_DIR="~/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items"
 
@@ -23,16 +24,16 @@ sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
 # https://felixkratz.github.io/SketchyBar/config/items
 
 default=(
-  padding_left=5
-  padding_right=5
-  icon.font="Hack Nerd Font:Bold:17.0"
-  label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=4
-  icon.padding_right=4
-  label.padding_left=4
-  label.padding_right=4
+	padding_left=5
+	padding_right=5
+	icon.font="Hack Nerd Font:Bold:17.0"
+	label.font="Hack Nerd Font:Bold:14.0"
+	icon.color=0xffffffff
+	label.color=0xffffffff
+	icon.padding_left=4
+	icon.padding_right=4
+	label.padding_left=4
+	label.padding_right=4
 )
 sketchybar --default "${default[@]}"
 
@@ -64,17 +65,40 @@ sketchybar --default "${default[@]}"
 # multi monitor spaces
 sketchybar --add event aerospace_workspace_change
 
+if [[ ! -f ~/.monitors ]]; then
+	aerospace list-monitors --format '%{monitor-name}' > ~/.monitors
+fi
+lookup_monitor_id() {
+	local monitor_name="$1"
+	aerospace list-monitors --format '%{monitor-id} %{monitor-appkit-nsscreen-screens-id}' \
+	| awk -v name="$monitor_name" '{
+		mon_name = substr($0, index($0,$2));
+		if (mon_name == name) { print $1; exit }
+	}'
+}
+
 declare -A monitors
-while IFS=" " read -r monitor_id display_id; do
+
+
+while IFS=";" read -r monitor_id display_id; do
+  monitors_file["$monitor_name"]="$display_id"
+done < <(aerospace list-monitors --format '%{monitor-id};%{monitor-name}')
+
+while IFS=";" read -r monitor_name monitor_id display_id; do
   monitors["$monitor_id"]="$display_id"
-done < <(aerospace list-monitors --format '%{monitor-id} %{monitor-appkit-nsscreen-screens-id}')
+  monitor_ids["$monitor_id"]="$display_id"
+  monitor_names["$monitor_id"]="$display_id"
+done < <(aerospace list-monitors --format '%{monitor-name};%{monitor-id};%{monitor-appkit-nsscreen-screens-id}')
 
 for monitor_id in "${!monitors[@]}"; do
+	echo '======================'
+	echo $monitor_id ${monitors["$monitor_id"]}
+	echo '======================'
   for sid in $(aerospace list-workspaces --monitor $monitor_id); do
     sketchybar --add item space.$sid left \
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
-            display=${monitors["$monitor_id"]}\
+			display=${monitors["$monitor_id"]}\
             background.color=0x44ffffff \
             background.corner_radius=5 \
             background.height=20 \
@@ -91,10 +115,10 @@ done
 
 
 sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off \
-           --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+	--set chevron icon= label.drawing=off \
+	--add item front_app left \
+	--set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+	--subscribe front_app front_app_switched
 
 ##### Adding Right Items #####
 # In the same way as the left items we can add items to the right side.
@@ -109,13 +133,13 @@ sketchybar --add item chevron left \
 
 
 sketchybar --add item clock right \
-           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
-           --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change \
-           --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
+	--set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
+	--add item volume right \
+	--set volume script="$PLUGIN_DIR/volume.sh" \
+	--subscribe volume volume_change \
+	--add item battery right \
+	--set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+	--subscribe battery system_woke power_source_change
 
 source $ITEM_DIR/cpu.sh
 
