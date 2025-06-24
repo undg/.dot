@@ -169,7 +169,8 @@ cmd-semicolon = 'mode service'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-r = ['reload-config', 'mode main']
+r = ['reload-config', 'exec-and-forget sketchybar --reload', 'mode main']
+shift-r = ['reload-config', 'mode main']
 esc = ['flatten-workspace-tree', 'mode main'] # reset layout
 # s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
  # (accordion|tiles|horizontal|vertical|h_accordion|v_accordion|h_tiles|v_tiles|tiling|floating)
