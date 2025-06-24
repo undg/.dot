@@ -7,6 +7,9 @@ local ts_snippets = require("snippets.typescript")
 
 -- stylua: ignore
 local ts_react_snippet = {
+	s("onclickhandler", {
+		t("React.MouseEventHandler<Element>")
+	}),
 }
 
 local merged_snippets = {}
