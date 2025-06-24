@@ -11,9 +11,10 @@ local M = {
 local opts = {
 	options = {
 		mode = 'buffers', -- set to "tabs" to only show tabpages instead
-		numbers = function(opts)
-			return opts.lower(opts.ordinal)
-		end, -- "both", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+		numbers = "both",
+		-- numbers = function(opts)
+		-- 	return opts.lower(opts.ordinal)
+		-- end, -- "both", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
 		close_command = 'Bdelete! %d', -- can be a string | function, see "Mouse actions"
 		right_mouse_command = 'vertical sbuffer %d', -- can be a string | function, see "Mouse actions"
 		middle_mouse_command = 'horizontal sbuffer %d', -- can be a string | function, see "Mouse actions"
@@ -22,7 +23,7 @@ local opts = {
 			icon = '▎', -- this should be omitted if indicator style is not 'icon'
 			style = 'icon', -- 'icon' | 'underline' | 'none',
 		},
-		buffer_close_icon = '',
+		buffer_close_icon = '',
 		modified_icon = '●',
 		close_icon = '',
 		left_trunc_marker = '',
