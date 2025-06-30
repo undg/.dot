@@ -5,8 +5,8 @@
 -- https://github.com/neovim/nvim-lspconfig/issues/1931
 
 local function fix_by_custom_hover()
-	local border_ok, border = pcall(require, "utils.border")
-	local not_ok = not border_ok and "utils.border" --
+	local hu_ok, hu = pcall(require, "utils.hover-ui")
+	local not_ok = not hu_ok and "utils.hover-ui" --
 		or false
 
 	if not_ok then
@@ -16,7 +16,7 @@ local function fix_by_custom_hover()
 	-- Replace hover function with custom implementation
 	-- https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
 	vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
-		config = config or { border = border }
+		config = config or { border = hu.border }
 		config.focus_id = ctx.method
 		if not (result and result.contents) then
 			return
@@ -47,6 +47,7 @@ end
 
 if ok_notify then
 	-- Chose one fix and uncomment
+	-- fix_by_custom_hover()
 	fix_by_filter_notify()
 end
 -- fix_by_custom_hover()

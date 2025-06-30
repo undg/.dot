@@ -1,3 +1,4 @@
+local hu_ok, hu = pcall(require, "utils.hover-ui")
 local str_ok, str = pcall(require, "utils.str")
 local telescope_ok = pcall(require, "telescope")
 local lspsaga_ok = pcall(require, "lspsaga")
@@ -5,6 +6,7 @@ local lspsaga_ok = pcall(require, "lspsaga")
 local not_ok = not lspsaga_ok and "lspsaga"
 	or not telescope_ok and "telescope"
 	or not str_ok and "utils.str"
+	or not hu_ok and "utils.hover-ui"
 	or false -- all ok
 
 if not_ok then
@@ -33,7 +35,7 @@ Keymap.normal("K", function()
 	if vim.bo.filetype == "help" then
 		vim.api.nvim_feedkeys("K", "ni", true)
 	else
-		vim.lsp.buf.hover()
+		vim.lsp.buf.hover(hu.style)
 	end
 end, { desc = "lsp: hover / help: go to ref", silent = true, noremap = true })
 
@@ -78,11 +80,15 @@ Keymap.normal(
 	":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>",
 	{ silent = true, noremap = true, desc = "lsp: diagnostic_goto_next ERROR" }
 )
-Keymap.normal("gj", vim.diagnostic.goto_next, { silent = true, noremap = true, desc = "lsp: diagnostic_goto_next" })
+Keymap.normal("gj", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { silent = true, noremap = true, desc = "lsp: diagnostic_goto_next" })
 Keymap.normal(
 	"<leader>gk",
 	":lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, })<cr>",
 	{ silent = true, noremap = true, desc = "lsp: diagnostic_goto_prev ERROR" }
 )
-Keymap.normal("gk", vim.diagnostic.goto_prev, { silent = true, noremap = true, desc = "lsp: diagnostic_goto_prev" })
+Keymap.normal("gk", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { silent = true, noremap = true, desc = "lsp: diagnostic_goto_prev" })
 Keymap.normal("gh", vim.diagnostic.open_float, { silent = true, noremap = true, desc = "lsp: diagnostic_open_float" })
