@@ -1,7 +1,11 @@
+local str_ok, str = pcall(require, "utils.str")
 local telescope_ok = pcall(require, "telescope")
 local lspsaga_ok = pcall(require, "lspsaga")
 
-local not_ok = not lspsaga_ok and "lspsaga" or not telescope_ok and "telescope" or false -- all ok
+local not_ok = not lspsaga_ok and "lspsaga"
+	or not telescope_ok and "telescope"
+	or not str_ok and "utils.str"
+	or false -- all ok
 
 if not_ok then
 	vim.notify("keymap/lsp.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
@@ -33,7 +37,8 @@ Keymap.normal("K", function()
 	end
 end, { desc = "lsp: hover / help: go to ref", silent = true, noremap = true })
 
-local str = require("utils.str")
+Keymap.normal("<leader>K", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
+
 local function code_action_add_import()
 	vim.lsp.buf.code_action({
 		filter = function(action)
@@ -45,7 +50,6 @@ local function code_action_add_import()
 	})
 end
 
-Keymap.normal("<leader>K", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
 Keymap.normal("ga", code_action_add_import, { desc = "lsp: source code_action" })
 
 Keymap.normal("gA", vim.lsp.buf.code_action, { desc = "lsp: code_action" })
