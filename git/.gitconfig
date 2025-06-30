@@ -17,11 +17,13 @@
 	ck = checkout
 	b = branch -vv
 	br = branch
-	cm = commit -m
+	cm = commit
+	cma = "!f() { git add . && git commit \"$@\"; }; f"
+	cml = "!git commit -m \"$(cat $(git rev-parse --git-dir)/COMMIT_EDITMSG)\""
 	st = status
 	d = difftool
-;       l = log --decorate --oneline --graph
 	l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
+        lg = log --decorate --oneline --graph
 	m = merge --no-ff
 	ff = merge --ff-only
 	pull = pull --prune
@@ -31,7 +33,6 @@
 	; rp = checkout HEAD -- package-lock.json   
 	prune-origin = remote prune origin
 	branch-list-remote = for-each-ref --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p)    %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=authordate refs/remotes
-	c = commit
 
 
 [diff]
