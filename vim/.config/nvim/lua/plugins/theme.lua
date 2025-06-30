@@ -60,17 +60,27 @@ return {
 		vim.g.indent_blankline_char_highlight = 'LineNr'
 		vim.g.indent_blankline_show_trailing_blankline_indent = false
 
-		-- Style and layout for diagnostic/hover floating windows
+		-- -- Style and layout for diagnostic/hover floating windows
 		local styled = {
 			border = 'rounded',
 			style = 'minimal',
 			noautocmd = true,
 			wrap_at = 40,
 		}
-
-		-- @TODO (undg) 2025-05-06: vim.lsp.with() and all vim.lsp.handlers.* are deprecated
-		vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
-		vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
+		--
+		-- vim.api.nvim_create_autocmd('LspAttach', {
+		-- 	group = vim.api.nvim_create_augroup('LspFloatingStyle', { clear = true }),
+		-- 	callback = function(args)
+		-- 		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		-- 		if client then
+		-- 			client.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
+		-- 			client.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
+		-- 		end
+		-- 	end,
+		-- })
+		-- -- @TODO (undg) 2025-05-06: vim.lsp.with() and all vim.lsp.handlers.* are deprecated
+		-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
+		-- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
 
 		vim.diagnostic.config({
 			float = {

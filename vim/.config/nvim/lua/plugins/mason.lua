@@ -1,5 +1,5 @@
-local border_ok, border = pcall(require, 'utils.border')
-local not_ok = not border_ok and 'utils.border' --
+local hu_ok, hu = pcall(require, 'utils.hover-ui')
+local not_ok = not hu_ok and 'utils.hover-ui' --
 	or false
 
 if not_ok then
@@ -18,7 +18,7 @@ return {
 	config = function()
 		require('mason').setup({
 			ui = {
-				border = border,
+				border = hu.border,
 			},
 		})
 	end,
