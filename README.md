@@ -28,6 +28,15 @@ OR CLI:
 git config --local core.hooksPath _githooks/
 ```
 
+
+
+Add git hooks to your git config:
+
+```
+
+[core]
+	hooksPath = _githooks
+```
 Done
 
 
