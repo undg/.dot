@@ -1,7 +1,7 @@
 [tools]
 nodejs = "latest"
 golang = "latest"
-python = "3.12"
+python = "3.11.9"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
@@ -11,6 +11,9 @@ yarn   = "latest"
 usage  = "latest"
 go     = "latest"
 node   = "20"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]
 
 
 # This was a quick fix for corepack false positives.
