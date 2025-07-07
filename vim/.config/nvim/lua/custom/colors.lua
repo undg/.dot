@@ -3,9 +3,16 @@ local M = {}
 
 M.colors = {
 	-- dark
-	"Black", "Navy", "Green", "Blue", "Indigo", "Red", "Olive", "Maroon", "Magenta",
+	"Black", "Green", "Blue", "Olive", "Maroon", "Navy", "Magenta",
 	-- light
-	"White", "Orange", "LimeGreen", "Yellow", "Tomato", "Bisque", "Aqua", "Khaki", "Gray",
+	"White", "LimeGreen", "Aqua", "Yellow", "Tomato", "Khaki", "LightGray",
+}
+
+M.colors_dark = {
+	"Black", "Green", "Blue", "Olive", "Maroon", "Navy", "Magenta",
+}
+M.colors_ligth = {
+	"White", "LimeGreen", "Aqua", "Yellow", "Tomato", "Khaki", "LightGray",
 }
 
 function M.getCurrent()
@@ -69,6 +76,12 @@ function M.go_by(n)
 	return function()
 		M.cycle_by(n)
 	end
+end
+
+function M.flip()
+	local word, currentIndex = M.getCurrent()
+
+	--  @TODO (undg) 2025-07-07: implement flip from light to dark
 end
 
 return M
