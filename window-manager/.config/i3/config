@@ -27,13 +27,12 @@ set $reboot sudo -A reboot
 set $hibernate sudo -A systemctl suspend
 
 
-# set $DP_left $SCREEN_LEFT
-# set $DP_right $SCREEN_RIGHT
-# set $DP_top $SCREEN_TOP
+set $DP_pc_left "DisplayPort-1"
+set $DP_pc_right "DisplayPort-0"
 
-set $DP_left DisplayPort-1
-set $DP_right DisplayPort-0                                                                          ▐
-set $DP_top HDMI-A-0
+set $DP_laptop "eDP"
+set $DP_laptop_right "HDMI-A-0"
+set $DP_laptop_left "HDMI-A-1"
 
 set $browser_brave $BROWSER --enable-blink-features=MiddleClickAutoscroll
 set $browser_ms microsoft-edge-stable --enable-blink-features=MiddleClickAutoscroll
@@ -112,14 +111,14 @@ bar {
 
 set $ws1  "1:code"
 set $ws2  "2:code"
-set $ws3  "3:fun"
-set $ws4  "4"
-set $ws5  "5:logs"
-set $ws6  "6:media"
+set $ws3  "3:scratchpad"
+set $ws4  "4:gui"
+set $ws5  "5:fun"
+set $ws6  "6:www"
 set $ws7  "7:www"
-set $ws8  "8:www"
-set $ws9  "9:chat"
-set $ws10 "10"
+set $ws8  "8:scratchpad"
+set $ws9  "9:media"
+set $ws10 "10:logs"
 
 # switch to workspace
 bindsym $winKey+1                   workspace $ws1
@@ -150,17 +149,17 @@ bindsym $winKey+n                  move workspace to output next
 # @TODO (undg) 2024-01-10: prev doesn't exist, LOL
 # bindsym $winKey+p                  move workspace to output prev
 
-workspace $ws1 output                 $DP_left
-workspace $ws2 output                 $DP_left
-workspace $ws3 output                 $DP_left
-workspace $ws4 output                 $DP_left
+workspace $ws1 output                 HDMI-A-0 $DP_PC_left
+workspace $ws2 output                 HDMI-A-0 $DP_PC_left
+workspace $ws3 output                 HDMI-A-0 $DP_PC_left
+workspace $ws4 output                 HDMI-A-0 $DP_PC_left
+workspace $ws5 output                 HDMI-A-0 $DP_PC_left
 
-workspace $ws5 output                 $DP_top
-workspace $ws6 output                 $DP_top
-
-workspace $ws7 output                 $DP_right
-workspace $ws8 output                 $DP_right
-workspace $ws9 output                 $DP_right
+workspace $ws6 output                 HDMI-A-0 $DP_PC_right
+workspace $ws7 output                 HDMI-A-0 $DP_PC_right
+workspace $ws8 output                 eDP $DP_PC_right
+workspace $ws9 output                 eDP $DP_PC_right
+workspace $ws0 output                 eDP $DP_PC_right
 
 # Apps
 set $WINDOW_gta5                      [class="steam_app_271590"]
