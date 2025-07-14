@@ -31,12 +31,24 @@ return {
 			},
 		})
 
+		local function move_to_top()
+			-- Get current line
+			local curr_line = vim.fn.line(".")
+			-- Cut line and paste at top
+			vim.cmd(curr_line .. "m0")
+		end
+
+		local function move_to_bottom()
+			-- Get current line
+			local curr_line = vim.fn.line(".")
+			-- Cut line and paste at end
+			vim.cmd(curr_line .. "m$")
+		end
+
+
 		local function open_or_move_to_top()
 			if vim.bo.filetype == "harpoon" then
-				-- Get current line
-				local curr_line = vim.fn.line(".")
-				-- Cut line and paste at top
-				vim.cmd(curr_line .. "m0")
+				move_to_top()
 			else
 				require("harpoon.ui").toggle_quick_menu()
 			end
@@ -44,14 +56,39 @@ return {
 
 		local function add_or_move_to_bottom()
 			if vim.bo.filetype == "harpoon" then
-				-- Get current line
-				local curr_line = vim.fn.line(".")
-				-- Cut line and paste at end
-				vim.cmd(curr_line .. "m$")
+				move_to_bottom()
 			else
 				require("harpoon.mark").add_file()
 			end
 		end
+
+		---move to position
+		---@param n number
+		local function move_to(n)
+			if vim.fn.bufname() == "harpoon-menu" then
+				-- Get current line
+				local curr_line = vim.fn.line(".")
+				-- Cut line and paste at top
+				vim.cmd(curr_line .. "m0")
+				if (n > 0) then
+					for i = 1, n, 1 do
+						--  @TODO (undg) 2025-07-10: implement
+						-- vim.cmd("ddjp")
+					end
+				end
+			end
+		end
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "harpoon",
+			callback = function(args)
+				local bufnr = args.buf
+				Keymap.normal("<C-j>", function() move_to(1) end, { buffer = bufnr })
+				Keymap.normal("<C-k>", function() move_to(2) end, { buffer = bufnr })
+				Keymap.normal("<C-l>", function() move_to(3) end, { buffer = bufnr })
+				Keymap.normal("<C-;>", function() move_to(4) end, { buffer = bufnr })
+			end,
+		})
 
 		-- Keymap.normal('<leader>tt', ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
 		Keymap.normal("<S-RIGHT>", open_or_move_to_top)
