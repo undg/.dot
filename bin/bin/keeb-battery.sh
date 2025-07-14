@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-ALL_PATHS=$(bluetoothctl gatt.list-attributes | ag "Battery Level" -B2 | ag 'org/bluez' | awk '{$1=$1};1')
+ALL_PATHS=$(bluetoothctl gatt.list-attributes | ag "Battery Level" -B2 | ag 'org/bluez' | sort | awk '{$1=$1};1')
 L_ATTRIBUTES_PATH=$(echo "$ALL_PATHS" | head -n1)
 R_ATTRIBUTES_PATH=$(echo "$ALL_PATHS" | tail -n1)
 
