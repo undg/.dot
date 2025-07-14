@@ -31,7 +31,7 @@ return {
 		config = function()
 			local chat = require("CopilotChat")
 			chat.setup({
-				model = 'claude-sonnet-4',
+				model = 'gpt-4.1',
 				question_header = "# HUMAN ",     -- Header to use for user questions
 				answer_header = "# GRUG ",        -- Header to use for AI answers
 				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
