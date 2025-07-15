@@ -1,13 +1,5 @@
 #!/usr/bin/env zsh
 
-# Got to https://github.com/zap-zsh/zap from time to time and check for new version
-local MASTER=6d8c83ae1650df8f51ffb45651d679a293822e16
-
-if ! command -v zap &>/dev/null; then
-	zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/${MASTER}/install.zsh) --branch release-v1
-	mv ~/.config/zsh/.zshrc_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9]* ~/.config/zsh/.zshrc
-fi
-
 # This zshrc is using simple zap plugin manager. `zap --help` for more details.
 # Code that is not imported from plugins repositories, is simply sourced.
 
@@ -51,8 +43,13 @@ local function src_local() {
 if [[ -f "$HOME/.local/share/zap/zap.zsh" ]]; then
 	source "$HOME/.local/share/zap/zap.zsh"
 else
-	sh <(curl -s https://raw.githubusercontent.com/undg/zap/master/install.sh) # install
+	# Got to https://github.com/zap-zsh/zap from time to time and check for new version
+	local MASTER=6d8c83ae1650df8f51ffb45651d679a293822e16
+
+	zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/${MASTER}/install.zsh) --branch release-v1
+	mv ~/.config/zsh/.zshrc_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9]* ~/.config/zsh/.zshrc
 fi
+
 
 #################################
 # To suppress p10k warning about console output.
