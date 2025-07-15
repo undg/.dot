@@ -10,10 +10,10 @@ pnpm   = "latest"
 yarn   = "latest"
 usage  = "latest"
 go     = "latest"
-node   = "20"
+node   = "latest"
 
-[settings]
-idiomatic_version_file_enable_tools = ["python"]
+# [settings]
+# idiomatic_version_file_enable_tools = ["python"]
 
 
 # This was a quick fix for corepack false positives.
