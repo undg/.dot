@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+local MASTER=6d8c83ae1650df8f51ffb45651d679a293822e16
+
+if ! command -v zap &>/dev/null; then
+	zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/${MASTER}/install.zsh) --branch release-v1
+fi
+
 # This zshrc is using simple zap plugin manager. `zap --help` for more details.
 # Code that is not imported from plugins repositories, is simply sourced.
 
