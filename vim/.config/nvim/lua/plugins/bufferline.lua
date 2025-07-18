@@ -144,7 +144,7 @@ function M.config()
 		{ '<leader>bd',  group = 'Buffer Close' },
 		{ '<leader>bdd', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer' },
 		{ '<leader>bdc', ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
-		{ '<c-b>',       ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
+		{ '<leader>bb',  ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
 		{ '<C-Q>',       CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
 		{ '<leader>bD',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
 		{ '<leader>qq',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
