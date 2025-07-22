@@ -64,7 +64,7 @@ Git("https://github.com/pappasam/nvim-repl")
 
 -- Registers
 Spec("plugins.yanky")
-Spec("plugins.vim-mundo")
+Spec("plugins.undotree")
 
 -- Utils
 Spec("plugins.obsidian")                         -- Note taking and knowledge base
