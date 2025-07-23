@@ -40,6 +40,7 @@ Keymap.normal("K", function()
 end, { desc = "lsp: hover / help: go to ref", silent = true, noremap = true })
 
 Keymap.normal("<leader>K", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
+Keymap.insert("<c-k>", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
 
 local function code_action_add_import()
 	vim.lsp.buf.code_action({
