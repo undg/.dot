@@ -353,8 +353,8 @@ bindsym XF86WWW               exec --no-startup-id $BROWSER
 bindsym XF86ScreenSaver       exec exec --no-startup-id lockscreen
 bindsym XF86Eject             exec --no-startup-id dmenuumount
 bindsym XF86Suspend           exec --no-startup-id lockscreen
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 15
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 20
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 20
 bindsym XF86Display           exec --no-startup-id arandr
 # bindsym XF86WLAN              exec $netrefresh
 
