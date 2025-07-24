@@ -31,6 +31,7 @@ local lsp2mason = {
 		lua_ls = "lua-language-server",
 		eslint = "eslint",
 		gopls = "gopls",
+		harper_ls = "harper-ls"
 	},
 	cfg_no_file = {
 		cssls = "cssls",
