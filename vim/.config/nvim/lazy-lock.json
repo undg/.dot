@@ -65,6 +65,7 @@
   "oil.nvim": { "branch": "master", "commit": "bbad9a76b2617ce1221d49619e4e4b659b3c61fc" },
   "overseer.nvim": { "branch": "master", "commit": "fe7b2f9ba263e150ab36474dfc810217b8cf7400" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
+  "pretty-ts-errors.nvim": { "branch": "main", "commit": "2f7295ba6620f1a9c169f5baafdafd204313e9a4" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "render-markdown.nvim": { "branch": "main", "commit": "3254863eb91fed3d9a7433b54327716528f1eacc" },
   "smart-open.nvim": { "branch": "main", "commit": "f079c3201a0a62b1582563bd5ce4256c253634d4" },

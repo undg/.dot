@@ -4,7 +4,7 @@ return {
 	opts = {},
 	keys = {
 		{
-			"<leader>xx",
+			"<leader>xe",
 			"<cmd>Trouble diagnostics filter.severity=vim.diagnostic.severity.ERROR<cr>",
 			desc = "Diagnostics only ERROR's (Trouble)",
 		},
