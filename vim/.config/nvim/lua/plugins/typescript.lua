@@ -29,7 +29,7 @@ return {
 				-- Disable formatting. I use prettier with ./conform.lua
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
-				-- disable the TypeScript Language Server (ts) from providing information about unused code
+				-- Disable the TypeScript Language Server (ts) from providing information about unused code
 				client.server_capabilities.diagnosticUnnecessary = false
 
 				local ok_wk, wk = pcall(require, "which-key")
@@ -57,7 +57,7 @@ return {
 				-- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
 				-- (see 💅 `styled-components` support section)
 				tsserver_plugins = {
-					-- install it yourserf !!!
+					-- Install it yourself !!!
 					-- npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
 					'@styled/typescript-styled-plugin',
 					'typescript-plugin-css-modules',
