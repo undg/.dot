@@ -32,18 +32,18 @@ Spec("plugins.harpoon")                  -- bookmark like buffer storage
 Spec("plugins.nvim-lsp-file-operations") -- adds support for file operations using built-in LSP (update imports)
 
 -- LSP, code and linting
-Spec("plugins.mason")                            -- quickly install any lsp server
-Spec("plugins.lspsaga")                          -- Improves the Neovim built-in LSP experience.lspsaga.lua
-Spec("plugins.typescript")                       -- LSP Typescript utils with performant UI
-Spec("plugins.golang")                           -- LSP golang utils with performant UI
-Spec("plugins.treesitter")                       -- syntax highlight
-Spec("plugins.conform")                          -- better formatting
-Spec("plugins.trouble")                          -- organize errors and warnings
-Spec("plugins.nvim-cmp")                         -- collection of plugins related with autocompletion
-Spec("plugins.overseer-nvim")                    -- A task runner and job management plugin for Neovim
+Spec("plugins.mason")                     -- quickly install any lsp server
+Spec("plugins.lspsaga")                   -- Improves the Neovim built-in LSP experience.lspsaga.lua
+Spec("plugins.typescript")                -- LSP Typescript utils with performant UI
+Spec("plugins.golang")                    -- LSP golang utils with performant UI
+Spec("plugins.treesitter")                -- syntax highlight
+Spec("plugins.conform")                   -- better formatting
+Spec("plugins.trouble")                   -- organize errors and warnings
+Spec("plugins.nvim-cmp")                  -- collection of plugins related with autocompletion
+Spec("plugins.overseer-nvim")             -- A task runner and job management plugin for Neovim
+Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
 -- Spec("plugins.better-ts-errors")                 -- better formatted TypeScript errors
-Spec("plugins.ts-error-translator")              -- better formatted TypeScript errors
-Spec("plugins.pretty-ts-errors-markdown")        -- better formatted TypeScript errors
+-- Spec("plugins.ts-error-translator")              -- better formatted TypeScript errors
 -- Git("https://github.com/cseickel/diagnostic-window.nvim")
 Git("https://github.com/folke/neodev.nvim")      -- Neovim full signature help, docs and completion for the nvim lua API.
 -- Spec("plugins.hover")                            -- General framework for context aware hover providers
