@@ -54,13 +54,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Automatic toggling between line number modes
 -- [Normal/Visual] hybrid. Relative line numbers and absolute on line with cursor position.
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter", "FocusGained", "InsertLeave" }, {
 	callback = function()
+		local win_cfg = vim.api.nvim_win_get_config(0)
+
+		local is_floating_diagnostic = vim.api.nvim_win_get_config(0).relative == "win"
+
 		-- Simplify UI for certain filetypes
 		if --
 			vim.bo.filetype == "alpha"
 			or vim.bo.filetype == "help"
 			or vim.bo.filetype == "NvimTree"
+			or is_floating_diagnostic
 		then
 			vim.opt_local.relativenumber = false
 			return
