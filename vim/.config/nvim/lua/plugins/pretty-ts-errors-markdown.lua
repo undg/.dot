@@ -2,6 +2,8 @@ return {
 	{
 		"youyoumu/pretty-ts-errors.nvim", -- https://github.com/youyoumu/pretty-ts-errors.nvim
 
+		-- Install server https://github.com/hexh250786313/pretty-ts-errors-markdown
+		build = "npm i -g pretty-ts-errors-markdown",
 		config = function()
 			local ts_errors_ok, ts_errors = pcall(require, 'pretty-ts-errors')
 
@@ -18,8 +20,6 @@ return {
 			end
 
 			ts_errors.setup({
-				-- Install server with
-				-- npm i -g pretty-ts-errors-markdown
 				executable = "pretty-ts-errors-markdown", -- Path to the executable
 				float_opts = {
 					border = "rounded",                -- Border style for floating windows
