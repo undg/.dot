@@ -27,8 +27,8 @@ set $reboot sudo -A reboot
 set $hibernate sudo -A systemctl suspend
 
 
-set $DP_pc_left "DisplayPort-1"
-set $DP_pc_right "DisplayPort-0"
+set $DP_pc_left "DisplayPort-2"
+set $DP_pc_right "DisplayPort-1"
 
 set $DP_laptop "eDP"
 set $DP_laptop_right "HDMI-A-0"
@@ -109,13 +109,13 @@ bar {
 }
 
 
-set $ws1  "1:code"
-set $ws2  "2:code"
+set $ws1  "1:www"
+set $ws2  "2:www"
 set $ws3  "3:scratchpad"
 set $ws4  "4:gui"
 set $ws5  "5:fun"
-set $ws6  "6:www"
-set $ws7  "7:www"
+set $ws6  "6:code"
+set $ws7  "7:code"
 set $ws8  "8:scratchpad"
 set $ws9  "9:media"
 set $ws10 "10:logs"
