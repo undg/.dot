@@ -153,3 +153,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.opt_local.conceallevel = 0
 	end,
 })
+
+local copilot_ok, copilot = pcall(require, 'plugins.copilot-util')
+if not copilot_ok then
+	print("Can't find module 'plugins.copilot-util'")
+end
+
+vim.api.nvim_create_autocmd("BufLeave", {
+	pattern = "copilot-*",
+	callback = function()
+		copilot.save_file()
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufDelete", {
+	pattern = "copilot-*",
+	callback = function()
+		copilot.reset_title()
+	end,
+})
