@@ -159,7 +159,7 @@ workspace $ws6 output                 HDMI-A-0 $DP_PC_right
 workspace $ws7 output                 HDMI-A-0 $DP_PC_right
 workspace $ws8 output                 eDP $DP_PC_right
 workspace $ws9 output                 eDP $DP_PC_right
-workspace $ws0 output                 eDP $DP_PC_right
+workspace $ws10 output                 eDP $DP_PC_right
 
 # Apps
 set $WINDOW_gta5                      [class="steam_app_271590"]
