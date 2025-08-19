@@ -1,3 +1,21 @@
+-- https://github.com/settings/copilot/features
+local default_model =
+-- "claude-3.5-sonnet"
+-- "claude-3.7-sonnet"
+-- "claude-3.7-sonnet-thought" -- slow
+"claude-sonnet-4"
+
+-- "gemini-2.0-flash-001"
+-- "gemini-2.5-pro" -- slow AF
+
+-- "gpt-4.1"
+-- "gpt-4o"
+-- "gpt-5" -- slow AF
+-- "o3-mini"
+-- "o4-mini"
+
+
+
 return {
 	{
 
@@ -38,7 +56,7 @@ return {
 				callback = function(res)
 					util.copilot_callback(res)
 				end,
-				model = 'gpt-4.1',
+				model = default_model,
 				question_header = "# HUMAN ",     -- Header to use for user questions
 				answer_header = "# GRUG ",        -- Header to use for AI answers
 				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
