@@ -47,7 +47,7 @@ return {
 		},
 		build = "make tiktoken",                   -- Only on MacOS or Linux
 		config = function()
-			local const = require("plugins.copilot-const")
+			local prompt = require("plugins.copilot-prompts")
 			local util = require("plugins.copilot-util")
 
 			local chat = require("CopilotChat")
@@ -60,7 +60,8 @@ return {
 				question_header = "# HUMAN ",     -- Header to use for user questions
 				answer_header = "# GRUG ",        -- Header to use for AI answers
 				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
-				system_prompt = const.system_prompt, -- System prompt to use (can be specified manually in prompt via /).
+				system_prompt = prompt.system_prompt, -- System prompt to use (can be specified manually in prompt via /).
+				prompts = prompt.prompts,         -- User defined prompts
 			})
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
