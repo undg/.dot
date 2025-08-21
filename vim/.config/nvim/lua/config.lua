@@ -71,10 +71,11 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 
 -- folding
-vim.opt.foldmethod = 'indent'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = true
-vim.opt.foldlevel = 9
+--           Those options are managed in file plugins/nvim-ufo.lua
+-- vim.opt.foldmethod = 'indent'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.foldenable = true
+-- vim.opt.foldlevel = 9
 
 -- DON'T WRAP LONG LINES! I'll wrap them with formatter or by myself.
 vim.opt.textwidth = 0
