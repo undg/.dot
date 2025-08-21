@@ -4,7 +4,7 @@
 nvim --headless "+Lazy! restore" +qa
 
 # Go to root of repo
-[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd 
+[ ! -z $(git rev-parse --show-cdup) ] && cd $(git rev-parse --show-cdup) || pwd
 
 # Revert lazy-lock get dirty after installing packages
 git checkup -- vim/.config/nvim/lazy-lock.json
