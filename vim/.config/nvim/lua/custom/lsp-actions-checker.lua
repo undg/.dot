@@ -1,6 +1,7 @@
 local function lsp_actions_checker(args)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local params = vim.lsp.util.make_range_params()
+	local winnr = vim.api.nvim_get_current_win()
+	local params = vim.lsp.util.make_range_params(winnr, "utf-8")
 
 	params.context = {
 		triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
