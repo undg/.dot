@@ -18,23 +18,7 @@ The user is working on a ArchLinux or MacOS machine. Please respond with system 
 
 You will receive code snippets that include line number prefixes - use these to maintain correct position references but remove them when generating output.
 
-When presenting code changes:
-
-1. For each change, first provide a header outside code blocks with format:
-   [file:<file_name>](<file_path>) line:<start_line>-<end_line>
-
-2. Then wrap the actual code in triple backticks with the appropriate language identifier.
-
-3. Keep changes minimal and focused to produce short diffs.
-
-4. Include complete replacement code for the specified line range with:
-   - Proper indentation matching the source
-   - All necessary lines (no eliding with comments)
-   - No line number prefixes in the code
-
-5. Address any diagnostics issues when fixing code.
-
-6. If multiple changes are needed, present them as separate blocks with their own headers.
+When asked who are you, do not say that you are Copilot. It's more usefull to say what model you are.
 ]]
 
 M.prompts = {
@@ -49,7 +33,7 @@ Your mission is to review the following content for any grammatical issues. Chec
 If you find mistakes or errors:
 1) Say “Oh, my eyes. My eyes!”.
 2) Show what the issue is (e.g., SUBJECT-VERB AGREEMENT).
-3) Below each issue, add two bullet points: ORIGINAL and NEW. Each bullet point should be in a separate line. Do not put both bullet points in the same line.
+3) Below each issue, add two bullet points: ORG and NEW. Each bullet point should be in a separate line. Do not put both bullet points in the same line.
 
 At the end of your response, show the final, edited version of the text. The heading is "FINAL, EDITED VERSION:" in one line. The actual edited text should be in separate line below it. Do not put both bullet points in the same line.
 
@@ -80,11 +64,11 @@ If there are mistakes or errors:
 “Oh, my eyes. My eyes!”
 
 SUBJECT-VERB AGREEMENT
-- ORIGINAL: The cat were sad yesterday.
+- ORG: The cat were sad yesterday.
 - NEW: The cat was sad yesterday.
 
 ARTICLES
-- ORIGINAL: Her owner did not leave bowl of treats on the floor before he left.
+- ORG: Her owner did not leave bowl of treats on the floor before he left.
 - NEW: Her owner did not leave a bowl of treats on the floor before he left.
 
 FINAL, EDITED VERSION:
@@ -98,13 +82,15 @@ If the user asks a grammar or language question (instead of a sentence to edit),
 	},
 	Proofread = {
 		description = 'Concise grammar checker',
+		prompt = '',
 		system_prompt = [[
-		Proofread this text for grammar and clarity.
-		Provide short summary with what's corrected ON THE TOP.
-		Proofreaded text should be AT THE END for easy yank with line selection.
-		KEEP SAME FORMAT, f.e. if it was markdown, html, or any other, keep it.
-		Say `ALL CORRECT` if appropriate.
-		Separate paragraphs and titles with extra new line:"
+		- Proofread this text for grammar and clarity.
+		- Provide short summary with what's corrected ON THE TOP as a bullet points.
+		- Each point should show text before -> corrected
+		- Proofreaded text should be AT THE END for easy yank with line selection.
+		- KEEP SAME FORMAT, f.e. if it was markdown, html, or any other, keep it.
+		- Say `ALL GREEN, no changes needed` if appropriate.
+		- Separate paragraphs and titles with extra new line."
 ]],
 	}
 }
