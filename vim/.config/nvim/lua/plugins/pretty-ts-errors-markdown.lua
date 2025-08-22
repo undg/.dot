@@ -34,7 +34,6 @@ return {
 			Keymap.normal("<leader>xt", ts_errors.toggle_auto_open, { desc = "(pretty-ts-errors) toggle auto open" })
 			Keymap.normal("<leader>xx", ts_errors.show_formatted_error,
 				{ desc = "(pretty-ts-errors) show formatted error" })
-			Keymap.normal("<c-x>", ts_errors.show_formatted_error, { desc = "(pretty-ts-errors) show formatted error" })
 		end
 	},
 }
