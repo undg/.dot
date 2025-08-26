@@ -74,20 +74,30 @@ rsync_src_desc "ixi:storage/music/URecorder/" "/mnt/s2/RAW/URecorder"
 
 #########################
 # Spotify / Youtube
+if ! hash spotdl 2>/dev/null; then
+	echo "spotdl not installed"
+	echo "Do you wan't to try: yay -S spotdl"
+	read -d "Yes/no: " yn
+	first_lower="${yn,}"
+	if [[ $first_lower == "y" ]]; then
+		yay -S spotdl
+	fi
+fi
+
 MP3_DIR=/mnt/s1/Media/Music/mp3/
 LIKED_DIR=/mnt/s1/Media/Music/liked/
 
-cd $MP3_DIR 
+cd $MP3_DIR || exit
 spotdl 'https://open.spotify.com/playlist/2TQNmQIGMyAEmLHATItBhz'
-cd -
+cd - || exit
 
-cd $LIKED_DIR
+cd $LIKED_DIR || exit
 spotdl --user-auth saved
-cd -
+cd - || exit
 
 # @TODO (undg) 2024-02-18: abstract in rsync_src_desc. ATM only src can be used as remote location
-rsync $DEBUG -vazr --progress "$MP3_DIR" "ixi:storage/music/mp3"
-rsync $DEBUG -vazr --progress "$LIKED_DIR" "ixi:storage/music/liked"
+rsync "$DEBUG" -vazr --progress "$MP3_DIR" "ixi:storage/music/mp3"
+rsync "$DEBUG" -vazr --progress "$LIKED_DIR" "ixi:storage/music/liked"
 # end
 #########################
 
@@ -96,5 +106,5 @@ rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
 rsync_src_desc "/mnt/s2/backups/" "/mnt/s1/backups"
 
 # AGAIN ⁉️
-# Looks strange, but if you'll think about it, it have a sense 
+# Looks strange, but if you'll think about it, it have a sense
 rsync_src_desc "/mnt/s1/backups/" "/mnt/s2/backups"
