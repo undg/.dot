@@ -31,12 +31,12 @@ local lsp2mason = {
 		lua_ls = "lua-language-server",
 		eslint = "eslint",
 		gopls = "gopls",
-		harper_ls = "harper-ls"
+		-- harper_ls = "harper-ls"
 	},
 	cfg_no_file = {
 		cssls = "cssls",
 		html = "html",
-		pylsp = "python-lsp-server",
+		ruff = "ruff",
 		marksman = "marksman",
 		bashls = "bash-language-server",
 		tailwindcss = "tailwindcss-language-server",
