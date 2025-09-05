@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-git pull
+# git pull
 
 # Get last tag
 LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
