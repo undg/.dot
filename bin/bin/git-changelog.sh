@@ -7,12 +7,33 @@ Usage: $(basename "$0") [OPTIONS]
 Generate changelog and optionally create new version tag.
 
 OPTIONS:
-    --help      Show this help message
-    --major     Create major version tag (breaking changes)
-    --minor     Create minor version tag (new features)
-    --patch     Create patch version tag (bug fixes)
+    --help             Show this help message
+    --major            Create major version tag (breaking changes)
+    --minor            Create minor version tag (new features)
+    --patch            Create patch version tag (bug fixes)
+    --completion-zsh   Print zsh completion script
 
 Without options, only shows changelog and version suggestions.
+EOF
+}
+
+show_completion_zsh() {
+    cat << 'EOF'
+#compdef git-changelog git-changelog.sh
+
+_git-changelog() {
+    local context state line
+    
+    _arguments -C \
+        '--help[Show help message]' \
+        '--major[Create major version tag (breaking changes)]' \
+        '--minor[Create minor version tag (new features)]' \
+        '--patch[Create patch version tag (bug fixes)]' \
+        '--completion-zsh[Print zsh completion script]' \
+        '*::' && return 0
+}
+
+_git-changelog "$@"
 EOF
 }
 
@@ -22,6 +43,10 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         --help)
             show_help
+            exit 0
+            ;;
+        --completion-zsh)
+            show_completion_zsh
             exit 0
             ;;
         --major)
