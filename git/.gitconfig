@@ -26,7 +26,7 @@
         lg = log --decorate --oneline --graph
 	m = merge --no-ff
 	ff = merge --ff-only
-	pull = pull --prune
+	; pull = pull --prune ; git config --global fetch.prune true. Check [fetch] sections bellow.
 	; c = clone --recursive
 	p = pull
 	pr = pull --rebase
