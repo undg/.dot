@@ -1,4 +1,9 @@
 #!/bin/bash
+R='\033[0;31m' #'0;31' is Red's ANSI color code
+G='\033[0;32m' #'0;32' is Green's ANSI color code
+Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
+B='\033[0;34m' #'0;34' is Blue's ANSI color code
+NC='\033[0m'   #'0'    is back no color
 
 show_help() {
     cat << EOF
@@ -74,24 +79,27 @@ done
 # Get last tag
 LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
 
-if [ -z "$LAST_TAG" ]; then
+if [ -z "${LAST_TAG}" ]; then
     echo "No tags found in repository"
     exit 1
 fi
 
-echo "Last tag: $LAST_TAG"
+echo "Last tag: ${LAST_TAG}"
 
 # Get current branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # WARNING if you are in feature branch
-if [[ "$CURRENT_BRANCH" != "main" && "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != "dev" ]]; then
-    echo -e "\033[1;31m         ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\033[0m"
-    echo -e "\033[1;31m         ⚠️⚠️⚠️  WARNING  ⚠️⚠️⚠️\033[0m"
-    echo -e "\033[1;31m         ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\033[0m"
-    echo -e "\033[1;31m You are on branch: '$CURRENT_BRANCH'\033[0m"
-    echo -e "\033[1;31m Expected: main, master or dev\033[0m"
-    if [[ -n "$CREATE_TAG" ]]; then
+if [[ "${CURRENT_BRANCH}" != "main" && "${CURRENT_BRANCH}" != "master" && "${CURRENT_BRANCH}" != "dev" ]]; then
+	printf "${R}
+				***********
+				* WARNING *
+				***********
+
+ ${B}You are on branch: ${G}${CURRENT_BRANCH}
+ ${B}Expected: ${G}main${B}, ${G}master ${B}or ${G}dev${NC} \n"
+
+    if [[ -n "${CREATE_TAG}" ]]; then
         echo -e "\033[1;31mDo you really want to create a tag from this branch? (y/N):\033[0m"
         read -r response
         if [[ ! "$response" =~ ^[Yy]$ ]]; then
@@ -104,15 +112,16 @@ fi
 
 # Get all merged commits since last tag
 echo ""
-echo "Merged commits since $LAST_TAG on branch $CURRENT_BRANCH:"
-echo "=================================================="
+echo -e "${B}Merged commits since ${G}${LAST_TAG} ${B}on branch ${G}${CURRENT_BRANCH}:"
+echo -e "${B}==================================================${NC}"
 
 # Use git log to get commits since last tag
 CHANGELOG=$(git --no-pager log --format="%h %s" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
-echo "$CHANGELOG"
+echo "${CHANGELOG}"
 
 echo ""
-echo "Next version suggestions:"
+echo -e "${B}Next version suggestions:${NC}"
+echo -e "${B}==================================================${NC}"
 
 # Parse current version (with or without v prefix)
 if [[ $LAST_TAG =~ ^(v?)([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
@@ -126,27 +135,27 @@ if [[ $LAST_TAG =~ ^(v?)([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
     NEXT_MINOR="${PREFIX}${MAJOR}.$((MINOR + 1)).0"
     NEXT_PATCH="${PREFIX}${MAJOR}.${MINOR}.$((PATCH + 1))"
     
-    echo "Major: $NEXT_MAJOR (breaking changes)"
-    echo "Minor: $NEXT_MINOR (new features)"
-    echo "Patch: $NEXT_PATCH (bug fixes)"
+    echo "Major: ${NEXT_MAJOR} (breaking changes)"
+    echo "Minor: ${NEXT_MINOR} (new features)"
+    echo "Patch: ${NEXT_PATCH} (bug fixes)"
     
     # Create tag if requested
-    if [[ -n "$CREATE_TAG" ]]; then
-        case $CREATE_TAG in
+    if [[ -n "${CREATE_TAG}" ]]; then
+        case ${CREATE_TAG} in
             major)
-                NEW_TAG="$NEXT_MAJOR"
+                NEW_TAG="${NEXT_MAJOR}"
                 ;;
             minor)
-                NEW_TAG="$NEXT_MINOR"
+                NEW_TAG="${NEXT_MINOR}"
                 ;;
             patch)
-                NEW_TAG="$NEXT_PATCH"
+                NEW_TAG="${NEXT_PATCH}"
                 ;;
         esac
         
         echo ""
         echo "Creating tag: $NEW_TAG"
-        git tag -a "$NEW_TAG" -m "$CHANGELOG"
+        git tag -a "${NEW_TAG}" -m "${CHANGELOG}"
         echo "Tag created successfully!"
     fi
 else
@@ -154,7 +163,7 @@ else
     echo "Minor: (new features)" 
     echo "Patch: (bug fixes)"
     
-    if [[ -n "$CREATE_TAG" ]]; then
+    if [[ -n "${CREATE_TAG}" ]]; then
         echo "Cannot create tag: unable to parse current version format"
         exit 1
     fi
