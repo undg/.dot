@@ -83,7 +83,8 @@ echo "Merged commits since $LAST_TAG on branch $CURRENT_BRANCH:"
 echo "=================================================="
 
 # Use git log to get commits since last tag
-git --no-pager log --format="%h %s" --merges "${LAST_TAG}..${CURRENT_BRANCH}" 
+CHANGELOG=$(git --no-pager log --format="%h %s" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
+echo "$CHANGELOG"
 
 echo ""
 echo "Next version suggestions:"
