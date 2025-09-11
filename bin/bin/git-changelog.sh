@@ -16,6 +16,7 @@ OPTIONS:
     --major            Create major version tag (breaking changes)
     --minor            Create minor version tag (new features)
     --patch            Create patch version tag (bug fixes)
+	--verbose          Show changelog with full commit messages 
     --completion-zsh   Print zsh completion script
 
 Without options, only shows changelog and version suggestions.
@@ -34,6 +35,7 @@ _git-changelog() {
         '--major[Create major version tag (breaking changes)]' \
         '--minor[Create minor version tag (new features)]' \
         '--patch[Create patch version tag (bug fixes)]' \
+        '--verbose[Show changelog with full commit messages]' \
         '--completion-zsh[Print zsh completion script]' \
         '*::' && return 0
 }
@@ -64,6 +66,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --patch)
             CREATE_TAG="patch"
+            shift
+            ;;
+        --verbose)
+            VERBOSE=true
             shift
             ;;
         *)
@@ -116,8 +122,13 @@ echo -e "${B}Merged commits since ${G}${LAST_TAG} ${B}on branch ${G}${CURRENT_BR
 echo -e "${B}==================================================${NC}"
 
 # Use git log to get commits since last tag
+if [[ "$VERBOSE" == true ]]; then
+CHANGELOG=$(git --no-pager log --format="${Y}%h %s${NC}%n%b%n${B}----------------------------------------${NC}" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
+else
 CHANGELOG=$(git --no-pager log --format="%h %s" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
-echo "${CHANGELOG}"
+fi
+
+echo -e "${CHANGELOG}"
 
 echo ""
 echo -e "${B}Next version suggestions:${NC}"
