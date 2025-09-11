@@ -1,0 +1,14 @@
+#compdef git-changelog git-changelog.sh
+
+_git-changelog() {
+    local context state line
+    
+    _arguments -C \
+        '--help[Show help message]' \
+        '--major[Create major version tag (breaking changes)]' \
+        '--minor[Create minor version tag (new features)]' \
+        '--patch[Create patch version tag (bug fixes)]' \
+        '*::' && return 0
+}
+
+_git-changelog "$@"
