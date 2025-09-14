@@ -23,3 +23,7 @@ node_modules/
 *.swa
 *.swo
 *.swp
+
+# fontconfig cache thingy to speed up GUI
+fonts/.local/share/fonts/.uuid
+
