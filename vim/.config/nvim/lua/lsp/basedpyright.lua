@@ -35,10 +35,15 @@
 
 ---@type BasedpyrightConfig
 return {
+	-- override root dir to current dir in case of multiple "trigger files" in sub-directories
+	root_dir = function() return vim.fn.getcwd() end,
 	settings = {
 		basedpyright = {
 			analysis = {
 				typeCheckingMode = "basic",
+				inlayHints = {
+					enable = true
+				},
 			}
 		},
 	},
