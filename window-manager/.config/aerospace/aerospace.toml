@@ -40,7 +40,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 60
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -63,7 +63,7 @@ automatically-unhide-macos-hidden-apps = true
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -73,12 +73,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 8
-inner.vertical =   8
+inner.horizontal = 4
+inner.vertical =   4
 outer.left =       4
 outer.right =      4
-outer.bottom = [{monitor."built-in" = 2 }, 10]
-outer.top = [{ monitor."built-in" = 8 }, 42]
+outer.bottom = [{monitor."built-in" = 2 }, 4]
+outer.top = [{ monitor."built-in" = 8 }, 4]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
