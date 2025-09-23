@@ -66,10 +66,10 @@ return {
 						-- You can use the capture groups defined in textobjects.scm
 						["af"] = "@function.outer",
 						["if"] = "@function.inner",
-						-- ['ac'] = '@class.outer',
-						-- ['ic'] = '@class.inner',
-						["ac"] = "@code_block.outer",
-						["ic"] = "@code_block.inner",
+						['ac'] = '@class.outer',
+						['ic'] = '@class.inner',
+						["ab"] = "@code_block.outer",
+						["ib"] = "@code_block.inner",
 					},
 				},
 				move = {
