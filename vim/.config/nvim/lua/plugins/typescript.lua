@@ -1,3 +1,12 @@
+local jump_to_next_arrow_function = function()
+	vim.fn.search("\\v^\\s*(export\\s+)?const\\s+\\w+\\s*\\=\\s*\\([^)]*\\)\\s*\\=\\>", "W")
+end
+
+local jump_to_prev_arrow_function = function()
+	vim.fn.search("\\v^\\s*(export\\s+)?const\\s+\\w+\\s*\\=\\s*\\([^)]*\\)\\s*\\=\\>", "bW")
+end
+
+
 return {
 	{
 		'pmizio/typescript-tools.nvim', -- https://github.com/pmizio/typescript-tools.nvim
@@ -44,6 +53,11 @@ return {
 				wk.add({
 					{ "<leader>go", ":TSToolsOrganizeImports<cr>" },
 				})
+
+				Keymap.xisual("]f", jump_to_next_arrow_function, { desc = "Next arrow function" })
+				Keymap.normal("]f", jump_to_next_arrow_function, { desc = "Next arrow function" })
+				Keymap.xisual("}F", jump_to_prev_arrow_function, { desc = "Previous arrow function" })
+				Keymap.normal("}F", jump_to_prev_arrow_function, { desc = "Previous arrow function" })
 			end,
 			settings = {
 				separate_diagnostic_server = true,
