@@ -1,8 +1,8 @@
 #!/bin/bash
-R='\033[0;31m' #'0;31' is Red's ANSI color code
-G='\033[0;32m' #'0;32' is Green's ANSI color code
-Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
-B='\033[0;34m' #'0;34' is Blue's ANSI color code
+RED='\033[0;31m' #'0;31' is Red's ANSI color code
+GREEN='\033[0;32m' #'0;32' is Green's ANSI color code
+YELLOW='\033[1;32m' #'1;32' is Yellow's ANSI color code
+BLUE='\033[0;34m' #'0;34' is Blue's ANSI color code
 NC='\033[0m'   #'0'    is back no color
 
 show_help() {
@@ -80,7 +80,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# git pull
+echo "${GREEN}Do you wan't to pull lates changes?${NC} (y/N):"
+read -r response
+if [[ ! "$response" =~ ^[Nn]$ ]]; then
+	git pull
+fi
 
 # Get last tag
 LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
@@ -97,16 +101,16 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # WARNING if you are in feature branch
 if [[ "${CURRENT_BRANCH}" != "main" && "${CURRENT_BRANCH}" != "master" && "${CURRENT_BRANCH}" != "dev" ]]; then
-	printf "${R}
+	printf "${RED}
 				***********
 				* WARNING *
 				***********
 
- ${B}You are on branch: ${G}${CURRENT_BRANCH}
- ${B}Expected: ${G}main${B}, ${G}master ${B}or ${G}dev${NC} \n"
+ ${BLUE}You are on branch: ${GREEN}${CURRENT_BRANCH}
+ ${BLUE}Expected: ${GREEN}main${BLUE}, ${GREEN}master ${BLUE}or ${GREEN}dev${NC} \n"
 
     if [[ -n "${CREATE_TAG}" ]]; then
-        echo -e "\033[1;31mDo you really want to create a tag from this branch? (y/N):\033[0m"
+        echo -e "${RED}Do you really want to create a tag from this branch?${NC} (y/N):"
         read -r response
         if [[ ! "$response" =~ ^[Yy]$ ]]; then
             echo "Aborted."
@@ -118,12 +122,12 @@ fi
 
 # Get all merged commits since last tag
 echo ""
-echo -e "${B}Merged commits since ${G}${LAST_TAG} ${B}on branch ${G}${CURRENT_BRANCH}:"
-echo -e "${B}==================================================${NC}"
+echo -e "${BLUE}Merged commits since ${GREEN}${LAST_TAG} ${BLUE}on branch ${GREEN}${CURRENT_BRANCH}:"
+echo -e "${BLUE}==================================================${NC}"
 
 # Use git log to get commits since last tag
 if [[ "$VERBOSE" == true ]]; then
-CHANGELOG=$(git --no-pager log --format="${Y}%h %s${NC}%n%b%n${B}----------------------------------------${NC}" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
+CHANGELOG=$(git --no-pager log --format="${YELLOW}%h %s${NC}%n%b%n${BLUE}----------------------------------------${NC}" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
 else
 CHANGELOG=$(git --no-pager log --format="%h %s" --merges "${LAST_TAG}..${CURRENT_BRANCH}")
 fi
@@ -131,8 +135,8 @@ fi
 echo -e "${CHANGELOG}"
 
 echo ""
-echo -e "${B}Next version suggestions:${NC}"
-echo -e "${B}==================================================${NC}"
+echo -e "${BLUE}Next version suggestions:${NC}"
+echo -e "${BLUE}==================================================${NC}"
 
 # Parse current version (with or without v prefix)
 if [[ $LAST_TAG =~ ^(v?)([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
@@ -168,6 +172,12 @@ if [[ $LAST_TAG =~ ^(v?)([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
         echo "Creating tag: $NEW_TAG"
         git tag -a "${NEW_TAG}" -m "${CHANGELOG}"
         echo "Tag created successfully!"
+
+        echo "${GREEN}Do you wan't to push tags to upstream?${NC} (Y/n):"
+        read -r response
+        if [[ ! "$response" =~ ^[Yy]$ ]]; then
+			git push --tags
+        fi
     fi
 else
     echo "Major: (breaking changes)"
