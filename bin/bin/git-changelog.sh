@@ -80,7 +80,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-echo "${GREEN}Do you wan't to pull lates changes?${NC} (y/N):"
+echo -e "${GREEN}Do you wan't to pull lates changes?${NC} (y/N):"
 read -r response
 if [[ ! "$response" =~ ^[Nn]$ ]]; then
 	git pull
@@ -94,7 +94,7 @@ if [ -z "${LAST_TAG}" ]; then
     exit 1
 fi
 
-echo "Last tag: ${LAST_TAG}"
+echo -e "Last tag: ${LAST_TAG}"
 
 # Get current branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -173,7 +173,7 @@ if [[ $LAST_TAG =~ ^(v?)([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
         git tag -a "${NEW_TAG}" -m "${CHANGELOG}"
         echo "Tag created successfully!"
 
-        echo "${GREEN}Do you wan't to push tags to upstream?${NC} (Y/n):"
+        echo -e "${GREEN}Do you wan't to push tags to upstream?${NC} (Y/n):"
         read -r response
         if [[ ! "$response" =~ ^[Yy]$ ]]; then
 			git push --tags
