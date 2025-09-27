@@ -10,7 +10,7 @@ pnpm   = "latest"
 yarn   = "latest"
 usage  = "latest"
 go     = "latest"
-node   = "latest"
+node   = "22"
 
 # [settings]
 # idiomatic_version_file_enable_tools = ["python"]
