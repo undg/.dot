@@ -1,4 +1,5 @@
-function get_register_lines(register)
+local function get_register_lines(register)
+	-- get yanked lines from register
 	local content = vim.fn.getreg(register)
 	if content == "" then
 		return {}
@@ -15,11 +16,13 @@ function get_register_lines(register)
 	return lines
 end
 
-function pasteBufFromYank()
+local function pasteBufFromYank()
 	local files = get_register_lines('"')
-	for _, line in ipairs(files) do
-		files[_] = "> ##buffer:" .. line
+	for i, line in ipairs(files) do
+		files[i] = "> ##buffer:" .. line
 	end
+	table.insert(files, "")
+	table.insert(files, "")
 	vim.api.nvim_put(files, "l", true, true)
 end
 
