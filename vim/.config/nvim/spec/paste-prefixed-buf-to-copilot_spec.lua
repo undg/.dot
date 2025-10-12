@@ -37,15 +37,15 @@ describe("paste-prefixed-buf-to-copilot", function()
 		it("should extract files from register lines", function()
 			-- Put clean data in " register
 			vim.fn.setreg('"', {
-				"/home/user/test.lua",
-				"/home/user/other.py",
+				"init.lua", -- need to be real file
+				"README.md", -- need to be real file
 			})
 
 			local files = paste.get_files_from_register_lines('"')
 
 			assert.are.same({
-				"> ##buffer:/home/user/test.lua",
-				"> ##buffer:/home/user/other.py",
+				"> ##buffer:init.lua",
+				"> ##buffer:README.md",
 			}, files)
 		end)
 
@@ -57,15 +57,29 @@ describe("paste-prefixed-buf-to-copilot", function()
 
 		it("should handle register with empty lines", function()
 			vim.fn.setreg('"', {
-				"/home/user/test.lua",
+				"init.lua", -- need to be real file
 				"",
-				"/home/user/other.py",
+				"README.md", -- need to be real file
 				"",
 			})
 			local files = paste.get_files_from_register_lines('"')
 			assert.are.same({
-				"> ##buffer:/home/user/test.lua",
-				"> ##buffer:/home/user/other.py",
+				"> ##buffer:init.lua",
+				"> ##buffer:README.md",
+			}, files)
+		end)
+
+		it("should filter only file names", function()
+			vim.fn.setreg('"', {
+				"init.lua", -- need to be real file
+				"adfasdf a asdf adsf",
+				"README.md", -- need to be real file
+				"fn(/home/user/other.py)",
+			})
+			local files = paste.get_files_from_register_lines('"')
+			assert.are.same({
+				"> ##buffer:init.lua",
+				"> ##buffer:README.md",
 			}, files)
 		end)
 	end)

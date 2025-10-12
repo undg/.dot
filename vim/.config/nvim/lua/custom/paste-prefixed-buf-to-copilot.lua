@@ -4,6 +4,11 @@ local function is_not_copilot_chat_buffer()
 	return vim.fn.bufname() ~= "copilot-chat"
 end
 
+---@param path string
+function validate_path(path)
+	return vim.fn.filereadable(path) == 1
+end
+
 function M.get_files_from_register_lines(register)
 	-- get yanked lines from register
 	local content = vim.fn.getreg(register)
@@ -16,13 +21,8 @@ function M.get_files_from_register_lines(register)
 
 	local files = {}
 
-	-- Remove last empty line if exists (common with line-wise yanks)
-	if files[#files] == "" then
-		table.remove(files, #files)
-	end
-
 	for i, line in ipairs(yanked) do
-		if line ~= "" then
+		if line ~= "" and validate_path(line) then
 			table.insert(files, "> ##buffer:" .. line)
 		end
 	end
@@ -35,6 +35,7 @@ function M.get_files_from_harpoon()
 	if not ok_harpoon then
 		vim.notify("paste-prefixed-buf-to-copilot.lua: requirement's missing - " .. "harpoon", vim.log.levels.ERROR)
 	end
+	---@diagnostic disable-next-line: undefined-field -- this will fail after migration to harpoon 2
 	local harpoon_marks = harpoon.get_mark_config().marks
 	local files = {}
 
@@ -67,7 +68,7 @@ vim.api.nvim_create_user_command("AiPasteBufFromYank", M.pasteBufFromYank, {})
 vim.api.nvim_create_user_command("AiPasteBufFromHarpoon", M.pasteBufFromHarpoon, {})
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "copilot-chat", -- or whatever filetype
+	pattern = "copilot-chat",
 	callback = function()
 		Keymap.normal("gp", M.pasteBufFromYank, { buffer = true, desc = "AiPasteBufFromYank" })
 		Keymap.normal("gf", M.pasteBufFromHarpoon, { buffer = true, desc = "AiPasteBufFromYank" })
