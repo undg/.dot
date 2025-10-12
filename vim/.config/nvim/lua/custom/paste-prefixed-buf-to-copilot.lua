@@ -12,16 +12,19 @@ function M.get_files_from_register_lines(register)
 	end
 
 	-- Split by newlines into table
-	local files = vim.split(content, "\n", { plain = true })
+	local yanked = vim.split(content, "\n", { plain = true })
 
-	--  @TODO (undg) 2025-10-12: remove all empty lines and non files lines
+	local files = {}
+
 	-- Remove last empty line if exists (common with line-wise yanks)
 	if files[#files] == "" then
 		table.remove(files, #files)
 	end
 
-	for i, line in ipairs(files) do
-		files[i] = "> ##buffer:" .. line
+	for i, line in ipairs(yanked) do
+		if line ~= "" then
+			table.insert(files, "> ##buffer:" .. line)
+		end
 	end
 
 	return files

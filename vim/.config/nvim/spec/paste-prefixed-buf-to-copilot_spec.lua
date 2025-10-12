@@ -35,7 +35,7 @@ describe("paste-prefixed-buf-to-copilot", function()
 
 	describe("get_files_from_register_lines", function()
 		it("should extract files from register lines", function()
-			-- Put test data in " register
+			-- Put clean data in " register
 			vim.fn.setreg('"', {
 				"/home/user/test.lua",
 				"/home/user/other.py",
@@ -49,19 +49,24 @@ describe("paste-prefixed-buf-to-copilot", function()
 			}, files)
 		end)
 
-		-- it("should handle empty register", function()
-		-- 	vim.fn.setreg('"', "")
-		-- 	local files = M.get_files_from_register_lines('"')
-		-- 	assert.are.equal(0, #files)
-		-- end)
+		it("should handle empty register", function()
+			vim.fn.setreg('"', "")
+			local files = paste.get_files_from_register_lines('"')
+			assert.are.same({}, files)
+		end)
 
-		-- it("should handle register with no file markers", function()
-		-- 	vim.fn.setreg('"', {
-		-- 		"just some text",
-		-- 		"no file markers here",
-		-- 	})
-		-- 	local files = M.get_files_from_register_lines('"')
-		-- 	assert.are.equal(0, #files)
-		-- end)
+		it("should handle register with empty lines", function()
+			vim.fn.setreg('"', {
+				"/home/user/test.lua",
+				"",
+				"/home/user/other.py",
+				"",
+			})
+			local files = paste.get_files_from_register_lines('"')
+			assert.are.same({
+				"> ##buffer:/home/user/test.lua",
+				"> ##buffer:/home/user/other.py",
+			}, files)
+		end)
 	end)
 end)
