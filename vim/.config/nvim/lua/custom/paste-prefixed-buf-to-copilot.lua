@@ -5,13 +5,14 @@ local function is_not_copilot_chat_buffer()
 end
 
 ---@param path string
-function validate_path(path)
+local function validate_path(path)
 	return vim.fn.filereadable(path) == 1
 end
 
-function M.get_files_from_register_lines(register)
+---@param reg string - register name
+function M.get_files_from_register_lines(reg)
 	-- get yanked lines from register
-	local content = vim.fn.getreg(register)
+	local content = vim.fn.getreg(reg)
 	if content == "" then
 		return {}
 	end
@@ -21,7 +22,7 @@ function M.get_files_from_register_lines(register)
 
 	local files = {}
 
-	for i, line in ipairs(yanked) do
+	for _, line in ipairs(yanked) do
 		if line ~= "" and validate_path(line) then
 			table.insert(files, "> ##buffer:" .. line)
 		end
@@ -45,7 +46,7 @@ function M.get_files_from_harpoon()
 	return files
 end
 
-function M.pasteBufFromYank()
+local function pasteBufFromYank()
 	if is_not_copilot_chat_buffer() then
 		return
 	end
@@ -54,7 +55,7 @@ function M.pasteBufFromYank()
 	vim.api.nvim_put(files, "l", false, true)
 end
 
-function M.pasteBufFromHarpoon()
+local function pasteBufFromHarpoon()
 	if is_not_copilot_chat_buffer() then
 		return
 	end
@@ -64,14 +65,14 @@ function M.pasteBufFromHarpoon()
 	vim.api.nvim_put(files, "l", false, true)
 end
 
-vim.api.nvim_create_user_command("AiPasteBufFromYank", M.pasteBufFromYank, {})
-vim.api.nvim_create_user_command("AiPasteBufFromHarpoon", M.pasteBufFromHarpoon, {})
+vim.api.nvim_create_user_command("AiPasteBufFromYank", pasteBufFromYank, {})
+vim.api.nvim_create_user_command("AiPasteBufFromHarpoon", pasteBufFromHarpoon, {})
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "copilot-chat",
 	callback = function()
-		Keymap.normal("gp", M.pasteBufFromYank, { buffer = true, desc = "AiPasteBufFromYank" })
-		Keymap.normal("gf", M.pasteBufFromHarpoon, { buffer = true, desc = "AiPasteBufFromYank" })
+		Keymap.normal("gp", pasteBufFromYank, { buffer = true, desc = "AiPasteBufFromYank" })
+		Keymap.normal("gf", pasteBufFromHarpoon, { buffer = true, desc = "AiPasteBufFromYank" })
 	end,
 })
 
