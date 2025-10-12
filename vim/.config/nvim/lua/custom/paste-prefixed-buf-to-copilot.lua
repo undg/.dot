@@ -4,7 +4,7 @@ local function is_not_copilot_chat_buffer()
 	return vim.fn.bufname() ~= "copilot-chat"
 end
 
-function M.get_register_lines(register)
+function M.get_files_from_register_lines(register)
 	-- get yanked lines from register
 	local content = vim.fn.getreg(register)
 	if content == "" then
@@ -45,10 +45,9 @@ function M.pasteBufFromYank()
 	if is_not_copilot_chat_buffer() then
 		return
 	end
-	local files = M.get_register_lines('"')
+	local files = M.get_files_from_register_lines('"')
 	table.insert(files, "")
-	table.insert(files, "")
-	vim.api.nvim_put(files, "l", true, true)
+	vim.api.nvim_put(files, "l", false, true)
 end
 
 function M.pasteBufFromHarpoon()
@@ -58,8 +57,7 @@ function M.pasteBufFromHarpoon()
 	local files = M.get_files_from_harpoon()
 
 	table.insert(files, "")
-	table.insert(files, "")
-	vim.api.nvim_put(files, "l", true, true)
+	vim.api.nvim_put(files, "l", false, true)
 end
 
 vim.api.nvim_create_user_command("AiPasteBufFromYank", M.pasteBufFromYank, {})
