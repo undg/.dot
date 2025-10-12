@@ -19,7 +19,7 @@ require("custom.lsp-actions-checker")
 require("custom.highlight")
 require("custom.git-files")
 require("custom.only-global-marks")
-require("custom.buf-prefix-selected")
+require("custom.paste-prefixed-buf-to-copilot")
 
 require("lsp")
 
