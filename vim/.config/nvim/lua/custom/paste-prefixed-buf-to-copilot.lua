@@ -1,8 +1,10 @@
+local M = {}
+
 local function is_not_copilot_chat_buffer()
 	return vim.fn.bufname() ~= "copilot-chat"
 end
 
-local function get_register_lines(register)
+function M.get_register_lines(register)
 	-- get yanked lines from register
 	local content = vim.fn.getreg(register)
 	if content == "" then
@@ -25,8 +27,12 @@ local function get_register_lines(register)
 	return files
 end
 
-local function get_files_from_harpoon()
-	local harpoon_marks = require("harpoon").get_mark_config().marks
+function M.get_files_from_harpoon()
+	local ok_harpoon, harpoon = pcall(require, "harpoon")
+	if not ok_harpoon then
+		vim.notify("paste-prefixed-buf-to-copilot.lua: requirement's missing - " .. "harpoon", vim.log.levels.ERROR)
+	end
+	local harpoon_marks = harpoon.get_mark_config().marks
 	local files = {}
 
 	for i, mark in ipairs(harpoon_marks) do
@@ -35,34 +41,36 @@ local function get_files_from_harpoon()
 	return files
 end
 
-local function pasteBufFromYank()
+function M.pasteBufFromYank()
 	if is_not_copilot_chat_buffer() then
 		return
 	end
-	local files = get_register_lines('"')
+	local files = M.get_register_lines('"')
 	table.insert(files, "")
 	table.insert(files, "")
 	vim.api.nvim_put(files, "l", true, true)
 end
 
-local function pasteBufFromHarpoon()
+function M.pasteBufFromHarpoon()
 	if is_not_copilot_chat_buffer() then
 		return
 	end
-	local files = get_files_from_harpoon()
+	local files = M.get_files_from_harpoon()
 
 	table.insert(files, "")
 	table.insert(files, "")
 	vim.api.nvim_put(files, "l", true, true)
 end
 
-vim.api.nvim_create_user_command("AiPasteBufFromYank", pasteBufFromYank, {})
-vim.api.nvim_create_user_command("AiPasteBufFromHarpoon", pasteBufFromHarpoon, {})
+vim.api.nvim_create_user_command("AiPasteBufFromYank", M.pasteBufFromYank, {})
+vim.api.nvim_create_user_command("AiPasteBufFromHarpoon", M.pasteBufFromHarpoon, {})
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "copilot-chat", -- or whatever filetype
 	callback = function()
-		Keymap.normal("gp", pasteBufFromYank, { buffer = true, desc = "AiPasteBufFromYank" })
-		Keymap.normal("gf", pasteBufFromHarpoon, { buffer = true, desc = "AiPasteBufFromYank" })
+		Keymap.normal("gp", M.pasteBufFromYank, { buffer = true, desc = "AiPasteBufFromYank" })
+		Keymap.normal("gf", M.pasteBufFromHarpoon, { buffer = true, desc = "AiPasteBufFromYank" })
 	end,
 })
+
+return M
