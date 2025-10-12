@@ -45,7 +45,6 @@ return {
 			vim.cmd(curr_line .. "m$")
 		end
 
-
 		local function open_or_move_to_top()
 			if vim.bo.filetype == "harpoon" then
 				move_to_top()
@@ -70,7 +69,7 @@ return {
 				local curr_line = vim.fn.line(".")
 				-- Cut line and paste at top
 				vim.cmd(curr_line .. "m0")
-				if (n > 0) then
+				if n > 0 then
 					for i = 1, n, 1 do
 						--  @TODO (undg) 2025-07-10: implement
 						-- vim.cmd("ddjp")
@@ -83,10 +82,18 @@ return {
 			pattern = "harpoon",
 			callback = function(args)
 				local bufnr = args.buf
-				Keymap.normal("<C-j>", function() move_to(1) end, { buffer = bufnr })
-				Keymap.normal("<C-k>", function() move_to(2) end, { buffer = bufnr })
-				Keymap.normal("<C-l>", function() move_to(3) end, { buffer = bufnr })
-				Keymap.normal("<C-;>", function() move_to(4) end, { buffer = bufnr })
+				Keymap.normal("<C-j>", function()
+					move_to(1)
+				end, { buffer = bufnr })
+				Keymap.normal("<C-k>", function()
+					move_to(2)
+				end, { buffer = bufnr })
+				Keymap.normal("<C-l>", function()
+					move_to(3)
+				end, { buffer = bufnr })
+				Keymap.normal("<C-;>", function()
+					move_to(4)
+				end, { buffer = bufnr })
 			end,
 		})
 
