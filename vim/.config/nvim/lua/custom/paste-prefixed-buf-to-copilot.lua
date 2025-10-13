@@ -21,10 +21,11 @@ function M.get_files_from_register_lines(reg)
 	local yanked = vim.split(content, "\n", { plain = true })
 
 	local files = {}
+	local pwd = vim.fn.getcwd()
 
 	for _, line in ipairs(yanked) do
 		if line ~= "" and validate_path(line) then
-			table.insert(files, "> ##buffer:" .. line)
+			table.insert(files, "> ##buffer:" .. pwd .. line)
 		end
 	end
 
@@ -39,9 +40,10 @@ function M.get_files_from_harpoon()
 	---@diagnostic disable-next-line: undefined-field -- this will fail after migration to harpoon 2
 	local harpoon_marks = harpoon.get_mark_config().marks
 	local files = {}
+	local pwd = vim.fn.getcwd()
 
 	for i, mark in ipairs(harpoon_marks) do
-		files[i] = "> ##buffer:" .. mark.filename
+		files[i] = "> ##buffer:" .. pwd .. mark.filename
 	end
 	return files
 end

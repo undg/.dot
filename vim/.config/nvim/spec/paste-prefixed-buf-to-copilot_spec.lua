@@ -1,7 +1,7 @@
 local paste = require("custom.paste-prefixed-buf-to-copilot")
 
 describe("paste-prefixed-buf-to-copilot", function()
-	describe("get_files_from_harpoon", function()
+	describe("[HARPOON] get_files_from_harpoon", function()
 		local old_harpoon
 
 		before_each(function()
@@ -24,16 +24,18 @@ describe("paste-prefixed-buf-to-copilot", function()
 		end)
 
 		it("should return prefixed files", function()
-			local paste_from_harpoon = paste.get_files_from_harpoon()
+			local files = paste.get_files_from_harpoon()
+			local config_dir = vim.fn.resolve(vim.fn.stdpath('config'))
+
 
 			assert.are.same({
-				"> ##buffer:file1.lua",
-				"> ##buffer:file2.htm",
-			}, paste_from_harpoon)
+				"> ##buffer:" .. config_dir .. "file1.lua",
+				"> ##buffer:" .. config_dir .. "file2.htm",
+			}, files)
 		end)
 	end)
 
-	describe("get_files_from_register_lines", function()
+	describe("[PASTE] get_files_from_register_lines", function()
 		it("should extract files from register lines", function()
 			-- Put clean data in " register
 			vim.fn.setreg('"', {
@@ -42,16 +44,19 @@ describe("paste-prefixed-buf-to-copilot", function()
 			})
 
 			local files = paste.get_files_from_register_lines('"')
+			local config_dir = vim.fn.resolve(vim.fn.stdpath('config'))
 
 			assert.are.same({
-				"> ##buffer:init.lua",
-				"> ##buffer:README.md",
+				"> ##buffer:" .. config_dir .. "init.lua",
+				"> ##buffer:" .. config_dir .. "README.md",
 			}, files)
 		end)
 
 		it("should handle empty register", function()
 			vim.fn.setreg('"', "")
 			local files = paste.get_files_from_register_lines('"')
+			local config_dir = vim.fn.resolve(vim.fn.stdpath('config'))
+
 			assert.are.same({}, files)
 		end)
 
@@ -63,9 +68,11 @@ describe("paste-prefixed-buf-to-copilot", function()
 				"",
 			})
 			local files = paste.get_files_from_register_lines('"')
+			local config_dir = vim.fn.resolve(vim.fn.stdpath('config'))
+
 			assert.are.same({
-				"> ##buffer:init.lua",
-				"> ##buffer:README.md",
+				"> ##buffer:" .. config_dir .. "init.lua",
+				"> ##buffer:" .. config_dir .. "README.md",
 			}, files)
 		end)
 
@@ -77,9 +84,12 @@ describe("paste-prefixed-buf-to-copilot", function()
 				"fn(/home/user/other.py)",
 			})
 			local files = paste.get_files_from_register_lines('"')
+			local config_dir = vim.fn.resolve(vim.fn.stdpath('config'))
+
+
 			assert.are.same({
-				"> ##buffer:init.lua",
-				"> ##buffer:README.md",
+				"> ##buffer:" .. config_dir .. "init.lua",
+				"> ##buffer:" .. config_dir .. "README.md",
 			}, files)
 		end)
 	end)
