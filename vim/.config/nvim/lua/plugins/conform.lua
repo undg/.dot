@@ -26,6 +26,7 @@ return {
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				reacttypescript = { "prettierd", "prettier", stop_after_first = true },
 				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettierd" },
 				formatters = {
 					prettier = {
 						prepend_args = { "--prose-wrap", "preserve" },
