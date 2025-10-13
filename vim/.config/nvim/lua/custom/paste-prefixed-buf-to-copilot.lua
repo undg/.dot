@@ -53,7 +53,6 @@ local function pasteBufFromYank()
 		return
 	end
 	local files = M.get_files_from_register_lines('"')
-	table.insert(files, "")
 	vim.api.nvim_put(files, "l", false, true)
 end
 
@@ -63,7 +62,6 @@ local function pasteBufFromHarpoon()
 	end
 	local files = M.get_files_from_harpoon()
 
-	table.insert(files, "")
 	vim.api.nvim_put(files, "l", false, true)
 end
 
