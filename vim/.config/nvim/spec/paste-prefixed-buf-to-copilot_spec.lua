@@ -29,8 +29,8 @@ describe("paste-prefixed-buf-to-copilot", function()
 
 
 			assert.are.same({
-				"> ##buffer:" .. config_dir .. "file1.lua",
-				"> ##buffer:" .. config_dir .. "file2.htm",
+				"> ##buffer:" .. config_dir .. "/file1.lua",
+				"> ##buffer:" .. config_dir .. "/file2.htm",
 			}, files)
 		end)
 	end)
