@@ -43,7 +43,7 @@ function M.get_files_from_harpoon()
 	local pwd = vim.fn.getcwd()
 
 	for i, mark in ipairs(harpoon_marks) do
-		files[i] = "> ##buffer:" .. pwd .. mark.filename
+		files[i] = "> ##buffer:" .. pwd .. '/' .. mark.filename
 	end
 	return files
 end
