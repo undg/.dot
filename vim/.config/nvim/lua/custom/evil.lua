@@ -1,7 +1,7 @@
 local M = {}
 
 function M.execAndPrint()
-	local line = vim.api.nvim_get_current_line()
+	local line = vim.api.nvim_get_current_line():gsub("^%s+", "")
 	local current_line = vim.api.nvim_win_get_cursor(0)[1]
 	local output = vim.fn.system(line)
 	local formatted = string.format("```bash\n# $> %s\n%s\n```\n\n", line, output:gsub("\n$", ""))
