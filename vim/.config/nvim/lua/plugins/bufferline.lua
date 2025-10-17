@@ -127,7 +127,6 @@ function M.config()
 		-- Move and Pin
 		{ '<C-j>',      ':BufferLineMovePrev<cr>' },
 		{ '<C-k>',      ':BufferLineMoveNext<cr>' },
-		{ '<leader>BB', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
 		{ '<leader>bb', ':BufferLineTogglePin<CR>', desc = 'BufferLine Toggle Pin' },
 		{
 			'<leader>BB',
@@ -142,18 +141,14 @@ function M.config()
 		},
 		-- Close
 		{ '<leader>bd',  group = 'Buffer Close' },
-		{ '<leader>bdd', CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer' },
-		{ '<leader>bdc', ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
-		{ '<leader>bb',  ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
+		{ '<leader>bdd', ":BufferLineCloseOthers<cr>",              desc = 'Close Buffers other than current' },
 		{ '<C-Q>',       CMD_CLOSE_GO_PREV,                         desc = 'Close Buffer go prev' },
 		{ '<leader>bD',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
 		{ '<leader>qq',  CMD_CLOSE_GO_NEXT,                         desc = 'Close Buffer go next' },
 		{ '<leader>bdh', ':BufferLineCloseLeft<CR>',                desc = 'Close Buffer on the Left' },
 		{ '<leader>bdl', ':BufferLineCloseRight<CR>',               desc = 'Close Buffer on the Right' },
-		{ '<leader>bda', CMD_CLOSE_GP_CHATS,                        desc = 'Close Buffer with gp.nvim chats' },
-
 		{ '<leader>bt',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
-		{ '<leader>bT',  ':Telescope buffers<CR>',                  desc = 'Show buffers in Telescope' },
+		{ '<leader>bda', CMD_CLOSE_GP_CHATS,                        desc = 'Close Buffer with gp.nvim chats' },
 	})
 end
 
