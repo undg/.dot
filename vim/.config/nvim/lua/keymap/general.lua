@@ -1,4 +1,14 @@
-local notify = require("notify")
+local evil_ok, evil = pcall(require, "lua.custom.evil")
+local notify_ok = pcall(require, "notify")
+
+local not_ok = not notify_ok and "notify" --
+	or not evil_ok and "custom.evil"
+	or false
+
+if not_ok then
+	vim.notify("conceal-toggle.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -174,3 +184,6 @@ Keymap.normal("<leader>YF", function()
 	vim.fn.setreg('"', "> #file:`" .. file_path .. "`")
 	vim.notify(file_path, vim.log.levels.INFO, { title = "Yank file path" })
 end, { desc = "yank file path" })
+
+evil.createCommand()
+Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
