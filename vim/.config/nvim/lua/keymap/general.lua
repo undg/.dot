@@ -1,4 +1,4 @@
-local evil_ok, evil = pcall(require, "lua.custom.evil")
+local evil_ok, evil = pcall(require, "custom.evil")
 local notify_ok = pcall(require, "notify")
 
 local not_ok = not notify_ok and "notify" --
@@ -6,7 +6,7 @@ local not_ok = not notify_ok and "notify" --
 	or false
 
 if not_ok then
-	vim.notify("conceal-toggle.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
+	vim.notify("general.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
 end
 
 vim.g.mapleader = " "
