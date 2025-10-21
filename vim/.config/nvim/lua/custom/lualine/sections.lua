@@ -1,17 +1,16 @@
-local path_ok, my_path = pcall(require, "utils.path")
-local window_ok, my_window = pcall(require, "utils.window")
-local str_ok, str = pcall(require, "utils.str")
-local harpoon_ok, harpoon = pcall(require, "custom.lualine.harpoon")
-local mcphub_ok, mcphub = pcall(require, "custom.lualine.mcphub")
+local path_ok, my_path = pcall(require, 'utils.path')
+local window_ok, my_window = pcall(require, 'utils.window')
+local str_ok, str = pcall(require, 'utils.str')
+local harpoon_ok, harpoon = pcall(require, 'custom.lualine.harpoon')
 
-local not_ok = not path_ok and "utils.path" --
-	or not window_ok and "utils.window"
-	or not str_ok and "utils.string"
-	or not harpoon_ok and "lualine.harpoon"
+local not_ok = not path_ok and 'utils.path' --
+	or not window_ok and 'utils.window'
+	or not str_ok and 'utils.string'
+	or not harpoon_ok and 'lualine.harpoon'
 	or false
 
 if not_ok then
-	vim.notify("lua/custom/lualine/sections: missing - " .. not_ok, vim.log.levels.ERROR)
+	vim.notify('lua/custom/lualine/sections: missing - ' .. not_ok, vim.log.levels.ERROR)
 end
 
 local M = {}
@@ -22,36 +21,35 @@ local path_type = {
 	absolute_home = 3,
 }
 local shorting_target = 60
-local insert_mode = vim.fn.mode() == "i"
-local normal_mode = vim.fn.mode() == "n"
+local insert_mode = vim.fn.mode() == 'i'
+local normal_mode = vim.fn.mode() == 'n'
 local sudo -- suda plugin required
 local is_git
 -- @TODO (undg) 2022-12-31: fix it,
 -- logic is temporary flipped around.
 local function branch_color(is_git_arg)
 	if is_git_arg then
-		return { bg = "#A8A8A8", fg = "#706965" }
+		return { bg = '#A8A8A8', fg = '#706965' }
 	else
-		return { bg = "#A8A8A8", fg = "#222222" }
+		return { bg = '#A8A8A8', fg = '#222222' }
 	end
 end
-local section_a_color = { bg = "#504945", fg = "#191919" }
+local section_a_color = { bg = '#504945', fg = '#191919' }
 
 M.harpoon = harpoon
-M.mcp = mcphub
 
 M.cwd = {
-	"filename",
+	'filename',
 	file_status = false,
 	newfile_status = false,
 	fmt = function()
 		local estimated_space_available = my_window.width() - shorting_target
-		return my_path.shorten(my_path.from_home(), estimated_space_available, "/")
+		return my_path.shorten(my_path.from_home(), estimated_space_available, '/')
 	end,
 }
 
 M.relative_path = {
-	"filename",
+	'filename',
 	file_status = true, -- Displays file status (readonly status, modified status)
 	newfile_status = true, -- Display new file status (new file means no write after created)
 	path = path_type.relative,
@@ -60,29 +58,29 @@ M.relative_path = {
 		local fg
 
 		if sudo then
-			bg = "#551100"
+			bg = '#551100'
 		else
 			local line
 			if insert_mode then
-				line = "lualine_" .. arg.section .. "_insert"
+				line = 'lualine_' .. arg.section .. '_insert'
 			elseif normal_mode then
-				line = "lualine_" .. arg.section .. "_normal"
+				line = 'lualine_' .. arg.section .. '_normal'
 			else
-				line = "lualine_" .. arg.section .. "_visual"
+				line = 'lualine_' .. arg.section .. '_visual'
 			end
 			bg = line.bg
 		end
 
 		if vim.bo.modified then
-			fg = "#89d957"
+			fg = '#89d957'
 		else
-			fg = "#fe8019"
+			fg = '#fe8019'
 		end
 
 		return { fg = fg, bg = bg }
 	end,
 	fmt = function(filename)
-		if str.starts_with(filename, "suda:///") or str.starts_with(filename, "s///") then
+		if str.starts_with(filename, 'suda:///') or str.starts_with(filename, 's///') then
 			sudo = true
 		else
 			sudo = false
@@ -94,22 +92,22 @@ M.relative_path = {
 	shorting_target = shorting_target, -- Shortens path to leave 40 spaces in the window
 	-- for other components. (terrible name, any suggestions?)
 	symbols = {
-		modified = "[+]", -- Text to show when the file is modified.
-		readonly = "[-]", -- Text to show when the file is non-modiiable or readonly.
-		unnamed = "[No Name]", -- Text to show for unnamed buffers.
-		newfile = "[New]", -- Text to show for new created file before first writting
+		modified = '[+]', -- Text to show when the file is modified.
+		readonly = '[-]', -- Text to show when the file is non-modiiable or readonly.
+		unnamed = '[No Name]', -- Text to show for unnamed buffers.
+		newfile = '[New]', -- Text to show for new created file before first writting
 	},
 }
 
 M.branch = {
-	"branch",
+	'branch',
 	color = branch_color(is_git),
 	icons_enabled = true,
-	separator = { left = "", right = "" },
+	separator = { left = '', right = '' },
 	fmt = function(branch)
-		if branch == "" then
+		if branch == '' then
 			is_git = false
-			return "noop"
+			return 'noop'
 		else
 			is_git = true
 			return branch
@@ -117,21 +115,21 @@ M.branch = {
 	end,
 }
 M.fileformat = {
-	"fileformat",
+	'fileformat',
 	color = branch_color(is_git),
 	icons_enabled = true,
-	separator = { left = "", right = "" },
+	separator = { left = '', right = '' },
 }
 
 M.filetype = {
-	"filetype",
+	'filetype',
 	icons_enabled = true,
-	separator = { left = "", right = "" },
+	separator = { left = '', right = '' },
 	fmt = function(filetype)
-		if filetype == "typescriptreact" then
-			return "tsx"
-		elseif filetype == "javascriptreact" then
-			return "jsx"
+		if filetype == 'typescriptreact' then
+			return 'tsx'
+		elseif filetype == 'javascriptreact' then
+			return 'jsx'
 		else
 			return filetype
 		end
@@ -140,12 +138,12 @@ M.filetype = {
 
 -- @TODO (undg) 2022-12-30: merge it, create custom one
 M.progress = {
-	"progress",
+	'progress',
 	color = section_a_color,
 }
 
 M.location = {
-	"location",
+	'location',
 	-- color = section_a_color,
 }
 

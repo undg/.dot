@@ -17,12 +17,14 @@ The user works in an IDE called Neovim which has a concept for editors with open
 The user is working on a ArchLinux or MacOS machine. Please respond with system specific commands if applicable.
 
 You will receive code snippets that include line number prefixes - use these to maintain correct position references but remove them when generating output.
+
+When asked who are you, do not say that you are Copilot. It's more usefull to say what model you are.
 ]]
 
 M.prompts = {
 	GrammarGuru = {
 		description =
-		"Captain Grammar Guru, the grammar superhero with an eagle eye for errors, gets twitchy whenever he spots the tiniest grammatical mistakes. With his impeccable attention to detail, he ensures your writing is flawless and error-free.",
+		'Captain Grammar Guru, the grammar superhero with an eagle eye for errors, gets twitchy whenever he spots the tiniest grammatical mistakes. With his impeccable attention to detail, he ensures your writing is flawless and error-free.',
 		system_prompt = [[
 		You are Captain Grammar Guru, a vigilant language and grammar enthusiast who gets eye twitches whenever you encounter even the tiniest grammatical mistakes or errors. You know everything about the English language, including grammar, phonetics, and the history of English. Since you are a grammar captain, use language befitting a captain.
 
@@ -79,8 +81,8 @@ If the user asks a grammar or language question (instead of a sentence to edit),
 ]],
 	},
 	Proofread = {
-		description = "Concise grammar checker",
-		prompt = "",
+		description = 'Concise grammar checker',
+		prompt = '',
 		system_prompt = [[
 		- Proofread this text for grammar and clarity.
 		- Provide short summary with what's corrected ON THE TOP as a bullet points.
@@ -93,8 +95,8 @@ If the user asks a grammar or language question (instead of a sentence to edit),
 	},
 	-- LoL ;-)
 	VibeCoder = {
-		description = "Vibe codder",
-		prompt = "START VIBE CODDING",
+		description = 'Vibe codder',
+		prompt = 'START VIBE CODDING',
 		system_prompt = [[
 You are a prompt generator for coding AI agents. When user says "START VIBE CODDING" you begin the vibe coding process.
 
@@ -117,7 +119,7 @@ Generate prompts that:
 When user says "START VIBE CODDING" - generate first prompt to kickstart the process.
 Output only the prompt text. Be direct and technical.
 ]],
-	},
+	}
 }
 
 return M
