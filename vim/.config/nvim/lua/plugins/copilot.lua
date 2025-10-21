@@ -3,7 +3,7 @@ local default_model =
 -- "claude-3.5-sonnet"
 -- "claude-3.7-sonnet"
 -- "claude-3.7-sonnet-thought" -- slow
-"claude-sonnet-4"
+"claude-sonnet-4.5"
 
 -- "gemini-2.0-flash-001"
 -- "gemini-2.5-pro" -- slow AF
@@ -86,7 +86,7 @@ return {
 				},
 
 				separator = "━━",
-				auto_fold = true, -- Automatically folds non-assistant messages
+				auto_fold = false, -- Automatically folds non-assistant messages
 			})
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
