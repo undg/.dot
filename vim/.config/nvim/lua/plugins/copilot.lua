@@ -14,9 +14,26 @@ local default_model =
 -- "o3-mini"
 -- "o4-mini"
 
-
-
 return {
+	{
+		"ravitemer/mcphub.nvim", -- https://ravitemer.github.io/mcphub.nvim/
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+		config = function()
+			require("mcphub").setup({
+				extensions = {
+					copilotchat = {
+						enabled = true,
+						convert_tools_to_functions = true, -- Convert MCP tools to CopilotChat functions
+						convert_resources_to_functions = true, -- Convert MCP resources to CopilotChat functions
+						add_mcp_prefix = false, -- Add "mcp_" prefix to function names
+					},
+				},
+			})
+		end,
+	},
 	{
 
 		"zbirenbaum/copilot.lua",
@@ -62,6 +79,14 @@ return {
 				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
 				system_prompt = prompt.system_prompt, -- System prompt to use (can be specified manually in prompt via /).
 				prompts = prompt.prompts,         -- User defined prompts
+				headers = {
+					user = "👤 HUMAN",
+					assistant = "🤖 GRUG",
+					tool = "🔧 Tool",
+				},
+
+				separator = "━━",
+				auto_fold = true, -- Automatically folds non-assistant messages
 			})
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
@@ -76,8 +101,8 @@ return {
 			Keymap.normal("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
 			Keymap.visual("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
 
-			Keymap.normal('<leader>ax', util.reset_title, { desc = "(CopilotChat) reset chat title" })
-			Keymap.normal('<leader>at', util.show_title, { desc = "(CopilotChat) show chat title" })
+			Keymap.normal("<leader>ax", util.reset_title, { desc = "(CopilotChat) reset chat title" })
+			Keymap.normal("<leader>at", util.show_title, { desc = "(CopilotChat) show chat title" })
 		end,
 	},
 	-- See Commands section for default commands if you want to lazy load on them
