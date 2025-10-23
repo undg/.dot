@@ -84,6 +84,9 @@ return {
 					assistant = "🤖 GRUG",
 					tool = "🔧 Tool",
 				},
+				mappings = {
+					toggle_sticky = { normal = 'gs' },
+				},
 
 				separator = "━━",
 				auto_fold = false, -- Automatically folds non-assistant messages
