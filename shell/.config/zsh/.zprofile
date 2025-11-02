@@ -25,6 +25,11 @@ export READER="xreader"
 export ANDROID_SDK_ROOT=~/Android/Sdk
 export ANDROID_HOME=~/Android/Sdk
 
+# Override GPU architecture version for HSA (Heterogeneous System Architecture) - needed for AMD ROCm compatibility
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+# Enable faster file transfers for Hugging Face Hub downloads using hf_transfer library
+export HF_HUB_ENABLE_HF_TRANSFER=1
+
 if [[ "$(hostname)" == "cm" ]]; then
 	export SCREEN_LEFT="DisplayPort-1"
 	export SCREEN_TOP="HDMI-A-0"
@@ -57,7 +62,6 @@ if [[ "$(uname)" == "Linux" ]]; then
 	# Start graphical server if i3 not already running.
 	[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 fi
-
 
 if [[ "$(uname)" == "Darwin" ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
