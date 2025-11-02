@@ -32,6 +32,7 @@ return {
 					},
 				},
 			})
+			require("mcp.help_server")
 		end,
 	},
 	{
