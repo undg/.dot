@@ -16,6 +16,59 @@ local default_model =
 
 return {
 	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" },          -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken",                   -- Only on MacOS or Linux
+		config = function()
+			local prompt = require("plugins.copilot-prompts")
+			local util = require("plugins.copilot-util")
+
+			local chat = require("CopilotChat")
+			chat.setup({
+				resource_processing = true,
+				history_path = "~/Dropbox/DropsyncFiles/Work/gpt-chats", -- @TODO (undg) 2025-08-11: think about better path. This one is misleading.
+				callback = function(res)
+					util.copilot_callback(res)
+				end,
+				model = default_model,
+				question_header = "# HUMAN ",     -- Header to use for user questions
+				answer_header = "# GRUG ",        -- Header to use for AI answers
+				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
+				system_prompt = prompt.system_prompt, -- System prompt to use (can be specified manually in prompt via /).
+				prompts = prompt.prompts,         -- User defined prompts
+				headers = {
+					user = "👤 HUMAN",
+					assistant = "🤖 GRUG",
+					tool = "🔧 Tool",
+				},
+				mappings = {
+					toggle_sticky = { normal = "gs" },
+				},
+
+				separator = "━━",
+				auto_fold = false, -- Automatically folds non-assistant messages
+			})
+
+			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
+			Keymap.visual("<leader>aa", chat.open, { desc = "(CopilotChat) open chat window" })
+
+			Keymap.normal("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
+			Keymap.visual("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
+
+			Keymap.normal("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
+			Keymap.visual("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
+
+			Keymap.normal("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
+			Keymap.visual("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
+
+			Keymap.normal("<leader>ax", util.reset_title, { desc = "(CopilotChat) reset chat title" })
+			Keymap.normal("<leader>at", util.show_title, { desc = "(CopilotChat) show chat title" })
+		end,
+	},
+	{
 		"ravitemer/mcphub.nvim", -- https://ravitemer.github.io/mcphub.nvim/
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -57,57 +110,4 @@ return {
 			})
 		end,
 	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		dependencies = {
-			{ "zbirenbaum/copilot.lua" },          -- or github/copilot.vim
-			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-		},
-		build = "make tiktoken",                   -- Only on MacOS or Linux
-		config = function()
-			local prompt = require("plugins.copilot-prompts")
-			local util = require("plugins.copilot-util")
-
-			local chat = require("CopilotChat")
-			chat.setup({
-				history_path = "~/Dropbox/DropsyncFiles/Work/gpt-chats", -- @TODO (undg) 2025-08-11: think about better path. This one is misleading.
-				callback = function(res)
-					util.copilot_callback(res)
-				end,
-				model = default_model,
-				question_header = "# HUMAN ",     -- Header to use for user questions
-				answer_header = "# GRUG ",        -- Header to use for AI answers
-				error_header = "# KURWA MAC!!!   #$%&@^*$@ ", -- Header to use for errors
-				system_prompt = prompt.system_prompt, -- System prompt to use (can be specified manually in prompt via /).
-				prompts = prompt.prompts,         -- User defined prompts
-				headers = {
-					user = "👤 HUMAN",
-					assistant = "🤖 GRUG",
-					tool = "🔧 Tool",
-				},
-				mappings = {
-					toggle_sticky = { normal = 'gs' },
-				},
-
-				separator = "━━",
-				auto_fold = false, -- Automatically folds non-assistant messages
-			})
-
-			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
-			Keymap.visual("<leader>aa", chat.open, { desc = "(CopilotChat) open chat window" })
-
-			Keymap.normal("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
-			Keymap.visual("<leader>ad", ":CopilotChatDoc<CR>", { desc = "(CopilotChat) generate documentation" })
-
-			Keymap.normal("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
-			Keymap.visual("<leader>ar", ":CopilotChatReview<CR>", { desc = "(CopilotChat) code review" })
-
-			Keymap.normal("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
-			Keymap.visual("<leader>at", ":CopilotChatTest<CR>", { desc = "(CopilotChat) generate tests" })
-
-			Keymap.normal("<leader>ax", util.reset_title, { desc = "(CopilotChat) reset chat title" })
-			Keymap.normal("<leader>at", util.show_title, { desc = "(CopilotChat) show chat title" })
-		end,
-	},
-	-- See Commands section for default commands if you want to lazy load on them
 }
