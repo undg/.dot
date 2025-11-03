@@ -46,7 +46,7 @@ exec        --no-startup-id flameshot                                           
 exec_always --no-startup-id lxqt-policykit-agent                                                             # FE for polkit
 exec_always --no-startup-id ~/bin/speedy-keys.sh                                                             # Speedy keys
 exec        --no-startup-id sleep 5 && deskflow                                                              # KVM software
-exec        --no-startup-id sleep 10 && dropbox
+# exec        --no-startup-id sleep 10 && dropbox
 exec_always --no-startup-id sleep 1 && nm-applet                                                             # network manager in systray
 exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
 # exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/anime-girl-ps4.jpg                         # Wallpaper
