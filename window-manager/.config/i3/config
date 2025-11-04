@@ -27,8 +27,8 @@ set $reboot sudo -A reboot
 set $hibernate sudo -A systemctl suspend
 
 
-set $DP_pc_left "DisplayPort-2"
-set $DP_pc_right "DisplayPort-1"
+set $DP_pc_left "DP-2"
+set $DP_pc_right "DP-4"
 
 set $DP_laptop "eDP"
 set $DP_laptop_right "HDMI-A-0"
