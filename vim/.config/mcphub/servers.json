@@ -1,32 +1,32 @@
 {
-	"mcpServers": {
-		"fetch": {
-			"args": [
-				"mcp-server-fetch"
-			],
-			"command": "uvx"
-		},
-		"sequentialthinking": {
-			"args": [
-				"run",
-				"--rm",
-				"-i",
-				"--name",
-				"mcp-sequentialthinking",
-				"mcp/sequentialthinking"
-			],
-			"command": "docker"
-		}
-	},
-	"nativeMCPServers": {
-		"mcphub": {
-			"disabled_tools": []
-		},
-		"neovim": {
-			"disabled_tools": [
-				"delete_items",
-				"move_item"
-			]
-		}
-	}
+  "mcpServers": {
+    "fetch": {
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "command": "uvx"
+    },
+    "sequentialthinking": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "--name",
+        "mcp-sequentialthinking",
+        "mcp/sequentialthinking"
+      ],
+      "command": "docker"
+    }
+  },
+  "nativeMCPServers": {
+    "mcphub": {
+      "disabled_tools": []
+    },
+    "neovim": {
+      "disabled_tools": [
+        "delete_items",
+        "move_item"
+      ]
+    }
+  }
 }
