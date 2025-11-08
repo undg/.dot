@@ -3,3 +3,4 @@ Session.vim
 # project pre-prompt file, for Neovim GP plugin 
 .gp.md
 .cursorrules
+opencode.json
