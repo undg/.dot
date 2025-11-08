@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Simple test script for init-mise-venv
+# This script tests the core behavior of the init-mise-venv script
+
+echo "Starting tests for init-mise-venv script..."
+
+# Create temporary directory for testing
+TEST_DIR=$(mktemp -d)
+echo "Test directory: $TEST_DIR"
+cd "$TEST_DIR"
+
+# Test 1: Default behavior (no arguments) - should create .venv
+echo "Test 1: Default behavior"
+rm -f mise.toml
+
+# Use absolute path to the script
+/home/undg/.dot/bin/bin/init-mise-venv
+
+if [ -d ".venv" ]; then
+    echo "✓ Virtual environment created successfully"
+else
+    echo "✗ Virtual environment not created"
+    exit 1
+fi
+
+if [ -f "mise.toml" ]; then
+    if grep -q "\[env\]" mise.toml && grep -q '_.python.venv = ".venv"' mise.toml; then
+        echo "✓ mise.toml updated correctly"
+    else
+        echo "✗ mise.toml not updated properly"
+        exit 1
+    fi
+else
+    echo "✗ mise.toml file not created"
+    exit 1
+fi
+
+# Test 2: Custom venv name
+echo "Test 2: Custom venv name"
+rm -rf ".venv"
+rm -f mise.toml
+/home/undg/.dot/bin/bin/init-mise-venv "my_test_venv"
+
+if [ -d "my_test_venv" ]; then
+    echo "✓ Custom virtual environment created successfully"
+else
+    echo "✗ Custom virtual environment not created"
+    exit 1
+fi
+
+if grep -q '_.python.venv = "my_test_venv"' mise.toml; then
+    echo "✓ mise.toml updated with custom venv name"
+else
+    echo "✗ mise.toml not updated with custom venv name"
+    exit 1
+fi
+
+# Test 3: Existing mise.toml file behavior
+echo "Test 3: Existing mise.toml file behavior"
+rm -f mise.toml
+echo "[env]" > mise.toml
+echo "existing_key = \"value\"" >> mise.toml
+
+/home/undg/.dot/bin/bin/init-mise-venv "test_venv"
+
+if grep -q '_.python.venv = "test_venv"' mise.toml; then
+    echo "✓ mise.toml updated with new venv path"
+else
+    echo "✗ mise.toml not updated with new venv path"
+    exit 1
+fi
+
+# Cleanup
+cd -
+rm -rf "$TEST_DIR"
+
+echo "All tests passed!"
+
