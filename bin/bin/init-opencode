@@ -2,14 +2,84 @@
 
 # Check if opencode.json already exists
 if [ -f "opencode.json" ]; then
-  echo "opencode.json already exists in current directory"
-  exit 1
+	echo "opencode.json already exists in current directory"
+	exit 1
 fi
 
-# Create new opencode.json with default content
-cat > opencode.json << 'EOF'
+# Function to fetch models from the endpoint
+fetch_models() {
+	if command -v curl &>/dev/null; then
+		curl -s http://127.0.0.1:1234/v1/models
+	elif command -v wget &>/dev/null; then
+		wget -qO- http://127.0.0.1:1234/v1/models
+	else
+		echo "Error: Neither curl nor wget is available" >&2
+		exit 1
+	fi
+}
+
+# Function to display model selection interface
+select_models() {
+	local models_json
+	models_json=$(fetch_models)
+
+	# Extract model IDs from JSON
+	if command -v jq &>/dev/null; then
+		local model_ids
+		model_ids=$(echo "$models_json" | jq -r '.data[].id' 2>/dev/null)
+	else
+		echo "Error: jq is required for parsing JSON" >&2
+		exit 1
+	fi
+
+	# Check if we have any models
+	if [ -z "$model_ids" ]; then
+		echo "No models found at http://127.0.0.1:1234/v1/models"
+		exit 1
+	fi
+
+	# Create temporary file for selected models
+	local temp_file
+	temp_file=$(mktemp)
+
+	# Create selection interface using fzf or fallback to basic selection
+	if command -v fzf &>/dev/null; then
+		echo "$model_ids" | fzf -m --preview 'echo "Selected: {}"' >"$temp_file"
+	else
+		echo "fzf not found."
+		exit 1
+	fi
+
+	# Get selected models
+	local selected_models
+	selected_models=$(cat "$temp_file")
+
+	# Clean up
+	rm -f "$temp_file"
+
+	# If no models selected, use default
+	if [ -z "$selected_models" ]; then
+		echo "No models selected. Using default model."
+		echo "qwen/qwen3-coder-30b" >"$temp_file"
+		selected_models="qwen/qwen3-coder-30b"
+	fi
+
+	# Create JSON with selected models
+	local models_json_content=""
+	while IFS= read -r model; do
+		if [ -n "$model" ]; then
+			if [ -z "$models_json_content" ]; then
+				models_json_content="{\"$model\": {\"name\": \"$model (local)\"}}"
+			else
+				models_json_content="$models_json_content, \"$model\": {\"name\": \"$model (local)\"}"
+			fi
+		fi
+	done <<<"$selected_models"
+
+	# Create the final JSON content
+	cat >opencode.json <<EOF
 {
-  "$schema": "https://opencode.ai/config.json",
+  "\$schema": "https://opencode.ai/config.json",
   "provider": {
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
@@ -18,13 +88,15 @@ cat > opencode.json << 'EOF'
         "baseURL": "http://127.0.0.1:1234/v1"
       },
       "models": {
-        "qwen/qwen3-coder-30b": {
-          "name": "Qwen 3 Coder 30B (local)"
-        }
+        $models_json_content
       }
     }
   }
 }
 EOF
 
-echo "Created opencode.json in current directory"
+	echo "Created opencode.json in current directory with selected models"
+}
+
+# Main execution
+select_models
