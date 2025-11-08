@@ -1,0 +1,34 @@
+#!/bin/bash
+
+MISE_FILE="mise.toml"
+
+# Set default venv name if no argument provided
+if [[ -z "$1" ]]; then
+  VENV_NAME=".venv"
+else
+  VENV_NAME="$1"
+fi
+
+# Create the Python virtual environment
+python -m venv "$VENV_NAME"
+
+# Check if mise.toml exists and has [env] section
+ENV_EXISTS=false
+if [[ -f "$MISE_FILE" ]]; then
+    if grep -q "^\[env\]" "$MISE_FILE"; then
+        ENV_EXISTS=true
+    fi
+fi
+
+# Create or overwrite the mise.toml file with [env] section and key
+cat > "$MISE_FILE" <<EOF
+[env]
+_.python.venv = "$VENV_NAME"
+EOF
+
+# Trust the configuration only if we added the [env] section (i.e., file didn't exist before)
+if [[ "$ENV_EXISTS" == false ]]; then
+  mise trust
+fi
+
+echo "mise.toml updated successfully"
