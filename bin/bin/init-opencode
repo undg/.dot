@@ -44,7 +44,7 @@ select_models() {
 
 	# Create selection interface using fzf or fallback to basic selection
 	if command -v fzf &>/dev/null; then
-		echo "$model_ids" | fzf -m --preview 'echo "Selected: {}"' >"$temp_file"
+		echo "$model_ids" | fzf -m --preview 'echo "Selected: {}"' --bind='space:toggle' >"$temp_file"
 	else
 		echo "fzf not found."
 		exit 1
@@ -69,7 +69,7 @@ select_models() {
 	while IFS= read -r model; do
 		if [ -n "$model" ]; then
 			if [ -z "$models_json_content" ]; then
-				models_json_content="{\"$model\": {\"name\": \"$model (local)\"}}"
+				models_json_content="\"$model\": {\"name\": \"$model (local)\"}"
 			else
 				models_json_content="$models_json_content, \"$model\": {\"name\": \"$model (local)\"}"
 			fi
@@ -78,20 +78,20 @@ select_models() {
 
 	# Create the final JSON content
 	cat >opencode.json <<EOF
-{
-  "\$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "lmstudio": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LM Studio (local)",
-      "options": {
-        "baseURL": "http://127.0.0.1:1234/v1"
-      },
-      "models": {
-        $models_json_content
-      }
-    }
-  }
+	{
+		"\$schema": "https://opencode.ai/config.json",
+		"provider": {
+			"lmstudio": {
+				"npm": "@ai-sdk/openai-compatible",
+				"name": "LM Studio (local)",
+				"options": {
+					"baseURL": "http://127.0.0.1:1234/v1"
+				},
+			"models": {
+				$models_json_content
+			}
+	}
+}
 }
 EOF
 
