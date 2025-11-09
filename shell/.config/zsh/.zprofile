@@ -25,6 +25,10 @@ export READER="xreader"
 export ANDROID_SDK_ROOT=~/Android/Sdk
 export ANDROID_HOME=~/Android/Sdk
 
+# Quick fix for Handy
+# https://github.com/cjpais/Handy/issues/114#issuecomment-3357408907
+export LD_PRELOAD="/lib64/libwayland-client.so.0"
+
 # Override GPU architecture version for HSA (Heterogeneous System Architecture) - needed for AMD ROCm compatibility
 export HSA_OVERRIDE_GFX_VERSION=10.3.0
 
