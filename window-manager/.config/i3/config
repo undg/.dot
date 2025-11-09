@@ -45,7 +45,7 @@ exec        --no-startup-id unclutter                                           
 exec        --no-startup-id flameshot                                                                        # Screenshots
 exec_always --no-startup-id lxqt-policykit-agent                                                             # FE for polkit
 exec_always --no-startup-id ~/bin/speedy-keys.sh                                                             # Speedy keys
-exec        --no-startup-id sleep 5 && deskflow                                                              # KVM software
+# exec        --no-startup-id sleep 5 && deskflow                                                              # KVM software
 # exec        --no-startup-id sleep 10 && dropbox
 exec_always --no-startup-id sleep 1 && nm-applet                                                             # network manager in systray
 exec_always --no-startup-id sleep 4 && feh --bg-scale ~/.config/i3/wallpaper/dog.jpg
@@ -55,6 +55,7 @@ exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 2 && ~/bin
 # exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && iriunwebcam                                  # Android webcam
 # exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 6 && kodi                              # Media center
 exec        --no-startup-id [[ "$(hostname)" == "di-7415" ]] && sleep 2 && ~/bin/autorotate --display eDP    # autorotate 2in1 screen
+exec_always --no-startup-id sleep 4 && LD_PRELOAD="/lib64/libwayland-client.so.0" handy                     # multiplatform STT with decent models
 
 
 set $transparent #000000
