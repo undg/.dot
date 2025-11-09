@@ -55,7 +55,7 @@ exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 2 && ~/bin
 # exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && iriunwebcam                                  # Android webcam
 # exec        --no-startup-id [[ "$(hostname)" == "cm"      ]] && sleep 6 && kodi                              # Media center
 exec        --no-startup-id [[ "$(hostname)" == "di-7415" ]] && sleep 2 && ~/bin/autorotate --display eDP    # autorotate 2in1 screen
-exec_always --no-startup-id sleep 4 && LD_PRELOAD="/lib64/libwayland-client.so.0" handy                     # multiplatform STT with decent models
+exec_always --no-startup-id bash -c 'if ! pgrep -f "handy" > /dev/null; then sleep 3 && LD_PRELOAD="/lib64/libwayland-client.so.0" handy & fi'                     # multiplatform STT with decent models
 
 
 set $transparent #000000
