@@ -1,24 +1,28 @@
 #!/usr/bin/env bash
 
+R='\033[0;31m' #'0;31' is Red's ANSI color code
+G='\033[0;32m' #'0;32' is Green's ANSI color code
+Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
+B='\033[0;34m' #'0;34' is Blue's ANSI color code
+NC='\033[0m'   #'0'    is back no color
+
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
 function stow_patch() {
-    stow $@ 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir"
+	stow "$@" 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir"
 }
 
 # @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
 rm -rf ~/.config/atuin
 
-for folder in */
-do
-    if [[ ! $folder =~ ^_.* ]]
-    then
-        echo "--------------------------"
-        stow_patch -D $folder
-        echo "Remove $folder"
-        stow_patch $folder
-        echo "Add $folder"
-    fi
+for folder in */; do
+	if [[ ! $folder =~ ^_.* ]]; then
+		echo "--------------------------"
+		stow_patch -D "$folder"
+		echo -e "${R}Remove $folder${NC}"
+		stow_patch "$folder"
+		echo -e "${G}Add $folder${NC}"
+	fi
 done
 
 echo "--------------------------"
