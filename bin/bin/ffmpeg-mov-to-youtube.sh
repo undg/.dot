@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#!/bin/env sh
 R='\033[0;31m' #'0;31' is Red's ANSI color code
 G='\033[0;32m' #'0;32' is Green's ANSI color code
 Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
