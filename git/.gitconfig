@@ -78,3 +78,5 @@
 	required = true
 [fetch]
 	prune = true
+[include]
+	path = ~/.gitconfig_local
