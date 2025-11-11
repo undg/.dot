@@ -41,7 +41,7 @@ return {
 
 		require("obsidian").setup({
 			ui = {
-				enable = true,
+				enable = false, -- Disable obsidian UI to prevent conflicts with render-markdown
 				checkboxes = {
 					-- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
 					-- [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
