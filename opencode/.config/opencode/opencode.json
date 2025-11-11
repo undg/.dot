@@ -1,5 +1,6 @@
 {
 	"$schema": "https://opencode.ai/config.json",
+	"model": "anthropic/claude-haiku-4-5",
 	"provider": {
 		"lmstudio": {
 			"npm": "@ai-sdk/openai-compatible",
@@ -8,5 +9,12 @@
 				"baseURL": "http://127.0.0.1:1234/v1"
 			}
 		}
+	},
+	"disabled_providers": [
+		"deepseek",
+		"xai"
+	],
+	"keybinds": {
+		"editor_open": "ctrl+e"
 	}
 }
