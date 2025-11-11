@@ -27,10 +27,14 @@ return {
 				reacttypescript = { "prettierd", "prettier", stop_after_first = true },
 				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 				markdown = { "prettierd" },
-				formatters = {
-					prettier = {
-						prepend_args = { "--prose-wrap", "preserve" },
-					},
+				yaml = { "prettierd", "prettier", stop_after_first = true },
+			},
+			formatters = {
+				prettier = {
+					prepend_args = { "--prose-wrap", "preserve", "--tab-width", "2" },
+				},
+				prettierd = {
+					prepend_args = { "--prose-wrap", "preserve", "--tab-width", "2" },
 				},
 			},
 			-- Set this to change the default values when calling conform.format()

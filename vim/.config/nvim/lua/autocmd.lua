@@ -15,6 +15,22 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
+		-- Use 2-space indentation for markdown (YAML frontmatter compatibility)
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.softtabstop = 2
+		vim.opt_local.expandtab = true
+	end,
+})
+
+-- Set 2-space indentation for YAML files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "yaml", "yml" },
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.softtabstop = 2
+		vim.opt_local.expandtab = true
 	end,
 })
 
