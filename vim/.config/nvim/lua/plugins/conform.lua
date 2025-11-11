@@ -31,10 +31,7 @@ return {
 			},
 			formatters = {
 				prettier = {
-					prepend_args = { "--prose-wrap", "preserve", "--tab-width", "2" },
-				},
-				prettierd = {
-					prepend_args = { "--prose-wrap", "preserve", "--tab-width", "2" },
+					prepend_args = { "--prose-wrap", "preserve" },
 				},
 			},
 			-- Set this to change the default values when calling conform.format()
