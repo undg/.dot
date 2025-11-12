@@ -36,7 +36,7 @@ return {
 		Keymap.normal('<leader>n', '<Plug>(YankyCycleForward)', { noremap = false })
 		Keymap.normal('<leader>N', '<Plug>(YankyCycleBackward)', { noremap = false })
 
-		Keymap.normal('<leader>y', ':Telescope yank_history<cr>', { noremap = false })
+		Keymap.normal('<leader>yy', ':Telescope yank_history<cr>', { noremap = false })
 
 		-- telescope integration
 		require('telescope').load_extension('yank_history')
