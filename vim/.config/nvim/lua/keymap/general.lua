@@ -178,7 +178,7 @@ Keymap.normal("≥", "<C-w>L")
 vim.api.nvim_set_keymap("t", "<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
 
 -- yank file path
-Keymap.normal("<leader>YF", function()
+Keymap.normal("<leader>yf", function()
 	local file_path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", file_path)
 	vim.fn.setreg('"', "> #file:`" .. file_path .. "`")
