@@ -5,10 +5,7 @@ local i = ls.insert_node
 local rep = require("luasnip.extras").rep
 local js_snippets = require("snippets.javascript")
 
-local vitest_content = {
-	t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }), i(1), t({ '`, () => {', '  it(`' }),
-	i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
-}
+
 
 local ts_snippet = {
 	s("int", {
@@ -21,9 +18,10 @@ local ts_snippet = {
 		t("function "), i(1, "function_name"), t("("), i(2, "argument"), t(": "), i(3, "argument_type"), t({ ") {", "\t" }),
 		i(0), t({ "", "}" })
 	}),
-	s("vitestnew", vitest_content),
-	s("newvitest", vitest_content),
-	s("vitest", vitest_content),
+	s("vitestinit", {
+		t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }), i(1), t({ '`, () => {', '  it(`' }),
+		i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
+	}),
 }
 
 local merged_snippets = {}
