@@ -247,8 +247,9 @@ bindsym $winKey+Shift+t         layout toggle
 #bindsym $winKey+Shift+o
 #bindsym $winKey+p
 #bindsym $winKey+Shift+p
-bindsym $winKey+a               exec --no-startup-id ~/bin/pavucontrol-toggle
-bindsym $winKey+Shift+a         exec $term -e pulsemixer
+bindsym $winKey+a               exec --no-startup-id ~/bin/pulse-remote-desktop
+bindsym $winKey+Shift+a         exec --no-startup-id ~/bin/pavucontrol-toggle
+# bindsym $winKey+Shift+A         exec $term -e pulsemixer
 bindsym $winKey+s               sticky toggle
 #bindsym $winKey+Shift+s
 bindsym $winKey+d               exec --no-startup-id  rofi -show combi
