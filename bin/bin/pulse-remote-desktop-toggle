@@ -1,10 +1,10 @@
 #!/bin/env sh
 
-PID=$(pgrep -x -f "/usr/lib/electron37/electron /home/undg/Code/pulse-remote-desktop/dist/linux-unpacked/resources/app.asar")
+PID=$(pgrep -x -f "/usr/lib/electron38/electron /home/undg/Code/pulse-remote-desktop/dist/linux-unpacked/resources/app.asar")
 echo "$PID"
 
-if [ "$PID" == "" ]; then
-	exec /usr/bin/electron37 /home/undg/Code/pulse-remote-desktop/dist/linux-unpacked/resources/app.asar
+if [ "$PID" = "" ]; then
+	exec /usr/bin/electron38 /home/undg/Code/pulse-remote-desktop/dist/linux-unpacked/resources/app.asar
 else
 	kill "$PID"
 fi
