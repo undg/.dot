@@ -84,6 +84,11 @@ end
 
 mason_lspconfig.setup({
 	ensure_installed = mason_lsp,
+	automatic_enable = {
+		exclude = {
+			"basedpyright",
+		}
+	}
 })
 
 mason_installer.setup({
