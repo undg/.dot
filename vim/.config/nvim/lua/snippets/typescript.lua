@@ -22,6 +22,20 @@ local ts_snippet = {
 		t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }), i(1), t({ '`, () => {', '  it(`' }),
 		i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
 	}),
+	s("atom", {
+		t("export const "),
+		i(1, "name"),
+		t("Atom = atom<"),
+		i(2, "type"),
+		t(">("),
+		i(3, "defaultValue"),
+		t({ ");", 'if (process.env.NODE_ENV !== "production") {', "\t" }),
+		rep(1),
+		t('Atom.debugLabel = "'),
+		rep(1),
+		t({ 'Atom";', "}" }),
+		i(0),
+	}),
 }
 
 local merged_snippets = {}
