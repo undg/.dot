@@ -16,7 +16,7 @@ local default_model =
 
 return {
 	{
-		"CopilotC-Nvim/CopilotChat.nvim",
+		"CopilotC-Nvim/CopilotChat.nvim",          -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" },          -- or github/copilot.vim
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
@@ -47,9 +47,9 @@ return {
 				mappings = {
 					toggle_sticky = { normal = "gs" },
 				},
-
+				sticky = { "#buffer:active", "#diagnostics" }, -- Always include buffer and diagnostics in new chats
 				separator = "━━",
-				auto_fold = false, -- Automatically folds non-assistant messages
+				auto_fold = false,                 -- Automatically folds non-assistant messages
 			})
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
