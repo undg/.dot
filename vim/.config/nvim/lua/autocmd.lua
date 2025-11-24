@@ -188,3 +188,36 @@ vim.api.nvim_create_autocmd("BufDelete", {
 		copilot.reset_title()
 	end,
 })
+
+
+--  @TODO (undg) 2025-11-24: this need to be tested by time. I should hide error mentioned in luaDoc that happens from time to time.
+
+-- Suppress treesitter "Invalid 'col': out of range" errors
+-- This error occurs when treesitter tries to highlight at an invalid column position,
+-- typically due to race conditions with other plugins that modify extmarks (LSP inlay hints,
+-- virtual text, concealing, etc.). The highlighting still works, but the error is annoying.
+-- This patches the highlighter to catch and suppress these specific errors.
+local ts_ok = pcall(function()
+	local ts_hl = require("vim.treesitter.highlighter")
+	if ts_hl and ts_hl.active then
+		local orig_nvim_buf_set_extmark = vim.api.nvim_buf_set_extmark
+		vim.api.nvim_buf_set_extmark = function(...)
+			local ok, result = pcall(orig_nvim_buf_set_extmark, ...)
+			if not ok then
+				local err = tostring(result)
+				-- Only suppress the specific "Invalid 'col': out of range" error
+				if not err:match("Invalid 'col': out of range") then
+					error(result) -- Re-throw other errors
+				else
+					vim.notify("Treesitter: Invalid 'col': out of range (suppressed)", vim.log.levels.DEBUG)
+					--  @TODO (undg) 2025-11-24: maybe log to file?
+				end
+			end
+			return ok and result or nil
+		end
+	end
+end)
+
+if not ts_ok then
+	vim.notify("autocmd.lua: Failed to patch treesitter error handler", vim.log.levels.WARN)
+end
