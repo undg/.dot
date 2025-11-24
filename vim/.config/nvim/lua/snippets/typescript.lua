@@ -2,6 +2,7 @@ local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local f = ls.function_node
 local rep = require("luasnip.extras").rep
 local js_snippets = require("snippets.javascript")
 
@@ -33,6 +34,38 @@ local ts_snippet = {
 		rep(1),
 		t('Atom.debugLabel = "'),
 		rep(1),
+		t({ 'Atom";', "}" }),
+		i(0),
+	}),
+	s("atomFromClip", {
+		t("export const "),
+		f(function()
+			local clip = vim.fn.getreg('"')
+			if clip ~= "" then
+				return clip
+			end
+			return "name"
+		end),
+		t("Atom = atom<"),
+		i(1, "type"),
+		t(">("),
+		i(2, "defaultValue"),
+		t({ ");", 'if (process.env.NODE_ENV !== "production") {', "\t" }),
+		f(function()
+			local clip = vim.fn.getreg('"')
+			if clip ~= "" then
+				return clip
+			end
+			return "name"
+		end),
+		t('Atom.debugLabel = "'),
+		f(function()
+			local clip = vim.fn.getreg('"')
+			if clip ~= "" then
+				return clip
+			end
+			return "name"
+		end),
 		t({ 'Atom";', "}" }),
 		i(0),
 	}),
