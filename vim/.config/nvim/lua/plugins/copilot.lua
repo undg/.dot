@@ -47,9 +47,9 @@ return {
 				mappings = {
 					toggle_sticky = { normal = "gs" },
 				},
-				sticky = { "#buffer:active", "#diagnostics" }, -- Always include buffer and diagnostics in new chats
+				sticky = { "#buffer", "#diagnostics" }, -- Always include buffer and diagnostics in new chats
 				separator = "━━",
-				auto_fold = false,                 -- Automatically folds non-assistant messages
+				auto_fold = false,          -- Automatically folds non-assistant messages
 			})
 
 			Keymap.normal("<leader>aa", chat.toggle, { desc = "(CopilotChat) open chat window" })
