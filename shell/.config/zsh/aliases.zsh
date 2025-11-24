@@ -260,3 +260,10 @@ colors() {
 alias ollama-user-log='journalctl --user-unit ollama.service --since today'
 
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
+
+if hash  opencode &>/dev/null; then
+	alias o='opencode'
+else
+	echo "opencode is not installed."
+	install opencode
+fi
