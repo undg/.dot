@@ -27,3 +27,4 @@ node_modules/
 # fontconfig cache thingy to speed up GUI
 fonts/.local/share/fonts/.uuid
 
+git/.config/gh/hosts.yml
