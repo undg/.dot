@@ -1,6 +1,5 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	// "model": "anthropic/claude-haiku-4-5",
 	"model": "github-copilot/claude-sonnet-4.5",
 	"provider": {
 		"lmstudio": {
@@ -19,39 +18,11 @@
 		"doom_loop": "ask",
 		"external_directory": "ask",
 		"bash": {
-			"git push": "ask"
+			"git push": "ask",
+			"gh": "ask"
 		}
 	},
 	"keybinds": {
 		"editor_open": "ctrl+e"
-	},
-	"agent": {
-		"code-reviewer": {
-			"description": "Reviews code for best practices and potential issues",
-			"prompt": "You are a code reviewer. Focus on security, performance, and maintainability. If you are in feature branch assume that this is MR or PR, diff changes agains main, master or dev. Don't run linter nor tests. Pipeline can do it.",
-			"tools": {
-				"write": false,
-				"edit": false
-			}
-		},
-		"pull-request": {
-			"description": "Create pull requst description",
-			"prompt": "You are a asistant for developer. Clear pull request description. Make it short but informative. Use best practices. If you are in feature branch diff changes agains main, master or dev. If code is not sufficient, ask user to provide you ticket or better context. Don't run linter nor tests. Pipeline can do it. Don't commit any changes. Do to pull or push. Do not crete anything with gh. Provide only description. I'll ask you explicitly if I'll wan't you to do anyting else.",
-			"tools": {
-				"write": false,
-				"edit": false
-			},
-			"permission": {
-				"bash": {
-					"gh": "ask",
-					"git push": "ask",
-					"git status": "allow",
-					"git diff": "allow",
-					"npm run build": "allow",
-					"ls": "allow",
-					"pwd": "allow"
-				}
-			}
-		}
 	}
 }
