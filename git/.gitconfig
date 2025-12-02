@@ -23,6 +23,7 @@
 	st = status
 	d = difftool
 	l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
+	lt = log --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=human-local
         lg = log --decorate --oneline --graph
 	m = merge --no-ff
 	ff = merge --ff-only
