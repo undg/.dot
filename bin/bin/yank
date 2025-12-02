@@ -1,0 +1,43 @@
+#!/bin/sh
+# Cross-platform clipboard copy utility
+# Supports macOS, Linux (X11/Wayland), and Termux
+
+# Read from stdin if no arguments provided, otherwise use arguments
+if [ -t 0 ]; then
+    # stdin is a terminal, use arguments
+    text="$*"
+else
+    # stdin is piped, read from it
+    text=$(cat)
+fi
+
+# Exit if no input provided
+if [ -z "$text" ]; then
+    echo "Usage: yank [text] or echo 'text' | yank" >&2
+    exit 1
+fi
+
+# Detect platform and use appropriate clipboard tool
+if command -v pbcopy >/dev/null 2>&1; then
+    # macOS
+    printf "%s" "$text" | pbcopy
+elif command -v termux-clipboard-set >/dev/null 2>&1; then
+    # Termux (check before xclip as termux might have xclip as well)
+    printf "%s" "$text" | termux-clipboard-set
+elif command -v wl-copy >/dev/null 2>&1; then
+    # Wayland (check before X11 tools)
+    printf "%s" "$text" | wl-copy
+elif command -v xclip >/dev/null 2>&1; then
+    # X11 with xclip
+    printf "%s" "$text" | xclip -selection clipboard
+elif command -v xsel >/dev/null 2>&1; then
+    # X11 with xsel
+    printf "%s" "$text" | xsel --clipboard --input
+else
+    echo "Error: No clipboard tool found" >&2
+    echo "Please install one of: pbcopy, xclip, xsel, wl-copy, or termux-clipboard-set" >&2
+    exit 1
+fi
+
+# Success - optionally show what was copied (uncomment if desired)
+# echo "Copied to clipboard: $text" >&2
