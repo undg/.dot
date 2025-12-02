@@ -7,7 +7,7 @@ set refresh-interval = 5
 # VIEW
 #######
 set main-view	= line-number:no,interval=5 \
-  id:yes,width=6\
+  id:yes,width=7\
   date:relative-compact  \
   author:full,width=3 \
   commit-title:yes,graph=v2,refs,overflow=no
