@@ -45,5 +45,9 @@ elif [ ! -f "$1" ]; then
 else
   file="$1"
 fi
-selected=$(jq -r 'paths | join(".")' "$file" | fzf --preview "jq '.$ITEM' $file" --preview-window=right:50%)
-[ -n "$selected" ] && jq ".$selected" "$file"
+selected=$(jq -r 'paths | join(".")' "$file" | fzf \
+  --preview "if [ -z {q} ]; then jq -C . $file; else jq -C '.{}' $file 2>/dev/null; fi" \
+  --preview-window=right:50% \
+  --phony \
+  --bind "change:reload:jq -r 'paths | join(\".\")' $file | grep -iF {q} || jq -r 'paths | join(\".\")' $file")
+[ -n "$selected" ] && jq -C ".$selected" "$file"
