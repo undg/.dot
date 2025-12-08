@@ -1,0 +1,49 @@
+#!/bin/sh
+
+usage() {
+  cat << EOF
+jqf - Interactive jq with fuzzy finder
+
+Usage: jqf [json-file]
+
+If no file is provided, uses fzf to select a JSON file from current directory.
+Then displays all JSON paths and lets you select one with fzf.
+Shows preview of selected value.
+
+Examples:
+  jqf package.json
+  jqf data.json
+  jqf              # Will prompt to select a JSON file
+
+Requires: jq, fzf
+EOF
+  exit 0
+}
+
+[ "$1" = "-h" ] || [ "$1" = "--help" ] && usage
+
+# Check for required dependencies
+if ! command -v jq >/dev/null 2>&1; then
+  echo "Error: jq is not installed"
+  echo "Use your OS package manager to install it"
+  exit 1
+fi
+
+if ! command -v fzf >/dev/null 2>&1; then
+  echo "Error: fzf is not installed"
+  echo "Use your OS package manager to install it"
+  exit 1
+fi
+
+# If no file provided, use fzf to select one
+if [ -z "$1" ]; then
+  file=$(find . -type f -name "*.json" 2>/dev/null | fzf --prompt="Select JSON file: " --preview="jq -C . {} 2>/dev/null || cat {}" --preview-window=right:50%)
+  [ -z "$file" ] && exit 0  # User cancelled selection
+elif [ ! -f "$1" ]; then
+  echo "Error: File '$1' not found"
+  exit 1
+else
+  file="$1"
+fi
+selected=$(jq -r 'paths | join(".")' "$file" | fzf --preview "jq '.$ITEM' $file" --preview-window=right:50%)
+[ -n "$selected" ] && jq ".$selected" "$file"
