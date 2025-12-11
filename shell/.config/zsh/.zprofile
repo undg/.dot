@@ -22,6 +22,12 @@ export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
 
+RETARDED_OS=$([[ "$(uname)" == "Darwin" ]] && [[ "$(hostname)" =~ \.mhf\.mhc$ ]] && echo true || echo false)
+
+if [[ "$RETARDED_OS" == "true" ]]; then
+	export BROWSER="open"
+fi
+
 export ANDROID_SDK_ROOT=~/Android/Sdk
 export ANDROID_HOME=~/Android/Sdk
 
