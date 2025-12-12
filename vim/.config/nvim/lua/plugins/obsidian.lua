@@ -97,8 +97,8 @@ return {
 
 		wk.add({
 			mode = "v",
-			{ "<leader>o",  group = "Obsidian", silent = false },
-			{ "<leader>ol", ":ObsidianLinkNew", desc = "Obsidian: Create new link" },
+			{ "<leader>ob", group = "Obsidian 📓", silent = false },
+			{ "<leader>obl", ":ObsidianLinkNew", desc = "(Obsidian 📓) Create new link" },
 		})
 	end,
 }
