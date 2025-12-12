@@ -1,17 +1,25 @@
 return {
 	"nvim-lualine/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
 	config = function()
-		local ok_s, s = pcall(require, "custom.lualine.sections")
-		if not ok_s then
-			return
+		local sections_ok, s = pcall(require, "custom.lualine.sections")
+		local opencode_ok = pcall(require, "opencode")
+
+
+		local not_ok = not sections_ok and "custom.lualine.sections" --
+			or not opencode_ok and "opencode"
+			or false
+
+		if not_ok then
+			vim.notify("plugins/lualine.lua: ERROR require - " .. not_ok, vim.log.levels.ERROR)
 		end
+
 
 		local sections = {
 			lualine_a = { s.progress, s.branch, s.harpoon },
 			lualine_b = {},
 			lualine_c = {},
 
-			lualine_x = { "diagnostics", "diff", s.mcp },
+			lualine_x = { "diagnostics", "diff", s.mcp, { require("opencode").statusline } },
 			lualine_y = { s.cwd, s.fileformat, s.filetype },
 			lualine_z = { s.location },
 		}
