@@ -69,13 +69,15 @@ Git("https://github.com/pappasam/nvim-repl")
 Spec("plugins.yanky")
 Spec("plugins.undotree")
 
+-- LLM, AI, AGENTING, GP
+Spec("plugins.gp-nvim")       -- AI chat interface for popular LLM's with API
+Spec("plugins.copilot")       -- AI chat interface for GitHub copilot with chat
+Spec("plugins.opencode-nvim") -- Bridge for opencode
+
 -- Utils
 Spec("plugins.obsidian")                         -- Note taking and knowledge base
 Spec("plugins.markdown-preview")                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec("plugins.render-markdown-nvim")             -- render markdown in vim editor
-Spec("plugins.gp-nvim")                          -- AI chat interface for popular LLM's with API
-Spec("plugins.copilot")                          -- AI chat interface for GitHub copilot with chat
--- Spec("plugins.avante")                           -- AI code assistance, Cursor emulator
 Spec("plugins.qfenter")                          -- quickfix window (cw) open in split/tab...
 Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
