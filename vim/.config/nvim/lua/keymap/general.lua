@@ -185,6 +185,26 @@ Keymap.normal("<leader>yf", function()
 	vim.notify(file_path, vim.log.levels.INFO, { title = "Yank file path" })
 end, { desc = "yank file path" })
 
+Keymap.visual("<leader>yf", function()
+	local file_path = vim.fn.expand("%:p")
+	local start_line = vim.fn.line("v")
+	local end_line = vim.fn.line(".")
+
+	-- Handle reverse selection
+	if start_line > end_line then
+		start_line, end_line = end_line, start_line
+	end
+
+	-- Format line range
+	local line_range = start_line == end_line and string.format("L%d", start_line)
+		or string.format("L%d-L%d", start_line, end_line)
+
+	local file_path_with_lines = file_path .. ":" .. line_range
+	vim.fn.setreg("+", file_path_with_lines)
+	vim.fn.setreg('"', "> #file:`" .. file_path_with_lines .. "`")
+	vim.notify(file_path_with_lines, vim.log.levels.INFO, { title = "Yank file path with lines" })
+end, { desc = "yank file path with line range" })
+
 evil.createCommand()
 Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
 
