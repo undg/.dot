@@ -187,3 +187,7 @@ end, { desc = "yank file path" })
 
 evil.createCommand()
 Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
+
+-- quickly increment or decrement integers
+Keymap.normal('+', '<C-a>', { desc = 'Increment', noremap = true })
+Keymap.normal('-', '<C-x>', { desc = 'Decrement', noremap = true })
