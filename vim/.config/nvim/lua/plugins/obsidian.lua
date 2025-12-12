@@ -84,16 +84,15 @@ return {
 		})
 
 		wk.add({
-			{ "<leader>o",  group = "Obsidian",         silent = false },
-			{ "<leader>od", ":ObsidianToday<cr>",       desc = "Obsidian: Open/Create daily" },
-			{ "<leader>oi", ":ObsidianPasteImg<cr>",    desc = "Obsidian: Paste image" },
-			{ "<leader>on", ":ObsidianNew<cr>",         desc = "Obsidian: Create new note" },
-			{ "<leader>op", ":ObsidianOpen<cr>",        desc = "Obsidian: Open in obsidiona" },
-			{ "<leader>oq", ":ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick switch" },
-			{ "<leader>or", ":ObsidianRename<cr>",      desc = "Obsidian: Rename note" },
-			{ "<leader>os", ":ObsidianSearch<cr>",      desc = "Obsidian: Search" },
-			{ "<leader>ot", ":ObsidianTOC<cr>",         desc = "Obsidian: Show TOC" },
-			{ "<leader>ow", ":ObsidianWorkspace<cr>",   desc = "Obsidian: Workspaces" },
+			{ "<leader>ob", group = "Obsidian 📓", silent = false },
+			{ "<leader>obd", ":ObsidianToday<cr>", desc = "(Obsidian 📓) Open/Create daily" },
+			{ "<leader>obi", ":ObsidianPasteImg<cr>", desc = "(Obsidian 📓) Paste image" },
+			{ "<leader>obn", ":ObsidianNew<cr>", desc = "(Obsidian 📓) Create new note" },
+			{ "<leader>obp", ":ObsidianOpen<cr>", desc = "(Obsidian 📓) Open in obsidiona" },
+			{ "<leader>obq", ":ObsidianQuickSwitch<cr>", desc = "(Obsidian 📓) Quick switch" },
+			{ "<leader>obr", ":ObsidianRename<cr>", desc = "(Obsidian 📓) Rename note" },
+			{ "<leader>obs", ":ObsidianSearch<cr>", desc = "(Obsidian 📓) Search" },
+			{ "<leader>obw", ":ObsidianWorkspace<cr>", desc = "(Obsidian 📓) Workspaces" },
 		})
 
 		wk.add({
