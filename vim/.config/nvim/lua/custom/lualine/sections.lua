@@ -7,7 +7,8 @@ local mcphub_ok, mcphub = pcall(require, "custom.lualine.mcphub")
 local not_ok = not path_ok and "utils.path" --
 	or not window_ok and "utils.window"
 	or not str_ok and "utils.string"
-	or not harpoon_ok and "lualine.harpoon"
+	or not harpoon_ok and "custom.lualine.harpoon"
+	or not mcphub_ok and "custom.lualine.mcphub"
 	or false
 
 if not_ok then
