@@ -19,7 +19,14 @@
 		"external_directory": "ask",
 		"bash": {
 			"git push": "ask",
-			"gh": "ask"
+			"git rebase": "ask",
+			"rm": "ask",
+			"mv": "ask",
+			"sh": "ask",
+			"curl": "ask",
+			"wget": "ask",
+			"gh": "ask",
+			"*": "ask"
 		}
 	},
 	"keybinds": {
