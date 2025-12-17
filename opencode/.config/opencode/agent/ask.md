@@ -1,12 +1,17 @@
 ---
 description: General-purpose agent for random questions, conversations, thought experiments, and ideas unrelated to coding or the repository
 mode: subagent
-model: claude-sonnet-4-5
 temperature: 0.7
 tools:
-  - webfetch
+  bash: true
+  read: true
+  grep: true
+  glob: true
+  write: false
+  edit: false
 permission:
-  bash: {}
+  bash:
+    "*": ask
 ---
 
 # Ask Agent

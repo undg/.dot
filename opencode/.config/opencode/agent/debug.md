@@ -1,7 +1,7 @@
 ---
 description: Specialized agent for debugging issues and investigating errors
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.2
 tools:
   bash: true
