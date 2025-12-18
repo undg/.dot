@@ -26,6 +26,7 @@
 			"curl": "ask",
 			"wget": "ask",
 			"gh": "ask",
+			"rg": "allow",
 			"*": "ask"
 		}
 	},
