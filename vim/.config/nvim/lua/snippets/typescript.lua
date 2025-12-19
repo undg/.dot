@@ -19,10 +19,6 @@ local ts_snippet = {
 		t("function "), i(1, "function_name"), t("("), i(2, "argument"), t(": "), i(3, "argument_type"), t({ ") {", "\t" }),
 		i(0), t({ "", "}" })
 	}),
-	s("vitestinit", {
-		t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }), i(1), t({ '`, () => {', '  it(`' }),
-		i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
-	}),
 	s("atom", {
 		t("export const "),
 		i(1, "name"),
