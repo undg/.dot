@@ -138,7 +138,7 @@ Keymap.normal("gp", ":diffput //1<cr>")
 -- WINDOWS AND TABS --
 ----------------------
 -- Zoom / Full screen
-Keymap.normal("tt", ":tab split<CR>")
+Keymap.normal("<leader>tt", ":tab split<CR>")
 
 -- split navigations is done by tmux-navigator plugin
 -- keymap.normal('<A-h>', '<C-w><C-h>')

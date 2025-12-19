@@ -54,11 +54,12 @@ Git("https://github.com/nvimtools/none-ls.nvim") -- inject LSP diagnostics, code
 
 -- -- Testing
 -- -- @TODO (undg) 2024-12-10: IT'S PROMISING, but underdeveloped. Need DAP and a bit of work.
--- Spec('plugins.neotest') -- running tests
+Spec('plugins.neotest') -- A framework for interacting with tests within NeoVim
 
 -- Debugging
 Git("https://github.com/pappasam/nvim-repl")
 -- (DAP)
+Spec('plugins.nvim-dap')
 -- Git('https://github.com/fussenegger/nvim-dap')
 -- Git('https://github.com/eoluz/nvim-dap-go')
 -- Git('https://github.com/carriga/nvim-dap-ui')
