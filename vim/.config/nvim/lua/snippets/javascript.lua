@@ -47,7 +47,6 @@ return {
 			i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
 		}
 	),
-	-- // @vitest-environment jsdom
 	s("vitest-jsdom",
 		{
 			t({ "// @vitest-environment jsdom", "" }),
