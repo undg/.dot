@@ -174,6 +174,9 @@ Keymap.normal("≤", "<C-w>K")
 Keymap.normal("≥", "<C-w>L")
 
 -- only terminal.
+-- Disable leader and CR timeout in terminal mode to prevent lag
+vim.api.nvim_set_keymap("t", "<Space>", "<Space>", { noremap = true })
+vim.api.nvim_set_keymap("t", "<CR>", "<CR>", { noremap = true })
 -- <Leader>ESC to exit insert and go back to normal mode
 vim.api.nvim_set_keymap("t", "<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
 
