@@ -40,10 +40,18 @@ return {
 	s("forof", {
 		t("for(let "), i(1, "value"), t(" = 0 of "), i(2, "list"), t(") {"), t({ "", "\t" }), i(2), t({ "", "}" })
 	}),
-	s("vitestinit",
+	s("vitest-init",
 		{
-			t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }), i(1), t({ '`, () => {', '  it(`' }),
+			t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }),
+			i(1), t({ '`, () => {', '  it(`' }),
 			i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
 		}
 	),
+	-- // @vitest-environment jsdom
+	s("vitest-jsdom",
+		{
+			t({ "// @vitest-environment jsdom", "" }),
+			i(1)
+		}
+	)
 }
