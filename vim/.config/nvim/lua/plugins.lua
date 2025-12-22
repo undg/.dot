@@ -20,7 +20,7 @@ Spec("plugins.gitsigns")                          -- Git status for every line
 Spec("plugins.git-conflict")
 Spec("plugins.neogit")                            -- A Magit clone for Neovim
 Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
-Spec('plugins.octo-nvim')                         -- GitHub interact with PR's and Issues
+Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
 Git("https://github.com/tpope/vim-fugitive")      -- Git commands in nvim
 Git("https://github.com/tpope/vim-rhubarb")       -- Fugitive-companion to interact with github
 Git("https://github.com/whiteinge/diffconflicts") -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
@@ -54,12 +54,12 @@ Git("https://github.com/nvimtools/none-ls.nvim") -- inject LSP diagnostics, code
 
 -- -- Testing
 -- -- @TODO (undg) 2024-12-10: IT'S PROMISING, but underdeveloped. Need DAP and a bit of work.
-Spec('plugins.neotest') -- A framework for interacting with tests within NeoVim
+Spec("plugins.neotest") -- A framework for interacting with tests within NeoVim
 
 -- Debugging
 Git("https://github.com/pappasam/nvim-repl")
 -- (DAP)
-Spec('plugins.nvim-dap')
+Spec("plugins.nvim-dap")
 -- Git('https://github.com/fussenegger/nvim-dap')
 -- Git('https://github.com/eoluz/nvim-dap-go')
 -- Git('https://github.com/carriga/nvim-dap-ui')
@@ -79,6 +79,7 @@ Spec("plugins.opencode-nvim") -- Bridge for opencode
 Spec("plugins.obsidian")                         -- Note taking and knowledge base
 Spec("plugins.markdown-preview")                 -- Preview Markdown in your modern browser with synchronised scrolling
 Spec("plugins.render-markdown-nvim")             -- render markdown in vim editor
+Spec("plugins.markdown-toc-nvim")                -- auto-update TOC in markdown files
 Spec("plugins.qfenter")                          -- quickfix window (cw) open in split/tab...
 Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.

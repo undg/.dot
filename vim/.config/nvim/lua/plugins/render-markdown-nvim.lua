@@ -1,7 +1,33 @@
 return {
 	"MeanderingProgrammer/render-markdown.nvim",                                      -- https://github.com/MeanderingProgrammer/render-markdown.nvim
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+	---@module 'render-markdown'
+	---@type render.md.UserConfig
 	opts = {
+		heading = {
+			backgrounds = {
+				"RenderMarkdownH1Bg",
+				"RenderMarkdownH5Bg",
+				"RenderMarkdownH3Bg",
+				"RenderMarkdownH4Bg",
+				"RenderMarkdownH2Bg",
+				"RenderMarkdownH6Bg",
+			},
+			foregrounds = {
+				"RenderMarkdownH1",
+				"RenderMarkdownH5",
+				"RenderMarkdownH3",
+				"RenderMarkdownH4",
+				"RenderMarkdownH2",
+				"RenderMarkdownH6",
+			},
+			icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+			border = true,
+			border_virtual = true,
+			right_pad = 3,
+			left_pad = 3,
+			width = "block",
+		},
 		file_types = { "markdown", "Avante" },
 		-- new conf START
 		render_modes = { --
@@ -16,25 +42,6 @@ return {
 		win_options = {
 			concealcursor = { rendered = "n" },
 		},
-		-- new conf END
-
-		--  @TODO (undg) 2025-12-02: delete old config if new one will survive test of time
-		-- win_options = {
-		-- 	-- See :h 'conceallevel'
-		-- 	conceallevel = {
-		-- 		-- Used when not being rendered, get user setting
-		-- 		default = vim.api.nvim_get_option_value("conceallevel", {}),
-		-- 		-- Used when being rendered, concealed text is completely hidden
-		-- 		rendered = 3,
-		-- 	},
-		-- 	-- See :h 'concealcursor'
-		-- 	concealcursor = {
-		-- 		-- Used when not being rendered, get user setting
-		-- 		default = vim.api.nvim_get_option_value("concealcursor", {}),
-		-- 		-- Used when being rendered, disable concealing text in all modes
-		-- 		rendered = "",
-		-- 	},
-		-- },
 		bullet = {
 			right_pad = 1,
 		},
