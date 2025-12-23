@@ -104,6 +104,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 			local ok_conform, conform = pcall(require, "conform")
 			if not ok_conform then
 				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = "autocomd.lua:", timeout = 500 })
+				return
 			end
 			vim.notify_once(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
 			conform.format()
@@ -170,7 +171,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
-local copilot_ok, copilot = pcall(require, 'plugins.copilot-util')
+local copilot_ok, copilot = pcall(require, "plugins.copilot-util")
 if not copilot_ok then
 	print("Can't find module 'plugins.copilot-util'")
 end
@@ -188,7 +189,6 @@ vim.api.nvim_create_autocmd("BufDelete", {
 		copilot.reset_title()
 	end,
 })
-
 
 --  @TODO (undg) 2025-11-24: this need to be tested by time. I should hide error mentioned in luaDoc that happens from time to time.
 
