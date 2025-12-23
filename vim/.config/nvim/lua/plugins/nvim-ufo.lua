@@ -1,6 +1,6 @@
 local fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
 	local newVirtText = {}
-	local suffix = (' (...)    -- [ 󰁂 %d ] --'):format(endLnum - lnum)
+	local suffix = (" (...)    -- [ 󰁂 %d ] --"):format(endLnum - lnum)
 	local sufWidth = vim.fn.strdisplaywidth(suffix)
 	local targetWidth = width - sufWidth
 	local curWidth = 0
@@ -16,34 +16,34 @@ local fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate
 			chunkWidth = vim.fn.strdisplaywidth(chunkText)
 			-- str width returned from truncate() may less than 2nd argument, need padding
 			if curWidth + chunkWidth < targetWidth then
-				suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+				suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
 			end
 			break
 		end
 		curWidth = curWidth + chunkWidth
 	end
-	table.insert(newVirtText, { suffix, 'MoreMsg' })
+	table.insert(newVirtText, { suffix, "MoreMsg" })
 	return newVirtText
 end
 
 return {
-	'kevinhwang91/nvim-ufo',
-	dependencies = 'kevinhwang91/promise-async',
+	"kevinhwang91/nvim-ufo", -- https://github.com/kevinhwang91/nvim-ufo
+	dependencies = "kevinhwang91/promise-async",
 	config = function()
-		vim.o.foldcolumn = '1' -- '0' is not bad
+		vim.o.foldcolumn = "1" -- '0' is not bad
 		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
 		-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-		vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-		vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+		vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+		vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
-		require('ufo').setup({
+		require("ufo").setup({
 			open_fold_hl_timeout = 400,
 			fold_virt_text_handler = fold_virt_text_handler,
 			provider_selector = function(bufnr, filetype, buftype)
-				return { 'treesitter', 'indent' }
+				return { "treesitter", "indent" }
 			end,
 			close_fold_kinds_for_ft = {
 				-- After the buffer is displayed (opened for the first time), close the
@@ -54,9 +54,8 @@ return {
 				-- default value if value of filetype is absent.
 				-- Run `UfoInspect` for details if your provider has extended the kinds.
 				---@diagnostic disable-next-line: assign-type-mismatch
-				default = { 'import_statement' }
-			}
-
+				default = { "import_statement" },
+			},
 		})
 	end,
 }
