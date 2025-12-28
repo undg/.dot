@@ -33,8 +33,8 @@ return {
 		render_modes = { --
 			"n",
 			-- "i",
-			"v",
-			"V",
+			-- "v",
+			-- "V",
 			"c",
 			"t",
 		},
