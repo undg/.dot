@@ -6,6 +6,5 @@ return {
 		toc_list = {
 			padding_lines = 0,
 		},
-		-- Your configuration here (optional)
 	},
 }
