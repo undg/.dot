@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd /mnt/s0/bottles/Battle.net/GoMule/ || exit
+
+java -jar GoMule.jar
+
+cd - || exit
