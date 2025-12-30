@@ -176,10 +176,12 @@ set $WINDOW_floating_resized          [class="(pavucontrol|Blueman-manager)"]
 set $WINDOW_floating                  [class="(dialog|download|error|file_progress|org.gnome.FileRoller)"]
 set $WINDOW_popup                     [window_role="pop-up"]
 set $WINDOW_obs_audiomixer            [class="obs" title="Audio Mixer"]
+set $WINDOW_gomule_floating           [class="gomule-GoMule" title="Item Filter"]
 
-for_window $WINDOW_floating 			floating enable
-for_window $WINDOW_popup				floating enable
-for_window $WINDOW_obs_audiomixer		floating enable, sticky enable
+for_window $WINDOW_floating             floating enable
+for_window $WINDOW_popup                floating enable
+for_window $WINDOW_gomule_floating      floating enable
+for_window $WINDOW_obs_audiomixer       floating enable, sticky enable
 
 for_window $WINDOW_portal2 move workspace $ws3
 for_window $WINDOW_gta5 move workspace $ws3
