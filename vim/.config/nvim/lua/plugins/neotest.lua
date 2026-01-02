@@ -11,6 +11,14 @@ return {
 	config = function()
 		local neotest = require('neotest')
 		neotest.setup({
+			config = {
+				quickfix = {
+					open = false
+				},
+				output_panel = {
+					open = true
+				}
+			},
 			adapters = {
 				require("neotest-vitest") {
 					-- Filter directories when searching for test files. Useful in large projects (see Filter directories notes).
@@ -21,10 +29,13 @@ return {
 			}
 		})
 
+
+
 		Keymap.normal("tt", "", { desc = "neotest" })
 		Keymap.normal("ttr", function() neotest.run.run() end, { desc = "(neotest) run narest test" })
 		Keymap.normal("ttf", function() neotest.run.run(vim.fn.expand("%")) end,
 			{ desc = "(neotest) run the curent file" })
+		Keymap.normal("ttw", function() neotest.watch.toggle() end, { desc = "(neotest) toggle watch" })
 		Keymap.normal("tts", function() neotest.run.stop() end, { desc = "(neotest) stop narest test" })
 		Keymap.normal("ttl", function() neotest.run.run_last() end, { desc = "(neotest) run last test" })
 		Keymap.normal("tto", function() neotest.output_panel.toggle() end, { desc = "(neotest) toggle panel" })
