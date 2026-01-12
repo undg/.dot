@@ -189,7 +189,7 @@ return {
 			Keymap.normal("<leader>dB",
 				function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
 				{ desc = "(DAP) Conditional breakpoint" })
-			Keymap.normal("<leader>dh", function()
+			Keymap.normal("<leader>dk", function()
 				local widgets = require("dap.ui.widgets")
 				local hover_ui = require("utils.hover-ui")
 				widgets.hover(nil, hover_ui.style)
