@@ -192,7 +192,7 @@ return {
 			Keymap.normal("<leader>dk", function()
 				local widgets = require("dap.ui.widgets")
 				local hover_ui = require("utils.hover-ui")
-				widgets.hover(nil, hover_ui.style)
+				widgets.hover(nil, { border = hover_ui.border })
 			end, { desc = "(DAP) Hover value" })
 		end
 	},
