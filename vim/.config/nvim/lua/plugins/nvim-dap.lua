@@ -37,8 +37,9 @@ return {
 					dap.adapters["pwa-chrome"] = dap.adapters["pwa-node"]
 
 					local skip_files = { "<node_internals>/**", "**/node_modules/**" }
-					local runtime_executable = (vim.env.DAP_BROWSER and vim.env.DAP_BROWSER ~= "") and vim.env.DAP_BROWSER or nil
-				local attach_port = tonumber(vim.env.DAP_BROWSER_PORT) or 9222
+					local runtime_executable = (vim.env.DAP_BROWSER and vim.env.DAP_BROWSER ~= "") and
+						vim.env.DAP_BROWSER or nil
+					local attach_port = tonumber(vim.env.DAP_BROWSER_PORT) or 9222
 
 					local function make_web_launch(name, url)
 						return {
@@ -116,13 +117,15 @@ return {
 							if package.once then
 								package:once("install:success", function()
 									if package.get_install_path then
-										configure_from_path(package:get_install_path() .. "/js-debug/src/dapDebugServer.js")
+										configure_from_path(package:get_install_path() ..
+											"/js-debug/src/dapDebugServer.js")
 									end
 								end)
 							elseif package.on then
 								package:on("install:success", function()
 									if package.get_install_path then
-										configure_from_path(package:get_install_path() .. "/js-debug/src/dapDebugServer.js")
+										configure_from_path(package:get_install_path() ..
+											"/js-debug/src/dapDebugServer.js")
 									end
 								end)
 							end
@@ -153,7 +156,8 @@ return {
 				end
 
 				local function resolve_direct_path()
-					local mason_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
+					local mason_path = vim.fn.stdpath("data") ..
+						"/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
 					local stat = nil
 					if vim.uv and vim.uv.fs_stat then
 						stat = vim.uv.fs_stat(mason_path)
@@ -176,19 +180,20 @@ return {
 
 			setup_js_debug_adapters()
 
-			Keymap.normal("<leader>dc", require("dap").continue)
-			Keymap.normal("<leader>dC", function() require("dap").run_to_cursor() end, { desc = "Run to Cursor" })
-			Keymap.normal("<leader>do", require("dap").step_over)
-			Keymap.normal("<leader>di", require("dap").step_into)
-			Keymap.normal("<leader>dO", require("dap").step_out)
-			Keymap.normal("<leader>db", require("dap").toggle_breakpoint)
+			Keymap.normal("<leader>dc", require("dap").continue, { desc = "(DAP) Continue" })
+			Keymap.normal("<leader>dC", function() require("dap").run_to_cursor() end, { desc = "(DAP) Run to cursor" })
+			Keymap.normal("<leader>do", require("dap").step_over, { desc = "(DAP) Step over" })
+			Keymap.normal("<leader>di", require("dap").step_into, { desc = "(DAP) Step into" })
+			Keymap.normal("<leader>dO", require("dap").step_out, { desc = "(DAP) Step out" })
+			Keymap.normal("<leader>db", require("dap").toggle_breakpoint, { desc = "(DAP) Toggle breakpoint" })
 			Keymap.normal("<leader>dB",
-				function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end)
+				function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
+				{ desc = "(DAP) Conditional breakpoint" })
 			Keymap.normal("<leader>dh", function()
 				local widgets = require("dap.ui.widgets")
 				local hover_ui = require("utils.hover-ui")
 				widgets.hover(nil, hover_ui.style)
-			end, { desc = "DAP hover value" })
+			end, { desc = "(DAP) Hover value" })
 		end
 	},
 	{
@@ -200,7 +205,7 @@ return {
 				function()
 					require("dapui").toggle({})
 				end,
-				desc = "Dap UI"
+				desc = "(DAP) open UI"
 			},
 		},
 		dependencies = {
