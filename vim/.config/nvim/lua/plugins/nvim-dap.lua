@@ -180,6 +180,15 @@ return {
 
 			setup_js_debug_adapters()
 
+			Keymap.normal("<leader>dx", require("dap").clear_breakpoints, { desc = "(DAP) Clear Brakepoints" })
+
+			Keymap.normal("<leader>dr", require("dap").repl.toggle, { desc = "(DAP) Toggle REPL" })
+
+			Keymap.normal("<leader>dq", function()
+				require("dap").list_breakpoints()
+				vim.cmd.copen()
+			end, { desc = "(DAP) List breakpoints" })
+
 			Keymap.normal("<leader>dc", require("dap").continue, { desc = "(DAP) Continue" })
 			Keymap.normal("<leader>dC", function() require("dap").run_to_cursor() end, { desc = "(DAP) Run to cursor" })
 			Keymap.normal("<leader>do", require("dap").step_over, { desc = "(DAP) Step over" })
