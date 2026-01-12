@@ -14,7 +14,8 @@ vim.g.maplocalleader = " "
 
 -- @TODO (undg) 2022-12-26: investigate how to preserve window resize functionality by mouse/touch
 -- Don't go visual, stay normal. Disable mouse LeftDrag
-Keymap.normal("<LeftDrag>", "<LeftMouse>")
+-- Keymap.normal("<LeftDrag>", "<LeftMouse>")
+-- Keymap.normal("<leader><LeftMouse>", ":nmap <LeftDrag> <LeftDrag><CR>")
 
 -- No fcking way! Nope, I don't want ex mode!
 Keymap.normal("Q", "<Nop>")
