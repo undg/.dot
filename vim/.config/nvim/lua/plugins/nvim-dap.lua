@@ -164,6 +164,11 @@ return {
 			Keymap.normal("<leader>db", require("dap").toggle_breakpoint)
 			Keymap.normal("<leader>dB",
 				function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end)
+			Keymap.normal("<leader>dh", function()
+				local widgets = require("dap.ui.widgets")
+				local hover_ui = require("utils.hover-ui")
+				widgets.hover(nil, hover_ui.style)
+			end, { desc = "DAP hover value" })
 		end
 	},
 	{
