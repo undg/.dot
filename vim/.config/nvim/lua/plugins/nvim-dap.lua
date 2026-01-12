@@ -37,6 +37,8 @@ return {
 					dap.adapters["pwa-chrome"] = dap.adapters["pwa-node"]
 
 					local skip_files = { "<node_internals>/**", "**/node_modules/**" }
+					local runtime_executable = (vim.env.DAP_BROWSER and vim.env.DAP_BROWSER ~= "") and vim.env.DAP_BROWSER or nil
+				local attach_port = tonumber(vim.env.DAP_BROWSER_PORT) or 9222
 
 					local function make_web_launch(name, url)
 						return {
@@ -47,6 +49,23 @@ return {
 							webRoot = get_workspace_root,
 							skipFiles = skip_files,
 							sourceMaps = true,
+							runtimeExecutable = runtime_executable,
+							address = "localhost",
+						}
+					end
+
+					local function make_web_attach(name, port)
+						return {
+							type = "pwa-chrome",
+							request = "attach",
+							name = name,
+							port = port,
+							address = "localhost",
+							webRoot = get_workspace_root,
+							sourceMaps = true,
+							skipFiles = skip_files,
+							urlFilter = "http://localhost:*",
+							runtimeExecutable = runtime_executable,
 						}
 					end
 
@@ -73,6 +92,7 @@ return {
 						},
 						make_web_launch("Launch Chrome: 3000", "http://localhost:3000"),
 						make_web_launch("Launch Chrome: 5173", "http://localhost:5173"),
+						make_web_attach("Attach Chrome: ${port}", attach_port),
 					}
 
 					for _, language in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
