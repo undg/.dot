@@ -223,7 +223,19 @@ return {
 					"mason-org/mason.nvim",
 				},
 			}
+			-- keep-sorted end
 		}
-	}
-
+	},
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+		},
+		opts = {
+			commented = true,
+			highlight_changed_variables = true,
+			show_stop_reason = true,
+			virt_text_pos = "eol",
+		},
+	},
 }
