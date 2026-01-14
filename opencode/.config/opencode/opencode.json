@@ -27,6 +27,9 @@
 			"wget": "ask",
 			"gh": "ask",
 			"rg": "allow",
+			"npm run lint": "allow",
+			"npm run type-check": "allow",
+			"npm run lint -- --fix": "allow",
 			"*": "ask"
 		}
 	},
