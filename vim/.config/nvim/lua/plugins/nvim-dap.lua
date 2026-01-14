@@ -40,6 +40,9 @@ return {
 					local runtime_executable = (vim.env.DAP_BROWSER and vim.env.DAP_BROWSER ~= "") and
 						vim.env.DAP_BROWSER or nil
 					local attach_port = tonumber(vim.env.DAP_BROWSER_PORT) or 9222
+					local resolve_target = (vim.env.DAP_TARGET and vim.env.DAP_TARGET ~= "") and vim.env.DAP_TARGET or nil
+					local url_filter = (vim.env.DAP_URL_FILTER and vim.env.DAP_URL_FILTER ~= "") and
+						vim.env.DAP_URL_FILTER or "http://localhost:*"
 
 					local function make_web_launch(name, url)
 						return {
@@ -65,8 +68,9 @@ return {
 							webRoot = get_workspace_root,
 							sourceMaps = true,
 							skipFiles = skip_files,
-							urlFilter = "http://localhost:*",
+							urlFilter = url_filter,
 							runtimeExecutable = runtime_executable,
+							targetSelection = resolve_target,
 						}
 					end
 
@@ -91,10 +95,14 @@ return {
 							port = 9229,
 							skipFiles = skip_files,
 						},
-						make_web_launch("Launch Chrome: 3000", "http://localhost:3000"),
-						make_web_launch("Launch Chrome: 5173", "http://localhost:5173"),
-						make_web_attach("Attach Chrome: ${port}", attach_port),
-					}
+					make_web_launch("Launch Chrome: 3000", "http://localhost:3000"),
+					make_web_launch("Launch Chrome: 5173", "http://localhost:5173"),
+					make_web_attach("Attach Chrome: ${port}", attach_port),
+					make_web_attach("Attach Chrome: tab picker", attach_port),
+					make_web_attach("Attach Chrome: all targets", attach_port),
+					make_web_attach("Attach Chrome: Vivaldi", attach_port),
+				}
+
 
 					for _, language in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
 						dap.configurations[language] = vim.deepcopy(base_configs)
