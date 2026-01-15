@@ -1,12 +1,23 @@
 ---
 description: Reviews code for quality and best practices
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
 temperature: 0.1
 tools:
   write: false
   edit: false
   bash: false
+bash_allow:
+  - "git log*"
+  - "git branch*"
+  - "ag*"
+  - "find*"
+  - "head*"
+  - "tail*"
+  - "grep*"
+  - "cat*"
+  - "ls*"
+  - "wc*"
+  - "tree*"
 ---
 
 You are in code review mode. Focus on:
