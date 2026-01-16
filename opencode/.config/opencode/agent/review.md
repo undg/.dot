@@ -9,6 +9,7 @@ tools:
 bash_allow:
   - "git log*"
   - "git branch*"
+  - git diff*
   - "ag*"
   - "find*"
   - "head*"
