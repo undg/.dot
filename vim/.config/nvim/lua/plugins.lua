@@ -20,7 +20,7 @@ Spec("plugins.gitsigns")                          -- Git status for every line
 Spec("plugins.git-conflict")
 Spec("plugins.neogit")                            -- A Magit clone for Neovim
 Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
-Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
+-- Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
 Git("https://github.com/tpope/vim-fugitive")      -- Git commands in nvim
 Git("https://github.com/tpope/vim-rhubarb")       -- Fugitive-companion to interact with github
 Git("https://github.com/whiteinge/diffconflicts") -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
