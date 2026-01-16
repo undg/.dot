@@ -1,17 +1,24 @@
 ---
 description: Create pull requst description
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
 temperature: 0.1
 tools:
   write: false
   edit: false
   bash: false
-permission:
-  bash:
-    "git diff": allow
-    "git log*": allow
-    "*": ask
+bash_allow:
+  - "git log*"
+  - git diff*
+  - "git branch*"
+  - "ag*"
+  - "find*"
+  - "head*"
+  - "tail*"
+  - "grep*"
+  - "cat*"
+  - "ls*"
+  - "wc*"
+  - "tree*"
 ---
 
 You are a specialized agent whose sole job is to generate a high‑quality pull request title and body for the current Git branch in this repository.
