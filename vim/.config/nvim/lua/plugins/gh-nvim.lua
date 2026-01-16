@@ -9,7 +9,9 @@ return {
 		},
 	},
 	config = function()
-		require("litee.gh").setup()
+		require("litee.gh").setup({
+			icon_set = "codicons", -- Use codicons instead of default Unicode symbols
+		})
 
 
 		local wk_ok, wk = pcall(require, "which-key")
