@@ -1,8 +1,9 @@
+# yaml-language-server: $schema=https://gh-dash.dev/schema.json
 prSections:
-  - title: My Pull Requests
-    filters: author:@me
-  - title: Needs My Review
-    filters: review-requested:@me
+  - title: Opened
+    filters: -review:approved
+  - title: Approved
+    filters: author:@me review:approved
   - title: Involved
     filters: involves:@me -author:@me
 issuesSections:
@@ -54,9 +55,5 @@ repoPaths:
   "*": ~/Code/*
 keybindings:
   prs:
-    - key: C
-      command: >
-        tmux split-window -h -c {{.RepoPath}} '
-          gh pr checkout {{.PrNumber}} &&
-          nvim -c ":Octo pr edit {{.PrNumber}}"
-        '
+    - key: o
+      command: tmux split-window -h -c {{.RepoPath}} /Users/bartek_laskowski/.config/gh-dash/open-pr.sh {{.PrNumber}} {{.RepoPath}}
