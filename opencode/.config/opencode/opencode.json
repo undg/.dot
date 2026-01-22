@@ -17,6 +17,7 @@
 	"permission": {
 		"doom_loop": "ask",
 		"external_directory": "ask",
+		"chrome-devtools*": "ask",
 		"bash": {
 			"git push": "ask",
 			"git rebase": "ask",
@@ -46,5 +47,12 @@
 	},
 	"keybinds": {
 		"editor_open": "ctrl+e"
+	},
+	"mcp": {
+		"chrome-devtools": {
+			"type": "local",
+			"command": ["npx", "-y", "chrome-devtools-mcp@latest", "--user-data-dir=$HOME/.chrome-dev-profile", "--headless=false"],
+			"enabled": false
+		}
 	}
 }
