@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://gh-dash.dev/schema.json
 prSections:
   - title: Opened
-    filters: -review:approved
+    filters: -review:approved is:Open
   - title: Approved
-    filters: author:@me review:approved
+    filters: author:@me review:approved is:Open
   - title: Involved
-    filters: involves:@me -author:@me
+    filters: involves:@me -author:@me is:Open
 issuesSections:
   - title: My Issues
     filters: author:@me
@@ -54,6 +54,21 @@ repoPaths:
   undg/*: ~/Code/*
   "*": ~/Code/*
 keybindings:
+  universal:
+    - key: g
+      name: lazygit
+      command: >
+        cd {{.RepoPath}} && lazygit
   prs:
-    - key: o
-      command: tmux split-window -h -c {{.RepoPath}} /Users/bartek_laskowski/.config/gh-dash/open-pr.sh {{.PrNumber}} {{.RepoPath}}
+    - key: O
+      builtin: checkout
+    - key: C
+      name: code review
+      command: >
+        tmux new-window -c {{.RepoPath}} '
+        nvim -c ":silent GHOpenPR {{.PrNumber}}"
+        '
+    - key: v
+      name: approve
+      command: >
+        gh pr review --repo {{.RepoName}} --approve --body "$(gum input --prompt='Approval Comment: ')" {{.PrNumber}}
