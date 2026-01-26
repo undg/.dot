@@ -18,6 +18,8 @@
 		"doom_loop": "ask",
 		"external_directory": "ask",
 		"chrome-devtools*": "ask",
+		"chrome-devtools_list_pages": "allow",
+		"chrome-devtools_list_console_messages": "allow",
 		"bash": {
 			"git push": "ask",
 			"git rebase": "ask",
@@ -51,8 +53,15 @@
 	"mcp": {
 		"chrome-devtools": {
 			"type": "local",
-			"command": ["npx", "-y", "chrome-devtools-mcp@latest", "--user-data-dir=$HOME/.chrome-dev-profile", "--headless=false"],
-			"enabled": false
+			"command": [
+				"npx",
+				"-y",
+				"chrome-devtools-mcp@latest",
+				"--browser-url=http://127.0.0.1:9222",
+				"--no-category-performance",
+				"--no-category-emulation"
+			],
+			"enabled": true
 		}
 	}
 }
