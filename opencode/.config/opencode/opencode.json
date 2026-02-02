@@ -31,6 +31,8 @@
 			"curl": "ask",
 			"wget": "ask",
 			"gh": "ask",
+			"gh pr list*": "allow",
+			"gh pr view*": "allow",
 			"rg": "allow",
 			"git*": "ask",
 			"git log*": "allow",
