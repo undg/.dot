@@ -24,6 +24,10 @@
 		"chrome-devtools_click": "allow",
 		"chrome-devtools_press_key": "allow",
 		"chrome-devtools_list_network_requests": "allow",
+		"ls*": "allow",
+		"gh": "ask",
+		"gh pr list*": "allow",
+		"gh pr view*": "allow",
 		"bash": {
 			"rm": "ask",
 			"mv": "ask",
