@@ -63,11 +63,7 @@ return {
 			dashboard.button("f", "   >  Find files", ":Telescope find_files<CR>"),
 			dashboard.button("w", "🖋  >  Note Work", cmd_obsidian_work(":ObsidianToday<CR>")),
 			dashboard.button("p", "󱦹   >  Note Personal", cmd_obsidian_personal(":ObsidianToday<CR>")),
-			dashboard.button("t", "☑   >  Todo Personal", cmd_obsidian_personal(":e todo.md<CR>")),
-			dashboard.button("gg", "🗪   >  Ai", ":AiChatNew<CR>"),
-			dashboard.button("gp", "🗪   >  Ai (proofread)", ":AiProofread<CR>"),
-			dashboard.button("aa", "🗪   >  Ai", ":CopilotChat<CR>"),
-			dashboard.button("ss", "   >  Sessions list", ":SessionManager load_session<CR>"),
+			dashboard.button("g", "🐙   >  GitHub Pull Request", ":GHOpenPR<CR>"),
 			dashboard.button("q", "   >  Quit", ":qa<CR>"),
 			dashboard.button("<C-c>", "", ":qa<CR>"),
 		}
