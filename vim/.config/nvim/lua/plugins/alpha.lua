@@ -64,8 +64,6 @@ return {
 			dashboard.button("w", "🖋  >  Note Work", cmd_obsidian_work(":ObsidianToday<CR>")),
 			dashboard.button("p", "󱦹   >  Note Personal", cmd_obsidian_personal(":ObsidianToday<CR>")),
 			dashboard.button("g", "🐙   >  GitHub Pull Request", ":GHOpenPR<CR>"),
-			dashboard.button("q", "   >  Quit", ":qa<CR>"),
-			dashboard.button("<C-c>", "", ":qa<CR>"),
 		}
 
 		-- Send config to alpha
