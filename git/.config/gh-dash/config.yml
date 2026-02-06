@@ -17,7 +17,7 @@ defaults:
   preview:
     open: true
     grow: true
-    width: 180
+    width: 100
   prsLimit: 20
   issuesLimit: 20
   view: prs
@@ -26,9 +26,9 @@ defaults:
       updatedAt:
         width: 7
       repo:
-        width: 15
+        width: 150
       title:
-        width: 90
+        width: 150
         grow: true
       author:
         width: 15
@@ -62,6 +62,10 @@ keybindings:
       name: lazygit
       command: >
         cd {{.RepoPath}} && lazygit
+    - key: "ctrl+j"
+      builtin: pageDown
+    - key: "ctrl+k"
+      builtin: pageUp
   prs:
     - key: O
       builtin: checkout
@@ -78,5 +82,5 @@ keybindings:
     - key: T
       command: >-
         tmux new-window '
-          gh enhance -R {{.RepoName}} {{.PrNumber}}
+        ENHANCE_THEME=GruvboxDark gh enhance -R {{.RepoName}} {{.PrNumber}}
         '
