@@ -29,6 +29,9 @@ return {
 		},
 
 		config = function()
+			---------------------------------
+			-- check dependencies
+			---------------------------------
 			local telescope_ok, telescope = pcall(require, 'telescope')
 			local actions_ok, actions = pcall(require, 'telescope.actions')
 			local tb_ok, tb = pcall(require, 'telescope.builtin')
@@ -44,6 +47,11 @@ return {
 				vim.notify('plugins/telescope.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
 				return
 			end
+
+
+			---------------------------------
+			-- setup
+			---------------------------------
 
 			telescope.setup({
 				defaults = {
@@ -117,12 +125,35 @@ return {
 				},
 			})
 
+
+
+			---------------------------------
 			-- load_extension's, somewhere after setup function:
+			---------------------------------
 
 			telescope.load_extension('fzf')
 			telescope.load_extension('ui-select')
 			telescope.load_extension('smart_open')
 			telescope.load_extension('gp_picker')
+
+			---------------------------------
+			-- keymaps
+			---------------------------------
+
+			local open_quick_fix_window_in_telescope = function()
+				vim.cmd('cclose')
+				tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
+			end
+
+			local function git_bcommits_range_visual()
+				local start_line = vim.fn.line('v')
+				local end_line = vim.fn.line('.')
+				vim.cmd('normal! \\<Esc>')
+				tb.git_bcommits_range({
+					from = math.min(start_line, end_line),
+					to = math.max(start_line, end_line),
+				})
+			end
 
 			Keymap.normal('<leader>m', ':Telescope<cr>')
 			-- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
@@ -132,15 +163,14 @@ return {
 			Keymap.normal('<leader>.g', telescope.extensions.dir.live_grep)
 
 			Keymap.normal('<leader>fb', ':Telescope buffers<cr>')
+			Keymap.normal('<leader>fs', ':Telescope git_status<cr>')
 			Keymap.normal('<leader>fB', ':Telescope git_branches<cr>')
+			Keymap.normal('<leader>fC', ':Telescope git_bcommits<cr>')
+			Keymap.visual('<leader>fC', git_bcommits_range_visual)
 			Keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
 			Keymap.normal('<leader>fG', telescope.extensions.dir.live_grep)
 			Keymap.normal('<leader>fr', ':Telescope resume<cr>')
 
-			local open_quick_fix_window_in_telescope = function()
-				vim.cmd('cclose')
-				tb.quickfix({ fname = 0.5, trim_text = false, show_line = false })
-			end
 			Keymap.normal('fq', open_quick_fix_window_in_telescope, { desc = 'Open QuickFix in Telescope' })
 
 			Keymap.normal('<leader>fQ', ':Telescope quickfixhistory<cr>')
