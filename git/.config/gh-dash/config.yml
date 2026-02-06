@@ -27,6 +27,9 @@ defaults:
         width: 7
       repo:
         width: 15
+      title:
+        width: 90
+        grow: true
       author:
         width: 15
       assignees:
@@ -65,10 +68,15 @@ keybindings:
     - key: C
       name: code review
       command: >
-        tmux new-window -c {{.RepoPath}} '
-        nvim -c ":silent GHOpenPR {{.PrNumber}}"
+        tmux new-window '
+          nvim -c ":GHOpenPR {{.PrNumber}}"
         '
-    - key: v
+    - key: V
       name: approve
       command: >
         gh pr review --repo {{.RepoName}} --approve --body "$(gum input --prompt='Approval Comment: ')" {{.PrNumber}}
+    - key: T
+      command: >-
+        tmux new-window '
+          gh enhance -R {{.RepoName}} {{.PrNumber}}
+        '
