@@ -12,9 +12,6 @@ usage  = "latest"
 go     = "latest"
 node   = "24"
 
-[settings]
-idiomatic_version_file_enable_tools = ["python"]
-
 # [settings]
 # idiomatic_version_file_enable_tools = ["python"]
 
