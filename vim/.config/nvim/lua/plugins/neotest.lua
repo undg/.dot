@@ -10,14 +10,19 @@ return {
 	},
 	config = function()
 		local neotest = require('neotest')
-		neotest.setup({
-			config = {
-				quickfix = {
-					open = false
-				},
-				output_panel = {
-					open = true
-				}
+
+
+
+		---@type neotest.Config?
+		---@diagnostic disable-next-line: missing-fields
+		local config = {
+			quickfix = {
+				enabled = false,
+				open = false,
+			},
+			output = {
+				enabled = true,
+				open_on_run = false
 			},
 			adapters = {
 				require("neotest-vitest") {
@@ -27,7 +32,8 @@ return {
 					end,
 				},
 			}
-		})
+		}
+		neotest.setup(config)
 
 
 
@@ -38,7 +44,8 @@ return {
 		Keymap.normal("ttw", function() neotest.watch.toggle() end, { desc = "(neotest) toggle watch" })
 		Keymap.normal("tts", function() neotest.run.stop() end, { desc = "(neotest) stop narest test" })
 		Keymap.normal("ttl", function() neotest.run.run_last() end, { desc = "(neotest) run last test" })
-		Keymap.normal("tto", function() neotest.output_panel.toggle() end, { desc = "(neotest) toggle panel" })
+		Keymap.normal("tto", ':Neotest output<cr>', { desc = "(neotest) toggle output" })
+		Keymap.normal("ttO", function() neotest.output_panel.toggle() end, { desc = "(neotest) toggle output panel" })
 		Keymap.normal("ttt", function() neotest.summary.toggle() end, { desc = "(neotest) toggle summary" })
 		Keymap.normal("ttj", ":Neotest jump next<cr>", { desc = "(neotest) jump next" })
 		Keymap.normal("ttk", ":Neotest jump prev<cr>", { desc = "(neotest) jump prev" })
