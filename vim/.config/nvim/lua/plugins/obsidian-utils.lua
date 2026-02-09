@@ -2,16 +2,16 @@ local M = {}
 
 M.workspaces = {
 	work = {
-		name = 'Work',
-		path = '~/Dropbox/DropsyncFiles/Work',
+		name = "Work",
+		path = "~/Documents/Work",
 	},
 	personal = {
-		name = 'Personal',
-		path = '~/Dropbox/DropsyncFiles/Personal',
+		name = "Personal",
+		path = "~/Documents/Personal",
 	},
 	wiki = {
-		name = 'Wiki',
-		path = '~/Dropbox/DropsyncFiles/vimwiki',
+		name = "Wiki",
+		path = "~/Documents/vimwiki",
 	},
 }
 
