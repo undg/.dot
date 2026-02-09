@@ -1,6 +1,3 @@
-Keymap.normal('<leader>gcd', ':Gcd<CR>')
-Keymap.normal('<leader>glcd', ':Glcd<CR>')
-
 vim.api.nvim_create_user_command('GfileLog', '0Gclog', { force = true })
 Keymap.normal('<leader>gll', ':0Gclog<CR>', {desc = "Show commits history for this file"})
 
