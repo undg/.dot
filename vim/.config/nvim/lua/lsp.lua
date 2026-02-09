@@ -20,7 +20,7 @@ require("config")
 vim.lsp.enable({
 	"json-lsp",
 	"yaml-language-server",
-	"lua-language-server",
+	"lua_ls",
 	"eslint",
 	"gopls",
 	"basedpyright",
