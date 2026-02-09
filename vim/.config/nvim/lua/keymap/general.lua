@@ -58,14 +58,6 @@ Keymap.normal(
 Keymap.normal("<F10>", ":set list!<CR>")
 Keymap.insert("<F10>", "<esc>:set list!<CR>i")
 
--- get git branch go into insert mode.
--- map.normal('<leader>gb', ':0r!git rev-parse --abbrev-ref HEAD<CR>A:<SPACE>')
-Keymap.normal(
-	"<leader>gb",
-	':0r! git rev-parse --abbrev-ref HEAD | awk -F "-" "{print \\$1 \\"-\\" \\$2 \\": \\"}" <CR>A',
-	{ desc = "get git branch name" }
-)
-
 -- indent, highlight in visual stay
 Keymap.visual(">", ">gv")
 Keymap.visual("<", "<gv")

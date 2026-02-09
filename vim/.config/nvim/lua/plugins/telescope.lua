@@ -164,9 +164,9 @@ return {
 
 			Keymap.normal('<leader>fb', ':Telescope buffers<cr>')
 			Keymap.normal('<leader>fs', ':Telescope git_status<cr>')
-			Keymap.normal('<leader>fB', ':Telescope git_branches<cr>')
-			Keymap.normal('<leader>fC', ':Telescope git_bcommits<cr>')
-			Keymap.visual('<leader>fC', git_bcommits_range_visual)
+			Keymap.normal('<leader>gb', ':Telescope git_branches<cr>')
+			Keymap.normal('<leader>gc', ':Telescope git_bcommits<cr>')
+			Keymap.visual('<leader>gc', git_bcommits_range_visual)
 			Keymap.normal('<leader>fg', ':Telescope live_grep<cr>')
 			Keymap.normal('<leader>fG', telescope.extensions.dir.live_grep)
 			Keymap.normal('<leader>fr', ':Telescope resume<cr>')
