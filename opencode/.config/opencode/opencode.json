@@ -50,6 +50,8 @@
 			"grep *": "allow",
 			"cat *": "allow",
 			"ls *": "allow",
+			"exa *": "allow",
+			"eza *": "allow",
 			"wc *": "allow",
 			"tree*": "allow",
 			"npm run lint": "allow",
