@@ -1,16 +1,14 @@
 return {
 	{
-		'SmiteshP/nvim-navic', -- https://github.com/SmiteshP/nvim-navic
+		"SmiteshP/nvim-navic", -- https://github.com/SmiteshP/nvim-navic
 		dependencies = {
-			'neovim/nvim-lspconfig',
+			"neovim/nvim-lspconfig",
 		},
 
 		config = function()
-			local navic = require('nvim-navic')
+			local navic = require("nvim-navic")
 			navic.setup({
-				lsp = {
-					auto_attach = true,
-				},
+				lsp = { auto_attach = true },
 				highlight = true,
 			})
 
@@ -22,13 +20,18 @@ return {
 	{
 		"SmiteshP/nvim-navbuddy", -- https://github.com/SmiteshP/nvim-navbuddy
 		dependencies = {
-			'neovim/nvim-lspconfig',
+			"neovim/nvim-lspconfig",
 			"SmiteshP/nvim-navic",
-			"MunifTanjim/nui.nvim"
+			"MunifTanjim/nui.nvim",
 		},
 		config = function()
-			require('nvim-navbuddy').setup({ lsp = { auto_attach = true } })
+			local navbuddy = require("nvim-navbuddy")
+
+			navbuddy.setup({
+				lsp = { auto_attach = true },
+				window = { border = "rounded" },
+			})
 			Keymap.normal("<leader>fn", ":Navbuddy<cr>", { desc = "Navbuddy" })
-		end
-	}
+		end,
+	},
 }
