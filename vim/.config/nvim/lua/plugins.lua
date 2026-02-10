@@ -42,7 +42,6 @@ Spec("plugins.conform")                         -- better formatting
 Spec("plugins.trouble")                         -- organize errors and warnings
 Spec("plugins.nvim-cmp")                        -- collection of plugins related with autocompletion
 Spec("plugins.overseer-nvim")                   -- A task runner and job management plugin for Neovim
-Spec("plugins.otter-nvim")                      -- A task runner and job management plugin for Neovim
 -- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
 Git("https://github.com/folke/neodev.nvim")     -- Neovim full signature help, docs and completion for the nvim lua API.
 Git("https://github.com/neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
