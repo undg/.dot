@@ -49,6 +49,7 @@ else
 	end
 
 	mason_lspconfig.setup({
+		automatic_enable = false,
 		ensure_installed = mason_lsp_servers,
 		automatic_installation = true,
 	})
@@ -60,13 +61,13 @@ if not mason_tool_installer_ok then
 else
 	mason_tool_installer.setup({
 		ensure_installed = {
-			"stylua",
-			"prettierd",
-			"prettier",
-			"isort",
-			"black",
-			"shfmt",
-			"goimports",
+			"stylua", -- lua
+			"prettierd", -- js/ts
+			"prettier", -- js/ts
+			"shfmt", -- bash
+			"goimports", -- golang
+			"isort", -- python
+			"black", -- python
 		},
 		run_on_start = true,
 	})
