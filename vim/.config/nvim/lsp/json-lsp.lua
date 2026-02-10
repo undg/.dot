@@ -1,8 +1,11 @@
 return {
+	cmd = { "vscode-json-language-server", "--stdio" },
+	filetypes = { "jsonc", "json" },
 	settings = {
 		json = {
 			-- Validate JSON files using the $schema key when present
 			validate = { enable = true },
+			schemaDownload = { enable = true },
 			-- Format settings
 			format = { enable = true },
 			schemas = {
