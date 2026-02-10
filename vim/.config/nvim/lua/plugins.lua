@@ -1,49 +1,50 @@
 -- Dependencies
-Spec("plugins.icons") -- icons used by few plugins
+Spec("plugins.icons")                           -- icons used by few plugins
 Git("https://github.com/nvim-lua/plenary.nvim") -- All the lua functions you don't want to write twice.
 
 -- Productivity
-Spec("plugins.comment") -- commenting code
-Spec("plugins.mini-surround") -- surround selection with brackets, quotes etc.
+Spec("plugins.comment")                -- commenting code
+Spec("plugins.mini-surround")          -- surround selection with brackets, quotes etc.
 -- Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
-Spec("plugins.alpha") -- home screen
+Spec("plugins.alpha")                  -- home screen
 Spec("plugins.neovim-session-manager") -- autosave and restore session
-Spec("plugins.suda") -- ask for sudo password
-Spec("plugins.luapad") -- lua scratch pad
+Spec("plugins.suda")                   -- ask for sudo password
+Spec("plugins.luapad")                 -- lua scratch pad
 -- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
-Spec("plugins.bigfile") -- lighter config for big files
-Spec("plugins.todo-comments") -- highlight and search TODO comments
+Spec("plugins.bigfile")                -- lighter config for big files
+Spec("plugins.todo-comments")          -- highlight and search TODO comments
 
 -- Git
-Spec("plugins.lazygit") -- open lazygit in floating window. Lazygit need to be installed in system
-Spec("plugins.gitsigns") -- Git status for every line
+Spec("plugins.lazygit")                           -- open lazygit in floating window. Lazygit need to be installed in system
+Spec("plugins.gitsigns")                          -- Git status for every line
 Spec("plugins.git-conflict")
-Spec("plugins.neogit") -- A Magit clone for Neovim
-Spec("plugins.gh-nvim") -- open lazygit in floating window. Lazygit need to be installed in system
+Spec("plugins.neogit")                            -- A Magit clone for Neovim
+Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
 -- Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
-Git("https://github.com/tpope/vim-fugitive") -- Git commands in nvim
-Git("https://github.com/tpope/vim-rhubarb") -- Fugitive-companion to interact with github
+Git("https://github.com/tpope/vim-fugitive")      -- Git commands in nvim
+Git("https://github.com/tpope/vim-rhubarb")       -- Fugitive-companion to interact with github
 Git("https://github.com/whiteinge/diffconflicts") -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
 
 -- File managers
-Spec("plugins.telescope") -- Swiss knife
-Spec("plugins.neo-tree") -- file manager
-Spec("plugins.oil-nvim") -- file manager
-Spec("plugins.harpoon") -- bookmark like buffer storage
+Spec("plugins.telescope")                -- Swiss knife
+Spec("plugins.neo-tree")                 -- file manager
+Spec("plugins.oil-nvim")                 -- file manager
+Spec("plugins.harpoon")                  -- bookmark like buffer storage
 Spec("plugins.nvim-lsp-file-operations") -- adds support for file operations using built-in LSP (update imports)
 
 -- LSP, code and linting
-Spec("plugins.mason") -- quickly install any lsp server
-Spec("plugins.lspsaga") -- Improves the Neovim built-in LSP experience.lspsaga.lua
-Spec("plugins.typescript") -- LSP Typescript utils with performant UI
-Spec("plugins.golang") -- LSP golang utils with performant UI
-Spec("plugins.treesitter") -- syntax highlight
-Spec("plugins.conform") -- better formatting
-Spec("plugins.trouble") -- organize errors and warnings
-Spec("plugins.nvim-cmp") -- collection of plugins related with autocompletion
-Spec("plugins.overseer-nvim") -- A task runner and job management plugin for Neovim
+Spec("plugins.mason")                           -- quickly install any lsp server
+Spec("plugins.lspsaga")                         -- Improves the Neovim built-in LSP experience.lspsaga.lua
+Spec("plugins.typescript")                      -- LSP Typescript utils with performant UI
+Spec("plugins.golang")                          -- LSP golang utils with performant UI
+Spec("plugins.treesitter")                      -- syntax highlight
+Spec("plugins.conform")                         -- better formatting
+Spec("plugins.trouble")                         -- organize errors and warnings
+Spec("plugins.nvim-cmp")                        -- collection of plugins related with autocompletion
+Spec("plugins.overseer-nvim")                   -- A task runner and job management plugin for Neovim
+Spec("plugins.otter-nvim")                      -- A task runner and job management plugin for Neovim
 -- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
-Git("https://github.com/folke/neodev.nvim") -- Neovim full signature help, docs and completion for the nvim lua API.
+Git("https://github.com/folke/neodev.nvim")     -- Neovim full signature help, docs and completion for the nvim lua API.
 Git("https://github.com/neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 
 -- -- Testing
@@ -64,34 +65,34 @@ Spec("plugins.yanky")
 Spec("plugins.undotree")
 
 -- LLM, AI, AGENTING, GP
-Spec("plugins.gp-nvim") -- AI chat interface for popular LLM's with API
-Spec("plugins.copilot") -- AI chat interface for GitHub copilot with chat
+Spec("plugins.gp-nvim")       -- AI chat interface for popular LLM's with API
+Spec("plugins.copilot")       -- AI chat interface for GitHub copilot with chat
 Spec("plugins.opencode-nvim") -- Bridge for opencode
 
 -- Utils
-Spec("plugins.obsidian") -- Note taking and knowledge base
-Spec("plugins.markdown-preview") -- Preview Markdown in your modern browser with synchronised scrolling
-Spec("plugins.render-markdown-nvim") -- render markdown in vim editor
-Spec("plugins.markdown-toc-nvim") -- auto-update TOC in markdown files
-Spec("plugins.qfenter") -- quickfix window (cw) open in split/tab...
-Spec("plugins.vimux") -- run commands in vimux pane
-Spec("plugins.nvim-tmux-navigation") -- hybrid tmux, vim window navigation.
-Spec("plugins.tabular") -- align text in column in table style.
-Spec("plugins.marks") -- better marks management
-Spec("plugins.streamer-mode") -- hide shell local variables
+Spec("plugins.obsidian")                         -- Note taking and knowledge base
+Spec("plugins.markdown-preview")                 -- Preview Markdown in your modern browser with synchronised scrolling
+Spec("plugins.render-markdown-nvim")             -- render markdown in vim editor
+Spec("plugins.markdown-toc-nvim")                -- auto-update TOC in markdown files
+Spec("plugins.qfenter")                          -- quickfix window (cw) open in split/tab...
+Spec("plugins.vimux")                            -- run commands in vimux pane
+Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
+Spec("plugins.tabular")                          -- align text in column in table style.
+Spec("plugins.marks")                            -- better marks management
+Spec("plugins.streamer-mode")                    -- hide shell local variables
 Git("https://github.com/stevearc/dressing.nvim") -- better floating window styles
-Git("https://github.com/milisims/nvim-luaref") -- adds a reference for builtin lua functions
+Git("https://github.com/milisims/nvim-luaref")   -- adds a reference for builtin lua functions
 
 -- Look and feel
-Spec("plugins.theme") -- gruvbox is best theme on the universe
-Spec("plugins.lualine") -- status bar with few informations
+Spec("plugins.theme")                 -- gruvbox is best theme on the universe
+Spec("plugins.lualine")               -- status bar with few informations
 Spec("plugins.bufferline")
-Spec("plugins.nvim-navic") -- Breadcrumbs with navigation
-Spec("plugins.which-key") -- display interactive footer with available keymaps
+Spec("plugins.nvim-navic")            -- Breadcrumbs with navigation
+Spec("plugins.which-key")             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
-Spec("plugins.illuminate") -- automatically highlighting other uses of the word under the cursor
-Spec("plugins.windows-nvim") -- Automatically manage size of current window;
+Spec("plugins.illuminate")            -- automatically highlighting other uses of the word under the cursor
+Spec("plugins.windows-nvim")          -- Automatically manage size of current window;
 Spec("plugins.indent-blankline-nvim") -- Add indentation guides even on blank lines in fold
-Spec("plugins.nvim-ufo") -- Make Neovim's fold look modern
-Spec("plugins.notification") -- Show one or more highlighted notifications in a single floating window.
-Spec("plugins.colorizer") -- paint hex values with color
+Spec("plugins.nvim-ufo")              -- Make Neovim's fold look modern
+Spec("plugins.notification")          -- Show one or more highlighted notifications in a single floating window.
+Spec("plugins.colorizer")             -- paint hex values with color
