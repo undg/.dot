@@ -1,6 +1,9 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	// "model": "github-copilot/claude-sonnet-4.5",
+	"autoupdate": true,
+	"instructions": [
+		"{env:HOME}/.config/opencode/INSTRUCTIONS.md"
+	],
 	"provider": {
 		"lmstudio": {
 			"npm": "@ai-sdk/openai-compatible",
@@ -14,20 +17,38 @@
 		"deepseek",
 		"xai"
 	],
+	"keybinds": {
+		"editor_open": "ctrl+e"
+	},
+	"mcp": {
+		"chrome-devtools": {
+			"type": "local",
+			"command": [
+				"npx",
+				"-y",
+				"chrome-devtools-mcp@latest",
+				"--browser-url=http://127.0.0.1:9222",
+				"--no-category-emulation"
+			],
+			"enabled": false
+		}
+	},
+	"agent": {
+		"write": {
+			"description": "reviews, edits and drafts longer-form content in my voice.",
+			"mode": "primary",
+			"color": "#F5B638",
+			"permission": {
+				"bash": "deny"
+			},
+			"prompt": "Review, edit, and write prose. Command form. Follow Guardian style guide - British English, clear and direct. No marketing jargon - skip 'perfect for', 'empowers you to', 'modernization'. Short and direct - no text walls. Context first, solution after. 'We' when working together; 'you' when addressing reader. Paragraphs brief - 2-4 sentences. Explain reasons, not just facts. Link sources and docs when useful. Bullets over numbers unless sequence matters. Honest about trade-offs. Bold key points. Simplify complex ideas. Casual tone fine - clarity beats rigid rules."
+		}
+	},
 	"permission": {
-		"doom_loop": "ask",
-		"external_directory": "ask",
-		"chrome-devtools*": "ask",
-		"chrome-devtools_list_pages": "allow",
-		"chrome-devtools_list_console_messages": "allow",
-		"chrome-devtools_take_snapshot": "allow",
-		"chrome-devtools_click": "allow",
-		"chrome-devtools_press_key": "allow",
-		"chrome-devtools_list_network_requests": "allow",
-		"ls*": "allow",
-		"gh": "ask",
-		"gh pr list*": "allow",
-		"gh pr view*": "allow",
+		"external_directory": {
+			"~/Documents/Work/**": "allow",
+			"~/Documents/Personal/**": "allow"
+		},
 		"bash": {
 			"*": "ask",
 			"rm": "ask",
@@ -57,23 +78,20 @@
 			"npm run lint": "allow",
 			"npm run type-check": "allow",
 			"npm run lint -- --fix": "allow"
-		}
-	},
-	"keybinds": {
-		"editor_open": "ctrl+e"
-	},
-	"mcp": {
-		"chrome-devtools": {
-			"type": "local",
-			"command": [
-				"npx",
-				"-y",
-				"chrome-devtools-mcp@latest",
-				"--browser-url=http://127.0.0.1:9222",
-				"--no-category-performance",
-				"--no-category-emulation"
-			],
-			"enabled": true
-		}
+		},
+		"webfetch": "allow",
+		"doom_loop": "ask",
+		"ls*": "allow",
+		"gh": "ask",
+		"gh pr list*": "allow",
+		"gh pr view*": "allow",
+		// chrome
+		"chrome-devtools*": "ask",
+		"chrome-devtools_list_pages": "allow",
+		"chrome-devtools_list_console_messages": "allow",
+		"chrome-devtools_take_snapshot": "allow",
+		"chrome-devtools_click": "allow",
+		"chrome-devtools_press_key": "allow",
+		"chrome-devtools_list_network_requests": "allow"
 	}
 }
