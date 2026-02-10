@@ -25,23 +25,17 @@ if [[ $# -eq 1 ]]; then
 else
 	# List of directories with potential projects
 	selected=$(
-		find ~/ \
-			~/.dot/bin/ \
-			~/.dot/**/.config/ \
-			~/Code/ \
-			~/Code/playground/ \
-			~/Code/Arahi/ \
-			~/Code/Whitbread/ \
-			~/Code/Pega/ \
-			~/www/ \
-			~/Dropbox/DropsyncFiles/ \
-			-mindepth 1 -maxdepth 1 -type d | fzf
+		{
+			find ~/ \
+				~/.dot/bin/ \
+				~/.dot/**/.config/ \
+				~/Code/ \
+				~/Code/playground/ \
+				~/www/ \
+				-mindepth 1 -maxdepth 1 -type d
+			printf "%s\n" ~/Documents/Work ~/Documents/Personal ~/Documents/vimwiki
+		} | fzf
 	)
-fi
-
-# Nothing selected
-if [[ -z $selected ]]; then
-	exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
