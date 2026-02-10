@@ -33,6 +33,9 @@
 			"enabled": false
 		}
 	},
+	"plugin": [
+		"@mohak34/opencode-notifier@0.1.14"
+	],
 	"agent": {
 		"write": {
 			"description": "reviews, edits and drafts longer-form content in my voice.",
