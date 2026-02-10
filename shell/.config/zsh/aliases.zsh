@@ -263,6 +263,7 @@ alias docker-ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.
 
 if hash  opencode &>/dev/null; then
 	alias o='opencode'
+	alias oc='opencode --continue'
 else
 	echo "opencode is not installed."
 	install opencode
