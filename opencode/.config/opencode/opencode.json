@@ -95,6 +95,7 @@
 		"chrome-devtools_take_snapshot": "allow",
 		"chrome-devtools_click": "allow",
 		"chrome-devtools_press_key": "allow",
-		"chrome-devtools_list_network_requests": "allow"
+		"chrome-devtools_list_network_requests": "allow",
+		"chrome-devtools_wait_for": "allow"
 	}
 }
