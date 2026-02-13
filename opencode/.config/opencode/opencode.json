@@ -62,7 +62,7 @@
 			"gh": "ask",
 			"gh pr list *": "allow",
 			"gh pr view *": "allow",
-			"rg": "allow",
+			"rg *": "allow",
 			"git *": "allow",
 			"git commit *": "ask",
 			"git push *": "deny",
