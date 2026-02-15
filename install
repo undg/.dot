@@ -213,7 +213,7 @@ install_packages() {
 	_install_package wget
 	_install_package yay SKIP SKIP SKIP
 	_install_package zsh
-	_install_package zsh-theme-powerlevel10k-git
+	_install_package zsh-theme-powerlevel10k-git SKIP SKIP SKIP
 }
 
 install_completion() {
