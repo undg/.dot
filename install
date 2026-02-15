@@ -205,7 +205,7 @@ install_packages() {
 	_install_package timeshift SKIP SKIP SKIP
 	_install_package tmux
 	_install_package translate-shell
-	_install_package trash-cli
+	_install_package trash-cli SKIP SKIP SKIP
 	_install_package ttf-mononoki-nerd SKIP SKIP SKIP
 	_install_package television television SKIP SKIP
 	_install_package unzip
