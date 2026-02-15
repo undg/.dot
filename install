@@ -157,6 +157,7 @@ install_packages() {
 	_install_package bluez-utils SKIP SKIP
 	_install_package brave-bin SKIP SKIP
 	_install_package btop btop SKIP btop
+	_install_package clang
 	_install_package cmatrix
 	_install_package curl
 	_install_package downgrade SKIP SKIP SKIP
