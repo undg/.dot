@@ -3,7 +3,7 @@
 # 😎
 alias :q='exit'
 
-if command -v eza &>/dev/null; then
+if hash eza 2>/dev/null; then
 	alias l='eza'
 	alias ls='eza --group-directories-first --icons --git'
 	alias ll='ls -lah --git'
@@ -19,7 +19,7 @@ alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
 alias lltr="ll --sort oldest"
 
-if command -v fasd &>/dev/null; then
+if hash fasd 2>/dev/null; then
 	alias j="fasd_cd -d -r"
 else
 	echo "fasd is not installed."
