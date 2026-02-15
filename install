@@ -221,10 +221,10 @@ install_completion() {
 	echo ""
 	echo "------Update autocompletion----------"
 	echo ""
-	tv init zsh >"$HOME/.config/zsh/completion/_tv"
-	tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale"
-	opencode completion zsh >"$HOME/.config/zsh/completion/_opencode"
-	pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm"
+	tv init zsh >"$HOME/.config/zsh/completion/_tv" 2>/dev/null || true
+	tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale" 2>/dev/null || true
+	opencode completion zsh >"$HOME/.config/zsh/completion/_opencode" 2>/dev/null || true
+	pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm" 2>/dev/null || true
 }
 
 # Main execution
