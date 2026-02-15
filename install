@@ -156,42 +156,42 @@ install_packages() {
 	_install_package bluez SKIP SKIP
 	_install_package bluez-utils SKIP SKIP
 	_install_package brave-bin SKIP SKIP
-	_install_package btop
+	_install_package btop btop SKIP btop
 	_install_package cmatrix
 	_install_package curl
-	_install_package downgrade SKIP SKIP
-	_install_package dunst SKIP SKIP
+	_install_package downgrade SKIP SKIP SKIP
+	_install_package dunst SKIP SKIP SKIP
 	_install_package eza
-	_install_package fasd SKIP SKIP
+	_install_package fasd SKIP SKIP SKIP
 	_install_package fd
 	_install_package feh
-	_install_package flameshot "--cask flameshot" SKIP
+	_install_package flameshot "--cask flameshot" SKIP SKIP
 	_install_package fping
 	_install_package git
 	_install_package git-delta
 	_install_package github-cli gh
-	_install_package i3blocks-contrib-git SKIP SKIP
-	_install_package imagemagick SKIP SKIP
-	_install_package inetutils SKIP SKIP
+	_install_package i3blocks-contrib-git SKIP SKIP SKIP
+	_install_package imagemagick SKIP SKIP SKIP
+	_install_package inetutils SKIP SKIP SKIP
 	_install_package jq
 	_install_package lazydocker
 	_install_package lazygit
-	_install_package luarocks SKIP SKIP
-	_install_package lxqt-policykit SKIP SKIP
+	_install_package luarocks SKIP SKIP SKIP
+	_install_package lxqt-policykit SKIP SKIP SKIP
 	_install_package man-db SKIP SKIP
 	_install_package mise
 	_install_package mpv SKIP SKIP
 	_install_package neovim
 	_install_package nmap
-	_install_package obs-studio "--cask obs" SKIP
+	_install_package obs-studio "--cask obs" SKIP SKIP
 	_install_package opencode
-	_install_package openssh SKIP
-	_install_package pavucontrol SKIP SKIP
-	_install_package picom SKIP SKIP
-	_install_package pipewire SKIP SKIP
-	_install_package pipewire-alsa SKIP SKIP
-	_install_package pipewire-jack SKIP SKIP
-	_install_package pipewire-pulse SKIP SKIP
+	_install_package openssh SKIP openssh openssh
+	_install_package pavucontrol SKIP SKIP SKIP
+	_install_package picom SKIP SKIP SKIP
+	_install_package pipewire SKIP SKIP SKIP
+	_install_package pipewire-alsa SKIP SKIP SKIP
+	_install_package pipewire-jack SKIP SKIP SKIP
+	_install_package pipewire-pulse SKIP SKIP SKIP
 	_install_package pulse-remote-git SKIP SKIP SKIP
 	_install_package ripgrep
 	_install_package rofi SKIP SKIP SKIP
@@ -200,18 +200,18 @@ install_packages() {
 	_install_package sddm SKIP SKIP SKIP
 	_install_package sesh
 	_install_package stow
-	_install_package the_silver_searcher silversearcher-ag silversearcher-ag
+	_install_package the_silver_searcher silversearcher-ag silversearcher-ag silversearcher-ag
 	_install_package tig
-	_install_package timeshift SKIP
+	_install_package timeshift SKIP SKIP SKIP
 	_install_package tmux
 	_install_package translate-shell
 	_install_package trash-cli
-	_install_package ttf-mononoki-nerd SKIP SKIP
-	_install_package television television SKIP
+	_install_package ttf-mononoki-nerd SKIP SKIP SKIP
+	_install_package television television SKIP SKIP
 	_install_package unzip
 	_install_package vmware-workstation SKIP SKIP SKIP
 	_install_package wget
-	_install_package yay
+	_install_package yay SKIP SKIP SKIP
 	_install_package zsh
 	_install_package zsh-theme-powerlevel10k-git
 }
