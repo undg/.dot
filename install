@@ -1,10 +1,51 @@
 #!/usr/bin/env bash
 
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+SKIP_INSTALL=false
+SKIP_STOW=false
+
 R='\033[0;31m' #'0;31' is Red's ANSI color code
 G='\033[0;32m' #'0;32' is Green's ANSI color code
 Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
 B='\033[0;34m' #'0;34' is Blue's ANSI color code
 NC='\033[0m'   #'0'    is back no color
+
+show_help() {
+	cat <<EOF
+Usage: ./install [OPTIONS]
+
+Options:
+  --skip-install    Skip package installation, only refresh config
+  -h, --help        Show this help message
+
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+	--skip-install)
+		SKIP_INSTALL=true
+		shift
+		;;
+	--skip-stow)
+		SKIP_STOW=true
+		shift
+		;;
+	-h | --help)
+		show_help
+		exit 0
+		;;
+	*)
+		echo "Unknown option: $1"
+		echo "Use --help for usage information"
+		exit 1
+		;;
+	esac
+done
 
 echo ""
 echo "------Install missing packages----------"
@@ -34,6 +75,8 @@ echo ""
 #   install_package tv-bin tv SKIP             # not available in apt
 #
 install_package() {
+	[[ "$SKIP_INSTALL" == true ]] && return 0
+
 	local pkg_pacman=$1
 	local pkg_brew=${2:-$1}
 	local pkg_apt=${3:-$1}
@@ -65,6 +108,8 @@ tv init zsh >~/.config/zsh/completion/_tv
 echo ""
 echo "------Install configuration files----------"
 echo ""
+
+[[ "$SKIP_STOW" == true ]] && exit 0
 
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
