@@ -179,12 +179,12 @@ install_packages() {
 	_install_package luarocks SKIP SKIP SKIP
 	_install_package lxqt-policykit SKIP SKIP SKIP
 	_install_package man-db SKIP SKIP
-	_install_package mise
-	_install_package mpv SKIP SKIP
+	_install_package mise mise SKIP mise
+	_install_package mpv SKIP SKIP SKIP
 	_install_package neovim
 	_install_package nmap
 	_install_package obs-studio "--cask obs" SKIP SKIP
-	_install_package opencode
+	_install_package opencode opencode SKIP opencode
 	_install_package openssh SKIP openssh openssh
 	_install_package pavucontrol SKIP SKIP SKIP
 	_install_package picom SKIP SKIP SKIP
