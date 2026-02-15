@@ -174,7 +174,7 @@ install_packages() {
 	_install_package imagemagick SKIP SKIP SKIP
 	_install_package inetutils SKIP SKIP SKIP
 	_install_package jq
-	_install_package lazydocker
+	_install_package lazydocker lazydocker SKIP lazydocker
 	_install_package lazygit
 	_install_package luarocks SKIP SKIP SKIP
 	_install_package lxqt-policykit SKIP SKIP SKIP
