@@ -86,8 +86,9 @@
 		"doom_loop": "ask",
 		"ls*": "allow",
 		"gh": "ask",
-		"gh pr list*": "allow",
-		"gh pr view*": "allow",
+		"gh pr list *": "allow",
+		"gh pr view *": "allow",
+		"gh repo view *": "allow",
 		// chrome
 		"chrome-devtools*": "ask",
 		"chrome-devtools_list_pages": "allow",
