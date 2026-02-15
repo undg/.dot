@@ -132,13 +132,13 @@ install_package git-delta
 install_package github-cli gh
 install_package i3blocks-contrib-git SKIP SKIP
 install_package imagemagick SKIP SKIP
-install_package inetuils SKIP SKIP
+install_package inetutils SKIP SKIP
 install_package jq
 install_package lazydocker
 install_package lazygit
 install_package luarocks SKIP SKIP
-install_package lxqt-policykit-agent SKIP SKIP
-install_package mad-db SKIP SKIP
+install_package lxqt-policykit SKIP SKIP
+install_package man-db SKIP SKIP
 install_package mise
 install_package mpv SKIP SKIP
 install_package neovim
@@ -169,27 +169,26 @@ install_package tmux
 install_package translate-shell
 install_package trash-cli
 install_package ttf-mononoki-nerd SKIP SKIP
-install_package tv-bin television SKIP
+install_package television television SKIP
 install_package unzip
 install_package vmware-workstation
 install_package wget
-install_package yay-git
+install_package yay
 install_package zsh
 install_package zsh-theme-powerlevel10k-git
 
 echo ""
 echo "------Update autocompletion----------"
 echo ""
-tv init zsh >~/.config/zsh/completion/_tv
-tailscale completion zsh >.config/zsh/completion/_tailscale
-opencode completion zsh >~/.config/zsh/completion/_opencode
-pnpm completion zsh >~/.config/zsh/completion/_pnpm
+tv init zsh >"$HOME/.config/zsh/completion/_tv"
+tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale"
+opencode completion zsh >"$HOME/.config/zsh/completion/_opencode"
+pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm"
 
+[[ "$SKIP_STOW" == true ]] && exit 0
 echo ""
 echo "------Install configuration files----------"
 echo ""
-
-[[ "$SKIP_STOW" == true ]] && exit 0
 
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
