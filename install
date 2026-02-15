@@ -20,6 +20,7 @@ Usage: ./install [OPTIONS]
 
 Options:
   --skip-install    Skip package installation, only refresh config
+  --skip-stow       Skip stow operations (symlinking dotfiles)
   -h, --help        Show this help message
 
 EOF
