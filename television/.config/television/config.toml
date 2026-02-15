@@ -158,7 +158,7 @@ ctrl-s = "cycle_sources"
 
 # UI Features
 # ----------
-ctrl-t = "toggle_remote_control"
+ctrl-b = "toggle_remote_control"
 ctrl-x = "toggle_action_picker"
 ctrl-o = "toggle_preview"
 ctrl-h = "toggle_help"
@@ -248,7 +248,7 @@ fallback_channel = "files"
 [shell_integration.keybindings]
 # controls which key binding should trigger tv
 # for shell autocomplete
-"smart_autocomplete" = "ctrl-t"
+"smart_autocomplete" = "ctrl-b"
 # controls which keybinding should trigger tv
 # for command history
 "command_history" = "ctrl-r"
