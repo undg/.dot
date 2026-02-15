@@ -57,6 +57,7 @@ echo ""
 # - Different package names per manager
 # - Skip unavailable packages with SKIP
 # - Check if already installed before attempting install
+# - Brew cask support with --cask prefix
 #
 # Usage:
 #   install_package <pacman_name> [brew_name] [apt_name]
@@ -64,6 +65,7 @@ echo ""
 # Arguments:
 #   pacman_name - Package name for pacman (required)
 #   brew_name   - Package name for brew (optional, defaults to pacman_name)
+#                 Prefix with --cask for brew cask packages
 #   apt_name    - Package name for apt (optional, defaults to pacman_name)
 #
 # Special values:
@@ -72,7 +74,8 @@ echo ""
 # Examples:
 #   install_package ripgrep                    # same name everywhere
 #   install_package ripgrep ripgrep rg         # different apt name
-#   install_package tv-bin tv SKIP             # not available in apt
+#   install_package tv-bin television SKIP     # not available in apt
+#   install_package brave-bin --cask brave SKIP # brew cask package
 #
 install_package() {
 	[[ "$SKIP_INSTALL" == true ]] && return 0
@@ -92,7 +95,12 @@ install_package() {
 		fi
 	elif command -v brew &>/dev/null; then
 		[[ "$pkg_brew" == "SKIP" ]] && return 0
-		brew list "$pkg_brew" &>/dev/null || brew install "$pkg_brew"
+		if [[ "$pkg_brew" == --cask* ]]; then
+			local cask_name="${pkg_brew#--cask }"
+			brew list --cask "$cask_name" &>/dev/null || brew install --cask "$cask_name"
+		else
+			brew list "$pkg_brew" &>/dev/null || brew install "$pkg_brew"
+		fi
 	elif command -v apt &>/dev/null; then
 		[[ "$pkg_apt" == "SKIP" ]] && return 0
 		dpkg -l | grep -q "^ii  $pkg_apt " || sudo apt install "$pkg_apt"
@@ -102,8 +110,80 @@ install_package() {
 	fi
 }
 
+install_package alacritty "--cask alacritty" SKIP
+install_package arandr SKIP SKIP
+install_package atuin
+install_package bluez SKIP SKIP
+install_package bluez-utils SKIP SKIP
+install_package brave-bin SKIP SKIP
+install_package btop
+install_package cmatrix
+install_package curl
+install_package downgrade SKIP SKIP
+install_package dunst SKIP SKIP
+install_package eza
+install_package fasd SKIP SKIP
+install_package fd
+install_package feh
+install_package flameshot "--cask flameshot" flameshot
+install_package fping
+install_package git
+install_package git-delta
+install_package github-cli gh
+install_package i3blocks-contrib-git SKIP SKIP
+install_package imagemagick SKIP SKIP
+install_package inetuils SKIP SKIP
+install_package jq
+install_package lazydocker
+install_package lazygit
+install_package luarocks SKIP SKIP
+install_package lxqt-policykit-agent SKIP SKIP
+install_package mad-db SKIP SKIP
+install_package mise
+install_package mpv SKIP SKIP
+install_package neovim
+install_package nmap
+install_package obs-studio "--cask obs" SKIP
+install_package opencode
+install_package openssh SKIP
+install_package pavucontrol SKIP SKIP
+install_package picom SKIP SKIP
+install_package pipewire SKIP SKIP
+install_package pipewire-alsa SKIP SKIP
+install_package pipewire-jack SKIP SKIP
+install_package pipewire-pulse SKIP SKIP
+install_package prettierd
+install_package pulse-remote-git
+# install_package pulse-remote-desktop-git
+install_package ripgrep
+install_package rofi SKIP SKIP
+install_package rofi-calc SKIP SKIP
+install_package rofi-emoji SKIP SKIP
+install_package sddm SKIP SKIP
+install_package sesh
+install_package stow
+install_package the_silver_searcher silversearcher-ag silversearcher-ag
+install_package tig
+install_package timeshift SKIP
+install_package tmux
+install_package translate-shell
+install_package trash-cli
+install_package ttf-mononoki-nerd SKIP SKIP
 install_package tv-bin television SKIP
+install_package unzip
+install_package vmware-workstation
+install_package wget
+install_package yay-git
+install_package zsh
+install_package zsh-theme-powerlevel10k-git
+
+echo ""
+echo "------Update autocompletion----------"
+echo ""
 tv init zsh >~/.config/zsh/completion/_tv
+tailscale completion zsh >.config/zsh/completion/_tailscale
+opencode completion zsh >~/.config/zsh/completion/_opencode
+pnpm completion zsh >~/.config/zsh/completion/_pnpm
 
 echo ""
 echo "------Install configuration files----------"
