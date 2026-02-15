@@ -6,6 +6,66 @@ Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
 B='\033[0;34m' #'0;34' is Blue's ANSI color code
 NC='\033[0m'   #'0'    is back no color
 
+echo ""
+echo "------Install missing packages----------"
+echo ""
+
+# install_package - Cross-platform package installer
+#
+# Installs packages across pacman, brew, and apt with support for:
+# - Different package names per manager
+# - Skip unavailable packages with SKIP
+# - Check if already installed before attempting install
+#
+# Usage:
+#   install_package <pacman_name> [brew_name] [apt_name]
+#
+# Arguments:
+#   pacman_name - Package name for pacman (required)
+#   brew_name   - Package name for brew (optional, defaults to pacman_name)
+#   apt_name    - Package name for apt (optional, defaults to pacman_name)
+#
+# Special values:
+#   SKIP - Skip installation for this package manager
+#
+# Examples:
+#   install_package ripgrep                    # same name everywhere
+#   install_package ripgrep ripgrep rg         # different apt name
+#   install_package tv-bin tv SKIP             # not available in apt
+#
+install_package() {
+	local pkg_pacman=$1
+	local pkg_brew=${2:-$1}
+	local pkg_apt=${3:-$1}
+
+	if command -v pacman &>/dev/null; then
+		[[ "$pkg_pacman" == "SKIP" ]] && return 0
+		if pacman -Q "$pkg_pacman" &>/dev/null; then
+			return 0
+		elif command -v yay &>/dev/null; then
+			yay -S "$pkg_pacman"
+		else
+			pacman -S "$pkg_pacman"
+		fi
+	elif command -v brew &>/dev/null; then
+		[[ "$pkg_brew" == "SKIP" ]] && return 0
+		brew list "$pkg_brew" &>/dev/null || brew install "$pkg_brew"
+	elif command -v apt &>/dev/null; then
+		[[ "$pkg_apt" == "SKIP" ]] && return 0
+		dpkg -l | grep -q "^ii  $pkg_apt " || sudo apt install "$pkg_apt"
+	else
+		echo "No supported package manager found"
+		return 1
+	fi
+}
+
+install_package tv-bin television SKIP
+tv init zsh >~/.config/zsh/completion/_tv
+
+echo ""
+echo "------Install configuration files----------"
+echo ""
+
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
 function stow_patch() {
@@ -13,6 +73,7 @@ function stow_patch() {
 }
 
 # @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
+#  @TODO (undg) 2026-02-15: still thinking
 rm -rf ~/.config/atuin
 
 for folder in */; do
