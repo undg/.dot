@@ -83,36 +83,38 @@ install_configs() {
 	echo "All done!"
 }
 
-# install_package - Cross-platform package installer
+# _install_package - Cross-platform package installer
 #
-# Installs packages across pacman, brew, and apt with support for:
+# Installs packages across pacman, brew, pkg (termux), and apt with support for:
 # - Different package names per manager
 # - Skip unavailable packages with SKIP
 # - Check if already installed before attempting install
 # - Brew cask support with --cask prefix
 #
 # Usage:
-#   install_package <pacman_name> [brew_name] [apt_name]
+#   _install_package <pacman_name> [brew_name] [pkg_name] [apt_name]
 #
 # Arguments:
 #   pacman_name - Package name for pacman (required)
 #   brew_name   - Package name for brew (optional, defaults to pacman_name)
 #                 Prefix with --cask for brew cask packages
+#   pkg_name    - Package name for pkg/termux (optional, defaults to pacman_name)
 #   apt_name    - Package name for apt (optional, defaults to pacman_name)
 #
 # Special values:
 #   SKIP - Skip installation for this package manager
 #
 # Examples:
-#   install_package ripgrep                    # same name everywhere
-#   install_package ripgrep ripgrep rg         # different apt name
-#   install_package tv-bin television SKIP     # not available in apt
-#   install_package brave-bin --cask brave SKIP # brew cask package
+#   _install_package ripgrep                    # same name everywhere
+#   _install_package ripgrep ripgrep rg         # different apt name
+#   _install_package tv-bin television SKIP     # not available in apt
+#   _install_package brave-bin "--cask brave" SKIP # brew cask package
 #
 _install_package() {
 	local pkg_pacman=$1
 	local pkg_brew=${2:-$1}
-	local pkg_apt=${3:-$1}
+	local pkg_pkg=${3:-$1}
+	local pkg_apt=${4:-$1}
 
 	if command -v pacman &>/dev/null; then
 		[[ "$pkg_pacman" == "SKIP" ]] && return 0
@@ -131,6 +133,9 @@ _install_package() {
 		else
 			brew list "$pkg_brew" &>/dev/null || brew install "$pkg_brew"
 		fi
+	elif [[ -n "$TERMUX_VERSION" ]] || command -v pkg &>/dev/null; then
+		[[ "$pkg_pkg" == "SKIP" ]] && return 0
+		pkg list-installed 2>/dev/null | grep -q "^$pkg_pkg/" || pkg install "$pkg_pkg"
 	elif command -v apt &>/dev/null; then
 		[[ "$pkg_apt" == "SKIP" ]] && return 0
 		dpkg -l | grep -q "^ii  $pkg_apt " || sudo apt install "$pkg_apt"
@@ -160,7 +165,7 @@ install_packages() {
 	_install_package fasd SKIP SKIP
 	_install_package fd
 	_install_package feh
-	_install_package flameshot "--cask flameshot" flameshot
+	_install_package flameshot "--cask flameshot" SKIP
 	_install_package fping
 	_install_package git
 	_install_package git-delta
@@ -187,12 +192,12 @@ install_packages() {
 	_install_package pipewire-alsa SKIP SKIP
 	_install_package pipewire-jack SKIP SKIP
 	_install_package pipewire-pulse SKIP SKIP
-	_install_package pulse-remote-git
+	_install_package pulse-remote-git SKIP SKIP SKIP
 	_install_package ripgrep
-	_install_package rofi SKIP SKIP
-	_install_package rofi-calc SKIP SKIP
-	_install_package rofi-emoji SKIP SKIP
-	_install_package sddm SKIP SKIP
+	_install_package rofi SKIP SKIP SKIP
+	_install_package rofi-calc SKIP SKIP SKIP
+	_install_package rofi-emoji SKIP SKIP SKIP
+	_install_package sddm SKIP SKIP SKIP
 	_install_package sesh
 	_install_package stow
 	_install_package the_silver_searcher silversearcher-ag silversearcher-ag
@@ -204,7 +209,7 @@ install_packages() {
 	_install_package ttf-mononoki-nerd SKIP SKIP
 	_install_package television television SKIP
 	_install_package unzip
-	_install_package vmware-workstation
+	_install_package vmware-workstation SKIP SKIP SKIP
 	_install_package wget
 	_install_package yay
 	_install_package zsh
