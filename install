@@ -228,5 +228,5 @@ install_completion() {
 
 # Main execution
 [[ "$SKIP_INSTALL" == false ]] && install_packages
-[[ "$SKIP_COMPLETION" == false ]] && install_completion
 [[ "$SKIP_STOW" == false ]] && install_configs
+[[ "$SKIP_COMPLETION" == false ]] && install_completion
