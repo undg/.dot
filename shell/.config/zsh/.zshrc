@@ -174,7 +174,7 @@ bindkey "^[q" exit_zsh
 # src: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://unix.stackexchange.com/a/79905
 # Same bind-key is set in tmux
-bindkey -s '^g' '^utmux-sessionizer^M' # ctrl+g
+bindkey -s '^b^b' '^utmux-sessionizer^M' # ctrl+g
 
 # @TODO (undg) 2024-03-07: detete after testing period
 # ---- replaced with `atuin`
