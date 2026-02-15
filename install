@@ -164,12 +164,12 @@ install_packages() {
 	_install_package eza
 	_install_package fasd SKIP SKIP SKIP
 	_install_package fd
-	_install_package feh
+	_install_package feh SKIP SKIP SKIP
 	_install_package flameshot "--cask flameshot" SKIP SKIP
-	_install_package fping
+	_install_package fping SKIP SKIP SKIP
 	_install_package git
 	_install_package git-delta
-	_install_package github-cli gh
+	_install_package github-cli gh gh gh
 	_install_package i3blocks-contrib-git SKIP SKIP SKIP
 	_install_package imagemagick SKIP SKIP SKIP
 	_install_package inetutils SKIP SKIP SKIP
