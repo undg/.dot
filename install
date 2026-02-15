@@ -193,7 +193,7 @@ echo ""
 # Patch for known bug: A spurious warning is issued when unstowing a package #65
 # https://github.com/aspiers/stow/issues/65#issuecomment-757644763
 function stow_patch() {
-	stow "$@" 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir"
+	stow "$@" 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir" || true
 }
 
 # @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
