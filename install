@@ -5,14 +5,15 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-SKIP_INSTALL=false
-SKIP_STOW=false
-
 R='\033[0;31m' #'0;31' is Red's ANSI color code
 G='\033[0;32m' #'0;32' is Green's ANSI color code
 Y='\033[1;32m' #'1;32' is Yellow's ANSI color code
 B='\033[0;34m' #'0;34' is Blue's ANSI color code
 NC='\033[0m'   #'0'    is back no color
+
+SKIP_INSTALL=false
+SKIP_COMPLETION=false
+SKIP_STOW=false
 
 show_help() {
 	cat <<EOF
@@ -20,6 +21,7 @@ Usage: ./install [OPTIONS]
 
 Options:
   --skip-install    Skip package installation, only refresh config
+  --skip-completion Skip generating shell completions
   --skip-stow       Skip stow operations (symlinking dotfiles)
   -h, --help        Show this help message
 
@@ -30,6 +32,10 @@ while [[ $# -gt 0 ]]; do
 	case $1 in
 	--skip-install)
 		SKIP_INSTALL=true
+		shift
+		;;
+	--skip-completion)
+		SKIP_COMPLETION=true
 		shift
 		;;
 	--skip-stow)
@@ -48,9 +54,34 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-echo ""
-echo "------Install missing packages----------"
-echo ""
+# Patch for known bug: A spurious warning is issued when unstowing a package #65
+# https://github.com/aspiers/stow/issues/65#issuecomment-757644763
+_stow_patch() {
+	stow "$@" 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir" || true
+}
+
+install_configs() {
+	echo ""
+	echo "------Install configuration files----------"
+	echo ""
+
+	# @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
+	#  @TODO (undg) 2026-02-15: still thinking :)
+	rm -rf ~/.config/atuin
+
+	for folder in */; do
+		if [[ ! $folder =~ ^_.* ]]; then
+			echo "--------------------------"
+			_stow_patch -D "$folder"
+			echo -e "${R}Remove $folder${NC}"
+			_stow_patch "$folder"
+			echo -e "${G}Add $folder${NC}"
+		fi
+	done
+
+	echo "--------------------------"
+	echo "All done!"
+}
 
 # install_package - Cross-platform package installer
 #
@@ -78,9 +109,7 @@ echo ""
 #   install_package tv-bin television SKIP     # not available in apt
 #   install_package brave-bin --cask brave SKIP # brew cask package
 #
-install_package() {
-	[[ "$SKIP_INSTALL" == true ]] && return 0
-
+_install_package() {
 	local pkg_pacman=$1
 	local pkg_brew=${2:-$1}
 	local pkg_apt=${3:-$1}
@@ -92,7 +121,7 @@ install_package() {
 		elif command -v yay &>/dev/null; then
 			yay -S "$pkg_pacman"
 		else
-			pacman -S "$pkg_pacman"
+			sudo pacman -S "$pkg_pacman"
 		fi
 	elif command -v brew &>/dev/null; then
 		[[ "$pkg_brew" == "SKIP" ]] && return 0
@@ -111,105 +140,88 @@ install_package() {
 	fi
 }
 
-install_package alacritty "--cask alacritty" SKIP
-install_package arandr SKIP SKIP
-install_package atuin
-install_package bluez SKIP SKIP
-install_package bluez-utils SKIP SKIP
-install_package brave-bin SKIP SKIP
-install_package btop
-install_package cmatrix
-install_package curl
-install_package downgrade SKIP SKIP
-install_package dunst SKIP SKIP
-install_package eza
-install_package fasd SKIP SKIP
-install_package fd
-install_package feh
-install_package flameshot "--cask flameshot" flameshot
-install_package fping
-install_package git
-install_package git-delta
-install_package github-cli gh
-install_package i3blocks-contrib-git SKIP SKIP
-install_package imagemagick SKIP SKIP
-install_package inetutils SKIP SKIP
-install_package jq
-install_package lazydocker
-install_package lazygit
-install_package luarocks SKIP SKIP
-install_package lxqt-policykit SKIP SKIP
-install_package man-db SKIP SKIP
-install_package mise
-install_package mpv SKIP SKIP
-install_package neovim
-install_package nmap
-install_package obs-studio "--cask obs" SKIP
-install_package opencode
-install_package openssh SKIP
-install_package pavucontrol SKIP SKIP
-install_package picom SKIP SKIP
-install_package pipewire SKIP SKIP
-install_package pipewire-alsa SKIP SKIP
-install_package pipewire-jack SKIP SKIP
-install_package pipewire-pulse SKIP SKIP
-install_package prettierd
-install_package pulse-remote-git
-# install_package pulse-remote-desktop-git
-install_package ripgrep
-install_package rofi SKIP SKIP
-install_package rofi-calc SKIP SKIP
-install_package rofi-emoji SKIP SKIP
-install_package sddm SKIP SKIP
-install_package sesh
-install_package stow
-install_package the_silver_searcher silversearcher-ag silversearcher-ag
-install_package tig
-install_package timeshift SKIP
-install_package tmux
-install_package translate-shell
-install_package trash-cli
-install_package ttf-mononoki-nerd SKIP SKIP
-install_package television television SKIP
-install_package unzip
-install_package vmware-workstation
-install_package wget
-install_package yay
-install_package zsh
-install_package zsh-theme-powerlevel10k-git
+install_packages() {
+	echo ""
+	echo "------Install missing packages----------"
+	echo ""
 
-echo ""
-echo "------Update autocompletion----------"
-echo ""
-tv init zsh >"$HOME/.config/zsh/completion/_tv"
-tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale"
-opencode completion zsh >"$HOME/.config/zsh/completion/_opencode"
-pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm"
-
-[[ "$SKIP_STOW" == true ]] && exit 0
-echo ""
-echo "------Install configuration files----------"
-echo ""
-
-# Patch for known bug: A spurious warning is issued when unstowing a package #65
-# https://github.com/aspiers/stow/issues/65#issuecomment-757644763
-function stow_patch() {
-	stow "$@" 2>&1 | grep -v "BUG in find_stowed_path? Absolute/relative mismatch between Stow dir" || true
+	_install_package alacritty "--cask alacritty" SKIP
+	_install_package arandr SKIP SKIP
+	_install_package atuin
+	_install_package bluez SKIP SKIP
+	_install_package bluez-utils SKIP SKIP
+	_install_package brave-bin SKIP SKIP
+	_install_package btop
+	_install_package cmatrix
+	_install_package curl
+	_install_package downgrade SKIP SKIP
+	_install_package dunst SKIP SKIP
+	_install_package eza
+	_install_package fasd SKIP SKIP
+	_install_package fd
+	_install_package feh
+	_install_package flameshot "--cask flameshot" flameshot
+	_install_package fping
+	_install_package git
+	_install_package git-delta
+	_install_package github-cli gh
+	_install_package i3blocks-contrib-git SKIP SKIP
+	_install_package imagemagick SKIP SKIP
+	_install_package inetutils SKIP SKIP
+	_install_package jq
+	_install_package lazydocker
+	_install_package lazygit
+	_install_package luarocks SKIP SKIP
+	_install_package lxqt-policykit SKIP SKIP
+	_install_package man-db SKIP SKIP
+	_install_package mise
+	_install_package mpv SKIP SKIP
+	_install_package neovim
+	_install_package nmap
+	_install_package obs-studio "--cask obs" SKIP
+	_install_package opencode
+	_install_package openssh SKIP
+	_install_package pavucontrol SKIP SKIP
+	_install_package picom SKIP SKIP
+	_install_package pipewire SKIP SKIP
+	_install_package pipewire-alsa SKIP SKIP
+	_install_package pipewire-jack SKIP SKIP
+	_install_package pipewire-pulse SKIP SKIP
+	_install_package pulse-remote-git
+	_install_package ripgrep
+	_install_package rofi SKIP SKIP
+	_install_package rofi-calc SKIP SKIP
+	_install_package rofi-emoji SKIP SKIP
+	_install_package sddm SKIP SKIP
+	_install_package sesh
+	_install_package stow
+	_install_package the_silver_searcher silversearcher-ag silversearcher-ag
+	_install_package tig
+	_install_package timeshift SKIP
+	_install_package tmux
+	_install_package translate-shell
+	_install_package trash-cli
+	_install_package ttf-mononoki-nerd SKIP SKIP
+	_install_package television television SKIP
+	_install_package unzip
+	_install_package vmware-workstation
+	_install_package wget
+	_install_package yay
+	_install_package zsh
+	_install_package zsh-theme-powerlevel10k-git
 }
 
-# @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
-#  @TODO (undg) 2026-02-15: still thinking
-rm -rf ~/.config/atuin
+install_completion() {
+	echo ""
+	echo "------Update autocompletion----------"
+	echo ""
+	tv init zsh >"$HOME/.config/zsh/completion/_tv"
+	tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale"
+	opencode completion zsh >"$HOME/.config/zsh/completion/_opencode"
+	pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm"
+}
 
-for folder in */; do
-	if [[ ! $folder =~ ^_.* ]]; then
-		echo "--------------------------"
-		stow_patch -D "$folder"
-		echo -e "${R}Remove $folder${NC}"
-		stow_patch "$folder"
-		echo -e "${G}Add $folder${NC}"
-	fi
-done
-
-echo "--------------------------"
-echo "All done!"
+# Main execution
+[[ "$SKIP_INSTALL" == false ]] && install_packages
+[[ "$SKIP_COMPLETION" == false ]] && install_completion
+[[ "$SKIP_STOW" == false ]] && install_configs
