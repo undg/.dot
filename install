@@ -198,7 +198,7 @@ install_packages() {
 	_install_package rofi-calc SKIP SKIP SKIP
 	_install_package rofi-emoji SKIP SKIP SKIP
 	_install_package sddm SKIP SKIP SKIP
-	_install_package sesh
+	_install_package sesh sesh SKIP SKIP
 	_install_package stow
 	_install_package the_silver_searcher silversearcher-ag silversearcher-ag silversearcher-ag
 	_install_package tig
