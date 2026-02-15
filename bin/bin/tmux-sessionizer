@@ -11,14 +11,14 @@
 # Usage:
 #   tmux-sessionizer [dir]
 #
-# If no dir is specified, prompts user to select with fzf.
+# If no dir is specified, prompts user to select with tv.
 #
 # Allows quickly opening a tmux session for a project directory.
 # Session name derived from dir name for easy identification.
 #
 # Requirements:
 # - tmux
-# - fzf
+# - tv
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
@@ -34,7 +34,7 @@ else
 				~/www/ \
 				-mindepth 1 -maxdepth 1 -type d
 			printf "%s\n" ~/Documents/Work ~/Documents/Personal ~/Documents/vimwiki
-		} | fzf
+		} | tv
 	)
 fi
 
