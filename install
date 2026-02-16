@@ -168,6 +168,7 @@ install_packages() {
 	_install_package feh SKIP SKIP SKIP
 	_install_package flameshot "--cask flameshot" SKIP SKIP
 	_install_package fping SKIP SKIP SKIP
+	_install_package fzf
 	_install_package git
 	_install_package git-delta
 	_install_package github-cli gh gh gh
