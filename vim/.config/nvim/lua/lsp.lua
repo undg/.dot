@@ -18,6 +18,12 @@
 
 require("config")
 
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
+	vim.notify("lsp.lua: missing lspconfig", vim.log.levels.ERROR)
+	return
+end
+
 local lsp_servers = {
 	"json-lsp",
 	"yaml-language-server",
@@ -66,14 +72,24 @@ else
 			"prettier", -- js/ts
 			"shfmt", -- bash
 			"goimports", -- golang
-			"isort", -- python
-			"black", -- python
+			"ruff", -- python: linter + formatter (replaces black, isort, flake8, etc.)
 		},
 		run_on_start = true,
 	})
 end
 
-vim.lsp.enable(lsp_servers)
+-- Setup each LSP server with custom config if available
+for _, server in ipairs(lsp_servers) do
+	local server_name = server:gsub("%-", "_") -- convert "json-lsp" to "json_lsp"
+	local config_ok, config = pcall(require, "lsp." .. server_name)
+	
+	if config_ok then
+		lspconfig[server].setup(config)
+	else
+		-- No custom config, use defaults
+		lspconfig[server].setup({})
+	end
+end
 
 -- null_ls.setup({
 -- 	sources = { null_ls.builtins.completion.tags, null_ls.builtins.hover.dictionary },

@@ -40,11 +40,17 @@ return {
 	settings = {
 		basedpyright = {
 			analysis = {
-				typeCheckingMode = "basic",
+				typeCheckingMode = "standard", -- recommended over "basic"
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				diagnosticMode = "openFilesOnly", -- or "workspace" for full project analysis
 				inlayHints = {
-					enable = true
+					variableTypes = true,
+					functionReturnTypes = true,
+					callArgumentNames = false, -- can be noisy
+					genericTypes = false,
 				},
-			}
+			},
 		},
 	},
 }
