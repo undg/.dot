@@ -202,7 +202,7 @@ install_packages() {
 	_install_package sddm SKIP SKIP SKIP
 	_install_package sesh sesh SKIP SKIP
 	_install_package stow
-	_install_package the_silver_searcher silversearcher-ag silversearcher-ag silversearcher-ag
+	_install_package the_silver_searcher the_silver_searcher silversearcher-ag silversearcher-ag
 	_install_package tig
 	_install_package timeshift SKIP SKIP SKIP
 	_install_package tmux
@@ -222,10 +222,10 @@ install_completion() {
 	echo ""
 	echo "------Update autocompletion----------"
 	echo ""
-	tv init zsh >"$HOME/.config/zsh/completion/_tv" 2>/dev/null || true
-	tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale" 2>/dev/null || true
-	opencode completion zsh >"$HOME/.config/zsh/completion/_opencode" 2>/dev/null || true
-	pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm" 2>/dev/null || true
+	hash tv 2>/dev/null && tv init zsh >"$HOME/.config/zsh/completion/_tv" 2>/dev/null || true
+	hash tailscale 2>/dev/null && tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale" 2>/dev/null || true
+	hash opencode 2>/dev/null && opencode completion zsh >"$HOME/.config/zsh/completion/_opencode" 2>/dev/null || true
+	hash pnpm 2>/dev/null && pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm" 2>/dev/null || true
 }
 
 # Main execution
