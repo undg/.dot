@@ -34,7 +34,7 @@ else
 				~/www/ \
 				-mindepth 1 -maxdepth 1 -type d
 			printf "%s\n" ~/Documents/Work ~/Documents/Personal ~/Documents/vimwiki
-		} | tv
+		} | if command -v tv &>/dev/null; then tv; else fzf; fi
 	)
 fi
 
