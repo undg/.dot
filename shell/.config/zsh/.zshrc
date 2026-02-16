@@ -174,12 +174,8 @@ bindkey "^[q" exit_zsh
 # src: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://unix.stackexchange.com/a/79905
 # Same bind-key is set in tmux
-bindkey -s '^b^b' '^utmux-sessionizer^M' # ctrl+g
+bindkey -s '^b^b' '^utmux-sessionizer^M' # ctrl+b ctrl+b 
 
-# @TODO (undg) 2024-03-07: detete after testing period
-# ---- replaced with `atuin`
-# plug "zap-zsh/fzf" # famous fuzzy finder
-# ---- replaced with `atuin`
 # replace "zsh-users/zsh-history-substring-search" with native solution
 # https://unix.stackexchange.com/a/672892
 autoload -U up-line-or-beginning-search
