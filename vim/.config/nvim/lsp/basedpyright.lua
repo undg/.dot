@@ -35,8 +35,12 @@
 
 ---@type BasedpyrightConfig
 return {
-	-- override root dir to current dir in case of multiple "trigger files" in sub-directories
-	root_dir = function() return vim.fn.getcwd() end,
+	filetypes = { 'python' },
+	-- Use current working directory as root (for projects with messy structure)
+	-- This ensures basedpyright sees all Python files in the project
+	root_dir = function()
+		return vim.fn.getcwd()
+	end,
 	settings = {
 		basedpyright = {
 			analysis = {

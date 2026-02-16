@@ -16,7 +16,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				json = { "prettierd", "prettier", stop_after_first = true },
-				python = { "isort", "black" },
+				python = { "ruff_organize_imports", "ruff_format" },
 				bash = { "shfmt" },
 				zsh = { "shfmt" },
 				sh = { "shfmt" },
