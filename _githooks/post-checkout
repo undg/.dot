@@ -1,3 +1,20 @@
 #!/bin/bash
 
-nvim --headless "+Lazy! restore" +qa
+prev_commit=$1
+new_commit=$2
+branch_checkout=$3
+
+# On initial clone, install plugins
+if [ "$prev_commit" = "0000000000000000000000000000000000000000" ]; then
+	echo "Initial clone detected, installing Lazy plugins..."
+	nvim --headless "+Lazy! restore" +qa
+	git checkout -- vim/.config/nvim/lazy-lock.json
+	exit 0
+fi
+
+# Check if nvim/plugins.lua or nvim/lazy-lock.json changed
+if git diff --name-only $prev_commit $new_commit | grep -qE '^nvim/(plugins\.lua|lazy-lock\.json)$'; then
+	echo "Plugin files changed, restoring Lazy plugins..."
+	nvim --headless "+Lazy! restore" +qa
+	git checkout -- vim/.config/nvim/lazy-lock.json
+fi
