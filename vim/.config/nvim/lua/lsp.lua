@@ -66,8 +66,6 @@ else
 			"prettier", -- js/ts
 			"shfmt", -- bash
 			"goimports", -- golang
-			"isort", -- python
-			"black", -- python
 		},
 		run_on_start = true,
 	})
