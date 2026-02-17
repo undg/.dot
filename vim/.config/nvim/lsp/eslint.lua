@@ -1,5 +1,3 @@
-local configs = require('lspconfig/configs')
-
 return {
 	on_attach = function(client, bufnr)
 		-- Explanation: Setting `documentFormattingProvider` to false prevents the LSP client from handling document formatting, which is typically handled by ESLint itself.
@@ -8,13 +6,13 @@ return {
 			vim.api.nvim_buf_set_option(bufnr, name, value)
 		end
 
-		buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+		buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 	end,
 	settings = {
 		codeAction = {
 			disableRuleComment = {
 				enable = true,
-				location = 'separateLine',
+				location = "separateLine",
 			},
 			showDocumentation = {
 				enable = true,
@@ -22,25 +20,25 @@ return {
 		},
 		codeActionOnSave = {
 			enable = false,
-			mode = 'all',
+			mode = "all",
 		},
 		format = true,
 		nodePath = vim.NIL,
-		onIgnoredFiles = 'off',
-		packageManager = 'pnpm',
+		onIgnoredFiles = "off",
+		packageManager = "pnpm",
 		quiet = false,
 		rulesCustomizations = {
-			{ rule = '@typescript-eslint/no-unused-vars', severity = 'off' },
-			{ rule = 'spaced-comment', severity = 'off' },
-			{ rule = 'simple-import-sort/imports', severity = 'off' },
-			{ rule = 'react/self-closing-comp', severity = 'off' },
+			{ rule = "@typescript-eslint/no-unused-vars", severity = "off" },
+			{ rule = "spaced-comment",                    severity = "off" },
+			{ rule = "simple-import-sort/imports",        severity = "off" },
+			{ rule = "react/self-closing-comp",           severity = "off" },
 		},
-		run = 'onType', -- onSave, onType
+		run = "onType", -- onSave, onType
 		severity_sort = true,
 		useESLintClass = false,
-		validate = 'on',
+		validate = "on",
 		workingDirectory = {
-			mode = 'location',
+			mode = "location",
 		},
 	},
 	-- commands = {

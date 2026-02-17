@@ -1,9 +1,7 @@
 return {
 	{
 		"SmiteshP/nvim-navic", -- https://github.com/SmiteshP/nvim-navic
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
+		dependencies = {},
 
 		config = function()
 			local navic = require("nvim-navic")
@@ -20,7 +18,6 @@ return {
 	{
 		"SmiteshP/nvim-navbuddy", -- https://github.com/SmiteshP/nvim-navbuddy
 		dependencies = {
-			"neovim/nvim-lspconfig",
 			"SmiteshP/nvim-navic",
 			"MunifTanjim/nui.nvim",
 		},

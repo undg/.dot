@@ -1,26 +1,26 @@
-local nvim_lsp = require('lspconfig')
-local ok_twoslash, twoslash = pcall(require, 'twoslash-queries')
+local ok_twoslash, twoslash = pcall(require, "twoslash-queries")
 if not ok_twoslash then
-	vim.notify('lua/lsp/tsserver.lua: twoslash-queries fail', vim.log.levels.ERROR)
+	vim.notify("lua/lsp/tsserver.lua: twoslash-queries fail", vim.log.levels.ERROR)
 	return
 end
 
-
 -- Check whether it's a deno project or not
 local function is_deno_project()
-	local deno_files = { 'deno.json', 'deno.jsonc', 'deno.lock' }
+	local deno_files = { "deno.json", "deno.jsonc", "deno.lock" }
 
 	for _, filepath in ipairs(deno_files) do
-		filepath = table.concat({ vim.fn.getcwd(), filepath }, '/')
+		filepath = table.concat({ vim.fn.getcwd(), filepath }, "/")
 
-		if vim.uv.fs_stat(filepath) ~= nil then return true end
+		if vim.uv.fs_stat(filepath) ~= nil then
+			return true
+		end
 	end
 
 	return false
 end
 
 return {
-	root_dir = nvim_lsp.util.root_pattern('deno.json'),
+	root_markers = { "deno.json" },
 	-- autostart = false,
 	enable = is_deno_project(),
 	single_file_support = false,
