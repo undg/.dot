@@ -25,6 +25,7 @@ local lsp_servers = {
 	"eslint",
 	"gopls",
 	"basedpyright",
+	"ruff", -- Fast Python linting (complements basedpyright)
 	"cssls",
 	"html",
 	"marksman",
@@ -66,6 +67,7 @@ else
 			"prettier", -- js/ts
 			"shfmt", -- bash
 			"goimports", -- golang
+			"lua-language-server", -- lua
 		},
 		run_on_start = true,
 	})
