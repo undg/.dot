@@ -14,7 +14,7 @@ return {
 			"pyproject.toml", -- modern
 			"setup.py", -- legacy setup tools
 			"setup.cfg", -- legacy alternative
-			".git",  -- repo root
+			".git", -- repo root
 		}) or vim.fn.getcwd())
 	end,
 	settings = {
