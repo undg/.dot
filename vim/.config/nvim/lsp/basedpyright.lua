@@ -12,7 +12,7 @@ return {
 	root_dir = function(bufnr, on_dir)
 		on_dir(vim.fs.root(bufnr, {
 			"pyproject.toml", -- modern
-			"setup.py", -- legacy setuptools
+			"setup.py", -- legacy setup tools
 			"setup.cfg", -- legacy alternative
 			".git",  -- repo root
 		}) or vim.fn.getcwd())
