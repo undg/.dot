@@ -1,3 +1,8 @@
+-- Basedpyright LSP configuration
+-- Used alongside Ruff for fast linting and formatting
+-- Basedpyright handles: type checking, hover, definitions
+-- Ruff handles: fast linting (formatting/import organization done by conform.nvim)
+
 -- https://docs.basedpyright.com/latest/configuration/language-server-settings/
 -- https://github.com/DetachHead/basedpyright/tree/main/docs/configuration
 
