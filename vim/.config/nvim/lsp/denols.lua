@@ -20,6 +20,8 @@ local function is_deno_project()
 end
 
 return {
+	cmd = { "deno", "lsp" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	root_markers = { "deno.json" },
 	-- autostart = false,
 	enable = is_deno_project(),
