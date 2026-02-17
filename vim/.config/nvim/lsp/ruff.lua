@@ -21,15 +21,15 @@
 return {
 	cmd = { "ruff", "server", "--stdio" },
 	filetypes = { "python" },
-	root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+	root_dir = function(bufnr, on_dir)
+		on_dir(vim.fs.root(bufnr, ".git") or vim.fn.getcwd())
+	end,
 	init_options = {
 		settings = {
 			-- Disable organize imports - handled by conform.nvim
 			organizeImports = false,
 			-- Disable fixAll - we'll handle this manually if needed
 			fixAll = false,
-			-- Ruff uses default lint rules (E, F) without explicit configuration
-			-- Add lint configuration here if you want to customize rules
 		},
 	},
 }
