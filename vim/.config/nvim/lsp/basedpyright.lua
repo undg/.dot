@@ -4,10 +4,13 @@
 return {
 	cmd = { "basedpyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	-- Use current working directory as root (for projects with messy structure)
-	-- This ensures basedpyright sees all Python files in the project
 	root_dir = function(bufnr, on_dir)
-		on_dir(vim.fn.getcwd())
+		on_dir(vim.fs.root(bufnr, {
+			"pyproject.toml", -- modern
+			"setup.py", -- legacy setuptools
+			"setup.cfg", -- legacy alternative
+			".git",  -- repo root
+		}) or vim.fn.getcwd())
 	end,
 	settings = {
 		basedpyright = {
