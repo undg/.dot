@@ -1,5 +1,5 @@
 return {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
+	-- cmd = { "vscode-eslint-language-server", "--stdio" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -38,9 +38,9 @@ return {
 		quiet = false,
 		rulesCustomizations = {
 			{ rule = "@typescript-eslint/no-unused-vars", severity = "off" },
-			{ rule = "spaced-comment", severity = "off" },
-			{ rule = "simple-import-sort/imports", severity = "off" },
-			{ rule = "react/self-closing-comp", severity = "off" },
+			{ rule = "spaced-comment",                    severity = "off" },
+			{ rule = "simple-import-sort/imports",        severity = "off" },
+			{ rule = "react/self-closing-comp",           severity = "off" },
 		},
 		run = "onType", -- onSave, onType
 		severity_sort = true,
