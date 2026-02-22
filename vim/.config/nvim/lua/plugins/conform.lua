@@ -15,19 +15,19 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				json = { "prettierd", "prettier", stop_after_first = true },
+				json = { "biome", "prettierd", "prettier", stop_after_first = true },
 				python = { "ruff_organize_imports", "ruff_format" },
 				bash = { "shfmt" },
 				zsh = { "shfmt" },
 				sh = { "shfmt" },
 				go = { "goimports", "gofmt" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-				html = { "prettierd", "prettier", stop_after_first = true },
-				typescript = { "prettierd", "prettier", stop_after_first = true },
-				reacttypescript = { "prettierd", "prettier", stop_after_first = true },
-				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-				markdown = { "prettierd" },
-				yaml = { "prettierd", "prettier", stop_after_first = true },
+				html = { "biome", "prettierd", "prettier", stop_after_first = true },
+				javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
+				typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
+				markdown = { "biome", "prettierd" },
+				yaml = { "biome", "prettierd", "prettier", stop_after_first = true },
 			},
 			formatters = {
 				prettier = {
