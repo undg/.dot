@@ -32,7 +32,7 @@ return {
 			mode = "all",
 		},
 		format = true,
-		nodePath = vim.NIL,
+		nodePath = "",
 		onIgnoredFiles = "off",
 		packageManager = "pnpm",
 		quiet = false,
@@ -48,6 +48,9 @@ return {
 		validate = "on",
 		workingDirectory = {
 			mode = "location",
+		},
+		experimental = {
+			useFlatConfig = true,
 		},
 	},
 	-- commands = {
