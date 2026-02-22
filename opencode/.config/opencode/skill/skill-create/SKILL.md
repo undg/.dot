@@ -1,6 +1,6 @@
 ---
-name: add-skill
-description: Create or improve agent skills. Load when creating SKILL.md files, writing skill descriptions, or structuring skill content for OpenCode or Claude.
+name: skill-create
+description: Create or improve agent skills for OpenCode or Claude with proper family methodology. Load when creating new SKILL.md files, improving existing skills, establishing skill structure, or defining skill family patterns.
 ---
 
 # Creating Agent Skills
@@ -29,7 +29,7 @@ description: What this skill does and when to use it. Third-person.
 ### File Organization
 
 ```
-skill-name/
+skill-{family}-{name}/    # Inverse naming for sorting
 ├── SKILL.md              # Required. Under 200 lines.
 └── references/           # Optional. For detailed content.
     ├── api.md
@@ -37,6 +37,30 @@ skill-name/
 ```
 
 Use `references/` when SKILL.md exceeds 200 lines. Keep references one level deep—avoid nested file references.
+
+## Skill Family Framework
+
+All skills belong to a family with consistent methodology. This ensures skills work together predictably.
+
+| Family | Workflow Pattern | Purpose | Example |
+|--------|-----------------|---------|---------|
+| **create-*** | Design → Structure → Validate | Generate new artifacts | skill-create-plan, skill-create-pr |
+| **execute-*** | Initialize → Track → Complete | Multi-step execution | skill-execute-plan, skill-execute-deploy |
+| **update-*** | Analyze → Modify → Verify | Change existing artifacts | skill-update-plan, skill-update-skill |
+| **review-*** | Assess → Report → Recommend | Quality evaluation | skill-review-code, skill-review-pr |
+
+**Family Consistency Requirements:**
+- All skills in a family share the same workflow pattern
+- Output formats must be compatible with handoff targets
+- Use inverse naming: `skill-{family}-{name}` for directory sorting
+- Each skill family has a defining skill that establishes the pattern
+
+**Handoff Chain:**
+```
+create-* → execute-* → update-* → review-*
+```
+
+Skills should indicate their position in the chain and what skill typically follows.
 
 ## Writing Descriptions
 
@@ -149,8 +173,12 @@ feat(auth): implement JWT-based authentication
 
 Before finalizing a skill:
 
+- [ ] Belongs to a skill family (create/execute/update/review)
+- [ ] Uses inverse naming: `skill-{family}-{name}`
+- [ ] Follows family-specific workflow pattern
+- [ ] Defines output format for handoff to next skill
 - [ ] Frontmatter starts on line 1 with `---`
-- [ ] `name` is lowercase with hyphens only
+- [ ] `name` matches directory name
 - [ ] `description` includes triggers AND capabilities (third-person)
 - [ ] SKILL.md is under 200 lines (use `references/` if larger)
 - [ ] References are one level deep from SKILL.md
