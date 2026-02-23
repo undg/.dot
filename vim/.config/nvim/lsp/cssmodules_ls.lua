@@ -1,5 +1,8 @@
 return {
 	cmd = { "cssmodules-language-server" },
-	filetypes = { "css", "scss", "less" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
 	root_markers = { ".git", "package.json" },
+	init_options = {
+		camelCase = "dashes",
+	},
 }
