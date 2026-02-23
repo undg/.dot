@@ -36,7 +36,10 @@ return {
 		ts_configs.setup({
 			modules = {},
 			ignore_install = {},
-			ensure_installed = {},
+			ensure_installed = {
+				"typescript",
+				"javascript",
+			},
 			sync_install = false,
 			auto_install = true,
 			highlight = {
@@ -66,8 +69,8 @@ return {
 						-- You can use the capture groups defined in textobjects.scm
 						["af"] = "@function.outer",
 						["if"] = "@function.inner",
-						['ac'] = '@class.outer',
-						['ic'] = '@class.inner',
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
 						["ab"] = "@code_block.outer",
 						["ib"] = "@code_block.inner",
 					},

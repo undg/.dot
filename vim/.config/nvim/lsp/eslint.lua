@@ -39,8 +39,35 @@
 ---
 --- /!\ When using flat config files, you need to use them across all your packages in your monorepo, as it's a global setting for the server.
 
-local util = require("lspconfig.util")
 local lsp = vim.lsp
+
+---Insert "package.json" into the list of config files if it contains the specified field.
+---This is used for backward compatibility with ESLint's package.json config support.
+---@param files string[] List of config file patterns
+---@param field string The field to look for in package.json (e.g., "eslintConfig")
+---@param filename string The current file path to determine where to look for package.json
+---@return string[] Modified list of files
+local function insert_package_json(files, field, filename)
+	local new_files = vim.list_extend({}, files)
+	table.insert(new_files, "package.json")
+	local dir = vim.fs.dirname(filename)
+	while dir and dir ~= "/" do
+		local pkg_path = dir .. "/package.json"
+		local stat = vim.uv.fs_stat(pkg_path)
+		if stat then
+			local ok, content = pcall(vim.fn.readfile, pkg_path)
+			if ok then
+				local decoded = vim.json.decode(table.concat(content))
+				if decoded and decoded[field] then
+					return new_files
+				end
+			end
+			break
+		end
+		dir = vim.fs.dirname(dir)
+	end
+	return files
+end
 
 local eslint_config_files = {
 	".eslintrc",
@@ -110,8 +137,7 @@ return {
 		-- Eslint used to support package.json files as config files, but it doesn't anymore.
 		-- We keep this for backward compatibility.
 		local filename = vim.api.nvim_buf_get_name(bufnr)
-		local eslint_config_files_with_package_json =
-			util.insert_package_json(eslint_config_files, "eslintConfig", filename)
+		local eslint_config_files_with_package_json = insert_package_json(eslint_config_files, "eslintConfig", filename)
 		local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
 			path = filename,
 			type = "file",
