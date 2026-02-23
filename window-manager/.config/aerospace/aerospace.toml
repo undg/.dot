@@ -194,7 +194,7 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1' # mnemonics W - Web browser
 
 [[on-window-detected]]
-    if.app-id = 'org.vivaldi.Vivaldi'
+    if.app-id = 'com.vivaldi.Vivaldi'
     run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -203,7 +203,8 @@ run = 'move-node-to-workspace 1' # mnemonics W - Web browser
 
 [[on-window-detected]]
     if.app-id = 'org.microsoft.Outlook'
-    run = 'move-node-to-workspace 5'
+    run = ['move-node-to-workspace 5', 'layout tiling' ]
+
 
 [[on-window-detected]]
     if.app-id = 'org.alacritty'
