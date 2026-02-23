@@ -9,25 +9,66 @@ local function format_on_save_toggle()
 	vim.notify(msg, vim.log.levels.INFO)
 end
 
+---Detect if project uses Biome (biome.json exists)
+---@return boolean
+local function has_biome_config()
+	return vim.fs.root(0, "biome.json") ~= nil
+end
+
+---Detect if project uses Prettier (.prettierrc or prettier.config.* exists)
+---@return boolean
+local function has_prettier_config()
+	local prettier_configs = {
+		".prettierrc",
+		".prettierrc.json",
+		".prettierrc.yml",
+		".prettierrc.yaml",
+		".prettierrc.json5",
+		".prettierrc.js",
+		".prettierrc.mjs",
+		".prettierrc.cjs",
+		".prettierrc.toml",
+		"prettier.config.js",
+		"prettier.config.mjs",
+		"prettier.config.cjs",
+	}
+	return vim.fs.root(0, prettier_configs) ~= nil
+end
+
+---Get appropriate JS/JSON formatter based on project config
+---Biome is preferred if both configs exist (faster)
+---@return string[]
+local function js_formatter()
+	if has_biome_config() then
+		return { "biome" }
+	elseif has_prettier_config() then
+		return { "prettierd", "prettier" }
+	else
+		-- Default to biome for new projects
+		return { "biome", "prettierd", "prettier" }
+	end
+end
+
 return {
 	"stevearc/conform.nvim", -- https://github.com/stevearc/conform.nvim
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				json = { "biome", "prettierd", "prettier", stop_after_first = true },
+				json = js_formatter,
+				jsonc = js_formatter,
 				python = { "ruff_organize_imports", "ruff_format" },
 				bash = { "shfmt" },
 				zsh = { "shfmt" },
 				sh = { "shfmt" },
 				go = { "goimports", "gofmt" },
-				html = { "biome", "prettierd", "prettier", stop_after_first = true },
-				javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
-				typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
-				javascriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
-				typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
-				markdown = { "biome", "prettierd" },
-				yaml = { "biome", "prettierd", "prettier", stop_after_first = true },
+				html = js_formatter,
+				javascript = js_formatter,
+				typescript = js_formatter,
+				javascriptreact = js_formatter,
+				typescriptreact = js_formatter,
+				markdown = js_formatter,
+				yaml = js_formatter,
 			},
 			formatters = {
 				prettier = {
@@ -56,8 +97,8 @@ return {
 		end
 
 		wk.add({
-			{ "<leader>s", group = "Toggle",          silent = false },
-			{ "<leader>S", format_on_save_toggle,     { desc = "Toggle format on save" } },
+			{ "<leader>s", group = "Toggle", silent = false },
+			{ "<leader>S", format_on_save_toggle, { desc = "Toggle format on save" } },
 			{ "<leader>p", require("conform").format, { desc = "Format" } },
 		})
 	end,
