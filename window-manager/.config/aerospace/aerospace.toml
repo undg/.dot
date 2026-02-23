@@ -7,28 +7,16 @@
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+# after-login-command = []
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# after-startup-command = [
-#     # JankyBorders has a built-in detection of already running process,
-#     # so it won't be run twice on AeroSpace restart
-#     'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
-# ]
-
-after-startup-command = [
-    # JankyBorders has a built-in detection of already running process,
-    # so it won't be run twice on AeroSpace restart
-    'exec-and-forget ~/.config/borders/bordersrc'
-]
+# after-startup-command = []
 
 
-# Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# You can run any command on workspace change e.g. to update sketchybar
+# exec-on-workspace-change = []
 
 # Start AeroSpace at login
 start-at-login = true
@@ -200,3 +188,28 @@ cmd-l = ['join-with right', 'mode main']
     7 = [ '3', '2' ]
     8 = [ '3', '2' ]
     9 = [ '3', '2' ]
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1' # mnemonics W - Web browser
+
+[[on-window-detected]]
+    if.app-id = 'org.vivaldi.Vivaldi'
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'org.microsoft.teams2'
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'org.microsoft.Outlook'
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = 'org.alacritty'
+    run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    run = 'move-node-to-workspace 8'
+
