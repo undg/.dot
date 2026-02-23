@@ -175,7 +175,8 @@ bindkey "^[q" exit_zsh
 # https://unix.stackexchange.com/a/79905
 # Same bind-key is set in tmux
 bindkey -s '^b^g' '^utmux-sessionizer^M' # ctrl+b ctrl+g 
-bindkey -s '^b^b' '^utmux attach^M' # ctrl+b ctrl+b 
+# bindkey -s '^b^b' '^utmux attach^M' # ctrl+b ctrl+b 
+bindkey -s '^b^b' '^utv sesh^M' # ctrl+b ctrl+b 
 
 # replace "zsh-users/zsh-history-substring-search" with native solution
 # https://unix.stackexchange.com/a/672892
