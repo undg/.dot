@@ -51,9 +51,10 @@ ui_scale = 100
 orientation = "landscape"
 # The theme to use for the UI
 # A list of builtin themes can be found in the `themes` directory of the television
+# https://github.com/alexpasmantier/television/tree/main/themes 
 # repository. You may also create your own theme by creating a new file in a `themes`
 # directory in your configuration directory (see the `config.toml` location above).
-theme = "default"
+theme = "gruvbox-dark"
 
 # Feature-specific configurations
 # Each feature can have its own configuration section
