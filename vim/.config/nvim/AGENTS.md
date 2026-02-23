@@ -146,5 +146,12 @@ return M
 - If adding a new module, update any central loader if required.
 - Keep diffs focused; do not reformat unrelated code.
 
+## LSP Configuration (vim.lsp, Neovim 0.11+)
+
+- **Error messages are misleading**: "method textDocument/hover is not supported" usually means the server failed to start (missing config file), not that the server lacks hover capability.
+- **Server list and config files must stay in sync**: `lsp_servers` array in `lua/lsp.lua` must have matching files in `lsp/` directory; drift causes silent failures.
+- **Names must match exactly**: Server name in `vim.lsp.enable("name")` must match the filename `lsp/name.lua` (e.g., `cssls` → `lsp/cssls.lua`).
+- **Check server health**: Run `:checkhealth vim.lsp` to verify configs load correctly; `:lua =vim.lsp.config['servername']` shows merged config.
+
 ## Cursor/Copilot rules
 - No additional rules found in `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md`.
