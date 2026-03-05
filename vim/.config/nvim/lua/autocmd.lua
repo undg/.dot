@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 				vim.notify("Can't require('conform')", vim.log.levels.ERROR, { title = "autocomd.lua:", timeout = 500 })
 				return
 			end
-			vim.notify_once(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
+			-- vim.notify_once(e.file, vim.log.levels.INFO, { title = "Save and format file:", timeout = 500 })
 			conform.format()
 		end
 	end,
