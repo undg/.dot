@@ -12,6 +12,9 @@
     }
   },
   "disabled_providers": ["deepseek", "xai"],
+  "keybinds": {
+    "editor_open": "ctrl+e"
+  },
   "mcp": {
     "chrome-devtools": {
       "type": "local",
@@ -25,10 +28,7 @@
       "enabled": false
     }
   },
-  "plugin": [
-    "@mohak34/opencode-notifier@0.1.14",
-    "./plugin/chrome-devtools.ts"
-  ],
+  "plugin": ["@mohak34/opencode-notifier@0.1.14", "./plugin/chrome-devtools.ts"],
   "default_agent": "general",
   "permission": {
     "external_directory": {
@@ -47,7 +47,6 @@
       "gh pr view *": "allow",
       "gh search prs *": "allow",
       "rg *": "allow",
-      "echo": "allow",
       "git *": "allow",
       "git commit *": "ask",
       "git push *": "deny",
