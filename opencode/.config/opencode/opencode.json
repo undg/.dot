@@ -51,7 +51,7 @@
       "gh issue view *": "allow",
       "gh repo view *": "allow",
       "gh search prs *": "allow",
-      "gh api *": "allow",
+      "gh api *": "ask",
       "rg *": "allow",
       "echo": "allow",
       "git *": "allow",
