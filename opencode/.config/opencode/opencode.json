@@ -70,6 +70,7 @@
       "wc *": "allow",
       "tree *": "allow",
       "npm run test *": "allow",
+      "npm test *": "allow",
       "npm run lint *": "allow",
       "npm run type-check *": "allow",
       "npm run lint -- --fix *": "allow"
