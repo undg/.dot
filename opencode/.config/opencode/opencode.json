@@ -68,10 +68,11 @@
       "exa *": "allow",
       "eza *": "allow",
       "wc *": "allow",
-      "tree*": "allow",
-      "npm run lint": "allow",
-      "npm run type-check": "allow",
-      "npm run lint -- --fix": "allow"
+      "tree *": "allow",
+      "npm run test *": "allow",
+      "npm run lint *": "allow",
+      "npm run type-check *": "allow",
+      "npm run lint -- --fix *": "allow"
     },
     "webfetch": "allow",
     "doom_loop": "ask",
