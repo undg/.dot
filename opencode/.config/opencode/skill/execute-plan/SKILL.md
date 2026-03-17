@@ -7,17 +7,32 @@ description: Executes multi-step plans systematically by tracking progress throu
 
 Executes multi-step plans by tracking progress and ensuring systematic completion.
 
+## General Instructions
+
+Plans are stored as markdown files (e.g. `.opencode/plans/<name>.md`). Before executing:
+
+1. **Read the plan file** to get the task list and any project-specific instructions (commit format, branch, etc.)
+2. **Follow the plan's own General Instructions** if present — they take precedence over defaults here
+3. **Mark tasks in the plan file** as you work:
+   - `[ ]` — not yet started
+   - `[!]` — in progress (pick only one at a time)
+   - `[x]` — done
+   - Only pick tasks currently marked `[ ]`
+4. **Commit after each task** unless the plan says otherwise. Use the commit format specified in the plan. If none is given, use conventional commits: `type(scope): short imperative description`
+5. **Keep the plan file in sync** — update task markers before committing so the plan reflects reality
+
 ## Core Workflow
 
 When given a plan with multiple steps:
 
-1. **INITIALIZE**: Convert plan to todo list with todowrite tool
-2. **EXECUTE**: Work through steps one at a time, updating status
-3. **COMPLETE**: Mark done and verify
+1. **INITIALIZE**: Read the plan file → create todo list with todowrite tool
+2. **EXECUTE**: Work through steps one at a time, updating both the todo list and the plan file
+3. **COMPLETE**: Mark done in both places and verify
 
 ## Todo List Structure
 
 Each todo item needs:
+
 - `content`: Clear description of the step
 - `status`: `pending`, `in_progress`, `completed`, or `cancelled`
 - `priority`: `high`, `medium`, or `low`
@@ -27,6 +42,7 @@ Each todo item needs:
 **Only ONE task in_progress at any time**
 
 State transitions:
+
 ```
 pending → in_progress → completed
                 ↓
@@ -34,6 +50,7 @@ pending → in_progress → completed
 ```
 
 Update status IMMEDIATELY after:
+
 - Starting work on a step (in_progress)
 - Completing a step (completed)
 - Deciding a step is not needed (cancelled)
@@ -41,38 +58,42 @@ Update status IMMEDIATELY after:
 ## Execution Pattern
 
 ```
-1. Create todo list from plan
-2. Mark first task in_progress
-3. Execute the task
-4. Mark task completed
-5. Mark next task in_progress
-6. Repeat until done
+1. Read plan file, note any General Instructions
+2. Create todo list from plan tasks
+3. Mark first task [!] in plan file, in_progress in todo
+4. Execute the task
+5. Mark task [x] in plan file, completed in todo
+6. Commit (per plan instructions)
+7. Repeat until done
 ```
 
 ## Example
 
-**Plan given**:
-- Set up project structure
-- Install dependencies
-- Create config files
-- Build components
+**Plan file** (`.opencode/plans/my-plan.md`):
 
-**Correct execution**:
-```typescript
-// 1. Initialize
-{"todos": [
-  {"content": "Set up project structure", "status": "in_progress", "priority": "high"},
-  {"content": "Install dependencies", "status": "pending", "priority": "high"},
-  {"content": "Create config files", "status": "pending", "priority": "high"},
-  {"content": "Build components", "status": "pending", "priority": "medium"}
-]}
+```md
+- [ ] Set up project structure
+- [ ] Install dependencies
+- [ ] Create config files
+- [ ] Build components
+```
 
-// 2. After setting up structure
-{"todos": [
-  {"content": "Set up project structure", "status": "completed", "priority": "high"},
-  {"content": "Install dependencies", "status": "in_progress", "priority": "high"},
-  ...
-]}
+**While working**:
+
+```md
+- [x] Set up project structure
+- [!] Install dependencies
+- [ ] Create config files
+- [ ] Build components
+```
+
+**When done**:
+
+```md
+- [x] Set up project structure
+- [x] Install dependencies
+- [x] Create config files
+- [x] Build components
 ```
 
 ## Key Principles
@@ -81,3 +102,4 @@ Update status IMMEDIATELY after:
 - **Single in-progress**: Never have multiple in_progress tasks
 - **Visible progress**: User should see what's being worked on
 - **Never skip tracking**: Even simple tasks get tracked in multi-step work
+- **Plan file is the source of truth**: Always update it alongside the todo list

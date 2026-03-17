@@ -19,6 +19,7 @@ When asked to create a plan:
 ## Plan Structure
 
 Each plan consists of todo items with:
+
 - `content`: Clear, actionable description
 - `status`: Always start as `pending`
 - `priority`: `high`, `medium`, or `low` based on impact/blocking status
@@ -26,15 +27,18 @@ Each plan consists of todo items with:
 ## Planning Principles
 
 **Order matters**: Sequence steps by dependencies
+
 - Prerequisites first (setup, config, dependencies)
 - Blockers before blocked items
 - Logical flow: analyze → design → implement → test → deploy
 
-**Granularity**: 
+**Granularity**:
+
 - 15-60 minutes per step (adjust for complexity)
 - Too small = overhead; too large = unclear progress
 
 **Clarity**:
+
 - Use action verbs: "Implement", "Configure", "Test", "Review"
 - Include success criteria where unclear
 - Note dependencies explicitly
@@ -43,41 +47,40 @@ Each plan consists of todo items with:
 
 **Request**: "Create plan for adding user authentication"
 
-**Output**:
-```
-Plan: Add User Authentication
+**Output** (saved to `.opencode/plans/<name>.md`):
 
-1. [high] Analyze authentication requirements (OAuth, JWT, sessions)
-2. [high] Set up authentication library and dependencies
-3. [high] Create user model and database schema
-4. [high] Implement login/logout endpoints
-5. [medium] Create login UI components
-6. [medium] Add authentication middleware for protected routes
-7. [medium] Write tests for auth flows
-8. [low] Add password reset functionality
-9. [low] Document authentication API
-```
+```md
+# Add User Authentication — Plan
 
-**In todo format** (for execute-plan compatibility):
-```json
-{
-  "todos": [
-    {"content": "Analyze authentication requirements (OAuth, JWT, sessions)", "status": "pending", "priority": "high"},
-    {"content": "Set up authentication library and dependencies", "status": "pending", "priority": "high"},
-    {"content": "Create user model and database schema", "status": "pending", "priority": "high"},
-    {"content": "Implement login/logout endpoints", "status": "pending", "priority": "high"},
-    {"content": "Create login UI components", "status": "pending", "priority": "medium"},
-    {"content": "Add authentication middleware for protected routes", "status": "pending", "priority": "medium"},
-    {"content": "Write tests for auth flows", "status": "pending", "priority": "medium"},
-    {"content": "Add password reset functionality", "status": "pending", "priority": "low"},
-    {"content": "Document authentication API", "status": "pending", "priority": "low"}
-  ]
-}
+Branch: `feat/auth`
+
+---
+
+## General Instructions
+
+Commit each task separately. Format: `type(scope): description`.
+
+When picking a task, mark it `[!]`. When done, mark it `[x]`. Only pick tasks marked `[ ]`.
+
+---
+
+## Tasks
+
+- [ ] **Analyze authentication requirements** (OAuth, JWT, sessions)
+- [ ] **Set up authentication library and dependencies**
+- [ ] **Create user model and database schema**
+- [ ] **Implement login/logout endpoints**
+- [ ] **Create login UI components**
+- [ ] **Add authentication middleware for protected routes**
+- [ ] **Write tests for auth flows**
+- [ ] **Add password reset functionality**
+- [ ] **Document authentication API**
 ```
 
 ## Common Plan Patterns
 
 **Feature Development**:
+
 1. Requirements/analysis
 2. Design/architecture
 3. Implementation (split by component)
@@ -85,6 +88,7 @@ Plan: Add User Authentication
 5. Documentation
 
 **Refactoring**:
+
 1. Assess current state
 2. Identify risk areas
 3. Create safety net (tests)
@@ -92,6 +96,7 @@ Plan: Add User Authentication
 5. Validate behavior preserved
 
 **Bug Fix**:
+
 1. Reproduce issue
 2. Root cause analysis
 3. Implement fix
@@ -100,9 +105,6 @@ Plan: Add User Authentication
 
 ## Integration with Execute-Plan
 
-Created plans are designed for seamless handoff:
-- Same todo structure
-- Ready for status tracking
-- Compatible with todowrite tool
+Plans are saved as `.opencode/plans/<name>.md` and use `[ ]` / `[!]` / `[x]` checkboxes. The execute-plan skill reads the file directly — no format conversion needed.
 
 After creating a plan, user can immediately execute with: "execute this plan"
