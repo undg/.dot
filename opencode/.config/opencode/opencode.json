@@ -58,6 +58,8 @@
       "git commit *": "ask",
       "git push *": "deny",
       "git rebase *": "ask",
+      "git rebase --continue": "allow",
+      "GIT_EDITOR=true git rebase --continue": "allow",
       "git diff *": "allow",
       "echo *": "allow",
       "git status *": "allow",

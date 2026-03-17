@@ -238,12 +238,15 @@ grep -r ">>>>>>" src/
 
 ```bash
 # Continue the rebase
-git rebase --continue
+GIT_EDITOR=true git rebase --continue
 ```
 
 ### After Merge
 
-Ask user to commit changes with default merge commit message
+```bash
+# Commit with default merge message
+GIT_EDITOR=true git commit --no-edit
+```
 
 ### Abort if Needed
 
