@@ -29,7 +29,7 @@
     "@mohak34/opencode-notifier@0.1.14",
     "./plugin/chrome-devtools.ts"
   ],
-  "default_agent": "general",
+  "default_agent": "build",
   "permission": {
     "external_directory": {
       "~/Documents/Work/**": "allow",
