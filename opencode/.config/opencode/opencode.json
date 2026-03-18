@@ -42,6 +42,7 @@
       "sh": "ask",
       "curl": "ask",
       "wget": "ask",
+      "jq *": "allow",
       "gh *": "ask",
       "gh api *": "ask",
       "gh issue list *": "allow",
