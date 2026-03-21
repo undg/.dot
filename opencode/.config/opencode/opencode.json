@@ -27,6 +27,9 @@
   },
   "plugin": [
     "@mohak34/opencode-notifier@0.1.14",
+    "@tarquinen/opencode-dcp@latest",
+    "@franlol/opencode-md-table-formatter@latest",
+    "opencode-websearch-cited@1.2.0",
     "./plugin/chrome-devtools.ts"
   ],
   "default_agent": "build",
