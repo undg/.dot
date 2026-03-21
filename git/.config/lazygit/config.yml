@@ -47,9 +47,9 @@ gui:
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
 git:
-  paging:
-    colorArg: always
-    useConfig: false
+  pagers:
+    - colorArg: always
+      useConfig: false
   commit:
     signOff: false
   merging:
