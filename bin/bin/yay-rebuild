@@ -1,0 +1,60 @@
+#!/bin/bash
+# Rebuild yay when libalpm version mismatch breaks it
+# This happens after pacman updates when yay was compiled against old libalpm
+
+set -e
+
+echo "=== Yay Rebuild Script ==="
+echo "Fixing libalpm version mismatch..."
+echo ""
+
+# Validate sudo credentials once, extend timeout for script duration
+sudo -v
+
+# Check if yay is broken
+if command -v yay &>/dev/null; then
+	if yay --version &>/dev/null 2>&1; then
+		echo "✓ Yay is working, no rebuild needed"
+		exit 0
+	else
+		echo "✗ Yay is broken, rebuilding..."
+	fi
+else
+	echo "✗ Yay not found, installing..."
+fi
+
+# Remove yay-bin if installed (conflicts with yay from source)
+if pacman -Q yay-bin &>/dev/null; then
+	echo ""
+	echo "Removing yay-bin (conflicts with yay)..."
+	sudo pacman -R --noconfirm yay-bin
+fi
+
+# Create temp directory
+TMPDIR=$(mktemp -d)
+cd "$TMPDIR"
+
+echo "Installing build dependencies..."
+sudo pacman -S --needed --noconfirm git base-devel
+
+echo ""
+echo "Cloning yay from AUR..."
+git clone https://aur.archlinux.org/yay.git
+
+echo ""
+echo "Building yay..."
+cd yay
+makepkg -si --noconfirm
+
+echo ""
+echo "Cleaning up..."
+cd /
+rm -rf "$TMPDIR"
+
+# Kill the sudo keep-alive process
+kill %1 2>/dev/null || true
+
+echo ""
+echo "=== Done! ==="
+echo "Yay has been rebuilt and should work now."
+echo "Run 'yay --version' to verify."
