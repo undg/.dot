@@ -1,0 +1,36 @@
+[metadata]
+name = "aur-updates"
+description = "List and upgrade AUR package updates with yay"
+requirements = ["yay"]
+
+[source]
+command = "yay -Qua 2>/dev/null | awk '{print $1 \" \" $2 \" -> \" $4}'"
+display = "{split: :0}"
+
+[preview]
+command = "yay -Si '{split: :0}' 2>/dev/null | grep -E '^(Repository|Name|Description|URL|Licenses|Version)' || echo 'Package info not available'"
+
+[keybindings]
+ctrl-u = "actions:upgrade"
+ctrl-a = "actions:upgrade-all"
+ctrl-i = "actions:info"
+
+[actions.upgrade]
+description = "Upgrade the selected package"
+command = "yay -S '{split: :0}'"
+mode = "execute"
+
+[actions.upgrade-all]
+description = "Upgrade all AUR packages"
+command = "yay -Sua"
+mode = "execute"
+
+[actions.info]
+description = "Show detailed AUR info"
+command = "yay -Si '{split: :0}' | less"
+mode = "execute"
+
+[actions.ignore]
+description = "Add to ignore list for updates"
+command = "echo '{split: :0}' >> ~/.config/yay/config.json && echo 'Added to ignore list'"
+mode = "execute"

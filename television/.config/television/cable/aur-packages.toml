@@ -1,0 +1,36 @@
+[metadata]
+name = "aur-packages"
+description = "Manage installed AUR packages with yay"
+requirements = ["yay"]
+
+[source]
+command = "yay -Qm 2>/dev/null | awk '{print $1 \" \" $2}'"
+display = "{split: :0}"
+
+[preview]
+command = "yay -Qi '{split: :0}' 2>/dev/null | head -20"
+
+[keybindings]
+ctrl-d = "actions:remove"
+ctrl-u = "actions:upgrade"
+ctrl-i = "actions:info"
+
+[actions.remove]
+description = "Remove the selected package"
+command = "yay -R '{split: :0}'"
+mode = "execute"
+
+[actions.upgrade]
+description = "Upgrade the selected package"
+command = "yay -S '{split: :0}'"
+mode = "execute"
+
+[actions.info]
+description = "Show detailed package info"
+command = "yay -Qi '{split: :0}' | less"
+mode = "execute"
+
+[actions.aur-info]
+description = "Show AUR page info"
+command = "yay -Si '{split: :0}' | less"
+mode = "execute"
