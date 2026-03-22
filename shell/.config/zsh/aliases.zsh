@@ -144,9 +144,6 @@ else
 	echo "tmux is not installed."
 fi
 
-alias yay-update='yay -Quq --aur | xargs -n 1 yay -S --noconfirm'
-alias yay-list='yay -Qu --aur'
-
 # Avoid breaking fingers with date
 # alias date-clip='date --iso-8601 | xclip'
 # alias date-clip='date --iso-8601 | win32yank.exe -i'
