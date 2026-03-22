@@ -28,3 +28,5 @@ node_modules/
 fonts/.local/share/fonts/.uuid
 
 git/.config/gh/hosts.yml
+
+!AGENTS.md
