@@ -75,8 +75,28 @@ mode = "execute" | "fork"         # execute=wait, fork=background
 - Use `strip_ansi` filter when extracting values from colored output
 - Validate external commands exist before using them
 
-### Format String Reference
-- `{split:delim:index}` - Split and extract field
-- `{strip_ansi}` - Remove ANSI color codes
-- `{regex:pattern:group}` - Regex extraction
-- Pipe filters together: `{strip_ansi|split:#:1}`
+### Cable + Script Pattern for Dynamic Workflows
+TV cables run source command once at startup and cannot accept dynamic arguments. For search workflows requiring user input (e.g., `yay-search <term>`), create a shell script that:
+1. Accepts arguments
+2. Runs the search command  
+3. Pipes results to `tv` with `--source-command` and `--preview-command`
+
+Store the script in `cable/` and symlink to `~/bin/` for command-line access.
+
+### Action Keybindings
+Actions support direct keyboard shortcuts via the `[keybindings]` section:
+```toml
+[keybindings]
+ctrl-d = "actions:remove"
+ctrl-u = "actions:upgrade"
+```
+Common pattern: `ctrl-d` for delete/remove, `ctrl-u` for update/upgrade.
+
+### TOML Validation Critical
+Invalid TOML syntax in cable files causes TV to crash with cryptic error messages. Always validate before testing:
+```bash
+python3 -c "import tomllib; tomllib.load(open('cable/file.toml', 'rb'))"
+```
+
+### Format String Edge Cases
+When extracting package names with slashes (e.g., `aur/neovim`), use `{split: :0|split:/:1}` to first split by space, then extract the part after `/`.
