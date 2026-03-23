@@ -15,10 +15,11 @@ layout = "portrait"
 
 [keybindings]
 ctrl-s = "actions:start"
-f2 = "actions:stop"
+ctrl-x = "actions:stop"
 ctrl-r = "actions:restart"
 ctrl-e = "actions:enable"
 ctrl-d = "actions:disable"
+ctrl-l = "actions:logs"
 
 [actions.start]
 description = "Start the selected service"
@@ -43,5 +44,10 @@ mode = "execute"
 [actions.disable]
 description = "Disable the selected service"
 command = "sudo systemctl disable '{split: :0}'"
+mode = "execute"
+
+[actions.logs]
+description = "Show logs for the selected service"
+command = "journalctl -u '{split: :0}' -n 100 --no-pager"
 mode = "execute"
 
