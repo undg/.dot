@@ -4,12 +4,12 @@ mode: primary
 temperature: 0.4
 permission:
   bash: deny
-  read: deny
-  edit: deny
   glob: deny
   grep: deny
-  write: deny
-  task: deny
+  task: allow
+  read: allow
+  edit: allow
+  write: allow
   webfetch: allow
 ---
 
