@@ -197,13 +197,14 @@ Keymap.visual("<leader>yf", function()
 
 	local file_path_with_lines = file_path .. ":" .. line_range
 	vim.fn.setreg("+", file_path_with_lines)
-	vim.fn.setreg('"', "> #file:`" .. file_path_with_lines .. "`")
+	vim.fn.seg('"', "> #file:`" .. file_path_with_lines .. "`")
 	vim.notify(file_path_with_lines, vim.log.levels.INFO, { title = "Yank file path with lines" })
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
 end, { desc = "yank file path with line range" })
 
 evil.createCommand()
 Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
 
 -- quickly increment or decrement integers
-Keymap.normal('+', '<C-a>', { desc = 'Increment', noremap = true })
-Keymap.normal('-', '<C-x>', { desc = 'Decrement', noremap = true })
+Keymap.normal("+", "<C-a>", { desc = "Increment", noremap = true })
+Keymap.normal("-", "<C-x>", { desc = "Decrement", noremap = true })
