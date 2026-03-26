@@ -27,6 +27,11 @@ return {
 
 			Keymap.normal('<leader>S', telescope.extensions.notify.notify, { desc = 'List Notifications' })
 			Keymap.normal('<leader><esc>', notify.dismiss)
+			Keymap.normal('<esc>', function()
+				notify.dismiss()
+				-- fall through to default <esc> behaviour (clear hlsearch, etc.)
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'n', false)
+			end, { desc = 'Dismiss notifications' })
 		end,
 	},
 	{
