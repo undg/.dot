@@ -197,7 +197,7 @@ Keymap.visual("<leader>yf", function()
 
 	local file_path_with_lines = file_path .. ":" .. line_range
 	vim.fn.setreg("+", file_path_with_lines)
-	vim.fn.seg('"', "> #file:`" .. file_path_with_lines .. "`")
+	vim.fn.setreg('"', "> #file:`" .. file_path_with_lines .. "`")
 	vim.notify(file_path_with_lines, vim.log.levels.INFO, { title = "Yank file path with lines" })
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
 end, { desc = "yank file path with line range" })
