@@ -20,4 +20,7 @@ require('lazy').setup({
 	install = {
 		colorscheme = { 'gruvbox' },
 	},
+	ui = {
+		border = "rounded",
+	},
 })
