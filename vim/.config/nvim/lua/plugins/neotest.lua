@@ -20,10 +20,13 @@ return {
 				enabled = false,
 				open = false,
 			},
-			output = {
-				enabled = true,
-				open_on_run = false
-			},
+		output = {
+			enabled = true,
+			open_on_run = false,
+		},
+		floating = {
+			border = "rounded",
+		},
 			adapters = {
 				require("neotest-vitest") {
 					-- Filter directories when searching for test files. Useful in large projects (see Filter directories notes).
