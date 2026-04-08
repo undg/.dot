@@ -176,7 +176,7 @@ vim.api.nvim_set_keymap("t", "<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
 -- yank file path
 Keymap.normal("<leader>yf", function()
 	local line_nr = vim.fn.line(".")
-	local file_path = vim.fn.expand("%:p") .. ":" .. line_nr
+	local file_path = vim.fn.expand("%:p") .. ":L" .. line_nr
 	vim.fn.setreg("+", file_path)
 	vim.fn.setreg('"', "> #file:`" .. file_path .. "`")
 	vim.notify(file_path, vim.log.levels.INFO, { title = "Yank file path" })
