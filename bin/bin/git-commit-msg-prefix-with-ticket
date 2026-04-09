@@ -1,0 +1,105 @@
+#!/bin/sh
+
+# Auto-prefix the first real commit subject line from branches named as
+# `type/scope/slug`.
+#
+# Terms:
+# - `branch_type`: the first path segment, such as `feat` or `fix`
+# - `branch_scope`: everything between the first and last slash
+# - `branch_slug`: the final path segment
+#
+# The commit prefix becomes `branch_type(branch_scope): ` after replacing `/`
+# inside `branch_scope` with `|`.
+#
+# Examples:
+# - `feat/123/add-search` -> `feat(123):`
+# - `feat/123/456/add-search` -> `feat(123|456):`
+# - `feat/abc/def/add-search` -> `feat(abc|def):`
+# - `feat/JIRA-123/backend/add-search` -> `feat(JIRA-123|backend):`
+#
+# Intentional no-op edge cases:
+# - `feat/foo` -> no prefix, because there is no middle scope section
+# - `feat//foo` -> no prefix, because the scope is empty
+# - `feat/a/b/` -> no prefix, because the slug is empty
+# - empty or comment-only commit messages are left untouched and fail normally
+
+msg_file=$1
+
+if [ -z "$msg_file" ] || [ ! -f "$msg_file" ]; then
+	exit 0
+fi
+
+subject_line=''
+subject_line_number=''
+line_number=0
+while IFS= read -r line || [ -n "$line" ]; do
+	line_number=$((line_number + 1))
+	case "$line" in
+	'' | '# '* | '#'* )
+		continue
+		;;
+	*)
+		subject_line=$line
+		subject_line_number=$line_number
+		break
+		;;
+	esac
+done <"$msg_file"
+
+if [ -z "$subject_line" ]; then
+	exit 0
+fi
+
+# Keep standard Git/autosquash messages untouched.
+case "$subject_line" in
+fixup!\ * | squash!\ * | Merge\ * | Revert\ *)
+	exit 0
+	;;
+# If you already wrote a conventional commit header, leave it alone.
+build:\ * | chore:\ * | ci:\ * | docs:\ * | feat:\ * | fix:\ * | perf:\ * | refactor:\ * | revert:\ * | style:\ * | test:\ * | \
+	build!:\ * | chore!:\ * | ci!:\ * | docs!:\ * | feat!:\ * | fix!:\ * | perf!:\ * | refactor!:\ * | revert!:\ * | style!:\ * | test!:\ * | \
+	build\(*\):\ * | chore\(*\):\ * | ci\(*\):\ * | docs\(*\):\ * | feat\(*\):\ * | fix\(*\):\ * | perf\(*\):\ * | \
+	refactor\(*\):\ * | revert\(*\):\ * | style\(*\):\ * | test\(*\):\ * | \
+	build\(*\)!:\ * | chore\(*\)!:\ * | ci\(*\)!:\ * | docs\(*\)!:\ * | feat\(*\)!:\ * | fix\(*\)!:\ * | perf\(*\)!:\ * | \
+	refactor\(*\)!:\ * | revert\(*\)!:\ * | style\(*\)!:\ * | test\(*\)!:\ *)
+	exit 0
+	;;
+esac
+
+branch_name=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+case "$branch_name" in
+HEAD | '')
+	exit 0
+	;;
+build/* | chore/* | ci/* | docs/* | feat/* | fix/* | perf/* | refactor/* | revert/* | style/* | test/*)
+	branch_type=${branch_name%%/*} # text before the first slash
+	branch_slug=${branch_name##*/} # text after the last slash
+	branch_scope=${branch_name#*/} # drop the type and first slash
+	branch_scope=${branch_scope%/*} # drop the slug and last slash
+	commit_prefix=''
+	if [ -n "$branch_scope" ] && [ "$branch_scope" != "$branch_name" ] && [ -n "$branch_slug" ]; then
+		normalized_scope=$(printf '%s' "$branch_scope" | tr '/' '|') # replace scope slashes with pipes for the commit prefix
+		if [ -n "$normalized_scope" ]; then
+			commit_prefix="$branch_type($normalized_scope): "
+		fi
+	fi
+	if [ -n "$commit_prefix" ]; then
+		case "$subject_line" in
+		"$commit_prefix"*)
+			exit 0
+			;;
+		esac
+
+		tmp_file=$(mktemp "${TMPDIR:-/tmp}/commit-msg.XXXXXX") || exit 0
+		awk -v subject_line_number="$subject_line_number" -v prefix="$commit_prefix" '
+			NR == subject_line_number {
+				print prefix $0
+				next
+			}
+			{ print }
+		' "$msg_file" >"$tmp_file" && mv "$tmp_file" "$msg_file"
+		rm -f "$tmp_file"
+	fi
+	;;
+esac
