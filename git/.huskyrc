@@ -3,66 +3,17 @@ case "${hook_name:-}" in
 commit-msg)
 	msg_file=$1
 	if [ -n "$msg_file" ] && [ -f "$msg_file" ]; then
-		IFS= read -r first_line <"$msg_file" || first_line=''
-		# Keep standard Git/autosquash messages untouched.
-		case "$first_line" in
-		fixup!\ * | squash!\ * | Merge\ * | Revert\ *) ;;
-		# If you already wrote a conventional commit header, leave it alone.
-		build:\ * | chore:\ * | ci:\ * | docs:\ * | feat:\ * | fix:\ * | perf:\ * | refactor:\ * | revert:\ * | style:\ * | test:\ * | \
-			build!:\ * | chore!:\ * | ci!:\ * | docs!:\ * | feat!:\ * | fix!:\ * | perf!:\ * | refactor!:\ * | revert!:\ * | style!:\ * | test!:\ * | \
-			build\(*\):\ * | chore\(*\):\ * | ci\(*\):\ * | docs\(*\):\ * | feat\(*\):\ * | fix\(*\):\ * | perf\(*\):\ * | \
-			refactor\(*\):\ * | revert\(*\):\ * | style\(*\):\ * | test\(*\):\ * | \
-			build\(*\)!:\ * | chore\(*\)!:\ * | ci\(*\)!:\ * | docs\(*\)!:\ * | feat\(*\)!:\ * | fix\(*\)!:\ * | perf\(*\)!:\ * | \
-			refactor\(*\)!:\ * | revert\(*\)!:\ * | style\(*\)!:\ * | test\(*\)!:\ *) ;;
-		*)
-			branch_name=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null)
-			case "$branch_name" in
-			HEAD | '') ;;
-			build/* | chore/* | ci/* | docs/* | feat/* | fix/* | perf/* | refactor/* | revert/* | style/* | test/*)
-				IFS=/ read -r branch_type part2 part3 part4 part5 <<EOF
-$branch_name
-EOF
-				prefix=''
-				case "$part2" in
-				'' | *[!0-9]*) ;;
-				*)
-					# type/123/branch-name
-					if [ -n "$part3" ] && [ -z "$part4" ] && [ -z "$part5" ]; then
-						prefix="$branch_type($part2): "
-					fi
-					# type/123/456/branch-name
-					if [ -n "$part4" ] && [ -z "$part5" ]; then
-						case "$part3" in
-						'' | *[!0-9]*) ;;
-						*)
-							prefix="$branch_type($part2|$part3): "
-							;;
-						esac
-					fi
-					;;
-				esac
-				if [ -n "$prefix" ]; then
-					case "$first_line" in
-					"$prefix"*) ;;
-					*)
-						tmp_file=$(mktemp "${TMPDIR:-/tmp}/commit-msg.XXXXXX") || exit 0
-						{
-							printf '%s%s\n' "$prefix" "$first_line"
-							sed '1d' "$msg_file"
-						} >"$tmp_file" && mv "$tmp_file" "$msg_file"
-						rm -f "$tmp_file"
-						;;
-					esac
-				fi
-				;;
-			esac
-			;;
-		esac
+		if [ -x "$HOME/bin/git-commit-msg-prefix-with-ticket" ]; then
+			"$HOME/bin/git-commit-msg-prefix-with-ticket" "$msg_file"
+		else
+			echo "warning: git-commit-msg-prefix-with-ticket not found, skipping auto-prefix" >&2
+		fi
 	fi
 	;;
 esac
+
 case "$(git rev-parse --show-toplevel 2>/dev/null):${hook_name:-}" in
-"/Users/bartek_laskowski/Code/pgm-fe:commit-msg")
+"$HOME/Code/pgm-fe:commit-msg")
 	echo '-----=====bypass commit-msg lint=====-----'
 	exit 0
 	;;
