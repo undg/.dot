@@ -9,8 +9,11 @@ commit-msg)
 		fixup!\ * | squash!\ * | Merge\ * | Revert\ *) ;;
 		# If you already wrote a conventional commit header, leave it alone.
 		build:\ * | chore:\ * | ci:\ * | docs:\ * | feat:\ * | fix:\ * | perf:\ * | refactor:\ * | revert:\ * | style:\ * | test:\ * | \
+			build!:\ * | chore!:\ * | ci!:\ * | docs!:\ * | feat!:\ * | fix!:\ * | perf!:\ * | refactor!:\ * | revert!:\ * | style!:\ * | test!:\ * | \
 			build\(*\):\ * | chore\(*\):\ * | ci\(*\):\ * | docs\(*\):\ * | feat\(*\):\ * | fix\(*\):\ * | perf\(*\):\ * | \
-			refactor\(*\):\ * | revert\(*\):\ * | style\(*\):\ * | test\(*\):\ *) ;;
+			refactor\(*\):\ * | revert\(*\):\ * | style\(*\):\ * | test\(*\):\ * | \
+			build\(*\)!:\ * | chore\(*\)!:\ * | ci\(*\)!:\ * | docs\(*\)!:\ * | feat\(*\)!:\ * | fix\(*\)!:\ * | perf\(*\)!:\ * | \
+			refactor\(*\)!:\ * | revert\(*\)!:\ * | style\(*\)!:\ * | test\(*\)!:\ *) ;;
 		*)
 			branch_name=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null)
 			case "$branch_name" in
