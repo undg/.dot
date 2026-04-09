@@ -1,5 +1,9 @@
 node_modules
 bun.lock
 package.json
+package-lock.json
 
 !AGENTS.md
+!.opencode/
+.opencode/plans/
+
