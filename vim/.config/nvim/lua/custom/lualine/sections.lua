@@ -2,13 +2,11 @@ local path_ok, my_path = pcall(require, "utils.path")
 local window_ok, my_window = pcall(require, "utils.window")
 local str_ok, str = pcall(require, "utils.str")
 local harpoon_ok, harpoon = pcall(require, "custom.lualine.harpoon")
-local mcphub_ok, mcphub = pcall(require, "custom.lualine.mcphub")
 
 local not_ok = not path_ok and "utils.path" --
 	or not window_ok and "utils.window"
 	or not str_ok and "utils.string"
 	or not harpoon_ok and "custom.lualine.harpoon"
-	or not mcphub_ok and "custom.lualine.mcphub"
 	or false
 
 if not_ok then
@@ -39,7 +37,6 @@ end
 local section_a_color = { bg = "#504945", fg = "#191919" }
 
 M.harpoon = harpoon
-M.mcp = mcphub
 
 M.cwd = {
 	"filename",
