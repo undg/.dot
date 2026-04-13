@@ -1,3 +1,4 @@
+--  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
 return {
 	"nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
 	dependencies = {
