@@ -43,6 +43,7 @@ Spec("plugins.nvim-cmp")   -- collection of plugins related with autocompletion
 
 --  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
 -- Spec("plugins.treesitter")                  -- syntax highlight
+Spec("plugins.tree-sitter-manager")         -- install and manage treesitter parsers. Companion for neovim build in treesitter.
 
 Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
 -- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
