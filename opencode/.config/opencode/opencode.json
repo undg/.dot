@@ -30,7 +30,8 @@
     "@tarquinen/opencode-dcp@latest",
     "@franlol/opencode-md-table-formatter@latest",
     "opencode-websearch-cited@1.2.0",
-    "./plugin/chrome-devtools.ts"
+    "envsitter-guard@17e37f2f76ea2c3fcc793a9082e06ab01f6f2e82",
+    "opencode-agent-memory@df5d04c3f1eef6c73191ec43793a7e7a7f5f8f0d"
   ],
   "default_agent": "build",
   "permission": {
