@@ -2,10 +2,8 @@ return {
 	"nvim-lualine/lualine.nvim", -- https://github.com/nvim-lualine/lualine.nvim
 	config = function()
 		local sections_ok, s = pcall(require, "custom.lualine.sections")
-		local opencode_ok = pcall(require, "opencode")
 
 		local not_ok = not sections_ok and "custom.lualine.sections" --
-			or not opencode_ok and "opencode"
 			or false
 
 		if not_ok then
@@ -17,7 +15,7 @@ return {
 			lualine_b = {},
 			lualine_c = {},
 
-			lualine_x = { "diagnostics", "diff", { require("opencode").statusline } },
+			lualine_x = { "diagnostics", "diff" },
 			lualine_y = { s.cwd, s.fileformat, s.filetype },
 			lualine_z = { s.location },
 		}

@@ -67,9 +67,10 @@ Spec("plugins.yanky")
 Spec("plugins.undotree")
 
 -- LLM, AI, AGENTING, GP
-Spec("plugins.gp-nvim")       -- AI chat interface for popular LLM's with API
-Spec("plugins.copilot")       -- AI chat interface for GitHub copilot with chat
-Spec("plugins.opencode-nvim") -- Bridge for opencode
+Spec("plugins.gp-nvim")               -- AI chat interface for popular LLM's with API
+Spec("plugins.copilot")               -- AI chat interface for GitHub copilot with chat
+-- Spec("plugins.opencode-nvim")         -- Bridge for opencode
+Spec("plugins.opencode-context-nvim") -- Bridge for opencode in tmux
 
 -- Utils
 Spec("plugins.obsidian")                         -- Note taking and knowledge base
