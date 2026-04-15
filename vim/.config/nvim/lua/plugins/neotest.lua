@@ -4,8 +4,7 @@ return {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
-		--  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
-		-- "nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter",
 		-- testing framework adapters -- https://github.com/nvim-neotest/neotest?tab=readme-ov-file#supported-runners
 		"marilari88/neotest-vitest",
 	},

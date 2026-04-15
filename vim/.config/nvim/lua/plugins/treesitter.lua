@@ -1,6 +1,6 @@
---  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
 return {
 	"nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
+	branch = "main",
 	dependencies = {
 		-- helper plugin for comment str and [tj]sx,
 		{
@@ -12,7 +12,7 @@ return {
 		-- Additional text objects for treesitter
 		{
 			"nvim-treesitter/nvim-treesitter-textobjects", -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-			-- commit = "89ebe73cd2836db80a22d9748999ace0241917a5", -- pin to before 308d27
+			branch = "main",
 			dependencies = { "nvim-treesitter/nvim-treesitter" },
 		},
 	},
@@ -23,13 +23,13 @@ return {
 	build = ":TSUpdate",
 
 	config = function()
-		local ts_configs_ok, ts_configs = pcall(require, "nvim-treesitter.configs")
+		local ts_configs_ok, ts_configs = pcall(require, "nvim-treesitter")
 
-		local not_ok = not ts_configs_ok and "nvim-treesitter.configs" --
+		local not_ok = not ts_configs_ok and "nvim-treesitter" --
 			or false
 
 		if not_ok then
-			vim.notify("plugins/treesitter.configs.lua: missing requirements", vim.log.levels.ERROR)
+			vim.notify("plugins/treesitter.configs.lua: missing requirements " .. not_ok, vim.log.levels.ERROR)
 			return
 		end
 
@@ -37,10 +37,6 @@ return {
 		ts_configs.setup({
 			modules = {},
 			ignore_install = {},
-			ensure_installed = {
-				"typescript",
-				"javascript",
-			},
 			sync_install = false,
 			auto_install = true,
 			highlight = {
