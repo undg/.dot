@@ -2,8 +2,7 @@ return {
 	"numToStr/Comment.nvim", -- https://github.com/numToStr/Comment.nvim
 	config = function()
 		require("Comment").setup({
-			--  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
-			-- pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 
 			---Add a space b/w comment and the line
 			padding = true,

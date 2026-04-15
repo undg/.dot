@@ -1,7 +1,6 @@
 return {
-	"MeanderingProgrammer/render-markdown.nvim", -- https://github.com/MeanderingProgrammer/render-markdown.nvim
-	--  @TODO (undg) 2026-04-13: delete, disabled after migration to neovim 0.12.1
-	-- dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+	"MeanderingProgrammer/render-markdown.nvim",                                      -- https://github.com/MeanderingProgrammer/render-markdown.nvim
+	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {
