@@ -5,6 +5,22 @@ return {
 		require("tree-sitter-manager").setup({
 			-- Default Options
 			-- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
+			ensure_installed = {
+				"bash",
+				"css",
+				"go",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"toml",
+				"tsx",
+				"typescript",
+				"yaml",
+			},
 			border = "rounded", -- border style for the window (e.g. "rounded", "single", nil), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
 			auto_install = true, -- if enabled, install missing parsers when editing a new file
 			highlight = true, -- treesitter highlighting is enabled by default
