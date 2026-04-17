@@ -15,22 +15,44 @@
   "mcp": {
     "chrome-devtools": {
       "type": "local",
+      "enabled": false,
       "command": [
         "npx",
         "-y",
         "chrome-devtools-mcp@latest",
         "--browser-url=http://127.0.0.1:9222",
-        "--no-category-emulation"
-      ],
-      "enabled": false
+        "--no-usage-statistics",
+        "--no-category-emulation",
+        "--no-performance-crux",
+        "--redact-network-headers"
+      ]
+    },
+    "chrome-devtools-slim": {
+      "type": "local",
+      "enabled": false,
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222",
+        "--no-usage-statistics",
+        "--no-category-emulation",
+        "--no-performance-crux",
+        "--redact-network-headers",
+        "--slim"
+      ]
     }
   },
   "plugin": [
-    "@mohak34/opencode-notifier@0.1.14",
-    "@tarquinen/opencode-dcp@latest",
-    "@franlol/opencode-md-table-formatter@latest",
-    "opencode-websearch-cited@1.2.0",
+    // https://github.com/mohak34/opencode-notifier/commits/main/
+    "@mohak34/opencode-notifier@42ca308d16fb494e8b337e6f703b7bee800db9e9",
+    // https://github.com/Opencode-DCP/opencode-dynamic-context-pruning/commits/master/
+    "@tarquinen/opencode-dcp@98601123483bd9325d5ec5d1c3942e7e19019606",
+    // https://github.com/franlol/opencode-md-table-formatter/commits/main/
+    "@franlol/opencode-md-table-formatter@1c6d9ec3ecaf45f5ecc3afa71fc16c2625a60d4c",
+    // https://github.com/boxpositron/envsitter-guard/commits/main/
     "envsitter-guard@17e37f2f76ea2c3fcc793a9082e06ab01f6f2e82",
+    // https://github.com/joshuadavidthomas/opencode-agent-memory/commits/main/
     "opencode-agent-memory@df5d04c3f1eef6c73191ec43793a7e7a7f5f8f0d"
   ],
   "default_agent": "build",
@@ -97,6 +119,8 @@
     "chrome-devtools_click": "allow",
     "chrome-devtools_press_key": "allow",
     "chrome-devtools_list_network_requests": "allow",
+    "chrome-devtools_fill": "allow",
+    "chrome-devtools_handle_dialog": "allow",
     "chrome-devtools_wait_for": "allow"
   }
 }
