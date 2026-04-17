@@ -109,7 +109,7 @@
       "npm run type-check *": "allow",
       "npm run lint -- --fix *": "allow"
     },
-    "webfetch": "allow",
+    "webfetch": "ask",
     "doom_loop": "ask",
     // chrome
     "chrome-devtools*": "ask",
