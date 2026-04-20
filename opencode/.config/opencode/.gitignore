@@ -1,9 +1,15 @@
+# node runtime nonsense
 node_modules
 bun.lock
 package.json
 package-lock.json
 
+# un-ignore global ignore
 !AGENTS.md
 !.opencode/
+
+# custom skill
 .opencode/plans/
 
+# opencode-agent-memory
+memory/
