@@ -45,18 +45,24 @@
   },
   "plugin": [
     // https://github.com/mohak34/opencode-notifier/commits/main/
-    "@mohak34/opencode-notifier@42ca308d16fb494e8b337e6f703b7bee800db9e9",
+    "@mohak34/opencode-notifier",
     // https://github.com/Opencode-DCP/opencode-dynamic-context-pruning/commits/master/
-    "@tarquinen/opencode-dcp@98601123483bd9325d5ec5d1c3942e7e19019606",
+    "@tarquinen/opencode-dcp",
     // https://github.com/franlol/opencode-md-table-formatter/commits/main/
-    "@franlol/opencode-md-table-formatter@1c6d9ec3ecaf45f5ecc3afa71fc16c2625a60d4c",
+    "@franlol/opencode-md-table-formatter",
     // https://github.com/boxpositron/envsitter-guard/commits/main/
-    "envsitter-guard@17e37f2f76ea2c3fcc793a9082e06ab01f6f2e82",
+    "envsitter-guard",
     // https://github.com/joshuadavidthomas/opencode-agent-memory/commits/main/
-    "opencode-agent-memory@df5d04c3f1eef6c73191ec43793a7e7a7f5f8f0d"
+    "opencode-agent-memory"
   ],
   "default_agent": "build",
   "permission": {
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
     "external_directory": {
       "~/Documents/Work/**": "allow",
       "~/Documents/Personal/**": "allow"
