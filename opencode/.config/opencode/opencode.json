@@ -87,6 +87,7 @@
       "gh run list *": "allow",
       "gh run view *": "allow",
       "gh search prs *": "allow",
+      "gh pr create *": "deny",
       "rg *": "allow",
       "echo": "allow",
       "git *": "allow",
@@ -113,7 +114,9 @@
       "npm test *": "allow",
       "npm run lint *": "allow",
       "npm run type-check *": "allow",
-      "npm run lint -- --fix *": "allow"
+      "npm run lint -- --fix *": "allow",
+      "node -e *": "deny",
+      "python -c *": "deny"
     },
     "webfetch": "ask",
     "doom_loop": "ask",
