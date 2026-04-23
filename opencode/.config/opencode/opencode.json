@@ -87,6 +87,7 @@
       "gh run list *": "allow",
       "gh run view *": "allow",
       "gh search prs *": "allow",
+      "gh pr status *": "allow",
       "gh pr create *": "deny",
       "rg *": "allow",
       "echo": "allow",
