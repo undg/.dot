@@ -102,4 +102,6 @@ Suggested fix: `code` (if applicable)
 
 Severity: **CRITICAL** (security, data loss, crash) | **HIGH** (logic error, type safety) | **MEDIUM** (validation, edge case) | **LOW** (style, minor)
 
+State the review target you used before listing findings, such as uncommitted changes, a specific PR/MR, or the branch diff against merge-base.
+
 End with summary: X critical, Y high, Z medium. If no issues, say so.
