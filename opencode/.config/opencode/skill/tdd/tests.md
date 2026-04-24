@@ -31,11 +31,13 @@ Characteristics:
 ```typescript
 // BAD: Tests implementation details
 test("checkout calls paymentService.process", async () => {
-  const mockPayment = vi.mocked(paymentService);
+  const processSpy = vi.spyOn(paymentService, "process");
   await checkout(cart, payment);
-  expect(mockPayment.process).toHaveBeenCalledWith(cart.total);
+  expect(processSpy).toHaveBeenCalledWith(cart.total);
 });
 ```
+
+Bad because it verifies internal collaboration instead of user-visible behavior.
 
 Red flags:
 
