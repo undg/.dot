@@ -5,7 +5,11 @@ description: Testing and test-driven development. Use for any testing work: crea
 
 # Testing and TDD
 
-This skill is framework-agnostic and language-agnostic. Apply the same red-green-refactor workflow whether you are writing Vitest, pytest, Go, Lua, Rust, or other tests.
+This skill covers both general testing work and test-driven development.
+
+Use general testing mode when creating, updating, reviewing, debugging, or extending tests in existing code.
+
+Use TDD mode when building or changing behavior test-first with red-green-refactor.
 
 ## Philosophy
 
@@ -76,9 +80,29 @@ RIGHT (vertical):
 
 ## Workflow
 
+### Two Modes
+
+Choose mode based on task:
+
+- General testing mode: existing tests, flaky tests, CI failures, coverage gaps, test reviews, adding tests around existing code
+- TDD mode: new behavior or changed behavior built test-first in red-green-refactor slices
+
+General testing mode still uses the same core principles: test behavior through public interfaces, mock system boundaries only, keep assertions high-signal.
+
+### General Testing Workflow
+
+When task is not strict TDD:
+
+- [ ] Check what test framework and conventions the repo already uses
+- [ ] Read code under test and nearby tests
+- [ ] Identify highest-value behaviors to verify
+- [ ] Add or update tests using existing conventions
+- [ ] Run narrowest useful test command first
+- [ ] Review failures, flakiness, and assertion quality
+
 ### 1. Planning
 
-Before writing any code:
+Before starting TDD work:
 
 - [ ] Check what test framework and conventions the repo already uses
 - [ ] Read the code under test and existing tests around it
@@ -93,7 +117,7 @@ Ask: "What should the public interface look like? Which behaviors are most impor
 
 **You can't test everything.** Confirm with the user exactly which behaviors matter most. Focus testing effort on critical paths and complex logic, not every possible edge case.
 
-When you are adding tests to existing code rather than building new code via TDD, ask the same question in a different form: "What behavior matters here, and what is already covered?"
+When not doing TDD, ask instead: "What behavior matters here, and what is already covered?"
 
 ### 2. Tracer Bullet
 
