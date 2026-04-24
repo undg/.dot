@@ -1,5 +1,7 @@
 # When to Mock
 
+These guidelines apply across languages and frameworks. In JS/TS, use Vitest conventions by default unless the project already uses Jest or another runner.
+
 Mock at **system boundaries** only:
 
 - External APIs (payment, email, etc.)
@@ -32,6 +34,17 @@ function processPayment(order) {
   const client = new StripeClient(process.env.STRIPE_KEY);
   return client.charge(order.total);
 }
+```
+
+```python
+# Same idea in Python
+def process_payment(order, payment_client):
+    return payment_client.charge(order.total)
+
+
+def process_payment_hard_to_test(order):
+    client = StripeClient(os.environ["STRIPE_KEY"])
+    return client.charge(order.total)
 ```
 
 **2. Prefer SDK-style interfaces over generic fetchers**

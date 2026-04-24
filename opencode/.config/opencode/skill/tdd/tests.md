@@ -14,6 +14,8 @@ test("user can checkout with valid cart", async () => {
 });
 ```
 
+Vitest is the default choice for new JS/TS projects unless the repo already uses something else. The principle is not Vitest-specific, though; the same style applies in any language.
+
 Characteristics:
 
 - Tests behavior users/callers care about
@@ -29,7 +31,7 @@ Characteristics:
 ```typescript
 // BAD: Tests implementation details
 test("checkout calls paymentService.process", async () => {
-  const mockPayment = jest.mock(paymentService);
+  const mockPayment = vi.mocked(paymentService);
   await checkout(cart, payment);
   expect(mockPayment.process).toHaveBeenCalledWith(cart.total);
 });
@@ -58,4 +60,23 @@ test("createUser makes user retrievable", async () => {
   const retrieved = await getUser(user.id);
   expect(retrieved.name).toBe("Alice");
 });
+```
+
+```python
+# GOOD: Same principle in Python
+def test_create_user_makes_user_retrievable():
+    user = create_user({"name": "Alice"})
+    retrieved = get_user(user.id)
+    assert retrieved.name == "Alice"
+```
+
+```go
+// GOOD: Same principle in Go
+func TestCreateUserMakesUserRetrievable(t *testing.T) {
+    user := CreateUser(UserInput{Name: "Alice"})
+    retrieved := GetUser(user.ID)
+    if retrieved.Name != "Alice" {
+        t.Fatalf("got %q, want %q", retrieved.Name, "Alice")
+    }
+}
 ```
