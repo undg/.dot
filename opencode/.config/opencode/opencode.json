@@ -116,6 +116,12 @@
       "npm run lint *": "allow",
       "npm run type-check *": "allow",
       "npm run lint -- --fix *": "allow",
+      "pnpm vitest *": "allow",
+      "pnpm run test *": "allow",
+      "pnpm test *": "allow",
+      "pnpm run lint *": "allow",
+      "pnpm run type-check *": "allow",
+      "pnpm run lint -- --fix *": "allow",
       "node -e *": "deny",
       "python -c *": "deny"
     },
