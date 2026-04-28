@@ -74,19 +74,20 @@ return {
 		config = function()
 			require("copilot").setup({
 				suggestion = {
-					enabled = false,
+					enabled = true,
+					auto_trigger = false,
 				},
-				filetypes = {
-					yaml = false,
-					markdown = false,
-					help = false,
-					gitcommit = false,
-					gitrebase = false,
-					hgcommit = false,
-					svn = false,
-					cvs = false,
-					["."] = false,
-				},
+				-- filetypes = {
+				-- 	yaml = false,
+				-- 	markdown = false,
+				-- 	help = false,
+				-- 	gitcommit = false,
+				-- 	gitrebase = false,
+				-- 	hgcommit = false,
+				-- 	svn = false,
+				-- 	cvs = false,
+				-- 	["."] = false,
+				-- },
 			})
 		end,
 	},
