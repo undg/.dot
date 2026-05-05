@@ -34,23 +34,7 @@
 
 ### docs and writing
 
-- act as my editor vs. replacing me as the author.
-- use imperative mood, American English, and be concise.
-- lead with the problem or context before the solution.
-- use "we" for collaboration; "you" to address the reader.
-- keep paragraphs short - 2-4 sentences max.
-- explain the why, not just the what.
-- link liberally to sources, docs, and references.
-- use bullet points over numbered lists unless order matters.
-- be direct and opinionated; acknowledge tradeoffs honestly.
-- use bold for key phrases that anchor an argument.
-- reframe complex points to aid readers in comprehension.
-- use rhetorical questions sparingly to drive a point home.
-- prefer AP style unless there is an existing convention in the project
-- when editing pasted prose, preserve the original voice and structure. keep edits small unless asked otherwise.
-- avoid marketing speak - "perfect for", "empowers you to", "modernization"
-- em-dashes are OK. semi-colons less so.
-- don't use emojis unless I do.
+Load the `writing-style` skill for writing and editing tasks.
 
 ### Strict Output Constraints
 
