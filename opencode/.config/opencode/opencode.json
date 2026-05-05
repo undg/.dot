@@ -61,7 +61,9 @@
       "*": "allow",
       "*.env": "deny",
       "*.env.*": "deny",
-      "*.env.example": "allow"
+      "*.env.example": "allow",
+      ".git/**": "deny",
+      "**/.git/**": "deny"
     },
     "external_directory": {
       "~/Documents/Work/**": "allow",
@@ -91,6 +93,8 @@
       "gh pr create *": "deny",
       "rg *": "allow",
       "echo": "allow",
+      "git config *": "ask",
+      "git remote *": "ask",
       "git *": "allow",
       "git commit *": "ask",
       "git push *": "deny",
