@@ -40,7 +40,7 @@ return {
 		)
 
 		-- Send selected text to tmux
-		Keymap.normal("<Leader>vl", function()
+		Keymap.normal("<Leader>rk", function()
 			local line = vim.api.nvim_get_current_line():gsub("^%s+", "")
 			vim.fn.VimuxRunCommand(line)
 		end)
