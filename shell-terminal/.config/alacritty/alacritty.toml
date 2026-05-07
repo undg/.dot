@@ -39,6 +39,16 @@ family = "FiraCode Nerd Font"
 # mods = "Control|Shift"
 
 [[keyboard.bindings]]
+mods = "Super"
+key = "C"
+action = "Copy"
+
+[[keyboard.bindings]]
+mods = "Super"
+key = "V"
+action = "Paste"
+
+[[keyboard.bindings]]
 action = "Paste"
 key = "Paste"
 
