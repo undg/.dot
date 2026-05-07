@@ -12,6 +12,10 @@ usage  = "latest"
 go     = "latest"
 node   = "24.4"
 
+[settings]
+# Let mise honor project .nvmrc/.node-version files for Node version selection.
+idiomatic_version_file_enable_tools = ["node"]
+
 # [settings]
 # idiomatic_version_file_enable_tools = ["python"]
 
