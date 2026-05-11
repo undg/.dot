@@ -127,7 +127,8 @@
       "pnpm run type-check *": "allow",
       "pnpm run lint -- --fix *": "allow",
       "node -e *": "deny",
-      "python -c *": "deny"
+      "python -c *": "deny",
+      "tmux display-message *": "allow"
     },
     "webfetch": "ask",
     "doom_loop": "ask",
