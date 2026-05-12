@@ -11,6 +11,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # Adds `~/.config/i3/scripts` and all subdirectories to $PATH
 if [[ -d "$HOME/.config/i3/scripts/" ]]; then
