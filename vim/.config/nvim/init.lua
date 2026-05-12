@@ -20,6 +20,7 @@ require("custom.highlight")
 require("custom.git-files")
 require("custom.only-global-marks")
 require("custom.paste-prefixed-buf-to-copilot")
+require("custom.open-path")
 
 require("lsp")
 
