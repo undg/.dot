@@ -124,8 +124,8 @@ return {
 			return
 		end
 		wk.add({
-			{ "<Leader>fF", ":Oil<cr>",                           desc = "Open paren directory" },
-			{ "<Leader>FF", ':lua require"oil".open_float()<cr>', desc = "Open paren directory" },
+			{ "<Leader>fF", ":Oil<cr>", desc = "Open paren directory" },
+			-- { "<Leader>FF", ':lua require"oil".open_float()<cr>', desc = "Open paren directory" },
 		})
 	end,
 }
