@@ -1,7 +1,10 @@
 Session.vim
 .env
 # project pre-prompt file, for Neovim GP plugin 
-.gp.md
+
 .cursorrules
 AGENTS.md
 .opencode/
+
+# git worktree directory
+.wk/
