@@ -7,6 +7,10 @@
 ; 	name = "User Name"
 ; 	email = "user.name@gmail.com"
 ; 	signingkey = 3F00K0FF3D7CB632
+;[commit]
+;	gpgsign = true
+;[tag]
+;	gpgsign = true
 ; [credential "https://github.com"]
 ; 	username = githubUser 
 ; [credential "http://localhost:8080"]
