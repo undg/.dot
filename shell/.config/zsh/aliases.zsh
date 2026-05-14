@@ -151,8 +151,8 @@ alias date-today="date +%Y-%m-%d"
 alias date-now="date +%Y-%m-%d_%H-%m_%S"
 
 colors() {
-	for i in {0..255};
-	do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'};
+	for i in {0..255}; do
+		print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$( (i%6)):#3}:+$'\n'}
 	done
 }
 
@@ -160,9 +160,12 @@ alias ollama-user-log='journalctl --user-unit ollama.service --since today'
 
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
 
-if hash  opencode &>/dev/null; then
+if hash opencode &>/dev/null; then
 	alias o='opencode'
-	alias oc='opencode --continue'
+	alias oo='opencode --continue'
+	alias og='opencode --prompt "Hi Grug"'
+	alias oc='opencode --prompt "Caveman mode on"'
+	op() { opencode --prompt "$*"; }
 else
 	echo "opencode is not installed."
 fi
