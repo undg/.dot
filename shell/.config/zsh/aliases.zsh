@@ -166,6 +166,7 @@ if hash opencode &>/dev/null; then
 	alias og='opencode --prompt "Hi Grug"'
 	alias oc='opencode --prompt "Caveman mode on"'
 	op() { opencode --prompt "$*"; }
+	alias oa='OPENCODE_CONFIG=~/.config/opencode/opencode.local.json opencode'
 else
 	echo "opencode is not installed."
 fi
