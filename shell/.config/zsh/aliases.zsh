@@ -169,3 +169,10 @@ if hash opencode &>/dev/null; then
 else
 	echo "opencode is not installed."
 fi
+
+wk-pgm-fe() {
+	local dir
+	dir="$(wk-pgm-fe.sh "$@" | tail -n 1)" || return
+	[ -d "$dir" ] || return 1
+	cd "$dir"
+}
