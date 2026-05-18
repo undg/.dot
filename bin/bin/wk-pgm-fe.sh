@@ -194,6 +194,8 @@ npm run prepare
 
 ln -s ../.opencode .
 ln -s ../AGENTS.md .
+ln -s ../.env.custom .
+ln -s ../.env.custom-local .
 
 log_ok "worktree ready"
 pwd
