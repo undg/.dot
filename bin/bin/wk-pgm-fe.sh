@@ -192,8 +192,8 @@ npm ci
 log_step "running prepare"
 npm run prepare
 
-ln -h ../.opencode .
-ln -h ../AGENTS.md .
+ln -s ../.opencode .
+ln -s ../AGENTS.md .
 
 log_ok "worktree ready"
 pwd
