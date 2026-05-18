@@ -14,3 +14,6 @@ opencode-notifier-state.json
 
 # opencode-agent-memory
 memory/
+
+# local per-user opencode overrides
+opencode.local.json
