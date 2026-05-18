@@ -142,6 +142,16 @@
     "chrome-devtools_list_network_requests": "allow",
     "chrome-devtools_fill": "allow",
     "chrome-devtools_handle_dialog": "allow",
-    "chrome-devtools_wait_for": "allow"
+    "chrome-devtools_wait_for": "allow",
+    "azure-devops*": "ask",
+    "azure-devops_core_list_projects": "allow",
+    "azure-devops_wit_my_work_items": "allow",
+    "azure-devops_repo_list_pull_requests_by_repo_or_project ": "allow",
+    "azure-devops_core_list_project_teams": "allow",
+    "azure-devops_work_list_team_iterations": "allow",
+    "azure-devops_work_get_team_capacity": "allow",
+    "azure-devops_wit_get_work_items_for_iteration": "allow",
+    "azure-devops_wit_get_work_item": "allow",
+    "azure-devops_wit_get_work_items_batch_by_ids": "allow"
   }
 }
