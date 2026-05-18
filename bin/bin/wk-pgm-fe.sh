@@ -25,11 +25,27 @@ log_error() {
 }
 
 usage() {
-	echo "Usage: $0 <branch-name|origin/branch-name>" >&2
-	echo "       $0 -d|--delete <worktree-dir>" >&2
-	echo "Example: $0 feat/my-branch" >&2
-	echo "Example: $0 origin/someone-branch" >&2
-	echo "Example: $0 --delete feat-my-branch" >&2
+	SCRIPT_NAME=${0##*/}
+	printf "%bwk-pgm-fe%b\n\n" "$B" "$NC" >&2
+	printf "%bUSAGE%b\n" "$Y" "$NC" >&2
+	printf "  %s <branch-name|origin/branch-name>\n" "$SCRIPT_NAME" >&2
+	printf "  %s -d|--delete <worktree-dir>\n" "$SCRIPT_NAME" >&2
+	printf "  %s -h|--help\n\n" "$SCRIPT_NAME" >&2
+	printf "%bBEHAVIOR%b\n" "$Y" "$NC" >&2
+	printf "  - branch-name: creates <sanitized-branch> from origin/main\n" >&2
+	printf "  - origin/branch-name: creates local branch-name from origin/branch-name\n" >&2
+	printf "  - --delete <worktree-dir>: removes worktree, deletes its branch, prunes\n\n" >&2
+	printf "%bEXAMPLES%b\n" "$Y" "$NC" >&2
+	printf "  %s feat/my-branch\n" "$SCRIPT_NAME" >&2
+	printf "  %s origin/someone-branch\n" "$SCRIPT_NAME" >&2
+	printf "  %s --delete feat-my-branch\n\n" "$SCRIPT_NAME" >&2
+	printf "%bAUTO-CD (zsh/bash)%b\n" "$Y" "$NC" >&2
+	printf "  wkcd() {\n" >&2
+	printf "    local dir\n" >&2
+	printf "    dir=\"$(%s \"$@\" | tail -n 1)\" || return\n" "$SCRIPT_NAME" >&2
+	printf "    [ -d \"$dir\" ] || return 1\n" >&2
+	printf "    cd \"$dir\"\n" >&2
+	printf "  }\n" >&2
 }
 
 RAW_BRANCH=""
@@ -42,20 +58,20 @@ while [ "$#" -gt 0 ]; do
 		usage
 		exit 0
 		;;
-		-d | --delete)
-			DELETE_MODE=1
-			;;
-		-*)
-			log_error "unknown option: $1"
+	-d | --delete)
+		DELETE_MODE=1
+		;;
+	-*)
+		log_error "unknown option: $1"
+		usage
+		exit 1
+		;;
+	*)
+		if [ -n "$RAW_BRANCH" ]; then
+			log_error "expected exactly one branch argument"
 			usage
 			exit 1
-			;;
-		*)
-			if [ -n "$RAW_BRANCH" ]; then
-				log_error "expected exactly one branch argument"
-				usage
-				exit 1
-			fi
+		fi
 		RAW_BRANCH=$1
 		;;
 	esac
@@ -175,6 +191,9 @@ log_step "installing dependencies"
 npm ci
 log_step "running prepare"
 npm run prepare
+
+ln -h ../.opencode .
+ln -h ../AGENTS.md .
 
 log_ok "worktree ready"
 pwd
