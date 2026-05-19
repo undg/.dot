@@ -139,7 +139,7 @@ esac
 # any other invalid char -> dash
 # collapse repeated dashes
 # trim leading and trailing  dash
-SAFE_BRANCH=$(printf '%s' "$RAW_BRANCH" |
+SAFE_DIR=$(printf '%s' "$RAW_BRANCH" |
 	tr '[:upper:]' '[:lower:]' |
 	sed -e 's#[/[:space:]]\+#-#g' \
 		-e 's#[^a-z0-9._-]#-#g' \
@@ -147,15 +147,15 @@ SAFE_BRANCH=$(printf '%s' "$RAW_BRANCH" |
 		-e 's#^-##' \
 		-e 's#-$##')
 
-if [ -z "$SAFE_BRANCH" ]; then
+if [ -z "$SAFE_DIR" ]; then
 	log_error "branch name became empty after sanitization"
 	exit 1
 fi
 
-WORKTREE_DIR="./$SAFE_BRANCH"
+WORKTREE_DIR="./$SAFE_DIR"
 
 log_info "create mode"
-log_info "branch: $SAFE_BRANCH"
+log_info "branch: $RAW_BRANCH"
 log_info "base: $BASE_REF"
 log_info "worktree: $WORKTREE_DIR"
 
@@ -184,7 +184,12 @@ if [ -e "$WORKTREE_DIR" ]; then
 fi
 
 log_step "creating worktree"
-git worktree add -b "$SAFE_BRANCH" "$WORKTREE_DIR" "$BASE_REF"
+if git show-ref --verify --quiet "refs/heads/$RAW_BRANCH"; then
+	log_info "branch already exists, reusing: $RAW_BRANCH"
+	git worktree add "$WORKTREE_DIR" "$RAW_BRANCH"
+else
+	git worktree add -b "$RAW_BRANCH" "$WORKTREE_DIR" "$BASE_REF"
+fi
 cd "$WORKTREE_DIR"
 
 log_step "installing dependencies"
