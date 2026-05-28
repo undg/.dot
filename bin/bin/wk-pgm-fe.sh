@@ -190,17 +190,10 @@ if git show-ref --verify --quiet "refs/heads/$RAW_BRANCH"; then
 else
 	git worktree add -b "$RAW_BRANCH" "$WORKTREE_DIR" "$BASE_REF"
 fi
-cd "$WORKTREE_DIR"
-
-log_step "installing dependencies"
-npm ci
-log_step "running prepare"
-npm run prepare
-
-ln -s ../.opencode .
-ln -s ../AGENTS.md .
-ln -s ../.env.custom .
-ln -s ../.env.custom-local .
-
-log_ok "worktree ready"
-pwd
+SETUP_CMD="npm ci && npm run prepare && ln -s ../.opencode . && ln -s ../AGENTS.md . && ln -s ../.env.custom . && ln -s ../.env.custom-local . && exec $SHELL"
+tmux new-session -d -s "$RAW_BRANCH" -c "$WORKTREE_DIR" "$SETUP_CMD"
+if [ -n "${TMUX:-}" ]; then
+	tmux switch-client -t "$RAW_BRANCH"
+else
+	tmux attach-session -t "$RAW_BRANCH"
+fi
