@@ -95,7 +95,7 @@
       "echo": "allow",
       "git config *": "ask",
       "git remote *": "ask",
-      "git *": "allow",
+      "git *": "ask",
       "git commit *": "ask",
       "git push *": "deny",
       "git rebase *": "ask",
