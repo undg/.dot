@@ -29,7 +29,7 @@ echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYA
   "  Can upgrade: \(if .can_upgrade_plan then $GREEN + "true" + $NC else $RED + "false" + $NC end)\n\n" +
   "📊 Premium Requests:\n" +
   "  Usage: \(.quota_snapshots.premium_interactions.entitlement - .quota_snapshots.premium_interactions.remaining) / \(.quota_snapshots.premium_interactions.entitlement)\n" +
-  "  Remaining: \(.quota_snapshots.premium_interactions.percent_remaining | floor)%\n" +
+  "  Remaining: \(.quota_snapshots.premium_interactions.remaining) (\(.quota_snapshots.premium_interactions.percent_remaining | floor)%)\n" +
   "  Overage: \(if .quota_snapshots.premium_interactions.overage_permitted then $GREEN + "Allowed" + $NC + " (\(.quota_snapshots.premium_interactions.overage_count) times)" else $RED + "Not allowed" + $NC end)\n\n" +
   "📅 Reset: \(.quota_reset_date)"
 ')"
