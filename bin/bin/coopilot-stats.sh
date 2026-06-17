@@ -9,9 +9,19 @@ CYAN='\033[0;36m'
 MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
+##############################
+# Fetch stats; set variables
+##############################
+
 TOKEN=$(gh auth token -h github.com)
 [ -z "$TOKEN" ] && echo "Error: GitHub token not found" && exit 1
 STATS=$(curl -s -H "Authorization: Token $TOKEN" https://api.github.com/copilot_internal/user)
+echo "$STATS" | jq -e '.quota_reset_date and .quota_snapshots.premium_interactions' >/dev/null || {
+	echo "Error: Unexpected GitHub API response"
+	echo "$STATS" | jq -r '.message // empty'
+	exit 1
+}
+
 RESET_DATE=$(echo "$STATS" | jq -r '.quota_reset_date | split("T")[0]')
 PREV_RESET_DATE=$(date -j -v-1m -f "%Y-%m-%d" "$RESET_DATE" "+%Y-%m-%d")
 RESET_TS=$(date -j -f "%Y-%m-%d" "$RESET_DATE" "+%s")
@@ -19,7 +29,14 @@ PREV_RESET_TS=$(date -j -f "%Y-%m-%d" "$PREV_RESET_DATE" "+%s")
 NOW_TS=$(date "+%s")
 DAYS_LEFT=$(((RESET_TS - NOW_TS + 86399) / 86400))
 CYCLE_DAYS=$(((RESET_TS - PREV_RESET_TS) / 86400))
+if [ "$CYCLE_DAYS" -le 0 ]; then
+	CYCLE_DAYS=30
+fi
 DAYS_LEFT_PERCENT=$((DAYS_LEFT * 100 / CYCLE_DAYS))
+
+######################
+# Show stats
+######################
 
 echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYAN "$CYAN" --arg MAGENTA "$MAGENTA" --arg NC "$NC" --argjson DAYS_LEFT "$DAYS_LEFT" --argjson DAYS_LEFT_PERCENT "$DAYS_LEFT_PERCENT" --argjson CYCLE_DAYS "$CYCLE_DAYS" '
   def remaining_color:
@@ -51,3 +68,38 @@ echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYA
   "📅 Reset: \(.quota_reset_date | split("T")[0])\n" +
   "  Remaining: \($DAYS_LEFT) days (" + remaining_color + "\($DAYS_LEFT_PERCENT)%" + $NC + ")"
 ')"
+
+##########################
+# Save stats to log file
+##########################
+#
+# - macOS: ~/Library/Logs/coopilot-stats.csv
+# - Linux: ~/.local/state/coopilot-stats/coopilot-stats.csv unless XDG_STATE_HOME set
+#
+
+if [ "$(uname -s)" = "Darwin" ]; then
+	LOG_DIR="$HOME/Library/Logs"
+else
+	LOG_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/coopilot-stats"
+fi
+LOG_FILE="$LOG_DIR/coopilot-stats.csv"
+
+mkdir -p "$LOG_DIR"
+
+if [ ! -f "$LOG_FILE" ]; then
+	printf '%s\n' 'date,time,usage,remaining,overage,entitlement,reset,user,organizations' >>"$LOG_FILE"
+fi
+
+echo "$STATS" | jq -r '
+  [
+    (now | strftime("%Y-%m-%d")),
+    (now | strftime("%H:%M:%S")),
+    (.quota_snapshots.premium_interactions.entitlement - .quota_snapshots.premium_interactions.remaining),
+    .quota_snapshots.premium_interactions.remaining,
+    .quota_snapshots.premium_interactions.overage_count,
+    .quota_snapshots.premium_interactions.entitlement,
+    (.quota_reset_date | split("T")[0]),
+    .login,
+    (.organization_list | map(.name) | join("; "))
+  ] | @csv
+' >>"$LOG_FILE"
