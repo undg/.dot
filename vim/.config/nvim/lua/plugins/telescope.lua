@@ -127,6 +127,9 @@ return {
 					gp_picker = {
 						chat_mode = "chat", -- 'chat' 'command' 'both' (default)
 					},
+					advanced_git_search = {
+						-- https://github.com/aaronhallaert/advanced-git-search.nvim#%EF%B8%8F-installation
+					},
 				},
 			})
 
@@ -134,6 +137,7 @@ return {
 			-- load_extension's, somewhere after setup function:
 			---------------------------------
 
+			telescope.load_extension("advanced_git_search")
 			telescope.load_extension("fzf")
 			telescope.load_extension("ui-select")
 			telescope.load_extension("smart_open")
