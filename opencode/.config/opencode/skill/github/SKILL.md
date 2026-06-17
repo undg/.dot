@@ -5,11 +5,12 @@ description: Load before running any gh commands to ensure correct CLI syntax. U
 
 ## Tools
 
-You have few `pr` tools that have standardised and safe way to perform common actions. You prefer this tools over raw `git` and `gh` command from cli. Last line of resort is using `gh api` if previous methods can't fulfill the task.
+Prefer dedicated `github_pr_*` tools over raw `gh` for pull request workflows. Use `gh` when no dedicated tool fits. Use `gh api` only as a last resort.
 
-Tools priority:
+Examples:
 
-1. pr
-2. git
-3. gh
-4. gh api
+- `github_pr_comments` to read all PR review comments, including inline and review-level comments
+- `github_pr_diff` to inspect the PR diff, optionally narrowed to one file
+- `github_pr_ci` to inspect PR CI status and fetch failing job logs
+
+Apply the same preference to other `github_pr_*` tools when they clearly match the request.
