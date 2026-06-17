@@ -12,7 +12,24 @@ NC='\033[0m' # No Color
 TOKEN=$(gh auth token -h github.com)
 [ -z "$TOKEN" ] && echo "Error: GitHub token not found" && exit 1
 STATS=$(curl -s -H "Authorization: Token $TOKEN" https://api.github.com/copilot_internal/user)
-echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYAN "$CYAN" --arg NC "$NC" '
+RESET_DATE=$(echo "$STATS" | jq -r '.quota_reset_date | split("T")[0]')
+PREV_RESET_DATE=$(date -j -v-1m -f "%Y-%m-%d" "$RESET_DATE" "+%Y-%m-%d")
+RESET_TS=$(date -j -f "%Y-%m-%d" "$RESET_DATE" "+%s")
+PREV_RESET_TS=$(date -j -f "%Y-%m-%d" "$PREV_RESET_DATE" "+%s")
+NOW_TS=$(date "+%s")
+DAYS_LEFT=$(((RESET_TS - NOW_TS + 86399) / 86400))
+CYCLE_DAYS=$(((RESET_TS - PREV_RESET_TS) / 86400))
+DAYS_LEFT_PERCENT=$((DAYS_LEFT * 100 / CYCLE_DAYS))
+
+echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYAN "$CYAN" --arg MAGENTA "$MAGENTA" --arg NC "$NC" --argjson DAYS_LEFT "$DAYS_LEFT" --argjson DAYS_LEFT_PERCENT "$DAYS_LEFT_PERCENT" --argjson CYCLE_DAYS "$CYCLE_DAYS" '
+  def remaining_color:
+    (.quota_snapshots.premium_interactions.percent_remaining | floor) as $percent_remaining |
+    (($DAYS_LEFT * 100) / $CYCLE_DAYS | floor) as $days_left_percent |
+    if $percent_remaining < $days_left_percent then $RED
+    elif $percent_remaining < ($days_left_percent + 10) then $MAGENTA
+    else $GREEN
+    end;
+
   "🔐 User: \(.login)\n" +
   "📦 Plan: \(.copilot_plan)\n" +
   "🏢 Organizations: \(.organization_list | map(.name) | join(", "))\n" +
@@ -29,7 +46,8 @@ echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYA
   "  Can upgrade: \(if .can_upgrade_plan then $GREEN + "true" + $NC else $RED + "false" + $NC end)\n\n" +
   "📊 Premium Requests:\n" +
   "  Usage: \(.quota_snapshots.premium_interactions.entitlement - .quota_snapshots.premium_interactions.remaining) / \(.quota_snapshots.premium_interactions.entitlement)\n" +
-  "  Remaining: \(.quota_snapshots.premium_interactions.remaining) (\(.quota_snapshots.premium_interactions.percent_remaining | floor)%)\n" +
+  "  Remaining: \(.quota_snapshots.premium_interactions.remaining) (" + (remaining_color) + "\(.quota_snapshots.premium_interactions.percent_remaining | floor)%" + $NC + ")\n" +
   "  Overage: \(if .quota_snapshots.premium_interactions.overage_permitted then $GREEN + "Allowed" + $NC + " (\(.quota_snapshots.premium_interactions.overage_count) times)" else $RED + "Not allowed" + $NC end)\n\n" +
-  "📅 Reset: \(.quota_reset_date)"
+  "📅 Reset: \(.quota_reset_date | split("T")[0])\n" +
+  "  Remaining: \($DAYS_LEFT) days (" + remaining_color + "\($DAYS_LEFT_PERCENT)%" + $NC + ")"
 ')"
