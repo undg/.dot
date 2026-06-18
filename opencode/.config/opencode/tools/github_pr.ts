@@ -41,7 +41,11 @@ type Review = {
 }
 
 type Pr = {
+  number: number
   head: { sha: string }
+  base?: { ref: string }
+  headRefName?: string
+  url?: string
 }
 
 type CheckRun = {
@@ -67,6 +71,50 @@ type JobsResponse = {
 }
 
 // ── Tools ────────────────────────────────────────────────────────────────────
+
+export const get_number = tool({
+  description:
+    "Get the pull request number for the current branch, with basic PR metadata.",
+  args: {
+    repo: tool.schema
+      .string()
+      .optional()
+      .describe(
+        "Repo in owner/name format. Defaults to the current git remote.",
+      ),
+  },
+  async execute(args, context) {
+    const repo = await getRepo(args.repo, context)
+    const branch = (
+      await Bun.$`git -C ${context.worktree} branch --show-current`.text()
+    ).trim()
+
+    if (!branch) throw new Error("Could not determine current branch")
+
+    const pulls = (await Bun.$`gh api repos/${repo}/pulls --paginate --field state=open --field head=${repo.split("/")[0]}:${branch}`.json()) as Pr[]
+    const pr = pulls[0]
+
+    if (!pr) {
+      return JSON.stringify(
+        { branch, error: `No open pull request found for branch ${branch}` },
+        null,
+        2,
+      )
+    }
+
+    return JSON.stringify(
+      {
+        branch,
+        number: pr.number,
+        headRefName: pr.headRefName ?? branch,
+        baseRefName: pr.base?.ref ?? null,
+        url: pr.url ?? null,
+      },
+      null,
+      2,
+    )
+  },
+})
 
 export const comments = tool({
   description:
