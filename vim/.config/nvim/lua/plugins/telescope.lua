@@ -60,25 +60,21 @@ return {
 					layout_config = { height = 0.9, width = 0.9 },
 					mappings = {
 						i = {
-							["<C-n>"] = actions.move_selection_next,
-							["<C-j>"] = actions.move_selection_next,
-							["<Down>"] = actions.move_selection_next,
-							["<C-p>"] = actions.move_selection_previous,
-							["<C-k>"] = actions.move_selection_previous,
-							["<Up>"] = actions.move_selection_previous,
-
 							["<CR>"] = actions.select_default,
-							["<C-l>"] = actions.select_default,
+
+							["<C-j>"] = actions.move_selection_next,
+							["<C-k>"] = actions.move_selection_previous,
+
+							["<Left>"] = actions.preview_scrolling_left,
+							["<Down>"] = actions.preview_scrolling_down,
+							["<Up>"] = actions.preview_scrolling_up,
+							["<Right>"] = actions.preview_scrolling_right,
 
 							["<C-x>"] = actions.select_horizontal,
 							["<C-v>"] = actions.select_vertical,
 							["<C-t>"] = actions.select_tab,
 
 							["<C-u>"] = nil,
-							["<C-Left>"] = actions.preview_scrolling_left,
-							["<C-Down>"] = actions.preview_scrolling_down,
-							["<C-Up>"] = actions.preview_scrolling_up,
-							["<C-Right>"] = actions.preview_scrolling_right,
 							["<PageUp>"] = actions.results_scrolling_up,
 							["<C-d>"] = nil,
 							["<PageDown>"] = actions.results_scrolling_down,
@@ -90,7 +86,7 @@ return {
 							["<C- >"] = actions.toggle_selection,
 
 							["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-							["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+							["<C-Q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 							-- ["<C-l>"] = actions.complete_tag,
 							["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
 							["<C-w>"] = { "<c-s-w>", type = "command" },
