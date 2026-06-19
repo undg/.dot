@@ -91,7 +91,7 @@ export const get_number = tool({
 
     if (!branch) throw new Error("Could not determine current branch")
 
-    const pulls = (await Bun.$`gh api repos/${repo}/pulls --paginate --field state=open --field head=${repo.split("/")[0]}:${branch}`.json()) as Pr[]
+    const pulls = (await Bun.$`gh api --method GET repos/${repo}/pulls --paginate --field state=open --field head=${repo.split("/")[0]}:${branch}`.json()) as Pr[]
     const pr = pulls[0]
 
     if (!pr) {

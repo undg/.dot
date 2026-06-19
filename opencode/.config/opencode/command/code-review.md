@@ -7,4 +7,10 @@ Review the code changes using THREE (3) @code-review subagents and correlate res
 
 Guidance: $ARGUMENTS
 
-Review uncommitted changes by default only when the user did not point to a PR/MR and there is no open PR/MR for the current branch. If the user provides a pull request/merge request number or link, including shorthand like `#243`, `PR 243`, or `MR 243`, use CLI tools to resolve that PR/MR and review the full diff. Otherwise, check whether the current branch already has an open PR/MR and review that full PR/MR diff. If no PR/MR can be resolved and there are no uncommitted changes, review the full branch diff against its merge-base with the base branch.
+If user did not point to a PR number use `gh pr view` and then `gh pr diff`.
+
+If the user provides a pull request request number or link, including shorthand like `#243`, `PR 243`, or `MR 243`, use CLI tool to resolve that PR and review the full diff e.g. `gh pr view 243` and then `gh pr diff 243`.
+
+Provide output of those findings into subagents, so it doesn't need to repeat this step.
+
+If no PR can be resolved and there are no uncommitted changes, review the full branch diff against its merge-base with the base branch.
