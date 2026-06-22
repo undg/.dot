@@ -62,13 +62,13 @@ return {
 						i = {
 							["<CR>"] = actions.select_default,
 
-							["<C-j>"] = actions.move_selection_next,
-							["<C-k>"] = actions.move_selection_previous,
+							["<Down>"] = actions.move_selection_next,
+							["<Up>"] = actions.move_selection_previous,
 
-							["<Left>"] = actions.preview_scrolling_left,
-							["<Down>"] = actions.preview_scrolling_down,
-							["<Up>"] = actions.preview_scrolling_up,
-							["<Right>"] = actions.preview_scrolling_right,
+							["<C-h>"] = actions.preview_scrolling_left,
+							["<C-j>"] = actions.preview_scrolling_down,
+							["<C-k>"] = actions.preview_scrolling_up,
+							["<C-l>"] = actions.preview_scrolling_right,
 
 							["<C-x>"] = actions.select_horizontal,
 							["<C-v>"] = actions.select_vertical,
