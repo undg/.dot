@@ -1,158 +1,164 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
-  "instructions": ["{env:HOME}/.config/opencode/INSTRUCTIONS.md"],
-  "provider": {
-    "lmstudio": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LM Studio (local)",
-      "options": {
-        "baseURL": "http://127.0.0.1:1234/v1"
-      }
-    }
-  },
-  "disabled_providers": ["deepseek", "xai"],
-  "mcp": {
-    "chrome-devtools": {
-      "type": "local",
-      "enabled": false,
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--browser-url=http://127.0.0.1:9222",
-        "--no-usage-statistics",
-        "--no-category-emulation",
-        "--no-performance-crux",
-        "--redact-network-headers"
-      ]
-    },
-    "chrome-devtools-slim": {
-      "type": "local",
-      "enabled": false,
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--browser-url=http://127.0.0.1:9222",
-        "--no-usage-statistics",
-        "--no-category-emulation",
-        "--no-performance-crux",
-        "--redact-network-headers",
-        "--slim"
-      ]
-    }
-  },
-  "plugin": [
-    // https://github.com/mohak34/opencode-notifier/commits/main/
-    "@mohak34/opencode-notifier",
-    // https://github.com/Opencode-DCP/opencode-dynamic-context-pruning/commits/master/
-    "@tarquinen/opencode-dcp",
-    // https://github.com/franlol/opencode-md-table-formatter/commits/main/
-    "@franlol/opencode-md-table-formatter",
-    // https://github.com/boxpositron/envsitter-guard/commits/main/
-    "envsitter-guard",
-    // https://github.com/joshuadavidthomas/opencode-agent-memory/commits/main/
-    "opencode-agent-memory"
-  ],
-  "default_agent": "build",
-  "permission": {
-    "read": {
-      "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
-      "*.env.example": "allow",
-      ".git/**": "deny",
-      "**/.git/**": "deny"
-    },
-    "external_directory": {
-      "~/Documents/Work/**": "allow",
-      "~/Documents/Personal/**": "allow"
-    },
-    "bash": {
-      "*": "ask",
-      "rm": "ask",
-      "mv": "ask",
-      "sh": "ask",
-      "curl": "ask",
-      "wget": "ask",
-      "jq *": "allow",
-      "gh *": "ask",
-      "gh api *": "ask",
-      "gh issue list *": "allow",
-      "gh issue view *": "allow",
-      "gh pr checks *": "allow",
-      "gh pr diff *": "allow",
-      "gh pr list *": "allow",
-      "gh pr view *": "allow",
-      "gh repo view *": "allow",
-      "gh run list *": "allow",
-      "gh run view *": "allow",
-      "gh search prs *": "allow",
-      "gh pr status *": "allow",
-      "gh pr create *": "deny",
-      "rg *": "allow",
-      "echo": "allow",
-      "GIT_EDITOR=true git rebase --continue": "allow",
-      "git *": "ask",
-      "git commit *": "ask",
-      "git config *": "ask",
-      "git diff *": "allow",
-      "git push *": "deny",
-      "git log *": "allow",
-      "git rebase *": "ask",
-      "git rebase --continue": "allow",
-      "git remote *": "ask",
-      "git status *": "allow",
-      "echo *": "allow",
-      "ag *": "allow",
-      "find *": "allow",
-      "head *": "allow",
-      "tail *": "allow",
-      "grep *": "allow",
-      "cat *": "allow",
-      "ls *": "allow",
-      "exa *": "allow",
-      "eza *": "allow",
-      "wc *": "allow",
-      "tree *": "allow",
-      "npm run test *": "allow",
-      "npm test *": "allow",
-      "npm run lint *": "allow",
-      "npm run type-check *": "allow",
-      "npm run lint -- --fix *": "allow",
-      "pnpm vitest *": "allow",
-      "pnpm run test *": "allow",
-      "pnpm test *": "allow",
-      "pnpm run lint *": "allow",
-      "pnpm run type-check *": "allow",
-      "pnpm run lint -- --fix *": "allow",
-      "node -e *": "deny",
-      "python -c *": "deny",
-      "tmux display-message *": "allow"
-    },
-    "webfetch": "ask",
-    "doom_loop": "ask",
-    // chrome
-    "chrome-devtools*": "ask",
-    "chrome-devtools_list_pages": "allow",
-    "chrome-devtools_list_console_messages": "allow",
-    "chrome-devtools_take_snapshot": "allow",
-    "chrome-devtools_click": "allow",
-    "chrome-devtools_press_key": "allow",
-    "chrome-devtools_list_network_requests": "allow",
-    "chrome-devtools_fill": "allow",
-    "chrome-devtools_handle_dialog": "allow",
-    "chrome-devtools_wait_for": "allow",
-    "azure-devops*": "ask",
-    "azure-devops_core_list_projects": "allow",
-    "azure-devops_wit_my_work_items": "allow",
-    "azure-devops_repo_list_pull_requests_by_repo_or_project ": "allow",
-    "azure-devops_core_list_project_teams": "allow",
-    "azure-devops_work_list_team_iterations": "allow",
-    "azure-devops_work_get_team_capacity": "allow",
-    "azure-devops_wit_get_work_items_for_iteration": "allow",
-    "azure-devops_wit_get_work_item": "allow",
-    "azure-devops_wit_get_work_items_batch_by_ids": "allow"
-  }
+	"$schema": "https://opencode.ai/config.json",
+	"autoupdate": true,
+	"instructions": [
+		"{env:HOME}/.config/opencode/INSTRUCTIONS.md"
+	],
+	"provider": {
+		"lmstudio": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "LM Studio (local)",
+			"options": {
+				"baseURL": "http://127.0.0.1:1234/v1"
+			}
+		}
+	},
+	"disabled_providers": [
+		"deepseek",
+		"xai"
+	],
+	"mcp": {
+		"chrome-devtools": {
+			"type": "local",
+			"enabled": false,
+			"command": [
+				"npx",
+				"-y",
+				"chrome-devtools-mcp@latest",
+				"--browser-url=http://127.0.0.1:9222",
+				"--no-usage-statistics",
+				"--no-category-emulation",
+				"--no-performance-crux",
+				"--redact-network-headers"
+			]
+		},
+		"chrome-devtools-slim": {
+			"type": "local",
+			"enabled": false,
+			"command": [
+				"npx",
+				"-y",
+				"chrome-devtools-mcp@latest",
+				"--browser-url=http://127.0.0.1:9222",
+				"--no-usage-statistics",
+				"--no-category-emulation",
+				"--no-performance-crux",
+				"--redact-network-headers",
+				"--slim"
+			]
+		}
+	},
+	"plugin": [
+		// https://github.com/mohak34/opencode-notifier/commits/main/
+		"@mohak34/opencode-notifier",
+		// https://github.com/Opencode-DCP/opencode-dynamic-context-pruning/commits/master/
+		"@tarquinen/opencode-dcp",
+		// https://github.com/franlol/opencode-md-table-formatter/commits/main/
+		"@franlol/opencode-md-table-formatter",
+		// https://github.com/boxpositron/envsitter-guard/commits/main/
+		"envsitter-guard",
+		// https://github.com/joshuadavidthomas/opencode-agent-memory/commits/main/
+		"opencode-agent-memory"
+	],
+	"default_agent": "build",
+	"permission": {
+		"read": {
+			"*": "allow",
+			"*.env": "deny",
+			"*.env.*": "deny",
+			"*.env.example": "allow",
+			".git/**": "deny",
+			"**/.git/**": "deny"
+		},
+		"external_directory": {
+			"~/Documents/Work/**": "allow",
+			"~/Documents/Personal/**": "allow"
+		},
+		"bash": {
+			"*": "ask",
+			"rm": "ask",
+			"mv": "ask",
+			"sh": "ask",
+			"curl": "ask",
+			"wget": "ask",
+			"jq *": "allow",
+			"gh *": "ask",
+			"gh api *": "ask",
+			"gh issue list *": "allow",
+			"gh issue view *": "allow",
+			"gh pr checks *": "allow",
+			"gh pr diff *": "allow",
+			"gh pr list *": "allow",
+			"gh pr view *": "allow",
+			"gh repo view *": "allow",
+			"gh run list *": "allow",
+			"gh run view *": "allow",
+			"gh search prs *": "allow",
+			"gh pr status *": "allow",
+			"gh pr create *": "deny",
+			"rg *": "allow",
+			"echo": "allow",
+			"GIT_EDITOR=true git rebase --continue": "allow",
+			"git *": "ask",
+			"git commit *": "ask",
+			"git config *": "ask",
+			"git diff *": "allow",
+			"git push *": "deny",
+			"git log *": "allow",
+			"git rebase *": "ask",
+			"git rebase --continue": "allow",
+			"git remote *": "ask",
+			"git show *": "allow",
+			"git status *": "allow",
+			"echo *": "allow",
+			"ag *": "allow",
+			"find *": "allow",
+			"head *": "allow",
+			"tail *": "allow",
+			"grep *": "allow",
+			"cat *": "allow",
+			"ls *": "allow",
+			"exa *": "allow",
+			"eza *": "allow",
+			"wc *": "allow",
+			"tree *": "allow",
+			"npm run test *": "allow",
+			"npm test *": "allow",
+			"npm run lint *": "allow",
+			"npm run type-check *": "allow",
+			"npm run lint -- --fix *": "allow",
+			"pnpm vitest *": "allow",
+			"pnpm run test *": "allow",
+			"pnpm test *": "allow",
+			"pnpm run lint *": "allow",
+			"pnpm run type-check *": "allow",
+			"pnpm run lint -- --fix *": "allow",
+			"node -e *": "deny",
+			"python -c *": "deny",
+			"tmux display-message *": "allow"
+		},
+		"webfetch": "ask",
+		"doom_loop": "ask",
+		// chrome
+		"chrome-devtools*": "ask",
+		"chrome-devtools_list_pages": "allow",
+		"chrome-devtools_list_console_messages": "allow",
+		"chrome-devtools_take_snapshot": "allow",
+		"chrome-devtools_click": "allow",
+		"chrome-devtools_press_key": "allow",
+		"chrome-devtools_list_network_requests": "allow",
+		"chrome-devtools_fill": "allow",
+		"chrome-devtools_handle_dialog": "allow",
+		"chrome-devtools_wait_for": "allow",
+		"azure-devops*": "ask",
+		"azure-devops_core_list_projects": "allow",
+		"azure-devops_wit_my_work_items": "allow",
+		"azure-devops_repo_list_pull_requests_by_repo_or_project ": "allow",
+		"azure-devops_core_list_project_teams": "allow",
+		"azure-devops_work_list_team_iterations": "allow",
+		"azure-devops_work_get_team_capacity": "allow",
+		"azure-devops_wit_get_work_items_for_iteration": "allow",
+		"azure-devops_wit_get_work_item": "allow",
+		"azure-devops_wit_get_work_items_batch_by_ids": "allow"
+	}
 }
