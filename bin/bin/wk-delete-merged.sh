@@ -17,7 +17,7 @@ git worktree list --porcelain | while IFS= read -r line; do
 		state=$(cd "$dir" && gh pr view --json state --jq '.state' 2>/dev/null)
 		if [[ "$state" == "MERGED" ]]; then
 			echo -e "${GREEN}✓ ${CYAN}$branch ${GREEN}MERGED${NC}"
-			read -p "$(echo -e ${RED}Delete worktree? \(y/n\)${NC})" -n 1 -r </dev/tty
+			read -p "$(echo -e ${RED}Delete worktree? \(y/n\) ${NC})" -n 1 -r </dev/tty
 			echo
 			if [[ $REPLY =~ ^[Yy]$ ]]; then
 				wk-pgm-fe.sh -d "$dir"
