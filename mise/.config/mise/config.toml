@@ -12,11 +12,9 @@ go     = "latest"
 node   = "24.4"
 
 [settings]
-# Let mise honor project .nvmrc/.node-version files for Node version selection.
-idiomatic_version_file_enable_tools = ["node"]
-
-# [settings]
-# idiomatic_version_file_enable_tools = ["python"]
+# Legacy version file reading (e.g. .nvmrc, .python-version) is enabled by default.
+# Disable it per-tool with legacy_version_file_disable_tools if needed.
+legacy_version_file = true
 
 
 # This was a quick fix for corepack false positives.
