@@ -123,6 +123,9 @@ if [ "$DELETE_MODE" -eq 1 ]; then
 	log_step "pruning stale worktree entries"
 	git worktree prune
 	log_ok "delete complete"
+
+	log_step "kill tmux session"
+	tmux kill-session -t "$BRANCH_NAME"
 	exit 0
 fi
 
