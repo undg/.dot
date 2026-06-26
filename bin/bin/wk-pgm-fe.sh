@@ -124,8 +124,12 @@ if [ "$DELETE_MODE" -eq 1 ]; then
 	git worktree prune
 	log_ok "delete complete"
 
-	log_step "kill tmux session"
-	tmux kill-session -t "$BRANCH_NAME"
+	if tmux has-session -t "=$BRANCH_NAME" 2>/dev/null; then
+		log_step "killing tmux session: $BRANCH_NAME"
+		tmux kill-session -t "$BRANCH_NAME"
+	else
+		log_info "no tmux session found: $BRANCH_NAME"
+	fi
 	exit 0
 fi
 
