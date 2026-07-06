@@ -15,10 +15,10 @@ return {
 		i(1, "const "), i(2, "name"), t(" = ("), i(3), t(") => "), i(0)
 	}),
 	s("des", {
-		t("describe(`"), i(1, "description"), t("`, () => {"), t({ "", "\t" }), i(2), t({ "", "})" })
+		t('describe("'), i(1, "description"), t('", () => {'), t({ "", "\t" }), i(2), t({ "", "})" })
 	}),
 	s("it", {
-		t("it(`"), i(1, "should"), t("`, () => {"), t({ "", "\t" }), i(2), t({ "", "})" })
+		t('it("'), i(1, "should"), t('", () => {'), t({ "", "\t" }), i(2), t({ "", "})" })
 	}),
 	s("exp", {
 		t("expect("), i(1), t(")"), i(2)
@@ -42,9 +42,9 @@ return {
 	}),
 	s("vitest-init",
 		{
-			t({ 'import { describe, expect, it } from "vitest"', "", 'describe(`' }),
-			i(1), t({ '`, () => {', '  it(`' }),
-			i(2), t({ '`, () => {', '    expect(true).toBe(false)', '  })', '})' })
+			t({ 'import { describe, expect, it } from "vitest"', "", 'describe("' }),
+			i(1), t({ '", () => {', '  it("' }),
+			i(2), t({ '", () => {', '    expect(true).toBe(false)', '  })', '})' })
 		}
 	),
 	s("vitest-jsdom",
