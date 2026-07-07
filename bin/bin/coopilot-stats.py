@@ -50,7 +50,15 @@ def main():
     x_positions = list(range(len(timestamps)))
 
     fig, ax = plt.subplots(figsize=(14, 7))
-    ax.plot(x_positions, usage, color="blue", linewidth=2, label="usage")
+    usage_line, = ax.plot(
+        x_positions,
+        usage,
+        color="blue",
+        linewidth=2,
+        marker="o",
+        markersize=4,
+        label="usage",
+    )
     ax.plot(x_positions, entitlement, color="red", linewidth=2, label="entitlement")
 
     ax.set_title("Coopilot stats")
@@ -60,6 +68,39 @@ def main():
 
     ax.set_xticks(x_positions)
     ax.set_xticklabels(build_tick_labels(timestamps), rotation=90, fontsize=8)
+
+    tooltip = ax.annotate(
+        "",
+        xy=(0, 0),
+        xytext=(10, 10),
+        textcoords="offset points",
+        bbox={"boxstyle": "round", "fc": "white", "alpha": 0.9},
+    )
+    tooltip.set_visible(False)
+
+    def on_move(event):
+        if event.inaxes != ax:
+            if tooltip.get_visible():
+                tooltip.set_visible(False)
+                fig.canvas.draw_idle()
+            return
+
+        contains, details = usage_line.contains(event)
+        if not contains:
+            if tooltip.get_visible():
+                tooltip.set_visible(False)
+                fig.canvas.draw_idle()
+            return
+
+        index = details["ind"][0]
+        tooltip.xy = (x_positions[index], usage[index])
+        tooltip.set_text(
+            f"{timestamps[index].strftime('%Y-%m-%d %H:%M:%S')}\nusage: {usage[index]:.0f}"
+        )
+        tooltip.set_visible(True)
+        fig.canvas.draw_idle()
+
+    fig.canvas.mpl_connect("motion_notify_event", on_move)
 
     plt.tight_layout()
     plt.show()
