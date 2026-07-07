@@ -60,10 +60,11 @@ return {
 			dashboard.button("sc", "鬒  >  Session (current dir)", ":SessionManager load_current_dir_session<CR>"),
 			dashboard.button("o", "   >  Old files", ":Telescope oldfiles cwd_only=true<CR>"),
 			dashboard.button("e", "   >  New file", ":enew <BAR> startinsert <CR>"),
-			dashboard.button("f", "   >  Find files", ":Telescope find_files<CR>"),
+			dashboard.button("f", "🔍  >  Find files", ":Telescope find_files<CR>"),
+			dashboard.button("g", "🔍  >  Live Grep", ":Telescope live_grep<CR>"),
 			dashboard.button("w", "🖋  >  Note Work", cmd_obsidian_work(":ObsidianToday<CR>")),
 			dashboard.button("p", "󱦹   >  Note Personal", cmd_obsidian_personal(":ObsidianToday<CR>")),
-			dashboard.button("g", "🐙   >  GitHub Pull Request", ":GHOpenPR<CR>"),
+			-- dashboard.button("g", "🐙   >  GitHub Pull Request", ":GHOpenPR<CR>"),
 		}
 
 		-- Send config to alpha
