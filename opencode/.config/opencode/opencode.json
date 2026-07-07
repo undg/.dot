@@ -68,7 +68,8 @@
 			"*.env.*": "deny",
 			"*.env.example": "allow",
 			".git/**": "deny",
-			"**/.git/**": "deny"
+			"**/.git/**": "deny",
+			".ssh/**": "deny"
 		},
 		"external_directory": {
 			"~/Documents/Work/**": "allow",
@@ -130,6 +131,7 @@
 			"pnpm vitest *": "allow",
 			"pnpm test *": "allow",
 			"pnpm lint *": "allow",
+			"pnpm lint:files *": "allow",
 			"pnpm type-check *": "allow",
 			"pnpm lint -- --fix *": "allow",
 			"node -e *": "deny",
