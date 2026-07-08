@@ -2,12 +2,18 @@
 
 import csv
 from datetime import datetime
+import os
 from pathlib import Path
+import platform
 
 import matplotlib.pyplot as plt
 
 
-CSV_PATH = Path.home() / "Library/Logs/coopilot-stats.csv"
+if platform.system() == "Darwin":
+    CSV_PATH = Path.home() / "Library/Logs/coopilot-stats.csv"
+else:
+    state_home = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state"))
+    CSV_PATH = state_home / "coopilot-stats/coopilot-stats.csv"
 
 
 def load_rows(path: Path):
