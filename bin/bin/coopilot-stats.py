@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 import csv
-from datetime import datetime
 import os
-from pathlib import Path
 import platform
+import signal
+from datetime import datetime
+from pathlib import Path
 
 import matplotlib.pyplot as plt
-
 
 if platform.system() == "Darwin":
     CSV_PATH = Path.home() / "Library/Logs/coopilot-stats.csv"
@@ -56,7 +56,7 @@ def main():
     x_positions = list(range(len(timestamps)))
 
     fig, ax = plt.subplots(figsize=(14, 7))
-    usage_line, = ax.plot(
+    (usage_line,) = ax.plot(
         x_positions,
         usage,
         color="blue",
@@ -106,11 +106,28 @@ def main():
         tooltip.set_visible(True)
         fig.canvas.draw_idle()
 
+    def on_key(event):
+        if event.key in {"enter", "escape", "esc", "q"}:
+            plt.close(fig)
+
+    previous_sigint_handler = signal.getsignal(signal.SIGINT)
+
+    def handle_sigint(signum, frame):
+        plt.close(fig)
+
     fig.canvas.mpl_connect("motion_notify_event", on_move)
+    fig.canvas.mpl_connect("key_press_event", on_key)
+    signal.signal(signal.SIGINT, handle_sigint)
 
     plt.tight_layout()
-    plt.show()
+    try:
+        plt.show()
+    finally:
+        signal.signal(signal.SIGINT, previous_sigint_handler)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
