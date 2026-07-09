@@ -21,6 +21,7 @@ Spec("plugins.git-conflict")
 Spec("plugins.neogit")                            -- A Magit clone for Neovim
 Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
 Spec("plugins.advanced-git-serach-nvim")          -- Search git log by file and more...
+Spec("plugins.blame-nvim")                        -- Git blame in fugitive like panel
 -- Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
 Git("https://github.com/tpope/vim-fugitive")      -- Git commands in nvim
 Git("https://github.com/tpope/vim-rhubarb")       -- Fugitive-companion to interact with github
