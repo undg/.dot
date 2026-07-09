@@ -90,7 +90,7 @@ if [ ! -f "$LOG_FILE" ]; then
 	printf '%s\n' 'date,time,usage,remaining,overage,entitlement,reset,user,organizations' >>"$LOG_FILE"
 fi
 
-echo "$STATS" | jq -r '
+NEW_ROW=$(echo "$STATS" | jq -r '
   [
     (now | strftime("%Y-%m-%d")),
     (now | strftime("%H:%M:%S")),
@@ -102,7 +102,17 @@ echo "$STATS" | jq -r '
     .login,
     (.organization_list | map(.name) | join("; "))
   ] | @csv
-' >>"$LOG_FILE"
+')
+
+LAST_ROW=$(awk -F, 'NR > 1 { last = $0 } END { print last }' "$LOG_FILE")
+LAST_DATE=$(printf '%s\n' "$LAST_ROW" | awk -F, '{ gsub(/^"|"$/, "", $1); print $1 }')
+LAST_USAGE=$(printf '%s\n' "$LAST_ROW" | awk -F, '{ gsub(/^"|"$/, "", $3); print $3 }')
+NEW_DATE=$(printf '%s\n' "$NEW_ROW" | awk -F, '{ gsub(/^"|"$/, "", $1); print $1 }')
+NEW_USAGE=$(printf '%s\n' "$NEW_ROW" | awk -F, '{ gsub(/^"|"$/, "", $3); print $3 }')
+
+if [ "$LAST_DATE" != "$NEW_DATE" ] || [ "$LAST_USAGE" != "$NEW_USAGE" ]; then
+	printf '%s\n' "$NEW_ROW" >>"$LOG_FILE"
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHART_DIR="$SCRIPT_DIR/coopilot-stats"
