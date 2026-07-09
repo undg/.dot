@@ -158,7 +158,7 @@ return {
 				})
 			end
 
-			Keymap.normal("<leader>m", ":Telescope<cr>")
+			Keymap.normal("<leader>ft", ":Telescope<cr>")
 			-- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
 			Keymap.normal(",.", ":Telescope smart_open<cr>") -- smart_open telescope _extension
 			Keymap.normal("<leader>,", ":Telescope smart_open cwd_only=false<cr>")
@@ -166,12 +166,12 @@ return {
 			Keymap.normal("<leader>.g", telescope.extensions.dir.live_grep)
 
 			Keymap.normal("<leader>fb", ":Telescope buffers<cr>")
-			Keymap.normal("<leader>fs", ":Telescope git_status<cr>", { desc = "(git) show" })
-			Keymap.normal("<leader>gb", ":Telescope git_branches<cr>", { desc = "(git) " })
-			Keymap.normal("<leader>gc", ":Telescope git_bcommits<cr>", { desc = "(git) " })
-			Keymap.visual("<leader>gc", git_bcommits_range_visual, { desc = "(git) " })
+			Keymap.normal("<leader>fs", ":Telescope git_status<cr>", { desc = "(git) status" })
+			Keymap.normal("<leader>gb", ":Telescope git_branches<cr>", { desc = "(git) branches" })
+			Keymap.normal("<leader>gc", ":Telescope git_bcommits<cr>", { desc = "(git) commits" })
+			Keymap.visual("<leader>gc", git_bcommits_range_visual, { desc = "(git) commits" })
 			Keymap.normal("<leader>fg", ":Telescope live_grep<cr>")
-			Keymap.normal("<leader>fG", telescope.extensions.dir.live_grep)
+			Keymap.normal("<leader>fG", telescope.extensions.dir.live_grep, { desc = "Telescope live grep" })
 			Keymap.normal("<leader>fr", ":Telescope resume<cr>")
 
 			Keymap.normal("fq", open_quick_fix_window_in_telescope, { desc = "Open QuickFix in Telescope" })
