@@ -1,10 +1,9 @@
 -- vim.opt.errorformat:append([[,%f\|%\s%#%l col%\s%#%c%\s%#\| %m]])
 
-
 return {
 	"stevearc/overseer.nvim", -- https://github.com/stevearc/overseer.nvim
 	config = function()
-		local overseer = require 'overseer'
+		local overseer = require("overseer")
 		overseer.setup({
 			task_list = {
 				-- Default detail level for tasks. Can be 1-3.
@@ -58,9 +57,8 @@ return {
 		})
 	end,
 
-
 	keys = {
-		{ "<leader>fv",  group = "Overseer", },
+		{ "<leader>fv",  group = "Overseer",             desc = "(Overseer)" },
 		{ "<leader>fvj", "<cmd>OverseerRun<cr>",         desc = "(Overseer) Run" },
 		{ "<leader>fvv", "<cmd>OverseerToggle<cr>",      desc = "(Overseer) Toggle" },
 		{ "<leader>fvk", "<cmd>OverseerTaskAction<cr>",  desc = "(Overseer) TaskAction" },
