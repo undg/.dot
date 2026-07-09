@@ -103,3 +103,36 @@ echo "$STATS" | jq -r '
     (.organization_list | map(.name) | join("; "))
   ] | @csv
 ' >>"$LOG_FILE"
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CHART_DIR="$SCRIPT_DIR/coopilot-stats"
+VENV_DIR="$CHART_DIR/.venv"
+PYTHON_BIN="$VENV_DIR/bin/python"
+UV_BIN="$(command -v uv)"
+
+mkdir -p "$CHART_DIR"
+
+if [ -z "$UV_BIN" ]; then
+	echo "Error: uv not found in PATH" >&2
+	exit 1
+fi
+
+if [ ! -x "$PYTHON_BIN" ]; then
+	"$UV_BIN" venv "$VENV_DIR" || {
+		echo "Error: failed to create chart venv with uv at $VENV_DIR" >&2
+		exit 1
+	}
+	"$UV_BIN" pip install --python "$PYTHON_BIN" --quiet matplotlib >/dev/null || {
+		echo "Error: failed to install matplotlib in $VENV_DIR with uv" >&2
+		exit 1
+	}
+fi
+
+"$PYTHON_BIN" -c 'import matplotlib' >/dev/null 2>&1 || {
+	"$UV_BIN" pip install --python "$PYTHON_BIN" --quiet matplotlib >/dev/null || {
+		echo "Error: failed to install matplotlib in $VENV_DIR with uv" >&2
+		exit 1
+	}
+}
+
+"$PYTHON_BIN" "$CHART_DIR/chart.py"
