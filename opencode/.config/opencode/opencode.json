@@ -130,6 +130,7 @@
 			"npm run lint -- --fix *": "allow",
 			"pnpm vitest *": "allow",
 			"pnpm test *": "allow",
+			"pnpm test:ci *": "allow",
 			"pnpm lint *": "allow",
 			"pnpm lint:files *": "allow",
 			"pnpm type-check *": "allow",
