@@ -9,20 +9,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Set wrap and spell in gitcommit and markdown
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "gitcommit", "markdown" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-		-- Use 2-space indentation for markdown (YAML frontmatter compatibility)
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-		vim.opt_local.softtabstop = 2
-		vim.opt_local.expandtab = true
-	end,
-})
-
 -- Set 2-space indentation for YAML files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "yaml", "yml" },
@@ -111,14 +97,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		end
 	end,
 })
-
-local typescript_ok = pcall(require, "typescript-tools")
-local not_ok = not typescript_ok and "typescript-tools" --
-	or false
-
-if not_ok then
-	vim.notify("autocmd.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
-end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
