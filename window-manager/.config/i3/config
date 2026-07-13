@@ -28,7 +28,7 @@ set $hibernate sudo -A systemctl suspend
 
 
 set $DP_pc_left "DP-2"
-set $DP_pc_right "DP-4"
+set $DP_pc_right "DP-0"
 
 set $DP_laptop "eDP"
 set $DP_laptop_right "HDMI-A-0"
