@@ -1,106 +1,36 @@
+local function start_treesitter(bufnr)
+	if not vim.api.nvim_buf_is_loaded(bufnr) then
+		return
+	end
+
+	local filetype = vim.bo[bufnr].filetype
+	if vim.bo[bufnr].buftype ~= "" or filetype == "" then
+		return
+	end
+
+	if filetype == "markdown" then
+		return
+	end
+
+	pcall(vim.treesitter.start, bufnr)
+end
+
 return {
-	"nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
-	branch = "main",
-	dependencies = {
-		-- helper plugin for comment str and [tj]sx,
-		{
-			"JoosepAlviste/nvim-ts-context-commentstring", -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-			dependencies = { "nvim-treesitter/nvim-treesitter" },
-		},
-
-		-- Highlight, edit, and navigate code using a fast incremental parsing library
-		-- Additional text objects for treesitter
-		{
-			"nvim-treesitter/nvim-treesitter-textobjects", -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-			branch = "main",
-			dependencies = { "nvim-treesitter/nvim-treesitter" },
-		},
-	},
+	"nvim-treesitter/nvim-treesitter", -- keep parser runtime available while migrating to Neovim 0.12 built-ins
 	lazy = false,
-	-- branch = "main", -- new releases, unstable
-	-- branch = "master", -- legacy backward compatible
-	commit = "42fc28ba918343ebfd5565147a42a26580579482", -- pin to before 308d27
-	build = ":TSUpdate",
-
 	config = function()
-		local ts_configs_ok, ts_configs = pcall(require, "nvim-treesitter")
+		local group = vim.api.nvim_create_augroup("native_treesitter_base", { clear = true })
 
-		local not_ok = not ts_configs_ok and "nvim-treesitter" --
-			or false
-
-		if not_ok then
-			vim.notify("plugins/treesitter.configs.lua: missing requirements " .. not_ok, vim.log.levels.ERROR)
-			return
-		end
-
-		-- Treesitter configuration
-		ts_configs.setup({
-			modules = {},
-			ignore_install = {},
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true, -- false will disable the whole extension
-				use_languagetree = true,
-				-- seen that on teej_dv stream, some magical extra powers to treesitter.
-				-- it looks and behaves better, but have some performance penally
-				additional_vim_regex_highlighting = false,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "vn",
-					node_incremental = "vn",
-					scope_incremental = "vnm",
-					node_decremental = "vm",
-				},
-			},
-			indent = {
-				enable = true,
-			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-					keymaps = {
-						-- You can use the capture groups defined in textobjects.scm
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
-						["ab"] = "@code_block.outer",
-						["ib"] = "@code_block.inner",
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
-					goto_next_start = {
-						["]]"] = "@function.outer",
-						["]v"] = "@class.outer",
-					},
-					goto_previous_start = {
-						["[["] = "@function.outer",
-						["[m"] = "@class.outer",
-					},
-					goto_next_end = {
-						["]["] = "@function.outer",
-						["]V"] = "@class.outer",
-					},
-					goto_previous_end = {
-						["[]"] = "@function.outer",
-						["[M"] = "@class.outer",
-					},
-				},
-			},
-			rainbow = {
-				enable = true,
-				-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-				extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-				max_file_lines = nil, -- Do not enable for files with more than n lines, int
-				-- colors = {}, -- table of hex strings
-				-- termcolors = {} -- table of colour name strings
-			},
+		vim.api.nvim_create_autocmd("FileType", {
+			group = group,
+			pattern = "*",
+			callback = function(ev)
+				start_treesitter(ev.buf)
+			end,
 		})
+
+		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			start_treesitter(bufnr)
+		end
 	end,
 }
