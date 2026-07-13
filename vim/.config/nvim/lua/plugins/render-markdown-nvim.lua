@@ -22,7 +22,6 @@ vim.api.nvim_set_hl(0, "RenderMarkdownTodo", { fg = "#7dd3fc" })
 
 return {
 	"MeanderingProgrammer/render-markdown.nvim",                                      -- https://github.com/MeanderingProgrammer/render-markdown.nvim
-	enabled = false, -- Neovim 0.12 migration: cut markdown off the old nvim-treesitter query path first
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 	---@module 'render-markdown'
 	---@type render.md.UserConfig

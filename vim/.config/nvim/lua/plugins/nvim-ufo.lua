@@ -43,6 +43,10 @@ return {
 			open_fold_hl_timeout = 400,
 			fold_virt_text_handler = fold_virt_text_handler,
 			provider_selector = function(bufnr, filetype, buftype)
+				if filetype == "markdown" or filetype == "quarto" then
+					return { "treesitter", "indent" }
+				end
+
 				return { "lsp", "indent" }
 			end,
 			close_fold_kinds_for_ft = {
