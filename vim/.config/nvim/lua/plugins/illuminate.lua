@@ -1,24 +1,24 @@
 local M = {
-	'RRethy/vim-illuminate', -- https://github.com/RRethy/vim-illuminate
+	"RRethy/vim-illuminate", -- https://github.com/RRethy/vim-illuminate
 }
 
 function M.config()
-	local illuminate_ok, illuminate = pcall(require, 'illuminate')
-	local iu_ok, iu = pcall(require, 'plugins.illuminate-utils')
+	local illuminate_ok, illuminate = pcall(require, "illuminate")
+	local iu_ok, iu = pcall(require, "plugins.illuminate-utils")
 
-	local not_ok = not illuminate_ok and 'illuminate' --
-		or not iu_ok and 'plugins.illuminate-utils'
+	local not_ok = not illuminate_ok and "illuminate" --
+		or not iu_ok and "plugins.illuminate-utils"
 		or false
 	if not_ok then
-		vim.notify('plugins/illuminate.lua: missing requirements - ' .. not_ok, vim.log.levels.ERROR)
+		vim.notify("plugins/illuminate.lua: missing requirements - " .. not_ok, vim.log.levels.ERROR)
 		return
 	end
 
 	illuminate.configure({
 		-- providers: provider used to get references in the buffer, ordered by priority
 		providers = {
-			'lsp',
-			'regex',
+			"lsp",
+			"regex",
 		},
 		-- delay: delay in milliseconds
 		delay = 100,
@@ -28,8 +28,8 @@ function M.config()
 		filetype_overrides = {},
 		-- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
 		filetypes_denylist = {
-			'dirvish',
-			'fugitive',
+			"dirvish",
+			"fugitive",
 		},
 		-- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
 		filetypes_allowlist = {},
@@ -51,7 +51,7 @@ function M.config()
 		under_cursor = true,
 		-- large_file_cutoff: number of lines at which to use large_file_config
 		-- The `under_cursor` option is disabled when this cutoff is hit
-		large_file_cutoff = nil,
+		large_file_cutoff = 10000,
 		-- large_file_config: config to use for large files (based on large_file_cutoff).
 		-- Supports the same keys passed to .configure
 		-- If nil, vim-illuminate will be disabled for large files.
@@ -60,11 +60,19 @@ function M.config()
 		min_count_to_highlight = 1,
 	})
 
-	Keymap.normal('<leader>*', function()
-		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+	-- vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#2a2827", underline = true })
+	-- vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#2a2827", underline = true })
+	-- vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#2a2827", underline = true })
+	-- More contrast:
+	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#32302f", underline = true })
+	vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#32302f", underline = true })
+	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#32302f", underline = true })
+
+	Keymap.normal("<leader>*", function()
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, { name = "IlluminatedWordRead" }).bg)
 	end)
-	Keymap.normal('<leader>8', function()
-		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, {name = 'IlluminatedWordRead'}).bg)
+	Keymap.normal("<leader>8", function()
+		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, { name = "IlluminatedWordRead" }).bg)
 	end)
 end
 
