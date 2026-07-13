@@ -6,7 +6,27 @@ return {
 		config = function()
 			local navic = require("nvim-navic")
 			navic.setup({
-				lsp = { auto_attach = true },
+				lsp = {
+					auto_attach = true,
+					preference = {
+						"marksman",
+						"typescript-tools",
+						"lua_ls",
+						"gopls",
+						"basedpyright",
+						"ruff",
+						"biome",
+						"eslint",
+						"json-lsp",
+						"yaml-language-server",
+						"cssls",
+						"html",
+						"tailwindcss",
+						"cssmodules_ls",
+						"bashls",
+						"svelte",
+					},
+				},
 				highlight = true,
 			})
 
@@ -25,7 +45,7 @@ return {
 			local navbuddy = require("nvim-navbuddy")
 
 			navbuddy.setup({
-				lsp = { auto_attach = true },
+				lsp = { auto_attach = false },
 				window = { border = "rounded" },
 			})
 			Keymap.normal("<leader>fn", ":Navbuddy<cr>", { desc = "Navbuddy" })
