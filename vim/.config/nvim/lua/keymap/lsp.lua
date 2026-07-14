@@ -2,11 +2,15 @@ local hu_ok, hu = pcall(require, "utils.hover-ui")
 local str_ok, str = pcall(require, "utils.str")
 local telescope_ok = pcall(require, "telescope")
 local lspsaga_ok = pcall(require, "lspsaga")
+local illuminate_ok, illuminate = pcall(require, "illuminate")
+local lsp_references_quickfix_ok, lsp_references_quickfix = pcall(require, "custom.lsp_references_quickfix")
 
 local not_ok = not lspsaga_ok and "lspsaga"
 	or not telescope_ok and "telescope"
+	or not illuminate_ok and "illuminate"
 	or not str_ok and "utils.str"
 	or not hu_ok and "utils.hover-ui"
+	or not lsp_references_quickfix_ok and "lsp_references_quickfix()"
 	or false -- all ok
 
 if not_ok then
@@ -70,8 +74,10 @@ Keymap.normal("gd", ":Telescope lsp_definitions<cr>", { desc = "lsp: definition 
 Keymap.normal("<leader>gD", vim.lsp.buf.type_definition, { desc = "lsp: type_definition" })
 Keymap.normal("gD", ":Telescope lsp_type_definitions<cr>", { desc = "lsp: type_definition (telescope)" })
 
-Keymap.normal("<leader>gr", vim.lsp.buf.references, { desc = "lsp: references" })
+Keymap.normal("<leader>gr", lsp_references_quickfix, { desc = "lsp: references (quickfix)" })
 Keymap.normal("gr", ":Telescope lsp_references<cr>", { desc = "lsp: references (telescope)" })
+Keymap.normal("gn", illuminate.goto_next_reference, { desc = "lsp: next reference in buffer" })
+Keymap.normal("gp", illuminate.goto_prev_reference, { desc = "lsp: prev reference in buffer" })
 
 Keymap.normal("<leader>gi", vim.lsp.buf.implementation, { desc = "lsp: implementation" })
 Keymap.normal("gi", ":Telescope lsp_implementations<cr>", { desc = "lsp: implementation (telescope)" })
