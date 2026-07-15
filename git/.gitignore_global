@@ -8,3 +8,6 @@ AGENTS.md
 
 # git worktree directory
 .wk/
+
+# code-review-graph cache/index
+.code-review-graph/
