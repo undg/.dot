@@ -18,6 +18,15 @@
 		"xai"
 	],
 	"mcp": {
+		"code-review-graph": {
+			"type": "local",
+			"enabled": true,
+			"command": [
+				"uvx",
+				"code-review-graph",
+				"serve"
+			]
+		},
 		"chrome-devtools": {
 			"type": "local",
 			"enabled": false,

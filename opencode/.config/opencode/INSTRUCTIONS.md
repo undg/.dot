@@ -36,6 +36,11 @@
 
 Load the `writing-style` skill for writing and editing tasks.
 
+### workflow and tools
+
+- For reading files from other branches or PRs, do not use `gh api` + `base64 -d` pipelines. Use a git worktree instead: create with `use-git-worktree`, read files with `read`, then remove with `use-git-worktree`.
+- For browser debugging, use the Chrome DevTools MCP server. Launch Chrome via `chrome-dev`, then include `use chrome-devtools` in the prompt.
+
 ### Strict Output Constraints
 
 - **tldr:** Do not makes user to angry yells at you TLDR;
