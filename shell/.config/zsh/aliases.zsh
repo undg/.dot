@@ -120,6 +120,14 @@ fi
 alias y='yarn'
 alias p='pnpm'
 
+pnpm_versions() {
+	pnpm view "$1" versions | jq -r '.[]' | sort --version-sort
+}
+
+npm_versions() {
+	npm view "$1" versions | jq -r '.[]' | sort --version-sort
+}
+
 alias vimwiki='nvim -c VimwikiIndex'
 
 if hash xclip 2>/dev/null; then
