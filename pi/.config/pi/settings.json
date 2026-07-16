@@ -3,5 +3,6 @@
   "theme": "dark",
   "defaultProvider": "opencode",
   "defaultModel": "kimi-k2.7-code",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "extensions": ["./extensions/permission-gate"]
 }
