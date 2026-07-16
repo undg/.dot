@@ -120,11 +120,11 @@ fi
 alias y='yarn'
 alias p='pnpm'
 
-pnpm_versions() {
+pnpm-versions() {
 	pnpm view "$1" versions | jq -r '.[]' | sort --version-sort
 }
 
-npm_versions() {
+npm-versions() {
 	npm view "$1" versions | jq -r '.[]' | sort --version-sort
 }
 
