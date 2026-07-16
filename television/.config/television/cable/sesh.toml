@@ -4,8 +4,9 @@ description = "Session manager integrating tmux sessions, zoxide directories, an
 requirements = [ "sesh", "fd",]
 
 [source]
-command = [ "sesh list --icons", "sesh list -t --icons", "sesh list -c --icons", "sesh list -z --icons", "fd -H -d 2 -t d -E .Trash . ~",]
+command = "sesh list --json | jq -r 'sort_by((.Src != \"tmux\"), .Name) | .[] | if .Src == \"tmux\" then \"\\u001b[34m\\u001b[39m \" + .Name else \"\\u001b[36m\\u001b[39m \" + .Name end'"
 ansi = true
+no_sort = true
 output = "{strip_ansi|split: :1..|join: }"
 
 [preview]
