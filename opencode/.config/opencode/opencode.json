@@ -87,13 +87,41 @@
 			"~/Documents/Personal/**": "allow"
 		},
 		"bash": {
+			///////////////////////////
+			// bash ask
+			///////////////////////////
 			"*": "ask",
 			"rm": "ask",
 			"mv": "ask",
 			"sh": "ask",
 			"curl": "ask",
 			"wget": "ask",
+			///////////////////////////
+			// bash allow
+			///////////////////////////
 			"jq *": "allow",
+			"ag *": "allow",
+			"rg *": "allow",
+			"echo *": "allow",
+			"tmux display-message *": "allow",
+			"find *": "allow",
+			"head *": "allow",
+			"tail *": "allow",
+			"grep *": "allow",
+			"cat *": "allow",
+			"ls *": "allow",
+			"pwd *": "allow",
+			"exa *": "allow",
+			"eza *": "allow",
+			"wc *": "allow",
+			"tree *": "allow",
+			"sed *": "allow",
+			"sort *": "allow",
+			"uniq *": "allow",
+			"awk *": "allow",
+			///////////////////////////
+			// gh-cli
+			///////////////////////////
 			"gh *": "ask",
 			"gh api *": "ask",
 			"gh issue list *": "allow",
@@ -108,8 +136,6 @@
 			"gh search prs *": "allow",
 			"gh pr status *": "allow",
 			"gh pr create *": "deny",
-			"rg *": "allow",
-			"echo": "allow",
 			"GIT_EDITOR=true git rebase --continue": "allow",
 			"git *": "ask",
 			"git commit *": "ask",
@@ -122,27 +148,17 @@
 			"git remote *": "ask",
 			"git show *": "allow",
 			"git status *": "allow",
-			"echo *": "allow",
-			"ag *": "allow",
-			"find *": "allow",
-			"head *": "allow",
-			"tail *": "allow",
-			"grep *": "allow",
-			"cat *": "allow",
-			"ls *": "allow",
-			"exa *": "allow",
-			"eza *": "allow",
-			"wc *": "allow",
-			"tree *": "allow",
-			"sed *": "allow",
-			"sort *": "allow",
-			"uniq *": "allow",
-			"awk *": "allow",
+			///////////////////////////
+			// npm
+			///////////////////////////
 			"npm run test *": "allow",
 			"npm test *": "allow",
 			"npm run lint *": "allow",
 			"npm run type-check *": "allow",
 			"npm run lint -- --fix *": "allow",
+			///////////////////////////
+			// pnpm
+			///////////////////////////
 			"pnpm vitest *": "allow",
 			"pnpm test *": "allow",
 			"pnpm test:ci *": "allow",
@@ -150,9 +166,11 @@
 			"pnpm lint:files *": "allow",
 			"pnpm type-check *": "allow",
 			"pnpm lint -- --fix *": "allow",
+			///////////////////////////
+			// DENY
+			///////////////////////////
 			"node -e *": "deny",
-			"python -c *": "deny",
-			"tmux display-message *": "allow"
+			"python -c *": "deny"
 		},
 		"webfetch": "ask",
 		"doom_loop": "ask",
@@ -177,5 +195,6 @@
 		"azure-devops_wit_get_work_items_for_iteration": "allow",
 		"azure-devops_wit_get_work_item": "allow",
 		"azure-devops_wit_get_work_items_batch_by_ids": "allow"
-	}
+	},
+	"shell": "zsh"
 }
