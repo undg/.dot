@@ -58,6 +58,8 @@
 		}
 	},
 	"plugin": [
+		// https://github.com/tirth8205/code-review-graph
+		"./plugins/crg-plugin.ts",
 		// https://github.com/mohak34/opencode-notifier/commits/main/
 		"@mohak34/opencode-notifier",
 		// https://github.com/Opencode-DCP/opencode-dynamic-context-pruning/commits/master/
