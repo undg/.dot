@@ -21,6 +21,7 @@ export TERMINAL="alacritty"
 export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
+export PI_CODING_AGENT_DIR="~/.config/pi/"
 
 RETARDED_OS=$([[ "$(uname)" == "Darwin" ]] && [[ "$(hostname)" =~ \.mhf\.mhc$ ]] && echo true || echo false)
 
