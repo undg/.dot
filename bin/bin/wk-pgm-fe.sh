@@ -208,7 +208,7 @@ if ! hash code-review-graph 2>/dev/null; then
 
 	SETUP_CMD="pnpm i --frozen-lockfile && git config core.hooksPath ../hooks && ln -s ../.opencode . && ln -s ../AGENTS.md . && ln -s ../.env.custom . && ln -s ../.env.custom-local . && exec $SHELL"
 else
-	SETUP_CMD="pnpm i --frozen-lockfile && ln -s ../.code-review-graph . && code-review-graph update && git config core.hooksPath ../hooks && ln -s ../.opencode . && ln -s ../AGENTS.md . && ln -s ../.env.custom . && ln -s ../.env.custom-local . && exec $SHELL"
+	SETUP_CMD="pnpm i --frozen-lockfile && code-review-graph build && git config core.hooksPath ../hooks && ln -s ../.opencode . && ln -s ../AGENTS.md . && ln -s ../.env.custom . && ln -s ../.env.custom-local . && exec $SHELL"
 fi
 
 tmux new-session -d -s "$RAW_BRANCH" -c "$WORKTREE_DIR" "$SETUP_CMD"
