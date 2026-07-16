@@ -1,0 +1,7 @@
+{
+  "lastChangelogVersion": "0.80.9",
+  "theme": "dark",
+  "defaultProvider": "opencode",
+  "defaultModel": "kimi-k2.7-code",
+  "hideThinkingBlock": true
+}
