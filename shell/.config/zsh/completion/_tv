@@ -101,6 +101,13 @@ _arguments "${_arguments_options[@]}" : \
 ':shell -- The shell for which to generate the autocompletion script:(bash zsh fish power-shell cmd nu)' \
 && ret=0
 ;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':shell:(bash zsh fish power-shell cmd nu)' \
+&& ret=0
+;;
 (update-channels)
 _arguments "${_arguments_options[@]}" : \
 '--force[Force update on unsupported and already existing channels]' \
@@ -128,6 +135,10 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 && ret=0
 ;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
 (update-channels)
 _arguments "${_arguments_options[@]}" : \
 && ret=0
@@ -150,20 +161,32 @@ _tv_commands() {
     local commands; commands=(
 'list-channels:Lists the available channels' \
 'init:Initializes shell completion ("tv init zsh")' \
+'completions:Generates standard shell tab-completion scripts for tv'\''s various subcommands' \
 'update-channels:Downloads the latest collection of channel prototypes from github and saves them to the local configuration directory' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'tv commands' commands "$@"
+}
+(( $+functions[_tv__completions_commands] )) ||
+_tv__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'tv completions commands' commands "$@"
 }
 (( $+functions[_tv__help_commands] )) ||
 _tv__help_commands() {
     local commands; commands=(
 'list-channels:Lists the available channels' \
 'init:Initializes shell completion ("tv init zsh")' \
+'completions:Generates standard shell tab-completion scripts for tv'\''s various subcommands' \
 'update-channels:Downloads the latest collection of channel prototypes from github and saves them to the local configuration directory' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'tv help commands' commands "$@"
+}
+(( $+functions[_tv__help__completions_commands] )) ||
+_tv__help__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'tv help completions commands' commands "$@"
 }
 (( $+functions[_tv__help__help_commands] )) ||
 _tv__help__help_commands() {
