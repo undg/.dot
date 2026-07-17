@@ -4,20 +4,11 @@
   "defaultProvider": "opencode",
   "defaultModel": "kimi-k2.7-code",
   "hideThinkingBlock": true,
-  "npmCommand": [
-    "mise",
-    "exec",
-    "node@24",
-    "--",
-    "pnpm"
-  ],
-  "extensions": [
-    "extensions/pi-notifier/index.ts"
-  ],
+  "npmCommand": ["mise", "exec", "node@24", "--", "pnpm"],
+  "extensions": ["extensions/pi-notifier/index.ts"],
   "packages": [
     "npm:@gotgenes/pi-permission-system@20.7.3",
-    "npm:@gotgenes/pi-nocd",
-    "npm:pi-opencode-bridge"
+    "npm:@gotgenes/pi-nocd"
   ],
   "defaultThinkingLevel": "high"
 }
