@@ -1,19 +1,14 @@
 {
-	"lastChangelogVersion": "0.80.9",
-	"theme": "dark",
-	"defaultProvider": "opencode",
-	"defaultModel": "kimi-k2.7-code",
-	"hideThinkingBlock": true,
-	"npmCommand": [
-		"mise",
-		"exec",
-		"node@24",
-		"--",
-		"pnpm"
-	],
-	"extensions": [],
-	"packages": [
-		"npm:@gotgenes/pi-permission-system@20.7.3"
-	],
-	"defaultThinkingLevel": "high"
+  "lastChangelogVersion": "0.80.9",
+  "theme": "dark",
+  "defaultProvider": "opencode",
+  "defaultModel": "kimi-k2.7-code",
+  "hideThinkingBlock": true,
+  "npmCommand": ["mise", "exec", "node@24", "--", "pnpm"],
+  "extensions": [],
+  "packages": [
+    "npm:@gotgenes/pi-permission-system@20.7.3",
+    "npm:@gotgenes/pi-nocd"
+  ],
+  "defaultThinkingLevel": "high"
 }
