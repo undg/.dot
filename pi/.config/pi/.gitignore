@@ -1,6 +1,7 @@
 sessions/
 .logs/
 tmp/
+models-store.json
 extensions/pi-permission-system/logs/
 extensions/*/node_modules/
 extensions/*/pnpm-lock.yaml
