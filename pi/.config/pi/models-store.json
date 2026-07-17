@@ -325,7 +325,7 @@
         }
       }
     ],
-    "checkedAt": 1784234059442
+    "checkedAt": 1784248682325
   },
   "opencode": {
     "models": [
@@ -1718,7 +1718,7 @@
         "maxTokens": 65536
       }
     ],
-    "checkedAt": 1784234059503
+    "checkedAt": 1784248682336
   },
   "openai": {
     "models": [
@@ -2828,7 +2828,7 @@
         "maxTokens": 100000
       }
     ],
-    "checkedAt": 1784234059505
+    "checkedAt": 1784248682312
   },
   "opencode-go": {
     "models": [
@@ -2955,6 +2955,31 @@
         }
       },
       {
+        "id": "grok-4.5",
+        "name": "Grok 4.5",
+        "api": "openai-completions",
+        "provider": "opencode-go",
+        "baseUrl": "https://opencode.ai/zen/go/v1",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 2,
+          "output": 6,
+          "cacheRead": 0.5,
+          "cacheWrite": 0
+        },
+        "compat": {
+          "supportsStore": false,
+          "supportsDeveloperRole": false,
+          "maxTokensField": "max_tokens"
+        },
+        "contextWindow": 500000,
+        "maxTokens": 500000
+      },
+      {
         "id": "kimi-k2.6",
         "name": "Kimi K2.6",
         "api": "openai-completions",
@@ -3011,6 +3036,31 @@
         },
         "contextWindow": 262144,
         "maxTokens": 262144
+      },
+      {
+        "id": "kimi-k3",
+        "name": "Kimi K3",
+        "api": "openai-completions",
+        "provider": "opencode-go",
+        "baseUrl": "https://opencode.ai/zen/go/v1",
+        "reasoning": true,
+        "input": [
+          "text",
+          "image"
+        ],
+        "cost": {
+          "input": 3,
+          "output": 15,
+          "cacheRead": 0.3,
+          "cacheWrite": 0
+        },
+        "compat": {
+          "supportsStore": false,
+          "supportsDeveloperRole": false,
+          "maxTokensField": "max_tokens"
+        },
+        "contextWindow": 1048576,
+        "maxTokens": 131072
       },
       {
         "id": "mimo-v2.5",
@@ -3171,6 +3221,6 @@
         "maxTokens": 65536
       }
     ],
-    "checkedAt": 1784234059524
+    "checkedAt": 1784248682300
   }
 }
