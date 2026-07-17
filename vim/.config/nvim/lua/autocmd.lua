@@ -9,9 +9,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Set 2-space indentation for YAML files
+-- Set 2-space indentation for YAML and JSON files
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "yaml", "yml" },
+	pattern = { "yaml", "yml", "json" },
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2
