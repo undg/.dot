@@ -92,6 +92,7 @@
 			"pnpm lint:files *": "allow",
 			"pnpm type-check *": "allow",
 			"pnpm lint -- --fix *": "allow",
+			"pnpm --version*": "allow",
 			"node -e *": "deny",
 			"python -c *": "deny"
 		},
