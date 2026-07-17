@@ -1,3 +1,8 @@
 sessions/
 .logs/
+tmp/
 extensions/pi-permission-system/logs/
+extensions/*/node_modules/
+extensions/*/pnpm-lock.yaml
+extensions/*/pnpm-workspace.yaml
+
