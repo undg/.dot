@@ -4,6 +4,7 @@
   "instructions": [
     "{env:HOME}/.config/opencode/INSTRUCTIONS.md"
   ],
+  "agent": {},
   "provider": {
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
