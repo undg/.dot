@@ -1,14 +1,39 @@
 {
-  "lastChangelogVersion": "0.80.9",
-  "theme": "dark",
-  "defaultProvider": "opencode",
+  "lastChangelogVersion": "0.80.10",
+  "theme": "gruvbox-dark-hard",
+  "defaultProvider": "opencode-go",
   "defaultModel": "kimi-k2.7-code",
   "hideThinkingBlock": true,
-  "npmCommand": ["mise", "exec", "node@24", "--", "pnpm"],
-  "extensions": ["extensions/pi-notifier/index.ts"],
+  "npmCommand": [
+    "mise",
+    "exec",
+    "node@24",
+    "--",
+    "pnpm"
+  ],
+  "extensions": [
+    "extensions/pi-notifier/index.ts",
+    "extensions/webfetch/index.ts",
+    "extensions/brave-search/index.ts"
+  ],
   "packages": [
     "npm:@gotgenes/pi-permission-system@20.7.3",
-    "npm:@gotgenes/pi-nocd"
+    "npm:@gotgenes/pi-nocd",
+    "git:https://github.com/hasit/pi-community-themes@v0.3.0",
+    "npm:@heyhuynhgiabuu/pi-diff"
   ],
-  "defaultThinkingLevel": "high"
+  "defaultThinkingLevel": "medium",
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "showCacheMissNotices": true,
+  "collapseChangelog": true,
+  "quietStartup": true,
+  "enableInstallTelemetry": false,
+  "treeFilterMode": "default",
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time"
 }

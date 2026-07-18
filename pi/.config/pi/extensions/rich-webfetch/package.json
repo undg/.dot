@@ -1,0 +1,12 @@
+{
+  "name": "rich-webfetch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Headless-browser web fetcher for JavaScript-rendered pages.",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}
