@@ -1,6 +1,6 @@
 ---
 name: obsidian
-description: Read, create, or update notes in Obsidian vaults. Handles multi-vault setup by detecting active vaults and asking the user which one to use. Load when working with personal notes, work notes, or any Obsidian markdown files.
+description: Read, create, or update notes in Obsidian vaults.
 ---
 
 # Skill: obsidian
@@ -11,14 +11,13 @@ description: Read, create, or update notes in Obsidian vaults. Handles multi-vau
 | -------- | ---------------------- |
 | Work     | `~/Documents/Work`     |
 | Personal | `~/Documents/Personal` |
-| Vimwiki  | `~/Documents/vimwiki`  |
 
 ## FIRST: Detect Active Vaults
 
 Before any operation, check which vaults are active (exist AND contain `.md` files):
 
 ```bash
-for vault in ~/Documents/Work ~/Documents/Personal ~/Documents/vimwiki; do
+for vault in ~/Documents/Work ~/Documents/Personal; do
   count=$(find "$vault" -name "*.md" 2>/dev/null | wc -l)
   echo "$vault: $count"
 done
