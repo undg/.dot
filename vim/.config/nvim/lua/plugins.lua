@@ -11,6 +11,7 @@ Spec("plugins.neovim-session-manager") -- autosave and restore session
 Spec("plugins.suda")                   -- ask for sudo password
 Spec("plugins.luapad")                 -- lua scratch pad
 -- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
+Spec("plugins.vim-bbye")               -- close buffer without messing up window layout
 Spec("plugins.bigfile")                -- lighter config for big files
 Spec("plugins.todo-comments")          -- highlight and search TODO comments
 
@@ -43,9 +44,9 @@ Spec("plugins.conform")                     -- better formatting
 Spec("plugins.trouble")                     -- organize errors and warnings
 Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
 
-	Spec("plugins.treesitter")                  -- syntax highlight
+Spec("plugins.treesitter")                  -- syntax highlight
 
-	Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
+Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
 -- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
 Git("https://github.com/folke/neodev.nvim") -- Neovim full signature help, docs and completion for the nvim lua API.
 -- Git("https://github.com/neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
@@ -90,7 +91,6 @@ Git("https://github.com/milisims/nvim-luaref")   -- adds a reference for builtin
 -- Look and feel
 Spec("plugins.theme")                 -- gruvbox is best theme on the universe
 Spec("plugins.lualine")               -- status bar with few informations
-Spec("plugins.bufferline")
 Spec("plugins.nvim-navic")            -- Breadcrumbs with navigation
 Spec("plugins.which-key")             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
