@@ -4,15 +4,15 @@ This directory is Pi's agent configuration, exposed at `~/.config/pi` via a syml
 
 ## Layout
 
-| Path | Purpose |
-|------|---------|
+| Path            | Purpose                                                             |
+| --------------- | ------------------------------------------------------------------- |
 | `settings.json` | Pi core settings: provider, model, npm command, installed packages. |
-| `AGENTS.md` | Project-level agent instructions (e.g., Grug). |
-| `auth.json` | API key lookup config (not the keys themselves). |
-| `extensions/` | Extension configs and logs. |
-| `npm/` | Local package workspace for Pi extensions. |
-| `sessions/` | Session data (ignored by git). |
-| `get-api-key` | Helper script for fetching API keys. |
+| `AGENTS.md`     | Project-level agent instructions (e.g., Grug).                      |
+| `auth.json`     | API key lookup config (not the keys themselves).                    |
+| `extensions/`   | Extension configs and logs.                                         |
+| `npm/`          | Local package workspace for Pi extensions.                          |
+| `sessions/`     | Session data (ignored by git).                                      |
+| `get-api-key`   | Helper script for fetching API keys.                                |
 
 ## Permissions
 
@@ -61,7 +61,7 @@ Example `auth.json`:
 {
   "opencode": {
     "type": "api_key",
-    "key": "!$HOME/.config/pi/get-api-key opencode"
+    "key": "!$HOME/.config/pi/get-api-key brave-api"
   }
 }
 ```
@@ -78,7 +78,7 @@ The helper script `get-api-key` reads from:
 **Linux (secret-tool):**
 
 ```bash
-secret-tool store --label="Pi OpenCode" provider opencode
+secret-tool store --label="Pi OpenCode" service opencode
 # paste the key when prompted
 ```
 
