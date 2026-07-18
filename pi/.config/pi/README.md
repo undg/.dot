@@ -4,15 +4,15 @@ This directory is Pi's agent configuration, exposed at `~/.config/pi` via a syml
 
 ## Layout
 
-| Path            | Purpose                                                             |
-| --------------- | ------------------------------------------------------------------- |
-| `settings.json` | Pi core settings: provider, model, npm command, installed packages. |
-| `AGENTS.md`     | Project-level agent instructions (e.g., Grug).                      |
-| `auth.json`     | API key lookup config (not the keys themselves).                    |
-| `extensions/`   | Extension configs and logs.                                         |
-| `npm/`          | Local package workspace for Pi extensions.                          |
-| `sessions/`     | Session data (ignored by git).                                      |
-| `get-api-key`   | Helper script for fetching API keys.                                |
+| Path             | Purpose                                                             |
+| ---------------- | ------------------------------------------------------------------- |
+| `settings.json`  | Pi core settings: provider, model, npm command, installed packages. |
+| `AGENTS.md`      | Project-level agent instructions (e.g., Grug).                      |
+| `auth.json`      | API key lookup config (not the keys themselves).                    |
+| `extensions/`    | Extension configs and logs.                                         |
+| `npm/`           | Local package workspace for Pi extensions.                          |
+| `sessions/`      | Session data (ignored by git).                                      |
+| `get-api-key.sh` | Helper script for fetching API keys.                                |
 
 ## Permissions
 
@@ -61,14 +61,14 @@ Example `auth.json`:
 {
   "opencode": {
     "type": "api_key",
-    "key": "!$HOME/.config/pi/get-api-key brave-api"
+    "key": "!$HOME/.config/pi/get-api-key.sh brave-api"
   }
 }
 ```
 
 The `!` prefix means the value is a shell command to execute; the output becomes the API key.
 
-The helper script `get-api-key` reads from:
+The helper script `get-api-key.sh` reads from:
 
 - **Linux:** `secret-tool` (libsecret / GNOME Keyring)
 - **macOS:** `security find-generic-password` (Keychain)
