@@ -14,6 +14,12 @@
   "yoloMode": false,
   "permission": {
     "*": "ask",
+    "read": "allow",
+    "webfetch": "ask",
+    "rich-webfetch": "ask",
+    "memory": "allow",
+    "memory *": "allow",
+    "memory_*": "allow",
     "path": {
       // green
       "*": "allow",
@@ -34,9 +40,6 @@
       "*/.config/pi/get-api-key.sh": "deny",
       "*auth.json": "deny"
     },
-    "read": "allow",
-    "webfetch": "ask",
-    "rich-webfetch": "ask",
     "external_directory": {
       //////////////////////
       // keep on the top
