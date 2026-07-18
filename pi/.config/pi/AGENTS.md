@@ -9,6 +9,12 @@ Use `~/.dot/pi/.config/pi/tmp/` for all temporary files, scripts, and scratch wo
 Do not use `/tmp/`. This directory is persistent, gitignored, and tied to the project config.
 After you finish, DO NOT delete them after you used them.
 
+# Git Commands
+
+Do not prefix git commands with `git -C <current_dir>`. Wasteful. If you need
+to act on a different repo, `cd` into it first, then use plain `git`. If
+already in the repo, just use `git`. No exceptions.
+
 # Pi Documentation
 
 Pi docs and examples are symlinked into the working directory:
