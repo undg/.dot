@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.80.10",
   "theme": "gruvbox-dark-hard",
   "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.7-code",
+  "defaultModel": "minimax-m3",
   "hideThinkingBlock": true,
   "npmCommand": [
     "mise",
