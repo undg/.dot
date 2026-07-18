@@ -1,26 +1,61 @@
+// vim: set filetype=jsonc tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab:
+
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
+  "piInfrastructureReadPaths": [
+    "~/.dot/pi/.config/pi/docs/*",
+    "~/.dot/pi/.config/pi/examples/*",
+    "~/.dot/pi/.config/pi/npm/*",
+    "~/.dot/pi/.config/pi/git/*",
+    "~/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/**"
+  ],
+  "debugLog": false,
+  "permissionReviewLog": true,
+  "yoloMode": false,
   "permission": {
-    "*": "allow",
+    "*": "ask",
     "path": {
+      // green
       "*": "allow",
+      "*.env.example": "allow",
+
+      // yellow
+      "*/pi-permission-system/config.json": "ask",
+      "*/pi-permission-system/logs/*": "ask",
+      "*AGENTS.md": "ask",
+
+      // red
       "*.env": "deny",
       "*.env.*": "deny",
-      "*.env.example": "allow",
       ".git/*": "deny",
       "**/.git/*": "deny",
       ".ssh/*": "deny",
-      "~/.ssh/*": "deny"
+      "~/.ssh/*": "deny",
+      "*/.config/pi/get-api-key.sh": "deny",
+      "*auth.json": "deny"
     },
     "read": "allow",
+    "webfetch": "ask",
+    "rich-webfetch": "ask",
     "external_directory": {
+      //////////////////////
+      // keep on the top
+      //////////////////////
       "*": "ask",
+
+      //////////////////////
+      // white listed
+      //////////////////////
       "~/Documents/Work/*": "allow",
       "~/Documents/Personal/*": "allow",
       "~/.dot/pi/.config/pi/tmp/*": "allow"
     },
     "bash": {
+      //////////////////////
+      // keep on the top
+      //////////////////////
       "*": "ask",
+
       "rm": "ask",
       "rm *": "ask",
       "mv": "ask",
@@ -31,23 +66,39 @@
       "curl *": "ask",
       "wget": "ask",
       "wget *": "ask",
+      "awk": "ask",
+      "awk *": "ask",
+      "awk *system(*": "deny",
+      "awk *\"*|*getline*": "deny",
+
+      //////////////////////
+      // white listed
+      //////////////////////
       "ag *": "allow",
-      "awk *": "allow",
+      "basename *": "allow",
       "cat *": "allow",
       "command *": "allow",
+      "diff *": "allow",
+      "dirname *": "allow",
       "echo *": "allow",
       "exa *": "allow",
       "eza *": "allow",
-      "find *": "allow",
+      "file *": "allow",
       "grep *": "allow",
       "head *": "allow",
       "jq *": "allow",
+      "ln *": "allow",
       "ls *": "allow",
+      "mkdir *": "allow",
       "pwd *": "allow",
+      "readlink *": "allow",
+      "realpath *": "allow",
       "rg *": "allow",
       "sed *": "allow",
       "sort *": "allow",
+      "stat *": "allow",
       "tail *": "allow",
+      "touch *": "allow",
       "tmux display-message *": "allow",
       "tree *": "allow",
       "uniq *": "allow",
@@ -55,52 +106,115 @@
       "which *": "allow",
       "pi config *": "allow",
       "timeout *": "allow",
+
+      /////////
+      // find
+      /////////
+      "find": "allow",
+      "find *": "allow",
+      "find * -delete": "ask",
+      "find * -exec *": "deny",
+      "find * -execdir *": "deny",
+      "find * -ok *": "deny",
+      "find * -okdir *": "deny",
+
+      /////////
+      // gh
+      /////////
+      "gh": "ask",
       "gh *": "ask",
+      "gh api": "ask",
       "gh api *": "ask",
+      "gh issue list": "allow",
       "gh issue list *": "allow",
+      "gh issue view": "allow",
       "gh issue view *": "allow",
+      "gh pr checks": "allow",
       "gh pr checks *": "allow",
+      "gh pr diff": "allow",
       "gh pr diff *": "allow",
+      "gh pr list": "allow",
       "gh pr list *": "allow",
+      "gh pr view": "allow",
       "gh pr view *": "allow",
+      "gh repo view": "allow",
       "gh repo view *": "allow",
+      "gh run list": "allow",
       "gh run list *": "allow",
+      "gh run view": "allow",
       "gh run view *": "allow",
+      "gh search prs": "allow",
       "gh search prs *": "allow",
+      "gh pr status": "allow",
       "gh pr status *": "allow",
       "gh pr create *": "deny",
+
+      /////////
+      // git
+      /////////
+      "git": "ask",
       "git *": "ask",
+      "git commit": "ask",
       "git commit *": "ask",
+      "git config": "ask",
       "git config *": "ask",
-      "git diff *": "allow",
-      "git push *": "deny",
-      "git log *": "allow",
+      "git rebase": "ask",
       "git rebase *": "ask",
-      "git rebase --continue": "allow",
+      "git rebase --continue": "ask",
+      "git remote": "allow",
       "git remote *": "ask",
+      "git add": "allow",
+      "git add *": "allow",
+      "git diff": "allow",
+      "git diff *": "allow",
+      "git log": "allow",
+      "git log *": "allow",
+      "git show": "allow",
       "git show *": "allow",
+      "git status": "allow",
       "git status *": "allow",
+      "git push": "deny",
+      "git push *": "deny",
+
+      /////////
+      // npm
+      /////////
+      "npm run test": "allow",
       "npm run test *": "allow",
+      "npm test": "allow",
       "npm test *": "allow",
+      "npm run lint": "allow",
       "npm run lint *": "allow",
+      "npm run type-check": "allow",
       "npm run type-check *": "allow",
+      "npm run lint -- --fix": "allow",
       "npm run lint -- --fix *": "allow",
+
+      /////////
+      // pnpm
+      /////////
+      "pnpm vitest": "allow",
       "pnpm vitest *": "allow",
+      "pnpm test": "allow",
       "pnpm test *": "allow",
+      "pnpm test:ci": "allow",
       "pnpm test:ci *": "allow",
+      "pnpm lint": "allow",
       "pnpm lint *": "allow",
+      "pnpm lint:files": "allow",
       "pnpm lint:files *": "allow",
+      "pnpm type-check": "allow",
       "pnpm type-check *": "allow",
+      "pnpm lint -- --fix": "allow",
       "pnpm lint -- --fix *": "allow",
       "pnpm --version*": "allow",
+
+      ////////////////
+      // Black listed
+      // keep at the end, last win
+      ////////////////
       "node -e *": "deny",
       "python -c *": "deny"
-    },
-    "mcp": {
-      "*": "ask"
     }
-  },
-  "debugLog": false,
-  "permissionReviewLog": true,
-  "yoloMode": false
+  }
 }
