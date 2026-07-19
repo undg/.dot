@@ -3,12 +3,6 @@
 Pi config is in `~/.config/pi/`, not `~/.pi/`.
 The environment variable `PI_CODING_AGENT_DIR=~/.config/pi/` overrides the default `~/.pi/agent` location.
 
-# Temporary Directory
-
-Use `~/.dot/pi/.config/pi/tmp/` for all temporary files, scripts, and scratch work.
-Do not use `/tmp/`. This directory is persistent, gitignored, and tied to the project config.
-After you finish, DO NOT delete them after you used them.
-
 # Pi Documentation
 
 Pi docs and examples are symlinked into the working directory:
