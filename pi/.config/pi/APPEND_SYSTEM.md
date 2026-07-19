@@ -12,7 +12,7 @@ already in the repo, just use `git`. No exceptions.
 
 Prefer standard tooling over custom scripts. User most likely will not allow it, but if you feel like you have to those are the rules:
 
-Use `~/.dot/pi/.config/pi/tmp/` for all temporary files, scripts, and scratch work.
+Use `~/.config/pi/tmp/` for all temporary files, scripts, and scratch work.
 . This directory is persistent and tied to the project config.
 After you finish, DO NOT delete them.
 Do not use `/tmp/`

@@ -1,0 +1,49 @@
+{
+  "lastChangelogVersion": "0.80.10",
+  "theme": "gruvbox-dark-soft",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "minimax-m3",
+  "hideThinkingBlock": false,
+  "npmCommand": [
+    "mise",
+    "exec",
+    "node@24",
+    "--",
+    "pnpm"
+  ],
+  "extensions": [
+    "extensions/pi-notifier/index.ts",
+    "extensions/webfetch/index.ts",
+    "extensions/brave-search/index.ts",
+    "extensions/tui-nice/index.ts",
+    "extensions/disable-share.ts"
+  ],
+  "packages": [
+    "npm:@gotgenes/pi-permission-system@20.7.3",
+    "npm:@gotgenes/pi-nocd",
+    "git:https://github.com/hasit/pi-community-themes@v0.3.0",
+    "npm:@heyhuynhgiabuu/pi-diff",
+    "npm:pi-hermes-memory",
+    "npm:pi-ayu-themes"
+  ],
+  "defaultThinkingLevel": "high",
+  "terminal": {
+    "showTerminalProgress": true,
+    "clearOnShrink": false
+  },
+  "showCacheMissNotices": true,
+  "collapseChangelog": true,
+  "quietStartup": true,
+  "enableInstallTelemetry": false,
+  "treeFilterMode": "user-only",
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+  "steeringMode": "all",
+  "followUpMode": "all",
+  "enableSkillCommands": true,
+  "showHardwareCursor": true,
+  "transport": "auto",
+  "doubleEscapeAction": "tree",
+  "autocompleteMaxVisible": 20
+}
