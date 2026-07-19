@@ -13,7 +13,7 @@ fi
 
 if command -v secret-tool >/dev/null 2>&1; then
 	# Linux / GNOME Keyring / libsecret
-	secret-tool lookup provider "$provider"
+	secret-tool lookup service "$provider"
 elif command -v security >/dev/null 2>&1; then
 	# macOS Keychain
 	security find-generic-password -s "$provider" -w
