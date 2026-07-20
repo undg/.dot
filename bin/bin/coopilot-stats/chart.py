@@ -49,6 +49,31 @@ def build_display_day_range(timestamps):
     return first_day_start, display_end, day_boundaries
 
 
+def add_day_start_points(timestamps, usage):
+    """Add a midnight point for every day covered by the data.
+
+    The point carries the last known value from the preceding day. If there
+    are no observations for a day, that value is carried forward to the next
+    day as well.
+    """
+    plot_timestamps = []
+    plot_usage = []
+    next_day = timestamps[0].date() + timedelta(days=1)
+    last_value = usage[0]
+
+    for timestamp, value in zip(timestamps, usage):
+        while next_day <= timestamp.date():
+            plot_timestamps.append(datetime.combine(next_day, time.min))
+            plot_usage.append(last_value)
+            next_day += timedelta(days=1)
+
+        plot_timestamps.append(timestamp)
+        plot_usage.append(value)
+        last_value = value
+
+    return plot_timestamps, plot_usage
+
+
 def build_daily_usage_stats(timestamps, usage):
     previous_daily_usage = [None] * len(timestamps)
     current_daily_usage = [None] * len(timestamps)
@@ -82,23 +107,23 @@ def main():
     if not timestamps:
         raise SystemExit(f"No data in {CSV_PATH}")
 
-    x_positions = timestamps
+    x_positions, plot_usage = add_day_start_points(timestamps, usage)
     previous_daily_usage, current_daily_usage, is_new_day = build_daily_usage_stats(
-        timestamps, usage
+        x_positions, plot_usage
     )
     display_start, display_end, day_boundaries = build_display_day_range(timestamps)
 
     fig, ax = plt.subplots(figsize=(14, 7))
     (usage_line,) = ax.plot(
         x_positions,
-        usage,
+        plot_usage,
         color="blue",
         linewidth=2,
         marker="o",
         markersize=4,
         label="usage",
     )
-    ax.plot(x_positions, entitlement, color="red", linewidth=2, label="entitlement")
+    ax.plot(timestamps, entitlement, color="red", linewidth=2, label="entitlement")
 
     ax.set_title("Coopilot stats")
     ax.set_ylabel("Value")
@@ -140,14 +165,14 @@ def main():
             return
 
         index = details["ind"][0]
-        tooltip.xy = (x_positions[index], usage[index])
+        tooltip.xy = (x_positions[index], plot_usage[index])
 
-        previous_usage = usage[index - 1] if index > 0 else None
-        task_usage = usage[index] - previous_usage if previous_usage is not None else None
+        previous_usage = plot_usage[index - 1] if index > 0 else None
+        task_usage = plot_usage[index] - previous_usage if previous_usage is not None else None
 
         tooltip_lines = [
-            timestamps[index].strftime('%Y-%m-%d %H:%M:%S'),
-            f"usage: {usage[index]:.0f}",
+            x_positions[index].strftime('%Y-%m-%d %H:%M:%S'),
+            f"usage: {plot_usage[index]:.0f}",
         ]
         if previous_usage is not None:
             tooltip_lines.append(f"prev usage: {previous_usage:.0f}")
