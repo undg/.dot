@@ -9,6 +9,8 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
+AI_CREDIT_USD = 0.01
+
 if platform.system() == "Darwin":
     CSV_PATH = Path.home() / "Library/Logs/coopilot-stats.csv"
 else:
@@ -27,8 +29,8 @@ def load_rows(path: Path):
             timestamps.append(
                 datetime.strptime(f"{row['date']} {row['time']}", "%Y-%m-%d %H:%M:%S")
             )
-            usage.append(float(row["usage"]))
-            entitlement.append(float(row["entitlement"]))
+            usage.append(float(row["usage"]) * AI_CREDIT_USD)
+            entitlement.append(float(row["entitlement"]) * AI_CREDIT_USD)
 
     return timestamps, usage, entitlement
 
@@ -77,7 +79,7 @@ def add_day_start_points(timestamps, usage):
     return plot_timestamps, plot_usage, is_day_start
 
 
-def build_daily_usage_stats(timestamps, usage):
+def build_daily_usage_stats(timestamps, usage, is_day_start=None):
     previous_daily_usage = [None] * len(timestamps)
     current_daily_usage = [None] * len(timestamps)
     is_new_day = [False] * len(timestamps)
@@ -89,16 +91,35 @@ def build_daily_usage_stats(timestamps, usage):
         if index == len(timestamps) or timestamps[index].date() != timestamps[day_start].date():
             day_end = index - 1
             day_baseline = usage[day_start - 1] if day_start > 0 else None
+            first_real_point = day_start
+            if is_day_start is not None:
+                while (
+                    first_real_point <= day_end
+                    and is_day_start[first_real_point]
+                ):
+                    first_real_point += 1
+            if (
+                day_baseline is not None
+                and first_real_point <= day_end
+                and usage[first_real_point] < day_baseline
+            ):
+                day_baseline = 0
             day_total = usage[day_end] - day_baseline if day_baseline is not None else None
             day_ranges.append((day_start, day_end, day_baseline, day_total))
             day_start = index
 
     for day_index, (day_start, day_end, day_baseline, _) in enumerate(day_ranges):
         previous_day_total = day_ranges[day_index - 1][3] if day_index > 0 else None
+        first_real_point = day_start
+
+        if is_day_start is not None:
+            while first_real_point <= day_end and is_day_start[first_real_point]:
+                first_real_point += 1
+
+        if day_baseline is not None:
+            current_daily_usage[day_start] = day_ranges[day_index][3]
 
         for index in range(day_start, day_end + 1):
-            if day_baseline is not None:
-                current_daily_usage[index] = usage[index] - day_baseline
             previous_daily_usage[index] = previous_day_total
             is_new_day[index] = index == day_start and day_index > 0
 
@@ -112,7 +133,7 @@ def main():
 
     x_positions, plot_usage, is_day_start = add_day_start_points(timestamps, usage)
     previous_daily_usage, current_daily_usage, is_new_day = build_daily_usage_stats(
-        x_positions, plot_usage
+        x_positions, plot_usage, is_day_start
     )
     display_start, display_end, day_boundaries = build_display_day_range(timestamps)
 
@@ -124,9 +145,15 @@ def main():
         linewidth=2,
         marker="o",
         markersize=4,
-        label="usage",
+        label="usage (USD)",
     )
-    ax.plot(timestamps, entitlement, color="red", linewidth=2, label="entitlement")
+    ax.plot(
+        timestamps,
+        entitlement,
+        color="red",
+        linewidth=2,
+        label="entitlement (USD)",
+    )
 
     day_start_positions = [
         (timestamp, value)
@@ -148,8 +175,8 @@ def main():
             label="day start",
         )
 
-    ax.set_title("Coopilot stats")
-    ax.set_ylabel("Value")
+    ax.set_title("Coopilot stats (1 AI credit = $0.01 USD)")
+    ax.set_ylabel("USD")
     ax.grid(True, axis="y", alpha=0.3)
     ax.legend()
 
@@ -190,33 +217,36 @@ def main():
         index = details["ind"][0]
         tooltip.xy = (x_positions[index], plot_usage[index])
 
-        previous_usage = plot_usage[index - 1] if index > 0 else None
-        task_usage = plot_usage[index] - previous_usage if previous_usage is not None else None
-
         tooltip_lines = [
             x_positions[index].strftime('%Y-%m-%d %H:%M:%S'),
-            f"usage: {plot_usage[index]:.0f}",
+            f"usage: ${plot_usage[index]:.3f}",
         ]
-        if previous_usage is not None:
-            tooltip_lines.append(f"prev usage: {previous_usage:.0f}")
-            tooltip_lines.append(f"task usage: {task_usage:+.0f}")
-        else:
-            tooltip_lines.append("prev usage: n/a")
-            tooltip_lines.append("task usage: n/a")
 
-        if is_day_start[index]:
-            tooltip_lines.append("day start: artificial")
+        if not is_day_start[index]:
+            previous_real_index = index - 1
+            while previous_real_index >= 0 and is_day_start[previous_real_index]:
+                previous_real_index -= 1
+
+            if previous_real_index >= 0:
+                task_usage = plot_usage[index] - plot_usage[previous_real_index]
+                tooltip_lines.append(
+                    f"task usage: ${task_usage:+.3f}"
+                    if task_usage >= 0
+                    else "task usage: n/a (usage reset)"
+                )
+            else:
+                tooltip_lines.append("task usage: n/a")
 
         if is_new_day[index]:
             previous_day_total = previous_daily_usage[index]
             current_day_total = current_daily_usage[index]
             tooltip_lines.append(
-                f"prev daily usage: {previous_day_total:.0f}"
+                f"prev daily usage: ${previous_day_total:.3f}"
                 if previous_day_total is not None
                 else "prev daily usage: n/a"
             )
             tooltip_lines.append(
-                f"current daily usage: {current_day_total:.0f}"
+                f"current daily usage: ${current_day_total:.3f}"
                 if current_day_total is not None
                 else "current daily usage: n/a"
             )
