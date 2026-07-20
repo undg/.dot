@@ -68,6 +68,7 @@ install_configs() {
 	# @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
 	#  @TODO (undg) 2026-02-15: still thinking :)
 	rm -rf ~/.config/atuin
+	mkdir -p ~/.config/pi/
 
 	for folder in */; do
 		if [[ ! $folder =~ ^_.* ]]; then
