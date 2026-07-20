@@ -14,19 +14,21 @@ local function close_other_buffers()
 end
 
 local CMD_CLOSE_GP_CHATS =
-	":execute 'bufdo if expand(\"%:p\") =~ \"^' . expand('~/.local/share/nvim/gp/chats/') . '.*.md$\" | bd! | endif'<cr>"
+":execute 'bufdo if expand(\"%:p\") =~ \"^' . expand('~/.local/share/nvim/gp/chats/') . '.*.md$\" | bd! | endif'<cr>"
 
 function M.config()
 	Keymap.normal("<C-Q>", ":Bdelete<cr>", { desc = "Close Buffer" })
 	Keymap.normal("<leader>qq", ":Bdelete<cr>", { desc = "Close Buffer" })
 	Keymap.normal("<leader>bD", ":Bdelete<cr>", { desc = "Close Buffer" })
+	Keymap.normal("<leader>bn", ":bNext<cr>", { desc = "Buffer next" })
+	Keymap.normal("<leader>bp", ":bPrev<cr>", { desc = "Buffer prev" })
 	Keymap.normal("<leader>bdd", close_other_buffers, { desc = "Close Buffers other than current" })
 	Keymap.normal("<leader>bda", CMD_CLOSE_GP_CHATS, { desc = "Close Buffer with gp.nvim chats" })
 
 	local wkey_ok, wk = pcall(require, "which-key")
 	if wkey_ok then
 		wk.add({
-			{ "<leader>b", group = "Buffer" },
+			{ "<leader>b",  group = "Buffer" },
 			{ "<leader>bd", group = "Buffer Close" },
 		})
 	end
