@@ -95,6 +95,8 @@
       "ln *": "allow",
       "ls *": "allow",
       "mkdir *": "allow",
+      "nl": "allow",
+      "nl *": "allow",
       "pi config *": "allow",
       "printf *": "allow",
       "pwd *": "allow",
