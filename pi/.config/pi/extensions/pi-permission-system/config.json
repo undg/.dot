@@ -1,4 +1,4 @@
-// vim: set filetype=jsonc tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab:
+// vim: set filetype=jsonc:
 
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
@@ -15,6 +15,9 @@
   "permission": {
     "*": "ask",
     "read": "allow",
+    "edit": "allow",
+    "write": "allow",
+    "apply_patch": "allow",
     "webfetch": "ask",
     "rich-webfetch": "ask",
     "memory": "allow",
