@@ -100,9 +100,22 @@ def main():
 
         index = details["ind"][0]
         tooltip.xy = (x_positions[index], usage[index])
-        tooltip.set_text(
-            f"{timestamps[index].strftime('%Y-%m-%d %H:%M:%S')}\nusage: {usage[index]:.0f}"
-        )
+
+        previous_usage = usage[index - 1] if index > 0 else None
+        task_usage = usage[index] - previous_usage if previous_usage is not None else None
+
+        tooltip_lines = [
+            timestamps[index].strftime('%Y-%m-%d %H:%M:%S'),
+            f"usage: {usage[index]:.0f}",
+        ]
+        if previous_usage is not None:
+            tooltip_lines.append(f"prev usage: {previous_usage:.0f}")
+            tooltip_lines.append(f"task usage: {task_usage:+.0f}")
+        else:
+            tooltip_lines.append("prev usage: n/a")
+            tooltip_lines.append("task usage: n/a")
+
+        tooltip.set_text("\n".join(tooltip_lines))
         tooltip.set_visible(True)
         fig.canvas.draw_idle()
 
