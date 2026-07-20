@@ -58,6 +58,7 @@ def add_day_start_points(timestamps, usage):
     """
     plot_timestamps = []
     plot_usage = []
+    is_day_start = []
     next_day = timestamps[0].date() + timedelta(days=1)
     last_value = usage[0]
 
@@ -65,13 +66,15 @@ def add_day_start_points(timestamps, usage):
         while next_day <= timestamp.date():
             plot_timestamps.append(datetime.combine(next_day, time.min))
             plot_usage.append(last_value)
+            is_day_start.append(True)
             next_day += timedelta(days=1)
 
         plot_timestamps.append(timestamp)
         plot_usage.append(value)
+        is_day_start.append(False)
         last_value = value
 
-    return plot_timestamps, plot_usage
+    return plot_timestamps, plot_usage, is_day_start
 
 
 def build_daily_usage_stats(timestamps, usage):
@@ -107,7 +110,7 @@ def main():
     if not timestamps:
         raise SystemExit(f"No data in {CSV_PATH}")
 
-    x_positions, plot_usage = add_day_start_points(timestamps, usage)
+    x_positions, plot_usage, is_day_start = add_day_start_points(timestamps, usage)
     previous_daily_usage, current_daily_usage, is_new_day = build_daily_usage_stats(
         x_positions, plot_usage
     )
@@ -124,6 +127,26 @@ def main():
         label="usage",
     )
     ax.plot(timestamps, entitlement, color="red", linewidth=2, label="entitlement")
+
+    day_start_positions = [
+        (timestamp, value)
+        for timestamp, value, day_start in zip(
+            x_positions, plot_usage, is_day_start
+        )
+        if day_start
+    ]
+    if day_start_positions:
+        day_start_timestamps, day_start_usage = zip(*day_start_positions)
+        ax.scatter(
+            day_start_timestamps,
+            day_start_usage,
+            color="orange",
+            edgecolors="black",
+            linewidths=0.8,
+            s=55,
+            zorder=3,
+            label="day start",
+        )
 
     ax.set_title("Coopilot stats")
     ax.set_ylabel("Value")
@@ -180,6 +203,9 @@ def main():
         else:
             tooltip_lines.append("prev usage: n/a")
             tooltip_lines.append("task usage: n/a")
+
+        if is_day_start[index]:
+            tooltip_lines.append("day start: artificial")
 
         if is_new_day[index]:
             previous_day_total = previous_daily_usage[index]
