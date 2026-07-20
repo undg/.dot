@@ -81,9 +81,9 @@ set $blue        #83a598
 
 
 #                       BORDER        BACKGROUND   TEXT      INDICATOR     CHILD_BORDER
-client.focused          $red          $red         $white    $stronggreen  $darkred
-client.unfocused        $transparent  $darkblue    $white    $stronggreen  $darkblack
-client.focused_inactive $transparent  $stronggreen $white    $stronggreen  $darkblack
+client.focused          $yellow       $yellow      $white    $stronggreen  $darkyellow
+client.unfocused        $blue         $blue        $white    $stronggreen  $darkblue
+client.focused_inactive $darkblue     $darkblue    $white    $stronggreen  $darkblack
 client.urgent           $darkred      $darkred     $black    $darkred      $darkgreen
 client.background       $black
 
