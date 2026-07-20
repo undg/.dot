@@ -106,3 +106,20 @@ Do not delete the folder — Pi recreates it when it installs packages. Only `np
 
 - [pi-permission-system configuration docs](https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system/docs/configuration.md)
 - [pi-permission-system OpenCode compatibility guide](https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system/docs/opencode-compatibility.md)
+
+## Post-instal
+
+For now, its not automated.
+
+```bash
+cd ~/.config/pi/extensions/pi-notifier/
+pnpm i
+
+cd ~/.config/pi/extensions/rich-webfetch/
+pnpm i
+
+cd ~/.config/pi/npm
+pnpm rebuild better-sqlite3
+```
+
+Decide what you want have from version control system by removing it from .config/pi/. Then stow it with .dot/install script. .config/pi/ is not a symlink, its a directory with symlinks.
