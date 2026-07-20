@@ -4,7 +4,7 @@ import csv
 import os
 import platform
 import signal
-from datetime import datetime
+from datetime import datetime, time, timedelta
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -33,19 +33,48 @@ def load_rows(path: Path):
     return timestamps, usage, entitlement
 
 
-def build_tick_labels(timestamps):
-    labels = []
-    previous_date = None
+def build_display_day_range(timestamps):
+    first_day_start = datetime.combine(timestamps[0].date(), time.min)
+    if timestamps[-1].month == 12:
+        display_end = datetime(timestamps[-1].year + 1, 1, 1)
+    else:
+        display_end = datetime(timestamps[-1].year, timestamps[-1].month + 1, 1)
 
-    for stamp in timestamps:
-        current_date = stamp.date()
-        if current_date != previous_date:
-            labels.append(stamp.strftime("%Y-%m-%d"))
-        else:
-            labels.append(stamp.strftime("%H:%M"))
-        previous_date = current_date
+    day_boundaries = []
+    current = first_day_start
+    while current <= display_end:
+        day_boundaries.append(current)
+        current += timedelta(days=1)
 
-    return labels
+    return first_day_start, display_end, day_boundaries
+
+
+def build_daily_usage_stats(timestamps, usage):
+    previous_daily_usage = [None] * len(timestamps)
+    current_daily_usage = [None] * len(timestamps)
+    is_new_day = [False] * len(timestamps)
+
+    day_ranges = []
+    day_start = 0
+
+    for index in range(1, len(timestamps) + 1):
+        if index == len(timestamps) or timestamps[index].date() != timestamps[day_start].date():
+            day_end = index - 1
+            day_baseline = usage[day_start - 1] if day_start > 0 else None
+            day_total = usage[day_end] - day_baseline if day_baseline is not None else None
+            day_ranges.append((day_start, day_end, day_baseline, day_total))
+            day_start = index
+
+    for day_index, (day_start, day_end, day_baseline, _) in enumerate(day_ranges):
+        previous_day_total = day_ranges[day_index - 1][3] if day_index > 0 else None
+
+        for index in range(day_start, day_end + 1):
+            if day_baseline is not None:
+                current_daily_usage[index] = usage[index] - day_baseline
+            previous_daily_usage[index] = previous_day_total
+            is_new_day[index] = index == day_start and day_index > 0
+
+    return previous_daily_usage, current_daily_usage, is_new_day
 
 
 def main():
@@ -53,7 +82,11 @@ def main():
     if not timestamps:
         raise SystemExit(f"No data in {CSV_PATH}")
 
-    x_positions = list(range(len(timestamps)))
+    x_positions = timestamps
+    previous_daily_usage, current_daily_usage, is_new_day = build_daily_usage_stats(
+        timestamps, usage
+    )
+    display_start, display_end, day_boundaries = build_display_day_range(timestamps)
 
     fig, ax = plt.subplots(figsize=(14, 7))
     (usage_line,) = ax.plot(
@@ -72,8 +105,16 @@ def main():
     ax.grid(True, axis="y", alpha=0.3)
     ax.legend()
 
-    ax.set_xticks(x_positions)
-    ax.set_xticklabels(build_tick_labels(timestamps), rotation=90, fontsize=8)
+    for boundary in day_boundaries[1:-1]:
+        ax.axvline(boundary, color="grey", linewidth=1, alpha=0.5)
+
+    ax.set_xlim(display_start, display_end)
+    ax.set_xticks(day_boundaries[:-1])
+    ax.set_xticklabels(
+        [boundary.strftime("%Y-%m-%d") for boundary in day_boundaries[:-1]],
+        rotation=90,
+        fontsize=8,
+    )
 
     tooltip = ax.annotate(
         "",
@@ -114,6 +155,20 @@ def main():
         else:
             tooltip_lines.append("prev usage: n/a")
             tooltip_lines.append("task usage: n/a")
+
+        if is_new_day[index]:
+            previous_day_total = previous_daily_usage[index]
+            current_day_total = current_daily_usage[index]
+            tooltip_lines.append(
+                f"prev daily usage: {previous_day_total:.0f}"
+                if previous_day_total is not None
+                else "prev daily usage: n/a"
+            )
+            tooltip_lines.append(
+                f"current daily usage: {current_day_total:.0f}"
+                if current_day_total is not None
+                else "current daily usage: n/a"
+            )
 
         tooltip.set_text("\n".join(tooltip_lines))
         tooltip.set_visible(True)
