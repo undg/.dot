@@ -24,7 +24,9 @@
     "git:https://github.com/hasit/pi-community-themes@v0.3.0",
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-hermes-memory",
-    "npm:pi-ayu-themes"
+    "npm:pi-ayu-themes",
+    "npm:@gotgenes/pi-subagents",
+    "npm:@gotgenes/pi-colgrep"
   ],
   "defaultThinkingLevel": "high",
   "terminal": {
