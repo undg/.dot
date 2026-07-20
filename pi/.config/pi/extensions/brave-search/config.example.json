@@ -1,6 +1,6 @@
 {
 	"apiKey": "!$HOME/.config/pi/get-api-key brave-api",
-	"summaryModel": "opencode-go/deepseek-v4-flash",
+	"summaryModel": ["mistral/mistral-small", "opencode-go/deepseek-v4-flash"],
 	"alwaysSummarize": true,
 	"maxSummaryTokens": 500
 }

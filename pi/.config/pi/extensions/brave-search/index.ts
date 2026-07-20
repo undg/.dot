@@ -4,7 +4,7 @@ import { Type } from "typebox";
 import { createSearchCache, normalizeQuery, type BraveResult, type CachedSearch, type SearchCache } from "./cache.ts";
 import { loadConfig, resolveApiKey, setupErrorText } from "./config.ts";
 import { fetchBrave } from "./search.ts";
-import { summarizeResults } from "./summarize.ts";
+import { normalizeSummaryModelRefs, resolveSummaryModel, summarizeResults } from "./summarize.ts";
 
 const CUSTOM_TYPE = "brave-search-cache";
 const FRESHNESS_OPTIONS = ["pd", "pw", "pm", "py"] as const;
@@ -22,9 +22,10 @@ function renderRawResults(query: string, results: BraveResult[], offset: number,
 	return lines.join("\n\n");
 }
 
-function renderFooter(offset: number, show: number, total: number, cacheHit: boolean, summary?: string): string {
+function renderFooter(offset: number, show: number, total: number, cacheHit: boolean, summary?: string, summaryModel?: string): string {
 	if (summary) {
-		return `Summarized ${total} Brave Search results.`;
+		const modelSuffix = summaryModel ? ` via ${summaryModel}` : "";
+		return `Summarized ${total} Brave Search results${modelSuffix}.`;
 	}
 	const end = Math.min(offset + show, total);
 	if (total === 0) {
@@ -142,21 +143,29 @@ export default function braveSearchExtension(pi: ExtensionAPI) {
 			let summary: string | undefined;
 			let text: string;
 
+			let summaryModel: string | undefined;
+
 			if (summarize && config?.summaryModel && total > 0) {
-				summary = await summarizeResults(
-					params.query,
-					results,
-					config.summaryModel,
-					config.maxSummaryTokens,
-					ctx,
-					signal,
-				);
-				text = summary ?? renderRawResults(params.query, results, offset, show);
+				const refs = normalizeSummaryModelRefs(config.summaryModel);
+				const resolved = await resolveSummaryModel(refs, ctx.modelRegistry);
+				if (resolved) {
+					summaryModel = `${resolved.model.provider}/${resolved.model.id}`;
+					summary = await summarizeResults(
+						params.query, results, resolved,
+						config.maxSummaryTokens, signal,
+					);
+				}
+				if (summary) {
+					text = `**Summarized via ${summaryModel}:**\n\n${summary}`;
+				} else {
+					// fall back to raw results if summarization failed or no model resolved
+					text = renderRawResults(params.query, results, offset, show);
+				}
 			} else {
 				text = renderRawResults(params.query, results, offset, show);
 			}
 
-			const footer = renderFooter(offset, show, total, source === "cache", summary);
+			const footer = renderFooter(offset, show, total, source === "cache", summary, summaryModel);
 
 			return {
 				content: [{ type: "text", text: `${text}\n\n${footer}` }],
@@ -171,6 +180,7 @@ export default function braveSearchExtension(pi: ExtensionAPI) {
 					fetchedAt,
 					freshness: params.freshness,
 					summarize,
+					summaryModel,
 					summary,
 				},
 			};

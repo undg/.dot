@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 export interface BraveSearchConfig {
 	apiKey: string;
-	summaryModel?: string;
+	summaryModel?: string | string[];
 	alwaysSummarize?: boolean;
 	maxSummaryTokens?: number;
 }
