@@ -7,6 +7,7 @@ import signal
 from datetime import datetime, time, timedelta
 from pathlib import Path
 
+import matplotlib.patheffects as patheffects
 import matplotlib.pyplot as plt
 
 AI_CREDIT_USD = 0.01
@@ -88,15 +89,15 @@ def build_daily_usage_stats(timestamps, usage, is_day_start=None):
     day_start = 0
 
     for index in range(1, len(timestamps) + 1):
-        if index == len(timestamps) or timestamps[index].date() != timestamps[day_start].date():
+        if (
+            index == len(timestamps)
+            or timestamps[index].date() != timestamps[day_start].date()
+        ):
             day_end = index - 1
             day_baseline = usage[day_start - 1] if day_start > 0 else None
             first_real_point = day_start
             if is_day_start is not None:
-                while (
-                    first_real_point <= day_end
-                    and is_day_start[first_real_point]
-                ):
+                while first_real_point <= day_end and is_day_start[first_real_point]:
                     first_real_point += 1
             if (
                 day_baseline is not None
@@ -104,7 +105,9 @@ def build_daily_usage_stats(timestamps, usage, is_day_start=None):
                 and usage[first_real_point] < day_baseline
             ):
                 day_baseline = 0
-            day_total = usage[day_end] - day_baseline if day_baseline is not None else None
+            day_total = (
+                usage[day_end] - day_baseline if day_baseline is not None else None
+            )
             day_ranges.append((day_start, day_end, day_baseline, day_total))
             day_start = index
 
@@ -157,9 +160,7 @@ def main():
 
     day_start_positions = [
         (timestamp, value)
-        for timestamp, value, day_start in zip(
-            x_positions, plot_usage, is_day_start
-        )
+        for timestamp, value, day_start in zip(x_positions, plot_usage, is_day_start)
         if day_start
     ]
     if day_start_positions:
@@ -191,6 +192,21 @@ def main():
         fontsize=8,
     )
 
+    for index, daily_usage in enumerate(current_daily_usage):
+        if daily_usage is not None:
+            ax.annotate(
+                f"${daily_usage:.3f}",
+                xy=(x_positions[index], plot_usage[index]),
+                xytext=(-6, 12),
+                textcoords="offset points",
+                rotation=90,
+                color="orange",
+                path_effects=[patheffects.withStroke(linewidth=1, foreground="black")],
+                ha="left",
+                va="bottom",
+                fontsize=8,
+            )
+
     tooltip = ax.annotate(
         "",
         xy=(0, 0),
@@ -218,7 +234,7 @@ def main():
         tooltip.xy = (x_positions[index], plot_usage[index])
 
         tooltip_lines = [
-            x_positions[index].strftime('%Y-%m-%d %H:%M:%S'),
+            x_positions[index].strftime("%Y-%m-%d %H:%M:%S"),
             f"usage: ${plot_usage[index]:.3f}",
         ]
 
