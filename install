@@ -67,8 +67,13 @@ install_configs() {
 
 	# @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
 	#  @TODO (undg) 2026-02-15: still thinking :)
+	#  @TODO (undg) 2026-07-21: maybe xD
 	rm -rf ~/.config/atuin
+
+	# Don't symlink pi/ dir, symlink it's contents. Some of the files are live, owned by pi and should not be tracked by VCS.
 	mkdir -p ~/.config/pi/
+	# Sync Pi tracked settings from example into live config
+	~/.dot/pi/.config/pi/scripts/sync-settings-pull.sh
 
 	for folder in */; do
 		if [[ ! $folder =~ ^_.* ]]; then
