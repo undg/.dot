@@ -9,7 +9,7 @@
     "~/.dot/pi/.config/pi/git/*",
     "~/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/**"
   ],
-  "debugLog": false,
+  "debugLog": true,
   "permissionReviewLog": true,
   "yoloMode": false,
   "permission": {
@@ -20,6 +20,8 @@
     "apply_patch": "allow",
     "webfetch": "ask",
     "rich-webfetch": "ask",
+    "subagent": "allow",
+    "get_subagent_result": "allow",
     "memory": "allow",
     "memory *": "allow",
     "memory_*": "allow",
