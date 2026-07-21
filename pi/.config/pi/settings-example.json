@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "theme": "gruvbox-dark-soft",
+  "theme": "theme-from-dotfiles",
   "defaultProvider": "opencode-go",
   "defaultModel": "minimax-m3",
   "hideThinkingBlock": false,
