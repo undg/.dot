@@ -16,8 +16,12 @@ Gather the pull request context with:
 2. `gh pr diff` - inspect the complete change.
 3. `gh pr checks` - inspect the current status of GitHub checks. Do not wait for pending checks.
 
-Also read relevant repository guidance before reviewing, including `AGENTS.md`,
-`CLAUDE.md`, contribution guides, and project-specific documentation.
+Also read relevant repository guidance before reviewing, including `AGENTS.md`, contribution guides, and project-specific documentation.
+
+## Don't
+
+You don't need to check branch - `git branch` is disabled
+All tools with destructive capabilities (write/change/delete) are disabled, you have only access to tools that can read.
 
 ## Review process
 
