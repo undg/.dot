@@ -3,6 +3,9 @@
 # Install new nvim packages
 nvim --headless "+Lazy! restore" +qa
 
+# Sync Pi tracked settings from example into live config
+~/.dot/pi/.config/pi/scripts/sync-settings-pull.sh
+
 # Go to root of repo
 [ ! -z $(git rev-parse --show-cdup) ] && cd $(git rev-parse --show-cdup) || pwd
 
