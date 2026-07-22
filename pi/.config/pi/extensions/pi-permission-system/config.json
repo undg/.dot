@@ -3,8 +3,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
   "piInfrastructureReadPaths": [
-    "~/.dot/pi/.config/pi/docs/*",
-    "~/.dot/pi/.config/pi/examples/*",
     "~/.dot/pi/.config/pi/npm/*",
     "~/.dot/pi/.config/pi/git/*",
     "~/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/**"
@@ -25,38 +23,12 @@
     "memory": "allow",
     "memory *": "allow",
     "memory_*": "allow",
-    "path": {
-      // green
-      "*": "allow",
-      "*.env.example": "allow",
-
-      // yellow
-      "*/pi-permission-system/config.json": "ask",
-      "*/pi-permission-system/logs/*": "ask",
-      "*AGENTS.md": "ask",
-
-      // red
-      "*.env": "deny",
-      "*.env.*": "deny",
-      ".git/*": "deny",
-      "**/.git/*": "deny",
-      ".ssh/*": "deny",
-      "~/.ssh/*": "deny",
-      "*/.config/pi/get-api-key.sh": "deny",
-      "*auth.json": "deny"
-    },
-    "external_directory": {
-      //////////////////////
-      // keep on the top
-      //////////////////////
+    "colgrep": "allow",
+    "skill": {
       "*": "ask",
-
-      //////////////////////
-      // white listed
-      //////////////////////
-      "~/Documents/Work/*": "allow",
-      "~/Documents/Personal/*": "allow",
-      "~/.dot/pi/.config/pi/tmp/*": "allow"
+      "colgrep": "allow",
+      "create-skill": "allow",
+      "pr-review": "allow"
     },
     "bash": {
       //////////////////////
@@ -229,6 +201,39 @@
       ////////////////
       "node -e *": "deny",
       "python -c *": "deny"
+    },
+    "path": {
+      // green
+      "*": "allow",
+      "*.env.example": "allow",
+
+      // yellow
+      "*/pi-permission-system/config.json": "ask",
+      "*/pi-permission-system/logs/*": "ask",
+      "*AGENTS.md": "ask",
+
+      // red
+      "*.env": "deny",
+      "*.env.*": "deny",
+      ".git/*": "deny",
+      "**/.git/*": "deny",
+      ".ssh/*": "deny",
+      "~/.ssh/*": "deny",
+      "*/.config/pi/get-api-key.sh": "deny",
+      "*auth.json": "deny"
+    },
+    "external_directory": {
+      //////////////////////
+      // keep on the top
+      //////////////////////
+      "*": "ask",
+
+      //////////////////////
+      // white listed
+      //////////////////////
+      "~/Documents/Work/*": "allow",
+      "~/Documents/Personal/*": "allow",
+      "~/.dot/pi/.config/pi/tmp/*": "allow"
     }
   }
 }
