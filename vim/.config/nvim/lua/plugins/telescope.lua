@@ -54,6 +54,12 @@ return {
 
 			telescope.setup({
 				defaults = {
+					--  @TODO (undg) 2026-07-22: enable diff after parser will get update
+					-- The installed diff parser can be older than nvim-treesitter's diff query.
+					-- Use Telescope's regex fallback until the parser is updated.
+					preview = {
+						treesitter = { disable = { "diff" } },
+					},
 					-- Default configuration for telescope goes here:
 					-- config_key = value,
 					layout_strategy = "vertical",
