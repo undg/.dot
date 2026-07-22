@@ -89,6 +89,8 @@
       "sed *": "allow",
       "sort *": "allow",
       "stat *": "allow",
+      "stylua": "allow",
+      "stylua *": "allow",
       "tail *": "allow",
       "timeout *": "allow",
       "tmux display-message *": "allow",
