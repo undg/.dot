@@ -87,6 +87,11 @@ Keymap.normal(
 	":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>",
 	{ silent = true, noremap = true, desc = "lsp: diagnostic_goto_next ERROR" }
 )
+Keymap.normal(
+	"gJ",
+	":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>",
+	{ silent = true, noremap = true, desc = "lsp: diagnostic_goto_next ERROR" }
+)
 Keymap.normal("gj", function()
 	vim.diagnostic.jump({ count = 1, float = true })
 end, { silent = true, noremap = true, desc = "lsp: diagnostic_goto_next" })
