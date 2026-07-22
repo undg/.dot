@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
-
 gui:
   branchColorPatterns:
     "^vim$": "#11AAFF"
@@ -160,7 +159,7 @@ os:
   editAtLineAndWait: ""
   editInTerminal: false
   openDirInEditor: ""
-  editPreset: ""
+  editPreset: "nvim-remote"
   open: ""
   openLink: ""
   copyToClipboardCmd: ""
