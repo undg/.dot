@@ -1,5 +1,4 @@
 // vim: set filetype=jsonc:
-
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
   "piInfrastructureReadPaths": [
@@ -35,7 +34,6 @@
       // keep on the top
       //////////////////////
       "*": "ask",
-
       "curl *": "ask",
       "curl": "ask",
       "mv *": "ask",
@@ -50,7 +48,6 @@
       "awk *": "ask",
       "awk *system(*": "deny",
       "awk *\"*|*getline*": "deny",
-
       //////////////////////
       // white listed
       //////////////////////
@@ -92,7 +89,6 @@
       "uniq *": "allow",
       "wc *": "allow",
       "which *": "allow",
-
       /////////
       // find
       /////////
@@ -103,7 +99,6 @@
       "find * -execdir *": "deny",
       "find * -ok *": "deny",
       "find * -okdir *": "deny",
-
       /////////
       // gh
       /////////
@@ -134,25 +129,23 @@
       "gh pr status": "allow",
       "gh pr status *": "allow",
       "gh pr create *": "deny",
-
       /////////
       // git
       /////////
       "git": "ask",
       "git *": "ask",
+      "git bisect": "allow",
+      "git bisect *": "allow",
       "git commit": "ask",
       "git commit *": "ask",
       "git config": "ask",
       "git config *": "ask",
-      "git rebase": "ask",
-      "git rebase *": "ask",
-      "git rebase --continue": "ask",
-      "git remote": "allow",
-      "git remote *": "ask",
       "git add": "allow",
       "git add *": "allow",
       "git diff": "allow",
       "git diff *": "allow",
+      "git ls-files": "allow",
+      "git ls-files *": "allow",
       "git log": "allow",
       "git log *": "allow",
       "git show": "allow",
@@ -161,7 +154,13 @@
       "git status *": "allow",
       "git push": "deny",
       "git push *": "deny",
-
+      "git rebase": "deny",
+      "git rebase *": "deny",
+      "git rebase --continue": "ask",
+      "git remote": "allow",
+      "git remote *": "ask",
+      "git rev-parse": "allow",
+      "git rev-parse *": "allow",
       /////////
       // npm
       /////////
@@ -175,7 +174,6 @@
       "npm run type-check *": "allow",
       "npm run lint -- --fix": "allow",
       "npm run lint -- --fix *": "allow",
-
       /////////
       // pnpm
       /////////
@@ -194,7 +192,6 @@
       "pnpm lint -- --fix": "allow",
       "pnpm lint -- --fix *": "allow",
       "pnpm --version*": "allow",
-
       ////////////////
       // Black listed
       // keep at the end, last win
@@ -206,12 +203,6 @@
       // green
       "*": "allow",
       "*.env.example": "allow",
-
-      // yellow
-      "*/pi-permission-system/config.json": "ask",
-      "*/pi-permission-system/logs/*": "ask",
-      "*AGENTS.md": "ask",
-
       // red
       "*.env": "deny",
       "*.env.*": "deny",
@@ -227,7 +218,6 @@
       // keep on the top
       //////////////////////
       "*": "ask",
-
       //////////////////////
       // white listed
       //////////////////////
