@@ -19,7 +19,7 @@
 
 ---@type table
 return {
-	cmd = { "ruff", "server", "--stdio" },
+	cmd = { "ruff", "server" },
 	filetypes = { "python" },
 	root_dir = function(bufnr, on_dir)
 		on_dir(vim.fs.root(bufnr, ".git") or vim.fn.getcwd())
