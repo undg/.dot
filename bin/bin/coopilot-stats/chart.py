@@ -13,10 +13,10 @@ import matplotlib.pyplot as plt
 AI_CREDIT_USD = 0.01
 
 if platform.system() == "Darwin":
-    CSV_PATH = Path.home() / "Library/Logs/coopilot-stats.csv"
+    csv_path = Path.home() / "Library/Logs/coopilot-stats.csv"
 else:
     state_home = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state"))
-    CSV_PATH = state_home / "coopilot-stats/coopilot-stats.csv"
+    csv_path = state_home / "coopilot-stats/coopilot-stats.csv"
 
 
 def load_rows(path: Path):
@@ -130,9 +130,9 @@ def build_daily_usage_stats(timestamps, usage, is_day_start=None):
 
 
 def main():
-    timestamps, usage, entitlement = load_rows(CSV_PATH)
+    timestamps, usage, entitlement = load_rows(csv_path)
     if not timestamps:
-        raise SystemExit(f"No data in {CSV_PATH}")
+        raise SystemExit(f"No data in {csv_path}")
 
     x_positions, plot_usage, is_day_start = add_day_start_points(timestamps, usage)
     previous_daily_usage, current_daily_usage, is_new_day = build_daily_usage_stats(
