@@ -22,13 +22,4 @@ return {
 		end),
 		i(1),
 	}),
-	s("todo//", {
-		t("// @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
-	}),
-	s("todo#", {
-		t("# @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
-	}),
-	s("todo--", {
-		t("-- @TODO (" .. git_user() .. ") " .. os.date("%Y-%m-%d") .. ": "), i(1),
-	}),
 }
