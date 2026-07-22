@@ -67,10 +67,18 @@ return {
 					select = false,
 				}),
 				["<Tab>"] = cmp.mapping(function(fallback)
-					cmp.select_next_item()
+					if cmp.visible() then
+						cmp.select_next_item()
+					else
+						fallback()
+					end
 				end),
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					cmp.select_prev_item()
+				["<S-Tab>"] = cmp.mapping(function()
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-d>", true, false, true), "n", false)
+					end
 				end),
 			},
 			sources = {
