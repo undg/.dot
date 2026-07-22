@@ -66,8 +66,8 @@ return {
 			end
 
 			local values = {
-				{ textValue = hash, hl = "Comment" },
-				{ textValue = date, hl = hash },
+				{ textValue = hash,                  hl = "Comment" },
+				{ textValue = date,                  hl = hash },
 				{ textValue = line_porcelain.author, hl = hash },
 			}
 			local previous_line = get_previous_line(line_porcelain)
