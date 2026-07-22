@@ -1,0 +1,13 @@
+{
+	"useTabs": true,
+	"semi": false,
+	"overrides": [
+		{
+			"files": ["*.json", "*.jsonc"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}
