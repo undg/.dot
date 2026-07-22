@@ -7,6 +7,7 @@ import signal
 from datetime import datetime, time, timedelta
 from pathlib import Path
 
+import matplotlib.dates as mdates
 import matplotlib.patheffects as patheffects
 import matplotlib.pyplot as plt
 
@@ -184,7 +185,7 @@ def main():
     for boundary in day_boundaries[1:-1]:
         ax.axvline(boundary, color="grey", linewidth=1, alpha=0.5)
 
-    ax.set_xlim(display_start, display_end)
+    ax.set_xlim(mdates.date2num(display_start), mdates.date2num(display_end))
     ax.set_xticks(day_boundaries[:-1])
     ax.set_xticklabels(
         [boundary.strftime("%Y-%m-%d") for boundary in day_boundaries[:-1]],
