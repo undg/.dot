@@ -45,7 +45,7 @@ return {
 			local navbuddy = require("nvim-navbuddy")
 
 			navbuddy.setup({
-				lsp = { auto_attach = false },
+				lsp = { auto_attach = true },
 				window = { border = "rounded" },
 			})
 			Keymap.normal("<leader>fn", ":Navbuddy<cr>", { desc = "Navbuddy" })
