@@ -167,7 +167,6 @@ return {
 
 			Keymap.normal("<leader>fb", ":Telescope buffers<cr>")
 			Keymap.normal("<leader>fs", ":Telescope git_status<cr>", { desc = "(git) status" })
-			Keymap.normal("<leader>gb", ":Telescope git_branches<cr>", { desc = "(git) branches" })
 			Keymap.normal("<leader>gc", ":Telescope git_bcommits<cr>", { desc = "(git) commits" })
 			Keymap.visual("<leader>gc", git_bcommits_range_visual, { desc = "(git) commits" })
 			Keymap.normal("<leader>fg", ":Telescope live_grep<cr>")

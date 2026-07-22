@@ -4,5 +4,6 @@ return {
 	lazy = false,
 	config = function()
 		require("blame").setup({})
+		Keymap.normal("<leader>gb", ":BlameToggle<cr>", { desc = "Blame Toggle" })
 	end,
 }
