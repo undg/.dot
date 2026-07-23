@@ -203,11 +203,14 @@
       "pnpm lint -- --fix": "allow",
       "pnpm lint -- --fix *": "allow",
       "pnpm --version*": "allow",
-      ////////////////
-      // Black listed
-      // keep at the end, last win
-      ////////////////
+      /////////
+      // node
+      /////////
+      "node --check *": "allow",
       "node -e *": "deny",
+      ////////////////
+      // Black listed at the end, last win
+      ////////////////
       "python -c *": "deny"
     },
     "path": {
