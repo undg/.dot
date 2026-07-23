@@ -6,7 +6,7 @@ set -euo pipefail
 
 PI_CONFIG_DIR="${PI_CONFIG_DIR:-$HOME/.config/pi}"
 SETTINGS="$PI_CONFIG_DIR/settings.json"
-EXAMPLE="$PI_CONFIG_DIR/settings-example.json"
+EXAMPLE="$HOME/.dot/pi/.config/pi/settings-example.json"
 
 TRACKED='{npmCommand, extensions, packages, theme}'
 
@@ -18,7 +18,7 @@ for f in "$SETTINGS" "$EXAMPLE"; do
 done
 
 tmp=$(mktemp)
-jq -s '.[0] * (.[1] | '"$TRACKED"')' "$SETTINGS" "$EXAMPLE" > "$tmp"
-cat "$tmp" > "$SETTINGS"
+jq -s '.[0] * (.[1] | '"$TRACKED"')' "$SETTINGS" "$EXAMPLE" >"$tmp"
+cat "$tmp" >"$SETTINGS"
 rm "$tmp"
 echo "Pulled tracked keys → $SETTINGS"
