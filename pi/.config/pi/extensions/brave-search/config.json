@@ -1,9 +1,0 @@
-{
-  "apiKey": "!$HOME/.config/pi/scripts/get-api-key.sh brave-api",
-  "summaryModel": [
-    "opencode-go/mimo-v2.5",
-    "github-copilot/gpt-5-mini"
-  ],
-  "alwaysSummarize": true,
-  "maxSummaryTokens": 500
-}

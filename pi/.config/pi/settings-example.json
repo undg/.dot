@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "theme": "gruvbox-light-hard",
+  "theme": "gruvbox-dark-hard",
   "defaultProvider": "opencode-go",
   "defaultModel": "minimax-m3",
   "hideThinkingBlock": false,
@@ -13,8 +13,6 @@
   ],
   "extensions": [
     "extensions/pi-notifier/index.ts",
-    "extensions/webfetch/index.ts",
-    "extensions/brave-search/index.ts",
     "extensions/collapse-tool-output.ts",
     "extensions/tui-nice/index.ts",
     "extensions/disable-share.ts"
