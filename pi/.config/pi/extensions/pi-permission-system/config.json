@@ -24,6 +24,7 @@
     "memory": "allow",
     "memory *": "allow",
     "memory_*": "allow",
+    "vault_*": "allow",
     "colgrep": "allow",
     "grep": "allow",
     "find": "allow",

@@ -1,0 +1,14 @@
+{
+  "vaults": [
+    {
+      "name": "Personal",
+      "path": "~/Documents/Personal",
+      "git": true
+    },
+    {
+      "name": "Work",
+      "path": "~/Documents/Work",
+      "git": true
+    }
+  ]
+}

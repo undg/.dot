@@ -15,7 +15,8 @@
     "extensions/pi-notifier/index.ts",
     "extensions/collapse-tool-output.ts",
     "extensions/tui-nice/index.ts",
-    "extensions/disable-share.ts"
+    "extensions/disable-share.ts",
+    "extensions/vault/index.ts"
   ],
   "packages": [
     "npm:@gotgenes/pi-permission-system@20.7.3",
