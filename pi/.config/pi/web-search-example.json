@@ -1,0 +1,16 @@
+// https://github.com/nicobailon/pi-web-access#configuration
+{
+  "githubClone": {
+    "clonePath": "~/.config/pi/tmp/pi-github-repos"
+  },
+  "youtube": {
+    "enabled": false
+  },
+  "video": {
+    "enabled": true
+  },
+  "shortcuts": {
+    "curate": "ctrl+shift+s",
+    "activity": "ctrl+shift+w"
+  }
+}
