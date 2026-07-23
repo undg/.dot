@@ -91,6 +91,7 @@ Git("https://github.com/milisims/nvim-luaref")   -- adds a reference for builtin
 -- Look and feel
 Spec("plugins.theme")                 -- gruvbox is best theme on the universe
 Spec("plugins.lualine")               -- status bar with few informations
+Spec("plugins.bufferline")            -- buffer line at the top
 Spec("plugins.nvim-navic")            -- Breadcrumbs with navigation
 Spec("plugins.which-key")             -- display interactive footer with available keymaps
 -- Spec('plugins.vim-diminactive')       -- dim inactive window
