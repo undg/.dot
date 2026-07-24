@@ -1,31 +1,41 @@
+local highlight = require("utils.highlight")
+
 local function parse_input(raw)
 	if raw == nil then
-		return nil, nil
+		return nil, nil, nil
 	end
 
 	local text = vim.trim(raw)
 	if text == "" then
-		return nil, nil
+		return nil, nil, nil
 	end
 
 	text = text:gsub("^> #file:`", ""):gsub("`$", "")
 
-	local path, line = text:match("^(.-):L(%d+)$")
+	local path, line, end_line = text:match("^(.-):L(%d+)-L(%d+)$")
+	if not path then
+		path, line, end_line = text:match("^(.-):(%d+)-(%d+)$")
+	end
 	if path then
-		return path, tonumber(line)
+		return path, tonumber(line), tonumber(end_line)
+	end
+
+	path, line = text:match("^(.-):L(%d+)$")
+	if path then
+		return path, tonumber(line), nil
 	end
 
 	path, line = text:match("^(.-):(%d+)$")
 	if path then
-		return path, tonumber(line)
+		return path, tonumber(line), nil
 	end
 
-	return text, nil
+	return text, nil, nil
 end
 
 local function open_path()
 	local reg = vim.fn.getreg("+")
-	local path, line = parse_input(reg)
+	local path, line, end_line = parse_input(reg)
 
 	if not path then
 		vim.notify("Register + is empty", vim.log.levels.INFO, { title = "Openpath" })
@@ -39,10 +49,15 @@ local function open_path()
 
 	vim.cmd.edit(vim.fn.fnameescape(path))
 
+	-- Keep the range end on the opened buffer for later commands to use.
+	vim.b.openpath_end_line = end_line
+
 	if line then
 		local max_line = vim.api.nvim_buf_line_count(0)
 		local target_line = math.min(math.max(line, 1), max_line)
+		local target_end_line = math.min(math.max(end_line or line, target_line), max_line)
 		vim.api.nvim_win_set_cursor(0, { target_line, 0 })
+		highlight.highlight_lines(target_line, target_end_line)
 
 		if line > max_line then
 			vim.notify(

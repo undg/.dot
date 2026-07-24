@@ -13,10 +13,18 @@ function M.config()
 		enhanced_diff_hl = false,
 	})
 
+	local function diffview_selection_history()
+		local start_line = vim.fn.line('v')
+		local end_line = vim.fn.line('.')
+		vim.cmd('DiffviewFileHistory --range=' .. math.min(start_line, end_line) .. ',' .. math.max(start_line, end_line))
+	end
+
 	Keymap.normal('<leader>gm', ':Neogit<cr>', { desc = 'Neogit: Open' })
-	Keymap.normal('<leader>gf', ':DiffviewFileHistory<cr>', { desc = 'Neogit: Open diff for current file' })
-	Keymap.visual('<leader>gf', ':DiffviewFileHistory<cr>', { desc = 'Neogit: Open Open diff for current selection' })
-	Keymap.normal('<leader>gq', ':DiffviewClose<cr>', { desc = 'Neogit: Close' })
+	Keymap.normal('<leader>gf', ':DiffviewFileHistory %<cr>', { desc = 'Git: File history' })
+	Keymap.visual('<leader>gf', diffview_selection_history, { desc = 'Git: Selection history' })
+	Keymap.normal('<leader>gh', ':DiffviewFileHistory<cr>', { desc = 'Git: Repository history' })
+	Keymap.normal('<leader>gv', ':DiffviewOpen<cr>', { desc = 'Git: Diff working tree' })
+	Keymap.normal('<leader>gq', ':DiffviewClose<cr>', { desc = 'Git: Close diffview' })
 end
 
 return M
