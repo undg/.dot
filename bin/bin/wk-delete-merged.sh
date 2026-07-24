@@ -20,8 +20,11 @@ git worktree list --porcelain | while IFS= read -r line; do
 			read -p "$(echo -e ${RED}Delete worktree? \(y/n\) ${NC})" -n 1 -r </dev/tty
 			echo
 			if [[ $REPLY =~ ^[Yy]$ ]]; then
-				wk-pgm-fe.sh -d "$dir"
-				echo -e "${RED}Deleted${NC}"
+				if wk-pgm-fe.sh -d "$dir"; then
+					echo -e "${RED}Deleted${NC}"
+				else
+					echo -e "${RED}Failed to delete $dir${NC}" >&2
+				fi
 			fi
 		else
 			echo -e "${CYAN}$branch ${YELLOW}$state${NC}"

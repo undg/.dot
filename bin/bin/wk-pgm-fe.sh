@@ -110,8 +110,36 @@ if [ "$DELETE_MODE" -eq 1 ]; then
 	fi
 	log_info "detected branch: $BRANCH_NAME"
 
+	# Stop the worktree's tmux session before removing its files. Otherwise a
+	# running Vite process can recreate .vite while Git is removing the tree.
+	CURRENT_TMUX_SESSION=$(tmux display-message -p '#{session_name}' 2>/dev/null || true)
+	if [ "$CURRENT_TMUX_SESSION" = "$BRANCH_NAME" ]; then
+		log_error "cannot delete the current tmux session"
+		log_error "run this command from another session or outside tmux"
+		exit 1
+	fi
+
+	if tmux has-session -t "=$BRANCH_NAME" 2>/dev/null; then
+		log_step "killing tmux session: $BRANCH_NAME"
+		tmux kill-session -t "$BRANCH_NAME"
+	else
+		log_info "no tmux session found: $BRANCH_NAME"
+	fi
+
 	log_step "removing worktree"
-	git worktree remove --force "$WORKTREE_DIR"
+	if ! git worktree remove --force "$WORKTREE_DIR"; then
+		# git worktree remove refuses to remove a directory that still contains
+		# untracked/ignored files, such as Vite's .vite cache. The worktree has
+		# already been validated above, so remove the leftover directory and let
+		# Git discard its stale worktree metadata below.
+		log_step "removing leftover untracked files"
+		rm -rf -- "$WORKTREE_DIR"
+	fi
+
+	if [ -e "$WORKTREE_DIR" ]; then
+		log_error "worktree directory could not be removed: $WORKTREE_DIR"
+		exit 1
+	fi
 
 	if git show-ref --verify --quiet "refs/heads/$BRANCH_NAME"; then
 		log_step "deleting local branch: $BRANCH_NAME"
@@ -123,13 +151,6 @@ if [ "$DELETE_MODE" -eq 1 ]; then
 	log_step "pruning stale worktree entries"
 	git worktree prune
 	log_ok "delete complete"
-
-	if tmux has-session -t "=$BRANCH_NAME" 2>/dev/null; then
-		log_step "killing tmux session: $BRANCH_NAME"
-		tmux kill-session -t "$BRANCH_NAME"
-	else
-		log_info "no tmux session found: $BRANCH_NAME"
-	fi
 	exit 0
 fi
 
