@@ -51,6 +51,19 @@ Use `~/.config/pi/tmp/` for all temporary files, scripts, and scratch work.
 After you finish, DO NOT delete them.
 Do not use `/tmp/`
 
-# Going outside current dir
+# Directories and paths
 
 You are sandboxed to current directory. You my ask Human for permission to go outside, but most likely Human will not allow you.
+
+When speaking about the code or showing snippets of changes or existing code provide for human path in this format. No spaces nor extra character at the beginning or end, keep it in separate line. Human will triple click it to yank it.
+Prefer relative path if you are in project directory. Absolute other wise.
+
+```example
+src/features/builder/helpers/update-children-node.ts:329
+```
+
+for code with line range use this format
+
+```example
+src/features/builder/helpers/update-children-node.ts:329-347
+```
