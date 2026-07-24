@@ -3,7 +3,6 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolveVault } from "../config.js";
 import { resolveVaultPath } from "../utils/paths.js";
 import { parseFrontmatter, serializeFrontmatter } from "../utils/frontmatter.js";
-import { autoCommit } from "../utils/git.js";
 import { atomicWrite } from "../utils/paths.js";
 
 export const tagParams = Type.Object({
@@ -44,7 +43,5 @@ export async function execute(params: {
 	const newContent = serializeFrontmatter(updatedFm, body);
 
 	atomicWrite(fullPath, newContent);
-	autoCommit(v, params.path);
-
 	return { path: params.path, action: params.action, tag: params.tag };
 }

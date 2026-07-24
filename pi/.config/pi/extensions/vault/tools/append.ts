@@ -2,7 +2,6 @@ import { Type } from "typebox";
 import { readFileSync } from "node:fs";
 import { resolveVault } from "../config.js";
 import { resolveVaultPath, atomicWrite } from "../utils/paths.js";
-import { autoCommit } from "../utils/git.js";
 
 export const appendParams = Type.Object({
 	path: Type.String({ description: "Relative path from vault root" }),
@@ -25,7 +24,5 @@ export async function execute(params: {
 	const newContent = existing + sep + params.content;
 
 	atomicWrite(fullPath, newContent);
-	autoCommit(v, params.path);
-
 	return { path: params.path };
 }

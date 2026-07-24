@@ -1,7 +1,6 @@
 import { Type } from "typebox";
 import { resolveVault } from "../config.js";
 import { resolveVaultPath, atomicWrite } from "../utils/paths.js";
-import { autoCommit } from "../utils/git.js";
 
 export const saveParams = Type.Object({
 	path: Type.String({ description: "Relative path from vault root" }),
@@ -18,7 +17,5 @@ export async function execute(params: {
 	const fullPath = resolveVaultPath(v.path, params.path);
 
 	atomicWrite(fullPath, params.content);
-	autoCommit(v, params.path);
-
 	return { path: params.path };
 }

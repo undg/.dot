@@ -17,11 +17,12 @@ import { listParams, execute as listExec } from "./tools/list.js";
 import { tagsParams, execute as tagsExec } from "./tools/tags.js";
 import { tagParams, execute as tagExec } from "./tools/tag.js";
 import { backlinksParams, execute as backlinksExec } from "./tools/backlinks.js";
+import { commitParams, execute as commitExec } from "./tools/commit.js";
 
 // Utils for vault_daily
 import { dailyNotePath, dailyFrontmatter } from "./utils/daily.js";
 import { resolveVaultPath, atomicWrite } from "./utils/paths.js";
-import { autoCommit } from "./utils/git.js";
+
 import { serializeFrontmatter } from "./utils/frontmatter.js";
 
 const CONFIG_PATH = join(homedir(), ".config", "pi", "vault.json");
@@ -229,6 +230,28 @@ export default function (pi: ExtensionAPI) {
 		},
 	});
 
+	// vault_git_commit
+	pi.registerTool({
+		name: "vault_git_commit",
+		label: "Vault Git Commit",
+		description: "Stage and commit a single file in a git-managed vault. Only the specified file is committed — other unstaged changes remain untouched.",
+		promptSnippet: "Stage and commit a single file in an Obsidian vault (git)",
+		parameters: commitParams,
+		async execute(_toolCallId, params) {
+			const result = await commitExec(params as any);
+			if (result.committed) {
+				return {
+					content: [{ type: "text", text: `Committed: ${result.path}` }],
+					details: result,
+				};
+			}
+			return {
+				content: [{ type: "text", text: `File not committed (git disabled for vault): ${result.path}` }],
+				details: result,
+			};
+		},
+	});
+
 	// vault_daily — quick daily note helper
 	pi.registerTool({
 		name: "vault_daily",
@@ -255,8 +278,6 @@ export default function (pi: ExtensionAPI) {
 			const fm = dailyFrontmatter(dailyPath);
 			const fullContent = serializeFrontmatter(fm as any, "# " + dailyPath.replace(/\.md$/, "") + "\n");
 			atomicWrite(fullPath, fullContent);
-			autoCommit(v, dailyPath);
-
 			return {
 				content: [{ type: "text", text: fullContent }],
 				details: { path: dailyPath, existing: false, created: true },

@@ -2,7 +2,6 @@ import { Type } from "typebox";
 import { existsSync } from "node:fs";
 import { resolveVault } from "../config.js";
 import { resolveVaultPath, atomicWrite } from "../utils/paths.js";
-import { autoCommit } from "../utils/git.js";
 import { isDailyPath, dailyFrontmatter } from "../utils/daily.js";
 import { serializeFrontmatter } from "../utils/frontmatter.js";
 
@@ -58,7 +57,5 @@ export async function execute(params: {
 	const fullContent = serializeFrontmatter(frontmatter as any, body);
 
 	atomicWrite(fullPath, fullContent);
-	autoCommit(v, params.path);
-
 	return { path: params.path, frontmatter };
 }
