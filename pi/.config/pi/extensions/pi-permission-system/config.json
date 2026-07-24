@@ -2,8 +2,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
   "piInfrastructureReadPaths": [
-    "~/.dot/pi/.config/pi/npm/*",
-    "~/.dot/pi/.config/pi/git/*",
+    "~/.config/pi/npm/**",
+    "~/.config/pi/git/**",
+    "~/.config/pi/skills/**",
+    "~/.config/pi/agents/**",
     "~/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/**"
   ],
   "debugLog": true,
@@ -23,6 +25,9 @@
     "memory *": "allow",
     "memory_*": "allow",
     "colgrep": "allow",
+    "grep": "allow",
+    "find": "allow",
+    "ls": "allow",
     "skill": {
       "*": "ask",
       "colgrep": "allow",
