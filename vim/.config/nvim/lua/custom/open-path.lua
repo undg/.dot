@@ -57,6 +57,7 @@ local function open_path()
 		local target_line = math.min(math.max(line, 1), max_line)
 		local target_end_line = math.min(math.max(end_line or line, target_line), max_line)
 		vim.api.nvim_win_set_cursor(0, { target_line, 0 })
+		highlight.clear_matches()
 		highlight.highlight_lines(target_line, target_end_line)
 
 		if line > max_line then
