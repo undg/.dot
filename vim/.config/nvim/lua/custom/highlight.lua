@@ -1,7 +1,7 @@
 local highlight = require("utils.highlight")
 
 -- highlight setup
-vim.api.nvim_set_hl(0, "HiglightLinePresent", { bg = "#003300" })
+vim.api.nvim_set_hl(0, highlight.highlight_group, { bg = "#003300" })
 
 -- use only in visual
 vim.api.nvim_create_user_command("HiglightLines", function(opts)

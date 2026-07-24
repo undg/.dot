@@ -43,14 +43,6 @@ return {
 			component_function = { gitbranch = 'fugitive#head' },
 		}
 
-		-- Undo underline that's set by default (RRethy/vim-illuminate)
-		vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = '' })
-		vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = '' })
-		vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = '' })
-		-- Set highlight color (RRethy/vim-illuminate)
-		vim.cmd('hi IlluminatedWordRead guibg=#191919')
-		vim.cmd('hi IlluminatedWordText guibg=#191919')
-		vim.cmd('hi IlluminatedWordWrite guibg=#191919')
 		vim.cmd('hi DiagnosticError guifg=#ee6666')
 		--
 		-- Map (lukas-reineke/indent-blankline.nvim)

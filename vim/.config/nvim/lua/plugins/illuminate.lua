@@ -60,13 +60,9 @@ function M.config()
 		min_count_to_highlight = 1,
 	})
 
-	-- vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#2a2827", underline = true })
-	-- vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#2a2827", underline = true })
-	-- vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#2a2827", underline = true })
-	-- More contrast:
-	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#32302f", underline = true })
-	vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#32302f", underline = true })
-	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#32302f", underline = true })
+	vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#003300", underline = true })
+	vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#003300", underline = true })
+	vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#003300", underline = true })
 
 	Keymap.normal("<leader>*", function()
 		iu.toogle_IlluminateWordRead(vim.api.nvim_get_hl(iu.buf_nr, { name = "IlluminatedWordRead" }).bg)
