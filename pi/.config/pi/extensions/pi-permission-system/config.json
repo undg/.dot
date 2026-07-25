@@ -217,6 +217,8 @@
       ////////////////
       // Black listed at the end, last win
       ////////////////
+      "env": "deny",
+      "env *": "deny",
       "python -c *": "deny"
     },
     "path": {
