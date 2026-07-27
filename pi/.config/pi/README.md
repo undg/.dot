@@ -25,7 +25,7 @@ The config was ported from OpenCode's `permission` block in `opencode.json`.
 
 ### Key decisions
 
-- Top-level fallback is `"*": "allow"`, matching OpenCode's default permissiveness.
+- Top-level and bash fallbacks are `"*": "ask"`; safe commands are explicitly allowlisted.
 - `.env`, `.git/`, and `.ssh/` are blocked via the cross-cutting `path` surface, so they are protected for all file tools and bash.
 - Outside-working-directory access defaults to `ask`, with explicit allow rules for `~/Documents/Work/*` and `~/Documents/Personal/*`.
 - Bash commands follow the same allow/ask/deny list as OpenCode.
