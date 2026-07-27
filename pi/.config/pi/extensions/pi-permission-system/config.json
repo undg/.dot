@@ -90,6 +90,8 @@
       "pi config *": "allow",
       "printf *": "allow",
       "pwd *": "allow",
+      "pytest": "allow",
+      "pytest *": "allow",
       "readlink *": "allow",
       "realpath *": "allow",
       "rg *": "allow",
@@ -107,8 +109,12 @@
       "true *": "allow",
       "type *": "allow",
       "uniq *": "allow",
+      "uv pytest": "allow",
+      "uv pytest *": "allow",
       "wc *": "allow",
       "which *": "allow",
+      "vitest": "allow",
+      "vitest *": "allow",
       /////////
       // find
       /////////
@@ -156,6 +162,7 @@
       "git *": "ask",
       "git bisect": "allow",
       "git bisect *": "allow",
+      "git blame *": "allow",
       "git commit": "ask",
       "git commit *": "ask",
       "git config": "ask",
