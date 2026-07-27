@@ -163,6 +163,7 @@
       "git bisect": "allow",
       "git bisect *": "allow",
       "git blame *": "allow",
+      "git branch *": "deny",
       "git commit": "ask",
       "git commit *": "ask",
       "git config": "ask",
