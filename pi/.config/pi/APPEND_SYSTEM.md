@@ -55,7 +55,10 @@ Do not use `/tmp/`
 
 You are sandboxed to current directory. You my ask Human for permission to go outside, but most likely Human will not allow you.
 
-When speaking about the code or showing snippets of changes or existing code provide for human path in this format. No spaces nor extra character at the beginning or end, keep it in separate line. Human will triple click it to yank it.
+When speaking about the code or showing snippets of changes or existing code provide for human path in this format.
+No spaces nor extra character at the beginning or end, keep it in separate line.
+Human will triple click it to yank it.
+Do not wrap them in markdown.
 Prefer relative path if you are in project directory. Absolute other wise.
 
 ```example
