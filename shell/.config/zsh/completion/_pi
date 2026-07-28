@@ -1,0 +1,119 @@
+#compdef pi
+
+# zsh completion for pi, the AI coding assistant.
+# Keep this completion local and option-focused; providers, models, and
+# extensions are user/configuration dependent.
+
+_pi_common_options=(
+  '--provider[Provider name]:provider:'
+  '--model[Model pattern or ID]:model:'
+  '--api-key[API key]:api key:'
+  '--system-prompt[Replace the system prompt]:prompt:'
+  '*--append-system-prompt[Append to the system prompt]:file or text:_files'
+  '--mode[Output mode]:mode:(text json rpc)'
+  '(-p --print)'{-p,--print}'[Non-interactive mode]'
+  '(-c --continue)'{-c,--continue}'[Continue the previous session]'
+  '(-r --resume)'{-r,--resume}'[Resume a session]:session:_files'
+  '--session[Use a specific session]:session:_files'
+  '--session-id[Use an exact session ID]:session ID:'
+  '--fork[Fork a session]:session:_files'
+  '--session-dir[Session storage directory]:directory:_directories'
+  '(-n --name)'{-n,--name}'[Set the session display name]:name:'
+  '--models[Comma-separated model patterns]:models:'
+  '(-nt --no-tools)'{-nt,--no-tools}'[Disable all tools by default]'
+  '(-nbt --no-builtin-tools)'{-nbt,--no-builtin-tools}'[Disable built-in tools]'
+  '(-t --tools)'{-t,--tools}'[Comma-separated tool allowlist]:tools:'
+  '(-xt --exclude-tools)'{-xt,--exclude-tools}'[Comma-separated tool denylist]:tools:'
+  '--thinking[Thinking level]:level:(off minimal low medium high xhigh max)'
+  '(-e --extension)'{-e,--extension}'[Load an extension]:path:_files'
+  '(-ns --no-skills)'{-ns,--no-skills}'[Disable skill discovery]'
+  '--skill[Load a skill]:path:_files'
+  '(-np --no-prompt-templates)'{-np,--no-prompt-templates}'[Disable prompt-template discovery]'
+  '--prompt-template[Load a prompt template]:path:_files'
+  '--theme[Load a theme]:path:_files'
+  '--no-themes[Disable theme discovery]'
+  '--no-context-files[Disable AGENTS.md and CLAUDE.md discovery]'
+  '--export[Export the session to HTML]:file:_files'
+  '--list-models[List available models]:search:'
+  '--verbose[Force verbose startup]'
+  '(-a --approve)'{-a,--approve}'[Trust project-local files]'
+  '(-na --no-approve)'{-na,--no-approve}'[Ignore project-local files]'
+  '--offline[Disable startup network operations]'
+  '(-h --help)'{-h,--help}'[Show help]'
+  '(-v --version)'{-v,--version}'[Show version]'
+)
+
+_pi_install_options=(
+  '(-l --local)'{-l,--local}'[Install in project-local settings]'
+  '(-a --approve)'{-a,--approve}'[Trust project-local files]'
+  '(-na --no-approve)'{-na,--no-approve}'[Ignore project-local files]'
+  '(-h --help)'{-h,--help}'[Show help]'
+)
+
+_pi_update_options=(
+  '--self[Update pi only]'
+  '--extensions[Update installed packages]'
+  '--models[Refresh model catalogs]'
+  '--all[Update pi and installed packages]'
+  '--extension[Update one package]:source:'
+  '(-a --approve)'{-a,--approve}'[Trust project-local files]'
+  '(-na --no-approve)'{-na,--no-approve}'[Ignore project-local files]'
+  '--force[Reinstall pi even if current version is latest]'
+  '(-h --help)'{-h,--help}'[Show help]'
+)
+
+_pi_local_options=(
+  '(-l --local)'{-l,--local}'[Use project-local settings]'
+  '(-a --approve)'{-a,--approve}'[Trust project-local files]'
+  '(-na --no-approve)'{-na,--no-approve}'[Ignore project-local files]'
+  '(-h --help)'{-h,--help}'[Show help]'
+)
+
+_pi() {
+  local state
+  local -a commands
+  commands=(
+    'install:Install a package or extension'
+    'remove:Remove a package or extension'
+    'uninstall:Alias for remove'
+    'update:Update pi, extensions, or model catalogs'
+    'list:List installed packages'
+    'config:Configure package resources'
+  )
+
+  _arguments -C $^_pi_common_options \
+    '1:command:->command' \
+    '*:message:->message'
+
+  case $state in
+    command)
+      _describe 'pi command' commands
+      ;;
+    message)
+      case $words[2] in
+        install|remove|uninstall)
+          _arguments -C $^_pi_install_options \
+            '1:source:' \
+            '*:message:'
+          ;;
+        update)
+          _arguments -C $^_pi_update_options \
+            '1:target:(self pi)' \
+            '*:message:'
+          ;;
+        list|config)
+          _arguments -C $^_pi_local_options '*:message:'
+          ;;
+        *)
+          # Prompts are free-form. Complete @file arguments as files when
+          # the user has already typed the @ prefix.
+          if [[ ${words[CURRENT]} == @* ]]; then
+            _files
+          fi
+          ;;
+      esac
+      ;;
+  esac
+}
+
+_pi "$@"
