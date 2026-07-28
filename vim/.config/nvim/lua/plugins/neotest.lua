@@ -7,6 +7,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		-- testing framework adapters -- https://github.com/nvim-neotest/neotest?tab=readme-ov-file#supported-runners
 		"marilari88/neotest-vitest",
+		"nvim-neotest/neotest-python",
 	},
 	config = function()
 		local neotest = require("neotest")
@@ -32,6 +33,7 @@ return {
 						return name ~= "node_modules"
 					end,
 				}),
+				require("neotest-python"),
 			},
 		}
 		neotest.setup(config)
