@@ -86,3 +86,7 @@
 [include]
 	; This file is in gitignore and it's dedicated to local overrides
 	path = ~/.gitconfig_local
+[lfs "customtransfer.xet"]
+	path = git-xet
+	args = transfer
+	concurrent = true
