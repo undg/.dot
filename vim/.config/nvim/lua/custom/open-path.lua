@@ -1,5 +1,7 @@
 local highlight = require("utils.highlight")
 
+local M = {}
+
 local function parse_input(raw)
 	if raw == nil then
 		return nil, nil, nil
@@ -33,12 +35,12 @@ local function parse_input(raw)
 	return text, nil, nil
 end
 
-local function open_path()
-	local reg = vim.fn.getreg("+")
-	local path, line, end_line = parse_input(reg)
-
-	if not path then
-		vim.notify("Register + is empty", vim.log.levels.INFO, { title = "Openpath" })
+---@param path string
+---@param line? integer
+---@param end_line? integer
+function M.open(path, line, end_line)
+	if not path or path == "" then
+		vim.notify("Path is empty", vim.log.levels.INFO, { title = "Openpath" })
 		return
 	end
 
@@ -74,5 +76,17 @@ local function open_path()
 	end
 end
 
+local function open_path()
+	local path, line, end_line = parse_input(vim.fn.getreg("+"))
+	if not path then
+		vim.notify("Register + is empty", vim.log.levels.INFO, { title = "Openpath" })
+		return
+	end
+
+	M.open(path, line, end_line)
+end
+
 vim.api.nvim_create_user_command("Openpath", open_path, { desc = "Open file path from + register" })
 Keymap.normal("<leader>FF", open_path, { desc = "open yanked path" })
+
+return M
