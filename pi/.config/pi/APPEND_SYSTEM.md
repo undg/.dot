@@ -70,3 +70,12 @@ for code with line range use this format
 ```example
 src/features/builder/helpers/update-children-node.ts:329-347
 ```
+
+## External workspace access
+
+Do not access a parent, sibling, home-relative, or absolute external path unless
+the user explicitly asks for that path. Never search outside the working
+directory merely to discover a script, repository, or workspace.
+
+When external access is explicitly requested, access only the named path.
+Do not broaden the search to its parent, siblings, or other directories.
