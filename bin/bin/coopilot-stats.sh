@@ -9,6 +9,26 @@ CYAN='\033[0;36m'
 MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
+NO_GUI=0
+
+while [ "$#" -gt 0 ]; do
+	case "$1" in
+		--no-gui)
+			NO_GUI=1
+			;;
+		-h|--help)
+			printf 'Usage: %s [--no-gui]\n' "${0##*/}"
+			exit 0
+			;;
+		*)
+			printf 'Error: unknown option: %s\n' "$1" >&2
+			printf 'Usage: %s [--no-gui]\n' "${0##*/}" >&2
+			exit 2
+			;;
+	esac
+	shift
+done
+
 ##############################
 # Fetch stats; set variables
 ##############################
@@ -38,7 +58,8 @@ DAYS_LEFT_PERCENT=$((DAYS_LEFT * 100 / CYCLE_DAYS))
 # Show stats
 ######################
 
-echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYAN "$CYAN" --arg MAGENTA "$MAGENTA" --arg NC "$NC" --argjson DAYS_LEFT "$DAYS_LEFT" --argjson DAYS_LEFT_PERCENT "$DAYS_LEFT_PERCENT" --argjson CYCLE_DAYS "$CYCLE_DAYS" '
+if [ "$NO_GUI" -eq 0 ]; then
+	echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYAN "$CYAN" --arg MAGENTA "$MAGENTA" --arg NC "$NC" --argjson DAYS_LEFT "$DAYS_LEFT" --argjson DAYS_LEFT_PERCENT "$DAYS_LEFT_PERCENT" --argjson CYCLE_DAYS "$CYCLE_DAYS" '
   def remaining_color:
     (.quota_snapshots.premium_interactions.percent_remaining | floor) as $percent_remaining |
     (($DAYS_LEFT * 100) / $CYCLE_DAYS | floor) as $days_left_percent |
@@ -68,6 +89,7 @@ echo -e "$(echo "$STATS" | jq -r --arg GREEN "$GREEN" --arg RED "$RED" --arg CYA
   "📅 Reset: \(.quota_reset_date | split("T")[0])\n" +
   "  Remaining: \($DAYS_LEFT) days (" + remaining_color + "\($DAYS_LEFT_PERCENT)%" + $NC + ")"
 ')"
+fi
 
 ##########################
 # Save stats to log file
@@ -112,6 +134,10 @@ NEW_USAGE=$(printf '%s\n' "$NEW_ROW" | awk -F, '{ gsub(/^"|"$/, "", $3); print $
 
 if [ "$LAST_DATE" != "$NEW_DATE" ] || [ "$LAST_USAGE" != "$NEW_USAGE" ]; then
 	printf '%s\n' "$NEW_ROW" >>"$LOG_FILE"
+fi
+
+if [ "$NO_GUI" -eq 1 ]; then
+	exit 0
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
