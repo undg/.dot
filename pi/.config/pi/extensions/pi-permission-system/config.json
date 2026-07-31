@@ -5,6 +5,8 @@
     "~/.config/pi/npm/**",
     "~/.config/pi/git/**",
     "~/.config/pi/skills/**",
+    // `skills` is symlinked into the dotfiles repo; infrastructure checks use its realpath.
+    "~/.dot/pi/.config/pi/skills/**",
     "~/.config/pi/agents/**",
     "~/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/**"
   ],
