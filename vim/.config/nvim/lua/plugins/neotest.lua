@@ -49,6 +49,43 @@ return {
 		}
 		neotest.setup(config)
 
+		-- WORKAROUND: neotest subprocess doesn't source nvim-treesitter's
+		-- plugin/filetypes.lua, so tree-sitter language->filetype mappings
+		-- (tsx->typescriptreact, javascript->javascriptreact, etc.) are
+		-- missing in the subprocess.  Without them, discover_positions()
+		-- fails for .tsx/.jsx files:
+		--   No parser for language "typescriptreact"
+		--
+		-- Root cause: subprocess starts with `-u NONE` and builds its
+		-- runtimepath from neotest + nio + adapter roots + raw parser
+		-- .so dirs.  nvim-treesitter's plugin root is never added, so
+		-- its plugin/filetypes.lua is never sourced when the subprocess
+		-- runs `runtime! plugin/filetypes.lua`.
+		--
+		-- .ts files work by accident (filetype "typescript" matches
+		-- parser name "typescript" directly).
+		--
+		-- This wraps subprocess.init to prepend nvim-treesitter's root
+		-- to the child's runtimepath and re-source plugin/filetypes.lua
+		-- after every subprocess spawn.
+		--
+		-- Tracked at: https://github.com/nvim-neotest/neotest/issues/??
+		local subprocess = require("neotest.lib.subprocess")
+		local _init = subprocess.init
+		subprocess.init = function()
+			_init()
+			local ok, nvim_ts = pcall(require, "nvim-treesitter")
+			if ok and subprocess.enabled() then
+				local ts_root = subprocess.resolve_plugin_root(nvim_ts.setup)
+				if ts_root then
+					subprocess.request("nvim_exec_lua", string.format([[
+						vim.opt.runtimepath:prepend("%s")
+						vim.cmd("runtime! plugin/filetypes.lua")
+					]], ts_root), {})
+				end
+			end
+		end
+
 		Keymap.normal("tt", "", { desc = "neotest" })
 		Keymap.normal("ttr", function()
 			neotest.run.run()
