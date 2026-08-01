@@ -8,6 +8,7 @@ return {
 		-- testing framework adapters -- https://github.com/nvim-neotest/neotest?tab=readme-ov-file#supported-runners
 		"marilari88/neotest-vitest",
 		"nvim-neotest/neotest-python",
+		"nvim-neotest/neotest-go", -- https://github.com/nvim-neotest/neotest-go
 	},
 	config = function()
 		local neotest = require("neotest")
