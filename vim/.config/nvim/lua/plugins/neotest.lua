@@ -34,6 +34,13 @@ return {
 					end,
 				}),
 				require("neotest-python"),
+				require("neotest-go")({
+					recursive_run = true,
+					experimental = {
+						test_table = true,
+					},
+					args = { "-count=1", "-timeout=60s" },
+				}),
 			},
 		}
 		neotest.setup(config)
