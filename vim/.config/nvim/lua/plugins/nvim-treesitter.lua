@@ -15,6 +15,7 @@ return {
 	"nvim-treesitter/nvim-treesitter", -- keep parser runtime available while migrating to Neovim 0.12 built-ins
 	lazy = false,
 	build = ":TSUpdate",
+	commit = "7248feaca45e4d944591497964bc19afa89ad1c6",
 	config = function()
 		-- `nvim-treesitter` 0.12 ships bundled queries under its `runtime/` dir.
 		-- Keep that dir on `runtimepath` so `vim.treesitter.start()` can see the
