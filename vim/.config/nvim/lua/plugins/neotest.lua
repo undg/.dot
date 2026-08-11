@@ -73,6 +73,13 @@ return {
 			neotest.summary.toggle()
 		end, { desc = "(neotest) toggle summary" })
 		Keymap.normal("ttj", ":Neotest jump next<cr>", { desc = "(neotest) jump next" })
+
 		Keymap.normal("ttk", ":Neotest jump prev<cr>", { desc = "(neotest) jump prev" })
+		Keymap.normal("ttn", function()
+			neotest.jump.next({ status = "failed" })
+		end, { desc = "(neotest) jump next failed" })
+		Keymap.normal("ttp", function()
+			neotest.jump.prev({ status = "failed" })
+		end, { desc = "(neotest) jump prev failed" })
 	end,
 }
