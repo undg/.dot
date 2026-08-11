@@ -6,10 +6,10 @@ import os
 import platform
 import signal
 from collections.abc import Sequence
-from typing import cast
 from datetime import datetime, time, timedelta
 from pathlib import Path
 from types import FrameType
+from typing import cast
 
 import matplotlib.dates as mdates
 import matplotlib.patheffects as patheffects
@@ -224,12 +224,14 @@ def main() -> None:
                 xy=(x_positions[index], plot_usage[index]),
                 xytext=(-6, 12),
                 textcoords="offset points",
-                rotation=90,
-                color="orange",
-                path_effects=[patheffects.withStroke(linewidth=1, foreground="black")],
+                rotation=75,
+                color="darkorange",
+                path_effects=[
+                    patheffects.withStroke(linewidth=0.4, foreground="black")
+                ],
                 ha="left",
                 va="bottom",
-                fontsize=8,
+                fontsize=10,
             )
 
     tooltip: Annotation = ax.annotate(
