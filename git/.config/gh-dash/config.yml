@@ -1,11 +1,13 @@
 # yaml-language-server: $schema=https://gh-dash.dev/schema.json
 prSections:
+  - title: Opened by me
+    filters: -review:approved is:Open author:@me
   - title: Opened
     filters: -review:approved is:Open
-  - title: Approved
-    filters: author:@me review:approved is:Open
   - title: Involved
     filters: involves:@me -author:@me is:Open
+  - title: Approved
+    filters: author:@me review:approved is:Open
 issuesSections:
   - title: My Issues
     filters: author:@me
