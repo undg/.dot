@@ -18,6 +18,7 @@ local lsp_servers = {
 	"tailwindcss",
 	"cssmodules_ls",
 	"svelte",
+	"terraform-ls",
 }
 
 -- Mason package names (for auto-installation)
@@ -39,6 +40,7 @@ local mason_packages = {
 	["tailwindcss"] = "tailwindcss-language-server",
 	["cssmodules_ls"] = "cssmodules-language-server",
 	["svelte"] = "svelte-language-server",
+	-- ["terraform-ls"] = "terraform-ls",
 }
 
 local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
