@@ -21,6 +21,13 @@ chrome-dev http://localhost:3000
 # Check if running
 chrome-dev --status
 
+# Kill and relaunch (optionally with a new URL)
+chrome-dev --restart
+chrome-dev --restart http://localhost:3000
+
+# Kill all dev Chrome processes without launching it again
+chrome-dev --stop
+
 # Reset profile (clear all data)
 chrome-dev --reset
 
@@ -35,6 +42,7 @@ Environment variables:
 - `CHROME_DEV_PROFILE` - Profile location (default: `~/.chrome-dev-profile`)
 - `CHROME_DEBUG_PORT` - Remote debugging port (default: `9222`)
 - `CHROME_DEV_URL` - Default URL (default: `http://localhost:5173`)
+- `CHROME_DEV_PID_FILE` - PID file (default: `${TMPDIR:-/tmp}/chrome-dev.pid`)
 
 Example:
 
