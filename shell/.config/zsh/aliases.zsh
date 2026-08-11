@@ -80,6 +80,7 @@ if hash gh 2>/dev/null; then
 	alias gh-dash='gh dash'
 	alias gh-create='gh pr create -t $(git branch --show-current)'
 	alias gh-create-web='gh pr create -w -t $(git branch --show-current)'
+	# https://www.gh-dash.dev/companions/enhance/getting-started/
 	alias gh-actions='gh enhance $(gh pr view --json=number --jq .number)'
 else
 	echo "gh is missing"
