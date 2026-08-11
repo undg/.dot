@@ -1,4 +1,3 @@
-// https://github.com/nicobailon/pi-web-access#configuration
 {
   "braveApiKey": "brave-api-key",
   "provider": "brave",
@@ -15,3 +14,4 @@
     "enabled": false
   }
 }
+// https://github.com/nicobailon/pi-web-access#configuration
