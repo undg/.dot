@@ -95,13 +95,10 @@ gui:
   switchToFilesAfterStashPop: true
   switchToFilesAfterStashApply: true
   switchTabsWithPanelJumpKeys: false
-
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: ""
-      externalDiffCommand: ""
-      useExternalDiffGitConfig: false
+      type: rawGit
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -138,21 +135,17 @@ git:
     showWholeGraph: false
   localBranchSortOrder: date
   remoteBranchSortOrder: date
-
 update:
   method: never
   days: 14
-
 refresher:
   refreshInterval: 5
   fetchInterval: 60
-
 confirmOnQuit: false
 quitOnTopLevelReturn: true
 disableStartupPopups: true
 notARepository: prompt
 promptToReturnFromSubprocess: false
-
 os:
   edit: ""
   editAtLine: ""
@@ -165,10 +158,8 @@ os:
   copyToClipboardCmd: ""
   readFromClipboardCmd: ""
   shellFunctionsFile: ""
-
 customCommands: []
 services: {}
-
 keybinding:
   universal:
     quit: [q]
@@ -226,7 +217,7 @@ keybinding:
     prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
-    cyclePagers: "|"
+    cycleDiffRenderers: "|"
     undo: z
     redo: Z
     filteringMenu: <ctrl+s>
