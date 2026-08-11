@@ -34,7 +34,10 @@ return {
 						return name ~= "node_modules"
 					end,
 				}),
-				require("neotest-python"),
+				require("neotest-python")({
+					runner = "pytest",
+					args = { "-vv" },
+				}),
 				require("neotest-go")({
 					recursive_run = true,
 					experimental = {
