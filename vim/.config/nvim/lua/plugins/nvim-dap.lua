@@ -1,6 +1,9 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		dependencies = {
+			"mfussenegger/nvim-dap-python",
+		},
 		-- depencendies = {
 		-- 	'mxsdev/nvim-dap-vscode-js',
 		-- },
@@ -104,7 +107,6 @@ return {
 						make_web_attach("Attach Chrome: Vivaldi", attach_port),
 					}
 
-
 					for _, language in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
 						dap.configurations[language] = vim.deepcopy(base_configs)
 					end
@@ -189,6 +191,33 @@ return {
 
 			setup_js_debug_adapters()
 
+			local dap_python = require("dap-python")
+			local mason_python = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+			local python = vim.fn.executable(mason_python) == 1 and mason_python or vim.fn.exepath("python3")
+			if python == "" then
+				python = vim.fn.exepath("python")
+			end
+			if python == "" then
+				python = "python"
+			end
+			dap_python.setup(python)
+			dap_python.test_runner = "pytest"
+
+			local function debug_python_file()
+				dap.run({
+					type = "python",
+					request = "launch",
+					name = "Debug Python file",
+					module = "pytest",
+					args = { vim.fn.expand("%:p"), "-vv" },
+					console = "integratedTerminal",
+				})
+			end
+
+			Keymap.normal("<leader>dtf", debug_python_file, { desc = "(DAP) Debug Python file" })
+			Keymap.normal("<leader>dtm", dap_python.test_method, { desc = "(DAP) Debug Python test" })
+			Keymap.normal("<leader>dtc", dap_python.test_class, { desc = "(DAP) Debug Python class" })
+
 			Keymap.normal("<leader>dx", require("dap").clear_breakpoints, { desc = "(DAP) Clear Brakepoints" })
 
 			Keymap.normal("<leader>dr", require("dap").repl.toggle, { desc = "(DAP) Toggle REPL" })
@@ -212,7 +241,7 @@ return {
 				local hover_ui = require("utils.hover-ui")
 				widgets.hover(nil, { border = hover_ui.border })
 			end, { desc = "(DAP) Hover value" })
-		end
+		end,
 	},
 	{
 		"rcarriga/nvim-dap-ui",
@@ -223,7 +252,7 @@ return {
 				function()
 					require("dapui").toggle({})
 				end,
-				desc = "(DAP) open UI"
+				desc = "(DAP) open UI",
 			},
 		},
 		dependencies = {
@@ -234,15 +263,15 @@ return {
 				opts = {
 					handlers = {},
 					automatic_installation = true,
-					ensure_installed = { "js-debug-adapter" },
+					ensure_installed = { "js-debug-adapter", "debugpy" },
 				},
 				dependencies = {
 					"mfussenegger/nvim-dap",
 					"mason-org/mason.nvim",
 				},
-			}
+			},
 			-- keep-sorted end
-		}
+		},
 	},
 	{
 		"theHamsta/nvim-dap-virtual-text",
