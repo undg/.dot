@@ -22,6 +22,16 @@
 # - `feat//foo` -> no prefix, because the scope is empty
 # - `feat/a/b/` -> no prefix, because the slug is empty
 # - empty or comment-only commit messages are left untouched and fail normally
+#
+# use it in git hooks/prepare-commit-msg
+# @example
+# #!/bin/sh
+# cd "$(git rev-parse --show-toplevel)"
+#
+# if [ -x "$HOME/bin/git-commit-msg-prefix-with-ticket" ]; then
+# 	"$HOME/bin/git-commit-msg-prefix-with-ticket" "$1"
+# fi
+#
 
 msg_file=$1
 
@@ -35,7 +45,7 @@ line_number=0
 while IFS= read -r line || [ -n "$line" ]; do
 	line_number=$((line_number + 1))
 	case "$line" in
-	'' | '# '* | '#'* )
+	'' | '# '* | '#'*)
 		continue
 		;;
 	*)
@@ -73,9 +83,9 @@ HEAD | '')
 	exit 0
 	;;
 build/* | chore/* | ci/* | docs/* | feat/* | fix/* | perf/* | refactor/* | revert/* | style/* | test/*)
-	branch_type=${branch_name%%/*} # text before the first slash
-	branch_slug=${branch_name##*/} # text after the last slash
-	branch_scope=${branch_name#*/} # drop the type and first slash
+	branch_type=${branch_name%%/*}  # text before the first slash
+	branch_slug=${branch_name##*/}  # text after the last slash
+	branch_scope=${branch_name#*/}  # drop the type and first slash
 	branch_scope=${branch_scope%/*} # drop the slug and last slash
 	commit_prefix=''
 	if [ -n "$branch_scope" ] && [ "$branch_scope" != "$branch_name" ] && [ -n "$branch_slug" ]; then
