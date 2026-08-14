@@ -45,6 +45,7 @@ Spec("plugins.trouble")                     -- organize errors and warnings
 Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
 
 Spec("plugins.treesitter")                  -- syntax highlight
+Spec("plugins.nvim-treesitter-context")     -- keep function and class names visible at the top of the screen
 
 Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
 -- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
