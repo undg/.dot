@@ -39,7 +39,6 @@ return {
 			bg = "#504945",
 			-- fg = "#fabd2f",
 			bold = true,
-			underline = true,
 			sp = "#fabd2f",
 		})
 
@@ -47,12 +46,18 @@ return {
 			bg = "#504945",
 			fg = "#fabd2f",
 			bold = true,
-			underline = true,
 			sp = "#fabd2f",
+		})
+
+		vim.api.nvim_set_hl(0, "TreesitterContextBottom", {
+			underline = true,
+		})
+		vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", {
+			underline = true,
 		})
 	end,
 
-	vim.keymap.set("n", "g[", function()
+	vim.keymap.set("n", "<leader>gc", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
-	end, { silent = true }),
+	end, { silent = true, desc = "(treesitter) Go to context" }),
 }
