@@ -232,6 +232,7 @@ install_completion() {
 	hash tailscale 2>/dev/null && tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale" 2>/dev/null || true
 	hash opencode 2>/dev/null && opencode completion zsh >"$HOME/.config/zsh/completion/_opencode" 2>/dev/null || true
 	hash pnpm 2>/dev/null && pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm" 2>/dev/null || true
+	hash docker 2>/dev/null && docker completion zsh >"$HOME/.config/zsh/completion/_docker" 2>/dev/null || true
 }
 
 # Main execution
