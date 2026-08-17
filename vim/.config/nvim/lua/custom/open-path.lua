@@ -86,7 +86,16 @@ local function open_path()
 	M.open(path, line, end_line)
 end
 
+local function open_path_and_add_to_harpoon()
+	open_path()
+
+	--  @TODO (undg) 2026-08-17: create command, do not rely on mapping
+	local keys = vim.api.nvim_replace_termcodes("<S-LEFT><S-RIGHT><S-RIGHT><ESC>", true, false, true)
+	vim.api.nvim_feedkeys(keys, "m", false)
+end
+
 vim.api.nvim_create_user_command("Openpath", open_path, { desc = "Open file path from + register" })
 Keymap.normal("<leader>FF", open_path, { desc = "open yanked path" })
+Keymap.normal("<leader>Ff", open_path_and_add_to_harpoon, { desc = "open yanked path and add to harpoon" })
 
 return M
