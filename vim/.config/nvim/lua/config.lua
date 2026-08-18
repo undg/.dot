@@ -50,6 +50,7 @@ vim.opt.lazyredraw = true      -- Don't redraw while executing macros (good perf
 vim.opt.errorbells = false     -- No annoying sound on errors
 vim.opt.visualbell = false     -- No annoying sound on errors
 vim.opt.termguicolors = true   -- enable highlight groups
+vim.o.virtualedit = "block"    -- in block visual allow cursor to travel beyond line content
 
 -- Show white spaces, but only on demand
 -- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
