@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Profile file. Runs on login.
 
-source ~/.config/zsh/path.zsh
+source $HOME/.config/zsh/path.zsh
 
 #################
 # Start: old zsh artefacts
@@ -13,15 +13,13 @@ export LD_LIBRARY_PATH=$HOME/lib/:$LD_LIBRARY_PATH
 # End: old zsh artefacts
 #################
 
-# Some of those variables are used in ~/.config/i3/config
-
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 # export TERMINAL="kitty"
 export BROWSER="brave"
 export CHROME="chromium"
 export READER="xreader"
-export PI_CODING_AGENT_DIR="~/.config/pi/"
+export PI_CODING_AGENT_DIR="$HOME/.config/pi/"
 
 RETARDED_OS=$([[ "$(uname)" == "Darwin" ]] && [[ "$(hostname)" =~ \.mhf\.mhc$ ]] && echo true || echo false)
 
@@ -29,8 +27,8 @@ if [[ "$RETARDED_OS" == "true" ]]; then
 	export BROWSER="open"
 fi
 
-export ANDROID_SDK_ROOT=~/Android/Sdk
-export ANDROID_HOME=~/Android/Sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+export ANDROID_HOME=$HOME/Android/Sdk
 
 # Quick fix for Handy
 # https://github.com/cjpais/Handy/issues/114#issuecomment-3357408907
