@@ -43,7 +43,6 @@ Spec("plugins.conform")                     -- better formatting
 Spec("plugins.trouble")                     -- organize errors and warnings
 Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
 
-Spec("plugins.treesitter")                  -- syntax highlight
 Spec("plugins.nvim-treesitter-context")     -- keep function and class names visible at the top of the screen
 Spec("plugins.nvim-treesitter-textobjects") -- Syntax aware text-objects, select, move, swap, and peek support.
 Spec("plugins.nvim-treesitter")             -- syntax highlight
