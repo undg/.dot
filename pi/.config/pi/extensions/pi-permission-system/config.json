@@ -20,8 +20,15 @@
     "edit": "allow",
     "write": "allow",
     "apply_patch": "allow",
+    // fetch tools — agent picks URL, exfil risk. KEEP GATED.
+    "fetch_content": "ask",          // pin explicitly, do NOT ride universal "*"
     "webfetch": "ask",
     "rich-webfetch": "ask",
+    // search tools — no agent-chosen URL, query goes to configured provider only
+    "web_search": "allow",
+    "brave_search": "allow",
+    "source_check": "allow",
+    "get_search_content": "allow",  // reads previously-stored content, no new arbitrary fetch
     "subagent": "allow",
     "get_subagent_result": "allow",
     "memory": "allow",
