@@ -11,3 +11,5 @@ AGENTS.md
 
 # code-review-graph cache/index
 .code-review-graph/
+
+**/.claude/.cc-writes/
