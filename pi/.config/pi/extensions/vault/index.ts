@@ -18,6 +18,7 @@ import { tagsParams, execute as tagsExec } from "./tools/tags.js";
 import { tagParams, execute as tagExec } from "./tools/tag.js";
 import { backlinksParams, execute as backlinksExec } from "./tools/backlinks.js";
 import { commitParams, execute as commitExec } from "./tools/commit.js";
+import { openParams, execute as openExec } from "./tools/open.js";
 
 // Utils for vault_daily
 import { dailyNotePath, dailyFrontmatter } from "./utils/daily.js";
@@ -247,6 +248,24 @@ export default function (pi: ExtensionAPI) {
 			}
 			return {
 				content: [{ type: "text", text: `File not committed (git disabled for vault): ${result.path}` }],
+				details: result,
+			};
+		},
+	});
+
+	// vault_open
+	pi.registerTool({
+		name: "vault_open",
+		label: "Vault Open",
+		description: "Open an existing note in the configured Obsidian vault.",
+		promptSnippet: "Open an existing Obsidian note in the desktop application",
+		parameters: openParams,
+		async execute(_toolCallId, params, signal) {
+			const result = await openExec(params as any, async (command, args) =>
+				pi.exec(command, args, { signal }),
+			);
+			return {
+				content: [{ type: "text", text: `Opened note: ${result.path}` }],
 				details: result,
 			};
 		},
