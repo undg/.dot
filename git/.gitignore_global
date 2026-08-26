@@ -13,3 +13,5 @@ AGENTS.md
 .code-review-graph/
 
 **/.claude/.cc-writes/
+
+**/.claude/settings.local.json
