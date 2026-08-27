@@ -187,6 +187,4 @@ else
 	echo "code-review-graph is not installed."
 fi
 
-alias wk=wk-pgm-fe.sh
-
 alias cl="adb shell am start -a android.intent.action.DIAL -d "
