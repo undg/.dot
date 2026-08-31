@@ -20,10 +20,10 @@ auto_switch = false
 # Alt+hjkl pane focus (tmux.conf M-h/j/k/l).
 # NOTE: unlike tmux's is_vim check, herdr has no vim-aware passthrough — these
 # always move herdr pane focus, even inside nvim splits.
-focus_pane_left  = ["prefix+h", "alt+h"]
-focus_pane_down  = ["prefix+j", "alt+j"]
-focus_pane_up    = ["prefix+k", "alt+k"]
-focus_pane_right = ["prefix+l", "alt+l"]
+# focus_pane_left  = ["prefix+h", "alt+h"]
+# focus_pane_down  = ["prefix+j", "alt+j"]
+# focus_pane_up    = ["prefix+k", "alt+k"]
+# focus_pane_right = ["prefix+l", "alt+l"]
 
 # Alt+n/m/,/. i3-style pane move (tmux.conf M-n/m/,/.)
 swap_pane_left  = ["prefix+shift+h", "alt+n"]
@@ -41,10 +41,10 @@ move_tab_next     = "alt+shift+right"
 # Resize mode vim keys (tmux.conf M-y/u/i/o resized instantly; herdr only
 # resizes inside resize mode, entered with the default prefix+r).
 # Flow: prefix+r, then h/j/k/l repeatedly, Escape to exit.
-resize_pane_left  = "h"
-resize_pane_down  = "j"
-resize_pane_up    = "k"
-resize_pane_right = "l"
+resize_pane_left  = ["h", "alt+y"]
+resize_pane_down  = ["j", "alt+u"]
+resize_pane_up    = ["k", "alt+i"]
+resize_pane_right = ["l", "alt+o"]
 
 # Sessionizer popup (tmux.conf C-g root + prefix+C-g -> tmux-sessionizer)
 [[keys.command]]
@@ -75,3 +75,27 @@ key = "prefix+shift+r"
 type = "shell"
 command = "herdr server reload-config"
 description = "Reload herdr config.toml"
+
+[[keys.command]]
+key = "alt+h"
+type = "plugin_action"
+command = "willfish.herdr-navigator.left"
+description = "navigate left"
+
+[[keys.command]]
+key = "alt+j"
+type = "plugin_action"
+command = "willfish.herdr-navigator.down"
+description = "navigate down"
+
+[[keys.command]]
+key = "alt+k"
+type = "plugin_action"
+command = "willfish.herdr-navigator.up"
+description = "navigate up"
+
+[[keys.command]]
+key = "alt+l"
+type = "plugin_action"
+command = "willfish.herdr-navigator.right"
+description = "navigate right"
