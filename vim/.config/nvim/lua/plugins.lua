@@ -84,6 +84,7 @@ Spec("plugins.qfenter")                          -- quickfix window (cw) open in
 Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
 Spec("plugins.herdr-navigator-nvim")             -- hybrid herdr, vim window navigation.
+Spec("plugins.herdr-nvim")                       -- run neovim from herdr and report back to agent from neovim
 Spec("plugins.tabular")                          -- align text in column in table style.
 Spec("plugins.marks")                            -- better marks management
 Spec("plugins.streamer-mode")                    -- hide shell local variables
