@@ -21,30 +21,68 @@ show_help() {
 Usage: ./install [OPTIONS]
 
 Options:
-  --skip-install    Skip package installation, only refresh config
-  --skip-completion Skip generating shell completions
-  --skip-stow       Skip stow operations (symlinking dotfiles)
-  -h, --help        Show this help message
+  --install-skip    Skip package installation
+  --completion-skip Skip generating shell completions
+  --stow-skip       Skip stow operations (symlinking dotfiles)
+  --herdr-skip      Skip herdr plugins installation
+
+  --install-only    Only package installation
+  --completion-only Only generating shell completions
+  --stow-only       Only stow operations (symlinking dotfiles)
+  --herdr-only      Only herdr plugins installation
+
+  -h, --help        Only this help message
 
 EOF
 }
 
 while [[ $# -gt 0 ]]; do
 	case $1 in
-	--skip-install)
+	--install-skip)
 		SKIP_INSTALL=true
 		shift
 		;;
-	--skip-completion)
+	--install-only)
+		SKIP_INSTALL=false
+		SKIP_COMPLETION=true
+		SKIP_STOW=true
+		SKIP_HERDR=true
+		shift
+		;;
+
+	--completion-skip)
 		SKIP_COMPLETION=true
 		shift
 		;;
-	--skip-stow)
+	--completion-only)
+		SKIP_INSTALL=true
+		SKIP_COMPLETION=false
+		SKIP_STOW=true
+		SKIP_HERDR=true
+		shift
+		;;
+
+	--stow-skip)
 		SKIP_STOW=true
 		shift
 		;;
-	--skip-herdr)
+	--stow-only)
+		SKIP_INSTALL=true
+		SKIP_COMPLETION=true
+		SKIP_STOW=false
 		SKIP_HERDR=true
+		shift
+		;;
+
+	--herdr-skip)
+		SKIP_HERDR=true
+		shift
+		;;
+	--herdr-only)
+		SKIP_INSTALL=true
+		SKIP_COMPLETION=true
+		SKIP_STOW=true
+		SKIP_HERDR=false
 		shift
 		;;
 	-h | --help)
@@ -70,9 +108,6 @@ install_configs() {
 	echo "------Install configuration files----------"
 	echo ""
 
-	# @TODO (undg) 2024-03-15: think about removing this firework. I'm not using it much
-	#  @TODO (undg) 2026-02-15: still thinking :)
-	#  @TODO (undg) 2026-07-21: maybe xD
 	rm -rf ~/.config/atuin
 
 	# Don't symlink pi/ dir, symlink it's contents. Some of the files are live, owned by pi and should not be tracked by VCS.
