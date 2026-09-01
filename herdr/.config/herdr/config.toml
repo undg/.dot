@@ -18,12 +18,11 @@ auto_switch = false
 
 [keys]
 # Alt+hjkl pane focus (tmux.conf M-h/j/k/l).
-# NOTE: unlike tmux's is_vim check, herdr has no vim-aware passthrough — these
 # always move herdr pane focus, even inside nvim splits.
-# focus_pane_left  = ["prefix+h", "alt+h"]
-# focus_pane_down  = ["prefix+j", "alt+j"]
-# focus_pane_up    = ["prefix+k", "alt+k"]
-# focus_pane_right = ["prefix+l", "alt+l"]
+focus_pane_left  = ["prefix+h"]
+focus_pane_down  = ["prefix+j"]
+focus_pane_up    = ["prefix+k"]
+focus_pane_right = ["prefix+l"]
 
 # Alt+n/m/,/. i3-style pane move (tmux.conf M-n/m/,/.)
 swap_pane_left  = ["prefix+shift+h", "alt+n"]
@@ -46,28 +45,6 @@ resize_pane_down  = ["j", "alt+u"]
 resize_pane_up    = ["k", "alt+i"]
 resize_pane_right = ["l", "alt+o"]
 
-# Sessionizer popup (tmux.conf C-g root + prefix+C-g -> tmux-sessionizer)
-[[keys.command]]
-key = "ctrl+g"
-type = "pane"
-command = "~/bin/tmux-sessionizer"
-description = "Fuzzy project/session switcher"
-
-[[keys.command]]
-key = "prefix+ctrl+g"
-type = "pane"
-command = "~/bin/tmux-sessionizer"
-description = "Fuzzy project/session switcher"
-
-# Sesh popup (tmux.conf prefix+C-b -> display-popup sesh/tv)
-[[keys.command]]
-key = "prefix+ctrl+b"
-type = "popup"
-command = "command -v tv >/dev/null 2>&1 && tv sesh || sesh connect $(sesh list | fzf)"
-description = "Sesh session picker"
-width = "80%"
-height = "70%"
-
 # Reload config (tmux.conf `bind r` source-file). prefix+r is already resize
 # mode here, so this lives on prefix+shift+r instead.
 [[keys.command]]
@@ -75,6 +52,12 @@ key = "prefix+shift+r"
 type = "shell"
 command = "herdr server reload-config"
 description = "Reload herdr config.toml"
+
+
+#{{{{{{{{{{{{{{{{{{{{{{{
+# herdr-navigator.nvim
+
+# hybrid navigation between nvim windows and herd panes
 
 [[keys.command]]
 key = "alt+h"
@@ -99,3 +82,22 @@ key = "alt+l"
 type = "plugin_action"
 command = "willfish.herdr-navigator.right"
 description = "navigate right"
+#}}}}}}}}}}}}
+
+#{{{{{{{{{{{{
+# herdr-nvim
+
+# Neovim, built into herdr workspace
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
+#}}}}}}}}}}}}
