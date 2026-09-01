@@ -15,3 +15,5 @@ AGENTS.md
 **/.claude/.cc-writes/
 
 **/.claude/settings.local.json
+
+.config/wt.toml
