@@ -1,7 +1,7 @@
 return {
 	"kdheepak/lazygit.nvim", -- https://github.com/kdheepak/lazygit.nvim
 	config = function()
-		local lazygit_navigation = require("custom.lazygit-navigation")
+		local lazygit_navigation = require("custom.lazygit-nav.window")
 
 		require("telescope").load_extension("lazygit")
 

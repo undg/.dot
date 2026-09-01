@@ -1,12 +1,5 @@
 local M = {}
 
-local tmux_directions = {
-	h = "L",
-	j = "D",
-	k = "U",
-	l = "R",
-}
-
 ---@param win integer
 ---@return boolean
 function M.is_window(win)
@@ -49,19 +42,6 @@ function M.focus()
 		vim.api.nvim_set_current_win(win)
 	end
 
-	return true
-end
-
----@param direction string
----@return boolean
-function M.navigate(direction)
-	local tmux_socket = vim.env.TMUX and vim.env.TMUX:match("^[^,]+")
-	local tmux_direction = tmux_directions[direction]
-	if not tmux_socket or not tmux_direction then
-		return false
-	end
-
-	vim.fn.system({ "tmux", "-S", tmux_socket, "select-pane", "-" .. tmux_direction })
 	return true
 end
 

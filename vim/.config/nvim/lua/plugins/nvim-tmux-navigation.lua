@@ -1,4 +1,4 @@
-local lazygit_navigation = require("custom.lazygit-navigation")
+local lazygit_navigation = require("custom.lazygit-nav.tmux")
 
 local M = {
 	"alexghergh/nvim-tmux-navigation", -- https://github.com/alexghergh/nvim-tmux-navigation
@@ -25,7 +25,9 @@ function M.init()
 
 	local function terminal_navigation(direction, fallback)
 		return function()
-			if lazygit_navigation.is_window(vim.api.nvim_get_current_win()) and lazygit_navigation.navigate(direction) then
+			if
+				lazygit_navigation.is_window(vim.api.nvim_get_current_win()) and lazygit_navigation.navigate(direction)
+			then
 				return
 			end
 			fallback()
