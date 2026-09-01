@@ -259,9 +259,12 @@ install_packages() {
 	_install_package unzip
 	_install_package vmware-workstation SKIP SKIP SKIP
 	_install_package wget
+	_install_package worktrunk
 	_install_package yay SKIP SKIP SKIP
 	_install_package zsh
 	_install_package zsh-theme-powerlevel10k-git SKIP SKIP SKIP
+
+	echo 'You my want to run: wt config shell install'
 }
 
 install_herdr_plugins() {
