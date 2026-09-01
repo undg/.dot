@@ -1,0 +1,56 @@
+#compdef wk
+
+_wk() {
+  local -a subcommands
+  subcommands=(
+    'add:create a worktree + branch off base_ref'
+    'delete:remove a worktree, its branch, and prune'
+    'rm:alias for delete'
+    'clean:delete worktrees whose branch PR has merged'
+    'ls:show worktrees + tmux session status'
+    'init:scaffold a starter .wk.toml'
+    'completion:generate shell completion scripts'
+  )
+
+  if (( CURRENT == 2 )); then
+    _describe -t commands 'wk command' subcommands
+    _arguments '(-h --help)'{-h,--help}'[show usage]'
+    return
+  fi
+
+  case ${words[2]} in
+    add)
+      _wk_branches
+      ;;
+    delete|rm)
+      _wk_worktree_dirs
+      ;;
+    ls)
+      _arguments '--porcelain[machine-readable output]'
+      ;;
+    completion)
+      local -a shells
+      shells=(zsh bash fish)
+      _describe -t shells 'shell' shells
+      ;;
+  esac
+}
+
+_wk_worktree_dirs() {
+  local -a lines dirs
+  lines=(${(f)"$(wk ls --porcelain 2>/dev/null)"})
+  # porcelain is 3-line blocks (branch, dir, session) separated by a blank line.
+  local i
+  for (( i = 2; i <= $#lines; i += 4 )); do
+    dirs+=("${lines[i]}")
+  done
+  _describe -t worktrees 'worktree directory' dirs
+}
+
+_wk_branches() {
+  local -a branches
+  branches=(${(f)"$(git branch -r --format='%(refname:short)' 2>/dev/null | sed 's#^origin/##')"})
+  _describe -t branches 'branch' branches
+}
+
+_wk "$@"
