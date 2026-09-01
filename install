@@ -257,7 +257,6 @@ install_completion() {
 	_completion docker docker completion zsh
 	_completion herdr herdr completion zsh
 	_completion mise mise completion zsh --shell=zsh
-	_completion gh gh completion -s zsh
 	_completion lazygit lazygit --gen-completion zsh
 }
 
