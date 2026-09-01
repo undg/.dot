@@ -122,6 +122,11 @@ _install_package() {
 	local pkg_pkg=${3:-$1}
 	local pkg_apt=${4:-$1}
 
+	if command -v herdr &>/dev/null; then
+		herdr plugin install ChmaraX/herdr-nvim
+		herdr plugin install willfish/herdr-navigator
+	fi
+
 	if command -v pacman &>/dev/null; then
 		[[ "$pkg_pacman" == "SKIP" ]] && return 0
 		if pacman -Q "$pkg_pacman" &>/dev/null; then
