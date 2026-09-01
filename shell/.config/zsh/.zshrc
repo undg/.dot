@@ -192,6 +192,9 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^ ' edit-command-line # ctrl+space: open command in vim
 
+# worktrunk shell integration
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
 
 #################################
 # Profiling
