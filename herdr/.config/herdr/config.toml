@@ -4,6 +4,9 @@ status_indicators = "dots"
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
 window_title = "herdr: {tab} · {workspace}"
+# 50% bigger than the default 26-col sidebar, with max width doubled from 36 to 72.
+sidebar_width = 44 
+sidebar_max_width = 128 
 
 [ui.toast]
 delivery = "system"
@@ -44,6 +47,9 @@ resize_pane_left  = ["h", "alt+y"]
 resize_pane_down  = ["j", "alt+u"]
 resize_pane_up    = ["k", "alt+i"]
 resize_pane_right = ["l", "alt+o"]
+
+# Toggle workspace sidebar collapse (same as herdr's default binding, made explicit).
+toggle_sidebar = ["prefix+b"]
 
 # Reload config (tmux.conf `bind r` source-file). prefix+r is already resize
 # mode here, so this lives on prefix+shift+r instead.
