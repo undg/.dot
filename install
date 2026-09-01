@@ -14,6 +14,7 @@ NC='\033[0m'   #'0'    is back no color
 SKIP_INSTALL=false
 SKIP_COMPLETION=false
 SKIP_STOW=false
+SKIP_HERDR=false
 
 show_help() {
 	cat <<EOF
@@ -40,6 +41,10 @@ while [[ $# -gt 0 ]]; do
 		;;
 	--skip-stow)
 		SKIP_STOW=true
+		shift
+		;;
+	--skip-herdr)
+		SKIP_HERDR=true
 		shift
 		;;
 	-h | --help)
@@ -122,11 +127,6 @@ _install_package() {
 	local pkg_pkg=${3:-$1}
 	local pkg_apt=${4:-$1}
 
-	if command -v herdr &>/dev/null; then
-		herdr plugin install ChmaraX/herdr-nvim
-		herdr plugin install willfish/herdr-navigator
-	fi
-
 	if command -v pacman &>/dev/null; then
 		[[ "$pkg_pacman" == "SKIP" ]] && return 0
 		if pacman -Q "$pkg_pacman" &>/dev/null; then
@@ -205,7 +205,7 @@ install_packages() {
 	_install_package pipewire-alsa SKIP SKIP SKIP
 	_install_package pipewire-jack SKIP SKIP SKIP
 	_install_package pipewire-pulse SKIP SKIP SKIP
-	_install_package pulse-remote-git SKIP SKIP SKIP
+	_install_package pulse-remote SKIP SKIP SKIP
 	_install_package ripgrep
 	_install_package rofi SKIP SKIP SKIP
 	_install_package rofi-calc SKIP SKIP SKIP
@@ -229,18 +229,40 @@ install_packages() {
 	_install_package zsh-theme-powerlevel10k-git SKIP SKIP SKIP
 }
 
+install_herdr_plugins() {
+	if command -v herdr &>/dev/null; then
+		herdr plugin install ChmaraX/herdr-nvim
+		herdr plugin install willfish/herdr-navigator
+	fi
+}
+
+# Generate zsh completion for <bin> into ~/.config/zsh/completion/_<bin>.
+# Usage: _completion <bin> <command...>
+_completion() {
+	local bin=$1
+	shift
+	if hash "$bin" 2>/dev/null; then
+		"$@" >"$HOME/.config/zsh/completion/_$bin" 2>/dev/null || true
+	fi
+}
+
 install_completion() {
 	echo ""
 	echo "------Update autocompletion----------"
 	echo ""
-	hash tv 2>/dev/null && tv init zsh >"$HOME/.config/zsh/completion/_tv" 2>/dev/null || true
-	hash tailscale 2>/dev/null && tailscale completion zsh >"$HOME/.config/zsh/completion/_tailscale" 2>/dev/null || true
-	hash opencode 2>/dev/null && opencode completion zsh >"$HOME/.config/zsh/completion/_opencode" 2>/dev/null || true
-	hash pnpm 2>/dev/null && pnpm completion zsh >"$HOME/.config/zsh/completion/_pnpm" 2>/dev/null || true
-	hash docker 2>/dev/null && docker completion zsh >"$HOME/.config/zsh/completion/_docker" 2>/dev/null || true
+	_completion tv tv init zsh
+	_completion tailscale tailscale completion zsh
+	_completion opencode opencode completion zsh
+	_completion pnpm pnpm completion zsh
+	_completion docker docker completion zsh
+	_completion herdr herdr completion zsh
+	_completion mise mise completion zsh --shell=zsh
+	_completion gh gh completion -s zsh
+	_completion lazygit lazygit --gen-completion zsh
 }
 
 # Main execution
 [[ "$SKIP_INSTALL" == false ]] && install_packages
 [[ "$SKIP_STOW" == false ]] && install_configs
 [[ "$SKIP_COMPLETION" == false ]] && install_completion
+[[ "$SKIP_HERDR" == false ]] && install_herdr_plugins
