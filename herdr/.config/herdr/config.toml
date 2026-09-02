@@ -22,16 +22,21 @@ auto_switch = false
 [keys]
 # Alt+hjkl pane focus (tmux.conf M-h/j/k/l).
 # always move herdr pane focus, even inside nvim splits.
+# down/up moved off prefix+j/k below (freed for space/agent nav); they're
+# already reachable via alt+j/k through herdr-navigator.nvim.
 focus_pane_left  = ["prefix+h"]
-focus_pane_down  = ["prefix+j"]
-focus_pane_up    = ["prefix+k"]
 focus_pane_right = ["prefix+l"]
 
-# Alt+n/m/,/. i3-style pane move (tmux.conf M-n/m/,/.)
-swap_pane_left  = ["prefix+shift+h", "alt+n"]
-swap_pane_down  = ["prefix+shift+j", "alt+m"]
-swap_pane_up    = ["prefix+shift+k", "alt+,"]
-swap_pane_right = ["prefix+shift+l", "alt+."]
+# prefix+j/k next/prev space (workspace), prefix+shift+j/k next/prev agent.
+next_workspace      = ["ctrl+shift+j"]
+previous_workspace  = ["ctrl+shift+k"]
+next_agent          = ["alt+shift+j"]
+previous_agent      = ["alt+shift+k"]
+
+swap_pane_left  = ["alt+n"]
+swap_pane_down  = ["alt+m"]
+swap_pane_up    = ["alt+,"]
+swap_pane_right = ["alt+."]
 
 # Alt+Left/Right tab switch, Alt+Shift+Left/Right move tab position
 # (tmux.conf M-Left/Right, M-S-Left/Right)
