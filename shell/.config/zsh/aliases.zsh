@@ -181,10 +181,8 @@ else
 	echo "opencode is not installed."
 fi
 
-if hash code-review-graph &>/dev/null; then
-	alias crg='code-review-graph'
-else
-	echo "code-review-graph is not installed."
+if hash claude &>/dev/null; then
+	alias cl='claude'
 fi
 
-alias cl="adb shell am start -a android.intent.action.DIAL -d "
+alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
