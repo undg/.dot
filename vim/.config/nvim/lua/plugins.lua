@@ -5,12 +5,10 @@ Git("https://github.com/nvim-lua/plenary.nvim") -- All the lua functions you don
 -- Productivity
 Spec("plugins.comment")                -- commenting code
 Spec("plugins.mini-surround")          -- surround selection with brackets, quotes etc.
--- Spec('plugins.nvim-autopairs')             -- auto closing brackets, quotes etc.
 Spec("plugins.alpha")                  -- home screen
 Spec("plugins.neovim-session-manager") -- autosave and restore session
 Spec("plugins.suda")                   -- ask for sudo password
 Spec("plugins.luapad")                 -- lua scratch pad
--- Git('https://github.com/tpope/vim-sleuth') -- Auto-detect indentation style
 Spec("plugins.vim-bbye")               -- close buffer without messing up window layout
 Spec("plugins.bigfile")                -- lighter config for big files
 Spec("plugins.todo-comments")          -- highlight and search TODO comments
@@ -22,7 +20,6 @@ Spec("plugins.git-conflict")
 Spec("plugins.neogit")                            -- A Magit clone for Neovim
 Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
 Spec("plugins.advanced-git-serach-nvim")          -- Search git log by file and more...
--- Spec("plugins.octo-nvim")                         -- GitHub interact with PR's and Issues
 Git("https://github.com/tpope/vim-fugitive")      -- Git commands in nvim
 Git("https://github.com/tpope/vim-rhubarb")       -- Fugitive-companion to interact with github
 Git("https://github.com/whiteinge/diffconflicts") -- Call :DiffConflicts to convert a file containing conflict markers into a two-way diff.
@@ -35,22 +32,20 @@ Spec("plugins.harpoon")                  -- bookmark like buffer storage
 Spec("plugins.nvim-lsp-file-operations") -- adds support for file operations using built-in LSP (update imports)
 
 -- LSP, code and linting
+Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
 Spec("plugins.mason")                       -- quickly install any lsp server
 Spec("plugins.lspsaga")                     -- Improves the Neovim built-in LSP experience.lspsaga.lua
 Spec("plugins.typescript")                  -- LSP Typescript utils with performant UI
 Spec("plugins.golang")                      -- LSP golang utils with performant UI
 Spec("plugins.conform")                     -- better formatting
 Spec("plugins.trouble")                     -- organize errors and warnings
-Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
-
 Spec("plugins.nvim-treesitter-context")     -- keep function and class names visible at the top of the screen
 Spec("plugins.nvim-treesitter-textobjects") -- Syntax aware text-objects, select, move, swap, and peek support.
+
 Spec("plugins.nvim-treesitter")             -- syntax highlight
 
 Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
--- Spec("plugins.pretty-ts-errors-markdown") -- better formatted TypeScript errors
 Git("https://github.com/folke/neodev.nvim") -- Neovim full signature help, docs and completion for the nvim lua API.
--- Git("https://github.com/neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 
 -- -- Testing
 Spec("plugins.neotest") -- A framework for interacting with tests within NeoVim
@@ -59,21 +54,13 @@ Spec("plugins.neotest") -- A framework for interacting with tests within NeoVim
 Git("https://github.com/pappasam/nvim-repl")
 -- (DAP)
 Spec("plugins.nvim-dap")
--- Git('https://github.com/fussenegger/nvim-dap')
--- Git('https://github.com/eoluz/nvim-dap-go')
--- Git('https://github.com/carriga/nvim-dap-ui')
--- Git('https://github.com/heHamsta/nvim-dap-virtual-text')
--- Git('https://github.com/vim-telescope/telescope-dap.nvim')
 
 -- Registers
 Spec("plugins.yanky")
 Spec("plugins.undotree")
 
 -- LLM, AI, AGENTING, GP
-Spec("plugins.gp-nvim")               -- AI chat interface for popular LLM's with API
-Spec("plugins.copilot")               -- AI chat interface for GitHub copilot with chat
--- Spec("plugins.opencode-nvim")         -- Bridge for opencode
-Spec("plugins.opencode-context-nvim") -- Bridge for opencode in tmux
+Spec("plugins.herdr-nvim") -- run neovim from herdr and report back to agent from neovim
 
 -- Utils
 Spec("plugins.obsidian")                         -- Note taking and knowledge base
@@ -84,7 +71,6 @@ Spec("plugins.qfenter")                          -- quickfix window (cw) open in
 Spec("plugins.vimux")                            -- run commands in vimux pane
 Spec("plugins.nvim-tmux-navigation")             -- hybrid tmux, vim window navigation.
 Spec("plugins.herdr-navigator-nvim")             -- hybrid herdr, vim window navigation.
-Spec("plugins.herdr-nvim")                       -- run neovim from herdr and report back to agent from neovim
 Spec("plugins.tabular")                          -- align text in column in table style.
 Spec("plugins.marks")                            -- better marks management
 Spec("plugins.streamer-mode")                    -- hide shell local variables
@@ -97,7 +83,6 @@ Spec("plugins.lualine")               -- status bar with few informations
 Spec("plugins.bufferline")            -- buffer line at the top
 Spec("plugins.nvim-navic")            -- Breadcrumbs with navigation
 Spec("plugins.which-key")             -- display interactive footer with available keymaps
--- Spec('plugins.vim-diminactive')       -- dim inactive window
 Spec("plugins.illuminate")            -- automatically highlighting other uses of the word under the cursor
 Spec("plugins.windows-nvim")          -- Automatically manage size of current window;
 Spec("plugins.indent-blankline-nvim") -- Add indentation guides even on blank lines in fold

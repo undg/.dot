@@ -133,37 +133,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		})
 	end,
 })
-
--- Disable line numbers and conceal in Copilot buffers.
---
--- Types of copilot buffers:
--- - `copilot-chat` - Main chat buffer
--- - `copilot-overlay` - Overlay buffers (e.g. help, info, diff)
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "copilot-*",
-	callback = function()
-		-- Set buffer-local options
-		vim.opt_local.relativenumber = false
-		vim.opt_local.number = false
-		vim.opt_local.conceallevel = 0
-	end,
-})
-
-local copilot_ok, copilot = pcall(require, "plugins.copilot-util")
-if not copilot_ok then
-	print("Can't find module 'plugins.copilot-util'")
-end
-
-vim.api.nvim_create_autocmd("BufLeave", {
-	pattern = "copilot-*",
-	callback = function()
-		copilot.save_file()
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufDelete", {
-	pattern = "copilot-*",
-	callback = function()
-		copilot.reset_title()
-	end,
-})
