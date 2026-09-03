@@ -1,4 +1,5 @@
 local highlight = require("utils.highlight")
+local marks = require("utils.marks")
 
 local M = {}
 
@@ -59,8 +60,10 @@ function M.open(path, line, end_line)
 		local target_line = math.min(math.max(line, 1), max_line)
 		local target_end_line = math.min(math.max(end_line or line, target_line), max_line)
 		vim.api.nvim_win_set_cursor(0, { target_line, 0 })
-		highlight.clear_matches()
 		highlight.highlight_lines(target_line, target_end_line)
+
+		local mark_letter = marks.assign(vim.api.nvim_get_current_buf(), target_line)
+		vim.notify("Marked '" .. mark_letter .. "' (`" .. mark_letter .. " to jump)", vim.log.levels.INFO, { title = "Openpath" })
 
 		if line > max_line then
 			vim.notify(
@@ -95,7 +98,7 @@ local function open_path_and_add_to_harpoon()
 end
 
 vim.api.nvim_create_user_command("Openpath", open_path, { desc = "Open file path from + register" })
-Keymap.normal("<leader>FF", open_path, { desc = "open yanked path" })
-Keymap.normal("<leader>Ff", open_path_and_add_to_harpoon, { desc = "open yanked path and add to harpoon" })
+Keymap.normal("<leader>Ff", open_path, { desc = "open yanked path" })
+Keymap.normal("<leader>FF", open_path_and_add_to_harpoon, { desc = "open yanked path and add to harpoon" })
 
 return M

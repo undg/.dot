@@ -1,3 +1,5 @@
+local marks = require("utils.marks")
+
 local M = {}
 
 local namespace = vim.api.nvim_create_namespace("highlight_lines")
@@ -49,6 +51,7 @@ function M.toggle_lines(start_line, end_line)
 		local row = line - 1
 		if highlighted[row] then
 			vim.api.nvim_buf_del_extmark(buffer, namespace, highlighted[row])
+			marks.remove(buffer, line)
 		else
 			highlight_line(buffer, line)
 		end
@@ -56,7 +59,9 @@ function M.toggle_lines(start_line, end_line)
 end
 
 function M.clear_matches()
-	vim.api.nvim_buf_clear_namespace(vim.api.nvim_get_current_buf(), namespace, 0, -1)
+	local buffer = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_clear_namespace(buffer, namespace, 0, -1)
+	marks.remove_buf(buffer)
 end
 
 return M
