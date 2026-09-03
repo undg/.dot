@@ -1,12 +1,15 @@
 onboarding = false
 [ui]
+# Keep mouse-drag selection highlighted after release instead of auto-copy+clear;
+# Ctrl+C (or click elsewhere) copies and clears it explicitly.
+copy_on_select = false
 status_indicators = "dots"
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
 window_title = "herdr: {tab} · {workspace}"
 # 50% bigger than the default 26-col sidebar, with max width doubled from 36 to 72.
-sidebar_width = 44 
-sidebar_max_width = 128 
+sidebar_width = 44
+sidebar_max_width = 128
 
 [ui.toast]
 delivery = "system"
@@ -28,10 +31,10 @@ focus_pane_left  = ["prefix+h"]
 focus_pane_right = ["prefix+l"]
 
 # prefix+j/k next/prev space (workspace), prefix+shift+j/k next/prev agent.
-next_workspace      = ["ctrl+shift+j"]
-previous_workspace  = ["ctrl+shift+k"]
-next_agent          = ["alt+shift+j"]
-previous_agent      = ["alt+shift+k"]
+next_agent         = [ "alt+ctrl+j"]
+previous_agent     = [ "alt+ctrl+k"]
+next_workspace     = [ "alt+down"]
+previous_workspace = [ "alt+up"]
 
 swap_pane_left  = ["alt+n"]
 swap_pane_down  = ["alt+m"]
@@ -111,6 +114,21 @@ key = "prefix+o"
 type = "plugin_action"
 command = "chmarax.herdr-nvim.pick-file"
 description = "open file from agent output"
+#}}}
+
+##############################
+# open agent file in own nvim {{{
+
+# Unlike herdr-nvim's picker (above), this targets the nvim pane you already
+# have open on the side instead of spawning/managing its own sidebar nvim,
+# and it jumps to the line number, not just the file.
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "bash ~/bin/herdr-open-agent-file.sh"
+description = "open agent file:line in nvim pane"
+width = "50%"
+height = "50%"
 #}}}
 
 
