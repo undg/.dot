@@ -201,3 +201,14 @@ import = [
 # "~/.config/alacritty/themes/themes/atom_one_light.toml"
 # "~/.config/alacritty/themes/themes/ashes_light.toml"
 # "~/.config/alacritty/themes/themes/alabaster.toml"
+# ~/.config/alacritty/themes/themes/alabaster.toml:204
+
+#  @TODO (undg) 2026-09-03: this dosn't works
+[[hints.enabled]]
+regex = "[A-Za-z0-9_./~-]+\\.[A-Za-z0-9]+:[0-9]+(:[0-9]+)?"
+hyperlinks = true
+post_processing = true
+mouse = { enabled = true, mods = "Control" }
+command = { program = "osascript", args = ["-e", 'display notification "Message text" with title "Title" subtitle "Optional Subtitle" sound name "Pop"'] }
+
+
