@@ -16,6 +16,7 @@ Spec("plugins.todo-comments")          -- highlight and search TODO comments
 -- Git
 Spec("plugins.lazygit")                           -- open lazygit in floating window. Lazygit need to be installed in system
 Spec("plugins.gitsigns")                          -- Git status for every line
+Spec("plugins.zdiff-nvim")                        -- A minimal git diff viewer
 Spec("plugins.git-conflict")
 Spec("plugins.neogit")                            -- A Magit clone for Neovim
 Spec("plugins.gh-nvim")                           -- open lazygit in floating window. Lazygit need to be installed in system
