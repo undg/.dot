@@ -36,6 +36,14 @@ local function parse_input(raw)
 	return text, nil, nil
 end
 
+local function git_root()
+	local root = vim.fn.system("git rev-parse --show-toplevel")
+	if vim.v.shell_error ~= 0 then
+		return nil
+	end
+	return vim.trim(root)
+end
+
 ---@param path string
 ---@param line? integer
 ---@param end_line? integer
@@ -43,6 +51,16 @@ function M.open(path, line, end_line)
 	if not path or path == "" then
 		vim.notify("Path is empty", vim.log.levels.INFO, { title = "Openpath" })
 		return
+	end
+
+	if vim.fn.filereadable(path) ~= 1 then
+		local root = git_root()
+		if root then
+			local candidate = root .. "/" .. path
+			if vim.fn.filereadable(candidate) == 1 then
+				path = candidate
+			end
+		end
 	end
 
 	if vim.fn.filereadable(path) ~= 1 then
@@ -102,6 +120,7 @@ local function open_path_and_add_to_harpoon()
 end
 
 vim.api.nvim_create_user_command("Openpath", open_path, { desc = "Open file path from + register" })
+
 Keymap.normal("<leader>Ff", open_path, { desc = "open yanked path" })
 Keymap.normal("<leader>FF", open_path_and_add_to_harpoon, { desc = "open yanked path and add to harpoon" })
 

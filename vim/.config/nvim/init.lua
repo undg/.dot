@@ -21,6 +21,7 @@ require("custom.git-files")
 require("custom.only-global-marks")
 require("custom.open-path")
 require("custom.ts-block-nav")
+require("custom.yank-file-path")
 require("custom.colgrep-nvim").setup()
 
 require("lsp")
