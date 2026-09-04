@@ -15,8 +15,8 @@ return {
 
 			-- Keymap bindings (defaults)
 			keymaps = {
-				goto_file = "<CR>",
-				toggle = "za",
+				goto_file = "o",
+				toggle = "<CR>",
 				close = "q",
 				refresh = "r",
 				toggle_mode = "m",
