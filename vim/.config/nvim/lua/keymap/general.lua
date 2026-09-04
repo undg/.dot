@@ -168,21 +168,26 @@ Keymap.normal("<leader>tt", ":tab split<CR>")
 
 -- only terminal.
 -- Disable leader and CR timeout in terminal mode to prevent lag
-vim.api.nvim_set_keymap("t", "<Space>", "<Space>", { noremap = true })
-vim.api.nvim_set_keymap("t", "<CR>", "<CR>", { noremap = true })
+Keymap.terminal("<Space>", "<Space>", { noremap = true })
+Keymap.terminal("<CR>", "<CR>", { noremap = true })
 -- <Leader>ESC to exit insert and go back to normal mode
-vim.api.nvim_set_keymap("t", "<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
+Keymap.terminal("<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
 
--- yank file path
-Keymap.normal("<leader>yf", function()
+local yank_file_path = function()
+	if vim.bo.filetype == "zdiff" then
+		return
+	end
 	local line_nr = vim.fn.line(".")
-	local file_path = vim.fn.expand("%:p") .. ":L" .. line_nr
+	local file_path = vim.fn.expand("%:p") .. ":" .. line_nr
 	vim.fn.setreg("+", file_path)
 	vim.fn.setreg('"', "> #file:`" .. file_path .. "`")
 	vim.notify(file_path, vim.log.levels.INFO, { title = "Yank file path" })
-end, { desc = "yank file path" })
+end
 
-Keymap.visual("<leader>yf", function()
+local yank_file_path_with_range = function()
+	if vim.bo.filetype == "zdiff" then
+		return
+	end
 	local file_path = vim.fn.expand("%:p")
 	local start_line = vim.fn.line("v")
 	local end_line = vim.fn.line(".")
@@ -201,7 +206,12 @@ Keymap.visual("<leader>yf", function()
 	vim.fn.setreg('"', "> #file:`" .. file_path_with_lines .. "`")
 	vim.notify(file_path_with_lines, vim.log.levels.INFO, { title = "Yank file path with lines" })
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
-end, { desc = "yank file path with line range" })
+end
+
+-- yank file path
+Keymap.normal("gy", yank_file_path, { desc = "yank file path" })
+
+Keymap.visual("gy", yank_file_path_with_range, { desc = "yank file path with line range" })
 
 evil.createCommand()
 Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
