@@ -1,10 +1,9 @@
 local M = {}
 ---@param mode string
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 local function keymap(mode, keybind, cmd, opt)
-	-- assert(type(keybind) == "string", "keybind is not a string: \n" .. cmd)
 	assert(type(cmd) == "string" or type(cmd) == "function", "cmd is not a string nor function: \n" .. keybind)
 
 	opt = opt or {}
@@ -15,7 +14,11 @@ local function keymap(mode, keybind, cmd, opt)
 		opt.noremap = true
 	end
 
-	vim.keymap.set(mode, keybind, cmd, opt)
+	local keybinds = type(keybind) == "table" and keybind or { keybind }
+
+	for _, kb in ipairs(keybinds) do
+		vim.keymap.set(mode, kb, cmd, opt)
+	end
 end
 
 ---@param keybind string
