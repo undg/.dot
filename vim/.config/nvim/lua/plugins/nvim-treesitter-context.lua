@@ -55,9 +55,12 @@ return {
 		vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", {
 			underline = true,
 		})
-	end,
 
-	vim.keymap.set("n", "<leader>gc", function()
-		require("treesitter-context").go_to_context(vim.v.count1)
-	end, { silent = true, desc = "(treesitter) Go to context" }),
+		local _go_to_context = function()
+			require("treesitter-context").go_to_context(vim.v.count1)
+		end
+
+		-- `{`/`}` now belong to custom/ts-block-nav.lua (sibling walk)
+		Keymap.normal("<leader>gc", _go_to_context, { silent = true, desc = "(treesitter) Go to context" })
+	end,
 }

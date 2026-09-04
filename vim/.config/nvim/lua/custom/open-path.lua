@@ -63,7 +63,11 @@ function M.open(path, line, end_line)
 		highlight.highlight_lines(target_line, target_end_line)
 
 		local mark_letter = marks.assign(vim.api.nvim_get_current_buf(), target_line)
-		vim.notify("Marked '" .. mark_letter .. "' (`" .. mark_letter .. " to jump)", vim.log.levels.INFO, { title = "Openpath" })
+		vim.notify(
+			"Marked '" .. mark_letter .. "' (`" .. mark_letter .. " to jump)",
+			vim.log.levels.INFO,
+			{ title = "Openpath" }
+		)
 
 		if line > max_line then
 			vim.notify(
