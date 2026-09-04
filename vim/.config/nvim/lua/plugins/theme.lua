@@ -1,8 +1,8 @@
 return {
-	'ellisonleao/gruvbox.nvim', -- https://github.com/ellisonleao/gruvbox.nvim
+	"ellisonleao/gruvbox.nvim", -- https://github.com/ellisonleao/gruvbox.nvim
 	priority = 1000,
 	config = function()
-		require('gruvbox').setup({
+		require("gruvbox").setup({
 			terminal_colors = true, -- add neovim terminal colors
 			undercurl = true,
 			underline = true,
@@ -20,7 +20,7 @@ return {
 			invert_tabline = false,
 			invert_intend_guides = false,
 			inverse = true, -- invert background for search, diffs, statuslines and errors
-			contrast = 'hard', -- can be "hard", "soft" or empty string
+			contrast = "hard", -- can be "hard", "soft" or empty string
 			palette_overrides = {},
 			overrides = {},
 			dim_inactive = false,
@@ -28,34 +28,36 @@ return {
 		})
 		vim.cmd([[colorscheme gruvbox]])
 
-		-- vim.o.background = 'dark'
+		vim.api.nvim_set_hl(0, "Cursorline", { bg = "#2f2f2f" })
 
-		-- Set colorscheme (order is important here)
-		-- vim.o.termguicolors = true
-		-- vim.g.onedark_terminal_italics = 2
-		-- vim.cmd([[colorscheme gruvbox]])
-		vim.cmd('highlight Cursorline guibg=#2f2f2f')
+		-- highlight setup
+		vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#431313" })
+		vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { bg = "#431313" })
+		vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#431313" })
+		vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#233b4f" })
+		vim.api.nvim_set_hl(0, "DiffChange", { bg = "#233b4f" })
+		vim.api.nvim_set_hl(0, "DiffText", { bg = "#233b4f" })
 
 		-- Set statusbar (lightline)
 		vim.g.lightline = {
-			colorscheme = 'gruvbox',
-			active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-			component_function = { gitbranch = 'fugitive#head' },
+			colorscheme = "gruvbox",
+			active = { left = { { "mode", "paste" }, { "gitbranch", "readonly", "filename", "modified" } } },
+			component_function = { gitbranch = "fugitive#head" },
 		}
 
-		vim.cmd('hi DiagnosticError guifg=#ee6666')
+		vim.cmd("hi DiagnosticError guifg=#ee6666")
 		--
 		-- Map (lukas-reineke/indent-blankline.nvim)
-		vim.g.indent_blankline_char = '┊'
-		vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
-		vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
-		vim.g.indent_blankline_char_highlight = 'LineNr'
+		vim.g.indent_blankline_char = "┊"
+		vim.g.indent_blankline_filetype_exclude = { "help", "packer" }
+		vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+		vim.g.indent_blankline_char_highlight = "LineNr"
 		vim.g.indent_blankline_show_trailing_blankline_indent = false
 
 		-- -- Style and layout for diagnostic/hover floating windows
 		local styled = {
-			border = 'rounded',
-			style = 'minimal',
+			border = "rounded",
+			style = "minimal",
 			noautocmd = true,
 			wrap_at = 40,
 		}
@@ -77,24 +79,23 @@ return {
 		vim.diagnostic.config({
 			float = {
 				border = styled.border,
-				header = 'diagnostic:',
+				header = "diagnostic:",
 				source = true,
-				prefix = '  ', -- padding left
-				suffix = '  ', -- padding right
+				prefix = "  ", -- padding left
+				suffix = "  ", -- padding right
 				format = function(diagnostic)
-					if diagnostic.source == 'eslint' then
+					if diagnostic.source == "eslint" then
 						return string.format(
-							'%s\n%s\n%s',
+							"%s\n%s\n%s",
 							diagnostic.message,
 							-- shows the name of the rule
 							diagnostic.user_data.lsp.code,
 							-- shows url to rule documentation
-							diagnostic.user_data.lsp.codeDescription and
-							diagnostic.user_data.lsp.codeDescription.href or
-							"No documentation URL"
+							diagnostic.user_data.lsp.codeDescription and diagnostic.user_data.lsp.codeDescription.href
+							or "No documentation URL"
 						)
 					end
-					return string.format('%s [%s]', diagnostic.message, diagnostic.source)
+					return string.format("%s [%s]", diagnostic.message, diagnostic.source)
 				end,
 			},
 		})
