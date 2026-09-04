@@ -4,8 +4,6 @@ local M = {}
 ---@param cmd string | function
 ---@param opt? {}
 local function keymap(mode, keybind, cmd, opt)
-	assert(type(cmd) == "string" or type(cmd) == "function", "cmd is not a string nor function: \n" .. keybind)
-
 	opt = opt or {}
 	-- Anything that not `false` (empty nil, string, true...) should be `true`
 	-- It's twisted... I know... This way I'm sure to not override false value from `opt`.
@@ -14,42 +12,43 @@ local function keymap(mode, keybind, cmd, opt)
 		opt.noremap = true
 	end
 
-	local keybinds = type(keybind) == "table" and keybind or { keybind }
+	local _keybinds = type(keybind) == "table" and keybind or { keybind }
 
-	for _, kb in ipairs(keybinds) do
+	for _, kb in ipairs(_keybinds) do
+		assert(type(cmd) == "string" or type(cmd) == "function", "cmd is not a string nor function: \n" .. kb)
 		vim.keymap.set(mode, kb, cmd, opt)
 	end
 end
 
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 function M.normal(keybind, cmd, opt)
 	keymap("n", keybind, cmd, opt)
 end
 
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 function M.insert(keybind, cmd, opt)
 	keymap("i", keybind, cmd, opt)
 end
 
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 function M.visual(keybind, cmd, opt)
 	keymap("v", keybind, cmd, opt)
 end
 
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 function M.xisual(keybind, cmd, opt)
 	keymap("x", keybind, cmd, opt)
 end
 
----@param keybind string
+---@param keybind string | string[]
 ---@param cmd string | function
 ---@param opt? {}
 function M.terminal(keybind, cmd, opt)
