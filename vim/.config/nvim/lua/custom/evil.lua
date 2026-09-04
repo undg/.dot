@@ -16,4 +16,7 @@ function M.createCommand()
 	vim.api.nvim_create_user_command("EvilCommand", M.execAndPrint, { desc = M.desc })
 end
 
+M.createCommand()
+Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
+
 return M

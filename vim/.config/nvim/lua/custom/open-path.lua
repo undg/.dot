@@ -1,5 +1,14 @@
-local highlight = require("utils.highlight")
-local marks = require("utils.marks")
+local highlight_ok, highlight = pcall(require, "utils.highlight")
+local marks_ok, marks = pcall(require, "utils.marks")
+
+local not_ok = not highlight_ok and "utils.highlight" --
+	or not marks_ok and "utils.marks"
+	or false
+
+if not_ok then
+	vim.notify("custom/open-path.lua: missing requirements - " .. not_ok, vim.log.levels.ERROR)
+	return
+end
 
 local M = {}
 

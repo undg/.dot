@@ -1,8 +1,6 @@
-local evil_ok, evil = pcall(require, "custom.evil")
 local notify_ok = pcall(require, "notify")
 
 local not_ok = not notify_ok and "notify" --
-	or not evil_ok and "custom.evil"
 	or false
 
 if not_ok then
@@ -172,9 +170,6 @@ Keymap.terminal("<Space>", "<Space>", { noremap = true })
 Keymap.terminal("<CR>", "<CR>", { noremap = true })
 -- <Leader>ESC to exit insert and go back to normal mode
 Keymap.terminal("<Leader><ESC>", "<C-\\><C-n>", { noremap = true })
-
-evil.createCommand()
-Keymap.normal("<leader>rl", evil.execAndPrint, { desc = evil.desc })
 
 -- quickly increment or decrement integers
 Keymap.normal("+", "<C-a>", { desc = "Increment", noremap = true })
