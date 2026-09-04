@@ -50,8 +50,8 @@ Keymap.normal("<LEADER>cd", ":lcd %:p:h<CR>")
 -- remove white spaces on end line
 Keymap.normal(
 	"<LEADER>sp",
-	':%s/\\s\\+$//ge|norm <CR>:echomsg "white space cleaing"<cr>',
-	{ desc = "remove trailing whitespace" }
+	':%s/\\s\\+$//ge|norm <CR>:%s/—/-/g<CR>:echomsg "white space cleaing"<cr>',
+	{ desc = "remove trailing whitespace and replace dashes" }
 )
 
 -- Toggle list (display unprintable characters).
