@@ -10,7 +10,6 @@ yarn   = "latest"
 go     = "latest"
 node   = "24.4"
 rust = "latest"
-"cargo:raine/workmux" = "latest"
 
 [settings]
 # Legacy version file reading (e.g. .nvmrc, .python-version) is enabled by default.
