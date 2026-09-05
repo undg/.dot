@@ -185,4 +185,8 @@ if hash claude &>/dev/null; then
 	alias cl='claude'
 fi
 
+if hash ccusage &>/dev/null; then
+	alias ccusage='PI_AGENT_DIR=~/.config/pi/sessions ccusage'
+fi
+
 alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
