@@ -1,8 +1,7 @@
 onboarding = false
 [ui]
-# Keep mouse-drag selection highlighted after release instead of auto-copy+clear;
-# Ctrl+C (or click elsewhere) copies and clears it explicitly.
-copy_on_select = false
+# Auto-copy any text the mouse selects (drag or double-click).
+copy_on_select = true
 status_indicators = "dots"
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
