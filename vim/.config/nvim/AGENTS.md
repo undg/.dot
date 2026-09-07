@@ -14,8 +14,8 @@ Keep changes minimal, follow existing Lua conventions, and prefer tooling noted 
 - Watch all tests: `make test/watch` (requires `entr`)
 - Watch a single test file (interactive): `make test/watch/file` (requires `fzf` and `entr`)
 - Run a single test file directly:
-  - `nvim --headless -c "PlenaryBustedFile spec/<file>.lua"`
-  - Example: `nvim --headless -c "PlenaryBustedFile spec/utils/tbl_spec.lua"`
+	- `nvim --headless -c "PlenaryBustedFile spec/<file>.lua"`
+	- Example: `nvim --headless -c "PlenaryBustedFile spec/tbl_spec.lua"`
 - Run all tests directly: `nvim --headless -c "PlenaryBustedDirectory spec/"`
 - Format/Lint Lua: `stylua .`
 
@@ -34,7 +34,9 @@ Notes:
 - `lua/plugins/`: plugin specs and configuration.
 - `lua/utils/`: shared helpers (tables, strings, keymaps, paths).
 - `lua/keymap/`: keymap definitions.
-- `spec/`: tests (plenary busted).
+- `lua/custom/`: standalone helper modules (not plugin specs, not shared utils).
+- `lua/lsp.lua` + `lsp/`: LSP server list and per-server configs.
+- `spec/`: tests (plenary busted), flat — no subdirectories.
 
 ## Formatting
 - Use Stylua; do not hand-format against `.stylua.toml`.
@@ -58,8 +60,24 @@ Notes:
 ```lua
 local ok, mod = pcall(require, "module")
 if not ok then
-  vim.notify("missing module: module", vim.log.levels.ERROR)
-  return
+	vim.notify("missing module: module", vim.log.levels.ERROR)
+	return
+end
+```
+
+- For multiple optional deps, pcall each require then use a ternary chain to report which one is missing:
+
+```lua
+local a_ok, a = pcall(require, "module.a")
+local b_ok, b = pcall(require, "module.b")
+
+local not_ok = not a_ok and "module.a" --
+	or not b_ok and "module.b"
+	or false
+
+if not_ok then
+	vim.notify("missing requirements - " .. not_ok, vim.log.levels.ERROR)
+	return
 end
 ```
 
@@ -75,7 +93,7 @@ end
 
 ## Types and documentation
 - Use EmmyLua annotations for public helpers:
-  - `---@param`, `---@return`, `---@generic`.
+	- `---@param`, `---@return`, `---@generic`.
 - Use triple-dash `---` doc comments for functions.
 - Keep comments focused on non-obvious behavior; avoid restating code.
 
@@ -134,7 +152,7 @@ local M = {}
 ---@param input_table table
 ---@return table
 function M.example(input_table)
-  return input_table
+	return input_table
 end
 
 return M
@@ -146,7 +164,7 @@ return M
 - If adding a new module, update any central loader if required.
 - Keep diffs focused; do not reformat unrelated code.
 
-## LSP Configuration (vim.lsp, Neovim 0.11+)
+## LSP Configuration (vim.lsp, Neovim 0.12)
 
 - **Error messages are misleading**: "method textDocument/hover is not supported" usually means the server failed to start (missing config file), not that the server lacks hover capability.
 - **Server list and config files must stay in sync**: `lsp_servers` array in `lua/lsp.lua` must have matching files in `lsp/` directory; drift causes silent failures.
