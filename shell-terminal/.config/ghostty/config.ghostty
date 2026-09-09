@@ -78,3 +78,27 @@ cursor-text = #F81CE5
 #   has no equivalent hints/regex-click feature to port it to.
 
 link-previews = true
+shell-integration = zsh
+
+# Let Herdr receive these instead of Ghostty.
+keybind = cmd+t=unbind
+keybind = cmd+w=unbind
+keybind = cmd+n=unbind
+keybind = cmd+shift+w=unbind
+
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = cmd+shift+enter=unbind
+
+keybind = cmd+alt+left=unbind
+keybind = cmd+alt+down=unbind
+keybind = cmd+alt+up=unbind
+keybind = cmd+alt+right=unbind
+
+# Navigate Herdr's vertical workspace list.
+keybind = cmd+shift+up=unbind
+keybind = cmd+shift+down=unbind
+
+# Navigate detected agents in Herdr's Agents sidebar.
+keybind = cmd+ctrl+up=unbind
+keybind = cmd+ctrl+down=unbind
