@@ -1,3 +1,18 @@
+local ok_highlight, highlight = pcall(require, "utils.highlight")
+
+local not_ok = not ok_highlight and "undotree" --
+	or false
+
+if not_ok then
+	vim.notify("custom/highlight.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
+end
+
+local diff_add_bg = "#233b4f"
+local diff_rm_bg = "#431313"
+local cursorline_bg = "#2f2f2f"
+local highlight_bg = "#003300"
+local error_bg = "#ee6666"
+
 return {
 	"ellisonleao/gruvbox.nvim", -- https://github.com/ellisonleao/gruvbox.nvim
 	priority = 1000,
@@ -28,15 +43,18 @@ return {
 		})
 		vim.cmd([[colorscheme gruvbox]])
 
-		vim.api.nvim_set_hl(0, "Cursorline", { bg = "#2f2f2f" })
+		vim.api.nvim_set_hl(0, "Cursorline", { bg = cursorline_bg })
 
-		-- highlight setup
-		vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = "#431313" })
-		vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { bg = "#431313" })
-		vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#431313" })
-		vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#233b4f" })
-		vim.api.nvim_set_hl(0, "DiffChange", { bg = "#233b4f" })
-		vim.api.nvim_set_hl(0, "DiffText", { bg = "#233b4f" })
+		-- git diff colors
+		vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", { bg = diff_rm_bg })
+		vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { bg = diff_rm_bg })
+		vim.api.nvim_set_hl(0, "DiffDelete", { bg = diff_rm_bg })
+		vim.api.nvim_set_hl(0, "DiffAdd", { bg = diff_add_bg })
+		vim.api.nvim_set_hl(0, "DiffChange", { bg = diff_add_bg })
+		vim.api.nvim_set_hl(0, "DiffText", { bg = diff_add_bg })
+
+		-- highlight colors
+		vim.api.nvim_set_hl(0, highlight.highlight_group, { bg = highlight_bg })
 
 		-- Set statusbar (lightline)
 		vim.g.lightline = {
@@ -45,7 +63,8 @@ return {
 			component_function = { gitbranch = "fugitive#head" },
 		}
 
-		vim.cmd("hi DiagnosticError guifg=#ee6666")
+		vim.api.nvim_set_hl(0, "DiagnosticError", { bg = error_bg })
+		-- vim.cmd("hi DiagnosticError guifg=#ee6666")
 		--
 		-- Map (lukas-reineke/indent-blankline.nvim)
 		vim.g.indent_blankline_char = "┊"
@@ -61,20 +80,6 @@ return {
 			noautocmd = true,
 			wrap_at = 40,
 		}
-		--
-		-- vim.api.nvim_create_autocmd('LspAttach', {
-		-- 	group = vim.api.nvim_create_augroup('LspFloatingStyle', { clear = true }),
-		-- 	callback = function(args)
-		-- 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		-- 		if client then
-		-- 			client.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
-		-- 			client.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
-		-- 		end
-		-- 	end,
-		-- })
-		-- -- @TODO (undg) 2025-05-06: vim.lsp.with() and all vim.lsp.handlers.* are deprecated
-		-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, styled)
-		-- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, styled)
 
 		vim.diagnostic.config({
 			float = {

@@ -1,7 +1,11 @@
-local highlight = require("utils.highlight")
+local ok_highlight, highlight = pcall(require, "utils.highlight")
 
--- highlight setup
-vim.api.nvim_set_hl(0, highlight.highlight_group, { bg = "#003300" })
+local not_ok = not ok_highlight and "undotree" --
+	or false
+
+if not_ok then
+	vim.notify("custom/highlight.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
+end
 
 -- use only in visual
 vim.api.nvim_create_user_command("HiglightLines", function(opts)
