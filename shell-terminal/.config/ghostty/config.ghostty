@@ -95,6 +95,11 @@ keybind = cmd+alt+down=unbind
 keybind = cmd+alt+up=unbind
 keybind = cmd+alt+right=unbind
 
+keybind = cmd+left=unbind
+keybind = cmd+down=unbind
+keybind = cmd+up=unbind
+keybind = cmd+right=unbind
+
 # Navigate Herdr's vertical workspace list.
 keybind = cmd+shift+up=unbind
 keybind = cmd+shift+down=unbind
