@@ -1,0 +1,80 @@
+# vim: ft=toml
+# macOS renders nerd-font icon glyphs with hairline strokes, barely visible.
+# This thickens glyph rendering so icons show up properly.
+font-thicken = true
+font-size = 12
+font-family = "FiraCode Nerd Font"
+# font-family = "Mononoki Nerd Font"
+# font-family = "Hack Nerd Font"
+# font-family = "Source Code Pro Nerd Font"
+# font-family = "Cascadia Code Nerd Font"
+# font-family = "Victor Mono Nerd Font"
+# font-family = "Iosevka Nerd Font"
+# font-family = "SF Mono Nerd Font"
+# font-family = "Inconsolata Nerd Font"
+# font-family = "Ubuntu Mono Nerd Font"
+# font-family = "Anonymous Pro Nerd Font"
+# font-family = "Cousine Nerd Font"
+# font-family = "IBM Plex Mono Nerd Font"
+# font-family = "SpaceMono Nerd Font"
+# font-family = "Roboto Mono Nerd Font"
+# font-family = "DejaVu Sans Mono Nerd Font"
+# font-family = "Liberation Mono Nerd Font"
+
+# Personal favs for crispness:
+# - Hack - very clean
+# - Iosevka - super crisp, narrow
+# - Victor Mono - has cursive italics
+# - Cascadia Code - Microsoft's new hotness
+
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+
+# Treat macOS Option as Alt/Meta so tmux receives M-u and M-i.
+macos-option-as-alt = true
+
+background-opacity = 0.93
+
+window-padding-x = 10
+window-padding-y = 5
+
+# alacritty's `selection.save_to_clipboard` equivalent: write selection to
+# the system clipboard as soon as it's made.
+copy-on-select = clipboard
+
+# --- Theme (Hyper), ported by hand from alacritty/themes/themes/hyper.toml ---
+theme = Gruvbox Dark
+background = #111111
+# foreground = #ffffff
+cursor-color = #ffffff
+cursor-text = #F81CE5
+#
+# palette = 0=#000000
+# palette = 1=#fe0100
+# palette = 2=#33ff00
+# palette = 3=#feff00
+# palette = 4=#0066ff
+# palette = 5=#cc00ff
+# palette = 6=#00ffff
+# palette = 7=#d0d0d0
+# palette = 8=#808080
+# palette = 9=#fe0100
+# palette = 10=#33ff00
+# palette = 11=#feff00
+# palette = 12=#0066ff
+# palette = 13=#cc00ff
+# palette = 14=#00ffff
+# palette = 15=#ffffff
+
+# --- Not ported, no sense on ghostty/macOS ---
+# alacritty `general.live_config_reload`: ghostty already live-reloads config
+#   on save, no setting needed.
+# alacritty `[[mouse.bindings]] PasteSelection on Middle`: X11 "primary
+#   selection" paste-on-middle-click has no real equivalent on macOS.
+# alacritty generic `Paste`/`Copy` media-key bindings: no portable ghostty
+#   trigger for those physical keys.
+# alacritty `[[hints.enabled]]` regex/osascript block: was already marked
+#   "doesn't work" in the alacritty config (@TODO 2026-09-03), and ghostty
+#   has no equivalent hints/regex-click feature to port it to.
+
+link-previews = true
