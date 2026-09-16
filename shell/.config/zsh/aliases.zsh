@@ -190,3 +190,42 @@ if hash ccusage &>/dev/null; then
 fi
 
 alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
+
+#################################################
+# Probabilistic Graphical Modelling
+#################################################
+
+alias pgm-teardown-be="pkill -f 'uvicorn.*7083'; pkill -f 'uvicorn.*7082'"
+alias pgm-teardown-fe="pkill -f 'vite.js'"
+alias pgm-teardown="pgm-teardown-be; docker rm -f gitea-postgres gitea-rootless localstack ofelia pgm-graph_sanity pgm-sampling-integration-tkrisk-sample-worker-1 pgm-sampling-integration-tkrisk-sample-worker-2 pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03;"
+
+pgm-fe-start() {
+	pgm-teardown-fe
+	node_modules/.bin/vite --no-open --mode custom
+}
+
+pgm-fe-start-local() {
+	pgm-teardown-fe
+	node_modules/.bin/vite --no-open --mode custom-local
+}
+
+pgm-be-start() {
+	pgm-teardown
+	cd ~/Code/pgm-sampling-integration
+	bash _dev-setup/prepare-dev.sh
+	cd -
+	task dev:prepare-dev
+	local bottom_pane_id=$(herdr pane split --direction down | jq -r ".result.pane.pane_id")
+
+	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
+	task dev:serve                                         # top pane (current pane)
+}
+
+pgm-be-serve() {
+	pgm-teardown-be
+
+	local bottom_pane_id=$(herdr pane split --direction down | jq -r ".result.pane.pane_id")
+
+	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
+	task dev:serve                                         # top pane (current pane)
+}
