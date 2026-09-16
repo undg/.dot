@@ -269,9 +269,10 @@ install_packages() {
 
 install_herdr_plugins() {
 	if command -v herdr &>/dev/null; then
-		herdr plugin install ChmaraX/herdr-nvim
-		herdr plugin install willfish/herdr-navigator
-		herdr plugin install devashish2203/herdr-worktrunk
+		# herdr plugin install ChmaraX/herdr-nvim            # https://github.com/ChmaraX/herdr-nvim
+		herdr plugin install willfish/herdr-navigator      # https://github.com/willfish/herdr-navigator
+		herdr plugin install devashish2203/herdr-worktrunk # https://github.com/devashish2203/herdr-worktrunk
+		herdr plugin install hasuwini77/herdr-spinner      # https://github.com/hasuwini77/herdr-spinner
 	fi
 }
 
