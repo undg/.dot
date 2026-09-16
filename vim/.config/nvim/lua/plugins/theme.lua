@@ -7,10 +7,10 @@ if not_ok then
 	vim.notify("custom/highlight.lua: requirement's missing - " .. not_ok, vim.log.levels.ERROR)
 end
 
-local diff_add_bg = "#233b4f"
+local diff_add_bg = "#003300"
 local diff_rm_bg = "#431313"
 local cursorline_bg = "#2f2f2f"
-local highlight_bg = "#003300"
+local highlight_bg = "#233b4f"
 local error_bg = "#ee6666"
 
 return {
