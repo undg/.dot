@@ -20,7 +20,7 @@ rows = [
   [
     "state_icon",
     { token = "$spin", fg = "#fab387", dim = false, bold = true },
-    # { token = "state_text", bold = false, dim = false },
+    { token = "state_text", bold = false, dim = false },
     "agent",
   ],
 ]
