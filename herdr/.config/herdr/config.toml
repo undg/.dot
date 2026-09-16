@@ -2,7 +2,7 @@ onboarding = false
 [ui]
 # Auto-copy any text the mouse selects (drag or double-click).
 copy_on_select = true
-status_indicators = "dots"
+# status_indicators = "symbols"
 show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
 window_title = "herdr: {tab} · {workspace}"
@@ -10,8 +10,20 @@ window_title = "herdr: {tab} · {workspace}"
 sidebar_width = 44
 sidebar_max_width = 128
 
+status_indicators = "symbols"
 [ui.toast]
 delivery = "system"
+
+[ui.sidebar.agents]
+rows = [
+  [{ token = "workspace", bold = false }, "tab"],
+  [
+    "state_icon",
+    { token = "$spin", fg = "#fab387", dim = false, bold = true },
+    # { token = "state_text", bold = false, dim = false },
+    "agent",
+  ],
+]
 
 [theme]
 name = "gruvbox"
@@ -151,7 +163,7 @@ description = "Worktree: switch / create from current branch"
 
 # Optional: include remote-tracking branches for this picker.
 [[keys.command]]
-key = "prefix+shift+r"
+key = "prefix+shift+v"
 type = "plugin_action"
 command = "worktrunk.open-with-remotes"
 description = "Worktree: switch / create from local or remote branches"
