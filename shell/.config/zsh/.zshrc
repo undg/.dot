@@ -132,6 +132,12 @@ plug "zsh-users/zsh-syntax-highlighting"
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/510
 ZSH_HIGHLIGHT_STYLES[comment]='none'
 
+# herdr-shell-progress
+() {
+  local f=(~/.config/herdr/plugins/github/bayoudhi.shell-progress-*/shell/init.zsh(Nom))
+  (( $#f )) && source $f[1]
+}
+
 # This overrides ^R and arrow-up
 # export ATUIN_NOBIND="true"
 # eval "$(atuin init zsh)" # better shell history
