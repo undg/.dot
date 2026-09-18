@@ -209,7 +209,6 @@ install_packages() {
 	_install_package downgrade SKIP SKIP SKIP
 	_install_package dunst SKIP SKIP SKIP
 	_install_package eza
-	_install_package fasd SKIP SKIP SKIP
 	_install_package fd
 	_install_package feh SKIP SKIP SKIP
 	_install_package flameshot "--cask flameshot" SKIP SKIP
@@ -261,6 +260,7 @@ install_packages() {
 	_install_package wget
 	_install_package worktrunk
 	_install_package yay SKIP SKIP SKIP
+	_install_package zoxide
 	_install_package zsh
 	_install_package zsh-theme-powerlevel10k-git SKIP SKIP SKIP
 
@@ -273,6 +273,8 @@ install_herdr_plugins() {
 		herdr plugin install willfish/herdr-navigator      # https://github.com/willfish/herdr-navigator
 		herdr plugin install devashish2203/herdr-worktrunk # https://github.com/devashish2203/herdr-worktrunk
 		herdr plugin install hasuwini77/herdr-spinner      # https://github.com/hasuwini77/herdr-spinner
+		herdr plugin install persiyanov/herdr-reviewr      # https://github.com/persiyanov/herdr-reviewr
+		herdr plugin install fullerzz/herdr-plugin-sesh    # https://github.com/fullerzz/herdr-plugin-sesh
 	fi
 }
 
