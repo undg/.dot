@@ -185,5 +185,16 @@ description = "Worktree: merge into the target branch"
 [[keys.command]]
 key = "prefix+ctrl+g"
 type = "plugin_action"
-command = "persiyanov.reviewr.toggle"   # <plugin_id>.<action_id> — note the id, not the name
+command = "persiyanov.reviewr.toggle"
 #}}}
+
+
+#####################
+# herdr-sesh {{{
+[[keys.command]]
+key = "prefix+g"
+type = "plugin_action"
+command = "fullerzz.sesh.open-picker"
+#}}}
+
+
