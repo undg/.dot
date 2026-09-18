@@ -106,12 +106,16 @@ src_local "$ZDOTDIR/aliases.zsh"
 if command -v mise &>/dev/null; then
 	# eval "$(/bin/mise activate zsh --shims)" # lang version manager/installer
 	eval "$(mise activate zsh)" # lang version manager/installer
+else
+	echo "mise is not installed."
 fi
 
-
-if command -v fasd &>/dev/null; then
-	eval "$(fasd --init auto)" # autojump aliased to z and j(aliases)
+if hash zoxide 2>/dev/null; then
+	eval "$(zoxide init zsh)"
+else
+	echo "zoxide is not installed."
 fi
+
 
 # plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
@@ -121,6 +125,27 @@ plug "romkatv/powerlevel10k" # powerlevel10k prompt
 src_local ~/.config/zsh/p10k.zsh
 
 src_local "$ZDOTDIR/completion.zsh"
+
+# zoxide's generated zsh code and this override must be registered after
+# compinit has defined `compdef` (completion.zsh loads compinit above).
+if hash zoxide 2>/dev/null; then
+	_zoxide_database_completion() {
+		# Plain `z<Tab>` keeps normal file/directory completion.  Database
+		# completion starts once there is a search token.
+		[[ -n ${words[2]-} ]] || return 1
+
+		local -a matches
+		matches=("${(@f)$(zoxide query --list -- "${words[2,-1]}" 2>/dev/null)}")
+		# The query token is only a search term.  Matches are absolute paths,
+		# so let zsh insert them even though they do not start with the token.
+		compadd -Q -U -- "${matches[@]}"
+	}
+
+	compdef _zoxide_database_completion z
+else
+	echo "zoxide is not installed."
+fi
+
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
 
 plug "zsh-users/zsh-autosuggestions" # fish like suggestion
@@ -154,7 +179,21 @@ eval "$(atuin init zsh --disable-up-arrow)"
 #################################
 # key mappings
 #################################
-set -o emacs 
+set -o emacs
+
+# With an explicitly empty query, make `z <Tab>` behave like typing `zi`
+# and pressing Enter. Plain `z<Tab>` keeps normal completion.
+_zoxide_tab_or_complete() {
+	if [[ $BUFFER == 'z ' && $CURSOR -eq ${#BUFFER} ]]; then
+		BUFFER=zi
+		CURSOR=2
+		zle accept-line
+	else
+		zle expand-or-complete
+	fi
+}
+zle -N _zoxide_tab_or_complete
+bindkey '^I' _zoxide_tab_or_complete
 
 bindkey '^a' beginning-of-line    # Give some love to emacs
 bindkey '^e' end-of-line          # Give some love to emacs

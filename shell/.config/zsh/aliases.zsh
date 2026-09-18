@@ -113,12 +113,6 @@ else
 	echo "the_silver_searcher or silversearcher-ag or silver-searcher is not installed."
 fi
 
-if hash zoxide 2>/dev/null; then
-	alias z='zoxide'
-else
-	echo "zoxide is not installed."
-fi
-
 alias y='yarn'
 alias p='pnpm'
 
