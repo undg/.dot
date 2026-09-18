@@ -39,6 +39,9 @@
     "grep": "allow",
     "find": "allow",
     "ls": "allow",
+    // Read-only Azure DevOps work-item lookups. Extension uses fixed `az` read commands.
+    "get_azure_devops_ticket": "allow",
+    "get_azure_devops_tickets": "allow",
     "skill": {
       "*": "ask",
       "colgrep": "allow",
