@@ -6,7 +6,8 @@
     "end"
   ],
   "tui.input.newLine": [
-    "shift+enter"
+    "shift+enter",
+    "ctrl+j"
   ],
   "tui.input.submit": [
     "enter"
