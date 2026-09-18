@@ -53,7 +53,6 @@ swap_pane_up    = ["alt+,"]
 swap_pane_right = ["alt+."]
 
 # Alt+Left/Right tab switch, Alt+Shift+Left/Right move tab position
-# (tmux.conf M-Left/Right, M-S-Left/Right)
 previous_tab      = ["prefix+p", "alt+left"]
 next_tab          = ["prefix+n", "alt+right"]
 move_tab_previous = "alt+shift+left"
@@ -62,15 +61,14 @@ move_tab_next     = "alt+shift+right"
 # Resize mode vim keys (tmux.conf M-y/u/i/o resized instantly; herdr only
 # resizes inside resize mode, entered with the default prefix+r).
 # Flow: prefix+r, then h/j/k/l repeatedly, Escape to exit.
-resize_pane_left  = ["h", "alt+y"]
-resize_pane_down  = ["j", "alt+u"]
-resize_pane_up    = ["k", "alt+i"]
-resize_pane_right = ["l", "alt+o"]
+resize_pane_left  = ["alt+y"]
+resize_pane_down  = ["alt+u"]
+resize_pane_up    = ["alt+i"]
+resize_pane_right = ["alt+o"]
 
 # Toggle workspace sidebar collapse (same as herdr's default binding, made explicit).
 toggle_sidebar = ["prefix+b"]
 
-# Reload config (tmux.conf `bind r` source-file). prefix+r is already resize
 # mode here, so this lives on prefix+shift+r instead.
 [[keys.command]]
 key = "prefix+shift+r"
@@ -179,4 +177,13 @@ key = "prefix+shift+m"
 type = "plugin_action"
 command = "worktrunk.merge"
 description = "Worktree: merge into the target branch"
+#}}}
+
+
+#####################
+# herdr-reviewer {{{
+[[keys.command]]
+key = "prefix+ctrl+g"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"   # <plugin_id>.<action_id> — note the id, not the name
 #}}}
