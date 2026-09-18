@@ -19,12 +19,6 @@ alias llt="ll --sort newest"
 alias ltr="ls --sort oldest"
 alias lltr="ll --sort oldest"
 
-if hash fasd 2>/dev/null; then
-	alias j="fasd_cd -d -r"
-else
-	echo "fasd is not installed."
-fi
-
 # Search
 alias egrep="egrep --color=auto"
 alias grep="grep --color=auto"
@@ -117,6 +111,12 @@ if hash ag 2>/dev/null; then
 	alias ag='\ag  --smart-case --pager="less -XFR"'
 else
 	echo "the_silver_searcher or silversearcher-ag or silver-searcher is not installed."
+fi
+
+if hash zoxide 2>/dev/null; then
+	alias z='zoxide'
+else
+	echo "zoxide is not installed."
 fi
 
 alias y='yarn'
