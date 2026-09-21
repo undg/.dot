@@ -130,8 +130,14 @@ src_local "$ZDOTDIR/completion.zsh"
 # compinit has defined `compdef` (completion.zsh loads compinit above).
 if hash zoxide 2>/dev/null; then
 	_zoxide_database_completion() {
-		# Plain `z<Tab>` keeps normal file/directory completion.  Database
-		# completion starts once there is a search token.
+		# Once a database result has been inserted, continue with normal
+		# filesystem completion so subdirectories can be explored.
+		if [[ ${words[2]-} == /* || ${words[2]-} == ./* ]]; then
+			_cd -/
+			return
+		fi
+
+		# Database completion starts once there is a search token.
 		[[ -n ${words[2]-} ]] || return 1
 
 		local -a matches
@@ -181,13 +187,15 @@ eval "$(atuin init zsh --disable-up-arrow)"
 #################################
 set -o emacs
 
-# With an explicitly empty query, make `z <Tab>` behave like typing `zi`
-# and pressing Enter. Plain `z<Tab>` keeps normal completion.
+# Let `z<Tab>` use the zoxide database picker, but keep the selected
+# directory in the command line so another Tab can complete subdirectories.
 _zoxide_tab_or_complete() {
-	if [[ $BUFFER == 'z ' && $CURSOR -eq ${#BUFFER} ]]; then
-		BUFFER=zi
-		CURSOR=2
-		zle accept-line
+	if [[ ($BUFFER == z || $BUFFER == 'z ') && $CURSOR -eq ${#BUFFER} ]]; then
+		local result
+		result="$(zoxide query --interactive 2>/dev/null)" || return
+		BUFFER="z ${(q)result}"
+		CURSOR=${#BUFFER}
+		zle reset-prompt
 	else
 		zle expand-or-complete
 	fi
