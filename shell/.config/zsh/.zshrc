@@ -144,7 +144,9 @@ if hash zoxide 2>/dev/null; then
 		matches=("${(@f)$(zoxide query --list -- "${words[2,-1]}" 2>/dev/null)}")
 		# The query token is only a search term.  Matches are absolute paths,
 		# so let zsh insert them even though they do not start with the token.
-		compadd -Q -U -- "${matches[@]}"
+		# Do not append zsh's usual separating space; another Tab should be
+		# able to continue into subdirectories immediately.
+		compadd -Q -U -S '' -- "${matches[@]}"
 	}
 
 	compdef _zoxide_database_completion z
