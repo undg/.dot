@@ -239,7 +239,7 @@ install_packages() {
 	_install_package pipewire-alsa SKIP SKIP SKIP
 	_install_package pipewire-jack SKIP SKIP SKIP
 	_install_package pipewire-pulse SKIP SKIP SKIP
-	_install_package pulse-remote SKIP SKIP SKIP
+	_install_package pulse-remote-bin SKIP SKIP SKIP
 	_install_package ripgrep
 	_install_package rofi SKIP SKIP SKIP
 	_install_package rofi-calc SKIP SKIP SKIP
