@@ -197,6 +197,10 @@ _zoxide_tab_or_complete() {
 		result="$(zoxide query --interactive 2>/dev/null)" || return
 		BUFFER="z ${(q)result}"
 		CURSOR=${#BUFFER}
+		# zsh-autosuggestions can leave its accepted-history suffix in
+		# POSTDISPLAY, making an invisible suggestion look like real text.
+		POSTDISPLAY=''
+		(( $+widgets[autosuggest-clear] )) && zle autosuggest-clear
 		zle reset-prompt
 	else
 		zle expand-or-complete
