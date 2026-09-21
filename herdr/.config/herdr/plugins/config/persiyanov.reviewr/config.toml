@@ -1,0 +1,8 @@
+# https://github.com/persiyanov/herdr-reviewr#configuration
+theme = "gruvbox"
+default_scope = "branch"
+navigator_position = "right"
+toggle_placement = "tab"   # split | overlay | zoomed | tab   (default: split)
+toggle_direction = "right"      # right | down — split only        (default: right)
+auto_open = false
+editor = "nvim +'call cursor({line},0)' {file}"
