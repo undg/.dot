@@ -181,7 +181,7 @@ description = "Worktree: merge into the target branch"
 
 
 #####################
-# herdr-reviewer {{{
+# herdr-reviewer {{{ https://github.com/persiyanov/herdr-reviewr
 [[keys.command]]
 key = "prefix+ctrl+g"
 type = "plugin_action"
@@ -190,7 +190,7 @@ command = "persiyanov.reviewr.toggle"
 
 
 #####################
-# herdr-sesh {{{
+# herdr-sesh {{{ https://github.com/fullerzz/herdr-plugin-sesh
 [[keys.command]]
 key = "prefix+g"
 type = "plugin_action"
