@@ -16,11 +16,11 @@ return {
 
 		-- lazygit.nvim opens a terminal in a floating window. The plugin's default
 		-- navigation runs wincmd first, which moves from the float to the window
-		-- underneath instead of handing control to herdr.
+		-- underneath instead of handing control to herdr. Keep terminal-insert mode
+		-- intact so lazygit accepts input immediately when focus returns.
 		local function wrap_terminal(vim_dir, herdr_dir)
 			return function()
 				if herdr_navigation.is_window(vim.api.nvim_get_current_win()) then
-					vim.cmd.stopinsert()
 					herdr_navigation.navigate(herdr_dir)
 					return
 				end
