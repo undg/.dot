@@ -129,6 +129,14 @@ install_configs() {
 	echo "All done!"
 }
 
+install_pi_dependencies() {
+	echo ""
+	echo "------Install Pi extension dependencies----------"
+	echo ""
+
+	bash "$HOME/.config/pi/scripts/install-dependencies.sh"
+}
+
 # _install_package - Cross-platform package installer
 #
 # Installs packages across pacman, brew, pkg (termux), and apt with support for:
@@ -302,6 +310,9 @@ install_completion() {
 
 # Main execution
 [[ "$SKIP_INSTALL" == false ]] && install_packages
-[[ "$SKIP_STOW" == false ]] && install_configs
+if [[ "$SKIP_STOW" == false ]]; then
+	install_configs
+	install_pi_dependencies
+fi
 [[ "$SKIP_COMPLETION" == false ]] && install_completion
 [[ "$SKIP_HERDR" == false ]] && install_herdr_plugins
