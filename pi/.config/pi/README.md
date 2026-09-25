@@ -107,19 +107,10 @@ Do not delete the folder — Pi recreates it when it installs packages. Only `np
 - [pi-permission-system configuration docs](https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system/docs/configuration.md)
 - [pi-permission-system OpenCode compatibility guide](https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system/docs/opencode-compatibility.md)
 
-## Post-instal
+## Extension dependencies
 
-For now, its not automated.
+`~/.config/pi/extensions/pi-notifier` and `~/.config/pi/npm` keep installed packages in ignored `node_modules` directories. The dotfiles installer runs `scripts/install-dependencies.sh` after stowing Pi config, so those dependencies are restored from each directory's `package.json` instead of being assumed present on every machine.
 
-```bash
-cd ~/.config/pi/extensions/pi-notifier/
-pnpm i
+Pi creates the `npm/` package workspace when it installs packages from settings. If that directory has no `package.json` yet, the script skips it; run `~/.dot/install --stow-only` again after Pi has created the workspace to repair/install its dependency links.
 
-cd ~/.config/pi/extensions/rich-webfetch/
-pnpm i
-
-cd ~/.config/pi/npm
-pnpm rebuild better-sqlite3
-```
-
-Decide what you want have from version control system by removing it from .config/pi/. Then stow it with .dot/install script. .config/pi/ is not a symlink, its a directory with symlinks.
+The `~/.config/pi` directory is intentionally not one symlink. Stow links tracked files into it, while generated Pi state stays local.
