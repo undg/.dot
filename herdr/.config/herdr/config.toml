@@ -1,3 +1,8 @@
+# vim: foldmarker={{{,}}} foldmethod=marker
+
+##########################
+# Settings {{{
+
 onboarding = false
 [ui]
 # Auto-copy any text the mouse selects (drag or double-click).
@@ -28,18 +33,19 @@ rows = [
 [theme]
 name = "gruvbox"
 auto_switch = false
+# }}}
 
-# KEYBINDINGS
+##########################
+# native KEYBINDINGS {{{
 # ported from ~/.dot/tmux/.config/tmux/tmux.conf
-#############
 
 [keys]
 # Alt+hjkl pane focus (tmux.conf M-h/j/k/l).
 # always move herdr pane focus, even inside nvim splits.
 # down/up moved off prefix+j/k below (freed for space/agent nav); they're
 # already reachable via alt+j/k through herdr-navigator.nvim.
-focus_pane_left  = ["prefix+h"]
-focus_pane_right = ["prefix+l"]
+# focus_pane_left  = ["prefix+h"]
+# focus_pane_right = ["prefix+l"]
 
 # prefix+j/k next/prev space (workspace), prefix+shift+j/k next/prev agent.
 next_agent         = [ "alt+ctrl+j"]
@@ -75,6 +81,7 @@ key = "prefix+shift+r"
 type = "shell"
 command = "herdr server reload-config"
 description = "Reload herdr config.toml"
+# }}}
 
 
 ##########################
@@ -159,3 +166,80 @@ command = "fullerzz.sesh.open-picker"
 #}}}
 
 
+
+#####################
+# herdr-harpoon {{{ https://github.com/hadeson/herdr-harpoon
+#
+# Tabs must move off the bare digits first. In your existing [keys]
+# table (do not add a second one - TOML forbids it) set:
+#     switch_tab = "prefix+alt+1..9"
+# or, for a direct ctrl+1..9 instead:
+#     [keys.indexed]
+#     tabs = "ctrl"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.add"
+description = "harpoon: mark pane"
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.open-menu"
+description = "harpoon: picker"
+
+[[keys.command]]
+key = "prefix+j"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-1"
+description = "harpoon 1"
+
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-2"
+description = "harpoon 2"
+
+[[keys.command]]
+key = "prefix+l"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-3"
+description = "harpoon 3"
+
+[[keys.command]]
+key = "prefix+;"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-4"
+description = "harpoon 4"
+
+[[keys.command]]
+key = "prefix+'"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-5"
+description = "harpoon 5"
+
+[[keys.command]]
+key = "prefix+6"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-6"
+description = "harpoon 6"
+
+[[keys.command]]
+key = "prefix+7"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-7"
+description = "harpoon 7"
+
+[[keys.command]]
+key = "prefix+8"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-8"
+description = "harpoon 8"
+
+[[keys.command]]
+key = "prefix+9"
+type = "plugin_action"
+command = "hadeson.herdr-harpoon.jump-9"
+description = "harpoon 9"
+#}}}
