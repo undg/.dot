@@ -13,7 +13,7 @@ end
 ---@param suffix string Text to check for occurrence at the end
 ---@return boolean
 function M.ends_with(full_str, suffix)
-	return full_str:sub(-#suffix) == suffix
+	return full_str:sub(- #suffix) == suffix
 end
 
 ---Wrap text with highlight group markers for colored output
@@ -21,7 +21,7 @@ end
 ---@param hl_group string The highlight group name to apply to the text
 ---@return string The text wrapped with highlight group markers
 function M.color_text(text, hl_group)
-	return string.format('%%#%s#%s%%#Normal#', hl_group, text)
+	return string.format("%%#%s#%s%%#Normal#", hl_group, text)
 end
 
 ---Format a number using the provided scripts
@@ -30,7 +30,7 @@ end
 ---@param scripts table The table of 10 scripts to use for each digit {1,2,...9,0}
 ---@return string The formatted string representation of the number
 local function formatWithScripts(n, scripts)
-	local result = ''
+	local result = ""
 	for i = 1, #tostring(n) do
 		local digit = tonumber(string.sub(tostring(n), i, i))
 		if digit == 0 then
@@ -45,7 +45,7 @@ end
 ---@param n integer The digit to convert to subscript
 ---@return string The subscript representation of the digit
 function M.subscript(n)
-	local subscripts = { '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₀' }
+	local subscripts = { "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₀" }
 	return formatWithScripts(n, subscripts)
 end
 
@@ -53,8 +53,20 @@ end
 ---@param n integer The digit to convert to transcript
 ---@return string The transcript representation of the digit
 function M.transcript(n)
-	local transcripts = { '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', '⁰' }
+	local transcripts = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
 	return formatWithScripts(n, transcripts)
+end
+
+---Truncate string to max length, adding ellipsis if cut
+---@param s string Text to truncate
+---@param n integer Max length of result, including ellipsis
+---@return string
+function M.trunc(s, n)
+	if #s <= n then
+		return s
+	end
+	local ellipsis = "…"
+	return s:sub(1, math.max(n - #ellipsis, 0)) .. ellipsis
 end
 
 return M
