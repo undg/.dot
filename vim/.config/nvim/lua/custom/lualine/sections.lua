@@ -110,7 +110,7 @@ M.branch = {
 			return "noop"
 		else
 			is_git = true
-			return branch
+			return str.trunc(branch, 25)
 		end
 	end,
 }
