@@ -16,7 +16,11 @@ return {
 			lualine_c = {},
 
 			lualine_x = { "diagnostics", "diff" },
-			lualine_y = { s.cwd, s.fileformat, s.filetype },
+
+			lualine_y = {
+				s.fileformat,
+				s.filetype,
+			},
 			lualine_z = { s.location },
 		}
 
