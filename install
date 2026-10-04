@@ -25,11 +25,13 @@ Options:
   --install-skip    Skip package installation
   --completion-skip Skip generating shell completions
   --stow-skip       Skip stow operations (symlinking dotfiles)
+  --pi-skip         Skip pi packages installation
   --herdr-skip      Skip herdr plugins installation
 
   --install-only    Only package installation
   --completion-only Only generating shell completions
   --stow-only       Only stow operations (symlinking dotfiles)
+  --pi-only         Only pi packages installation
   --herdr-only      Only herdr plugins installation
 
   -h, --help        Only this help message
@@ -78,11 +80,11 @@ while [[ $# -gt 0 ]]; do
 		shift
 		;;
 
-	--stow-pi)
+	--pi-skip)
 		SKIP_PI=true
 		shift
 		;;
-	--stow-pi)
+	--pi-only)
 		SKIP_INSTALL=true
 		SKIP_COMPLETION=true
 		SKIP_STOW=true
