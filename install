@@ -14,6 +14,7 @@ NC='\033[0m'   #'0'    is back no color
 SKIP_INSTALL=false
 SKIP_COMPLETION=false
 SKIP_STOW=false
+SKIP_PI=false
 SKIP_HERDR=false
 
 show_help() {
@@ -46,6 +47,7 @@ while [[ $# -gt 0 ]]; do
 		SKIP_INSTALL=false
 		SKIP_COMPLETION=true
 		SKIP_STOW=true
+		SKIP_PI=true
 		SKIP_HERDR=true
 		shift
 		;;
@@ -58,6 +60,7 @@ while [[ $# -gt 0 ]]; do
 		SKIP_INSTALL=true
 		SKIP_COMPLETION=false
 		SKIP_STOW=true
+		SKIP_PI=true
 		SKIP_HERDR=true
 		shift
 		;;
@@ -70,10 +73,23 @@ while [[ $# -gt 0 ]]; do
 		SKIP_INSTALL=true
 		SKIP_COMPLETION=true
 		SKIP_STOW=false
+		SKIP_PI=true
 		SKIP_HERDR=true
 		shift
 		;;
 
+	--stow-pi)
+		SKIP_PI=true
+		shift
+		;;
+	--stow-pi)
+		SKIP_INSTALL=true
+		SKIP_COMPLETION=true
+		SKIP_STOW=true
+		SKIP_PI=false
+		SKIP_HERDR=true
+		shift
+		;;
 	--herdr-skip)
 		SKIP_HERDR=true
 		shift
@@ -82,6 +98,7 @@ while [[ $# -gt 0 ]]; do
 		SKIP_INSTALL=true
 		SKIP_COMPLETION=true
 		SKIP_STOW=true
+		SKIP_PI=true
 		SKIP_HERDR=false
 		shift
 		;;
@@ -310,9 +327,7 @@ install_completion() {
 
 # Main execution
 [[ "$SKIP_INSTALL" == false ]] && install_packages
-if [[ "$SKIP_STOW" == false ]]; then
-	install_configs
-	install_pi_dependencies
-fi
+[[ "$SKIP_STOW" == false ]] && install_configs
+[[ "$SKIP_PI" == false ]] && install_pi_dependencies
 [[ "$SKIP_COMPLETION" == false ]] && install_completion
 [[ "$SKIP_HERDR" == false ]] && install_herdr_plugins
