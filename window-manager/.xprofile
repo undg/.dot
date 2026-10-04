@@ -1,0 +1,4 @@
+export XCURSOR_THEME=breeze_cursors
+export XCURSOR_SIZE=48
+gsettings set org.gnome.desktop.interface cursor-theme breeze_cursors
+gsettings set org.gnome.desktop.interface cursor-size 48
