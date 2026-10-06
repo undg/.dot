@@ -73,6 +73,11 @@
       // white listed
       //////////////////////
       "ag *": "allow",
+      "actionlint": "allow",
+      "actionlint *": "allow",
+      "actionlint *-init-config*": "ask",
+      "actionlint *-pyflakes*": "ask",
+      "actionlint *-shellcheck*": "ask",
       "basename *": "allow",
       "basedpyright *": "ask",
       "basedpyright --help": "allow",
@@ -83,6 +88,13 @@
       "basedpyright *--writebaseline*": "ask",
       "basedpyright *--baselinemode=auto*": "ask",
       "basedpyright *--gitlabcodequality*": "ask",
+      // Extra switches can make -n ineffective (e.g. -i or +n); allow plain file checks.
+      "bash -n *": "allow",
+      "bash -n -*": "ask",
+      "bash -n * -*": "ask",
+      "bash -n +*": "ask",
+      "bash -n * +*": "ask",
+      "bash -n -- *": "allow",
       "cat *": "allow",
       "cmp *": "allow",
       "colgrep": "allow",
