@@ -1,11 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 gui:
-  branchColorPatterns:
-    "^vim$": "#11AAFF"
-    "^zsh$": "#CF97FF"
-    "^tmux$": "#98FFD5"
-    "^i3$": "#FF9DD6"
-  authorColors: {}
   customIcons:
     filenames: {}
     extensions: {}
@@ -22,8 +16,8 @@ gui:
   timeFormat: "02 Jan 06 15:04 MST"
   shortTimeFormat: 3:04PM
   tabWidth: 4
-  wrapLinesInStagingView: true
-  useHunkModeInStagingView: true
+  wrapLinesInDiffView: true
+  useHunkModeInDiffView: true
   theme:
     activeBorderColor:
       - green
@@ -49,6 +43,12 @@ gui:
       - default
     inactiveViewSelectedLineBgColor:
       - bold
+    authorColors: {}
+    branchColorPatterns:
+      "^vim$": "#11AAFF"
+      "^zsh$": "#CF97FF"
+      "^tmux$": "#98FFD5"
+      "^i3$": "#FF9DD6"
   commitLength:
     show: true
   mouseEvents: true
