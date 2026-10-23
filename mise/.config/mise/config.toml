@@ -1,13 +1,12 @@
 [tools]
 nodejs = "latest"
-golang = "latest"
 python = "latest"
 bun    = "latest"
 deno   = "latest"
 lua    = "5.4.4"
 npm    = "latest"
 yarn   = "latest"
-go     = "latest"
+go = "1.27.3"
 node   = "24.4"
 rust = "latest"
 
