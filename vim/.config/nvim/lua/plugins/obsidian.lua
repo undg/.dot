@@ -39,7 +39,11 @@ return {
 			return
 		end
 
+		local mappings = require("obsidian.config").MappingOpts.default()
+		mappings["<cr>"] = nil -- Enter belongs to custom.markdown, including inside vaults.
+
 		require("obsidian").setup({
+			mappings = mappings,
 			ui = {
 				enable = false, -- Disable obsidian UI to prevent conflicts with render-markdown
 				checkboxes = {

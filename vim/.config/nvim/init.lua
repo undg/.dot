@@ -23,6 +23,7 @@ require("custom.open-path")
 require("custom.ts-block-nav")
 require("custom.yank-file-path")
 require("custom.colgrep-nvim").setup()
+require("custom.markdown").setup()
 
 require("lsp")
 
