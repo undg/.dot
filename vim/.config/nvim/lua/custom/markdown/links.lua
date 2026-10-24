@@ -1,7 +1,28 @@
+local anchors = require("custom.markdown.anchors")
+
 local M = {}
 
 local function warn(message)
 	vim.notify(message, vim.log.levels.WARN, { title = "Markdown" })
+end
+
+local function decode(value)
+	return value:gsub("%%(%x%x)", function(hex)
+		return string.char(tonumber(hex, 16))
+	end)
+end
+
+local function jump(fragment, same_buffer)
+	local row, err = anchors.find(vim.api.nvim_get_current_buf(), fragment)
+	if not row then
+		warn(err)
+		return
+	end
+	if same_buffer then
+		vim.cmd.normal({ args = { "m'" }, bang = true })
+	end
+	vim.api.nvim_win_set_cursor(0, { row, 0 })
+	vim.cmd.normal({ args = { "zv" }, bang = true })
 end
 
 ---@param destination string
@@ -19,14 +40,25 @@ function M.follow(destination)
 		warn("Unsupported link scheme: " .. destination)
 		return
 	end
-	if destination:find("#", 1, true) or destination:find("?", 1, true) then
-		warn("Local link fragments and queries are not supported yet: " .. destination)
+	local path, fragment = destination:match("^(.-)#(.*)$")
+	path = path or destination
+	if path:find("?", 1, true) then
+		warn("Local link queries are not supported yet: " .. destination)
+		return
+	end
+	if fragment then
+		fragment = decode(fragment)
+		if fragment:find("[%z\r\n]") then
+			warn("Invalid heading fragment: " .. destination)
+			return
+		end
+	end
+	if path == "" and fragment then
+		jump(fragment, true)
 		return
 	end
 
-	local path = destination:gsub("\\([%p])", "%1"):gsub("%%(%x%x)", function(hex)
-		return string.char(tonumber(hex, 16))
-	end)
+	path = decode(path:gsub("\\([%p])", "%1"))
 	if path == "" or path:find("%z") or path:find("[\r\n]") then
 		warn("Invalid local link: " .. destination)
 		return
@@ -46,9 +78,14 @@ function M.follow(destination)
 		return
 	end
 
+	local source_bufnr = vim.api.nvim_get_current_buf()
 	local ok, err = pcall(vim.cmd.edit, { args = { path }, magic = { file = false } })
 	if not ok then
 		warn("Could not open link: " .. tostring(err))
+		return
+	end
+	if fragment then
+		jump(fragment, vim.api.nvim_get_current_buf() == source_bufnr)
 	end
 end
 
