@@ -4,16 +4,13 @@ Session.vim
 
 .cursorrules
 AGENTS.md
-.opencode/
 
 # git worktree directory
 .wk/
+.wk.toml
+.pissbox.toml
 
-# code-review-graph cache/index
-.code-review-graph/
 
 **/.claude/.cc-writes/
-
 **/.claude/settings.local.json
 
-.config/wt.toml
