@@ -9,10 +9,10 @@ local function format_on_save_toggle()
 	vim.notify(msg, vim.log.levels.INFO)
 end
 
----Detect if project uses Biome (biome.json exists)
+---Detect if project uses Biome (biome.json or biome.jsonc exists)
 ---@return boolean
 local function has_biome_config()
-	return vim.fs.root(0, "biome.json") ~= nil
+	return vim.fs.root(0, { "biome.json", "biome.jsonc" }) ~= nil
 end
 
 ---Detect if project uses Prettier (.prettierrc or prettier.config.* exists)
@@ -42,10 +42,10 @@ local function js_formatter()
 	if has_biome_config() then
 		return { "biome" }
 	elseif has_prettier_config() then
-		return { "prettierd", "prettier" }
+		return { "prettierd", "prettier", "biome", stop_after_first = true }
 	else
 		-- Default to biome for new projects
-		return { "biome", "prettierd", "prettier" }
+		return { "biome" }
 	end
 end
 
