@@ -194,7 +194,7 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1' # mnemonics W - Web browser
 
 [[on-window-detected]]
-    if.app-id = 'com.vivaldi.Vivaldi'
+    if.app-id = 'net.imput.helium'
     run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
