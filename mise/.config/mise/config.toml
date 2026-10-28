@@ -1,19 +1,20 @@
 [tools]
-nodejs = "latest"
-python = "latest"
-bun    = "latest"
-deno   = "latest"
-lua    = "5.4.4"
-npm    = "latest"
-yarn   = "latest"
-go = "1.27.3"
-node   = "24.4"
-rust = "latest"
+python  = "latest"
+bun     = "latest"
+lua     = "5.4.4"
+npm     = "latest"
+yarn    = "latest"
+go      = "1.27.3"
+node    = "24.4"
+rust    = "latest"
+pnpm    = "12.15.0"
 
 [settings]
 # Legacy version file reading (e.g. .nvmrc, .python-version) is enabled by default.
 # Disable it per-tool with legacy_version_file_disable_tools if needed.
 legacy_version_file = true
+
+[env]
 
 
 # This was a quick fix for corepack false positives.
