@@ -217,19 +217,27 @@ launch_chrome() {
     echo -e "${BLUE}🌐${NC} URL: $url"
     echo ""
     
-    # Launch Chrome
-    "$chrome_path" \
-        --user-data-dir="$CHROME_PROFILE" \
-        --remote-debugging-port="$DEBUG_PORT" \
-        --no-first-run \
-        --no-default-browser-check \
-        "$url" &> /dev/null &
-    local chrome_pid=$!
-    printf '%s\n' "$chrome_pid" > "$PID_FILE"
-    
-    # Wait a moment and check if it started
+    local chrome_args=(
+        --user-data-dir="$CHROME_PROFILE"
+        --remote-debugging-port="$DEBUG_PORT"
+        --no-first-run
+        --no-default-browser-check
+        "$url"
+    )
+    local chrome_pid
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Launch Services gives Chrome its menu bar and window-manager visibility.
+        open -n -a "${chrome_path%/Contents/MacOS/*}" --args "${chrome_args[@]}"
+    else
+        "$chrome_path" "${chrome_args[@]}" &> /dev/null &
+        chrome_pid=$!
+        printf '%s\n' "$chrome_pid" > "$PID_FILE"
+    fi
+
+    # Discover Chrome's PID, not the short-lived `open` process on macOS.
     sleep 1
-    if dev_chrome_pid > /dev/null; then
+    if chrome_pid=$(dev_chrome_pid) && [[ -n "$chrome_pid" ]]; then
+        printf '%s\n' "$chrome_pid" > "$PID_FILE"
         echo -e "${GREEN}✓${NC} Chrome launched successfully (PID: $chrome_pid)!"
         echo ""
         echo -e "${BLUE}💡${NC} This is your dedicated dev Chrome:"
