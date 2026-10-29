@@ -5,9 +5,9 @@ lua     = "5.4.4"
 npm     = "latest"
 yarn    = "latest"
 go      = "1.27.3"
-node    = "24.4"
+nodejs    = "24.4"
 rust    = "latest"
-pnpm    = "12.15.0"
+pnpm    = "latest"
 
 [settings]
 # Legacy version file reading (e.g. .nvmrc, .python-version) is enabled by default.
