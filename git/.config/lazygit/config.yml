@@ -147,12 +147,8 @@ disableStartupPopups: true
 notARepository: prompt
 promptToReturnFromSubprocess: false
 os:
-  edit: ""
-  editAtLine: ""
-  editAtLineAndWait: ""
-  editInTerminal: false
-  openDirInEditor: ""
-  editPreset: "nvim-remote"
+  editPreset: "nvim"
+  editInTerminal: true
   open: ""
   openLink: ""
   copyToClipboardCmd: ""
