@@ -61,6 +61,7 @@ return {
 		end
 
 		-- `{`/`}` now belong to custom/ts-block-nav.lua (sibling walk)
-		Keymap.normal("<leader>gc", _go_to_context, { silent = true, desc = "(treesitter) Go to context" })
+		Keymap.normal("<leader>tg", _go_to_context, { silent = true, desc = "(treesitter) Go to context" })
+		Keymap.normal("<leader>tc", "<cmd>TSContextToggle<cr>", { silent = true, desc = "(treesitter) Toggle context" })
 	end,
 }
