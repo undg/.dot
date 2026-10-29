@@ -38,3 +38,4 @@ require("keymap.fugitive")
 require("keymap.spell-autofixer")
 
 require("autocmd")
+require("custom.auto-reload").setup()
