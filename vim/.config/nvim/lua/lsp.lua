@@ -19,6 +19,7 @@ local lsp_servers = {
 	"cssmodules_ls",
 	"svelte",
 	"terraform-ls",
+	"tombi",
 }
 
 -- Mason package names (for auto-installation)
@@ -41,6 +42,7 @@ local mason_packages = {
 	["cssmodules_ls"] = "cssmodules-language-server",
 	["svelte"] = "svelte-language-server",
 	["terraform-ls"] = "terraform-ls",
+	["tombi"] = "tombi",
 }
 
 local mason_tool_installer_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
