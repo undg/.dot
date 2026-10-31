@@ -87,12 +87,6 @@ else
 	echo "lazygit is missing"
 fi
 
-if hash cmatrix 2>/dev/null; then
-	alias s='cmatrix -absCcyan'
-else
-	echo "cmatrix is missing"
-fi
-
 # translation with http://git.io/trans
 if hash trans 2>/dev/null; then
 	alias t='trans en:pl'
@@ -222,4 +216,11 @@ pgm-be-serve() {
 
 	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
 	task dev:serve                                         # top pane (current pane)
+}
+
+s() {
+	mkdir -p ~/Documents/Research
+	cd ~/Documents/Research
+	pissbox --yes
+	cd -
 }
