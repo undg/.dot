@@ -64,6 +64,7 @@ return {
 			dashboard.button("g", "🔍  >  Live Grep", ":Telescope live_grep<CR>"),
 			dashboard.button("w", "🖋  >  Note Work", cmd_obsidian_work(":ObsidianToday<CR>")),
 			dashboard.button("p", "󱦹   >  Note Personal", cmd_obsidian_personal(":ObsidianToday<CR>")),
+			dashboard.button("q", "✖   >  Quit", ":q<CR>"),
 			-- dashboard.button("g", "🐙   >  GitHub Pull Request", ":GHOpenPR<CR>"),
 		}
 
