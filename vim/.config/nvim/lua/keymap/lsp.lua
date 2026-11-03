@@ -46,6 +46,9 @@ end, { desc = "lsp: hover / help: go to ref", silent = true, noremap = true })
 Keymap.normal("<leader>K", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
 Keymap.insert("<c-k>", vim.lsp.buf.signature_help, { desc = "lsp: signature_help", silent = true, noremap = true })
 
+------------------
+-- CODE ACTIONS
+------------------
 local function code_action_add_import()
 	vim.lsp.buf.code_action({
 		filter = function(action)
@@ -62,26 +65,30 @@ Keymap.normal("ga", code_action_add_import, { desc = "lsp: source code_action" }
 Keymap.normal("gA", vim.lsp.buf.code_action, { desc = "lsp: code_action" })
 Keymap.visual("gA", vim.lsp.buf.code_action, { desc = "lsp: code_action" })
 
-Keymap.normal("<leader>Gd", ":Lspsaga peek_definition<CR>", { desc = "lsp: peek_definition" })
-Keymap.normal("Gd", ":Lspsaga peek_definition<CR>", { desc = "lsp: peek_definition" })
+------------------
+-- DEFINITIONS
+------------------
+Keymap.normal("<leader>gd", ":Telescope lsp_type_definitions<cr>", { desc = "lsp: type definition (pick)" })
+Keymap.normal("gd", ":Lspsaga peek_type_definition<CR>", { desc = "lsp: type definition (windowed)" })
 
-Keymap.normal("<leader>GD", ":Lspsaga peek_type_definition<CR>", { desc = "lsp: peek_type_definition" })
-Keymap.normal("GD", ":Lspsaga peek_type_definition<CR>", { desc = "lsp: peek_type_definition" })
+Keymap.normal("<leader>GD", ":Telescope lsp_definitions<cr>", { desc = "lsp: definition (pick)" })
+Keymap.normal("GD", ":Lspsaga peek_definition<CR>", { desc = "lsp: definition (windowed)" })
 
-Keymap.normal("<leader>gd", vim.lsp.buf.definition, { desc = "lsp: definition" })
-Keymap.normal("gd", ":Telescope lsp_definitions<cr>", { desc = "lsp: definition (telescope)" })
-
-Keymap.normal("<leader>gD", vim.lsp.buf.type_definition, { desc = "lsp: type_definition" })
-Keymap.normal("gD", ":Telescope lsp_type_definitions<cr>", { desc = "lsp: type_definition (telescope)" })
-
+------------------
+-- REFERENCES
+------------------
 Keymap.normal("<leader>gr", lsp_references_quickfix, { desc = "lsp: references (quickfix)" })
 Keymap.normal("gr", ":Telescope lsp_references<cr>", { desc = "lsp: references (telescope)" })
+
 Keymap.normal("gn", illuminate.goto_next_reference, { desc = "lsp: next reference in buffer" })
 Keymap.normal("gp", illuminate.goto_prev_reference, { desc = "lsp: prev reference in buffer" })
 
 Keymap.normal("<leader>gi", vim.lsp.buf.implementation, { desc = "lsp: implementation" })
 Keymap.normal("gi", ":Telescope lsp_implementations<cr>", { desc = "lsp: implementation (telescope)" })
 
+------------------
+-- DIAGNOSTICS
+------------------
 Keymap.normal(
 	"<leader>gj",
 	":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, })<cr>",
