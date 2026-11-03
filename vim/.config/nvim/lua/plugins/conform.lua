@@ -40,7 +40,7 @@ end
 ---@return string[]
 local function js_formatter()
 	if has_biome_config() then
-		return { "biome" }
+		return { "biome-check" }
 	elseif has_prettier_config() then
 		return { "prettierd", "prettier", "biome", stop_after_first = true }
 	else
@@ -71,6 +71,15 @@ return {
 				yaml = js_formatter,
 			},
 			formatters = {
+				["biome-check"] = {
+					args = {
+						"check",
+						"--write",
+						"--linter-enabled=false",
+						"--stdin-file-path",
+						"$FILENAME",
+					},
+				},
 				prettier = {
 					prepend_args = { "--prose-wrap", "preserve" },
 				},
@@ -78,7 +87,7 @@ return {
 			-- Set this to change the default values when calling conform.format()
 			-- This will also affect the default values for format_on_save/format_after_save
 			default_format_opts = {
-				lsp_format = "last",
+				lsp_format = "fallback",
 			},
 			-- Set the log level. Use `:ConformInfo` to see the location of the log file.
 			log_level = vim.log.levels.ERROR,
@@ -97,8 +106,8 @@ return {
 		end
 
 		wk.add({
-			{ "<leader>s", group = "Toggle", silent = false },
-			{ "<leader>S", format_on_save_toggle, { desc = "Toggle format on save" } },
+			{ "<leader>s", group = "Toggle",          silent = false },
+			{ "<leader>S", format_on_save_toggle,     { desc = "Toggle format on save" } },
 			{ "<leader>p", require("conform").format, { desc = "Format" } },
 		})
 	end,
