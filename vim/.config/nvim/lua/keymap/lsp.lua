@@ -68,11 +68,11 @@ Keymap.visual("gA", vim.lsp.buf.code_action, { desc = "lsp: code_action" })
 ------------------
 -- DEFINITIONS
 ------------------
-Keymap.normal("<leader>gd", ":Telescope lsp_type_definitions<cr>", { desc = "lsp: type definition (pick)" })
-Keymap.normal("gd", ":Lspsaga peek_type_definition<CR>", { desc = "lsp: type definition (windowed)" })
+Keymap.normal("<leader>gd", ":Telescope lsp_definitions<cr>", { desc = "lsp: definition (pick)" })
+Keymap.normal("gd", ":Lspsaga peek_definition<CR>", { desc = "lsp: definition (windowed)" })
 
-Keymap.normal("<leader>GD", ":Telescope lsp_definitions<cr>", { desc = "lsp: definition (pick)" })
-Keymap.normal("GD", ":Lspsaga peek_definition<CR>", { desc = "lsp: definition (windowed)" })
+Keymap.normal("<leader>GD", ":Telescope lsp_type_definitions<cr>", { desc = "lsp: type definition (pick)" })
+Keymap.normal("GD", ":Lspsaga peek_type_definition<CR>", { desc = "lsp: type definition (windowed)" })
 
 ------------------
 -- REFERENCES
