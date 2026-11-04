@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+show_help() {
+	cat <<EOF
+Usage: ${0##*/} [OPTIONS]
+
+Create wk/pissbox configs in the current owning Git project root.
+Supports normal clones and bare repositories (including .git redirects).
+Adds /.wk/ to Git's local info/exclude, not the tracked .gitignore.
+Existing identical configs are kept; conflicting files or links abort all writes.
+No worktrees or sandboxes are started; existing worktrees are not changed.
+
+Options:
+  -h, --help  Show this help
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+	-h | --help)
+		show_help
+		exit 0
+		;;
+	*)
+		printf 'Unexpected argument: %s. Use --help.\n' "$1" >&2
+		exit 1
+		;;
+	esac
+done
+
+die() {
+	printf '%s\n' "$*" >&2
+	exit 1
+}
+
+# Git metadata identifies the owner even when called from a linked worktree.
+CURRENT=$(pwd -P)
+COMMON=$(git rev-parse --git-common-dir) || die 'Run inside a Git repository.'
+COMMON=$(cd "$COMMON" && pwd -P)
+BARE=$(git --git-dir="$COMMON" rev-parse --is-bare-repository)
+if [[ $BARE == true ]]; then
+	ROOT=$COMMON
+	PARENT=$(dirname "$COMMON")
+	if [[ -f $PARENT/.git ]]; then
+		REDIRECT=$(cd "$PARENT" && git rev-parse --git-common-dir)
+		REDIRECT=$(cd "$PARENT" && cd "$REDIRECT" && pwd -P)
+		if [[ $REDIRECT == "$COMMON" ]]; then
+			ROOT=$PARENT
+		fi
+	fi
+else
+	GIT_DIR=$(git rev-parse --absolute-git-dir)
+	GIT_DIR=$(cd "$GIT_DIR" && pwd -P)
+	[[ $GIT_DIR == "$COMMON" ]] || die 'Run from the owning project root, not a linked worktree.'
+	ROOT=$(git rev-parse --show-toplevel)
+	ROOT=$(cd "$ROOT" && pwd -P)
+fi
+[[ $CURRENT == "$ROOT" ]] || die "Run from the owning project root: $ROOT"
+
+WK_CONFIG=$(
+	cat <<'EOF'
+setup = [
+'''
+set -e
+if [ ! -e .pissbox.toml ] && [ ! -L .pissbox.toml ]; then
+  ln -s ../.pissbox.toml .pissbox.toml
+fi
+if [ ! -e .wk.toml ] && [ ! -L .wk.toml ]; then
+  ln -s ../../.wk.toml .wk.toml
+fi
+if [ ! -e .AGENTS.md ] && [ ! -L .AGENTS.md ]; then
+  ln -s ../../.AGENTS.md .AGENTS.md
+fi
+'''
+]
+
+teardown = [
+'''
+pissbox -d . || printf '%s\n' 'Sandbox cleanup failed or none exists; continuing.' >&2
+'''
+]
+EOF
+)
+ROOT_CONFIG=$(
+	cat <<'EOF'
+workspaces = []
+setup = []
+EOF
+)
+WORKTREE_CONFIG=$(
+	cat <<'EOF'
+workspaces = ["../.."]
+setup = []
+EOF
+)
+FILES=(.wk.toml .pissbox.toml .wk/.pissbox.toml)
+CONTENTS=("$WK_CONFIG" "$ROOT_CONFIG" "$WORKTREE_CONFIG")
+EXCLUDE=$(git rev-parse --git-path info/exclude)
+
+# Check every destination before making any changes. Never follow config links.
+if [[ -L .wk || (-e .wk && ! -d .wk) ]]; then
+	die 'Conflict: .wk must be a real directory.'
+fi
+for INDEX in "${!FILES[@]}"; do
+	FILE=${FILES[$INDEX]}
+	if [[ -L $FILE || (-e $FILE && ! -f $FILE) ]]; then
+		die "Conflict: $FILE must be a regular file, not a link or other file type."
+	fi
+	if [[ -f $FILE ]] && ! cmp -s "$FILE" <(printf '%s\n' "${CONTENTS[$INDEX]}"); then
+		die "Conflict: $FILE differs from the template; nothing changed."
+	fi
+done
+if [[ -L $EXCLUDE || (-e $EXCLUDE && ! -f $EXCLUDE) ]]; then
+	die "Conflict: $EXCLUDE must be a regular file, not a link or other file type."
+fi
+
+mkdir -p .wk
+for INDEX in "${!FILES[@]}"; do
+	FILE=${FILES[$INDEX]}
+	if [[ -f $FILE ]]; then
+		printf 'Unchanged: %s\n' "$FILE"
+	else
+		(
+			set -o noclobber
+			printf '%s\n' "${CONTENTS[$INDEX]}" >"$FILE"
+		)
+		printf 'Created: %s\n' "$FILE"
+	fi
+done
+if [[ ! -f $EXCLUDE ]] || ! grep -Fxq '/.wk/' "$EXCLUDE"; then
+	mkdir -p "$(dirname "$EXCLUDE")"
+	printf '\n/.wk/\n' >>"$EXCLUDE"
+	printf 'Added /.wk/ to %s\n' "$EXCLUDE"
+fi
