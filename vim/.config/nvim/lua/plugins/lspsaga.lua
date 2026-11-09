@@ -11,7 +11,7 @@ return {
 		},
 		definition = {
 			keys = {
-				edit = "<leader><enter>",
+				edit = "<CR>",
 			},
 		},
 		symbol_in_winbar = { -- breadcrumbs
