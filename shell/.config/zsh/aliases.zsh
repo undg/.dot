@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-# 😎
-alias :q='exit'
+alias :q='exit' # 😎
 
 if hash eza 2>/dev/null; then
 	alias l='eza'
@@ -179,6 +178,20 @@ fi
 
 alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
 
+if hash zoxide &>/dev/null; then
+	alias f='z'
+fi
+
+#################################################
+# Ej Aj
+#################################################
+s() {
+	mkdir -p ~/Documents/Research
+	cd ~/Documents/Research
+	pissbox --yes
+	cd -
+}
+
 #################################################
 # Probabilistic Graphical Modelling
 #################################################
@@ -216,11 +229,4 @@ pgm-be-serve() {
 
 	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
 	task dev:serve                                         # top pane (current pane)
-}
-
-s() {
-	mkdir -p ~/Documents/Research
-	cd ~/Documents/Research
-	pissbox --yes
-	cd -
 }
