@@ -179,7 +179,7 @@ fi
 alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
 
 if hash zoxide &>/dev/null; then
-	alias f='z'
+	alias j='z'
 fi
 
 #################################################
