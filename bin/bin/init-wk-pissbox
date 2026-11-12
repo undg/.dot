@@ -64,18 +64,11 @@ WK_CONFIG=$(
 setup = [
   '''
 set -e
-link() {
-  if [ ! -e "$1" ] && [ ! -L "$1" ]; then
-    ln -s "$1" . 
-  else
-    printf 'Kept %s: already exists, not linked\n' "$1"
-  fi
-}
 
-link  ../.pissbox.toml
-link ../../.wk.toml
-link ../../AGENTS.md
-link ../../mise.md
+ln -s ../.pissbox.toml .
+ln -s ../../.wk.toml .
+ln -s ../../AGENTS.md .
+ln -s ../../mise.toml .
 
 mise trust
 '''
