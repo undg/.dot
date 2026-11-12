@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# -----------------------------------------------------------------------------
+# CLI options
+# -----------------------------------------------------------------------------
+
 show_help() {
 	cat <<EOF
 Usage: ${0##*/} [OPTIONS]
@@ -12,10 +16,17 @@ Adds /.wk/ to Git's local info/exclude, not the tracked .gitignore.
 Existing identical configs are kept; conflicting files or links abort all writes.
 No worktrees or sandboxes are started; existing worktrees are not changed.
 
+Without a language flag, creates general configs with no dependency isolation.
+If both language flags are given, the last one wins.
+
 Options:
+  --python    Use uv/mise with isolated .venv and all dependency groups/extras
+  --node      Use pnpm/mise with isolated node_modules
   -h, --help  Show this help
 EOF
 }
+
+LANGUAGE="general"
 
 while [[ $# -gt 0 ]]; do
 	case $1 in
@@ -23,12 +34,24 @@ while [[ $# -gt 0 ]]; do
 		show_help
 		exit 0
 		;;
+	--python)
+		LANGUAGE='python'
+		shift
+		;;
+	--node)
+		LANGUAGE='node'
+		shift
+		;;
 	*)
 		printf 'Unexpected argument: %s. Use --help.\n' "$1" >&2
 		exit 1
 		;;
 	esac
 done
+
+# -----------------------------------------------------------------------------
+# Owning Git project
+# -----------------------------------------------------------------------------
 
 die() {
 	printf '%s\n' "$*" >&2
@@ -59,6 +82,10 @@ else
 fi
 [[ $CURRENT == "$ROOT" ]] || die "Run from the owning project root: $ROOT"
 
+# -----------------------------------------------------------------------------
+# Shared worktree lifecycle
+# -----------------------------------------------------------------------------
+
 WK_CONFIG=$(
 	cat <<'EOF'
 setup = [
@@ -81,18 +108,86 @@ pissbox -d . || printf '%s\n' 'Sandbox cleanup failed or none exists; continuing
 ]
 EOF
 )
+
+# -----------------------------------------------------------------------------
+# General sandbox defaults
+# -----------------------------------------------------------------------------
+
 ROOT_CONFIG=$(
 	cat <<'EOF'
 workspaces = []
+isolated_directories = []
 setup = []
 EOF
 )
+
 WORKTREE_CONFIG=$(
 	cat <<'EOF'
 workspaces = ["../.."]
+isolated_directories = []
 setup = []
 EOF
 )
+
+# -----------------------------------------------------------------------------
+# Language-specific sandbox overrides
+# -----------------------------------------------------------------------------
+
+case "$LANGUAGE" in
+python)
+	ROOT_CONFIG=$(
+		cat <<'EOF'
+workspaces = []
+isolated_directories = [".venv"]
+setup = [
+  "mise trust",
+  "uv venv --allow-existing .venv",
+  "uv sync --locked --all-groups --all-extras",
+]
+EOF
+	)
+	WORKTREE_CONFIG=$(
+		cat <<'EOF'
+workspaces = ["../.."]
+isolated_directories = [".venv"]
+setup = [
+  "mise trust",
+  "uv venv --allow-existing .venv",
+  "uv sync --locked --all-groups --all-extras",
+]
+EOF
+	)
+	;;
+node)
+	ROOT_CONFIG=$(
+		cat <<'EOF'
+workspaces = []
+isolated_directories = ["node_modules"]
+setup = [
+  "mise trust",
+  "mise install",
+  "pnpm install --frozen-lockfile",
+]
+EOF
+	)
+	WORKTREE_CONFIG=$(
+		cat <<'EOF'
+workspaces = ["../.."]
+isolated_directories = ["node_modules"]
+setup = [
+  "mise trust",
+  "mise install",
+  "pnpm install --frozen-lockfile",
+]
+EOF
+	)
+	;;
+esac
+
+# -----------------------------------------------------------------------------
+# Validate all destinations before writing
+# -----------------------------------------------------------------------------
+
 FILES=(.wk.toml .pissbox.toml .wk/.pissbox.toml)
 CONTENTS=("$WK_CONFIG" "$ROOT_CONFIG" "$WORKTREE_CONFIG")
 EXCLUDE=$(git rev-parse --git-path info/exclude)
@@ -113,6 +208,10 @@ done
 if [[ -L $EXCLUDE || (-e $EXCLUDE && ! -f $EXCLUDE) ]]; then
 	die "Conflict: $EXCLUDE must be a regular file, not a link or other file type."
 fi
+
+# -----------------------------------------------------------------------------
+# Write configs and local Git exclusion
+# -----------------------------------------------------------------------------
 
 mkdir -p .wk
 for INDEX in "${!FILES[@]}"; do
