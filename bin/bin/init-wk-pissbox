@@ -62,23 +62,27 @@ fi
 WK_CONFIG=$(
 	cat <<'EOF'
 setup = [
-'''
+  '''
 set -e
 link() {
   if [ ! -e "$1" ] && [ ! -L "$1" ]; then
-    ln -s "$2" "$1"
+    ln -s "$1" . 
   else
     printf 'Kept %s: already exists, not linked\n' "$1"
   fi
 }
-link .pissbox.toml ../.pissbox.toml
-link .wk.toml ../../.wk.toml
-link AGENTS.md ../../AGENTS.md
+
+link  ../.pissbox.toml
+link ../../.wk.toml
+link ../../AGENTS.md
+link ../../mise.md
+
+mise trust
 '''
 ]
 
 teardown = [
-'''
+  '''
 pissbox -d . || printf '%s\n' 'Sandbox cleanup failed or none exists; continuing.' >&2
 '''
 ]
