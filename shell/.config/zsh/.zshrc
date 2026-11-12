@@ -116,7 +116,7 @@ else
 	echo "zoxide is not installed."
 fi
 
-
+ 
 # plug "chrissicool/zsh-256color"
 plug "hlissner/zsh-autopair" # auto closing ()[]{}''"" etc.
 plug "undg/zsh-auto-notify" # system notification for long running processes
@@ -155,6 +155,14 @@ else
 fi
 
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
+
+if command -v pissbox &>/dev/null; then
+	source <(pissbox --completion zsh)
+else
+	echo "pissbox is not installed."
+fi
+
+
 
 plug "zsh-users/zsh-autosuggestions" # fish like suggestion
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
