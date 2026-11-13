@@ -4,6 +4,7 @@
 # Settings {{{
 
 onboarding = false
+
 [ui]
 # Auto-copy any text the mouse selects (drag or double-click).
 copy_on_select = true
@@ -16,6 +17,7 @@ sidebar_width = 44
 sidebar_max_width = 128
 
 status_indicators = "symbols"
+
 [ui.toast]
 delivery = "system"
 
@@ -48,28 +50,28 @@ auto_switch = false
 # focus_pane_right = ["prefix+l"]
 
 # prefix+j/k next/prev space (workspace), prefix+shift+j/k next/prev agent.
-next_agent         = [ "alt+ctrl+j"]
-previous_agent     = [ "alt+ctrl+k"]
-next_workspace     = [ "alt+down"]
-previous_workspace = [ "alt+up"]
+next_agent = ["alt+ctrl+j"]
+previous_agent = ["alt+ctrl+k"]
+next_workspace = ["alt+down"]
+previous_workspace = ["alt+up"]
 
-swap_pane_left  = ["alt+n"]
-swap_pane_down  = ["alt+m"]
-swap_pane_up    = ["alt+,"]
+swap_pane_left = ["alt+n"]
+swap_pane_down = ["alt+m"]
+swap_pane_up = ["alt+,"]
 swap_pane_right = ["alt+."]
 
 # Alt+Left/Right tab switch, Alt+Shift+Left/Right move tab position
-previous_tab      = ["prefix+p", "alt+left"]
-next_tab          = ["prefix+n", "alt+right"]
+previous_tab = ["prefix+p", "alt+left"]
+next_tab = ["prefix+n", "alt+right"]
 move_tab_previous = "alt+shift+left"
-move_tab_next     = "alt+shift+right"
+move_tab_next = "alt+shift+right"
 
 # Resize mode vim keys (tmux.conf M-y/u/i/o resized instantly; herdr only
 # resizes inside resize mode, entered with the default prefix+r).
 # Flow: prefix+r, then h/j/k/l repeatedly, Escape to exit.
-resize_pane_left  = ["alt+y"]
-resize_pane_down  = ["alt+u"]
-resize_pane_up    = ["alt+i"]
+resize_pane_left = ["alt+y"]
+resize_pane_down = ["alt+u"]
+resize_pane_up = ["alt+i"]
 resize_pane_right = ["alt+o"]
 
 # Toggle workspace sidebar collapse (same as herdr's default binding, made explicit).
@@ -82,7 +84,6 @@ type = "shell"
 command = "herdr server reload-config"
 description = "Reload herdr config.toml"
 # }}}
-
 
 ##########################
 # herdr-navigator.nvim {{{
@@ -112,7 +113,7 @@ key = "alt+l"
 type = "plugin_action"
 command = "willfish.herdr-navigator.right"
 description = "navigate right"
-#}}}
+# }}}
 
 ################
 # herdr-nvim {{{
@@ -130,7 +131,7 @@ key = "prefix+o"
 type = "plugin_action"
 command = "chmarax.herdr-nvim.pick-file"
 description = "open file from agent output"
-#}}}
+# }}}
 
 ##############################
 # open agent file in own nvim {{{
@@ -145,8 +146,7 @@ command = "bash ~/bin/herdr-open-agent-file.sh"
 description = "open agent file:line in nvim pane"
 width = "50%"
 height = "50%"
-#}}}
-
+# }}}
 
 #####################
 # herdr-reviewer {{{ https://github.com/persiyanov/herdr-reviewr
@@ -154,8 +154,7 @@ height = "50%"
 key = "prefix+ctrl+g"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
-#}}}
-
+# }}}
 
 #####################
 # herdr-sesh {{{ https://github.com/fullerzz/herdr-plugin-sesh
@@ -163,9 +162,7 @@ command = "persiyanov.reviewr.toggle"
 key = "prefix+g"
 type = "plugin_action"
 command = "fullerzz.sesh.open-picker"
-#}}}
-
-
+# }}}
 
 #####################
 # herdr-harpoon {{{ https://github.com/hadeson/herdr-harpoon
@@ -242,4 +239,14 @@ key = "prefix+9"
 type = "plugin_action"
 command = "hadeson.herdr-harpoon.jump-9"
 description = "harpoon 9"
-#}}}
+# }}}
+
+#####################
+# herdr-pane-mover {{{ https://github.com/osamahbeig/herdr-pane-mover#herdr-pane-mover
+[[keys.command]]
+key = "prefix+m"
+type = "plugin_action"
+command = "osamahbeig.pane-mover.open"
+description = "move this pane"
+
+# }}}
