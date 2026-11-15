@@ -156,35 +156,36 @@ return {
 				})
 			end
 
-			Keymap.normal("<leader>ft", ":Telescope<cr>")
+			Keymap.normal("<leader>ft", ":Telescope<cr>", { desc = "(telescope) pickers" })
 			-- keymap.normal(',.', ':Telescope find_files hidden=false<cr>')
-			Keymap.normal(",.", ":Telescope smart_open<cr>") -- smart_open telescope _extension
-			Keymap.normal("<leader>,", ":Telescope smart_open cwd_only=false<cr>")
-			Keymap.normal("<leader>.f", telescope.extensions.dir.find_files)
-			Keymap.normal("<leader>.g", telescope.extensions.dir.live_grep)
+			-- ,. uses smart_open telescope _extension
+			Keymap.normal(",.", ":Telescope smart_open<cr>", { desc = "(telescope) smart open" })
+			Keymap.normal("<leader>,", ":Telescope smart_open cwd_only=false<cr>", { desc = "(telescope) anywhere" })
+			Keymap.normal("<leader>.f", telescope.extensions.dir.find_files, { desc = "(telescope) find files (dir)" })
+			Keymap.normal("<leader>.g", telescope.extensions.dir.live_grep, { desc = "(telescope) live grep (dir)" })
 
-			Keymap.normal("<leader>fb", ":Telescope buffers<cr>")
+			Keymap.normal("<leader>fb", ":Telescope buffers<cr>", { desc = "(telescope) buffers" })
 			Keymap.normal("<leader>fs", ":Telescope git_status<cr>", { desc = "(git) status" })
 			Keymap.normal("<leader>gc", ":Telescope git_bcommits<cr>", { desc = "(git) commits" })
-			Keymap.visual("<leader>gc", git_bcommits_range_visual, { desc = "(git) commits" })
-			Keymap.normal("<leader>fg", ":Telescope live_grep<cr>")
-			Keymap.normal("<leader>fG", telescope.extensions.dir.live_grep, { desc = "Telescope live grep" })
-			Keymap.normal("<leader>fr", ":Telescope resume<cr>")
+			Keymap.visual("<leader>gc", git_bcommits_range_visual, { desc = "(git) commits (visual range)" })
+			Keymap.normal("<leader>fg", ":Telescope live_grep<cr>", { desc = "(telescope) live grep" })
+			Keymap.normal("<leader>fG", telescope.extensions.dir.live_grep, { desc = "(telescope) live grep (dir)" })
+			Keymap.normal("<leader>fr", ":Telescope resume<cr>", { desc = "(telescope) resume" })
 
-			Keymap.normal("fq", open_quick_fix_window_in_telescope, { desc = "Open QuickFix in Telescope" })
+			Keymap.normal("fq", open_quick_fix_window_in_telescope, { desc = "(telescope) quickfix" })
 
-			Keymap.normal("<leader>fQ", ":Telescope quickfixhistory<cr>")
-			Keymap.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>")
-			Keymap.normal("<leader>fh", ":Telescope help_tags<cr>")
-			Keymap.normal("<leader>fm", ":Telescope marks<cr>")
-			Keymap.normal("<leader>fk", ":Telescope keymaps<cr>")
-			Keymap.normal("<leader>fc", ":Telescope commands<cr>")
-			Keymap.normal("<leader>:", ":Telescope commands<cr>")
-			Keymap.normal("<leader>fx", ":Telescope diagnostics<cr>")
+			Keymap.normal("<leader>fQ", ":Telescope quickfixhistory<cr>", { desc = "(telescope) quickfix history" })
+			Keymap.normal("<leader>fo", ":Telescope oldfiles cwd_only=true<cr>", { desc = "(telescope) old files" })
+			Keymap.normal("<leader>fh", ":Telescope help_tags<cr>", { desc = "(telescope) help tags" })
+			Keymap.normal("<leader>fm", ":Telescope marks<cr>", { desc = "(telescope) marks" })
+			Keymap.normal("<leader>fk", ":Telescope keymaps<cr>", { desc = "(telescope) keymaps" })
+			Keymap.normal("<leader>fc", ":Telescope commands<cr>", { desc = "(telescope) commands" })
+			Keymap.normal("<leader>:", ":Telescope commands<cr>", { desc = "(telescope) commands" })
+			Keymap.normal("<leader>fx", ":Telescope diagnostics<cr>", { desc = "(telescope) diagnostics" })
 
 			Keymap.visual("<leader>fg", function()
 				tb.live_grep({ default_text = get_visual_selection() })
-			end, { noremap = true, silent = true })
+			end, { noremap = true, silent = true, desc = "(telescope) live grep (visual)" })
 		end,
 	},
 }
