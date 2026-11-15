@@ -31,6 +31,7 @@ Spec("plugins.neo-tree")                 -- file manager
 Spec("plugins.oil-nvim")                 -- file manager
 Spec("plugins.harpoon")                  -- bookmark like buffer storage
 Spec("plugins.nvim-lsp-file-operations") -- adds support for file operations using built-in LSP (update imports)
+Spec("plugins.yazi-nvim")                -- open yazi in a floating window
 
 -- LSP, code and linting
 Spec("plugins.nvim-cmp")                    -- collection of plugins related with autocompletion
@@ -42,9 +43,7 @@ Spec("plugins.conform")                     -- better formatting
 Spec("plugins.trouble")                     -- organize errors and warnings
 Spec("plugins.nvim-treesitter-context")     -- keep function and class names visible at the top of the screen
 Spec("plugins.nvim-treesitter-textobjects") -- Syntax aware text-objects, select, move, swap, and peek support.
-
 Spec("plugins.nvim-treesitter")             -- syntax highlight
-
 Spec("plugins.overseer-nvim")               -- A task runner and job management plugin for Neovim
 Git("https://github.com/folke/neodev.nvim") -- Neovim full signature help, docs and completion for the nvim lua API.
 
