@@ -230,3 +230,15 @@ pgm-be-serve() {
 	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
 	task dev:serve                                         # top pane (current pane)
 }
+
+yz() {
+	emulate -L zsh
+	local tmp cwd
+	tmp="$(mktemp -t "yazi-cwd.XXXXXX")" || return 1
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd <"$tmp"
+	rm -f -- "$tmp"
+	if [[ -d "$cwd" && "$cwd" != "$PWD" ]]; then
+		builtin cd -- "$cwd"
+	fi
+}
