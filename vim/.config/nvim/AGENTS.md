@@ -7,7 +7,6 @@ Keep changes minimal, follow existing Lua conventions, and prefer tooling noted 
 - `Makefile`: test targets and single-test helpers.
 - `.stylua.toml`: formatting rules.
 - `README.md`: testing overview.
-- No Cursor/Copilot rules found in `.cursor/rules`, `.cursorrules`, or `.github/copilot-instructions.md`.
 
 ## Build / Lint / Test
 - Run all tests: `make test`
@@ -65,7 +64,7 @@ if not ok then
 end
 ```
 
-- For multiple optional deps, pcall each require then use a ternary chain to report which one is missing:
+- For multiple optional deps, pcall each require, then use a ternary-like `and`/`or` chain to map the first missing one to a single `not_ok` value. One guard block, one notify:
 
 ```lua
 local a_ok, a = pcall(require, "module.a")
@@ -76,10 +75,12 @@ local not_ok = not a_ok and "module.a" --
 	or false
 
 if not_ok then
-	vim.notify("missing requirements - " .. not_ok, vim.log.levels.ERROR)
+	vim.notify("lua/plugins/example.lua: missing requirements - " .. not_ok, vim.log.levels.ERROR)
 	return
 end
 ```
+
+- Include the file path in the notify message (e.g. `lua/plugins/example.lua: ...`); the chain only names the missing module.
 
 - Module pattern: `local M = {}` then `return M`.
 - Keep module names in sync with file paths, e.g. `require("utils.tbl")`.
@@ -96,6 +97,18 @@ end
 	- `---@param`, `---@return`, `---@generic`.
 - Use triple-dash `---` doc comments for functions.
 - Keep comments focused on non-obvious behavior; avoid restating code.
+
+## Type resolution (lua_ls)
+- Project settings live in the root `.luarc.json`. Do not add another `.luarc.json` in a subdirectory: lua_ls picks the nearest marker as workspace root, and the root file is then ignored.
+- `workspace.library` in `.luarc.json` **replaces** the client list from `lsp/lua_ls.lua`, not merges. Keep `$VIMRUNTIME` and `${3rd}/luv/library` / `${3rd}/busted/library` when editing it.
+- Plugin types are opt-in per project. To use `---@type LazySpec` or a plugin's config class (e.g. `YaziConfig`), add that plugin directory to `workspace.library`:
+
+```json
+"$HOME/.local/share/nvim/lazy/lazy.nvim"
+```
+
+- Paths support `$VAR`, `~`, and `${3rd}`; missing directories are skipped, so uninstalled plugins are harmless.
+- Changes require a lua_ls restart (`:LspRestart`). If a type stays undefined, check `:echo stdpath('data')` matches the path used in `.luarc.json`.
 
 ## Error handling and notifications
 - Wrap optional `require()` calls with `pcall`.
@@ -170,6 +183,3 @@ return M
 - **Server list and config files must stay in sync**: `lsp_servers` array in `lua/lsp.lua` must have matching files in `lsp/` directory; drift causes silent failures.
 - **Names must match exactly**: Server name in `vim.lsp.enable("name")` must match the filename `lsp/name.lua` (e.g., `cssls` → `lsp/cssls.lua`).
 - **Check server health**: Run `:checkhealth vim.lsp` to verify configs load correctly; `:lua =vim.lsp.config['servername']` shows merged config.
-
-## Cursor/Copilot rules
-- No additional rules found in `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md`.
