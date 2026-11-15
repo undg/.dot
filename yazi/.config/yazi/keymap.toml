@@ -6,7 +6,6 @@
 [mgr]
 
 prepend_keymap = [
-	{ on = "q",       run = 'shell "$SHELL" --block', desc = "Open shell here" },
 	{ on = "<C-q>",   run = "quit",                   desc = "Exit the process" },
 	{ on = "l",       run = "plugin smart-enter",     desc = "Enter the child directory, or open the file" },
 	{ on = "<Enter>", run = "plugin smart-enter",     desc = "Enter the child directory, or open the file" },
