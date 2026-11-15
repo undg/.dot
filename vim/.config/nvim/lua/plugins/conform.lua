@@ -54,7 +54,7 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				lua = { "stylua" },
+				-- lua = { "stylua" },
 				json = js_formatter,
 				jsonc = js_formatter,
 				python = { "ruff_organize_imports", "ruff_format" },
@@ -106,8 +106,8 @@ return {
 		end
 
 		wk.add({
-			{ "<leader>s", group = "Toggle",          silent = false },
-			{ "<leader>S", format_on_save_toggle,     { desc = "Toggle format on save" } },
+			{ "<leader>s", group = "Toggle", silent = false },
+			{ "<leader>S", format_on_save_toggle, { desc = "Toggle format on save" } },
 			{ "<leader>p", require("conform").format, { desc = "Format" } },
 		})
 	end,
