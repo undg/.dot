@@ -186,8 +186,8 @@ fi
 # Ej Aj
 #################################################
 s() {
-	mkdir -p ~/Documents/Research
-	cd ~/Documents/Research
+	mkdir -p ~/tmp/Research
+	cd ~/tmp/Research
 	pissbox --yes
 	cd -
 }
