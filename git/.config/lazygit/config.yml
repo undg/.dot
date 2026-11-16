@@ -7,7 +7,7 @@ gui:
   scrollPastBottom: true
   scrollOffMargin: 2
   scrollOffBehavior: margin
-  sidePanelWidth: 0.3333
+  sidePanelWidth: 0.2
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 2
   mainPanelSplitMode: flexible
@@ -71,7 +71,7 @@ gui:
   showFileIcons: true
   nerdFontsVersion: "3"
   commitAuthorShortLength: 2
-  commitAuthorLongLength: 17
+  commitAuthorLongLength: 10
   commitHashLength: 8
   showBranchCommitHash: false
   showDivergenceFromBaseBranch: none
@@ -97,8 +97,9 @@ gui:
   switchTabsWithPanelJumpKeys: false
 git:
   diffRenderers:
-    - colorArg: always
-      type: rawGit
+    - type: stdinFilter
+      colorArg: always
+      command: delta -s --dark --paging=never --24-bit-color=never
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -211,7 +212,7 @@ keybinding:
     createPatchOptionsMenu: <ctrl+p>
     nextTab: "]"
     prevTab: "["
-    nextScreenMode: +
+    nextScreenMode: "="
     prevScreenMode: _
     cycleDiffRenderers: "|"
     undo: z
@@ -252,7 +253,7 @@ keybinding:
     openStatusFilter: <ctrl+b>
     copyFileInfoToClipboard: "y"
     collapseAll: "-"
-    expandAll: "="
+    expandAll: "+"
   branches:
     createPullRequest: o
     viewPullRequestOptions: O
