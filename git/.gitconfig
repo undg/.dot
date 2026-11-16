@@ -71,7 +71,7 @@
 	reflog = delta
 	show = delta
 [interactive]
-	fdiffFilter = delta --color-only
+	diffFilter = delta --color-only
 [push]
 	followTags = true
 	autoSetupRemote = true
