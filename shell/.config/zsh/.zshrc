@@ -59,22 +59,22 @@ fi
 # Print a static or dynamic, hopefully interesting, adage.
 # First "if installed" win [fortune(and cowsay), neofetch, archey3]
 
-if (( $+commands[fastfetch] )); then
+if command -v fastfetch >/dev/null 2>&1; then
 	printf '\n'
 	fastfetch --logo-type small --logo-padding-top 4 --separator " → " --structure "OS:Kernel:Uptime:Packages:Shell:DE:WM:Terminal:CPU:GPU:Memory:Disk:LocalIP:Battery" --color-keys blue --color-title yellow --pipe "lolcat -F 0.3" --multithreading --disable-linewrap
 	print
-elif (( $+commands[fortune] )); then
-	if (( $+commands[cowsay] )); then
+elif command -v fortune >/dev/null 2>&1; then
+	if command -v cowsay >/dev/null 2>&1; then
 		fortune definitions|cowsay
 		print
 	else
 		fortune -s
 		print
 	fi
-elif (( $+commands[archey3] )); then
+elif command -v archey3 >/dev/null 2>&1; then
 	archey3 -c red
 	print
-elif (( $+commands[neofetch] )); then
+elif command -v neofetch >/dev/null 2>&1; then
 	neofetch
 	print
 fi
@@ -103,14 +103,14 @@ plug "undg/zsh-autodotenv"
 src_local "$ZDOTDIR/config.zsh"
 src_local "$ZDOTDIR/aliases.zsh"
 
-if command -v mise &>/dev/null; then
+if command -v mise >/dev/null 2>&1; then
 	# eval "$(/bin/mise activate zsh --shims)" # lang version manager/installer
 	eval "$(mise activate zsh)" # lang version manager/installer
 else
 	echo "mise is not installed."
 fi
 
-if hash zoxide 2>/dev/null; then
+if command -v zoxide >/dev/null 2>&1; then
 	eval "$(zoxide init zsh)"
 else
 	echo "zoxide is not installed."
@@ -128,7 +128,7 @@ src_local "$ZDOTDIR/completion.zsh"
 
 # zoxide's generated zsh code and this override must be registered after
 # compinit has defined `compdef` (completion.zsh loads compinit above).
-if hash zoxide 2>/dev/null; then
+if command -v zoxide >/dev/null 2>&1; then
 	_zoxide_database_completion() {
 		# Once a database result has been inserted, continue with normal
 		# filesystem completion so subdirectories can be explored.
@@ -156,7 +156,7 @@ fi
 
 plug "zsh-users/zsh-completions" # hand written by community suggestion files for many packages
 
-if command -v pissbox &>/dev/null; then
+if command -v pissbox >/dev/null 2>&1; then
 	source <(pissbox --completion zsh)
 else
 	echo "pissbox is not installed."

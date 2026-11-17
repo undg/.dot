@@ -13,7 +13,7 @@
 fpath=($ZAP_DIR/plugins/zsh-completions/src $ZDOTDIR/completion $fpath)
 
 # Load compleations dynamically (keep an eye on performance)
-if hash rbw &>/dev/null; then
+if command -v rbw >/dev/null 2>&1; then
   eval $(rbw gen-completions zsh)
 else
   echo 'rbw not installed'

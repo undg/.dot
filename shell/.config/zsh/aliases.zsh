@@ -2,7 +2,7 @@
 
 alias :q='exit' # 😎
 
-if hash eza 2>/dev/null; then
+if command -v eza >/dev/null 2>&1; then
 	alias l='eza'
 	alias ls='eza --group-directories-first --icons --git'
 	alias ll='ls -lah --git'
@@ -28,7 +28,7 @@ alias duh="du -h | sort -h"
 # A trailing space in VALUE causes the next word to be checked for alias substitution when the alias is expanded.
 alias watch="watch --color --interval 0.5 "
 
-if hash nvim 2>/dev/null; then
+if command -v nvim >/dev/null 2>&1; then
 	alias v="vim"
 	alias vim="nvim"
 	alias vp="nvim --nopugin"
@@ -37,39 +37,39 @@ else
 	echo "neovim is missing"
 fi
 
-if hash mise 2>/dev/null; then
+if command -v mise >/dev/null 2>&1; then
 	alias m="mise"
 else
 	echo "mise is missing"
 fi
 
-if hash fping 2>/dev/null; then
+if command -v fping >/dev/null 2>&1; then
 	alias wping="fping wp.pl -l | cut -d , -f 3-4"
 else
 	echo "fping is missing"
 fi
 
-if hash ranger 2>/dev/null; then
+if command -v ranger >/dev/null 2>&1; then
 	alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 	alias ra="ranger"
 else
 	echo "ranger is missing"
 fi
 
-if hash trash 2>/dev/null; then
+if command -v trash >/dev/null 2>&1; then
 	alias rmm="trash"
 else
 	echo "trash-cli is not installed."
 fi
 
-if hash git 2>/dev/null; then
+if command -v git >/dev/null 2>&1; then
 	# cd to git root
 	alias gcd='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 else
 	echo "git is missing"
 fi
 
-if hash gh 2>/dev/null; then
+if command -v gh >/dev/null 2>&1; then
 	alias gh-dash='gh dash'
 	alias gh-create='gh pr create -t $(git branch --show-current)'
 	alias gh-create-web='gh pr create -w -t $(git branch --show-current)'
@@ -79,7 +79,7 @@ else
 	echo "gh is missing"
 fi
 
-if hash lazygit 2>/dev/null; then
+if command -v lazygit >/dev/null 2>&1; then
 	alias lg='lazygit'
 	alias gg='lazygit'
 else
@@ -87,7 +87,7 @@ else
 fi
 
 # translation with http://git.io/trans
-if hash trans 2>/dev/null; then
+if command -v trans >/dev/null 2>&1; then
 	alias t='trans en:pl'
 	alias tj='trans en:pl -j'
 	alias ts='trans en:pl -speak'
@@ -100,7 +100,7 @@ else
 	echo "translate-shell is missing,\r\nget it from http://git.io/trans"
 fi
 
-if hash ag 2>/dev/null; then
+if command -v ag >/dev/null 2>&1; then
 	alias ag='\ag  --smart-case --pager="less -XFR"'
 else
 	echo "the_silver_searcher or silversearcher-ag or silver-searcher is not installed."
@@ -119,21 +119,21 @@ npm-versions() {
 
 alias vimwiki='nvim -c VimwikiIndex'
 
-if hash xclip 2>/dev/null; then
+if command -v xclip >/dev/null 2>&1; then
 	alias xclip='xclip -sel c'
 fi
 
-if hash win32yank.exe 2>/dev/null; then
+if command -v win32yank.exe >/dev/null 2>&1; then
 	alias xclip='win32yank.exe -i'
 fi
 
-if hash tig 2>/dev/null; then
+if command -v tig >/dev/null 2>&1; then
 	alias tiga='tig --all'
 else
 	echo "tig is not installed."
 fi
 
-if hash tmux 2>/dev/null; then
+if command -v tmux >/dev/null 2>&1; then
 	alias tn='tmux new -t'
 	alias ta='tmux new -A -s'
 	alias tl='tmux ls'
@@ -157,7 +157,7 @@ alias ollama-user-log='journalctl --user-unit ollama.service --since today'
 
 alias docker-ps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"'
 
-if hash opencode &>/dev/null; then
+if command -v opencode >/dev/null 2>&1; then
 	alias o='opencode'
 	alias oo='opencode --continue'
 	alias og='opencode --prompt "Hi Grug"'
@@ -168,17 +168,17 @@ else
 	echo "opencode is not installed."
 fi
 
-if hash claude &>/dev/null; then
+if command -v claude >/dev/null 2>&1; then
 	alias cl='claude'
 fi
 
-if hash ccusage &>/dev/null; then
+if command -v ccusage >/dev/null 2>&1; then
 	alias ccusage='PI_AGENT_DIR=~/.config/pi/sessions ccusage'
 fi
 
 alias phone-call="adb shell am start -a android.intent.action.DIAL -d "
 
-if hash zoxide &>/dev/null; then
+if command -v zoxide >/dev/null 2>&1; then
 	alias j='z'
 fi
 
