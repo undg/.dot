@@ -7,9 +7,9 @@ gui:
   scrollPastBottom: true
   scrollOffMargin: 2
   scrollOffBehavior: margin
-  sidePanelWidth: 0.2
+  sidePanelWidth: 0.3
   expandFocusedSidePanel: true
-  expandedSidePanelWeight: 2
+  expandedSidePanelWeight: 1
   mainPanelSplitMode: flexible
   enlargedSideViewLocation: left
   language: en
@@ -99,7 +99,7 @@ git:
   diffRenderers:
     - type: stdinFilter
       colorArg: always
-      command: delta -s --dark --paging=never --24-bit-color=never
+      command: delta --dark --paging=never --24-bit-color=never --wrap-max-lines=unlimited
   commit:
     signOff: false
     autoWrapCommitMessage: true
