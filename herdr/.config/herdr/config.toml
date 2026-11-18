@@ -250,3 +250,13 @@ command = "osamahbeig.pane-mover.open"
 description = "move this pane"
 
 # }}}
+
+#####################
+# herdr-copy-last {{{
+# Copy last stdout from the terminal
+[[keys.command]]
+key = "prefix+y"
+type = "shell"
+command = "herdr-copy-last"
+description = "Copy last command output"
+# }}}
