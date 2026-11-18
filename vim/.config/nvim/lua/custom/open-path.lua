@@ -75,10 +75,11 @@ end
 ---@param line? integer
 ---@param end_line? integer
 ---@param column? integer 1-based column
+---@return boolean opened
 function M.open(path, line, end_line, column)
 	if not path or path == "" then
 		vim.notify("Path is empty", vim.log.levels.INFO, { title = "Openpath" })
-		return
+		return false
 	end
 
 	if vim.fn.filereadable(path) ~= 1 then
@@ -93,7 +94,7 @@ function M.open(path, line, end_line, column)
 
 	if vim.fn.filereadable(path) ~= 1 then
 		vim.notify("Invalid path: [ " .. path .. " ]", vim.log.levels.WARN, { title = "Openpath" })
-		return
+		return false
 	end
 
 	vim.cmd.edit(vim.fn.fnameescape(path))
@@ -127,6 +128,8 @@ function M.open(path, line, end_line, column)
 			vim.notify("Line " .. line .. " can't be less than 1", vim.log.levels.WARN, { title = "Openpath" })
 		end
 	end
+
+	return true
 end
 
 local function open_path()
@@ -136,18 +139,36 @@ local function open_path()
 		return
 	end
 
-	M.open(path, line, end_line, column)
+	return M.open(path, line, end_line, column)
 end
 
 local function open_path_and_add_to_harpoon()
-	open_path()
+	if not open_path() then
+		return
+	end
 
-	--  @TODO (undg) 2026-08-17: create command, do not rely on mapping
-	local keys = vim.api.nvim_replace_termcodes("<S-LEFT><S-RIGHT><S-RIGHT><ESC>", true, false, true)
-	vim.api.nvim_feedkeys(keys, "m", false)
+	local mark_ok, mark = pcall(require, "harpoon.mark")
+	if not mark_ok then
+		vim.notify("lua/custom/open-path.lua: missing requirements - harpoon.mark", vim.log.levels.ERROR)
+		return
+	end
+
+	mark.add_file()
+	local marked_files = {}
+	for index = 1, mark.get_length() do
+		marked_files[index] = mark.get_marked_file(index)
+	end
+	local current_index = mark.get_current_index()
+	if current_index and current_index > 1 then
+		table.insert(marked_files, 1, table.remove(marked_files, current_index))
+		mark.set_mark_list(marked_files)
+	end
 end
 
 vim.api.nvim_create_user_command("Openpath", open_path, { desc = "Open file path from + register" })
+vim.api.nvim_create_user_command("OpenpathHarpoon", open_path_and_add_to_harpoon, {
+	desc = "Open file path from + register and move it to the top of Harpoon",
+})
 
 Keymap.normal("<leader>Ff", open_path, { desc = "open yanked path" })
 Keymap.normal("<leader>FF", open_path_and_add_to_harpoon, { desc = "open yanked path and add to harpoon" })
