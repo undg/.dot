@@ -205,25 +205,19 @@ pgm-fe-start() {
 	node_modules/.bin/vite --no-open --mode custom
 }
 
-pgm-fe-start-local() {
+pgm-start-fe-local() {
 	pgm-teardown-fe
 	node_modules/.bin/vite --no-open --mode custom-local
 }
 
-pgm-be-start() {
+pgm-start-be() {
 	docker info >/dev/null || return
 
-	pkill -f 'uvicorn.*7083' || true
-	pkill -f 'uvicorn.*7082' || true
-	docker rm -f \
-		gitea-postgres gitea-rootless localstack ofelia pgm-graph_sanity \
-		pgm-sampling-integration-tkrisk-sample-worker-1 \
-		pgm-sampling-integration-tkrisk-sample-worker-2 \
-		pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03 || true
+	pgm-teardown
 
 	(
-		cd ~/Code/pgm-sampling-integration || exit
-		bash _dev-setup/prepare-dev.sh
+		cd ~/Code/pgm-eviews-integration/.wk/feat-noticket-cider || exit
+		task run:worker-local
 	) || return
 
 	task dev:prepare-dev || return
@@ -234,7 +228,7 @@ pgm-be-start() {
 	task dev:serve
 }
 
-pgm-be-serve() {
+pgm-serve-be() {
 	pgm-teardown-be
 
 	local bottom_pane_id=$(herdr pane split --direction down | jq -r ".result.pane.pane_id")
