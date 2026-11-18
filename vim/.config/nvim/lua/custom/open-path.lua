@@ -22,21 +22,39 @@ local function parse_input(raw)
 		return nil, nil, nil
 	end
 
+	-- > #file:`path:L3-L10`
+	-- > #file:`path:L{line}-L{end_line}`
 	text = text:gsub("^> #file:`", ""):gsub("`$", "")
 
-	local path, line, end_line = text:match("^(.-):L(%d+)-L(%d+)$")
+	-- path:3:10
+	-- path:{line}:{column}
+	local path, line, column = text:match("^(.-):(%d+):(%d+)$")
+	if path then
+		return path, tonumber(line), nil, tonumber(column)
+	end
+
+	local end_line
+	-- path:L3-L10
+	-- path:L{line}-L{end_line}
+	path, line, end_line = text:match("^(.-):L(%d+)-L(%d+)$")
 	if not path then
+		-- path:3-10
+		-- path:{line}-{end_line}
 		path, line, end_line = text:match("^(.-):(%d+)-(%d+)$")
 	end
 	if path then
 		return path, tonumber(line), tonumber(end_line)
 	end
 
+	-- path:L3
+	-- path:L{line}
 	path, line = text:match("^(.-):L(%d+)$")
 	if path then
 		return path, tonumber(line), nil
 	end
 
+	-- path:3
+	-- path:{line}
 	path, line = text:match("^(.-):(%d+)$")
 	if path then
 		return path, tonumber(line), nil
@@ -56,7 +74,8 @@ end
 ---@param path string
 ---@param line? integer
 ---@param end_line? integer
-function M.open(path, line, end_line)
+---@param column? integer 1-based column
+function M.open(path, line, end_line, column)
 	if not path or path == "" then
 		vim.notify("Path is empty", vim.log.levels.INFO, { title = "Openpath" })
 		return
@@ -86,7 +105,7 @@ function M.open(path, line, end_line)
 		local max_line = vim.api.nvim_buf_line_count(0)
 		local target_line = math.min(math.max(line, 1), max_line)
 		local target_end_line = math.min(math.max(end_line or line, target_line), max_line)
-		vim.api.nvim_win_set_cursor(0, { target_line, 0 })
+		vim.api.nvim_win_set_cursor(0, { target_line, math.max((column or 1) - 1, 0) })
 		highlight.highlight_lines(target_line, target_end_line)
 
 		local mark_letter = marks.assign(vim.api.nvim_get_current_buf(), target_line)
@@ -111,13 +130,13 @@ function M.open(path, line, end_line)
 end
 
 local function open_path()
-	local path, line, end_line = parse_input(vim.fn.getreg("+"))
+	local path, line, end_line, column = parse_input(vim.fn.getreg("+"))
 	if not path then
 		vim.notify("Register + is empty", vim.log.levels.INFO, { title = "Openpath" })
 		return
 	end
 
-	M.open(path, line, end_line)
+	M.open(path, line, end_line, column)
 end
 
 local function open_path_and_add_to_harpoon()
