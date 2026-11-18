@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# Add this entry to your Herdr config.toml. Adjust the script path if moved.
+# Ctrl+B, then Y with the default prefix.
+
+# [[keys.command]]
+# key = "prefix+y"
+# type = "shell"
+# command = "herdr-copy-last"
+# description = "Copy last command output"
+
+set -euo pipefail
+
+HERDR_BIN=${HERDR_BIN_PATH:-herdr}
+PANE_ID=${HERDR_ACTIVE_PANE_ID:-${HERDR_PANE_ID:-}}
+
+show_help() {
+	cat <<EOF
+Usage: ${0##*/} [--help]
+
+Copy the previous command block from the current Herdr pane to the macOS clipboard.
+Run from a Herdr shortcut while the shell is idle at a prompt.
+
+Includes the previous command's ❯ prompt, its output, and the next prompt's header.
+Reads at most 1,000 rendered rows. Lines beginning with ❯ followed by whitespace
+or end of line are treated as prompts. The clipboard is unchanged on read or
+prompt-detection failure.
+
+Options:
+  -h, --help  Show this help
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+	-h | --help)
+		show_help
+		exit 0
+		;;
+	*)
+		printf 'Unknown argument: %s. Use --help.\n' "$1" >&2
+		exit 2
+		;;
+	esac
+done
+
+if [[ -z "$PANE_ID" ]]; then
+	printf 'No Herdr pane found. Run from a Herdr shortcut or pane.\n' >&2
+	exit 1
+fi
+
+for DEPENDENCY in "$HERDR_BIN" awk pbcopy; do
+	if ! command -v "$DEPENDENCY" >/dev/null 2>&1; then
+		printf 'Required command not found: %s\n' "$DEPENDENCY" >&2
+		exit 1
+	fi
+done
+
+OUTPUT=$(mktemp)
+trap 'rm -f "$OUTPUT"' EXIT
+
+# Finish reading and validating before touching the clipboard.
+"$HERDR_BIN" pane read "$PANE_ID" --source recent-unwrapped --lines 1000 |
+	awk '
+		/^[ \t]*❯([ \t]|$)/ {
+			previous = current
+			current = ""
+			prompts++
+		}
+		prompts { current = current $0 "\n" }
+		END {
+			if (prompts < 2) {
+				print "Could not find two ❯ prompts in the last 1,000 rows; clipboard unchanged." > "/dev/stderr"
+				exit 1
+			}
+			printf "%s", previous
+		}
+	' >"$OUTPUT"
+
+pbcopy <"$OUTPUT"
