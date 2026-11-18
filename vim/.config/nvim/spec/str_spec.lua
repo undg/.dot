@@ -34,4 +34,18 @@ describe('String Utilities', function()
 		assert.are.equal('…', str.trunc('hello', 1))
 		assert.are.equal('', str.trunc('hello', 0))
 	end)
+
+	it('str.trunc() preserves UTF-8 characters when truncating', function()
+		assert.are.equal('é🐱…', str.trunc('é🐱世界', 3))
+	end)
+
+	it('str.trunc() leaves Unicode text within the character limit unchanged', function()
+		assert.are.equal('é🐱世界', str.trunc('é🐱世界', 4))
+	end)
+
+	it('str.trunc() returns empty text for non-positive limits', function()
+		assert.are.equal('', str.trunc('é🐱', 0))
+		assert.are.equal('', str.trunc('hello', -1))
+		assert.are.equal('', str.trunc('', 0))
+	end)
 end)

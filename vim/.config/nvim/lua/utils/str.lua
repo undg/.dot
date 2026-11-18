@@ -59,14 +59,16 @@ end
 
 ---Truncate string to max length, adding ellipsis if cut
 ---@param s string Text to truncate
----@param n integer Max length of result, including ellipsis
+---@param n integer Max character count of result, including ellipsis
 ---@return string
 function M.trunc(s, n)
-	if #s <= n then
+	if n <= 0 then
+		return ""
+	end
+	if vim.fn.strchars(s) <= n then
 		return s
 	end
-	local ellipsis = "…"
-	return s:sub(1, math.max(n - #ellipsis, 0)) .. ellipsis
+	return vim.fn.strcharpart(s, 0, n - 1) .. "…"
 end
 
 return M
