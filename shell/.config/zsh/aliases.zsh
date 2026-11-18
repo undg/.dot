@@ -211,15 +211,27 @@ pgm-fe-start-local() {
 }
 
 pgm-be-start() {
-	pgm-teardown
-	cd ~/Code/pgm-sampling-integration
-	bash _dev-setup/prepare-dev.sh
-	cd -
-	task dev:prepare-dev
-	local bottom_pane_id=$(herdr pane split --direction down | jq -r ".result.pane.pane_id")
+	docker info >/dev/null || return
 
-	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
-	task dev:serve                                         # top pane (current pane)
+	pkill -f 'uvicorn.*7083' || true
+	pkill -f 'uvicorn.*7082' || true
+	docker rm -f \
+		gitea-postgres gitea-rootless localstack ofelia pgm-graph_sanity \
+		pgm-sampling-integration-tkrisk-sample-worker-1 \
+		pgm-sampling-integration-tkrisk-sample-worker-2 \
+		pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03 || true
+
+	(
+		cd ~/Code/gm-sampling-integration || exit
+		bash _dev-setup/prepare-dev.sh
+	) || return
+
+	task dev:prepare-dev || return
+
+	local bottom_pane_id
+	bottom_pane_id=$(herdr pane split --direction down | jq -er '.result.pane.pane_id // empty') || return
+	herdr pane run "$bottom_pane_id" task dev:serve-editor || return
+	task dev:serve
 }
 
 pgm-be-serve() {
