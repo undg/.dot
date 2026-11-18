@@ -222,7 +222,7 @@ pgm-be-start() {
 		pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03 || true
 
 	(
-		cd ~/Code/gm-sampling-integration || exit
+		cd ~/Code/pgm-sampling-integration || exit
 		bash _dev-setup/prepare-dev.sh
 	) || return
 
