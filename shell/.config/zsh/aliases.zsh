@@ -189,7 +189,7 @@ s() {
 	mkdir -p ~/tmp/Research
 	cd ~/tmp/Research
 	pissbox --yes
-	cd -
+	# cd -
 }
 
 #################################################
