@@ -13,7 +13,7 @@ gui:
   mainPanelSplitMode: flexible
   enlargedSideViewLocation: left
   language: en
-  timeFormat: "02 Jan 06 15:04 MST"
+  timeFormat: "02 Jan 06"
   shortTimeFormat: 3:04PM
   tabWidth: 4
   wrapLinesInDiffView: true
@@ -71,8 +71,8 @@ gui:
   showFileIcons: true
   nerdFontsVersion: "3"
   commitAuthorShortLength: 2
-  commitAuthorLongLength: 10
-  commitHashLength: 8
+  commitAuthorLongLength: 4
+  commitHashLength: 7
   showBranchCommitHash: false
   showDivergenceFromBaseBranch: none
   commandLogSize: 8
