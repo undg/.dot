@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT = Path.home() / "bin" / "herdr-copy-last"
+SCRIPT = Path(__file__).resolve().parents[1] / "bin" / "bin" / "herdr-copy-last"
 
 
 class CopyLastTests(unittest.TestCase):
@@ -15,12 +15,18 @@ class CopyLastTests(unittest.TestCase):
         self.screen = self.root / "screen"
         self.clipboard = self.root / "clipboard"
         self.args = self.root / "args"
+        self.notification = self.root / "notification"
         self.screen.write_text("", encoding="utf-8")
         self.clipboard.write_text("keep existing clipboard", encoding="utf-8")
         for name, body in {
-            "herdr": 'printf "%s\\n" "$@" > "$TEST_ARGS"\n'
+            "herdr": 'if [ "$1" = notification ]; then\n'
+            '  printf "%s\\n" "$@" > "$TEST_NOTIFICATION"\n'
+            '  exit "${TEST_NOTIFICATION_EXIT:-0}"\n'
+            'fi\n'
+            'printf "%s\\n" "$@" > "$TEST_ARGS"\n'
             'cat "$TEST_SCREEN"\nexit "${TEST_READ_EXIT:-0}"\n',
-            "pbcopy": 'cat > "$TEST_CLIPBOARD"\n',
+            "pbcopy": 'if [ "${TEST_COPY_EXIT:-0}" != 0 ]; then exit "$TEST_COPY_EXIT"; fi\n'
+            'cat > "$TEST_CLIPBOARD"\n',
         }.items():
             stub = self.root / name
             stub.write_text("#!/bin/sh\n" + body, encoding="utf-8")
@@ -34,6 +40,7 @@ class CopyLastTests(unittest.TestCase):
             TEST_SCREEN=str(self.screen),
             TEST_CLIPBOARD=str(self.clipboard),
             TEST_ARGS=str(self.args),
+            TEST_NOTIFICATION=str(self.notification),
         )
 
     def run_script(self, *args):
@@ -73,6 +80,33 @@ class CopyLastTests(unittest.TestCase):
             ],
         )
 
+    def test_successful_copy_shows_silent_notification(self):
+        self.screen.write_text("❯ command\noutput\n❯\n", encoding="utf-8")
+        result = self.run_script()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.clipboard.read_text(), "❯ command\noutput\n")
+        self.assertEqual(
+            self.notification.read_text().splitlines(),
+            ["notification", "show", "Last command output copied", "--sound", "none"],
+        )
+        self.assertEqual(result.stdout, "")
+
+    def test_failed_copy_does_not_notify(self):
+        self.screen.write_text("❯ command\noutput\n❯\n", encoding="utf-8")
+        self.env["TEST_COPY_EXIT"] = "1"
+        result = self.run_script()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(self.notification.exists())
+        self.assertEqual(self.clipboard.read_text(), "keep existing clipboard")
+
+    def test_notification_failure_does_not_fail_successful_copy(self):
+        self.screen.write_text("❯ command\noutput\n❯\n", encoding="utf-8")
+        self.env["TEST_NOTIFICATION_EXIT"] = "1"
+        result = self.run_script()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.clipboard.read_text(), "❯ command\noutput\n")
+        self.assertIn("Output copied, but the Herdr notification failed.", result.stderr)
+
     def test_ignores_arrows_inside_output_and_accepts_bare_idle_prompt(self):
         self.screen.write_text(
             "❯ command\na ❯ b\n❯not-a-prompt\n❯\n",
@@ -90,6 +124,7 @@ class CopyLastTests(unittest.TestCase):
         result = self.run_script()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Could not find two", result.stderr)
+        self.assertFalse(self.notification.exists())
         self.assertEqual(self.clipboard.read_text(), "keep existing clipboard")
 
     def test_failed_read_leaves_clipboard_unchanged_even_with_valid_text(self):
@@ -97,6 +132,7 @@ class CopyLastTests(unittest.TestCase):
         self.env["TEST_READ_EXIT"] = "1"
         result = self.run_script()
         self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(self.notification.exists())
         self.assertEqual(self.clipboard.read_text(), "keep existing clipboard")
 
     def test_pane_environment_and_binary_override(self):
