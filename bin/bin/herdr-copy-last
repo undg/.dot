@@ -24,7 +24,7 @@ Run from a Herdr shortcut while the shell is idle at a prompt.
 Includes the previous command's ❯ prompt, its output, and the next prompt's header.
 Reads at most 1,000 rendered rows. Lines beginning with ❯ followed by whitespace
 or end of line are treated as prompts. The clipboard is unchanged on read or
-prompt-detection failure.
+prompt-detection failure. Shows a silent Herdr notification after copying.
 
 Options:
   -h, --help  Show this help
@@ -78,3 +78,6 @@ trap 'rm -f "$OUTPUT"' EXIT
 	' >"$OUTPUT"
 
 pbcopy <"$OUTPUT"
+if ! "$HERDR_BIN" notification show "Last command output copied" --sound none >/dev/null; then
+	printf 'Output copied, but the Herdr notification failed.\n' >&2
+fi
