@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+MODE=
+
+show_help() {
+	cat <<EOF
+Usage: ${0##*/} MODE
+
+Run PGM development commands from the relevant project directory.
+
+Choose one mode.
+
+Frontend:
+  --fe-start        Restart Vite in custom mode
+  --fe-start-local  Restart Vite in custom-local mode (local bucket)
+  --fe-stop         Stop Vite
+
+Backend:
+  --be-start        Tear down, prepare a fresh dev environment, and serve
+  --be-stop         Stop Uvicorn on ports 7083 and 7082; leave Docker alone
+  --be-serve        Restart both Uvicorn servers without rebuilding Docker services
+  --be-teardown     Stop Uvicorn and remove the named PGM Docker containers
+
+  -h, --help        Show this help
+EOF
+}
+
+usage_error() {
+	printf '%s: %s\nUse --help for usage.\n' "${0##*/}" "$1" >&2
+	exit 2
+}
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+	-h | --help)
+		show_help
+		exit 0
+		;;
+	--fe-start | --fe-start-local | --fe-stop | --be-start | --be-stop | --be-serve | --be-teardown)
+		[[ -z "$MODE" ]] || usage_error 'choose exactly one mode'
+		MODE=${1#--}
+		;;
+	*)
+		usage_error "unknown argument: $1"
+		;;
+	esac
+	shift
+done
+
+# Frontend
+fe_stop() {
+	pkill -f 'vite.js'
+}
+
+fe_start() {
+	local vite_mode=$1
+	fe_stop || true
+	exec node_modules/.bin/vite --no-open --mode "$vite_mode"
+}
+
+# Backend
+be_stop() {
+	pkill -f 'uvicorn.*7083' || true
+	pkill -f 'uvicorn.*7082'
+}
+
+be_teardown() {
+	be_stop || true
+	docker rm -f \
+		gitea-postgres gitea-rootless localstack ofelia \
+		pgm-graph_sanity \
+		pgm-sampling-integration-tkrisk-sample-worker-1 \
+		pgm-sampling-integration-tkrisk-sample-worker-2 \
+		pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03
+}
+
+be_serve_editor() {
+	local bottom_pane_id
+	bottom_pane_id=$(herdr pane split --direction down | jq -er '.result.pane.pane_id // empty') || return
+	herdr pane run "$bottom_pane_id" task dev:serve-editor
+}
+
+be_start() {
+	docker info >/dev/null
+	# Docker can report missing containers during teardown.
+	be_teardown || true
+	task dev:prepare-dev
+	be_serve_editor
+	exec task dev:serve
+}
+
+be_serve() {
+	be_stop || true
+	# A quick restart still starts the main server if the editor pane fails.
+	be_serve_editor || true
+	exec task dev:serve
+}
+
+case "$MODE" in
+fe-start) fe_start custom ;;
+fe-start-local) fe_start custom-local ;;
+fe-stop) fe_stop ;;
+be-start) be_start ;;
+be-stop) be_stop ;;
+be-serve) be_serve ;;
+be-teardown) be_teardown ;;
+'') usage_error 'choose a mode' ;;
+esac
