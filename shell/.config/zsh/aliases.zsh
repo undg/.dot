@@ -196,46 +196,13 @@ s() {
 # Probabilistic Graphical Modelling
 #################################################
 
-alias pgm-teardown-be="pkill -f 'uvicorn.*7083'; pkill -f 'uvicorn.*7082'"
-alias pgm-teardown-fe="pkill -f 'vite.js'"
-alias pgm-teardown="pgm-teardown-be; docker rm -f gitea-postgres gitea-rootless localstack ofelia pgm-graph_sanity pgm-sampling-integration-tkrisk-sample-worker-1 pgm-sampling-integration-tkrisk-sample-worker-2 pgm-tkrisk pgm-tkrisk-ui redis-01 redis-02 redis-03;"
-
-pgm-fe-start() {
-	pgm-teardown-fe
-	node_modules/.bin/vite --no-open --mode custom
-}
-
-pgm-start-fe-local() {
-	pgm-teardown-fe
-	node_modules/.bin/vite --no-open --mode custom-local
-}
-
-pgm-start-be() {
-	docker info >/dev/null || return
-
-	pgm-teardown
-
-	(
-		cd ~/Code/pgm-eviews-integration/.wk/feat-noticket-cider || exit
-		task run:worker-local
-	) || return
-
-	task dev:prepare-dev || return
-
-	local bottom_pane_id
-	bottom_pane_id=$(herdr pane split --direction down | jq -er '.result.pane.pane_id // empty') || return
-	herdr pane run "$bottom_pane_id" task dev:serve-editor || return
-	task dev:serve
-}
-
-pgm-serve-be() {
-	pgm-teardown-be
-
-	local bottom_pane_id=$(herdr pane split --direction down | jq -r ".result.pane.pane_id")
-
-	herdr pane run "$bottom_pane_id" task dev:serve-editor # bottom pane
-	task dev:serve                                         # top pane (current pane)
-}
+alias pgm-fe-start='pgm --fe-start'
+alias pgm-fe-start-local='pgm --fe-start-local'
+alias pgm-fe-stop='pgm --fe-stop'
+alias pgm-be-start='pgm --be-start'
+alias pgm-be-stop='pgm --be-stop'
+alias pgm-be-serve='pgm --be-serve'
+alias pgm-be-teardown='pgm --be-teardown'
 
 yz() {
 	emulate -L zsh
