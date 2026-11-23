@@ -1,3 +1,9 @@
+local python = require("utils.python")
+
+local function ruff_command(_, ctx)
+	return python.venv_executable(python.ruff_root(ctx.buf), "ruff") or "ruff"
+end
+
 local function format_on_save_toggle()
 	vim.g.format_on_save = not vim.g.format_on_save
 
@@ -71,6 +77,8 @@ return {
 				yaml = js_formatter,
 			},
 			formatters = {
+				ruff_format = { command = ruff_command },
+				ruff_organize_imports = { command = ruff_command },
 				["biome-check"] = {
 					args = {
 						"check",

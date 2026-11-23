@@ -6,16 +6,25 @@
 -- https://docs.basedpyright.com/latest/configuration/language-server-settings/
 -- https://github.com/DetachHead/basedpyright/tree/main/docs/configuration
 
+local python = require("utils.python")
+
 return {
-	cmd = { "basedpyright-langserver", "--stdio" },
+	cmd = python.lsp_cmd("basedpyright-langserver", "--stdio"),
 	filetypes = { "python" },
 	root_dir = function(bufnr, on_dir)
-		on_dir(vim.fs.root(bufnr, {
-			"pyproject.toml", -- modern
-			"setup.py", -- legacy setup tools
-			"setup.cfg", -- legacy alternative
-			".git", -- repo root
-		}) or vim.fn.getcwd())
+		on_dir(python.root(bufnr, { "pyrightconfig.json" }))
+	end,
+	on_init = python.diagnostic_signs,
+	before_init = function(_, config)
+		if not config.root_dir or not config.settings then
+			return
+		end
+
+		local interpreter = python.venv_executable(config.root_dir, "python")
+		if interpreter then
+			config.settings.python = config.settings.python or {}
+			config.settings.python.pythonPath = config.settings.python.pythonPath or interpreter
+		end
 	end,
 	settings = {
 		basedpyright = {

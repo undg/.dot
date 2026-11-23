@@ -17,13 +17,15 @@
 ---@class RuffFormatSettings
 ---@field args? string[] Additional CLI arguments for ruff format
 
----@type table
+local python = require("utils.python")
+
 return {
-	cmd = { "ruff", "server" },
+	cmd = python.lsp_cmd("ruff", "server"),
 	filetypes = { "python" },
 	root_dir = function(bufnr, on_dir)
-		on_dir(vim.fs.root(bufnr, ".git") or vim.fn.getcwd())
+		on_dir(python.ruff_root(bufnr))
 	end,
+	on_init = python.diagnostic_signs,
 	init_options = {
 		settings = {
 			-- Disable organize imports - handled by conform.nvim
