@@ -38,6 +38,7 @@ while [[ $# -gt 0 ]]; do
 		show_help
 		exit 0
 		;;
+	# Keep in sync with static zsh completion: shell/.config/zsh/completion/_pgm
 	--fe-start | --fe-start-local | --fe-stop | --be-start | --be-stop | --be-serve | --be-teardown)
 		[[ -z "$MODE" ]] || usage_error 'choose exactly one mode'
 		MODE=${1#--}
