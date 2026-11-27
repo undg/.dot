@@ -1,0 +1,17 @@
+#compdef pgm
+
+local -a modes=(
+	--fe-start --fe-start-local --fe-stop
+	--be-start --be-stop --be-serve --be-teardown
+	-h --help
+)
+
+_arguments \
+	"(${modes[*]})"{-h,--help}'[show help]' \
+	"(${modes[*]})--fe-start[restart Vite in custom mode]" \
+	"(${modes[*]})--fe-start-local[restart Vite in custom-local mode (local bucket)]" \
+	"(${modes[*]})--fe-stop[stop Vite]" \
+	"(${modes[*]})--be-start[tear down, prepare fresh dev env, and serve]" \
+	"(${modes[*]})--be-stop[stop Uvicorn on ports 7083 and 7082]" \
+	"(${modes[*]})--be-serve[restart both Uvicorn servers without rebuilding Docker]" \
+	"(${modes[*]})--be-teardown[stop Uvicorn and remove PGM Docker containers]"
